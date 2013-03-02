@@ -1,5 +1,5 @@
 <!doctype html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<html>
 
     <!-- region header -->
 
@@ -7,12 +7,13 @@
         <title>
             FileReflectorDemo
         </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link type="text/css" rel="stylesheet/less" href="css/jquery-fileReflectorDemo-1.0.less" />
         <link rel="shortcut icon" href="img/favicon.ico" />
         <script type="text/javascript" src="javaScript/require-1.0.js"></script>
         <script text="text/javascript">
             window.require.noConflict = true;
-            window.require([['jQuery.FileReflectorDemo', 'jquery-fileReflectorDemo-1.0']], function() {
+            window.require([['jQuery.Website', 'jquery-website-1.0']], function() {
                 /**
                     Embedd jQuery and require full compatible to all other
                     JavaScripts.
@@ -20,7 +21,7 @@
                     function is called when the dom-tree was loaded.
                 */
                 window.jQuery.noConflict(true)(function(jQuery) {
-                    jQuery.FileReflectorDemo({'logging': true});
+                    jQuery.Website({'logging': true});
                 });
             });
         </script>
@@ -29,97 +30,24 @@
     <!-- endregion -->
 
     <body>
-        <div class="file-reflector-demo">
 
             <!-- region header -->
 
-            <div class="header-wrapper">
-                <div class="header">
-                    <a href="index.html">FileReflector</a>
-                </div>
-            </div>
+            
 
             <!-- endregion -->
 
             <!-- region menu -->
 
-            <div class="menu-wrapper">
-                <div class="menu">
-                    <a href="#start" class="panel selected">Start</a> |
-                    <a href="#demo" class="panel">Demo</a> |
-                    <a href="#download" class="panel">Download</a> |
-                    <a href="#documentation" class="panel">Documentation</a>
-                </div>
-            </div>
+            
 
             <!-- endregion -->
 
             <!-- region main content -->
 
-            <div class="page-wrapper">
-                <div class="page-mask">
-                    <div id="start" class="item">
-                        <div class="content">
-                            <h2>Start</h2>
-                            <p>
-                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                                Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-                                Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
-                            </p>
-                        </div>
-                    </div>
-                    <div id="demo" class="item">
-                        <div class="content">
-                            <h2>Demo</h2>
-                            <div class="frame-wrapper">
-                                <div class="demo-teaser">
-                                    FileReflectorDemo
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="download" class="item">
-                        <div class="content">
-                            <h2>Download</h2>
-                            <ul>
-                                <li>
-                                    Linux
-                                    <ul>
-                                        <li><a href="#python3.2">python3.2 default browser</a></li>
-                                        <li><a href="#python2.7">python2.7 GTK</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    Windows
-                                    <ul>
-                                        <li><a href="#python3.2">python3.2 default browser</li>
-                                        <li><a href="#python2.7">python2.7 GTK</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    Mac
-                                    <ul>
-                                        <li><a href="#python3.2">python3.2 default browser</li>
-                                        <li><a href="#python2.7">python2.7 GTK</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div id="documentation" class="item">
-                        <div class="content">
-                            <h2>Documentation</h2>
-                            <ul>
-                                <li><a href="#frontend">Frontend</a></li>
-                                <li><a href="#backend">Backend</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
 
             <!-- endregion -->
 
-        </div>
     </body>
 </html>
