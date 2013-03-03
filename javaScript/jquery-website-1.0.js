@@ -78,15 +78,13 @@
     // region protected methods
 
         this._handleGooleAnalytics = function() {
+            // TODO check if "_gaq" has to be global.
             var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']];
-            var g = document.createElement('script'),
-                s = document.getElementsByTagName('script')[0];
-            g.src = (
-                'https:' == location.protocol ? '//ssl' : '//www'
-            ) + '.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g, s);
+            jQuery('script')[0].parent().before(jQuery('<script>').attr(
+                'src', ('https:' == location.protocol ? '//ssl' : '//www') +
+                    '.google-analytics.com/ga.js'));
             return this;
-        }
+        };
 
     // endregion
 
