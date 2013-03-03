@@ -30,7 +30,7 @@
 
     ['jQuery.Tools', 'jquery-tools-1.0'],
 
-    ['jQuery.fn.button', 'bootstrap-2.3.1']],
+    ['jQuery.fn.carousel', 'bootstrap-2.3.1']],
     function(less, jQuery) {
 ///
 
@@ -53,7 +53,18 @@
         */
         this._options = {
             'logging': false,
-            'domNodeSelectorPrefix': 'body'};
+            'domNodeSelectorPrefix': 'body.website',
+            'domNodes': {
+                'carousel': 'div.carousel.slide'
+            },
+            'carouselOptions': {}
+        };
+        /**
+            Holds all needed dom nodes.
+
+            @property {Object}
+        */
+        this._domNodes = {};
 
     // endregion
 
@@ -69,7 +80,8 @@
         this.initialize = function(options) {
             if (options)
                 jQuery.extend(true, this._options, options);
-            this.log('Here we go dynamic :-)');
+            this._domNodes = this.grapDomNodes(this._options.domNodes);
+            this._domNodes.carousel.carousel(this._options.carouselOptions);
             return this/*._handleGooleAnalytics()*/;
         };
 

@@ -10,18 +10,275 @@
 
 // region constants
 
-@color1: #2D2D2D;
+@color1: #5a5a5a;
 @color2: #CCC;
 @imagePath: '../image/';
-@defaultSpace: 20px;
+@defaultSpace: 40px;
 
 // endregion
 
 /* region stylesheets */
 
 body.website {
+    
+    /* region global */
+
+    /* Padding below the footer and lighter body text */
+    padding-bottom: @defaultSpace;
     color: @color1;
-    background-color: @color2;
+
+    [class^="icon-"],
+    [class*=" icon-"] {
+        background-image: url('@{imagePath}bootstrap-2.3.1/glyphicons-halflings.png');
+    }
+    .icon-white,
+    .nav-pills > .active > a > [class^="icon-"],
+    .nav-pills > .active > a > [class*=" icon-"],
+    .nav-list > .active > a > [class^="icon-"],
+    .nav-list > .active > a > [class*=" icon-"],
+    .navbar-inverse .nav > .active > a > [class^="icon-"],
+    .navbar-inverse .nav > .active > a > [class*=" icon-"],
+    .dropdown-menu > li > a:hover > [class^="icon-"],
+    .dropdown-menu > li > a:focus > [class^="icon-"],
+    .dropdown-menu > li > a:hover > [class*=" icon-"],
+    .dropdown-menu > li > a:focus > [class*=" icon-"],
+    .dropdown-menu > .active > a > [class^="icon-"],
+    .dropdown-menu > .active > a > [class*=" icon-"],
+    .dropdown-submenu:hover > a > [class^="icon-"],
+    .dropdown-submenu:focus > a > [class^="icon-"],
+    .dropdown-submenu:hover > a > [class*=" icon-"],
+    .dropdown-submenu:focus > a > [class*=" icon-"] {
+        background-image: url('@{imagePath}bootstrap-2.3.1/glyphicons-halflings-white.png');
+    }
+
+    /* endregion */
+
+    /* region navigation bar */
+
+    /*
+        Special class on .container surrounding .navbar, used for positioning
+        it into place.
+    */
+    div.navbar-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        margin-top: 20px;
+        /*
+            Negative margin to pull up carousel. 90px is roughly margins and 
+            height of navbar.
+        */
+        margin-bottom: -90px;
+
+        /* Remove border and change up box shadow for more contrast */
+        div.navbar div.navbar-inner {
+            border: 0;
+            -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.25);
+            -moz-box-shadow: 0 2px 10px rgba(0,0,0,.25);
+            box-shadow: 0 2px 10px rgba(0,0,0,.25);
+        }
+        /* Downsize the brand/project name a bit */
+        div.navbar div.brand {
+            /* Increase vertical padding to match navbar links */
+            padding: 14px 20px 16px;
+            font-size: 16px;
+            font-weight: bold;
+            text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+        }
+        /* Navbar links: increase padding for taller navbar */
+        div.navbar div.nav > li > a {
+            padding: 15px 20px;
+        }
+        /* Offset the responsive button for proper vertical alignment */
+        div.navbar button.btn-navbar {
+            margin-top: 10px;
+        }
+    }
+
+    /* endregion */
+
+    /* region carousel */
+
+    /* Carousel base class */
+    div.carousel {
+        margin-bottom: 60px;
+
+        div.container {
+            position: relative;
+            z-index: 9;
+        }
+        .carousel-control {
+            height: 80px;
+            margin-top: 0;
+            font-size: 120px;
+            text-shadow: 0 1px 1px rgba(0,0,0,.4);
+            background-color: transparent;
+            border: 0;
+            z-index: 10;
+        }
+        div.item {
+            height: 500px;
+        }
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            height: 500px;
+        }
+        div.carousel-caption {
+            background-color: transparent;
+            position: static;
+            max-width: 550px;
+            padding: 0 20px;
+            margin-top: 200px;
+
+            h1, div.lead {
+                margin: 0;
+                line-height: 1.25;
+                color: #fff;
+                text-shadow: 0 1px 1px rgba(0,0,0,.4);
+            }
+            .btn {
+                margin-top: 10px;
+            }
+            div.carousel-inner {
+                /* TODO use generic */
+                border: 0;
+                -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.25);
+                -moz-box-shadow: 0 2px 10px rgba(0,0,0,.25);
+                box-shadow: 0 2px 10px rgba(0,0,0,.25);
+            }
+        }
+    }
+
+    /* endregion */
+
+    /* region marketing content */
+
+    /* Center align the text within the three columns below the carousel */
+    div.marketing {
+        .span4 {
+            text-align: center;
+
+            p {
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+        }
+        h2 {
+            font-weight: normal;
+        }
+
+        /* region featurettes */
+
+        hr.featurette-divider {
+            margin: 80px 0; /* Space out the Bootstrap <hr> more */
+        }
+        div.featurette {
+            padding-top: 120px; /* Vertically center images part 1: add padding above and below text. */
+            overflow: hidden; /* Vertically center images part 2: clear their floats. */
+        }
+        img.featurette-image {
+            margin-top: -120px; /* Vertically center images part 3: negative margin up the image the same amount of the padding to center it. */
+        }
+
+        /* Give some space on the sides of the floated elements so text doesn't run right into it. */
+        img.featurette-image.pull-left {
+            margin-right: 40px;
+        }
+        img.featurette-image.pull-right {
+            margin-left: 40px;
+        }
+        /* Thin out the marketing headings */
+        .featurette-heading {
+            font-size: 50px;
+            font-weight: 300;
+            line-height: 1;
+            letter-spacing: -1px;
+        }
+
+        /* endregion */
+
+    }
+
+    /* endregion */
+
+    /* region responsive css */
+
+    @media (max-width: 979px) {
+        div.container.navbar-wrapper {
+            margin-bottom: 0;
+            width: auto;
+        }
+        div.navbar-inner {
+            border-radius: 0;
+            margin: -20px 0;
+        }
+        div.carousel {
+            .item {
+                height: 500px;
+            }
+            img {
+                width: auto;
+                height: 500px;
+            }
+        }
+        div.featurette {
+            height: auto;
+            padding: 0;
+        }
+        img.featurette-image.pull-left,
+        img.featurette-image.pull-right {
+            display: block;
+            float: none;
+            max-width: 40%;
+            margin: 0 auto 20px;
+        }
+    }
+    @media (max-width: 767px) {
+        div.navbar-inner {
+            margin: -20px;
+        }
+        div.carousel {
+            margin-left: -20px;
+            margin-right: -20px;
+
+            .item {
+                height: 300px;
+            }
+            img {
+                height: 300px;
+            }
+            div.carousel-caption {
+                width: 65%;
+                padding: 0 70px;
+                margin-top: 100px;
+
+                h1 {
+                    font-size: 30px;
+                }
+                .lead, .btn {
+                    font-size: 18px;
+                }
+            }
+        }
+        div.marketing .span4 + .span4 {
+            margin-top: 40px;
+        }
+        .featurette-heading {
+            font-size: 30px;
+        }
+        .featurette .lead {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+    }
+
+    /* endregion */
+
 }
 
 /* endregion */
