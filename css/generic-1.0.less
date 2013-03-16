@@ -48,11 +48,12 @@
         border-radius: @arguments;
     }
     .shadow(
-        @horizontalPosition: 2px, @verticalPosition: 2px, @smoothness: 10px,
-        @size: 2px, @color: black
+        @horizontalPosition: 2px, @verticalPosition: 2px, @size: 2px,
+        @color: black
     ) {
         // firefox
-        x-shadow: @horizontalPosition @verticalPosition @size @color;
+        -moz-box-shadow: @arguments;
+        x-shadow: @arguments;
         // safari, chrome
         -webkit-box-shadow: @arguments;
         // css3

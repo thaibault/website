@@ -1,0 +1,205 @@
+<% social_media = {
+<%     'email': 'mailto:t.sickert@gmail.com',
+<%     'github': 'https://github.com/thaibault',
+<%     'google': 'https://plus.google.com/110796145663857741723/posts',
+<%     'xing': 'http://www.xing.com/profile/Torben_Sickert',
+<%     'linkedin': 'http://de.linkedin.com/pub/torben-sickert/28/aa9/919',
+<%     'skype': '',
+<%     'twitter': 'https://twitter.com/tsickert',
+<%     'facebook': 'https://de-de.facebook.com/tsickert'}
+<!doctype html>
+
+<!-- region browser sniffing -->
+
+<!--[if lt IE 7]>
+    <html class="no-js lt-ie9 lt-ie8 lt-ie7">
+<![endif]-->
+<!--[if IE 7]>
+    <html class="no-js lt-ie9 lt-ie8">
+<![endif]-->
+<!--[if IE 8]>
+    <html class="no-js lt-ie9">
+<![endif]-->
+<!--[if gt IE 8]><!-->
+    <html class="no-js">
+<!--<![endif]-->
+
+<!-- endregion -->
+
+<!-- region header -->
+
+    <head>
+        <title>
+            Torben Sickert
+        </title>
+
+    <!-- region meta informations -->
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="">
+        <meta name="author" content="Torben Sickert">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- endregion -->
+
+    <!-- region fav and touch icons -->
+
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="image/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="image/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="image/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="image/apple-touch-icon-57-precomposed.png">
+        <link rel="shortcut icon" href="image/favicon.png">
+
+    <!-- endregion -->
+
+    <!-- region ressources -->
+
+        <link type="text/css" rel="stylesheet/less" href="css/website-1.0.less" />
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="javaScript/html5shiv.js"></script>
+        <![endif]-->
+        <script type="text/javascript" src="javaScript/require-1.0.js"></script>
+        <script text="text/javascript">
+            window.require.noConflict = true;
+            window.require([['jQuery.Website', 'jquery-website-1.0']], function() {
+                /**
+                    Embedd jQuery and require full compatible to all other
+                    JavaScripts.
+                    The global scope is clean after this sequence. The given
+                    function is called when the dom-tree was loaded.
+                */
+                window.jQuery.noConflict(true)(function(jQuery) {
+                    jQuery.Website({'logging': true});
+                });
+            });
+        </script>
+
+    <!-- endregion -->
+
+    </head>
+
+<!-- endregion -->
+
+<!-- region body -->
+
+    <body class="website">
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+    <!-- region menu -->
+
+        <div class="navbar-wrapper">
+            <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
+            <div class="container">
+                <div class="navbar navbar-inverse">
+                    <div class="navbar-inner">
+                        <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
+                        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="brand" href="#">thaibault</a>
+                        <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
+                        <div class="nav-collapse collapse">
+                            <ul class="nav">
+                                <li class="active"><a href="#contact">Hire me</a></li>
+                                <li><a href="#skills">Skills</a></li>
+                                <li><a href="#references">References</a></li>
+                                <li><a href="#references">About</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+
+    <!-- endregion -->
+
+    <!-- region carousel -->
+
+        <div id="headerCarousel" class="carousel slide">
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img src="image/carousel/slide-01.jpg" alt=""/>
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h1>Get in touch</h1>
+                            <p class="lead">
+                                I'm a freelancer, ready to help you. Let's talk about your
+                                project and what I can do.
+                            </p>
+                            <p class="lead phone-number">+49 176 <span>/</span> 10 248 185</p>
+                            <% for name, link in social_media.items():
+                                <a class="btn btn-primary" href="<%link%>">
+                                    <img src="image/socialMedia/<%name%>_32.png" />
+                                </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="image/carousel/slide-02.jpg" alt="">
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h1>Knowing a lot of facts is not the same as being smart.</h1>
+                            <p class="lead">Ambition, manage projects with love..</p>
+                            <a class="btn btn-large btn-primary" href="#">Learn more</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="image/carousel/slide-03.jpg" alt="">
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h1>You don't want good service, instead of the result!</h1>
+                            <p class="lead">
+                                Experiences from Posic, Akra, Virtual Identity, Chair of Humanoid
+                                Robots Lab and Rechnernetze and Telematik in University Freiburg,
+                                BPV, BTI, Vattenfall...
+                            </p>
+                            <a class="btn btn-large btn-primary" href="#">See examples</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="image/carousel/slide-03.jpg" alt="">
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h1>I'm a computer scientist and love the challenge</h1>
+                            <p class="lead">
+                                Experiences from Posic, Akra, Virtual Identity, Chair of Humanoid
+                                Robots Lab and Rechnernetze and Telematik in University Freiburg,
+                                BPV, BTI, Vattenfall...
+                            </p>
+                            <a class="btn btn-large btn-primary" href="#">See examples</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- endregion -->
+
+        <!-- Wrap the rest of the page in another container to center all the content. -->
+        <div class="container marketing">
+
+    <!-- region footer -->
+
+            <footer>
+                <p class="pull-right"><a href="#">Back to top</a></p>
+                <p>
+                    &copy; 2013 Torben Sickert, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a>
+                </p>
+            </footer>
+
+    <!-- endregion -->
+
+        </div>
+    </body>
+
+<!-- endregion body -->
+
+</html>

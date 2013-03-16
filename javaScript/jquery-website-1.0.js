@@ -86,6 +86,9 @@
                 jQuery.extend(true, this._options, options);
             this._domNodes = this.grapDomNodes(this._options.domNodes);
             this._domNodes.carousel.carousel(this._options.carouselOptions);
+            // Handle startup effects.
+            // TODO
+            // Add navigation events.
             this.bind(this._domNodes.navigationButtons, 'click', function() {
                 var clickedButton = this;
                 self._domNodes.navigationButtons.each(function(index) {

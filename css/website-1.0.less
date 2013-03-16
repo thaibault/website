@@ -11,7 +11,8 @@
 // region constants
 
 @color1: #5a5a5a;
-@color2: #CCC;
+@color2: #1b1b1b;
+@shadowColor: rgba(0, 0, 0, .25);
 @imagePath: '../image/';
 @defaultSpace: 40px;
 
@@ -26,6 +27,7 @@ body.website {
     /* Padding below the footer and lighter body text */
     padding-bottom: @defaultSpace;
     color: @color1;
+    background-color: @color2;
 
     [class^="icon-"],
     [class*=" icon-"] {
@@ -75,9 +77,7 @@ body.website {
         /* Remove border and change up box shadow for more contrast */
         div.navbar div.navbar-inner {
             border: 0;
-            -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.25);
-            -moz-box-shadow: 0 2px 10px rgba(0,0,0,.25);
-            box-shadow: 0 2px 10px rgba(0,0,0,.25);
+            #generic > .shadow(0, 2px, 10px, @shadowColor);
         }
         /* Downsize the brand/project name a bit */
         div.navbar div.brand {
@@ -126,14 +126,29 @@ body.website {
             padding: 0 20px;
             margin-top: 200px;
 
+            p.phone-number {
+                margin-top: 10px;
+                span {
+                    color: #5a5a5a;
+                }
+            }
             h1, div.lead {
                 margin: 0;
                 line-height: 1.25;
                 color: #fff;
                 text-shadow: 0 1px 1px rgba(0,0,0,.4);
             }
+            a img {
+                position: initial;
+                min-width: 32px;
+                min-height: 32px;
+                width: 32px;
+                height: 32px;
+            }
             .btn {
                 margin-top: 10px;
+                background-color: @color1;
+                #generic > .gradient(@color1, @color2);
             }
         }
     }
