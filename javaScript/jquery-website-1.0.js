@@ -55,9 +55,12 @@
             'logging': false,
             'domNodeSelectorPrefix': 'body.website',
             'domNodes': {
-                'carousel': 'div.carousel.slide'
+                'carousel': 'div.carousel.slide',
+                'navigationButtons': 'div.navbar-wrapper ul.nav li a'
             },
-            'carouselOptions': {}
+            'carouselOptions': {
+                'interval': false,
+                'pause': 'hover'}
         };
         /**
             Holds all needed dom nodes.
@@ -78,10 +81,21 @@
             @returns {jQuery.Tools} Returns the current instance.
         */
         this.initialize = function(options) {
+            var self = this;
             if (options)
                 jQuery.extend(true, this._options, options);
             this._domNodes = this.grapDomNodes(this._options.domNodes);
             this._domNodes.carousel.carousel(this._options.carouselOptions);
+            this.bind(this._domNodes.navigationButtons, 'click', function() {
+                var clickedButton = this;
+                self._domNodes.navigationButtons.each(function(index) {
+                    if (clickedButton == this) {
+                        self._domNodes.carousel.carousel(index);
+                        jQuery(this).parent('li').addClass('active');
+                    } else
+                        jQuery(this).parent('li').removeClass('active');
+                });
+            });
             return this/*._handleGooleAnalytics()*/;
         };
 

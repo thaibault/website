@@ -109,29 +109,20 @@ body.website {
             position: relative;
             z-index: 9;
         }
-        .carousel-control {
-            height: 80px;
-            margin-top: 0;
-            font-size: 120px;
-            text-shadow: 0 1px 1px rgba(0,0,0,.4);
-            background-color: transparent;
-            border: 0;
-            z-index: 10;
-        }
         div.item {
-            height: 500px;
+            height: 1000px;
         }
         img {
             position: absolute;
             top: 0;
             left: 0;
             min-width: 100%;
-            height: 500px;
+            height: 1000px;
         }
         div.carousel-caption {
             background-color: transparent;
             position: static;
-            max-width: 550px;
+            max-width: 600px;
             padding: 0 20px;
             margin-top: 200px;
 
@@ -145,59 +136,6 @@ body.website {
                 margin-top: 10px;
             }
         }
-        div.carousel-inner {
-            #generic > .shadow(5px, 3px, 2px, 1px, gray);
-        }
-    }
-
-    /* endregion */
-
-    /* region marketing content */
-
-    /* Center align the text within the three columns below the carousel */
-    div.marketing {
-        .span4 {
-            text-align: center;
-
-            p {
-                margin-left: 10px;
-                margin-right: 10px;
-            }
-        }
-        h2 {
-            font-weight: normal;
-        }
-
-        /* region featurettes */
-
-        hr.featurette-divider {
-            margin: 80px 0; /* Space out the Bootstrap <hr> more */
-        }
-        div.featurette {
-            padding-top: 120px; /* Vertically center images part 1: add padding above and below text. */
-            overflow: hidden; /* Vertically center images part 2: clear their floats. */
-        }
-        img.featurette-image {
-            margin-top: -120px; /* Vertically center images part 3: negative margin up the image the same amount of the padding to center it. */
-        }
-
-        /* Give some space on the sides of the floated elements so text doesn't run right into it. */
-        img.featurette-image.pull-left {
-            margin-right: 40px;
-        }
-        img.featurette-image.pull-right {
-            margin-left: 40px;
-        }
-        /* Thin out the marketing headings */
-        .featurette-heading {
-            font-size: 50px;
-            font-weight: 300;
-            line-height: 1;
-            letter-spacing: -1px;
-        }
-
-        /* endregion */
-
     }
 
     /* endregion */
