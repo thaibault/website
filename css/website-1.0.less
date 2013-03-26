@@ -62,7 +62,7 @@ body.website {
         it into place.
     */
     div.navbar-wrapper {
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 0;
         right: 0;
@@ -108,6 +108,13 @@ body.website {
         div.container {
             position: relative;
             z-index: 9;
+        }
+        div.container.content {
+            border: 1px solid red;
+
+            p {
+                border: 1px solid red;
+            }
         }
         div.item {
             height: 1000px;
