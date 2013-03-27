@@ -57,9 +57,6 @@
         this._options = {
             'logging': false,
             'domNodeSelectorPrefix': 'body.website',
-            'startUpAnimationType': 'fade',
-            'startUpAnimationDuration': 'slow',
-            'startUpAnimationElementDelayInMiliseconds': 500,
             'domNodes': {
                 'carousel': 'div.carousel.slide',
                 'navigationButtons': 'div.navbar-wrapper ul.nav li a',
@@ -68,9 +65,15 @@
                 'vieportNotOnTopIndicator': 'div.footer',
                 'startUpAnimationClassPrefix': '.start-up-animation-number-'
             },
+            'startUpFadeInOptions': {
+                'easing': 'swing',
+                'duration': 'slow'
+            },
+            'startUpAnimationElementDelayInMiliseconds': 100,
             'carouselOptions': {
                 'interval': false,
-                'pause': 'hover'}
+                'pause': 'hover'
+            }
         };
         /**
             Holds all needed dom nodes.
@@ -114,6 +117,7 @@
                         this._options.domNodes.startUpAnimationClassPrefix
                     ).substr(1) + '"]'
                 ).hide();
+                // Initialize "elementNumber".
                 elementNumber = 1;
             }
             var self = this;
@@ -121,9 +125,7 @@
                 jQuery(
                     self._options.domNodes.startUpAnimationClassPrefix +
                     elementNumber
-                ).show(
-                    self._options.startUpAnimationDuration,
-                    self._options.startUpAnimationType);
+                ).fadeIn(self._options.startUpFadeInOptions);
                 if (jQuery(
                     self._options.domNodes.startUpAnimationClassPrefix +
                     (elementNumber + 1)).length)

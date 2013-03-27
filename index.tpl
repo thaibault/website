@@ -88,7 +88,7 @@
                     The global scope is clean after this sequence. The given
                     function is called when the dom-tree was loaded.
                 */
-                window.jQuery.noConflict(true)(function(jQuery) {
+                /*window.jQuery.noConflict(true)*/window.jQuery(function(jQuery) {
                     jQuery.Website({'logging': true});
                 });
             });
@@ -109,7 +109,7 @@
 
     <!-- region menu -->
 
-        <div class="navbar-wrapper start-up-animation-number-<%start_up_animation_number%>">
+        <div class="start-up-animation-number-<%start_up_animation_number%> navbar-wrapper ">
             <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
             <div class="container">
                 <div class="navbar navbar-inverse">
@@ -123,14 +123,13 @@
                         <!-- Responsive Navbar Part 2: Places all navbar contents. -->
                         <div class="nav-collapse collapse">
                             <ul class="nav">
-                                <% start_up_animation_number += 1
                                 <% for name, section in sections:
+                                    <% start_up_animation_number += 1
                                     <li class="start-up-animation-number-<%start_up_animation_number%><%' active' if name == sections[0][0] else ''%>">
                                         <a href="#<%name%>">
                                             <%section[0]%>
                                         </a>
                                     </li>
-                                    <% start_up_animation_number += 1
                             </ul>
                         </div>
                     </div>
@@ -142,7 +141,8 @@
 
     <!-- region carousel -->
 
-        <div id="headerCarousel" class="carousel slide start-up-animation-number-<%start_up_animation_number%>">
+        <% start_up_animation_number += 1
+        <div id="headerCarousel" class="start-up-animation-number-<%start_up_animation_number%> carousel slide">
             <div class="carousel-inner">
                 <% for name, section in sections:
                     <div class="item<%' active' if name == sections[0][0] else ''%>">
@@ -161,7 +161,8 @@
                                         </a>
                             </div>
                         </div>
-                        <div class="container content">
+                        <% start_up_animation_number += 1
+                        <div class="start-up-animation-number-<%start_up_animation_number%> container content">
                             <p class="lead">
                                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
                                 eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
@@ -183,7 +184,7 @@
 
         <!-- Wrap the rest of the page in another container to center all the content. -->
         <% start_up_animation_number += 1
-        <div class="container footer start-up-animation-number-<%start_up_animation_number%>">
+        <div class="start-up-animation-number-<%start_up_animation_number%> container footer">
 
     <!-- region footer -->
 
