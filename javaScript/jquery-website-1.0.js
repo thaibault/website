@@ -30,7 +30,10 @@
 
     ['jQuery.Tools', 'jquery-tools-1.0'],
 
-    ['jQuery.fn.carousel', 'bootstrap-2.3.1']],
+    ['jQuery.fn.carousel', 'bootstrap-2.3.1'],
+    
+    ['jQuery.scrollTo', 'jquery-scrollTo-1.4.3.1'],
+    ['jQuery.fn.waypoint', 'jquery-waypoints-2.0.2']],
     function(less, jQuery) {
 ///
 
@@ -54,9 +57,16 @@
         this._options = {
             'logging': false,
             'domNodeSelectorPrefix': 'body.website',
+            'startUpAnimationType': 'fade',
+            'startUpAnimationDuration': 'slow',
+            'startUpAnimationElementDelayInMiliseconds': 500,
             'domNodes': {
                 'carousel': 'div.carousel.slide',
-                'navigationButtons': 'div.navbar-wrapper ul.nav li a'
+                'navigationButtons': 'div.navbar-wrapper ul.nav li a',
+                'scrollToTopButtons': 'a[href="#top"]',
+                'vieportOnTopIndicator': '#headerCarousel',
+                'vieportNotOnTopIndicator': 'div.footer',
+                'startUpAnimationClassPrefix': '.start-up-animation-number-'
             },
             'carouselOptions': {
                 'interval': false,
@@ -81,30 +91,85 @@
             @returns {jQuery.Tools} Returns the current instance.
         */
         this.initialize = function(options) {
-            var self = this;
             if (options)
                 jQuery.extend(true, this._options, options);
             this._domNodes = this.grapDomNodes(this._options.domNodes);
             this._domNodes.carousel.carousel(this._options.carouselOptions);
-            // Handle startup effects.
+            this._handleStartUpEffects();
+            this._addNavigationEvents();
             // TODO
-            // Add navigation events.
+            return this/*._handleGooleAnalytics()*/;
+        };
+        // TODO write destructor with waypoint disabling.
+
+    // endregion
+
+    // region protected methods
+
+        this._handleStartUpEffects = function(elementNumber) {
+            if (!elementNumber) {
+                jQuery(
+                    '[class^="' +
+                    this.sliceDomNodeSelectorPrefix(
+                        this._options.domNodes.startUpAnimationClassPrefix
+                    ).substr(1) + '"]'
+                ).hide();
+                elementNumber = 1;
+            }
+            var self = this;
+            window.setTimeout(function() {
+                jQuery(
+                    self._options.domNodes.startUpAnimationClassPrefix +
+                    elementNumber
+                ).show(
+                    self._options.startUpAnimationDuration,
+                    self._options.startUpAnimationType);
+                if (jQuery(
+                    self._options.domNodes.startUpAnimationClassPrefix +
+                    (elementNumber + 1)).length)
+                    self._handleStartUpEffects(elementNumber + 1);
+                }, this._options.startUpAnimationElementDelayInMiliseconds);
+            return this;
+        };
+
+        this._addNavigationEvents = function() {
+            this._handleScrollToTopButton();
+            var self = this;
             this.bind(this._domNodes.navigationButtons, 'click', function() {
                 var clickedButton = this;
                 self._domNodes.navigationButtons.each(function(index) {
                     if (clickedButton == this) {
-                        self._domNodes.carousel.carousel(index);
+                        // TODO scroll to top nur wenn man nich eh schon da ist.
+                        jQuery.scrollTo('0px', 200, {'onAfter': function() {
+                            self._domNodes.carousel.carousel(index);
+                        }});
                         jQuery(this).parent('li').addClass('active');
                     } else
                         jQuery(this).parent('li').removeClass('active');
                 });
             });
-            return this/*._handleGooleAnalytics()*/;
+            return this;
         };
 
-    // endregion
-
-    // region protected methods
+        this._handleScrollToTopButton = function() {
+            this.bind(
+                this._domNodes.scrollToTopButtons, 'click', function(event)
+            {
+                event.preventDefault();
+                jQuery.scrollTo('0px', 800);
+            });
+            var self = this;
+            self._domNodes.scrollToTopButtons.hide();
+            // TODO wenn ein bischen runter gescrollt back to top einfaden.
+            this._domNodes.vieportOnTopIndicator.waypoint(function() {
+                self._domNodes.scrollToTopButtons.fadeOut();
+            }, {'offset': -200});
+            this._domNodes.vieportNotOnTopIndicator.waypoint(function() {
+                self._domNodes.scrollToTopButtons.fadeIn('slow');
+            }, {'offset': 600});
+            // TODO beim hochscrollen wieder ausfaden.
+            return this;
+        };
 
         this._handleGooleAnalytics = function() {
             // TODO check if "_gaq" has to be global.

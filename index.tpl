@@ -9,7 +9,7 @@
 <%     ('facebook', 'https://de-de.facebook.com/tsickert'))
 <% sections = (
 <%     ('contact', (
-<%         'Hire me', 'Get in touch', "I'm a freelancer, ready to help you."
+<%         'Hire me', 'Get in touch', "I'm a freelancer, ready to help you. "
 <%         "Let's talk about your project and what I can do.")),
 <%     ('skills', (
 <%         'Skills', 'Knowing a lot of facts is not the same as being smart.',
@@ -24,6 +24,7 @@
 <%         'Experiences from Posic, Akra, Virtual Identity, Chair of Humanoid'
 <%         'Robots Lab and Rechnernetze and Telematik in University Freiburg,'
 <%         'BPV, BTI, Vattenfall...')))
+<% start_up_animation_number = 1
 <!doctype html>
 
 <!-- region browser sniffing -->
@@ -108,7 +109,7 @@
 
     <!-- region menu -->
 
-        <div class="navbar-wrapper">
+        <div class="navbar-wrapper start-up-animation-number-<%start_up_animation_number%>">
             <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
             <div class="container">
                 <div class="navbar navbar-inverse">
@@ -122,12 +123,14 @@
                         <!-- Responsive Navbar Part 2: Places all navbar contents. -->
                         <div class="nav-collapse collapse">
                             <ul class="nav">
+                                <% start_up_animation_number += 1
                                 <% for name, section in sections:
-                                    <li<%' class="active"' if name == sections[0][0] else ''%>>
+                                    <li class="start-up-animation-number-<%start_up_animation_number%><%' active' if name == sections[0][0] else ''%>">
                                         <a href="#<%name%>">
                                             <%section[0]%>
                                         </a>
                                     </li>
+                                    <% start_up_animation_number += 1
                             </ul>
                         </div>
                     </div>
@@ -139,7 +142,7 @@
 
     <!-- region carousel -->
 
-        <div id="headerCarousel" class="carousel slide">
+        <div id="headerCarousel" class="carousel slide start-up-animation-number-<%start_up_animation_number%>">
             <div class="carousel-inner">
                 <% for name, section in sections:
                     <div class="item<%' active' if name == sections[0][0] else ''%>">
@@ -153,7 +156,7 @@
                                 <% if name == 'contact':
                                     <p class="lead phone-number">+49 176 <span>/</span> 10 248 185</p>
                                     <% for name, link in social_media:
-                                        <a class="btn btn-primary" href="<%link%>">
+                                        <a class="btn btn-primary" href="<%link%>" target="_blank">
                                             <img src="image/socialMedia/<%name%>_32.png" />
                                         </a>
                             </div>
@@ -179,12 +182,13 @@
     <!-- endregion -->
 
         <!-- Wrap the rest of the page in another container to center all the content. -->
-        <div class="container marketing">
+        <% start_up_animation_number += 1
+        <div class="container footer start-up-animation-number-<%start_up_animation_number%>">
 
     <!-- region footer -->
 
             <footer>
-                <p class="pull-right"><a href="#">Back to top</a></p>
+                <p class="pull-right"><a href="#top">Back to top</a></p>
                 <p>
                     &copy; 2013 Torben Sickert, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a>
                 </p>

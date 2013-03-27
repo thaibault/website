@@ -29,6 +29,8 @@ body.website {
     color: @color1;
     background-color: @color2;
 
+        /* region icons */
+
     [class^="icon-"],
     [class*=" icon-"] {
         background-image: url('@{imagePath}bootstrap-2.3.1/glyphicons-halflings.png');
@@ -53,6 +55,19 @@ body.website {
         background-image: url('@{imagePath}bootstrap-2.3.1/glyphicons-halflings-white.png');
     }
 
+        /* endregion */
+
+        /* region buttons */
+
+    a[href="#top"] {
+        position: fixed;
+        z-index: 4;
+        bottom: 48px;
+        right: 5%;
+    }
+
+        /* endregion */
+
     /* endregion */
 
     /* region navigation bar */
@@ -66,7 +81,7 @@ body.website {
         top: 0;
         left: 0;
         right: 0;
-        z-index: 10;
+        z-index: 3;
         margin-top: 20px;
         /*
             Negative margin to pull up carousel. 90px is roughly margins and 
@@ -107,7 +122,7 @@ body.website {
 
         div.container {
             position: relative;
-            z-index: 9;
+            z-index: 2;
         }
         div.container.content {
             padding: 20px;
