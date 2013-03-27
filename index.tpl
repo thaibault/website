@@ -119,7 +119,7 @@
                             <% for section in sections:
                                 <span class="icon-bar"></span>
                         </button>
-                        <a class="brand" href="#">thaibault</a>
+                        <a class="brand" href="#">ss thaibault</a>
                         <!-- Responsive Navbar Part 2: Places all navbar contents. -->
                         <div class="nav-collapse collapse">
                             <ul class="nav">
