@@ -63,9 +63,14 @@
                 'scrollToTopButtons': 'a[href="#top"]',
                 'vieportOnTopIndicator': '#headerCarousel',
                 'vieportNotOnTopIndicator': 'div.footer',
-                'startUpAnimationClassPrefix': '.start-up-animation-number-'
+                'startUpAnimationClassPrefix': '.start-up-animation-number-',
+                'windowLoadingCover': 'div.window-loading-cover'
             },
             'startUpFadeInOptions': {
+                'easing': 'swing',
+                'duration': 'slow'
+            },
+            'windowLoadingCoverFadeOutOptions': {
                 'easing': 'swing',
                 'duration': 'slow'
             },
@@ -97,6 +102,11 @@
             if (options)
                 jQuery.extend(true, this._options, options);
             this._domNodes = this.grapDomNodes(this._options.domNodes);
+            var self = this;
+            jQuery(window).load(function(){
+                self._domNodes.windowLoadingCover.fadeOut(
+                    self._options.windowLoadingCoverFadeOutOptions);
+            });
             this._domNodes.carousel.carousel(this._options.carouselOptions);
             this._handleStartUpEffects();
             this._addNavigationEvents();
