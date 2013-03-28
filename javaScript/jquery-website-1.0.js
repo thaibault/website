@@ -33,7 +33,8 @@
     ['jQuery.fn.carousel', 'bootstrap-2.3.1'],
     
     ['jQuery.scrollTo', 'jquery-scrollTo-1.4.3.1'],
-    ['jQuery.fn.waypoint', 'jquery-waypoints-2.0.2']],
+    ['jQuery.fn.waypoint', 'jquery-waypoints-2.0.2'],
+    ['jQuery.fn.spin', 'jquery-spin-1.2.8']],
     function(less, jQuery) {
 ///
 
@@ -57,6 +58,7 @@
         this._options = {
             'logging': false,
             'domNodeSelectorPrefix': 'body.website',
+            'addtionalPageLoadingTimeInMilliseconds': 500,
             'domNodes': {
                 'carousel': 'div.carousel.slide',
                 'navigationButtons': 'div.navbar-wrapper ul.nav li a',
@@ -64,7 +66,8 @@
                 'vieportOnTopIndicator': '#headerCarousel',
                 'vieportNotOnTopIndicator': 'div.footer',
                 'startUpAnimationClassPrefix': '.start-up-animation-number-',
-                'windowLoadingCover': 'div.window-loading-cover'
+                'windowLoadingCover': 'div.window-loading-cover',
+                'windowLoadingSpinner': 'div.window-loading-cover div'
             },
             'startUpFadeInOptions': {
                 'easing': 'swing',
@@ -78,6 +81,23 @@
             'carouselOptions': {
                 'interval': false,
                 'pause': 'hover'
+            },
+            'windowLoadingSpinnerOptions': {
+                'lines': 9, // The number of lines to draw
+                'length': 23, // The length of each line
+                'width': 11, // The line thickness
+                'radius': 40, // The radius of the inner circle
+                'corners': 1, // Corner roundness (0..1)
+                'rotate': 75, // The rotation offset
+                'color': '#000', // #rgb or #rrggbb
+                'speed': 1.1, // Rounds per second
+                'trail': 58, // Afterglow percentage
+                'shadow': false, // Whether to render a shadow
+                'hwaccel': false, // Whether to use hardware acceleration
+                'className': 'spinner', // The CSS class to assign to the spinner
+                'zIndex': 2e9, // The z-index (defaults to 2000000000)
+                'top': 'auto', // Top position relative to parent in px
+                'left': 'auto' // Left position relative to parent in px
             }
         };
         /**
@@ -102,13 +122,31 @@
             if (options)
                 jQuery.extend(true, this._options, options);
             this._domNodes = this.grapDomNodes(this._options.domNodes);
+            this._options.windowLoadingCoverFadeOutOptions.always =
+                this.getMethod(this._handleStartUpEffects);
             var self = this;
-            jQuery(window).load(function(){
-                self._domNodes.windowLoadingCover.fadeOut(
-                    self._options.windowLoadingCoverFadeOutOptions);
+            this._domNodes.windowLoadingSpinner.spin(
+                this._options.windowLoadingSpinnerOptions);
+            jQuery(window).load(function() {
+                window.setTimeout(
+                    function() {
+                        /*
+                            Hide startup animation dom nodes to show them step
+                            by step.
+                        */
+                        jQuery(
+                            '[class^="' +
+                            self.sliceDomNodeSelectorPrefix(
+                                self._options.domNodes
+                                    .startUpAnimationClassPrefix
+                            ).substr(1) + '"]'
+                        ).hide();
+                        self._domNodes.windowLoadingCover.fadeOut(
+                            self._options.windowLoadingCoverFadeOutOptions);
+                    },
+                    self._options.addtionalPageLoadingTimeInMilliseconds);
             });
             this._domNodes.carousel.carousel(this._options.carouselOptions);
-            this._handleStartUpEffects();
             this._addNavigationEvents();
             // TODO
             return this/*._handleGooleAnalytics()*/;
@@ -120,16 +158,8 @@
     // region protected methods
 
         this._handleStartUpEffects = function(elementNumber) {
-            if (!elementNumber) {
-                jQuery(
-                    '[class^="' +
-                    this.sliceDomNodeSelectorPrefix(
-                        this._options.domNodes.startUpAnimationClassPrefix
-                    ).substr(1) + '"]'
-                ).hide();
-                // Initialize "elementNumber".
+            if (!jQuery.isNumeric(elementNumber))
                 elementNumber = 1;
-            }
             var self = this;
             window.setTimeout(function() {
                 jQuery(
