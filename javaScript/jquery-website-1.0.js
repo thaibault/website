@@ -48,7 +48,7 @@
     */
     var Website = function() {
 
-    // region protected properties
+    // region protected properties 
 
         /**
             Saves default options for manipulating the default behaviour.
@@ -127,6 +127,7 @@
             var self = this;
             this._domNodes.windowLoadingSpinner.spin(
                 this._options.windowLoadingSpinnerOptions);
+            jQuery(this._options.domNodeSelectorPrefix).show();
             jQuery(window).load(function() {
                 window.setTimeout(
                     function() {
