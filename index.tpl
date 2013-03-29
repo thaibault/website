@@ -117,10 +117,11 @@
                     <div class="navbar-inner">
                         <!-- Responsive Navbar Part 1: Button for triggering responsive navbar. -->
                         <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                            <% for section in sections:
+                            <% for section in range(3):
                                 <span class="icon-bar"></span>
                         </button>
                         <a class="brand" href="#">thaibault</a>
+                        <div class="dimension-indicator"></div>
                         <!-- Responsive Navbar Part 2: Places all navbar contents. -->
                         <div class="nav-collapse collapse">
                             <ul class="nav">

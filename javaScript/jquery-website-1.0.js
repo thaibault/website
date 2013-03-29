@@ -59,15 +59,22 @@
             'logging': false,
             'domNodeSelectorPrefix': 'body.website',
             'addtionalPageLoadingTimeInMilliseconds': 0,
+            'mediaQueryCssIndicator': {
+                'desktop': '0px dashed rgb(0, 0, 0)',
+                'tablet': '0px solid rgb(0, 0, 0)',
+                'smartphone': '0px dotted rgb(0, 0, 0)'
+            },
             'domNodes': {
+                'navigationBarOnTopIndicatorClass': 'on-top',
                 'carousel': 'div.carousel.slide',
+                'navigationBar': 'div.navbar-wrapper',
                 'navigationButtons': 'div.navbar-wrapper ul.nav li a',
                 'scrollToTopButtons': 'a[href="#top"]',
-                'vieportOnTopIndicator': '#headerCarousel',
-                'vieportNotOnTopIndicator': 'div.footer',
                 'startUpAnimationClassPrefix': '.start-up-animation-number-',
                 'windowLoadingCover': 'div.window-loading-cover',
-                'windowLoadingSpinner': 'div.window-loading-cover div'
+                'windowLoadingSpinner': 'div.window-loading-cover div',
+                'dimensionIndicator':
+                    'div.navbar-wrapper div.dimension-indicator'
             },
             'startUpFadeInOptions': {
                 'easing': 'swing',
@@ -94,7 +101,7 @@
                 'trail': 58, // Afterglow percentage
                 'shadow': false, // Whether to render a shadow
                 'hwaccel': false, // Whether to use hardware acceleration
-                'className': 'spinner', // The CSS class to assign to the spinner
+                'className': 'spinner', // CSS class to assign to the spinner
                 'zIndex': 2e9, // The z-index (defaults to 2000000000)
                 'top': 'auto', // Top position relative to parent in px
                 'left': 'auto' // Left position relative to parent in px
@@ -106,6 +113,18 @@
             @property {Object}
         */
         this._domNodes = {};
+        /**
+            Determines weather the vieport is on top of the page.
+
+            @property {Boolean}
+        */
+        this._vieportIsOnTop = true;
+        /**
+            Describes the current mode defined by the css media querys.
+
+            @property {String}
+        */
+        this._currentMediaQueryMode = '';
 
     // endregion
 
@@ -124,31 +143,14 @@
             this._domNodes = this.grapDomNodes(this._options.domNodes);
             this._options.windowLoadingCoverFadeOutOptions.always =
                 this.getMethod(this._handleStartUpEffects);
-            var self = this;
             this._domNodes.windowLoadingSpinner.spin(
                 this._options.windowLoadingSpinnerOptions);
-            jQuery(this._options.domNodeSelectorPrefix).show();
-            jQuery(window).load(function() {
-                window.setTimeout(
-                    function() {
-                        /*
-                            Hide startup animation dom nodes to show them step
-                            by step.
-                        */
-                        jQuery(
-                            '[class^="' +
-                            self.sliceDomNodeSelectorPrefix(
-                                self._options.domNodes
-                                    .startUpAnimationClassPrefix
-                            ).substr(1) + '"]'
-                        ).hide();
-                        self._domNodes.windowLoadingCover.fadeOut(
-                            self._options.windowLoadingCoverFadeOutOptions);
-                    },
-                    self._options.addtionalPageLoadingTimeInMilliseconds);
-            });
+            this._bindScrollEvents()._domNodes.parent.show();
+            this._domNodes.window.load(this.getMethod(
+                this._removeLoadingCover));
             this._domNodes.carousel.carousel(this._options.carouselOptions);
-            this._addNavigationEvents();
+            this._addNavigationEvents()._addMediaQueryChangeEvents();
+            this._triggerWindowResizeEvents();
             // TODO
             return this/*._handleGooleAnalytics()*/;
         };
@@ -157,6 +159,118 @@
     // endregion
 
     // region protected methods
+
+        // region event methods
+
+        this._onVieportMovesToTop = function() {
+            this._domNodes.navigationBar.addClass(
+                this._options.domNodes.navigationBarOnTopIndicatorClass);
+            this._domNodes.scrollToTopButtons.fadeOut('slow');
+            return this;
+        };
+
+        this._onVieportMovesAwayFromTop = function() {
+            this._domNodes.navigationBar.removeClass(
+                this._options.domNodes.navigationBarOnTopIndicatorClass);
+            this._domNodes.scrollToTopButtons.fadeIn('slow');
+            return this;
+        };
+
+        this._onChangeToDesktopMode = function() {
+            this._domNodes.dimensionIndicator.hide();
+            return this;
+        };
+
+        this._onChangeToTabletMode = function() {
+            var self = this;
+            this._domNodes.dimensionIndicator.fadeOut('slow', function() {
+                self._domNodes.dimensionIndicator.text(
+                    'tablet-mode').fadeIn('slow');
+            });
+            return this;
+        };
+
+        this._onChangeToSmartphoneMode = function() {
+            var self = this;
+            this._domNodes.dimensionIndicator.fadeOut('slow', function() {
+                self._domNodes.dimensionIndicator.text(
+                    'smartphone-mode').fadeIn('slow');
+            });
+            if (this._vieportIsOnTop)
+                this._domNodes.navigationBar.addClass(
+                    this._options.domNodes.navigationBarOnTopIndicatorClass);
+            return this;
+        };
+
+        // endregion
+
+        this._addMediaQueryChangeEvents = function() {
+            this.bind(this._domNodes.window, 'resize', this.getMethod(
+                this._triggerWindowResizeEvents));
+        };
+
+        this._triggerWindowResizeEvents = function() {
+            var self = this;
+            jQuery.each(
+                this._options.mediaQueryCssIndicator,
+                function(mode, cssValue) {
+                    if (self._domNodes.parent.css('border') == cssValue &&
+                        mode != self._currentMediaQueryMode) {
+                        self._currentMediaQueryMode = mode;
+                        self.fireEvent.apply(
+                            self, [
+                                self.stringFormat('changeTo{1}Mode',
+                                mode.substr(0, 1).toUpperCase() +
+                                    mode.substr(1)),
+                                false, self
+                            ].concat(self.argumentsObjectToArray(
+                                arguments)));
+                    }
+                });
+            return this;
+        };
+
+        this._bindScrollEvents = function() {
+            var self = this;
+            this.bind(window, 'scroll', function() {
+                if (self._domNodes.parent.scrollTop()) {
+                    if (self._vieportIsOnTop) {
+                        self._vieportIsOnTop = false;
+                        self.fireEvent.apply(self, [
+                            'vieportMovesAwayFromTop', false, self
+                        ].concat(self.argumentsObjectToArray(arguments)));
+                    }
+                } else if (!self._vieportIsOnTop) {
+                    self._vieportIsOnTop = true;
+                    self.fireEvent.apply(self, [
+                        'vieportMovesToTop', false, self
+                    ].concat(self.argumentsObjectToArray(arguments)));
+                }
+            });
+            return this;
+        };
+
+        this._removeLoadingCover = function() {
+            var self = this;
+            window.setTimeout(
+                function() {
+                    /*
+                        Hide startup animation dom nodes to show them step
+                        by step.
+                    */
+                    jQuery(
+                        '[class^="' +
+                        self.sliceDomNodeSelectorPrefix(
+                            self._options.domNodes
+                                .startUpAnimationClassPrefix
+                        ).substr(1) + '"]'
+                    ).hide();
+                    self._domNodes.windowLoadingCover.fadeOut(
+                        self._options.windowLoadingCoverFadeOutOptions);
+                },
+                this._options.addtionalPageLoadingTimeInMilliseconds);
+            return this;
+        };
 
         this._handleStartUpEffects = function(elementNumber) {
             if (!jQuery.isNumeric(elementNumber))
@@ -182,10 +296,21 @@
                 var clickedButton = this;
                 self._domNodes.navigationButtons.each(function(index) {
                     if (clickedButton == this) {
-                        // TODO scroll to top nur wenn man nich eh schon da ist.
-                        jQuery.scrollTo('0px', 200, {'onAfter': function() {
+                        if (self._vieportIsOnTop)
                             self._domNodes.carousel.carousel(index);
-                        }});
+                        else
+                            jQuery.scrollTo(
+                                self._domNodes.parent, {
+                                    /*
+                                        Scroll as long as we have distance to
+                                        top.
+                                    */
+                                    'duration':
+                                        self._domNodes.parent.scrollTop(),
+                                    'onAfter': function() {
+                                        self._domNodes.carousel.carousel(index);
+                                    }
+                                });
                         jQuery(this).parent('li').addClass('active');
                     } else
                         jQuery(this).parent('li').removeClass('active');
@@ -195,22 +320,16 @@
         };
 
         this._handleScrollToTopButton = function() {
+            var self = this;
             this.bind(
                 this._domNodes.scrollToTopButtons, 'click', function(event)
             {
                 event.preventDefault();
-                jQuery.scrollTo('0px', 800);
+                // Scroll as long as we have distance to top.
+                jQuery.scrollTo(
+                    self._domNodes.parent, self._domNodes.parent.scrollTop());
             });
-            var self = this;
-            self._domNodes.scrollToTopButtons.hide();
-            // TODO wenn ein bischen runter gescrollt back to top einfaden.
-            this._domNodes.vieportOnTopIndicator.waypoint(function() {
-                self._domNodes.scrollToTopButtons.fadeOut();
-            }, {'offset': -200});
-            this._domNodes.vieportNotOnTopIndicator.waypoint(function() {
-                self._domNodes.scrollToTopButtons.fadeIn('slow');
-            }, {'offset': 600});
-            // TODO beim hochscrollen wieder ausfaden.
+            this._domNodes.scrollToTopButtons.hide();
             return this;
         };
 
