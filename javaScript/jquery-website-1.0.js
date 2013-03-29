@@ -58,7 +58,7 @@
         this._options = {
             'logging': false,
             'domNodeSelectorPrefix': 'body.website',
-            'addtionalPageLoadingTimeInMilliseconds': 500,
+            'addtionalPageLoadingTimeInMilliseconds': 0,
             'domNodes': {
                 'carousel': 'div.carousel.slide',
                 'navigationButtons': 'div.navbar-wrapper ul.nav li a',
