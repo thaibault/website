@@ -3,7 +3,7 @@ self = this
 this.require.asyncronModulePatternHandling =
     '^.+\.coffee$': (coffeeScriptCode, module) ->
         module = if module[0] then module[0] else module[1]
-        self.console.log "Run module \"#{module}\"."
+        self.console.log "Run coffee script module \"#{module}\"."
         try
             self.CoffeeScript.run coffeeScriptCode
         catch exception
