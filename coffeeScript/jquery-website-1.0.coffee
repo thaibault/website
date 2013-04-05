@@ -146,8 +146,8 @@ this.window.require([
             this._domNodes.windowLoadingSpinner.spin(
                 this._options.windowLoadingSpinnerOptions)
             this._bindScrollEvents()._domNodes.parent.show()
-            this._domNodes.window.load(this.getMethod(
-                this._removeLoadingCover))
+            this._domNodes.window.ready this.getMethod(
+                this._removeLoadingCover)
             this._domNodes.carousel.carousel this._options.carouselOptions
             this._addNavigationEvents()._addMediaQueryChangeEvents(
             )._triggerWindowResizeEvents()
@@ -313,9 +313,10 @@ this.window.require([
         _handleGooleAnalytics: ->
             # TODO check if "_gaq" has to be global.
             _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']]
-            jQuery('script')[0].parent().before(jQuery('<script>').attr(
-                'src', ('https:' == location.protocol ? '//ssl' : '//www') +
-                    '.google-analytics.com/ga.js'))
+            jQuery('script')[0].parent().before jQuery('<script>').attr(
+                'src', (
+                    if 'https:' is location.protocol then '//ssl' else '//www'
+                ) + '.google-analytics.com/ga.js')
             return this
 
     # endregion

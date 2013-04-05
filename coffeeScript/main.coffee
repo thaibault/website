@@ -1,4 +1,4 @@
-window.require.noConflict = true
+this.require.noConflict = true
 this.require.asyncronModulePatternHandling =
     '^.+\.coffee$': (coffeeScriptCode, module) ->
         window.console.log "Run module \"#{module[0]}\"."
