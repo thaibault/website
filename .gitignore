@@ -39,3 +39,4 @@ nosetests.xml
 
 # Rendered page.
 build
+*.html

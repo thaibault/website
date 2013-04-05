@@ -73,26 +73,14 @@
 
     <!-- region ressources -->
 
-        <link type="text/css" rel="stylesheet/less" href="css/website-1.0.less" />
+        <link type="text/css" rel="stylesheet/less" href="less/website-1.0.less" />
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
             <script src="javaScript/html5shiv.js"></script>
         <![endif]-->
-        <script type="text/javascript" src="javaScript/require-1.0.js"></script>
-        <script text="text/javascript">
-            window.require.noConflict = true;
-            window.require([['jQuery.Website', 'jquery-website-1.0']], function() {
-                /**
-                    Embedd jQuery and require full compatible to all other
-                    JavaScripts.
-                    The global scope is clean after this sequence. The given
-                    function is called when the dom-tree was loaded.
-                */
-                /*window.jQuery.noConflict(true)*/window.jQuery(function(jQuery) {
-                    jQuery.Website({'logging': true});
-                });
-            });
-        </script>
+        <script type="text/javascript" src="javaScript/coffeeScript-1.6.2.js"></script>
+        <script type="text/coffeescript" src="coffeeScript/require-1.0.coffee"></script>
+        <script type="text/coffeescript" src="coffeeScript/main.coffee"></script>
 
     <!-- endregion -->
 

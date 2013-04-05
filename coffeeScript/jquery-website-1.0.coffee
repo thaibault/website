@@ -1,8 +1,8 @@
-/// require
+## require
 
-// region header
+# region header
 
-/*!
+###!
     jQuery plugin for "jquery-1.9.1".
 
     Copyright see require on https://github.com/thaibault/require
@@ -18,342 +18,314 @@
     @fileOverview
     This module provides common resuable logic for every jquery non trivial
     plugin.
-*/
+###
 
-/**
+###*
     @name jQuery
     @see www.jquery.com
-*/
-/// standalone ;(function(jQuery) {
-;window.require([
+###
+## standalone ((jQuery) ->
+this.window.require([
     ['less', 'less-1.3.3'],
 
-    ['jQuery.Tools', 'jquery-tools-1.0'],
+    ['jQuery.Tools', 'jquery-tools-1.0.coffee'],
 
     ['jQuery.fn.carousel', 'bootstrap-2.3.1'],
     
     ['jQuery.scrollTo', 'jquery-scrollTo-1.4.3.1'],
     ['jQuery.fn.waypoint', 'jquery-waypoints-2.0.2'],
     ['jQuery.fn.spin', 'jquery-spin-1.2.8']],
-    function(less, jQuery) {
-///
+(less, jQuery) ->
+##
 
-// endregion
+# endregion
 
-// region plugins
+# region plugins
 
-    /**
+    ###*
         @memberOf jQuery
         @class
-    */
-    var Website = function() {
+    ###
+    class Website extends jQuery.Tools.class
 
-    // region protected properties 
+    # region private properties
 
-        /**
+        __name__: 'Website'
+
+    # endregion
+
+    # region protected properties 
+
+        ###*
             Saves default options for manipulating the default behaviour.
 
             @property {Object}
-        */
-        this._options = {
-            'logging': false,
-            'domNodeSelectorPrefix': 'body.website',
-            'addtionalPageLoadingTimeInMilliseconds': 0,
-            'mediaQueryCssIndicator': {
-                'desktop': '0px dashed rgb(0, 0, 0)',
-                'tablet': '0px solid rgb(0, 0, 0)',
-                'smartphone': '0px dotted rgb(0, 0, 0)'
-            },
-            'domNodes': {
-                'navigationBarOnTopIndicatorClass': 'on-top',
-                'carousel': 'div.carousel.slide',
-                'navigationBar': 'div.navbar-wrapper',
-                'navigationButtons': 'div.navbar-wrapper ul.nav li a',
-                'scrollToTopButtons': 'a[href="#top"]',
-                'startUpAnimationClassPrefix': '.start-up-animation-number-',
-                'windowLoadingCover': 'div.window-loading-cover',
-                'windowLoadingSpinner': 'div.window-loading-cover div',
-                'dimensionIndicator':
+        ###
+        _options:
+            logging: false
+            domNodeSelectorPrefix: 'body.website'
+            addtionalPageLoadingTimeInMilliseconds: 0
+            mediaQueryCssIndicator:
+                desktop: '0px dashed rgb(0, 0, 0)'
+                tablet: '0px solid rgb(0, 0, 0)'
+                smartphone: '0px dotted rgb(0, 0, 0)'
+            domNodes:
+                navigationBarOnTopIndicatorClass: 'on-top'
+                carousel: 'div.carousel.slide'
+                navigationBar: 'div.navbar-wrapper'
+                navigationButtons: 'div.navbar-wrapper ul.nav li a'
+                scrollToTopButtons: 'a[href="#top"]'
+                startUpAnimationClassPrefix: '.start-up-animation-number-'
+                windowLoadingCover: 'div.window-loading-cover'
+                windowLoadingSpinner: 'div.window-loading-cover div'
+                dimensionIndicator:
                     'div.navbar-wrapper div.dimension-indicator'
-            },
-            'startUpFadeInOptions': {
-                'easing': 'swing',
-                'duration': 'slow'
-            },
-            'windowLoadingCoverFadeOutOptions': {
-                'easing': 'swing',
-                'duration': 'slow'
-            },
-            'startUpAnimationElementDelayInMiliseconds': 100,
-            'carouselOptions': {
-                'interval': false,
-                'pause': 'hover'
-            },
-            'windowLoadingSpinnerOptions': {
-                'lines': 9, // The number of lines to draw
-                'length': 23, // The length of each line
-                'width': 11, // The line thickness
-                'radius': 40, // The radius of the inner circle
-                'corners': 1, // Corner roundness (0..1)
-                'rotate': 75, // The rotation offset
-                'color': '#000', // #rgb or #rrggbb
-                'speed': 1.1, // Rounds per second
-                'trail': 58, // Afterglow percentage
-                'shadow': false, // Whether to render a shadow
-                'hwaccel': false, // Whether to use hardware acceleration
-                'className': 'spinner', // CSS class to assign to the spinner
-                'zIndex': 2e9, // The z-index (defaults to 2000000000)
-                'top': 'auto', // Top position relative to parent in px
-                'left': 'auto' // Left position relative to parent in px
-            }
-        };
-        /**
+            startUpFadeInOptions:
+                easing: 'swing'
+                duration: 'slow'
+            windowLoadingCoverFadeOutOptions:
+                easing: 'swing'
+                duration: 'slow'
+            startUpAnimationElementDelayInMiliseconds: 100
+            carouselOptions:
+                interval: false
+                pause: 'hover'
+            windowLoadingSpinnerOptions:
+                lines: 9 # The number of lines to draw
+                length: 23 # The length of each line
+                width: 11 # The line thickness
+                radius: 40 # The radius of the inner circle
+                corners: 1 # Corner roundness (0..1)
+                rotate: 75 # The rotation offset
+                color: '#000' # #rgb or #rrggbb
+                speed: 1.1 # Rounds per second
+                trail: 58 # Afterglow percentage
+                shadow: false # Whether to render a shadow
+                hwaccel: false # Whether to use hardware acceleration
+                className: 'spinner' # CSS class to assign to the spinner
+                zIndex: 2e9 # The z-index (defaults to 2000000000)
+                top: 'auto' # Top position relative to parent in px
+                left: 'auto' # Left position relative to parent in px
+        ###*
             Holds all needed dom nodes.
 
             @property {Object}
-        */
-        this._domNodes = {};
-        /**
+        ###
+        _domNodes: {}
+        ###*
             Determines weather the vieport is on top of the page.
 
             @property {Boolean}
-        */
-        this._vieportIsOnTop = true;
-        /**
+        ###
+        _vieportIsOnTop: true
+        ###*
             Describes the current mode defined by the css media querys.
 
             @property {String}
-        */
-        this._currentMediaQueryMode = '';
+        ###
+        _currentMediaQueryMode: ''
 
-    // endregion
+    # endregion
 
-    // region public methods
+    # region public methods
 
-        /**
+        # region special methods
+
+        ###*
             @description Initializes the interactive web app.
 
             @param {Object} options An options object.
 
             @returns {jQuery.Tools} Returns the current instance.
-        */
-        this.initialize = function(options) {
-            if (options)
-                jQuery.extend(true, this._options, options);
-            this._domNodes = this.grapDomNodes(this._options.domNodes);
+        ###
+        initialize: (options) ->
+            super options
+            this._domNodes = this.grapDomNodes this._options.domNodes
             this._options.windowLoadingCoverFadeOutOptions.always =
-                this.getMethod(this._handleStartUpEffects);
+                this.getMethod this._handleStartUpEffects
             this._domNodes.windowLoadingSpinner.spin(
-                this._options.windowLoadingSpinnerOptions);
-            this._bindScrollEvents()._domNodes.parent.show();
+                this._options.windowLoadingSpinnerOptions)
+            this._bindScrollEvents()._domNodes.parent.show()
             this._domNodes.window.load(this.getMethod(
-                this._removeLoadingCover));
-            this._domNodes.carousel.carousel(this._options.carouselOptions);
-            this._addNavigationEvents()._addMediaQueryChangeEvents();
-            this._triggerWindowResizeEvents();
-            // TODO
-            return this/*._handleGooleAnalytics()*/;
-        };
-        // TODO write destructor with waypoint disabling.
+                this._removeLoadingCover))
+            this._domNodes.carousel.carousel this._options.carouselOptions
+            this._addNavigationEvents()._addMediaQueryChangeEvents(
+            )._triggerWindowResizeEvents()
+            # TODO
+            return this#._handleGooleAnalytics()
 
-    // endregion
+        # endregion
 
-    // region protected methods
+    # endregion
 
-        // region event methods
+    # region protected methods
 
-        this._onVieportMovesToTop = function() {
+        # region event methods
+
+        _onVieportMovesToTop: ->
             this._domNodes.navigationBar.addClass(
-                this._options.domNodes.navigationBarOnTopIndicatorClass);
-            this._domNodes.scrollToTopButtons.fadeOut('slow');
-            return this;
-        };
+                this._options.domNodes.navigationBarOnTopIndicatorClass)
+            this._domNodes.scrollToTopButtons.fadeOut 'slow'
+            return this
 
-        this._onVieportMovesAwayFromTop = function() {
+        _onVieportMovesAwayFromTop: ->
             this._domNodes.navigationBar.removeClass(
-                this._options.domNodes.navigationBarOnTopIndicatorClass);
-            this._domNodes.scrollToTopButtons.fadeIn('slow');
-            return this;
-        };
+                this._options.domNodes.navigationBarOnTopIndicatorClass)
+            this._domNodes.scrollToTopButtons.fadeIn 'slow'
+            return this
 
-        this._onChangeToDesktopMode = function() {
-            this._domNodes.dimensionIndicator.hide();
-            return this;
-        };
+        _onChangeToDesktopMode: ->
+            this._domNodes.dimensionIndicator.hide()
+            return this
 
-        this._onChangeToTabletMode = function() {
-            var self = this;
-            this._domNodes.dimensionIndicator.fadeOut('slow', function() {
+        _onChangeToTabletMode: ->
+            self = this
+            this._domNodes.dimensionIndicator.fadeOut 'slow', ->
                 self._domNodes.dimensionIndicator.text(
-                    'tablet-mode').fadeIn('slow');
-            });
-            return this;
-        };
+                    'tablet-mode'
+                ).fadeIn 'slow'
+            return this
 
-        this._onChangeToSmartphoneMode = function() {
-            var self = this;
-            this._domNodes.dimensionIndicator.fadeOut('slow', function() {
+        _onChangeToSmartphoneMode: ->
+            self = this
+            this._domNodes.dimensionIndicator.fadeOut 'slow', ->
                 self._domNodes.dimensionIndicator.text(
-                    'smartphone-mode').fadeIn('slow');
-            });
-            if (this._vieportIsOnTop)
+                    'smartphone-mode'
+                ).fadeIn 'slow'
+            if this._vieportIsOnTop
                 this._domNodes.navigationBar.addClass(
-                    this._options.domNodes.navigationBarOnTopIndicatorClass);
-            return this;
-        };
+                    this._options.domNodes.navigationBarOnTopIndicatorClass)
+            return this
 
-        // endregion
+        # endregion
 
-        this._addMediaQueryChangeEvents = function() {
-            this.bind(this._domNodes.window, 'resize', this.getMethod(
-                this._triggerWindowResizeEvents));
-        };
+        _addMediaQueryChangeEvents: ->
+            this.bind this._domNodes.window, 'resize', this.getMethod(
+                this._triggerWindowResizeEvents)
+            return this
 
-        this._triggerWindowResizeEvents = function() {
-            var self = this;
+        _triggerWindowResizeEvents: ->
+            self = this
             jQuery.each(
                 this._options.mediaQueryCssIndicator,
-                function(mode, cssValue) {
-                    if (self._domNodes.parent.css('border') == cssValue &&
-                        mode != self._currentMediaQueryMode) {
-                        self._currentMediaQueryMode = mode;
+                (mode, cssValue) ->
+                    if (self._domNodes.parent.css('border') is cssValue and
+                        mode isnt self._currentMediaQueryMode
+                    )
+                        self._currentMediaQueryMode = mode
                         self.fireEvent.apply(
                             self, [
                                 self.stringFormat('changeTo{1}Mode',
                                 mode.substr(0, 1).toUpperCase() +
-                                    mode.substr(1)),
+                                    mode.substr 1),
                                 false, self
-                            ].concat(self.argumentsObjectToArray(
-                                arguments)));
-                    }
-                });
-            return this;
-        };
+                            ].concat self.argumentsObjectToArray arguments))
+            return this
 
-        this._bindScrollEvents = function() {
-            var self = this;
-            this.bind(window, 'scroll', function() {
-                if (self._domNodes.parent.scrollTop()) {
-                    if (self._vieportIsOnTop) {
-                        self._vieportIsOnTop = false;
-                        self.fireEvent.apply(self, [
+        _bindScrollEvents: ->
+            self = this
+            this.bind window, 'scroll', ->
+                if self._domNodes.parent.scrollTop()
+                    if self._vieportIsOnTop
+                        self._vieportIsOnTop = false
+                        self.fireEvent.apply self, [
                             'vieportMovesAwayFromTop', false, self
-                        ].concat(self.argumentsObjectToArray(arguments)));
-                    }
-                } else if (!self._vieportIsOnTop) {
-                    self._vieportIsOnTop = true;
-                    self.fireEvent.apply(self, [
+                        ].concat self.argumentsObjectToArray arguments
+                else if not self._vieportIsOnTop
+                    self._vieportIsOnTop = true
+                    self.fireEvent.apply self, [
                         'vieportMovesToTop', false, self
-                    ].concat(self.argumentsObjectToArray(arguments)));
-                }
-            });
-            return this;
-        };
+                    ].concat self.argumentsObjectToArray arguments
+            return this
 
-        this._removeLoadingCover = function() {
-            var self = this;
+        _removeLoadingCover: ->
+            self = this
             window.setTimeout(
-                function() {
-                    /*
+                ->
+                    ###
                         Hide startup animation dom nodes to show them step
                         by step.
-                    */
+                    ###
                     jQuery(
                         '[class^="' +
                         self.sliceDomNodeSelectorPrefix(
                             self._options.domNodes
                                 .startUpAnimationClassPrefix
                         ).substr(1) + '"]'
-                    ).hide();
+                    ).hide()
                     self._domNodes.windowLoadingCover.fadeOut(
-                        self._options.windowLoadingCoverFadeOutOptions);
-                },
-                this._options.addtionalPageLoadingTimeInMilliseconds);
-            return this;
-        };
+                        self._options.windowLoadingCoverFadeOutOptions)
+                , this._options.addtionalPageLoadingTimeInMilliseconds)
+            return this
 
-        this._handleStartUpEffects = function(elementNumber) {
-            if (!jQuery.isNumeric(elementNumber))
-                elementNumber = 1;
-            var self = this;
-            window.setTimeout(function() {
-                jQuery(
-                    self._options.domNodes.startUpAnimationClassPrefix +
-                    elementNumber
-                ).fadeIn(self._options.startUpFadeInOptions);
-                if (jQuery(
-                    self._options.domNodes.startUpAnimationClassPrefix +
-                    (elementNumber + 1)).length)
-                    self._handleStartUpEffects(elementNumber + 1);
-                }, this._options.startUpAnimationElementDelayInMiliseconds);
-            return this;
-        };
+        _handleStartUpEffects: (elementNumber) ->
+            if not jQuery.isNumeric elementNumber
+                elementNumber = 1
+            self = this
+            window.setTimeout ->
+                    jQuery(
+                        self._options.domNodes.startUpAnimationClassPrefix +
+                        elementNumber
+                    ).fadeIn self._options.startUpFadeInOptions
+                    if (jQuery(
+                            self._options.domNodes.startUpAnimationClassPrefix +
+                            (elementNumber + 1)).length)
+                        self._handleStartUpEffects elementNumber + 1,
+                this._options.startUpAnimationElementDelayInMiliseconds
+            return this
 
-        this._addNavigationEvents = function() {
-            this._handleScrollToTopButton();
-            var self = this;
-            this.bind(this._domNodes.navigationButtons, 'click', function() {
-                var clickedButton = this;
-                self._domNodes.navigationButtons.each(function(index) {
-                    if (clickedButton == this) {
-                        if (self._vieportIsOnTop)
-                            self._domNodes.carousel.carousel(index);
+        _addNavigationEvents: ->
+            self = this._handleScrollToTopButton()
+            this.bind this._domNodes.navigationButtons, 'click', ->
+                clickedButton = this
+                self._domNodes.navigationButtons.each (index) ->
+                    if clickedButton is this
+                        if self._vieportIsOnTop
+                            self._domNodes.carousel.carousel index
                         else
                             jQuery.scrollTo(
-                                self._domNodes.parent, {
-                                    /*
+                                self._domNodes.parent,
+                                    ###
                                         Scroll as long as we have distance to
                                         top.
-                                    */
-                                    'duration':
-                                        self._domNodes.parent.scrollTop(),
-                                    'onAfter': function() {
-                                        self._domNodes.carousel.carousel(index);
-                                    }
-                                });
-                        jQuery(this).parent('li').addClass('active');
-                    } else
-                        jQuery(this).parent('li').removeClass('active');
-                });
-            });
-            return this;
-        };
+                                    ###
+                                    duration:
+                                        self._domNodes.parent.scrollTop()
+                                    onAfter: ->
+                                        self._domNodes.carousel.carousel index)
+                        jQuery(this).parent('li').addClass 'active'
+                    else
+                        jQuery(this).parent('li').removeClass 'active'
+            return this
 
-        this._handleScrollToTopButton = function() {
-            var self = this;
+        _handleScrollToTopButton: ->
+            self = this
             this.bind(
-                this._domNodes.scrollToTopButtons, 'click', function(event)
-            {
-                event.preventDefault();
-                // Scroll as long as we have distance to top.
-                jQuery.scrollTo(
-                    self._domNodes.parent, self._domNodes.parent.scrollTop());
-            });
-            this._domNodes.scrollToTopButtons.hide();
-            return this;
-        };
+                this._domNodes.scrollToTopButtons, 'click', (event) ->
+                    event.preventDefault()
+                    # Scroll as long as we have distance to top.
+                    jQuery.scrollTo(
+                        self._domNodes.parent,
+                        self._domNodes.parent.scrollTop()))
+            this._domNodes.scrollToTopButtons.hide()
+            return this
 
-        this._handleGooleAnalytics = function() {
-            // TODO check if "_gaq" has to be global.
-            var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']];
+        _handleGooleAnalytics: ->
+            # TODO check if "_gaq" has to be global.
+            _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']]
             jQuery('script')[0].parent().before(jQuery('<script>').attr(
                 'src', ('https:' == location.protocol ? '//ssl' : '//www') +
-                    '.google-analytics.com/ga.js'));
-            return this;
-        };
+                    '.google-analytics.com/ga.js'))
+            return this
 
-    // endregion
+    # endregion
 
-    };
+    ###* @ignore ###
+    jQuery.Website = ->
+        self = new Website
+        return self._controller.apply self, arguments
 
-    /** @ignore */
-    jQuery.Website = function() {
-        var self = jQuery.Tools()._extend(new Website());
-        self.__name__ = 'Website';
-        return self._controller.apply(self, arguments);
-    };
+# endregion
 
-// endregion
-
-/// standalone })(window.jQuery);
-});
+## standalone ).call this, this.jQuery
+)
