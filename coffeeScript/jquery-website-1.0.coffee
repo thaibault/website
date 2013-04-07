@@ -152,7 +152,7 @@ this.window.require([
             this._addNavigationEvents()._addMediaQueryChangeEvents(
             )._triggerWindowResizeEvents()
             # TODO
-            return this#._handleGooleAnalytics()
+            this#._handleGooleAnalytics()
 
         # endregion
 
@@ -166,17 +166,17 @@ this.window.require([
             this._domNodes.navigationBar.addClass(
                 this._options.domNodes.navigationBarOnTopIndicatorClass)
             this._domNodes.scrollToTopButtons.fadeOut 'slow'
-            return this
+            this
 
         _onVieportMovesAwayFromTop: ->
             this._domNodes.navigationBar.removeClass(
                 this._options.domNodes.navigationBarOnTopIndicatorClass)
             this._domNodes.scrollToTopButtons.fadeIn 'slow'
-            return this
+            this
 
         _onChangeToDesktopMode: ->
             this._domNodes.dimensionIndicator.hide()
-            return this
+            this
 
         _onChangeToTabletMode: ->
             self = this
@@ -184,7 +184,7 @@ this.window.require([
                 self._domNodes.dimensionIndicator.text(
                     'tablet-mode'
                 ).fadeIn 'slow'
-            return this
+            this
 
         _onChangeToSmartphoneMode: ->
             self = this
@@ -195,14 +195,14 @@ this.window.require([
             if this._vieportIsOnTop
                 this._domNodes.navigationBar.addClass(
                     this._options.domNodes.navigationBarOnTopIndicatorClass)
-            return this
+            this
 
         # endregion
 
         _addMediaQueryChangeEvents: ->
             this.bind this._domNodes.window, 'resize', this.getMethod(
                 this._triggerWindowResizeEvents)
-            return this
+            this
 
         _triggerWindowResizeEvents: ->
             self = this
@@ -220,7 +220,7 @@ this.window.require([
                                     mode.substr 1),
                                 false, self
                             ].concat self.argumentsObjectToArray arguments))
-            return this
+            this
 
         _bindScrollEvents: ->
             self = this
@@ -236,7 +236,7 @@ this.window.require([
                     self.fireEvent.apply self, [
                         'vieportMovesToTop', false, self
                     ].concat self.argumentsObjectToArray arguments
-            return this
+            this
 
         _removeLoadingCover: ->
             self = this
@@ -256,7 +256,7 @@ this.window.require([
                     self._domNodes.windowLoadingCover.fadeOut(
                         self._options.windowLoadingCoverFadeOutOptions)
                 , this._options.addtionalPageLoadingTimeInMilliseconds)
-            return this
+            this
 
         _handleStartUpEffects: (elementNumber) ->
             if not jQuery.isNumeric elementNumber
@@ -272,7 +272,7 @@ this.window.require([
                             (elementNumber + 1)).length)
                         self._handleStartUpEffects elementNumber + 1,
                 this._options.startUpAnimationElementDelayInMiliseconds
-            return this
+            this
 
         _addNavigationEvents: ->
             self = this._handleScrollToTopButton()
@@ -296,7 +296,7 @@ this.window.require([
                         jQuery(this).parent('li').addClass 'active'
                     else
                         jQuery(this).parent('li').removeClass 'active'
-            return this
+            this
 
         _handleScrollToTopButton: ->
             self = this
@@ -308,7 +308,7 @@ this.window.require([
                         self._domNodes.parent,
                         self._domNodes.parent.scrollTop()))
             this._domNodes.scrollToTopButtons.hide()
-            return this
+            this
 
         _handleGooleAnalytics: ->
             # TODO check if "_gaq" has to be global.
@@ -317,14 +317,14 @@ this.window.require([
                 'src', (
                     if 'https:' is location.protocol then '//ssl' else '//www'
                 ) + '.google-analytics.com/ga.js')
-            return this
+            this
 
     # endregion
 
     ###* @ignore ###
     jQuery.Website = ->
         self = new Website
-        return self._controller.apply self, arguments
+        self._controller.apply self, arguments
 
 # endregion
 
