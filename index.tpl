@@ -15,7 +15,8 @@
 <%         'Skills', 'Knowing a lot of facts is not the same as being smart.',
 <%         'Ambition, manage projects with love..')),
 <%     ('references', (
-<%         'References', "You don't want good service, instead of the result!",
+<%         'References', "You don't want good service, instead of the result! "
+<%                       "Perfection kills!",
 <%         'Experiences from Posic, Akra, Virtual Identity, Chair of Humanoid'
 <%         'Robots Lab and Rechnernetze and Telematik in University Freiburg,'
 <%         'BPV, BTI, Vattenfall...')),
