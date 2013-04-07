@@ -179,17 +179,15 @@ this.window.require([
             this
 
         _onChangeToTabletMode: ->
-            self = this
-            this._domNodes.dimensionIndicator.fadeOut 'slow', ->
-                self._domNodes.dimensionIndicator.text(
+            this._domNodes.dimensionIndicator.fadeOut 'slow', =>
+                this._domNodes.dimensionIndicator.text(
                     'tablet-mode'
                 ).fadeIn 'slow'
             this
 
         _onChangeToSmartphoneMode: ->
-            self = this
-            this._domNodes.dimensionIndicator.fadeOut 'slow', ->
-                self._domNodes.dimensionIndicator.text(
+            this._domNodes.dimensionIndicator.fadeOut 'slow', =>
+                this._domNodes.dimensionIndicator.text(
                     'smartphone-mode'
                 ).fadeIn 'slow'
             if this._vieportIsOnTop
@@ -205,72 +203,68 @@ this.window.require([
             this
 
         _triggerWindowResizeEvents: ->
-            self = this
             jQuery.each(
                 this._options.mediaQueryCssIndicator,
-                (mode, cssValue) ->
-                    if (self._domNodes.parent.css('border') is cssValue and
-                        mode isnt self._currentMediaQueryMode
+                (mode, cssValue) =>
+                    if (this._domNodes.parent.css('border') is cssValue and
+                        mode isnt this._currentMediaQueryMode
                     )
-                        self._currentMediaQueryMode = mode
-                        self.fireEvent.apply(
-                            self, [
-                                self.stringFormat('changeTo{1}Mode',
+                        this._currentMediaQueryMode = mode
+                        this.fireEvent.apply(
+                            this, [
+                                this.stringFormat('changeTo{1}Mode',
                                 mode.substr(0, 1).toUpperCase() +
                                     mode.substr 1),
-                                false, self
-                            ].concat self.argumentsObjectToArray arguments))
+                                false, this
+                            ].concat this.argumentsObjectToArray arguments))
             this
 
         _bindScrollEvents: ->
-            self = this
-            this.bind window, 'scroll', ->
-                if self._domNodes.parent.scrollTop()
-                    if self._vieportIsOnTop
-                        self._vieportIsOnTop = false
-                        self.fireEvent.apply self, [
-                            'vieportMovesAwayFromTop', false, self
-                        ].concat self.argumentsObjectToArray arguments
-                else if not self._vieportIsOnTop
-                    self._vieportIsOnTop = true
-                    self.fireEvent.apply self, [
-                        'vieportMovesToTop', false, self
-                    ].concat self.argumentsObjectToArray arguments
+            this.bind window, 'scroll', =>
+                if this._domNodes.parent.scrollTop()
+                    if this._vieportIsOnTop
+                        this._vieportIsOnTop = false
+                        this.fireEvent.apply this, [
+                            'vieportMovesAwayFromTop', false, this
+                        ].concat this.argumentsObjectToArray arguments
+                else if not this._vieportIsOnTop
+                    this._vieportIsOnTop = true
+                    this.fireEvent.apply this, [
+                        'vieportMovesToTop', false, this
+                    ].concat this.argumentsObjectToArray arguments
             this
 
         _removeLoadingCover: ->
-            self = this
             window.setTimeout(
-                ->
+                =>
                     ###
                         Hide startup animation dom nodes to show them step
                         by step.
                     ###
                     jQuery(
                         '[class^="' +
-                        self.sliceDomNodeSelectorPrefix(
-                            self._options.domNodes
+                        this.sliceDomNodeSelectorPrefix(
+                            this._options.domNodes
                                 .startUpAnimationClassPrefix
                         ).substr(1) + '"]'
                     ).hide()
-                    self._domNodes.windowLoadingCover.fadeOut(
-                        self._options.windowLoadingCoverFadeOutOptions)
+                    this._domNodes.windowLoadingCover.fadeOut(
+                        this._options.windowLoadingCoverFadeOutOptions)
                 , this._options.addtionalPageLoadingTimeInMilliseconds)
             this
 
         _handleStartUpEffects: (elementNumber) ->
             if not jQuery.isNumeric elementNumber
                 elementNumber = 1
-            self = this
-            window.setTimeout ->
+            window.setTimeout =>
                     jQuery(
-                        self._options.domNodes.startUpAnimationClassPrefix +
+                        this._options.domNodes.startUpAnimationClassPrefix +
                         elementNumber
-                    ).fadeIn self._options.startUpFadeInOptions
+                    ).fadeIn this._options.startUpFadeInOptions
                     if (jQuery(
-                            self._options.domNodes.startUpAnimationClassPrefix +
+                            this._options.domNodes.startUpAnimationClassPrefix +
                             (elementNumber + 1)).length)
-                        self._handleStartUpEffects elementNumber + 1,
+                        this._handleStartUpEffects elementNumber + 1,
                 this._options.startUpAnimationElementDelayInMiliseconds
             this
 
@@ -299,14 +293,13 @@ this.window.require([
             this
 
         _handleScrollToTopButton: ->
-            self = this
             this.bind(
-                this._domNodes.scrollToTopButtons, 'click', (event) ->
+                this._domNodes.scrollToTopButtons, 'click', (event) =>
                     event.preventDefault()
                     # Scroll as long as we have distance to top.
                     jQuery.scrollTo(
-                        self._domNodes.parent,
-                        self._domNodes.parent.scrollTop()))
+                        this._domNodes.parent,
+                        this._domNodes.parent.scrollTop()))
             this._domNodes.scrollToTopButtons.hide()
             this
 
