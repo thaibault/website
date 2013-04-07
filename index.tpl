@@ -137,7 +137,7 @@
             <div class="carousel-inner">
                 <% for name, section in sections:
                     <div class="item<%' active' if name == sections[0][0] else ''%>">
-                        <img src="image/carousel/<%name%>.jpg" alt=""/>
+                        <img src="image/carousel/<%name%>.jpg" alt="<%name%>" />
                         <div class="container">
                             <div class="carousel-caption">
                                 <h1><%section[1]%></h1>
