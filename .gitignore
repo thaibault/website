@@ -36,3 +36,7 @@ nosetests.xml
 
 # Vim temporary file
 *.swp
+
+# Rendered page.
+build
+*.html

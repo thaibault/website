@@ -15,7 +15,8 @@
 <%         'Skills', 'Knowing a lot of facts is not the same as being smart.',
 <%         'Ambition, manage projects with love..')),
 <%     ('references', (
-<%         'References', "You don't want good service, instead of the result!",
+<%         'References', "You don't want good service, instead of the result! "
+<%                       "Perfection kills!",
 <%         'Experiences from Posic, Akra, Virtual Identity, Chair of Humanoid'
 <%         'Robots Lab and Rechnernetze and Telematik in University Freiburg,'
 <%         'BPV, BTI, Vattenfall...')),
@@ -73,26 +74,14 @@
 
     <!-- region ressources -->
 
-        <link type="text/css" rel="stylesheet/less" href="css/website-1.0.less" />
+        <link type="text/css" rel="stylesheet/less" href="less/website-1.0.less" />
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
             <script src="javaScript/html5shiv.js"></script>
         <![endif]-->
-        <script type="text/javascript" src="javaScript/require-1.0.js"></script>
-        <script text="text/javascript">
-            window.require.noConflict = true;
-            window.require([['jQuery.Website', 'jquery-website-1.0']], function() {
-                /**
-                    Embedd jQuery and require full compatible to all other
-                    JavaScripts.
-                    The global scope is clean after this sequence. The given
-                    function is called when the dom-tree was loaded.
-                */
-                /*window.jQuery.noConflict(true)*/window.jQuery(function(jQuery) {
-                    jQuery.Website({'logging': true});
-                });
-            });
-        </script>
+        <script type="text/javascript" src="javaScript/coffeeScript-1.6.2.js"></script>
+        <script type="text/coffeescript" src="coffeeScript/require-1.0.coffee"></script>
+        <script type="text/coffeescript" src="coffeeScript/main.coffee"></script>
 
     <!-- endregion -->
 
@@ -102,10 +91,11 @@
 
 <!-- region body -->
 
-    <body class="website">
+    <body class="website" style="display: none">
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
+        <div class="window-loading-cover"><div></div></div>
 
     <!-- region menu -->
 
@@ -116,10 +106,14 @@
                     <div class="navbar-inner">
                         <!-- Responsive Navbar Part 1: Button for triggering responsive navbar. -->
                         <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                            <% for section in sections:
+                            <% for section in range(3):
                                 <span class="icon-bar"></span>
                         </button>
                         <a class="brand" href="#">thaibault</a>
+<<<<<<< HEAD
+=======
+                        <div class="dimension-indicator"></div>
+>>>>>>> 1af492dd8ace333835a3dcafe77f96a25edb88b1
                         <!-- Responsive Navbar Part 2: Places all navbar contents. -->
                         <div class="nav-collapse collapse">
                             <ul class="nav">
@@ -146,7 +140,7 @@
             <div class="carousel-inner">
                 <% for name, section in sections:
                     <div class="item<%' active' if name == sections[0][0] else ''%>">
-                        <img src="image/carousel/<%name%>.jpg" alt=""/>
+                        <img src="image/carousel/<%name%>.jpg" alt="<%name%>" />
                         <div class="container">
                             <div class="carousel-caption">
                                 <h1><%section[1]%></h1>

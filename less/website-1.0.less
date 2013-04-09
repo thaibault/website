@@ -14,18 +14,35 @@
 @color2: #1b1b1b;
 @shadowColor: rgba(0, 0, 0, .25);
 @imagePath: '../image/';
-@defaultSpace: 40px;
+@maximumSmartphoneWidth: 767px;
+@maximumTabletWidth: 979px;
 
 // endregion
+
+/* region media query change indicator */
+
+body.website {
+    /* desktop mode */
+    border: 0px dashed black;
+
+    @media (max-width: @maximumTabletWidth) {
+        border: 0px solid black;
+    }
+    @media (max-width: @maximumSmartphoneWidth) {
+        border: 0px dotted black;
+    }
+}
+
+/* endregion */
 
 /* region stylesheets */
 
 body.website {
-    
+
     /* region global */
 
     /* Padding below the footer and lighter body text */
-    padding-bottom: @defaultSpace;
+    padding-bottom: 40px;
     color: @color1;
     background-color: @color2;
 
@@ -33,7 +50,8 @@ body.website {
 
     [class^="icon-"],
     [class*=" icon-"] {
-        background-image: url('@{imagePath}bootstrap-2.3.1/glyphicons-halflings.png');
+        // TODO use varibales for path prefix if compressor supports it.
+        background-image: url('../image/bootstrap-2.3.1/glyphicons-halflings.png');
     }
     .icon-white,
     .nav-pills > .active > a > [class^="icon-"],
@@ -52,7 +70,8 @@ body.website {
     .dropdown-submenu:focus > a > [class^="icon-"],
     .dropdown-submenu:hover > a > [class*=" icon-"],
     .dropdown-submenu:focus > a > [class*=" icon-"] {
-        background-image: url('@{imagePath}bootstrap-2.3.1/glyphicons-halflings-white.png');
+        // TODO use varibales for path prefix if compressor supports it.
+        background-image: url('../image/bootstrap-2.3.1/glyphicons-halflings-white.png');
     }
 
         /* endregion */
@@ -70,6 +89,25 @@ body.website {
 
     /* endregion */
 
+    /* region window loading cover */
+
+    div.window-loading-cover {
+        background-color: white;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: 10;
+
+        div {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            background-color: @color2;
+        }
+    }
+
+    /* endregion */
+
     /* region navigation bar */
 
     /*
@@ -82,6 +120,7 @@ body.website {
         left: 0;
         right: 0;
         z-index: 3;
+        #generic > .opacity(0.97);
         margin-top: 20px;
         /*
             Negative margin to pull up carousel. 90px is roughly margins and 
@@ -89,26 +128,29 @@ body.website {
         */
         margin-bottom: -90px;
 
-        /* Remove border and change up box shadow for more contrast */
-        div.navbar div.navbar-inner {
-            border: 0;
-            #generic > .shadow(0, 2px, 10px, @shadowColor);
-        }
-        /* Downsize the brand/project name a bit */
-        div.navbar div.brand {
-            /* Increase vertical padding to match navbar links */
-            padding: 14px 20px 16px;
-            font-size: 16px;
-            font-weight: bold;
-            text-shadow: 0 -1px 0 rgba(0,0,0,.5);
-        }
-        /* Navbar links: increase padding for taller navbar */
-        div.navbar div.nav > li > a {
-            padding: 15px 20px;
-        }
-        /* Offset the responsive button for proper vertical alignment */
-        div.navbar button.btn-navbar {
-            margin-top: 10px;
+        div.navbar {
+            /* Remove border and change up box shadow for more contrast */
+            div.navbar-inner {
+                border: 0;
+                #generic > .shadow(0, 2px, 10px, @shadowColor);
+
+                div.dimension-indicator {
+                    margin-top: 10px;
+                    display: none;
+                }
+            }
+            /* Downsize the brand/project name a bit */
+            div.brand {
+                /* Increase vertical padding to match navbar links */
+                padding: 14px 20px 16px;
+                font-size: 16px;
+                font-weight: bold;
+                text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+            }
+            /* Navbar links: increase padding for taller navbar */
+            div.nav > li > a {
+                padding: 15px 20px;
+            }
         }
     }
 
@@ -118,6 +160,7 @@ body.website {
 
     /* Carousel base class */
     div.carousel {
+        position: relative;
         margin-bottom: 60px;
 
         div.container {
@@ -178,14 +221,21 @@ body.website {
 
     /* region responsive css */
 
-    @media (max-width: 979px) {
-        div.container.navbar-wrapper {
+        /* region tablet */
+
+    @media (max-width: @maximumTabletWidth) {
+        div.navbar-wrapper div.navbar {
             margin-bottom: 0;
             width: auto;
-        }
-        div.navbar-inner {
-            border-radius: 0;
-            margin: -20px 0;
+
+            div.navbar-inner {
+                border-radius: 0;
+                margin: -20px 0;
+                
+                button.btn.btn-navbar {
+                    margin-top: 5px;
+                }
+            }
         }
         div.carousel {
             .item {
@@ -208,9 +258,31 @@ body.website {
             margin: 0 auto 20px;
         }
     }
-    @media (max-width: 767px) {
-        div.navbar-inner {
+
+        /* endregion */
+
+        /* region smartphone */
+
+    @media (max-width: @maximumSmartphoneWidth) {
+        div.navbar-wrapper div.navbar div.navbar-inner {
             margin: -20px;
+
+            div.nav-collapse ul li a {
+                padding-left: 25px;
+            }
+            a.brand {
+                margin-left: 15px;
+            }
+            button.btn.btn-navbar {
+                margin-right: 20px;
+            }
+        }
+        div.navbar-wrapper.on-top {
+            position: static;
+            overflow: visible;
+            margin-bottom: 20px;
+            margin-left: -20px;
+            margin-right: -20px;
         }
         div.carousel {
             margin-left: -20px;
@@ -246,6 +318,8 @@ body.website {
             line-height: 1.5;
         }
     }
+
+        /* endregion */
 
     /* endregion */
 
