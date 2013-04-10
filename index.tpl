@@ -110,10 +110,7 @@
                                 <span class="icon-bar"></span>
                         </button>
                         <a class="brand" href="#">thaibault</a>
-<<<<<<< HEAD
-=======
                         <div class="dimension-indicator"></div>
->>>>>>> 1af492dd8ace333835a3dcafe77f96a25edb88b1
                         <!-- Responsive Navbar Part 2: Places all navbar contents. -->
                         <div class="nav-collapse collapse">
                             <ul class="nav">
