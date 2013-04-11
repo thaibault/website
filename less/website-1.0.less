@@ -19,25 +19,22 @@
 
 // endregion
 
-/* region media query change indicator */
+/* region stylesheets */
 
 body.website {
+
+    /* region media query change indicator */
+
     /* desktop mode */
     border: 0px dashed black;
-
     @media (max-width: @maximumTabletWidth) {
         border: 0px solid black;
     }
     @media (max-width: @maximumSmartphoneWidth) {
         border: 0px dotted black;
     }
-}
 
-/* endregion */
-
-/* region stylesheets */
-
-body.website {
+    /* endregion */
 
     /* region global */
 
@@ -50,8 +47,7 @@ body.website {
 
     [class^="icon-"],
     [class*=" icon-"] {
-        // TODO use varibales for path prefix if compressor supports it.
-        background-image: url('../image/bootstrap-2.3.1/glyphicons-halflings.png');
+        background-image: url('@{imagePath}bootstrap-2.3.1/glyphicons-halflings.png');
     }
     .icon-white,
     .nav-pills > .active > a > [class^="icon-"],
@@ -70,8 +66,7 @@ body.website {
     .dropdown-submenu:focus > a > [class^="icon-"],
     .dropdown-submenu:hover > a > [class*=" icon-"],
     .dropdown-submenu:focus > a > [class*=" icon-"] {
-        // TODO use varibales for path prefix if compressor supports it.
-        background-image: url('../image/bootstrap-2.3.1/glyphicons-halflings-white.png');
+        background-image: url('@{imagePath}bootstrap-2.3.1/glyphicons-halflings-white.png');
     }
 
         /* endregion */
@@ -159,58 +154,101 @@ body.website {
     /* region carousel */
 
     /* Carousel base class */
-    div.carousel {
+    div.carousel div.carousel-inner {
         position: relative;
         margin-bottom: 60px;
 
-        div.container {
-            position: relative;
-            z-index: 2;
-        }
-        div.container.content {
-            padding: 20px;
-            margin-top: 150px;
-            font-size: 18px;
-            color: #ffffff;
-        }
         div.item {
             height: 1000px;
-        }
-        img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            min-width: 100%;
-            height: 835px;
-        }
-        div.carousel-caption {
-            background-color: transparent;
-            position: static;
-            max-width: 600px;
-            padding: 0 20px;
-            margin-top: 200px;
 
-            p.phone-number {
-                margin-top: 10px;
-                span {
-                    color: #5a5a5a;
+            div.carousel-image-about {
+                background-image: url('@{imagePath}about.jpg');
+            }
+            div.carousel-image-contact {
+                background-image: url('@{imagePath}contact.jpg');
+            }
+            div.carousel-image-references {
+                background-image: url('@{imagePath}references.jpg');
+            }
+            div.carousel-image-skills {
+                background-image: url('@{imagePath}skills.jpg');
+            }
+            div.container {
+                position: relative;
+                z-index: 2;
+
+                div.carousel-caption {
+                    background-color: transparent;
+                    position: static;
+                    max-width: 600px;
+                    padding: 0 20px;
+                    margin-top: 200px;
+
+        /* region social media buttons */
+
+                    a.btn.social-media {
+                        width: 32px;
+                        height: 32px;
+                        padding: 0;
+                    }
+                    a.btn.social-media-email {
+                        background-image: url('@{imagePath}socialMedia/email.png');
+                    }
+                    a.btn.social-media-github {
+                        background-image: url('@{imagePath}socialMedia/github.png');
+                    }
+                    a.btn.social-media-google {
+                        background-image: url('@{imagePath}socialMedia/google.png');
+                    }
+                    a.btn.social-media-xing {
+                        background-image: url('@{imagePath}socialMedia/xing.png');
+                    }
+                    a.btn.social-media-linkedin {
+                        background-image: url('@{imagePath}socialMedia/linkedin.png');
+                    }
+                    a.btn.social-media-skype {
+                        background-image: url('@{imagePath}socialMedia/skype.png');
+                    }
+                    a.btn.social-media-twitter {
+                        background-image: url('@{imagePath}socialMedia/twitter.png');
+                    }
+                    a.btn.social-media-facebook {
+                        background-image: url('@{imagePath}socialMedia/facebook.png');
+                    }
+
+        /* endregion */
+
+                    p.phone-number {
+                        margin-top: 10px;
+                        span {
+                            color: #5a5a5a;
+                        }
+                    }
+                    h1, div.lead {
+                        margin: 0;
+                        line-height: 1.25;
+                        color: #fff;
+                        text-shadow: 0 1px 1px rgba(0,0,0,.4);
+                    }
+                    .btn {
+                        margin-top: 10px;
+                        background-color: @color1;
+                        #generic > .gradient(@color1, @color2);
+                    }
                 }
             }
-            h1, div.lead {
-                margin: 0;
-                line-height: 1.25;
-                color: #fff;
-                text-shadow: 0 1px 1px rgba(0,0,0,.4);
+            div.container.content {
+                padding: 20px;
+                margin-top: 150px;
+                font-size: 18px;
+                color: #ffffff;
             }
-            a img {
-                position: initial;
-                width: 32px;
-                height: 32px;
-            }
-            .btn {
-                margin-top: 10px;
-                background-color: @color1;
-                #generic > .gradient(@color1, @color2);
+            img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                min-width: 100%;
+                height: 835px;
             }
         }
     }

@@ -137,7 +137,7 @@
             <div class="carousel-inner">
                 <% for name, section in sections:
                     <div class="item<%' active' if name == sections[0][0] else ''%>">
-                        <img src="image/carousel/<%name%>.jpg" alt="<%name%>" />
+                        <div class="carousel-image-<%name%>"></div>
                         <div class="container">
                             <div class="carousel-caption">
                                 <h1><%section[1]%></h1>
@@ -147,9 +147,7 @@
                                 <% if name == 'contact':
                                     <p class="lead phone-number">+49 176 <span>/</span> 10 248 185</p>
                                     <% for name, link in social_media:
-                                        <a class="btn btn-primary" href="<%link%>" target="_blank">
-                                            <img src="image/socialMedia/<%name%>_32.png" />
-                                        </a>
+                                        <a class="btn social-media social-media-<%name%>" href="<%link%>" target="_blank"></a>
                             </div>
                         </div>
                         <% start_up_animation_number += 1
