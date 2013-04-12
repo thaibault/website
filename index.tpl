@@ -1,4 +1,17 @@
-<% social_media = (
+<% # region locations
+
+<% IMAGE_PATH = 'image/'
+<% IMAGE_APPLE_TOUCH_ICON_PATH = IMAGE_PATH + 'appleTouchIcon/'
+<% LESS_PATH = 'less/'
+<% CSS_PATH = 'css/'
+<% COFFEE_SCRIPT_PATH = 'coffeeScript/'
+<% JAVA_SCRIPT_PATH = 'javaScript/'
+
+<% # endregion
+
+<% # region content
+
+<% SOCIAL_MEDIA = (
 <%     ('email', 'mailto:t.sickert@gmail.com'),
 <%     ('github', 'https://github.com/thaibault'),
 <%     ('google', 'https://plus.google.com/110796145663857741723/posts'),
@@ -7,7 +20,7 @@
 <%     ('skype', ''),
 <%     ('twitter', 'https://twitter.com/tsickert'),
 <%     ('facebook', 'https://de-de.facebook.com/tsickert'))
-<% sections = (
+<% SECTIONS = (
 <%     ('contact', (
 <%         'Hire me', 'Get in touch', "I'm a freelancer, ready to help you. "
 <%         "Let's talk about your project and what I can do.")),
@@ -25,7 +38,15 @@
 <%         'Experiences from Posic, Akra, Virtual Identity, Chair of Humanoid'
 <%         'Robots Lab and Rechnernetze and Telematik in University Freiburg,'
 <%         'BPV, BTI, Vattenfall...')))
-<% start_up_animation_number = 1
+
+<% # endregion
+
+<% # region runtime
+
+<% START_UP_ANIMATION_NUMBER = 1
+
+<% # endregion
+
 <!doctype html>
 
 <!-- region browser sniffing -->
@@ -64,24 +85,24 @@
 
     <!-- region fav and touch icons -->
 
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="image/apple-touch-icon-144-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="image/apple-touch-icon-114-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="image/apple-touch-icon-72-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" href="image/apple-touch-icon-57-precomposed.png">
-        <link rel="shortcut icon" href="image/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<%IMAGE_APPLE_TOUCH_ICON_PATH%>144x144-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<%IMAGE_APPLE_TOUCH_ICON_PATH%>114x114-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<%IMAGE_APPLE_TOUCH_ICON_PATH%>72x72-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" href="<%IMAGE_APPLE_TOUCH_ICON_PATH%>57x57-precomposed.png" />
+        <link rel="shortcut icon" type="image/x-icon" href="<%IMAGE_PATH%>favicon.ico" />
 
     <!-- endregion -->
 
     <!-- region ressources -->
 
-        <link type="text/css" rel="stylesheet/less" href="less/website-1.0.less" />
+        <link type="text/css" rel="stylesheet/less" href="<%LESS_PATH%>website-1.0.less" />
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
-            <script src="javaScript/html5shiv.js"></script>
+            <script src="<%JAVA_SCRIPT_PATH%>html5shiv.js"></script>
         <![endif]-->
-        <script type="text/javascript" src="javaScript/coffeeScript-1.6.2.js"></script>
-        <script type="text/coffeescript" src="coffeeScript/require-1.0.coffee"></script>
-        <script type="text/coffeescript" src="coffeeScript/main.coffee"></script>
+        <script type="text/javascript" src="<%JAVA_SCRIPT_PATH%>coffeeScript-1.6.2.js"></script>
+        <script type="text/coffeescript" src="<%COFFEE_SCRIPT_PATH%>require-1.0.coffee"></script>
+        <script type="text/coffeescript" src="<%COFFEE_SCRIPT_PATH%>main.coffee"></script>
 
     <!-- endregion -->
 
@@ -99,7 +120,7 @@
 
     <!-- region menu -->
 
-        <div class="start-up-animation-number-<%start_up_animation_number%> navbar-wrapper ">
+        <div class="start-up-animation-number-<%START_UP_ANIMATION_NUMBER%> navbar-wrapper ">
             <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
             <div class="container">
                 <div class="navbar navbar-inverse">
@@ -114,9 +135,9 @@
                         <!-- Responsive Navbar Part 2: Places all navbar contents. -->
                         <div class="nav-collapse collapse">
                             <ul class="nav">
-                                <% for name, section in sections:
-                                    <% start_up_animation_number += 1
-                                    <li class="start-up-animation-number-<%start_up_animation_number%><%' active' if name == sections[0][0] else ''%>">
+                                <% for name, section in SECTIONS:
+                                    <% START_UP_ANIMATION_NUMBER += 1
+                                    <li class="start-up-animation-number-<%START_UP_ANIMATION_NUMBER%><%' active' if name == SECTIONS[0][0] else ''%>">
                                         <a href="#<%name%>">
                                             <%section[0]%>
                                         </a>
@@ -132,11 +153,11 @@
 
     <!-- region carousel -->
 
-        <% start_up_animation_number += 1
-        <div id="headerCarousel" class="start-up-animation-number-<%start_up_animation_number%> carousel slide">
+        <% START_UP_ANIMATION_NUMBER += 1
+        <div id="headerCarousel" class="start-up-animation-number-<%START_UP_ANIMATION_NUMBER%> carousel slide">
             <div class="carousel-inner">
-                <% for name, section in sections:
-                    <div class="item<%' active' if name == sections[0][0] else ''%>">
+                <% for name, section in SECTIONS:
+                    <div class="item<%' active' if name == SECTIONS[0][0] else ''%>">
                         <div class="carousel-image-<%name%>"></div>
                         <div class="container">
                             <div class="carousel-caption">
@@ -146,12 +167,12 @@
                                 </p>
                                 <% if name == 'contact':
                                     <p class="lead phone-number">+49 176 <span>/</span> 10 248 185</p>
-                                    <% for name, link in social_media:
+                                    <% for name, link in SOCIAL_MEDIA:
                                         <a class="btn social-media social-media-<%name%>" href="<%link%>" target="_blank"></a>
                             </div>
                         </div>
-                        <% start_up_animation_number += 1
-                        <div class="start-up-animation-number-<%start_up_animation_number%> container content">
+                        <% START_UP_ANIMATION_NUMBER += 1
+                        <div class="start-up-animation-number-<%START_UP_ANIMATION_NUMBER%> container content">
                             <p class="lead">
                                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
                                 eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
@@ -172,8 +193,8 @@
     <!-- endregion -->
 
         <!-- Wrap the rest of the page in another container to center all the content. -->
-        <% start_up_animation_number += 1
-        <div class="start-up-animation-number-<%start_up_animation_number%> container footer">
+        <% START_UP_ANIMATION_NUMBER += 1
+        <div class="start-up-animation-number-<%START_UP_ANIMATION_NUMBER%> container footer">
 
     <!-- region footer -->
 

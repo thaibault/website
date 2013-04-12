@@ -161,17 +161,24 @@ body.website {
         div.item {
             height: 1000px;
 
+            div[class^=carousel-image-] {
+                position: absolute;
+                top: 0;
+                left: 0;
+                min-width: 100%;
+                height: 835px;
+            }
             div.carousel-image-about {
-                background-image: url('@{imagePath}about.jpg');
+                background-image: url('@{imagePath}carousel/about.jpg');
             }
             div.carousel-image-contact {
-                background-image: url('@{imagePath}contact.jpg');
+                background-image: url('@{imagePath}carousel/contact.jpg');
             }
             div.carousel-image-references {
-                background-image: url('@{imagePath}references.jpg');
+                background-image: url('@{imagePath}carousel/references.jpg');
             }
             div.carousel-image-skills {
-                background-image: url('@{imagePath}skills.jpg');
+                background-image: url('@{imagePath}carousel/skills.jpg');
             }
             div.container {
                 position: relative;
@@ -242,13 +249,6 @@ body.website {
                 margin-top: 150px;
                 font-size: 18px;
                 color: #ffffff;
-            }
-            img {
-                position: absolute;
-                top: 0;
-                left: 0;
-                min-width: 100%;
-                height: 835px;
             }
         }
     }
