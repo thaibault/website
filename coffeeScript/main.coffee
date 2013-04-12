@@ -1,3 +1,7 @@
+## require
+
+## standalone
+## jQuery.noConflict(true) (jQuery) -> jQuery.Website 'logging': true
 this.require.noConflict = true
 this.require.asyncronModulePatternHandling =
     '^.+\.coffee$': (coffeeScriptCode, module) =>
@@ -15,5 +19,5 @@ this.require [['jQuery.Website', 'jquery-website-1.0.coffee']], (jQuery) ->
         The global scope is clean after this sequence. The given
         function is called when the dom-tree was loaded.
     ###
-    # TODO jQuery.noConflict(true
-    jQuery -> jQuery.Website 'logging': true
+    jQuery.noConflict(true) (jQuery) -> jQuery.Website 'logging': true
+##

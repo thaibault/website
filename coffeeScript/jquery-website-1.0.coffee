@@ -24,14 +24,15 @@
     @name jQuery
     @see www.jquery.com
 ###
-## standalone ((jQuery) ->
+## standalone
+## ((jQuery) ->
 this.window.require([
     ['less', 'less-1.3.3'],
 
     ['jQuery.Tools', 'jquery-tools-1.0.coffee'],
 
     ['jQuery.fn.carousel', 'bootstrap-2.3.1'],
-    
+
     ['jQuery.scrollTo', 'jquery-scrollTo-1.4.3.1'],
     ['jQuery.fn.waypoint', 'jquery-waypoints-2.0.2'],
     ['jQuery.fn.spin', 'jquery-spin-1.2.8']],

@@ -319,7 +319,7 @@
   // Make a scoped jQuery plugin.
   jQuery.fn.spin = function(opts) {
     this.each(function() {
-      var $this = $(this),
+      var $this = jQuery(this),
           data = $this.data();
       if (data.spinner) {
         data.spinner.stop();
@@ -327,7 +327,7 @@
       }
       if (opts !== false) {
         data.spinner = new Spinner(
-          $.extend({color: $this.css('color')}, opts)
+          jQuery.extend({color: $this.css('color')}, opts)
         ).spin(this);
       }
     });
