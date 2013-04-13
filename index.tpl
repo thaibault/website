@@ -1,5 +1,5 @@
 <% # region locations
-
+ 
 <% IMAGE_PATH = 'image/'
 <% IMAGE_APPLE_TOUCH_ICON_PATH = IMAGE_PATH + 'appleTouchIcon/'
 <% LESS_PATH = 'less/'
