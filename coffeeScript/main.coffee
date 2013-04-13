@@ -1,7 +1,7 @@
 ## require
 
 ## standalone
-## jQuery.noConflict(true) (jQuery) -> jQuery.Website 'logging': true
+## this.jQuery.noConflict(true) (jQuery) -> jQuery.Website 'logging': true
 this.require.noConflict = true
 this.require.asyncronModulePatternHandling =
     '^.+\.coffee$': (coffeeScriptCode, module) =>
