@@ -129,13 +129,22 @@ function websiteRenderHelper() {
     rm "${BUILD_PATH}main.less"
     echo 'Remove unused css selectors.'
     local unusedCSSSelector
-    for unusedCSSSelector in $(cat "$UNUSED_CSS_SELECTORS_INFORMATION_FILE"); do
-        local escapeSymbole
-        unusedCSSSelector=$(echo "$unusedCSSSelector" | sed 's/\[/\\[/g' | \
-            sed 's/\]/\\]/g' | sed 's/\./\\./g' | sed 's/\*/\\*/g' | \
-            sed 's/\^/\\^/g' | sed 's/\$/\\$/g')
-        sed --in-place "s/^$unusedCSSSelector{.*$//g" "${BUILD_PATH}main.css"
-    done
+    local uniqCSSInformation=$(mktemp)
+    uniq "$UNUSED_CSS_SELECTORS_INFORMATION_FILE" 1>"$uniqCSSInformation"
+    while read unusedCSSSelector; do
+        if [[ "$unusedCSSSelector" ]]; then
+            local escapeSymbole
+            unusedCSSSelector=$(echo "$unusedCSSSelector" | sed 's/\[/\\[/g' | \
+                sed 's/\]/\\]/g' | sed 's/\./\\./g' | sed 's/\*/\\*/g' | \
+                sed 's/\^/\\^/g' | sed 's/\$/\\$/g' | sed 's/, /,/g')
+            local unusedCSSPattern="^$unusedCSSSelector{.*$"
+            if [[ $(grep "$unusedCSSPattern" "${BUILD_PATH}main.css") ]]; then
+                sed --in-place "s/$unusedCSSPattern//g" "${BUILD_PATH}main.css"
+            else
+                echo "Unused css pattern \"$unusedCSSPattern\" not found."
+            fi
+        fi
+    done < "$uniqCSSInformation"
     echo 'Remove style references from html file.'
     sed --in-place --regexp-extended \
         's/^ *<link.+href=".+\.(less|css)".*> *$//g' \
@@ -254,6 +263,7 @@ function websitePublish() {
 
     echo 'Commit results to git hub pages.'
     git checkout gh-pages
+    echo 'Copy new assets to staging branch.'
     cp --force --recursive ${BUILD_PATH}* .
     (git commit --all --message 'New staging version compiled.' || true)
     git push
