@@ -257,6 +257,8 @@ function websiteRenderHelper() {
 alias websiteRender='bash --login -c websiteRenderHelper'
 
 function websitePublish() {
+    local BUILD_PATH='build/'
+
     websiteRender
 
     # region handle staging branch
