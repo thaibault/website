@@ -254,7 +254,7 @@ function websitePublish() {
 
     echo 'Commit results to git hub pages.'
     git checkout gh-pages
-    cp --recursive ${BUILD_PATH}* .
+    cp --force --recursive ${BUILD_PATH}* .
     (git commit --all --message 'New staging version compiled.' || true)
     git push
     git checkout master
