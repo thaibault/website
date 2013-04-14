@@ -198,7 +198,7 @@ this.window.require([
         # endregion
 
         _addMediaQueryChangeEvents: ->
-            this.bind this._domNodes.window, 'resize', this.getMethod(
+            this.on this._domNodes.window, 'resize', this.getMethod(
                 this._triggerWindowResizeEvents)
             this
 
@@ -220,7 +220,7 @@ this.window.require([
             this
 
         _bindScrollEvents: ->
-            this.bind window, 'scroll', =>
+            this.on window, 'scroll', =>
                 if this._domNodes.window.scrollTop()
                     if this._vieportIsOnTop
                         this._vieportIsOnTop = false
@@ -270,7 +270,7 @@ this.window.require([
 
         _addNavigationEvents: ->
             self = this._handleScrollToTopButton()
-            this.bind this._domNodes.navigationButtons, 'click', ->
+            this.on this._domNodes.navigationButtons, 'click', ->
                 clickedButton = this
                 self._domNodes.navigationButtons.each (index) ->
                     if clickedButton is this
@@ -293,7 +293,7 @@ this.window.require([
             this
 
         _handleScrollToTopButton: ->
-            this.bind(
+            this.on(
                 this._domNodes.scrollToTopButtons, 'click', (event) =>
                     event.preventDefault()
                     # Scroll as long as we have distance to top.
