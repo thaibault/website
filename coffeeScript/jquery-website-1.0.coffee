@@ -34,7 +34,6 @@ this.window.require([
     ['jQuery.fn.carousel', 'bootstrap-2.3.1'],
 
     ['jQuery.scrollTo', 'jquery-scrollTo-1.4.3.1'],
-    ['jQuery.fn.waypoint', 'jquery-waypoints-2.0.2'],
     ['jQuery.fn.spin', 'jquery-spin-1.2.8']],
 (less, jQuery) ->
 ##
@@ -222,7 +221,7 @@ this.window.require([
 
         _bindScrollEvents: ->
             this.bind window, 'scroll', =>
-                if this._domNodes.parent.scrollTop()
+                if this._domNodes.window.scrollTop()
                     if this._vieportIsOnTop
                         this._vieportIsOnTop = false
                         this.fireEvent.apply this, [
@@ -285,7 +284,7 @@ this.window.require([
                                         top.
                                     ###
                                     duration:
-                                        self._domNodes.parent.scrollTop()
+                                        self._domNodes.window.scrollTop()
                                     onAfter: ->
                                         self._domNodes.carousel.carousel index)
                         jQuery(this).parent('li').addClass 'active'
@@ -300,7 +299,7 @@ this.window.require([
                     # Scroll as long as we have distance to top.
                     jQuery.scrollTo(
                         this._domNodes.parent,
-                        this._domNodes.parent.scrollTop()))
+                        this._domNodes.window.scrollTop()))
             this._domNodes.scrollToTopButtons.hide()
             this
 
