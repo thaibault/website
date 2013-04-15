@@ -163,12 +163,18 @@ this.window.require([
         # region event methods
 
         _onVieportMovesToTop: ->
+            # Fixes overlay movement caused by the menu positioning
+            # transformation.
+            this._domNodes.windowLoadingCover.css 'margin-top', '-20px'
             this._domNodes.navigationBar.addClass(
                 this._options.domNodes.navigationBarOnTopIndicatorClass)
             this._domNodes.scrollToTopButtons.fadeOut 'slow'
             this
 
         _onVieportMovesAwayFromTop: ->
+            # Fixes overlay movement caused by the menu positioning
+            # transformation.
+            this._domNodes.windowLoadingCover.css 'margin-top', 0
             this._domNodes.navigationBar.removeClass(
                 this._options.domNodes.navigationBarOnTopIndicatorClass)
             this._domNodes.scrollToTopButtons.fadeIn 'slow'
@@ -248,12 +254,17 @@ this.window.require([
                                 .startUpAnimationClassPrefix
                         ).substr(1) + '"]'
                     ).hide()
+                    # Fixes overlay movement caused by the menu positioning
+                    # transformation.
+                    this._domNodes.windowLoadingCover.css 'margin-top', 0
                     this._domNodes.windowLoadingCover.fadeOut(
                         this._options.windowLoadingCoverFadeOutOptions)
                 , this._options.addtionalPageLoadingTimeInMilliseconds)
             this
 
         _handleStartUpEffects: (elementNumber) ->
+            # Stop and delete spinner instance.
+            this._domNodes.windowLoadingSpinner.spin false
             if not jQuery.isNumeric elementNumber
                 elementNumber = 1
             window.setTimeout =>

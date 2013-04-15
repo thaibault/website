@@ -90,7 +90,7 @@ body.website {
 
     div.window-loading-cover {
         background-color: white;
-        position: absolute;
+        position: fixed;
         height: 100%;
         width: 100%;
         z-index: 10;
@@ -301,6 +301,11 @@ body.website {
         /* region smartphone */
 
         @media (max-width: @maximumSmartphoneWidth) {
+            div.window-loading-cover {
+                margin-top: -20px;
+                margin-left: -20px;
+            }
+
             @media (max-width: 400px) {
                 footer p a[href="#top"] {
                     display: none;

@@ -1,6 +1,8 @@
 #!/bin/bash
 
 function websiteRenderHelper() {
+    # TODO integrate later loading js ressources like html5shiv.
+
     # Exit if something goes wrong.
     set -e
 
@@ -75,6 +77,7 @@ function websiteRenderHelper() {
         grep --only-matching --extended-regexp 'href=".+"' | sed \
         s/^href=\"//g | sed s/\"$//g)
     do
+        # TODO
         # NOTE: Deeper dependencies could also have dependencies. These aren't
         # included yet.
         echo "Grap ressource \"$styleEntryPointFilePath\" and all its dependencies."
@@ -90,12 +93,12 @@ function websiteRenderHelper() {
         mergeTextFiles "${BUILD_PATH}main.less" "$temporaryMergedCssFilePath" \
             "$temporaryImportCutedCssFilePath" 1>"${LESS_PATH}/temp.less"
     done
-    # NOTE: You can pre-compress here with "--yui-compress".
     echo 'Precompile generated less code.'
     # NOTE: Parameter "--compress" is needed for later regex logic.
     lessc --compress --strict-imports "${LESS_PATH}/temp.less" "${BUILD_PATH}main.less"
     rm "${LESS_PATH}/temp.less"
     echo 'Delete relative path references in class names.'
+    # TODO
     # NOTE: We only replace "background-image: url(...)" syntax to make it
     # possible to not include images via the implicit
     # "background: url(...)" syntax.
@@ -260,6 +263,7 @@ function websitePublish() {
     local BUILD_PATH='build/'
 
     websiteRender
+    websiteChangeDirectory
 
     # region handle staging branch
 
@@ -270,6 +274,7 @@ function websitePublish() {
     (git commit --all --message 'New staging version compiled.' || true)
     git push
     git checkout master
+    cd -
 
     # endregion
 }
