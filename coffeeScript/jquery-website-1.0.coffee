@@ -301,16 +301,8 @@ this.window.require([
                         if self._vieportIsOnTop
                             self._domNodes.carousel.carousel index
                         else
-                            jQuery.scrollTo(
-                                self._domNodes.parent,
-                                    ###
-                                        Scroll as long as we have distance to
-                                        top.
-                                    ###
-                                    duration:
-                                        self._domNodes.window.scrollTop()
-                                    onAfter: ->
-                                        self._domNodes.carousel.carousel index)
+                            self._scrollToTop(->
+                                self._domNodes.carousel.carousel index)
                         jQuery(this).parent('li').addClass 'active'
                     else
                         jQuery(this).parent('li').removeClass 'active'
@@ -320,11 +312,23 @@ this.window.require([
             this.on(
                 this._domNodes.scrollToTopButtons, 'click', (event) =>
                     event.preventDefault()
-                    # Scroll as long as we have distance to top.
-                    jQuery.scrollTo(
-                        this._domNodes.parent,
-                        this._domNodes.window.scrollTop()))
+                    this._scrollToTop())
             this._domNodes.scrollToTopButtons.hide()
+            this
+
+        _scrollToTop: (onAfter=->) ->
+            distanceToTop = this._domNodes.window.scrollTop()
+            menuHeight = this._domNodes.navigationBar.find(
+                'div.navbar'
+            ).outerHeight()
+            distanceToScroll = distanceToTop + menuHeight
+            if distanceToTop < menuHeight
+                distanceToScroll = distanceToScroll + menuHeight -
+                    distanceToTop
+            jQuery.scrollTo(
+                {top: "-=#{distanceToScroll}px", left: '-=0'},
+                # Scroll as fast as we have distance to top.
+                {duration: distanceToScroll, onAfter: onAfter})
             this
 
         _handleGooleAnalytics: ->
