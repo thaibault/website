@@ -166,6 +166,8 @@ this.window.require([
             # Fixes overlay movement caused by the menu positioning
             # transformation.
             this._domNodes.windowLoadingCover.css 'margin-top', '-20px'
+            # Switch navigation bar from fixed positioning to static smooth
+            # in smartphone mode.
             this._domNodes.navigationBar.addClass(
                 this._options.domNodes.navigationBarOnTopIndicatorClass)
             this._domNodes.scrollToTopButtons.fadeOut 'slow'
@@ -203,6 +205,8 @@ this.window.require([
 
         # endregion
 
+        # region helper methods
+
         _addMediaQueryChangeEvents: ->
             this.on this._domNodes.window, 'resize', this.getMethod(
                 this._triggerWindowResizeEvents)
@@ -227,13 +231,22 @@ this.window.require([
 
         _bindScrollEvents: ->
             this.on window, 'scroll', =>
-                if this._domNodes.window.scrollTop()
+                distanceToTop = this._domNodes.window.scrollTop()
+                if distanceToTop
                     if this._vieportIsOnTop
                         this._vieportIsOnTop = false
                         this.fireEvent.apply this, [
                             'vieportMovesAwayFromTop', false, this
                         ].concat this.argumentsObjectToArray arguments
+                    menuHeight = this._domNodes.navigationBar.find(
+                        'div.navbar'
+                    ).outerHeight()
+                    if distanceToTop < menuHeight
+                        this._domNodes.carousel.css(
+                            'margin-top', (menuHeight - distanceToTop) + 'px')
                 else if not this._vieportIsOnTop
+                    this._domNodes.carousel.css(
+                        'margin-top', 0)
                     this._vieportIsOnTop = true
                     this.fireEvent.apply this, [
                         'vieportMovesToTop', false, this
@@ -322,6 +335,8 @@ this.window.require([
                     if 'https:' is location.protocol then '//ssl' else '//www'
                 ) + '.google-analytics.com/ga.js')
             this
+
+        # endregion
 
     # endregion
 

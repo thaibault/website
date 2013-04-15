@@ -274,6 +274,7 @@ function websitePublish() {
     (git commit --all --message 'New staging version compiled.' || true)
     git push
     git checkout master
+    template index.tpl 1>index.html
     cd -
 
     # endregion
