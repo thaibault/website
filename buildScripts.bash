@@ -2,6 +2,7 @@
 
 function websiteRenderHelper() {
     # TODO integrate later loading js ressources like html5shiv.
+    # TODO don't copy this file in gh-pages branch!
 
     # Exit if something goes wrong.
     set -e
