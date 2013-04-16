@@ -51,6 +51,12 @@ this.window.require([
     # region private properties
 
         __name__: 'Website'
+        __googleAnalyticsCode: "
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-40192634-1', 'github.io');ga('send', 'pageview');"
 
     # endregion
 
@@ -156,9 +162,7 @@ this.window.require([
                 this._removeLoadingCover)
             this._domNodes.carousel.carousel this._options.carouselOptions
             this._addNavigationEvents()._addMediaQueryChangeEvents(
-            )._triggerWindowResizeEvents()
-            # TODO
-            this#._handleGooleAnalytics()
+            )._triggerWindowResizeEvents()._handleGooleAnalytics()
 
         # endregion
 
@@ -348,12 +352,7 @@ this.window.require([
             this
 
         _handleGooleAnalytics: ->
-            # TODO check if "_gaq" has to be global.
-            _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']]
-            jQuery('script')[0].parent().before jQuery('<script>').attr(
-                'src', (
-                    if 'https:' is location.protocol then '//ssl' else '//www'
-                ) + '.google-analytics.com/ga.js')
+            window.eval this.__googleAnalyticsCode
             this
 
         # endregion
