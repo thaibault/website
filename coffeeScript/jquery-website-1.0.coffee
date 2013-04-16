@@ -142,11 +142,11 @@ this.window.require([
             super options
             this._domNodes = this.grapDomNodes this._options.domNodes
             # TODO doesnt work in mozilla.
-            this.log jQuery('body')[0].style.border
-            this.log jQuery('body').css('border')
-            this.log window.getComputedStyle(jQuery('body')[0]).border
-            this.log window.getComputedStyle(jQuery('body')[0], null).border
-            return
+            #this.log jQuery('body')[0].style.border
+            #this.log jQuery('body').css('border')
+            #this.log window.getComputedStyle(jQuery('body')[0]).border
+            #this.log window.getComputedStyle(jQuery('body')[0], null).border
+            #return
             this._options.windowLoadingCoverFadeOutOptions.always =
                 this.getMethod this._handleStartUpEffects
             this._domNodes.windowLoadingSpinner.spin(
@@ -294,8 +294,18 @@ this.window.require([
                     if (jQuery(
                             this._options.domNodes.startUpAnimationClassPrefix +
                             (elementNumber + 1)).length)
-                        this._handleStartUpEffects elementNumber + 1,
-                this._options.startUpAnimationElementDelayInMiliseconds
+                        this._handleStartUpEffects elementNumber + 1
+                    else if window.location.href.indexOf('#') != -1
+                        window.setTimeout =>
+                                # All start up effects are ready. Handle direct
+                                # section links.
+                                this._domNodes.navigationButtons.filter(
+                                    "a[href=\"#{window.location.href.substr(
+                                        window.location.href.indexOf '#' )}\"]"
+                                ).trigger 'click',
+                            this._options.
+                                startUpAnimationElementDelayInMiliseconds
+                ,this._options.startUpAnimationElementDelayInMiliseconds
             this
 
         _addNavigationEvents: ->
