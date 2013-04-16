@@ -141,6 +141,12 @@ this.window.require([
         initialize: (options) ->
             super options
             this._domNodes = this.grapDomNodes this._options.domNodes
+            # TODO doesnt work in mozilla.
+            this.log jQuery('body')[0].style.border
+            this.log jQuery('body').css('border')
+            this.log window.getComputedStyle(jQuery('body')[0]).border
+            this.log window.getComputedStyle(jQuery('body')[0], null).border
+            return
             this._options.windowLoadingCoverFadeOutOptions.always =
                 this.getMethod this._handleStartUpEffects
             this._domNodes.windowLoadingSpinner.spin(

@@ -19,5 +19,6 @@ this.require [['jQuery.Website', 'jquery-website-1.0.coffee']], (jQuery) ->
         The global scope is clean after this sequence. The given
         function is called when the dom-tree was loaded.
     ###
-    jQuery.noConflict(true) (jQuery) -> jQuery.Website 'logging': true
+    # Production mode: jQuery.noConflict(true) (jQuery) -> jQuery.Website 'logging': true
+    jQuery (jQuery) -> jQuery.Website 'logging': true
 ##
