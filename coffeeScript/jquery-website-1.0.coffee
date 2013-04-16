@@ -71,19 +71,25 @@ ga('create', 'UA-40192634-1', 'github.io');ga('send', 'pageview');"
             logging: false
             domNodeSelectorPrefix: 'body.website'
             addtionalPageLoadingTimeInMilliseconds: 0
+            mediaQueryCssIndicatorStyleType: 'border-left-style'
             mediaQueryCssIndicator:
-                desktop: '0px dashed rgb(0, 0, 0)'
-                tablet: '0px solid rgb(0, 0, 0)'
-                smartphone: '0px dotted rgb(0, 0, 0)'
+                desktop: 'dashed'
+                tablet: 'solid'
+                smartphone: 'dotted'
             domNodes:
-                navigationBarOnTopIndicatorClass: 'on-top'
-                carousel: 'div.carousel.slide'
                 navigationBar: 'div.navbar-wrapper'
                 navigationButtons: 'div.navbar-wrapper ul.nav li a'
+                navigationBarOnTopIndicatorClass: 'on-top'
+
                 scrollToTopButtons: 'a[href="#top"]'
+
+                carousel: 'div.carousel.slide'
+
                 startUpAnimationClassPrefix: '.start-up-animation-number-'
+
                 windowLoadingCover: 'div.window-loading-cover'
                 windowLoadingSpinner: 'div.window-loading-cover div'
+
                 dimensionIndicator:
                     'div.navbar-wrapper div.dimension-indicator'
             startUpFadeInOptions:
@@ -147,12 +153,6 @@ ga('create', 'UA-40192634-1', 'github.io');ga('send', 'pageview');"
         initialize: (options) ->
             super options
             this._domNodes = this.grapDomNodes this._options.domNodes
-            # TODO doesnt work in mozilla.
-            #this.log jQuery('body')[0].style.border
-            #this.log jQuery('body').css('border')
-            #this.log window.getComputedStyle(jQuery('body')[0]).border
-            #this.log window.getComputedStyle(jQuery('body')[0], null).border
-            #return
             this._options.windowLoadingCoverFadeOutOptions.always =
                 this.getMethod this._handleStartUpEffects
             this._domNodes.windowLoadingSpinner.spin(
@@ -226,7 +226,7 @@ ga('create', 'UA-40192634-1', 'github.io');ga('send', 'pageview');"
             jQuery.each(
                 this._options.mediaQueryCssIndicator,
                 (mode, cssValue) =>
-                    if (this._domNodes.parent.css('border') is cssValue and
+                    if (this._domNodes.parent.css(this._options.mediaQueryCssIndicatorStyleType) is cssValue and
                         mode isnt this._currentMediaQueryMode
                     )
                         this._currentMediaQueryMode = mode

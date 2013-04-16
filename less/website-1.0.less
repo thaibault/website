@@ -27,13 +27,14 @@ body.website {
 
     /* region media query change indicator */
 
+    border-left-width: 0;
     /* desktop mode */
-    border: 0px dashed black;
+    border-left-style: dashed;
     @media (max-width: @maximumTabletWidth) {
-        border: 0px solid black;
+        border-left-style: solid;
     }
     @media (max-width: @maximumSmartphoneWidth) {
-        border: 0px dotted black;
+        border-left-style: dotted;
     }
 
     /* endregion */
