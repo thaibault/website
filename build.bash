@@ -295,6 +295,7 @@ function websitePublish() {
     git checkout gh-pages
     echo 'Copy new assets to staging branch.'
     cp --force --recursive ${BUILD_PATH}* .
+    git add *
     (git commit --all --message 'New staging version compiled.' || true)
     git push
     git checkout master
