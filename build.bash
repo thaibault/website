@@ -280,6 +280,7 @@ function websiteRenderHelper() {
 
     # endregion
 
+    cd -
 }
 alias websiteRender='bash --login -c websiteRenderHelper'
 
