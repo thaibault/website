@@ -67,6 +67,8 @@ function websiteRenderHelper() {
                 "${BUILD_PATH}${includeImagePath}" | sed --regexp-extended \
                 's/[^\/]+\/?$//g')"
         done
+    else
+        touch "${BUILD_PATH}main.less"
     fi
     if "$USE_BASE64_FAVICON_ENCODING"; then
         echo 'Insert base64 code for favicon in html code.'
