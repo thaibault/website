@@ -8,7 +8,12 @@ function websiteRenderHelper() {
     # Exit if something goes wrong.
     set -e
 
-    # region locations
+    # region constants
+
+    local USE_BASE64_ENCODING=false
+    local USE_BASE64_FAVICON_ENCODING=true
+
+        # region locations
 
     local BUILD_PATH='build/'
     # NOTE: Path shouldn't have a slash in the end.
@@ -25,6 +30,8 @@ function websiteRenderHelper() {
     local UNNEEDED_JAVA_SCRIPT_FILE_PATTERN=('^coffeeScript-.+$' \
         '^require-.+$' '^less-.+$')
     local UNUSED_CSS_SELECTORS_INFORMATION_FILE='unusedCSSSelectors.txt'
+
+        # endregion
 
     # endregion
 
@@ -49,22 +56,26 @@ function websiteRenderHelper() {
     # region images
 
     echo 'Handle images.'
-    imagesToCSSClasses "$IMAGE_PATH" '.*\.\(png\|jpg\|jpeg\|ico\)' \
-        ${IMAGE_BASE64_EXCLUDE_LOCATIONS[*]} 1>"${BUILD_PATH}main.less"
-    local includeImagePath
-    for includeImagePath in ${IMAGE_INCLUDE_LOCATIONS[*]}; do
-        echo "Copy include image \"$includeImagePath\" to \"${BUILD_PATH}${includeImagePath}\"."
-        mkdir --parents "${BUILD_PATH}${includeImagePath}"
-        cp --recursive "${includeImagePath}" "$(echo \
-            "${BUILD_PATH}${includeImagePath}" | sed --regexp-extended \
-            's/[^\/]+\/?$//g')"
-    done
-    echo 'Insert base64 code for favicon in html code.'
-    local escapedFaviconBase64String=$(validateSEDReplacement $(base64 --wrap \
-        0 "$IMAGE_FAVICON_PATH"))
-    sed --in-place --regexp-extended \
-        "s/(<link [^>]*href=\")[^\"]+\.ico(\"[^>]*>)/\1data:image\/x-icon;base64,$escapedFaviconBase64String\2/g" \
-        "${BUILD_PATH}index.html"
+    if "$USE_BASE64_ENCODING"; then
+        imagesToCSSClasses "$IMAGE_PATH" '.*\.\(png\|jpg\|jpeg\|ico\)' \
+            ${IMAGE_BASE64_EXCLUDE_LOCATIONS[*]} 1>"${BUILD_PATH}main.less"
+        local includeImagePath
+        for includeImagePath in ${IMAGE_INCLUDE_LOCATIONS[*]}; do
+            echo "Copy include image \"$includeImagePath\" to \"${BUILD_PATH}${includeImagePath}\"."
+            mkdir --parents "${BUILD_PATH}${includeImagePath}"
+            cp --recursive "${includeImagePath}" "$(echo \
+                "${BUILD_PATH}${includeImagePath}" | sed --regexp-extended \
+                's/[^\/]+\/?$//g')"
+        done
+    fi
+    if "$USE_BASE64_FAVICON_ENCODING"; then
+        echo 'Insert base64 code for favicon in html code.'
+        local escapedFaviconBase64String=$(validateSEDReplacement $(base64 --wrap \
+            0 "$IMAGE_FAVICON_PATH"))
+        sed --in-place --regexp-extended \
+            "s/(<link [^>]*href=\")[^\"]+\.ico(\"[^>]*>)/\1data:image\/x-icon;base64,$escapedFaviconBase64String\2/g" \
+            "${BUILD_PATH}index.html"
+    fi
 
     # endregion
 
@@ -99,39 +110,48 @@ function websiteRenderHelper() {
     # NOTE: Parameter "--compress" is needed for later regex logic.
     lessc --compress --strict-imports "${LESS_PATH}/temp.less" "${BUILD_PATH}main.less"
     rm "${LESS_PATH}/temp.less"
-    echo 'Delete relative path references in class names.'
-    # TODO
-    # NOTE: We only replace "background-image: url(...)" syntax to make it
-    # possible to not include images via the implicit
-    # "background: url(...)" syntax.
-    sed --in-place --regexp-extended \
-        "s/( *background-image: *url\(.*?)(\.\.(\/|\\\))+(.+\); *)/\1\4/g" \
-         "${BUILD_PATH}main.less"
-    echo 'Replace image path references by their corresponding classes.'
-    sed --in-place --regexp-extended \
-        "s/( *)background-image: *url\((\"|')([^:]+)(\"|')\); */\1.image-data-\3;/g" \
-        "${BUILD_PATH}main.less"
-    local replacementPattern='(\.image-data[^@#&%+./_{; ]*?)[@#&%+./_ ]([^{;]*;)'
-    while [ "$(grep --extended-regexp "$replacementPattern" \
-        "${BUILD_PATH}main.less")" ]
-    do
-        sed --in-place --regexp-extended "s/$replacementPattern/\1-\2/g" \
+    if "$USE_BASE64_ENCODING"; then
+        echo 'Delete relative path references in class names.'
+        # TODO
+        # NOTE: We only replace "background-image: url(...)" syntax to make it
+        # possible to not include images via the implicit
+        # "background: url(...)" syntax.
+        sed --in-place --regexp-extended \
+            "s/( *background-image: *url\(.*?)(\.\.(\/|\\\))+(.+\); *)/\1\4/g" \
+             "${BUILD_PATH}main.less"
+        echo 'Replace image path references by their corresponding classes.'
+        sed --in-place --regexp-extended \
+            "s/( *)background-image: *url\((\"|')([^:]+)(\"|')\); */\1.image-data-\3;/g" \
             "${BUILD_PATH}main.less"
-    done
-    echo "Delete class reference which isn't available."
-    local classReference
-    for classReference in $(grep --only-matching --extended-regexp \
-        '\.image-data[^;{ ]+?' "${BUILD_PATH}main.less")
-    do
-        if [ "$(grep --only-matching "$classReference{" "${BUILD_PATH}main.less")" == '' ]; then
-            echo "Delete unneeded class reference \"$classReference\"."
-            sed --in-place "s/$classReference//g" "${BUILD_PATH}main.less"
+        local replacementPattern='(\.image-data[^@#&%+./_{; ]*?)[@#&%+./_ ]([^{;]*;)'
+        while [ "$(grep --extended-regexp "$replacementPattern" \
+            "${BUILD_PATH}main.less")" ]
+        do
+            sed --in-place --regexp-extended "s/$replacementPattern/\1-\2/g" \
+                "${BUILD_PATH}main.less"
+        done
+        echo "Delete class reference which isn't available."
+        local classReference
+        for classReference in $(grep --only-matching --extended-regexp \
+            '\.image-data[^;{ ]+?' "${BUILD_PATH}main.less")
+        do
+            if [ "$(grep --only-matching "$classReference{" "${BUILD_PATH}main.less")" == '' ]; then
+                echo "Delete unneeded class reference \"$classReference\"."
+                sed --in-place "s/$classReference//g" "${BUILD_PATH}main.less"
+            fi
+        done
+        echo 'Compile final less code.'
+        # NOTE: Parameter "--compress" is needed to easily remove unused classes.
+        lessc --strict-imports --compress "${BUILD_PATH}main.less" "${BUILD_PATH}main.css"
+        rm "${BUILD_PATH}main.less"
+    else
+        mv "${BUILD_PATH}main.less" "${BUILD_PATH}main.css"
+        echo 'Copy images.'
+        cp --recursive "$IMAGE_PATH" "${BUILD_PATH}${IMAGE_PATH}"
+        if "$USE_BASE64_FAVICON_ENCODING"; then
+            rm "$IMAGE_FAVICON_PATH"
         fi
-    done
-    echo 'Compile final less code.'
-    # NOTE: Parameter "--compress" is needed to easily remove unused classes.
-    lessc --strict-imports --compress "${BUILD_PATH}main.less" "${BUILD_PATH}main.css"
-    rm "${BUILD_PATH}main.less"
+    fi
     echo 'Remove unused css selectors.'
     local unusedCSSSelector
     local uniqCSSInformation=$(mktemp)
