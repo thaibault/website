@@ -151,7 +151,7 @@ function websiteRenderHelper() {
         echo 'Copy images.'
         cp --recursive "$IMAGE_PATH" "${BUILD_PATH}${IMAGE_PATH}"
         if "$USE_BASE64_FAVICON_ENCODING"; then
-            rm "$IMAGE_FAVICON_PATH"
+            rm "${BUILD_PATH}${IMAGE_FAVICON_PATH}"
         fi
     fi
     echo 'Remove unused css selectors.'
