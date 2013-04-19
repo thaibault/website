@@ -3,7 +3,7 @@
 <% IMAGE_PATH = 'image/'
 <% IMAGE_APPLE_TOUCH_ICON_PATH = IMAGE_PATH + 'appleTouchIcon/'
 <% LESS_PATH = 'less/'
-<% CSS_PATH = 'css/'
+<% CSS_PATH = 'styleSheet/'
 <% COFFEE_SCRIPT_PATH = 'coffeeScript/'
 <% JAVA_SCRIPT_PATH = 'javaScript/'
 
