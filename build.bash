@@ -13,7 +13,7 @@ function websiteRenderHelper() {
     local BUILD_PATH='build/'
     # NOTE: Path shouldn't have a slash in the end.
     local LESS_PATH='less'
-    local CSS_PATH='css/'
+    local CSS_PATH='styleSheet/'
     local IMAGE_PATH='image/'
     local COFFEE_SCRIPT_PATH='coffeeScript/'
     local COFFEE_SCRIPT_ENTRY_POINT='main.coffee'
@@ -282,4 +282,4 @@ function websitePublish() {
     # endregion
 }
 
-[[ "$0" == *buildScripts.bash ]] && websiteRender "$@"
+[[ "$0" == *build.bash ]] && websiteRender "$@"
