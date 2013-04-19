@@ -1,9 +1,9 @@
-<% # region locations
+<% # region locations 
 
 <% IMAGE_PATH = 'image/'
 <% IMAGE_APPLE_TOUCH_ICON_PATH = IMAGE_PATH + 'appleTouchIcon/'
 <% LESS_PATH = 'less/'
-<% CSS_PATH = 'styleSheet/'
+<% STYLE_SHEET_PATH = 'styleSheet/'
 <% COFFEE_SCRIPT_PATH = 'coffeeScript/'
 <% JAVA_SCRIPT_PATH = 'javaScript/'
 
@@ -38,6 +38,12 @@
 <%         'Experiences from Posic, Akra, Virtual Identity, Chair of Humanoid'
 <%         'Robots Lab and Rechnernetze and Telematik in University Freiburg,'
 <%         'BPV, BTI, Vattenfall...')))
+<% PROJECTS = (
+<%     ('boostNode', 'http://thaibault.github.io/boostNode/'),
+<%     ('installArchLinux', 'http://thaibault.github.io/installArchLinux/'),
+<%     ('require', 'http://thaibault.github.io/require/'),
+<%     ('jquery-tools', 'http://thaibault.github.io/jquery-tools/'),
+<%     ('jquery-incrementer', 'http://thaibault.github.io/jquery-incrementer/'))
 
 <% # endregion
 
