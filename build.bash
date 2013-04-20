@@ -147,7 +147,7 @@ function websiteRenderHelper() {
     else
         mv "${BUILD_PATH}main.less" "${BUILD_PATH}main.css"
         echo 'Adapt all path references to ressources.'
-        sed --in-place 's/\.\.(\/|\\)//g' "${BUILD_PATH}main.css"
+        sed --in-place --regexp-extended 's/\.\.(\/|\\)//g' "${BUILD_PATH}main.css"
         echo 'Copy images.'
         cp --recursive "$IMAGE_PATH" "${BUILD_PATH}${IMAGE_PATH}"
         if "$USE_BASE64_FAVICON_ENCODING"; then
