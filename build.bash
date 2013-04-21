@@ -1,8 +1,6 @@
 #!/bin/bash
 
 function websiteRenderHelper() {
-    # TODO integrate later loading js ressources like html5shiv.
-
     # Exit if something goes wrong.
     set -e
 
@@ -241,11 +239,23 @@ function websiteRenderHelper() {
     mergeTextFiles $neededJavaScripts 1>"${BUILD_PATH}main.js"
     rm --recursive "${BUILD_PATH}${COFFEE_SCRIPT_PATH}"
     rm --recursive "${BUILD_PATH}${JAVA_SCRIPT_PATH}"
+    echo 'Copy later loading java scripts.'
+    local neededRessource
+    for neededRessource in $(grep --extended-regexp --only-matching \
+        '<!--\[[^<]+<script[^>]+src="[^"]+"[^>]*>[^<]*</script><!\[[^>]+\]-->' \
+        "${BUILD_PATH}index.html" | grep --extended-regexp --only-matching \
+        'src=".+"' | grep --extended-regexp --only-matching '"[^"]+'  | \
+        grep --extended-regexp --only-matching '[^"]+')
+    do
+        echo "Copy later needed ressource \"$neededRessource\"."
+        mkdir --parents "${BUILD_PATH}$(dirname "$neededRessource")"
+        cp "$neededRessource" "${BUILD_PATH}${neededRessource}"
+    done
     # Remove javaScript include statements.
     # NOTE: These pattern assumes that "<!--[IF..." syntax is in the same line
     # as javaScript include statement.
     sed --in-place --regexp-extended \
-        's/^[^<]*<script[^>]+src="[^"]+"[^>]*>[^<]*<[^>]+>//g' \
+        's/<!--\[[^<]+<script[^>]+src="[^"]+"[^>]*>[^<]*<\/script><!\[[^>]+\]-->//g' \
         "${BUILD_PATH}index.html"
     echo 'Merge html and javaScript code.'
     local headerEndingLine=$(grep --extended-regexp --line-number \
