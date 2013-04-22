@@ -41,7 +41,9 @@ function websiteRenderHelper() {
     # region render html
 
     echo "Clear old builds in \"$BUILD_PATH\"."
-    rm --recursive "$BUILD_PATH"
+    if [ -d "$BUILD_PATH" ]; then
+        rm --recursive "$BUILD_PATH"
+    fi
     mkdir --parents "$BUILD_PATH"
     echo 'Render html code.'
     template index.tpl 1>index.html
