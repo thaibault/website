@@ -313,7 +313,7 @@ function websitePublish() {
     git push
     git checkout master
     template index.tpl 1>index.html
-    rm --recursive "$BUILD_PATH"
+    # TODO rm --recursive "$BUILD_PATH"
     cd -
 
     # endregion
