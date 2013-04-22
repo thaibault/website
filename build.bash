@@ -308,12 +308,12 @@ function websitePublish() {
     git checkout gh-pages
     echo 'Copy new assets to staging branch.'
     cp --force --recursive ${BUILD_PATH}* .
+    rm --recursive "$BUILD_PATH"
     git add *
     git commit --all --message 'New staging version compiled.'
     git push
     git checkout master
     template index.tpl 1>index.html
-    # TODO rm --recursive "$BUILD_PATH"
     cd -
 
     # endregion
