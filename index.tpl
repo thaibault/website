@@ -197,7 +197,7 @@
             <footer>
                 <p class="pull-right"><a href="#top">Back to top</a></p>
                 <p>
-                    &copy; 2013 Torben Sickert, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a>
+                    &copy; 2013 Torben Sickert, Inc. &middot; <a href="#privacy">Privacy</a> &middot; <a href="#terms">Terms</a> &middot; <a href="#legal-notice">legal notice</a>
                 </p>
             </footer>
 
