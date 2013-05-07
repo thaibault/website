@@ -11,13 +11,8 @@
 
     @author t.sickert@gmail.com (Torben Sickert)
     @version 1.0 stable
-    @requires require-1.0+
-              jquery-1.9.1+
-              jquery-tools-1.0+
-              bootstrap-2.3.1+
     @fileOverview
-    This module provides common resuable logic for every jquery non trivial
-    plugin.
+    This module provides common logic for the whole webpage.
 ###
 
 ###*
@@ -56,7 +51,7 @@ this.window.require([
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-40192634-1', 'github.io');ga('send', 'pageview');"
+ga('create', '{1}', 'github.io');ga('send', 'pageview');"
 
     # endregion
 
@@ -72,6 +67,7 @@ ga('create', 'UA-40192634-1', 'github.io');ga('send', 'pageview');"
             domNodeSelectorPrefix: 'body.website'
             addtionalPageLoadingTimeInMilliseconds: 0
             mediaQueryCssIndicatorStyleType: 'border-left-style'
+            trackingCode: 'UA-40192634-1'
             mediaQueryCssIndicator:
                 desktop: 'dashed'
                 tablet: 'solid'
@@ -162,7 +158,8 @@ ga('create', 'UA-40192634-1', 'github.io');ga('send', 'pageview');"
                 this._removeLoadingCover)
             this._domNodes.carousel.carousel this._options.carouselOptions
             this._addNavigationEvents()._addMediaQueryChangeEvents(
-            )._triggerWindowResizeEvents()._handleGooleAnalytics()
+            )._triggerWindowResizeEvents()._handleGooleAnalytics(
+                this._options.trackingCode)
 
         # endregion
 
@@ -351,8 +348,9 @@ ga('create', 'UA-40192634-1', 'github.io');ga('send', 'pageview');"
                 {duration: distanceToScroll, onAfter: onAfter})
             this
 
-        _handleGooleAnalytics: ->
-            window.eval this.__googleAnalyticsCode
+        _handleGooleAnalytics: (trackingCode) ->
+            window.eval this.stringFormat(
+                this.__googleAnalyticsCode, trackingCode)
             this
 
         # endregion
