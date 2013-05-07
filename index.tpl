@@ -22,6 +22,7 @@
 <%     ('skype', ''),
 <%     ('twitter', 'https://twitter.com/tsickert'),
 <%     ('facebook', 'https://de-de.facebook.com/tsickert'))
+
 <% SECTIONS = (
 <%     ('contact', (
 <%         'Hire me', 'Get in touch', "I'm a freelancer, ready to help you. "
@@ -40,6 +41,7 @@
 <%         'Experiences from Posic, Akra, Virtual Identity, Chair of Humanoid'
 <%         'Robots Lab and Rechnernetze and Telematik in University Freiburg,'
 <%         'BPV, BTI, Vattenfall...')))
+
 <% PROJECTS = (
 <%     ('boostNode', 'http://thaibault.github.io/boostNode/'),
 <%     ('installArchLinux', 'http://thaibault.github.io/installArchLinux/'),
