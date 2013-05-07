@@ -11,9 +11,9 @@
 
     @-webkit-keyframes rotate {
         from {
-            -webkit-transform: rotate(0deg);
+            .transform-rotate(0deg);
         } to {
-            -webkit-transform: rotate(360deg);
+            .transform-rotate(360deg);
         }
     }
 
@@ -21,6 +21,14 @@
 
 // region mixins
 
+    .transform-rotate(@degree) {
+        // webkit
+        -webkit-transform: rotate(@degree);
+        // internetExplorer 9+
+        -ms-transform: rotate(@degree)
+        // css3
+        transform: rotate(@degree);
+    }
     .gradient(@from: black, @to: white) {
         // fallback
         background-color: @from;
