@@ -25,9 +25,9 @@
         // webkit
         -webkit-transform: rotate(@degree);
         // internetExplorer 9+
-        -ms-transform: rotate(@degree)
+            -ms-transform: rotate(@degree);
         // css3
-        transform: rotate(@degree);
+                transform: rotate(@degree);
     }
     .gradient(@from: black, @to: white) {
         // fallback
@@ -37,48 +37,47 @@
         // safari 5.1, chrome 10+
         background: -webkit-linear-gradient(top, @from, @to);
         // firefox 3.6+
-        background: -moz-linear-gradient(top, @from, @to);
+        background:    -moz-linear-gradient(top, @from, @to);
         // internetExplorer 10
-        background: -ms-linear-gradient(top, @from, @to);
+        background:     -ms-linear-gradient(top, @from, @to);
         // opera 11.10+
-        background: -o-linear-gradient(top, @from, @to);
+        background:      -o-linear-gradient(top, @from, @to);
         // css3
-        background: linear-gradient(@from, @to);
+        background:         linear-gradient(@from, @to);
     }
     .round-corner(@size: 4px) {
-        // firefox
-        -moz-border-radius: @arguments;
         // safari, chrome
         -webkit-border-radius: @arguments;
         // konqueror
-        -khtml-border-radius: @arguments;
+         -khtml-border-radius: @arguments;
+        // firefox
+           -moz-border-radius: @arguments;
         // css3
-        border-radius: @arguments;
+                border-radius: @arguments;
     }
     .shadow(
         @horizontalPosition: 2px, @verticalPosition: 2px, @size: 2px,
         @color: black
     ) {
-        // firefox
-        -moz-box-shadow: @arguments;
-        x-shadow: @arguments;
         // safari, chrome
         -webkit-box-shadow: @arguments;
+        // firefox
+           -moz-box-shadow: @arguments;
         // css3
-        box-shadow: @arguments;
+                box-shadow: @arguments;
     }
     .opacity(@opacity) {
         @opacityInPercent: @opacity * 100;
         // internetExplorer 8
         -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=@{opacityInPercent})";
         // internetExplorer 5 - 7
-        filter: alpha(opacity=@opacityInPercent);
-        // netscape
-        -moz-opacity: @arguments;
+            filter: alpha(opacity=@opacityInPercent);
         // safari 1.x
         -khtml-opacity: @arguments;
+        // netscape
+          -moz-opacity: @arguments;
         // css3
-        opacity: @arguments;
+               opacity: @arguments;
     }
     .image-rotate(
         @imagePath, @duration: 2s, @iterationNumber: infinite,
@@ -100,24 +99,24 @@
         // opera
         -o-text-overflow: ellipsis;
         // css3
-        text-overflow: ellipsis;
+           text-overflow: ellipsis;
 
         overflow: hidden;
         word-wrap: break-word;
     }
     .reflect {
-        // mozilla
-        -moz-transform: scaleX(-1);
-        // opera
-        -o-transform: scaleX(-1);
-        // safari, chrome, other webkit browsers
-        -webkit-transform: scaleX(-1);
         // internetExplorer 9
         -ms-filter: "FlipH";
         // internetExplorer 4 - 8
-        filter: FlipH;
+            filter: FlipH;
+        // safari, chrome, other webkit browsers
+        -webkit-transform: scaleX(-1);
+        // mozilla
+           -moz-transform: scaleX(-1);
+        // opera
+             -o-transform: scaleX(-1);
         // css3
-        transform: scaleX(-1);
+                transform: scaleX(-1);
     }
 
 // endregion
