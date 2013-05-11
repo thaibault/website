@@ -72,9 +72,7 @@
 <!-- region header -->
 
     <head>
-        <title>
-            Torben Sickert
-        </title>
+        <title>Torben Sickert</title>
 
     <!-- region meta informations -->
 
@@ -98,7 +96,7 @@
 
     <!-- region ressources -->
 
-        <link type="text/css" rel="stylesheet/less" href="<%LESS_PATH%>website-1.0.less" />
+        <link type="text/css" rel="stylesheet/less" media="screen" href="<%LESS_PATH%>website-1.0.less" />
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]><script src="<%JAVA_SCRIPT_PATH%>html5shiv-3.6.2.js"></script><![endif]-->
         <script type="text/javascript" src="<%JAVA_SCRIPT_PATH%>coffeeScript-1.6.2.js"></script>
