@@ -74,8 +74,9 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
                 smartphone: 'dotted'
             domNodes:
                 navigationBar: 'div.navbar-wrapper'
-                navigationButtons: 'div.navbar-wrapper ul.nav li a'
-                navigationBarOnTopIndicatorClass: 'on-top'
+                navigationButtons:
+                    'div.navbar-wrapper ul.nav li a, a[href="#imprint"]'
+                navigationOnTopIndicatorClass: 'on-top'
 
                 scrollToTopButtons: 'a[href="#top"]'
 
@@ -176,7 +177,7 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
             # Switch navigation bar from fixed positioning to static smooth
             # in smartphone mode.
             this._domNodes.navigationBar.addClass(
-                this._options.domNodes.navigationBarOnTopIndicatorClass)
+                this._options.domNodes.navigationOnTopIndicatorClass)
             this._domNodes.scrollToTopButtons.fadeOut 'slow'
             this
 
@@ -185,7 +186,7 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
             # transformation.
             this._domNodes.windowLoadingCover.css 'margin-top', 0
             this._domNodes.navigationBar.removeClass(
-                this._options.domNodes.navigationBarOnTopIndicatorClass)
+                this._options.domNodes.navigationOnTopIndicatorClass)
             this._domNodes.scrollToTopButtons.fadeIn 'slow'
             this
 
@@ -207,7 +208,7 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
                 ).fadeIn 'slow'
             if this._vieportIsOnTop
                 this._domNodes.navigationBar.addClass(
-                    this._options.domNodes.navigationBarOnTopIndicatorClass)
+                    this._options.domNodes.navigationOnTopIndicatorClass)
             this
 
         # endregion

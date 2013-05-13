@@ -14,33 +14,49 @@
 <% # region content
 
 <% SOCIAL_MEDIA = (
-<%     ('email', 'mailto:t.sickert@gmail.com'),
+<%     ('email', 't.sickert@gmail.com'),
 <%     ('github', 'https://github.com/thaibault'),
 <%     ('google', 'https://plus.google.com/110796145663857741723/posts'),
 <%     ('xing', 'http://www.xing.com/profile/Torben_Sickert'),
 <%     ('linkedin', 'http://de.linkedin.com/pub/torben-sickert/28/aa9/919'),
 <%     ('skype', ''),
 <%     ('twitter', 'https://twitter.com/tsickert'),
-<%     ('facebook', 'https://de-de.facebook.com/tsickert'))
+<%     ('facebook', 'https://de-de.facebook.com/tsickert'),
+<%     ('website', 'http://thaibault.github.io/website/'))
 
 <% SECTIONS = (
 <%     ('contact', (
 <%         'Hire me', 'Get in touch', "I'm a freelancer, ready to help you. "
-<%         "Let's talk about your project and what I can do.")),
+<%         "Let's talk about your project and what I can do.",
+<%         'TODO')),
 <%     ('skills', (
 <%         'Skills', 'Knowing a lot of facts is not the same as being smart.',
-<%         'Ambition, manage projects with love..')),
+<%         'Ambition, manage projects with love..',
+<%         'TODO')),
 <%     ('references', (
 <%         'References', "You don't want good service, instead of the result! "
 <%                       "Perfection kills!",
 <%         'Experiences from Posic, Akra, Virtual Identity, Chair of Humanoid'
 <%         'Robots Lab and Rechnernetze and Telematik in University Freiburg,'
-<%         'BPV, BTI, Vattenfall...')),
+<%         'BPV, BTI, Vattenfall...',
+<%         'TODO')),
 <%     ('about', (
 <%         'About', "I'm a computer scientist and love the challenge",
 <%         'Experiences from Posic, Akra, Virtual Identity, Chair of Humanoid'
 <%         'Robots Lab and Rechnernetze and Telematik in University Freiburg,'
-<%         'BPV, BTI, Vattenfall...')))
+<%         'BPV, BTI, Vattenfall...',
+<%         'TODO')),
+<%     ('imprint', (
+<%         '', 'Imprint', '',
+<%         '<p>Anbieter:</p>\n'
+<%         '<p>Torben Sickert</p>\n'
+<%         '<p>Christoph-Mang-Str. 14</p>\n'
+<%         '<p>79100 Freiburg</p>\n'
+<%         '<p>Tel. 0049 (0) 176 / 10248185</p>\n'
+<%         '<p>Internet: <a href="%s">%s</a></p>\n'
+<%         '<p>Email: <a href="%s">%s</a></p>' %
+<%         (SOCIAL_MEDIA[0][1], SOCIAL_MEDIA[0][1], SOCIAL_MEDIA[-1][1],
+<%          SOCIAL_MEDIA[-1][1]))))
 
 <% PROJECTS = (
 <%     ('boostNode', 'http://thaibault.github.io/boostNode/'),
@@ -138,12 +154,13 @@
                         <div class="nav-collapse collapse">
                             <ul class="nav">
                                 <% for name, section in SECTIONS:
-                                    <% START_UP_ANIMATION_NUMBER += 1
-                                    <li class="start-up-animation-number-<%START_UP_ANIMATION_NUMBER%><%' active' if name == SECTIONS[0][0] else ''%>">
-                                        <a href="#<%name%>">
-                                            <%section[0]%>
-                                        </a>
-                                    </li>
+                                    <% if section[0]:
+                                        <% START_UP_ANIMATION_NUMBER += 1
+                                        <li class="start-up-animation-number-<%START_UP_ANIMATION_NUMBER%><%' active' if name == SECTIONS[0][0] else ''%>">
+                                            <a href="#<%name%>">
+                                                <%section[0]%>
+                                            </a>
+                                        </li>
                             </ul>
                         </div>
                     </div>
@@ -164,31 +181,23 @@
                         <div class="container">
                             <div class="carousel-caption">
                                 <h1><%section[1]%></h1>
-                                <p class="lead">
-                                    <%section[2]%>
-                                </p>
-                                <% if name == 'contact':
-                                    <p class="lead phone-number">+49 176 <span>/</span> 10 248 185</p>
-                                    <% for name, link in SOCIAL_MEDIA:
-                                        <a class="btn social-media social-media-<%name%>" href="<%link%>" target="_blank"></a>
+                                <% if section[2]:
+                                    <p class="lead"><%section[2]%></p>
+                                    <% if name == 'contact':
+                                        <p class="lead phone-number">+49 176 <span>/</span> 10 248 185</p>
+                                        <% for name, link in SOCIAL_MEDIA:
+                                            <% if '@' in link:
+                                                <% link = 'mailto:%s' % link
+                                            <a class="btn social-media social-media-<%name%>" href="<%link%>" target="_blank"></a>
                             </div>
                         </div>
                         <% START_UP_ANIMATION_NUMBER += 1
                         <div class="start-up-animation-number-<%START_UP_ANIMATION_NUMBER%> container content">
                             <p class="lead">
-                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-                                eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-                                voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-                                clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
-                                amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                                nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
-                                diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-                                Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor
-                                sit amet.
+                                <%print(section[3])
                             </p>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
 
@@ -201,9 +210,9 @@
     <!-- region footer -->
 
             <footer>
-                <p class="pull-right"><a href="#top">Back to top</a></p>
+                <p class="pull-right"><a href="#top">top</a></p>
                 <p>
-                    &copy; 2013 Torben Sickert, Inc. &middot; <a href="#privacy">Privacy</a> &middot; <a href="#terms">Terms</a> &middot; <a href="#legal-notice">legal notice</a>
+                    &copy; 2013 Torben Sickert, Inc. &middot; <a href="#imprint">imprint</a>
                 </p>
             </footer>
 
