@@ -1,3 +1,21 @@
+<!--
+
+region header
+
+Copyright Torben Sickert 16.12.2012
+
+License
+   This library written by Torben Sickert stand under a creative commons
+   naming 3.0 unported license.
+   see http://creativecommons.org/licenses/by/3.0/deed.de
+
+vim: set tabstop=4 shiftwidth=4 expandtab:
+vim: foldmethod=marker foldmarker=region,endregion:
+
+endregion
+
+-->
+
 <% # region location
 
 <% IMAGE_PATH = 'image/'
@@ -8,6 +26,8 @@
 
 <% COFFEE_SCRIPT_PATH = 'coffeeScript/'
 <% JAVA_SCRIPT_PATH = 'javaScript/'
+
+<% LINK_TO_PUBLIC_SSH_KEY = 'https://www.dropbox.com/s/u6ic4cgbxdf7ko7/id_rsa.pub'
 
 <% # endregion
 
@@ -54,9 +74,11 @@
 <%         '<p>79100 Freiburg</p>\n'
 <%         '<p>Tel. 0049 (0) 176 / 10248185</p>\n'
 <%         '<p>Internet: <a href="%s">%s</a></p>\n'
-<%         '<p>Email: <a href="%s">%s</a></p>' %
+<%         '<p>Email: <a href="%s">%s</a></p>\n'
+<%         '<br />\n'
+<%         '<p><a href="%s">public ssh key</a></p>' %
 <%         (SOCIAL_MEDIA[0][1], SOCIAL_MEDIA[0][1], SOCIAL_MEDIA[-1][1],
-<%          SOCIAL_MEDIA[-1][1]))))
+<%          SOCIAL_MEDIA[-1][1], LINK_TO_PUBLIC_SSH_KEY))))
 
 <% PROJECTS = (
 <%     ('boostNode', 'http://thaibault.github.io/boostNode/'),
