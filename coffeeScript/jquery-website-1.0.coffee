@@ -29,6 +29,8 @@ this.window.require([
     ['jQuery.fn.carousel', 'bootstrap-2.3.1'],
 
     ['jQuery.scrollTo', 'jquery-scrollTo-1.4.3.1'],
+    ['jQuery.fn.touchwipe', 'jquery-touchwipe.1.1.1'],
+
     ['jQuery.fn.spin', 'jquery-spin-1.2.8']],
 (less, jQuery) ->
 ##
@@ -158,6 +160,7 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
             this._domNodes.window.ready this.getMethod(
                 this._removeLoadingCover)
             this._domNodes.carousel.carousel this._options.carouselOptions
+            this.on this._domNodes.carousel, 'slid', this.getMethod this._onSlid
             this._addNavigationEvents()._addMediaQueryChangeEvents(
             )._triggerWindowResizeEvents()._handleGooleAnalytics(
                 this._options.trackingCode)
@@ -226,6 +229,14 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
                 this._domNodes.navigationBar.addClass(
                     this._options.domNodes.navigationOnTopIndicatorClass)
             this
+
+        _onSlid: ->
+            this._switchSection(
+                this._domNodes.navigationButtons.filter(
+                    'a[href="#' + this._domNodes.carousel.find('.active').find(
+                        'div[class^="carousel-image-"]').attr('class').substr(
+                            'carousel-image-'.length
+                        ) + '"]'))
 
         # endregion
 
@@ -327,19 +338,34 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
             this
 
         _addNavigationEvents: ->
-            self = this._handleScrollToTopButton()
+            self = this._handleScrollToTopButton()._handleTouchWipe()
+            # TODO make a bit better with self and so on.
             this.on this._domNodes.navigationButtons, 'click', ->
-                clickedButton = this
-                self._domNodes.navigationButtons.each (index) ->
-                    if clickedButton is this
-                        if self._vieportIsOnTop
-                            self._domNodes.carousel.carousel index
-                        else
-                            self._scrollToTop(->
-                                self._domNodes.carousel.carousel index)
-                        jQuery(this).parent('li').addClass 'active'
+                self._switchSection this
+            this
+
+        _switchSection: (button) ->
+            this._domNodes.navigationButtons.each (index, value) =>
+                currentButton = jQuery(value)
+                if jQuery(button)[0] is currentButton[0]
+                    this.log currentButton
+                    if this._vieportIsOnTop
+                        this._domNodes.carousel.carousel index
                     else
-                        jQuery(this).parent('li').removeClass 'active'
+                        this._scrollToTop(->
+                            this._domNodes.carousel.carousel index)
+                    currentButton.parent('li').addClass 'active'
+                else
+                    currentButton.parent('li').removeClass 'active'
+            this
+
+        _handleTouchWipe: ->
+            this._domNodes.parent.touchwipe(
+                wipeLeft: => this._domNodes.carousel.carousel 'next'
+                wipeRight: => this._domNodes.carousel.carousel 'prev'
+                min_move_x: 20
+                min_move_y: 20
+                preventDefaultEvents: false)
             this
 
         _handleScrollToTopButton: ->
