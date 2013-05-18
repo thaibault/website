@@ -339,7 +339,6 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
 
         _addNavigationEvents: ->
             self = this._handleScrollToTopButton()._handleTouchWipe()
-            # TODO make a bit better with self and so on.
             this.on this._domNodes.navigationButtons, 'click', ->
                 self._switchSection this
             this
@@ -348,11 +347,10 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
             this._domNodes.navigationButtons.each (index, value) =>
                 currentButton = jQuery(value)
                 if jQuery(button)[0] is currentButton[0]
-                    this.log currentButton
                     if this._vieportIsOnTop
                         this._domNodes.carousel.carousel index
                     else
-                        this._scrollToTop(->
+                        this._scrollToTop(=>
                             this._domNodes.carousel.carousel index)
                     currentButton.parent('li').addClass 'active'
                 else
