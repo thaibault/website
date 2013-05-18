@@ -122,13 +122,13 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
         ###
         _domNodes: {}
         ###*
-            Determines weather the vieport is on top of the page.
+            Determines weather the view port is on top of the page.
 
             @property {Boolean}
         ###
         _vieportIsOnTop: true
         ###*
-            Describes the current mode defined by the css media querys.
+            Describes the current mode defined by the css media queries.
 
             @property {String}
         ###
@@ -141,7 +141,7 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
         # region special methods
 
         ###*
-            @description Initializes the interactive web app.
+            @description Initializes the interactive webapp.
 
             @param {Object} options An options object.
 
@@ -178,8 +178,15 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
             # in smartphone mode.
             this._domNodes.navigationBar.addClass(
                 this._options.domNodes.navigationOnTopIndicatorClass)
-            this._domNodes.scrollToTopButtons.fadeOut 'slow'
-            this
+            this.acquireLock('scrollToTopButtonEasing', ((lockDescription) =>
+                this._domNodes.scrollToTopButtons.animate(
+                    bottom: '+=30'
+                    opacity: 0
+                ,
+                    duration: 'normal'
+                    always: =>
+                        this._domNodes.scrollToTopButtons.css 'bottom', '-=30'
+                        this.releaseLock lockDescription)))
 
         _onVieportMovesAwayFromTop: ->
             # Fixes overlay movement caused by the menu positioning
@@ -187,8 +194,17 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
             this._domNodes.windowLoadingCover.css 'margin-top', 0
             this._domNodes.navigationBar.removeClass(
                 this._options.domNodes.navigationOnTopIndicatorClass)
-            this._domNodes.scrollToTopButtons.fadeIn 'slow'
-            this
+            this.acquireLock('scrollToTopButtonEasing', ((lockDescription) =>
+                this._domNodes.scrollToTopButtons.css(
+                    bottom: '+=30'
+                    display: 'block'
+                    opacity: 0
+                ).animate(
+                    bottom: '-=30'
+                    opacity: 1
+                ,
+                    duration: 'normal'
+                    always: => this.releaseLock lockDescription)))
 
         _onChangeToDesktopMode: ->
             this._domNodes.dimensionIndicator.hide()
