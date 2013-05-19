@@ -31,7 +31,9 @@ this.window.require([
     ['jQuery.scrollTo', 'jquery-scrollTo-1.4.3.1'],
     ['jQuery.fn.touchwipe', 'jquery-touchwipe.1.1.1'],
 
-    ['jQuery.fn.spin', 'jquery-spin-1.2.8']],
+    ['jQuery.fn.spin', 'jquery-spin-1.2.8'],
+
+    ['jQuery.fn.hashchange', 'jquery-observeHashChange-1.0']],
 (less, jQuery) ->
 ##
 
@@ -160,7 +162,6 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
             this._domNodes.window.ready this.getMethod(
                 this._removeLoadingCover)
             this._domNodes.carousel.carousel this._options.carouselOptions
-            this.on this._domNodes.carousel, 'slid', this.getMethod this._onSlid
             this._addNavigationEvents()._addMediaQueryChangeEvents(
             )._triggerWindowResizeEvents()._handleGooleAnalytics(
                 this._options.trackingCode)
@@ -181,15 +182,13 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
             # in smartphone mode.
             this._domNodes.navigationBar.addClass(
                 this._options.domNodes.navigationOnTopIndicatorClass)
-            this.acquireLock('scrollToTopButtonEasing', ((lockDescription) =>
-                this._domNodes.scrollToTopButtons.animate(
-                    bottom: '+=30'
-                    opacity: 0
-                ,
-                    duration: 'normal'
-                    always: =>
-                        this._domNodes.scrollToTopButtons.css 'bottom', '-=30'
-                        this.releaseLock lockDescription)))
+            this._domNodes.scrollToTopButtons.animate(
+                bottom: '+=30'
+                opacity: 0
+            ,
+                duration: 'normal'
+                always: =>
+                    this._domNodes.scrollToTopButtons.css 'bottom', '-=30')
 
         _onVieportMovesAwayFromTop: ->
             # Fixes overlay movement caused by the menu positioning
@@ -197,17 +196,16 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
             this._domNodes.windowLoadingCover.css 'margin-top', 0
             this._domNodes.navigationBar.removeClass(
                 this._options.domNodes.navigationOnTopIndicatorClass)
-            this.acquireLock('scrollToTopButtonEasing', ((lockDescription) =>
-                this._domNodes.scrollToTopButtons.css(
-                    bottom: '+=30'
-                    display: 'block'
-                    opacity: 0
-                ).animate(
-                    bottom: '-=30'
-                    opacity: 1
-                ,
-                    duration: 'normal'
-                    always: => this.releaseLock lockDescription)))
+            this._domNodes.scrollToTopButtons.css(
+                bottom: '+=30'
+                display: 'block'
+                opacity: 0
+            ).animate(
+                bottom: '-=30'
+                queue: false
+                opacity: 1
+            ,
+                duration: 'normal')
 
         _onChangeToDesktopMode: ->
             this._domNodes.dimensionIndicator.hide()
@@ -229,14 +227,6 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
                 this._domNodes.navigationBar.addClass(
                     this._options.domNodes.navigationOnTopIndicatorClass)
             this
-
-        _onSlid: ->
-            this._switchSection(
-                this._domNodes.navigationButtons.filter(
-                    'a[href="#' + this._domNodes.carousel.find('.active').find(
-                        'div[class^="carousel-image-"]').attr('class').substr(
-                            'carousel-image-'.length
-                        ) + '"]'))
 
         # endregion
 
@@ -338,31 +328,55 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
             this
 
         _addNavigationEvents: ->
+            this._domNodes.window.hashchange(=>
+                this._switchSection window.location.hash)
             self = this._handleScrollToTopButton()._handleTouchWipe()
             this.on this._domNodes.navigationButtons, 'click', ->
-                self._switchSection this
+                self._switchSection jQuery(this).attr 'href'
             this
 
-        _switchSection: (button) ->
-            this._domNodes.navigationButtons.each (index, value) =>
-                currentButton = jQuery(value)
-                if jQuery(button)[0] is currentButton[0]
+        _switchSection: (hash) ->
+            if jQuery.inArray(hash, ['next', 'prev']) isnt -1
+                this._domNodes.navigationButtons.each (index, button) =>
+                    if jQuery(button).attr('href') is window.location.hash
+                        # NOTE: We subtract 1 from navigation buttons length
+                        # because we want to ignore the imprint section. And
+                        # the index starts counting by zero.
+                        numberOfButtons =
+                            this._domNodes.navigationButtons.length - 1
+                        if hash is 'next'
+                            newIndex = (index + 1) % numberOfButtons
+                        else if hash is 'prev'
+                            # NOTE: Subtracting 1 in the residue class ring
+                            # means adding the number of numbers minus 1. This
+                            # prevents us from getting negative button indixes.
+                            newIndex = (index + numberOfButtons - 1) %
+                                numberOfButtons
+                        hash = jQuery(
+                            this._domNodes.navigationButtons[newIndex]
+                        ).attr 'href'
+                        false
+            if hash.substr(0, 1) isnt '#'
+                hash = "##{hash}"
+            window.location.hash = hash
+            this.debug "Switch to section \"#{hash}\"."
+            this._domNodes.navigationButtons.each (index, button) =>
+                button = jQuery button
+                if button.attr('href') is hash
                     if this._vieportIsOnTop
                         this._domNodes.carousel.carousel index
                     else
                         this._scrollToTop(=>
                             this._domNodes.carousel.carousel index)
-                    currentButton.parent('li').addClass 'active'
+                    button.parent('li').addClass 'active'
                 else
-                    currentButton.parent('li').removeClass 'active'
+                    button.parent('li').removeClass 'active'
             this
 
         _handleTouchWipe: ->
             this._domNodes.parent.touchwipe(
-                wipeLeft: => this._domNodes.carousel.carousel 'next'
-                wipeRight: => this._domNodes.carousel.carousel 'prev'
-                min_move_x: 20
-                min_move_y: 20
+                wipeLeft: => this._switchSection 'next'
+                wipeRight: => this._switchSection 'prev'
                 preventDefaultEvents: false)
             this
 
