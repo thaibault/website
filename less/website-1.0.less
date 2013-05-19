@@ -41,6 +41,12 @@ body.website {
 
     /* region global */
 
+        /* region bootstrap resets */
+
+            padding: 0;
+
+        /* endregion */
+
     /* Padding below the footer and lighter body text */
     padding-bottom: 40px;
     color: @color1;
@@ -80,7 +86,7 @@ body.website {
         position: fixed;
         z-index: 4;
         bottom: 48px;
-        right: 5%;
+        right: 30px;
     }
 
         /* endregion */
@@ -162,8 +168,6 @@ body.website {
         margin-bottom: 60px;
 
         div.item {
-            height: 1000px;
-
             div[class^=carousel-image-] {
                 position: absolute;
                 top: 0;
@@ -251,12 +255,19 @@ body.website {
                 }
             }
             div.container.content {
-                padding: 20px;
                 margin-top: 150px;
                 font-size: 18px;
                 color: #ffffff;
             }
         }
+    }
+
+    /* endregion */
+
+    /* region footer */
+
+    div.footer footer p {
+        margin-left: 30px;
     }
 
     /* endregion */
@@ -273,15 +284,22 @@ body.website {
             div.navbar-inner {
                 border-radius: 0;
                 margin: -20px 0;
-                
+
                 button.btn.btn-navbar {
                     margin-top: 5px;
                 }
             }
         }
-        div.carousel {
-            .item {
+        div.carousel div.carousel-inner {
+            div.item {
                 height: 500px;
+
+                div.container div.carousel-caption {
+                    margin-top: 150px;
+                }
+                div.container.content {
+                    margin-top: 100px;
+                }
             }
             img {
                 width: auto;
@@ -305,13 +323,8 @@ body.website {
         /* region smartphone */
 
         @media (max-width: @maximumSmartphoneWidth) {
-            div.window-loading-cover {
-                margin-top: -20px;
-                margin-left: -20px;
-            }
-
             @media (max-width: 400px) {
-                footer p a[href="#top"] {
+                div.footer footer p a[href="#top"] {
                     display: none;
                     visibility: hidden;
                     color: red;
@@ -335,24 +348,24 @@ body.website {
                 overflow: visible;
                 margin-bottom: 20px;
 
-                div.container div.navbar.navbar-inverse div.navbar-inner {
-                    padding: 0;
+                div.container div.navbar.navbar-inverse {
+                    /*
+                        Compansate the inverse negative margin in static
+                        positioning.
+                    */
+                    margin-right: 20px;
+
+                    button.btn.btn-navbar {
+                        margin-right: 0;
+                    }
                 }
             }
-            div.carousel {
-                margin-left: -20px;
-                margin-right: -20px;
+            div.carousel div.carousel-inner div.item {
+                height: 300px;
 
-                .item {
-                    height: 300px;
-                }
-                img {
-                    height: 300px;
-                }
-                div.carousel-caption {
-                    width: 65%;
-                    padding: 0 70px;
-                    margin-top: 100px;
+                div.container div.carousel-caption {
+                    padding: 0 30px;
+                    margin-top: 50px;
 
                     h1 {
                         font-size: 30px;
@@ -360,6 +373,12 @@ body.website {
                     .lead, .btn {
                         font-size: 18px;
                     }
+                }
+                div.container.content {
+                    margin-top: 70px;
+                }
+                img {
+                    height: 300px;
                 }
             }
             div.marketing .span4 + .span4 {

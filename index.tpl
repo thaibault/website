@@ -170,7 +170,7 @@ endregion
                             <% for section in range(3):
                                 <span class="icon-bar"></span>
                         </button>
-                        <a class="brand" href="#">thaibault</a>
+                        <a class="brand" href="/">thaibault</a>
                         <div class="dimension-indicator"></div>
                         <!-- Responsive Navbar Part 2: Places all navbar contents. -->
                         <div class="nav-collapse collapse">
@@ -211,13 +211,13 @@ endregion
                                             <% if '@' in link:
                                                 <% link = 'mailto:%s' % link
                                             <a class="btn social-media social-media-<%name%>" href="<%link%>" target="_blank"></a>
+                                <% START_UP_ANIMATION_NUMBER += 1
+                                <div class="start-up-animation-number-<%START_UP_ANIMATION_NUMBER%> container content">
+                                    <p class="lead">
+                                        <%print(section[3])
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <% START_UP_ANIMATION_NUMBER += 1
-                        <div class="start-up-animation-number-<%START_UP_ANIMATION_NUMBER%> container content">
-                            <p class="lead">
-                                <%print(section[3])
-                            </p>
                         </div>
                     </div>
             </div>
