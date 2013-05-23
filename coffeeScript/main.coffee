@@ -1,5 +1,12 @@
 ## require
 
+# region vim modline
+
+# vim: set tabstop=4 shiftwidth=4 expandtab:
+# vim: foldmethod=marker foldmarker=region,endregion:
+
+# endregion
+
 ## standalone
 ## this.jQuery.noConflict(true) (jQuery) ->
 ##     jQuery.Website window.OPTIONS

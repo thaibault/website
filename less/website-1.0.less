@@ -1,4 +1,20 @@
-/* region imports */
+// region vim modline
+
+// vim: set tabstop=4 shiftwidth=4 expandtab:
+// vim: foldmethod=marker foldmarker=region,endregion:
+
+// endregion
+
+/* region header */
+
+/*
+Copyright Torben Sickert 16.12.2012
+
+License
+    This library written by Torben Sickert stand under a creative commons
+    naming 3.0 unported license.
+    see http://creativecommons.org/licenses/by/3.0/deed.de
+*/
 
 @import 'generic-1.0';
 
@@ -47,8 +63,6 @@ body.website {
 
         /* endregion */
 
-    /* Padding below the footer and lighter body text */
-    padding-bottom: 40px;
     color: @color1;
     background-color: @color2;
 
@@ -85,7 +99,7 @@ body.website {
     a[href="#top"] {
         position: fixed;
         z-index: 4;
-        bottom: 48px;
+        bottom: 20px;
         right: 30px;
     }
 
@@ -292,8 +306,6 @@ body.website {
         }
         div.carousel div.carousel-inner {
             div.item {
-                height: 500px;
-
                 div.container div.carousel-caption {
                     margin-top: 150px;
                 }
@@ -361,8 +373,6 @@ body.website {
                 }
             }
             div.carousel div.carousel-inner div.item {
-                height: 300px;
-
                 div.container div.carousel-caption {
                     padding: 0 30px;
                     margin-top: 50px;

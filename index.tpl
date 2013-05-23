@@ -1,6 +1,11 @@
-<!--
+<!-- region vim modline
 
-region header
+vim: set tabstop=4 shiftwidth=4 expandtab:
+vim: foldmethod=marker foldmarker=region,endregion:
+
+endregion -->
+
+<!-- region header
 
 Copyright Torben Sickert 16.12.2012
 
@@ -9,12 +14,7 @@ License
    naming 3.0 unported license.
    see http://creativecommons.org/licenses/by/3.0/deed.de
 
-vim: set tabstop=4 shiftwidth=4 expandtab:
-vim: foldmethod=marker foldmarker=region,endregion:
-
-endregion
-
--->
+endregion -->
 
 <% # region location
 
@@ -170,7 +170,7 @@ endregion
                             <% for section in range(3):
                                 <span class="icon-bar"></span>
                         </button>
-                        <a class="brand" href="/">thaibault</a>
+                        <a class="brand" href="#">thaibault</a>
                         <div class="dimension-indicator"></div>
                         <!-- Responsive Navbar Part 2: Places all navbar contents. -->
                         <div class="nav-collapse collapse">
@@ -232,10 +232,10 @@ endregion
     <!-- region footer -->
 
             <footer>
-                <p class="pull-right"><a href="#top">top</a></p>
                 <p>
                     &copy; 2013 Torben Sickert, Inc. &middot; <a href="#imprint">imprint</a>
                 </p>
+                <p class="pull-right"><a href="#top">top</a></p>
             </footer>
 
     <!-- endregion -->

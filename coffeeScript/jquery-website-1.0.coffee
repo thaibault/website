@@ -1,5 +1,12 @@
 ## require
 
+# region vim modline
+
+# vim: set tabstop=4 shiftwidth=4 expandtab:
+# vim: foldmethod=marker foldmarker=region,endregion:
+
+# endregion
+
 # region header
 
 ###!
@@ -98,6 +105,7 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
 
                 dimensionIndicator:
                     'div.navbar-wrapper div.dimension-indicator'
+                footer: 'div.footer'
             startUpFadeInOptions:
                 easing: 'swing'
                 duration: 'slow'
@@ -167,6 +175,12 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
             this._domNodes.window.ready this.getMethod(
                 this._removeLoadingCover)
             this._domNodes.carousel.carousel this._options.carouselOptions
+            this.on this._domNodes.carousel, 'slide', =>
+                this._domNodes.footer.fadeOut 'slow'
+            this.on this._domNodes.carousel, 'slid', =>
+                this._domNodes.footer.fadeIn 'slow'
+            # NOTE: Cycling is more intuitive for reaction on wipe gestures.
+            this._domNodes.carousel.carousel 'cycle'
             this._addNavigationEvents()._addMediaQueryChangeEvents(
             )._triggerWindowResizeEvents()._handleGoogleAnalytics(
                 this._options.trackingCode)
@@ -281,6 +295,8 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
             @returns {jQuery.Tools} Returns the current instance.
         ###
         _triggerWindowResizeEvents: ->
+            this._domNodes.scrollToTopButtons.css(
+                'right', this._domNodes.footer.find('p').offset().left)
             jQuery.each(
                 this._options.mediaQueryCssIndicator,
                 (mode, cssValue) =>
@@ -404,35 +420,22 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
             @returns {jQuery.Tools} Returns the current instance.
         ###
         _switchSection: (hash) ->
+            direction = false
             if jQuery.inArray(hash, ['next', 'prev']) isnt -1
-                this._domNodes.navigationButtons.each (index, button) =>
-                    if jQuery(button).attr('href') is window.location.hash
-                        # NOTE: We subtract 1 from navigation buttons length
-                        # because we want to ignore the imprint section. And
-                        # the index starts counting by zero.
-                        numberOfButtons =
-                            this._domNodes.navigationButtons.length - 1
-                        if hash is 'next'
-                            newIndex = (index + 1) % numberOfButtons
-                        else if hash is 'prev'
-                            # NOTE: Subtracting 1 in the residue class ring
-                            # means adding the number of numbers minus 1. This
-                            # prevents us from getting negative button indixes.
-                            newIndex = (index + numberOfButtons - 1) %
-                                numberOfButtons
-                        hash = jQuery(
-                            this._domNodes.navigationButtons[newIndex]
-                        ).attr 'href'
-                        false
+                direction = hash
+                hash = this._determineRelativeSections hash
             if hash.substr(0, 1) isnt '#'
                 hash = "##{hash}"
-            window.location.hash = hash
             this._domNodes.navigationButtons.each (index, button) =>
                 button = jQuery button
                 sectionDomNode = button.parent 'li'
-                if button.attr('href') is hash
+                if button.attr('href') is hash or (
+                    index is 0 and hash is '#' and hash = button.attr('href')
+                )
                     if not sectionDomNode.hasClass 'active'
                         this.debug "Switch to section \"#{hash}\"."
+                        if direction
+                            index = direction
                         if this._vieportIsOnTop
                             this._domNodes.carousel.carousel index
                         else
@@ -441,7 +444,36 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
                         sectionDomNode.addClass 'active'
                 else
                     sectionDomNode.removeClass 'active'
+            window.location.hash = hash
             this
+        ###*
+            @description Determines current section to the right or the left.
+
+            @param {String} hash Relative section ("next" or "prev"),
+
+            @returns {String} Returns the absolute hash string.
+        ###
+        _determineRelativeSections: (hash) ->
+            this._domNodes.navigationButtons.each (index, button) =>
+                if jQuery(button).attr('href') is window.location.hash
+                    # NOTE: We subtract 1 from navigation buttons length
+                    # because we want to ignore the imprint section. And
+                    # the index starts counting by zero.
+                    numberOfButtons =
+                        this._domNodes.navigationButtons.length - 1
+                    if hash is 'next'
+                        newIndex = (index + 1) % numberOfButtons
+                    else if hash is 'prev'
+                        # NOTE: Subtracting 1 in the residue class ring means
+                        # adding the number of numbers minus 1. This prevents
+                        # us from getting negative button indixes.
+                        newIndex = (index + numberOfButtons - 1) %
+                            numberOfButtons
+                    hash = jQuery(
+                        this._domNodes.navigationButtons[newIndex]
+                    ).attr 'href'
+                    false
+            hash
         ###*
             @description Adds trigger to switch section on swipt gestures.
 

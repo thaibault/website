@@ -1,6 +1,11 @@
-<!--
+<!-- region vim modline
 
-region header
+vim: set tabstop=4 shiftwidth=4 expandtab:
+vim: foldmethod=marker foldmarker=region,endregion:
+
+endregion -->
+
+<!-- region header
 
 Copyright Torben Sickert 16.12.2012
 
@@ -9,12 +14,7 @@ License
    naming 3.0 unported license.
    see http://creativecommons.org/licenses/by/3.0/deed.de
 
-vim: set tabstop=4 shiftwidth=4 expandtab:
-vim: foldmethod=marker foldmarker=region,endregion:
-
-endregion
-
--->
+endregion -->
 
 website
 =======
