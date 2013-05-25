@@ -1,4 +1,4 @@
-## standalone
+## require
 
 # region vim modline
 
@@ -19,20 +19,20 @@
     @author t.sickert@gmail.com (Torben Sickert)
     @version 1.0 stable
     @fileOverview
-    This module provides common logic for the whole webpage.
+    This module provides common logic for the whole web page.
 ###
 
 ###*
     @name jQuery
     @see www.jquery.com
 ###
-## require
-## this.window.require([
-##     ['jQuery.Website', 'jquery-website-1.0.coffee'],
-##     ['jQuery.fn.carousel', 'bootstrap-2.3.1'],
-##     ['jQuery.fn.touchwipe', 'jquery-touchwipe.1.1.1']],
-## (jQuery) ->
-((jQuery) ->
+## standalone
+## ((jQuery) ->
+this.window.require([
+    ['jQuery.Website', 'jquery-website-1.0.coffee'],
+    ['jQuery.fn.carousel', 'bootstrap-2.3.1'],
+    ['jQuery.fn.touchwipe', 'jquery-touchwipe.1.1.1']],
+(jQuery) ->
 ##
 
 # endregion
@@ -331,5 +331,5 @@
 
 # endregion
 
-## require )
-).call this, this.jQuery
+## standalone ).call this, this.jQuery
+)
