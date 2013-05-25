@@ -74,11 +74,11 @@ endregion -->
 <%         '<p>79100 Freiburg</p>\n'
 <%         '<p>Tel. 0049 (0) 176 / 10248185</p>\n'
 <%         '<p>Internet: <a href="%s">%s</a></p>\n'
-<%         '<p>Email: <a href="%s">%s</a></p>\n'
+<%         '<p>Email: <a href="mailto:%s">%s</a></p>\n'
 <%         '<br />\n'
 <%         '<p><a href="%s">public ssh key</a></p>' %
-<%         (SOCIAL_MEDIA[0][1], SOCIAL_MEDIA[0][1], SOCIAL_MEDIA[-1][1],
-<%          SOCIAL_MEDIA[-1][1], LINK_TO_PUBLIC_SSH_KEY))))
+<%         (SOCIAL_MEDIA[-1][1], SOCIAL_MEDIA[-1][1], SOCIAL_MEDIA[0][1],
+<%          SOCIAL_MEDIA[0][1], LINK_TO_PUBLIC_SSH_KEY))))
 
 <% PROJECTS = (
 <%     ('boostNode', 'http://thaibault.github.io/boostNode/'),

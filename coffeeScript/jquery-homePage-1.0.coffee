@@ -1,4 +1,4 @@
-## require
+## standalone
 
 # region vim modline
 
@@ -26,13 +26,13 @@
     @name jQuery
     @see www.jquery.com
 ###
-## standalone
-## ((jQuery) ->
-this.window.require([
-    ['jQuery.Website', 'jquery-website-1.0.coffee'],
-    ['jQuery.fn.carousel', 'bootstrap-2.3.1'],
-    ['jQuery.fn.touchwipe', 'jquery-touchwipe.1.1.1']],
-(jQuery) ->
+## require
+## this.window.require([
+##     ['jQuery.Website', 'jquery-website-1.0.coffee'],
+##     ['jQuery.fn.carousel', 'bootstrap-2.3.1'],
+##     ['jQuery.fn.touchwipe', 'jquery-touchwipe.1.1.1']],
+## (jQuery) ->
+((jQuery) ->
 ##
 
 # endregion
@@ -270,6 +270,9 @@ this.window.require([
         ###
         _addNavigationEvents: ->
             self = this._handleTouchWipe()
+            this.on this._domNodes.navigationButtons, 'click', ->
+                self.fireEvent(
+                    'switchSection', false, self, jQuery(this).attr 'href')
             super()
         ###*
             @description Determines current section to the right or the left.
@@ -328,5 +331,5 @@ this.window.require([
 
 # endregion
 
-## standalone ).call this, this.jQuery
-)
+## require )
+).call this, this.jQuery

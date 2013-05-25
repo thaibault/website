@@ -1,4 +1,4 @@
-## require
+## standalone
 
 # region vim modline
 
