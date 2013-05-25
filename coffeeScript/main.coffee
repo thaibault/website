@@ -9,7 +9,7 @@
 
 ## standalone
 ## this.jQuery.noConflict(true) (jQuery) ->
-##     jQuery.Website window.OPTIONS
+##     jQuery.HomePage window.OPTIONS
 this.require.noConflict = true
 this.require.asyncronModulePatternHandling =
     '^.+\.coffee$': (coffeeScriptCode, module) =>
@@ -20,7 +20,7 @@ this.require.asyncronModulePatternHandling =
         catch exception
             this.console.log this.CoffeeScript.compile coffeeScriptCode
             throw exception
-this.require [['jQuery.Website', 'jquery-website-1.0.coffee']], (jQuery) ->
+this.require [['jQuery.HomePage', 'jquery-homePage-1.0.coffee']], (jQuery) ->
     ###
         Embedd jQuery and require full compatible to all other
         JavaScripts.
@@ -28,6 +28,6 @@ this.require [['jQuery.Website', 'jquery-website-1.0.coffee']], (jQuery) ->
         function is called when the dom-tree was loaded.
     ###
     # Production mode:
-    # jQuery.noConflict(true) (jQuery) -> jQuery.Website window.OPTIONS
-    jQuery (jQuery) -> jQuery.Website window.OPTIONS
+    # jQuery.noConflict(true) (jQuery) -> jQuery.HomePage window.OPTIONS
+    jQuery (jQuery) -> jQuery.HomePage window.OPTIONS
 ##
