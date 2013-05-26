@@ -60,6 +60,7 @@ this.window.require([
         ###
         _options:
             trackingCode: 'UA-40192634-1'
+            scrollInLinearTime: true
             domNodes:
                 navigationBar: 'div.navbar-wrapper'
                 navigationButtons:
