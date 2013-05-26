@@ -86,6 +86,7 @@ endregion -->
 <%     ('require', 'http://thaibault.github.io/require/'),
 <%     ('jquery-tools', 'http://thaibault.github.io/jquery-tools/'),
 <%     ('jquery-incrementer', 'http://thaibault.github.io/jquery-incrementer/'))
+<%     ('jquery-website', 'http://thaibault.github.io/jquery-website/'))
 
 <% # endregion
 
@@ -214,6 +215,9 @@ endregion -->
                                 <% START_UP_ANIMATION_NUMBER += 1
                                 <div class="start-up-animation-number-<%START_UP_ANIMATION_NUMBER%> container content">
                                     <p class="lead">
+                                        <% if name == 'references'
+                                            <% for project_name, project_page_link in PROJECTS.items():
+                                                <a href="project_page_link">project_name</a>
                                         <%print(section[3])
                                     </p>
                                 </div>
