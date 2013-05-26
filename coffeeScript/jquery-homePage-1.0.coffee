@@ -64,7 +64,7 @@ this.window.require([
             domNodes:
                 navigationBar: 'div.navbar-wrapper'
                 navigationButtons:
-                    'div.navbar-wrapper ul.nav li a, a[href="#imprint"]'
+                    'div.navbar-wrapper ul.nav li a, a[href="#about-this-website"]'
                 carousel: 'div.carousel.slide'
                 dimensionIndicator:
                     'div.navbar-wrapper div.dimension-indicator'
@@ -286,8 +286,8 @@ this.window.require([
             this._domNodes.navigationButtons.each (index, button) =>
                 if jQuery(button).attr('href') is window.location.hash
                     # NOTE: We subtract 1 from navigation buttons length
-                    # because we want to ignore the imprint section. And
-                    # the index starts counting by zero.
+                    # because we want to ignore the about this website section.
+                    # And the index starts counting by zero.
                     numberOfButtons =
                         this._domNodes.navigationButtons.length - 1
                     if hash is 'next'

@@ -66,9 +66,9 @@ endregion -->
 <%         'Robots Lab and Rechnernetze and Telematik in University Freiburg,'
 <%         'BPV, BTI, Vattenfall...',
 <%         'TODO')),
-<%     ('imprint', (
-<%         '', 'Imprint', '',
-<%         '<p>Anbieter:</p>\n'
+<%     ('about-this-website', (
+<%         '', 'About this website', '',
+<%         '<p>Provider:</p>\n'
 <%         '<p>Torben Sickert</p>\n'
 <%         '<p>Christoph-Mang-Str. 14</p>\n'
 <%         '<p>79100 Freiburg</p>\n'
@@ -233,7 +233,7 @@ endregion -->
 
             <footer>
                 <p>
-                    &copy; 2013 Torben Sickert, Inc. &middot; <a href="#imprint">imprint</a>
+                    &copy; 2013 Torben Sickert, Inc. &middot; <a href="#about-this-website">about this website</a>
                 </p>
                 <p class="pull-right"><a href="#top">top</a></p>
             </footer>
