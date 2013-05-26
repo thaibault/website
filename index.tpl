@@ -85,7 +85,7 @@ endregion -->
 <%     ('installArchLinux', 'http://thaibault.github.io/installArchLinux/'),
 <%     ('require', 'http://thaibault.github.io/require/'),
 <%     ('jquery-tools', 'http://thaibault.github.io/jquery-tools/'),
-<%     ('jquery-incrementer', 'http://thaibault.github.io/jquery-incrementer/'))
+<%     ('jquery-incrementer', 'http://thaibault.github.io/jquery-incrementer/'),
 <%     ('jquery-website', 'http://thaibault.github.io/jquery-website/'))
 
 <% # endregion
