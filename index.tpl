@@ -215,7 +215,7 @@ endregion -->
                                 <% START_UP_ANIMATION_NUMBER += 1
                                 <div class="start-up-animation-number-<%START_UP_ANIMATION_NUMBER%> container content">
                                     <p class="lead">
-                                        <% if name == 'references'
+                                        <% if name == 'references':
                                             <% for project_name, project_page_link in PROJECTS.items():
                                                 <a href="project_page_link">project_name</a>
                                         <%print(section[3])
