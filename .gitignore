@@ -1,3 +1,5 @@
+# Generated python template files.
+*.py
 *.py[cod]
 
 # C extensions
@@ -38,5 +40,4 @@ nosetests.xml
 *.swp
 
 # Rendered page.
-build
 *.html
