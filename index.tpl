@@ -111,13 +111,13 @@ endregion -->
 <!-- region header -->
 
     <head>
-        <title>Torben Sickert</title>
+        <title>Torben Sickert development</title>
 
-    <!-- region meta informations -->
+    <!-- region meta informations --> 
 
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="description" content="">
+        <meta name="description" content="development responsive python javascript coffeescript bash design">
         <meta name="author" content="Torben Sickert">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -189,7 +189,7 @@ endregion -->
                     </div>
                 </div>
             </div>
-        </div>        
+        </div>
 
     <!-- endregion -->
 
