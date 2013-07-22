@@ -93,7 +93,6 @@ endregion -->
 <% # region runtime
 
 <% START_UP_ANIMATION_NUMBER = 1
-<% GOOGLE_TRACKING_CODE = 'UA-40192634-1'
 
 <% # endregion
 

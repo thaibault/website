@@ -31,6 +31,6 @@ this.require [['jQuery.HomePage', 'jquery-homePage-1.0.coffee']], (jQuery) ->
     ###
     jQuery.noConflict(true) (jQuery) ->
         jQuery.HomePage(
-            googleTrackingCode: '<%GOOGLE_TRACKING_CODE%>'
-            logging: true
+            googleTrackingCode: 'UA-40192634-1'
+            logging: true)
 ##
