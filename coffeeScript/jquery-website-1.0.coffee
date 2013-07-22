@@ -27,7 +27,7 @@
     @see www.jquery.com
 ###
 ## standalone
-## ((jQuery) ->
+## do (jQuery) ->
 this.window.require([
     ['less', 'less-1.3.3'],
 
@@ -90,7 +90,7 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
             onStartUpAnimationComplete: jQuery.noop()
             addtionalPageLoadingTimeInMilliseconds: 0
             mediaQueryCssIndicatorStyleType: 'border-left-style'
-            trackingCode: 'UA-0-0'
+            googleTrackingCode: 'UA-0-0'
             scrollInLinearTime: false
             mediaQueryCssIndicator:
                 desktop: 'dashed'
@@ -420,8 +420,9 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
         ###
         _handleGoogleAnalytics: (trackingCode) ->
             try
-                window.eval this.stringFormat(
-                    this.__googleAnalyticsCode, trackingCode)
+                (new Function(this.stringFormat(
+                    this.__googleAnalyticsCode, trackingCode
+                )))()
             catch exception
                 this.warn(
                     'Problem in google analytics code snippet: {1}',
@@ -445,5 +446,5 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
 
 # endregion
 
-## standalone ).call this, this.jQuery
+## standalone
 )
