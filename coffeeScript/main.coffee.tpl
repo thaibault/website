@@ -29,5 +29,8 @@ this.require [['jQuery.HomePage', 'jquery-homePage-1.0.coffee']], (jQuery) ->
         The global scope is clean after this sequence. The given
         function is called when the dom-tree was loaded.
     ###
-    jQuery.noConflict(true) (jQuery) -> jQuery.HomePage window.OPTIONS
+    jQuery.noConflict(true) (jQuery) ->
+        jQuery.HomePage(
+            googleTrackingCode: '<%GOOGLE_TRACKING_CODE%>'
+            logging: true
 ##

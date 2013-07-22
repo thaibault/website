@@ -140,9 +140,6 @@ endregion -->
         <!--[if lt IE 9]><script src="<%JAVA_SCRIPT_PATH%>html5shiv-3.6.2.js"></script><![endif]-->
         <script type="text/javascript" src="<%JAVA_SCRIPT_PATH%>coffeeScript-1.6.2.js"></script>
         <script type="text/coffeescript" src="<%COFFEE_SCRIPT_PATH%>require-1.0.coffee"></script>
-        <script type="text/javascript">
-            this.OPTIONS = {'trackingCode': '<%GOOGLE_TRACKING_CODE%>', 'logging': true};
-        </script>
         <script type="text/coffeescript" src="<%COFFEE_SCRIPT_PATH%>main.coffee"></script>
 
     <!-- endregion -->
