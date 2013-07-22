@@ -1,4 +1,4 @@
-## require
+#!/usr/bin/env coffee
 
 # region vim modline
 
@@ -20,7 +20,7 @@
 
 ## standalone
 ## this.jQuery.noConflict(true) (jQuery) ->
-##     jQuery.HomePage window.OPTIONS
+##     jQuery.HomePage googleTrackingCode: 'UA-40192634-1'
 this.require.noConflict = true
 this.require [['jQuery.HomePage', 'jquery-homePage-1.0.coffee']], (jQuery) ->
     ###
@@ -30,7 +30,5 @@ this.require [['jQuery.HomePage', 'jquery-homePage-1.0.coffee']], (jQuery) ->
         function is called when the dom-tree was loaded.
     ###
     jQuery.noConflict(true) (jQuery) ->
-        jQuery.HomePage(
-            googleTrackingCode: 'UA-40192634-1'
-            logging: true)
+        jQuery.HomePage googleTrackingCode: 'UA-40192634-1'
 ##
