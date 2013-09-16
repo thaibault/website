@@ -75,7 +75,17 @@ body.home-page {
 
     /* endregion */
 
-    /* region navigation bar */
+    /* region footer */
+
+    div.footer footer p {
+        margin-left: 30px;
+    }
+
+    /* endregion */
+
+    /* region responsive */
+
+        /* region navigation bar */
 
     /*
         Special class on .container surrounding .navbar, used for positioning
@@ -90,7 +100,7 @@ body.home-page {
         #generic > .opacity(0.97);
         margin-top: 20px;
         /*
-            Negative margin to pull up carousel. 90px is roughly margins and 
+            Negative margin to pull up carousel. 90px is roughly margins and
             height of navbar.
         */
         margin-bottom: -90px;
@@ -108,22 +118,25 @@ body.home-page {
             }
             /* Downsize the brand/project name a bit */
             div.brand {
-                /* Increase vertical padding to match navbar links */
+                /* Increase vertical padding to match navigation bar links */
                 padding: 14px 20px 16px;
                 font-size: 16px;
                 font-weight: bold;
                 text-shadow: 0 -1px 0 rgba(0,0,0,.5);
             }
-            /* Navbar links: increase padding for taller navbar */
+            /*
+                Navigation bar links: increase padding for taller navigation
+                bar
+            */
             div.nav > li > a {
                 padding: 15px 20px;
             }
         }
     }
 
-    /* endregion */
+        /* endregion */
 
-    /* region carousel */
+        /* region carousel */
 
     /* Carousel base class */
     div.carousel div.carousel-inner {
@@ -164,7 +177,7 @@ body.home-page {
                     padding: 0 20px;
                     margin-top: 200px;
 
-        /* region social media buttons */
+            /* region social media buttons */
 
                     a.btn.social-media {
                         width: 32px;
@@ -196,7 +209,7 @@ body.home-page {
                         background-image: url('@{imagePath}socialMedia/facebook.png');
                     }
 
-        /* endregion */
+            /* endregion */
 
                     p.phone-number {
                         margin-top: 10px;
@@ -225,21 +238,83 @@ body.home-page {
         }
     }
 
-    /* endregion */
+        /* endregion */
 
-    /* region footer */
+        /* region smartphone */
 
-    div.footer footer p {
-        margin-left: 30px;
+    div.footer footer p a[href="#top"] {
+        visibility: hidden;
+    }
+    div.navbar-wrapper div.navbar div.navbar-inner {
+        margin: -20px;
+
+        div.nav-collapse ul li a {
+            padding-left: 25px;
+        }
+        a.brand {
+            margin-left: 15px;
+        }
+        button.btn.btn-navbar {
+            margin-right: 20px;
+        }
+    }
+    div.navbar-wrapper.on-top {
+        position: static;
+        overflow: visible;
+        margin-bottom: 20px;
+
+        div.container div.navbar.navbar-inverse {
+            /*
+                Compensate the inverse negative margin in static
+                positioning.
+            */
+            margin-right: 20px;
+
+            button.btn.btn-navbar {
+                margin-right: 0;
+            }
+        }
+    }
+    div.carousel div.carousel-inner div.item {
+        div.container div.carousel-caption {
+            padding: 0 30px;
+            margin-top: 50px;
+
+            h1 {
+                font-size: 30px;
+            }
+            .lead, .btn {
+                font-size: 18px;
+            }
+        }
+        div.container.content {
+            margin-top: 70px;
+        }
+        img {
+            height: 300px;
+        }
+    }
+    div.marketing .span4 + .span4 {
+        margin-top: 40px;
+    }
+    .featurette-heading {
+        font-size: 30px;
+    }
+    .featurette .lead {
+        font-size: 18px;
+        line-height: 1.5;
+    }
+    @media (min-width: 400px) {
+        div.footer footer p a[href="#top"] {
+            visibility: visible;
+        }
     }
 
-    /* endregion */
-
-    /* region responsive css */
+        /* endregion */
 
         /* region tablet */
 
-    @media (max-width: @maximumTabletWidth) {
+    @media (min-width: @minimumTabletWidth) {
         div.navbar-wrapper div.navbar {
             margin-bottom: 0;
             width: auto;
@@ -271,8 +346,7 @@ body.home-page {
             height: auto;
             padding: 0;
         }
-        img.featurette-image.pull-left,
-        img.featurette-image.pull-right {
+        img.featurette-image.pull-left, img.featurette-image.pull-right {
             display: block;
             float: none;
             max-width: 40%;
@@ -281,77 +355,15 @@ body.home-page {
 
         /* endregion */
 
-        /* region smartphone */
+        /* region desktop */
 
-        @media (max-width: @maximumSmartphoneWidth) {
-            @media (max-width: 400px) {
-                div.footer footer p a[href="#top"] {
-                    visibility: hidden;
-                }
-            }
-            div.navbar-wrapper div.navbar div.navbar-inner {
-                margin: -20px;
-
-                div.nav-collapse ul li a {
-                    padding-left: 25px;
-                }
-                a.brand {
-                    margin-left: 15px;
-                }
-                button.btn.btn-navbar {
-                    margin-right: 20px;
-                }
-            }
-            div.navbar-wrapper.on-top {
-                position: static;
-                overflow: visible;
-                margin-bottom: 20px;
-
-                div.container div.navbar.navbar-inverse {
-                    /*
-                        Compansate the inverse negative margin in static
-                        positioning.
-                    */
-                    margin-right: 20px;
-
-                    button.btn.btn-navbar {
-                        margin-right: 0;
-                    }
-                }
-            }
-            div.carousel div.carousel-inner div.item {
-                div.container div.carousel-caption {
-                    padding: 0 30px;
-                    margin-top: 50px;
-
-                    h1 {
-                        font-size: 30px;
-                    }
-                    .lead, .btn {
-                        font-size: 18px;
-                    }
-                }
-                div.container.content {
-                    margin-top: 70px;
-                }
-                img {
-                    height: 300px;
-                }
-            }
-            div.marketing .span4 + .span4 {
-                margin-top: 40px;
-            }
-            .featurette-heading {
-                font-size: 30px;
-            }
-            .featurette .lead {
-                font-size: 18px;
-                line-height: 1.5;
-            }
+        @media (min-width: @minimumDesktopWidth) {
+            
         }
-    }
 
-        /* endregion */
+        /* endregionn */
+
+    }
 
     /* endregion */
 
