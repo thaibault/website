@@ -1,4 +1,4 @@
-## require
+#!/usr/bin/env require
 
 # region vim modline
 
@@ -10,8 +10,6 @@
 # region header
 
 ###!
-    jQuery plugin for "jquery-1.9.1".
-
     Copyright see require on https://github.com/thaibault/require
 
     Conventions see require on https://github.com/thaibault/require
@@ -30,7 +28,7 @@
 ## ((jQuery) ->
 this.window.require([
     ['jQuery.Website', 'jquery-website-1.0.coffee'],
-    ['jQuery.fn.carousel', 'bootstrap-2.3.1'],
+
     ['jQuery.fn.touchwipe', 'jquery-touchwipe.1.1.1']],
 (jQuery) ->
 ##

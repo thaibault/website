@@ -1,4 +1,4 @@
-## require
+#!/usr/bin/env require
 
 # region vim modline
 
@@ -10,8 +10,6 @@
 # region header
 
 ###!
-    jQuery plugin for "jquery-1.9.1".
-
     Copyright see require on https://github.com/thaibault/require
 
     Conventions see require on https://github.com/thaibault/require
@@ -29,18 +27,18 @@
 ## standalone
 ## do (jQuery) ->
 this.window.require([
-    ['less', 'less-1.3.3'],
+    ['less.Parser', 'less-1.4.1'],
 
     ['jQuery.Tools', 'jquery-tools-1.0.coffee'],
 
-    ['jQuery.fn.carousel', 'bootstrap-2.3.1'],
+    ['jQuery.fn.carousel', 'bootstrap-3.0.0'],
 
     ['jQuery.scrollTo', 'jquery-scrollTo-1.4.3.1'],
 
     ['jQuery.fn.spin', 'jquery-spin-1.2.8'],
 
     ['jQuery.fn.hashchange', 'jquery-observeHashChange-1.0']],
-(less, jQuery) ->
+(less, lessParser, jQuery) ->
 ##
 
 # endregion
