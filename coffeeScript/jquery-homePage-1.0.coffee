@@ -20,17 +20,13 @@
     This module provides common logic for the whole web page.
 ###
 
-###*
-    @name jQuery
-    @see www.jquery.com
-###
 ## standalone
-## ((jQuery) ->
+## do ($=jQuery) ->
 this.window.require([
     ['jQuery.Website', 'jquery-website-1.0.coffee'],
 
     ['jQuery.fn.touchwipe', 'jquery-touchwipe.1.1.1']],
-(jQuery) ->
+($) ->
 ##
 
 # endregion
@@ -38,18 +34,12 @@ this.window.require([
 # region plugins
 
     ###*
-        @memberOf jQuery
+        @memberOf $
         @class
     ###
-    class HomePage extends jQuery.Website.class
+    class HomePage extends $.Website.class
 
-    # region private properties
-
-        __name__: 'HomePage'
-
-    # endregion
-
-    # region protected properties 
+    # region properties
 
         ###*
             Saves default options for manipulating the default behaviour.
@@ -70,19 +60,20 @@ this.window.require([
             carouselOptions:
                 interval: false
                 pause: 'hover'
+        __name__: 'HomePage'
 
     # endregion
 
     # region public methods
 
-        # region special methods
+        # region special
 
         ###*
-            @description Initializes the interactive webapp.
+            @description Initializes the interactive web application.
 
             @param {Object} options An options object.
 
-            @returns {jQuery.Tools} Returns the current instance.
+            @returns {$.Tools} Returns the current instance.
         ###
         initialize: (options) ->
             this._options.domNodes.topDomNode =
@@ -103,12 +94,12 @@ this.window.require([
 
     # region protected methods
 
-        # region event methods
+        # region event
 
         ###*
-            @description This method triggers if the vieport moves to top.
+            @description This method triggers if the view port moves to top.
 
-            @returns {jQuery.Tools} Returns the current instance.
+            @returns {$.Tools} Returns the current instance.
         ###
         _onVieportMovesToTop: ->
             # Fixes overlay movement caused by the menu positioning
@@ -120,10 +111,10 @@ this.window.require([
                 this._options.domNodes.navigationOnTopIndicatorClass)
             super()
         ###*
-            @description This method triggers if the vieport moves away from
+            @description This method triggers if the view port moves away from
                          top.
 
-            @returns {jQuery.Tools} Returns the current instance.
+            @returns {$.Tools} Returns the current instance.
         ###
         _onVieportMovesAwayFromTop: ->
             # Fixes overlay movement caused by the menu positioning
@@ -136,7 +127,7 @@ this.window.require([
             @description This method triggers if the responsive design
                          switches to desktop mode.
 
-            @returns {jQuery.Tools} Returns the current instance.
+            @returns {$.Tools} Returns the current instance.
         ###
         _onChangeToDesktopMode: ->
             this._domNodes.dimensionIndicator.hide()
@@ -145,7 +136,7 @@ this.window.require([
             @description This method triggers if the responsive design
                          switches to tablet mode.
 
-            @returns {jQuery.Tools} Returns the current instance.
+            @returns {$.Tools} Returns the current instance.
         ###
         _onChangeToTabletMode: ->
             this._domNodes.dimensionIndicator.fadeOut 'slow', =>
@@ -157,7 +148,7 @@ this.window.require([
             @description This method triggers if the responsive design
                          switches to smartphone mode.
 
-            @returns {jQuery.Tools} Returns the current instance.
+            @returns {$.Tools} Returns the current instance.
         ###
         _onChangeToSmartphoneMode: ->
             this._domNodes.dimensionIndicator.fadeOut 'slow', =>
@@ -173,17 +164,17 @@ this.window.require([
 
             @param {String} hash Location to switch to.
 
-            @returns {jQuery.Tools} Returns the current instance.
+            @returns {$.Tools} Returns the current instance.
         ###
         _onSwitchSection: (hash) ->
             direction = false
-            if jQuery.inArray(hash, ['next', 'prev']) isnt -1
+            if $.inArray(hash, ['next', 'prev']) isnt -1
                 direction = hash
                 hash = this._determineRelativeSections hash
             if hash.substr(0, 1) isnt '#'
                 hash = "##{hash}"
             this._domNodes.navigationButtons.each (index, button) =>
-                button = jQuery button
+                button = $ button
                 sectionDomNode = button.parent 'li'
                 if button.attr('href') is hash or (
                     index is 0 and hash is '#' and hash = button.attr('href')
@@ -206,7 +197,7 @@ this.window.require([
             @description This method triggers if all startup animations are
                          ready.
 
-            @returns {jQuery.Tools} Returns the current instance.
+            @returns {$.Tools} Returns the current instance.
         ###
         _onStartUpAnimationComplete: ->
             # All start up effects are ready. Handle direct
@@ -219,13 +210,13 @@ this.window.require([
 
         # endregion
 
-        # region helper methods
+        # region helper
 
         ###*
-            @description This method triggers if viewport arrives at special
+            @description This method triggers if view port arrives at special
                          areas.
 
-            @returns {jQuery.Tools} Returns the current instance.
+            @returns {$.Tools} Returns the current instance.
         ###
         _bindScrollEvents: ->
             this.on window, 'scroll', =>
@@ -245,7 +236,7 @@ this.window.require([
                          switches its mode. This method is called initially
                          on startup.
 
-            @returns {jQuery.Tools} Returns the current instance.
+            @returns {$.Tools} Returns the current instance.
         ###
         _triggerWindowResizeEvents: ->
             this._domNodes.scrollToTopButtons.css(
@@ -254,7 +245,7 @@ this.window.require([
         ###*
             @description This method triggers after window is loaded.
 
-            @returns {jQuery.Tools} Returns the current instance.
+            @returns {$.Tools} Returns the current instance.
         ###
         _removeLoadingCover: ->
             window.setTimeout(
@@ -265,13 +256,13 @@ this.window.require([
         ###*
             @description This method adds triggers to switch section.
 
-            @returns {jQuery.Tools} Returns the current instance.
+            @returns {$.Tools} Returns the current instance.
         ###
         _addNavigationEvents: ->
             self = this._handleTouchWipe()
             this.on this._domNodes.navigationButtons, 'click', ->
                 self.fireEvent(
-                    'switchSection', false, self, jQuery(this).attr 'href')
+                    'switchSection', false, self, $(this).attr 'href')
             super()
         ###*
             @description Determines current section to the right or the left.
@@ -282,7 +273,7 @@ this.window.require([
         ###
         _determineRelativeSections: (hash) ->
             this._domNodes.navigationButtons.each (index, button) =>
-                if jQuery(button).attr('href') is window.location.hash
+                if $(button).attr('href') is window.location.hash
                     # NOTE: We subtract 1 from navigation buttons length
                     # because we want to ignore the about this website section.
                     # And the index starts counting by zero.
@@ -296,7 +287,7 @@ this.window.require([
                         # us from getting negative button indixes.
                         newIndex = (index + numberOfButtons - 1) %
                             numberOfButtons
-                    hash = jQuery(
+                    hash = $(
                         this._domNodes.navigationButtons[newIndex]
                     ).attr 'href'
                     false
@@ -304,7 +295,7 @@ this.window.require([
         ###*
             @description Adds trigger to switch section on swipt gestures.
 
-            @returns {jQuery.Tools} Returns the current instance.
+            @returns {$.Tools} Returns the current instance.
         ###
         _handleTouchWipe: ->
             this._domNodes.parent.touchwipe(
@@ -319,10 +310,10 @@ this.window.require([
 
     # endregion
 
-    # region handle jQuery extending
+    # region handle $ extending
 
     ###* @ignore ###
-    jQuery.HomePage = ->
+    $.HomePage = ->
         self = new HomePage
         self._controller.apply self, arguments
 
@@ -330,5 +321,5 @@ this.window.require([
 
 # endregion
 
-## standalone ).call this, this.jQuery
+## standalone
 )

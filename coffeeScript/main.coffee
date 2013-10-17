@@ -19,21 +19,19 @@
 # endregion
 
 ## standalone
-## this.jQuery.noConflict(true) (jQuery) ->
-##     jQuery.HomePage googleTrackingCode: 'UA-40192634-1'
+## this.jQuery.noConflict(true) ($) ->
+##     $.HomePage googleTrackingCode: 'UA-40192634-1'
 this.require.noConflict = true
-this.require [['jQuery.HomePage', 'jquery-homePage-1.0.coffee']], (jQuery) ->
+this.require [['jQuery.HomePage', 'jquery-homePage-1.0.coffee']], ($) ->
     ###
-        Embed jQuery and require full compatible to all other
-        JavaScripts.
-        The global scope is clean after this sequence. The given
-        function is called when the dom-tree was loaded.
+        Embed $ and require full compatible to all other JavaScripts. The
+        global scope is clean after this sequence. The given function is
+        called when the dom-tree was loaded.
     ###
     ###
-        NOTE: "jQuery.noConflict()" should become "true" for parameter
-        "removeAll", because we will end up in race conditions by finishing
-        tests and removing the main jQuery object.
+        NOTE: "$.noConflict()" should become "true" for parameter "removeAll",
+        because we will end up in race conditions by finishing tests and
+        removing the main $ object.
     ###
-    jQuery.noConflict(true) (jQuery) ->
-        jQuery.HomePage googleTrackingCode: 'UA-40192634-1'
+    $.noConflict(true) ($) -> $.HomePage googleTrackingCode: 'UA-40192634-1'
 ##
