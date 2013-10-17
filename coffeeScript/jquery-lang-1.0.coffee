@@ -28,8 +28,8 @@
 ###
 
 ## standalone
-## do (jQuery) ->
-this.require([['jQuery.Tools', 'jquery-tools-1.0.coffee']], (jQuery) ->
+## do ($=jQuery) ->
+this.require([['jQuery.Tools', 'jquery-tools-1.0.coffee']], ($) ->
 ##
 
 # endregion
@@ -41,7 +41,7 @@ this.require([['jQuery.Tools', 'jquery-tools-1.0.coffee']], (jQuery) ->
         @class
         @extends jQuery.Tools
     ###
-    class Lang extends jQuery.Tools.class
+    class Lang extends $.Tools.class
 
     # region private properties
 
@@ -70,18 +70,14 @@ this.require([['jQuery.Tools', 'jquery-tools-1.0.coffee']], (jQuery) ->
             # Grab elements
             this._domNodes = this.grabDomNodes this._options.domNodes
 
-            jQuery('.d').contents().filter(function() {
-                return this.nodeName === '#comment'
-            }).each(function() {
-                jQuery(this.nodeValue).each(function() {
-                    $this = jQuery(this);
-                    if($this.hasClass('d')) {
-                        console.log($this);
-                        jQuery('.d').text($this.text())
-                    }
-                });
-            });
-
+            $('.d').contents().filter(->
+                this.nodeName is '#comment'
+            ).each(->
+                $(this.nodeValue).each(->
+                    $this = $ this
+                    if $this.hasClass 'd'
+                        console.log $this
+                        $('.d').text $this.text()))
             this
 
         # endregion
@@ -98,7 +94,7 @@ this.require([['jQuery.Tools', 'jquery-tools-1.0.coffee']], (jQuery) ->
     # endregion
 
     ###* @ignore ###
-    jQuery.Lang = Lang
+    $.Lang = Lang
 
 # endregion
 
