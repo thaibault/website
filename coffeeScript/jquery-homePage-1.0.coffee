@@ -21,7 +21,7 @@
 ###
 
 ## standalone
-## do ($=jQuery) ->
+## do ($=this.jQuery) ->
 this.window.require([
     ['jQuery.Website', 'jquery-website-1.0.coffee'],
 
