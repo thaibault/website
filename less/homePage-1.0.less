@@ -34,12 +34,6 @@ body.home-page {
 
     /* region global */
 
-        /* region bootstrap resets */
-
-    padding: 0;
-
-        /* endregion */
-
     color: @color1;
     background-color: @color2;
 
@@ -85,285 +79,126 @@ body.home-page {
 
     /* region responsive */
 
-        /* region navigation bar */
+    // TODO
 
-    /*
-        Special class on .container surrounding .navbar, used for positioning
-        it into place.
-    */
-    div.navbar-wrapper {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 3;
-        #generic > .opacity(0.97);
-        margin-top: 20px;
-        /*
-            Negative margin to pull up carousel. 90px is roughly margins and
-            height of navbar.
-        */
-        margin-bottom: -90px;
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
 
-        div.navbar {
-            /* Remove border and change up box shadow for more contrast */
-            div.navbar-inner {
-                border: 0;
-                #generic > .box-shadow(0, 2px, 10px, @shadowColor);
+  padding-bottom: 40px;
+  color: #5a5a5a;
 
-                div.dimension-indicator {
-                    margin-top: 10px;
-                    display: none;
-                }
-            }
-            /* Downsize the brand/project name a bit */
-            div.brand {
-                /* Increase vertical padding to match navigation bar links */
-                padding: 14px 20px 16px;
-                font-size: 16px;
-                font-weight: bold;
-                text-shadow: 0 -1px 0 rgba(0,0,0,.5);
-            }
-            /*
-                Navigation bar links: increase padding for taller navigation
-                bar
-            */
-            div.nav > li > a {
-                padding: 15px 20px;
-            }
-        }
-    }
+/* CUSTOMIZE THE NAVBAR
+-------------------------------------------------- */
 
-        /* endregion */
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+.navbar-wrapper {
+  position: relative;
+  z-index: 15;
+}
 
-        /* region carousel */
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
 
-    /* Carousel base class */
-    div.carousel div.carousel-inner {
-        position: relative;
-        margin-bottom: 60px;
+/* Carousel base class */
+.carousel {
+  margin-bottom: 60px;
 
-        div.item {
-            div[class^=carousel-image-] {
-                position: absolute;
-                top: 0;
-                left: 0;
-                min-width: 100%;
-                height: 835px;
-            }
-            div.carousel-image-about {
-                background-image: url('@{imagePath}carousel/about.png');
-            }
-            div.carousel-image-contact {
-                background-image: url('@{imagePath}carousel/contact.png');
-            }
-            div.carousel-image-references {
-                background-image: url('@{imagePath}carousel/references.png');
-            }
-            div.carousel-image-skills {
-                background-image: url('@{imagePath}carousel/skills.png');
-            }
-            div.carousel-image-about-this-website {
-                background-image: url('@{imagePath}carousel/aboutThisWebsite.png');
-            }
-            div.container {
-                position: relative;
-                z-index: 2;
+  /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
+  margin-top: -90px;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  z-index: 10;
+}
 
-                div.carousel-caption {
-                    background-color: transparent;
-                    position: static;
-                    max-width: 600px;
-                    padding: 0 20px;
-                    margin-top: 200px;
+/* Declare heights because of positioning of img element */
+.carousel .item {
+  height: 500px;
+  background-color: #777;
+}
+.carousel-inner > .item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 500px;
+}
 
-            /* region social media buttons */
+/* MARKETING CONTENT
+-------------------------------------------------- */
 
-                    a.btn.social-media {
-                        width: 32px;
-                        height: 32px;
-                        padding: 0;
-                    }
-                    a.btn.social-media-email {
-                        background-image: url('@{imagePath}socialMedia/email.png');
-                    }
-                    a.btn.social-media-github {
-                        background-image: url('@{imagePath}socialMedia/github.png');
-                    }
-                    a.btn.social-media-google {
-                        background-image: url('@{imagePath}socialMedia/google.png');
-                    }
-                    a.btn.social-media-xing {
-                        background-image: url('@{imagePath}socialMedia/xing.png');
-                    }
-                    a.btn.social-media-linkedin {
-                        background-image: url('@{imagePath}socialMedia/linkedin.png');
-                    }
-                    a.btn.social-media-skype {
-                        background-image: url('@{imagePath}socialMedia/skype.png');
-                    }
-                    a.btn.social-media-twitter {
-                        background-image: url('@{imagePath}socialMedia/twitter.png');
-                    }
-                    a.btn.social-media-facebook {
-                        background-image: url('@{imagePath}socialMedia/facebook.png');
-                    }
+/* Pad the edges of the mobile views a bit */
+.marketing {
+  padding-left: 15px;
+  padding-right: 15px;
+}
 
-            /* endregion */
+/* Center align the text within the three columns below the carousel */
+.marketing .col-lg-4 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.marketing h2 {
+  font-weight: normal;
+}
+.marketing .col-lg-4 p {
+  margin-left: 10px;
+  margin-right: 10px;
+}
 
-                    p.phone-number {
-                        margin-top: 10px;
-                        span {
-                            color: #5a5a5a;
-                        }
-                    }
-                    h1, div.lead {
-                        margin: 0;
-                        line-height: 1.25;
-                        color: #fff;
-                        text-shadow: 0 1px 1px rgba(0,0,0,.4);
-                    }
-                    .btn {
-                        margin-top: 10px;
-                        background-color: @color1;
-                        #generic > .linear-gradient(top, @color1, @color1, @color2);
-                    }
-                }
-            }
-            div.container.content {
-                margin-top: 150px;
-                font-size: 18px;
-                color: #ffffff;
-            }
-        }
-    }
+/* Featurettes
+------------------------- */
 
-        /* endregion */
+.featurette-divider {
+  margin: 80px 0; /* Space out the Bootstrap <hr> more */
+}
 
-        /* region smartphone */
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -1px;
+}
 
-    div.footer footer p a[href="#top"] {
-        visibility: hidden;
-    }
-    div.navbar-wrapper div.navbar div.navbar-inner {
-        margin: -20px;
+/* RESPONSIVE CSS
+-------------------------------------------------- */
 
-        div.nav-collapse ul li a {
-            padding-left: 25px;
-        }
-        a.brand {
-            margin-left: 15px;
-        }
-        button.btn.btn-navbar {
-            margin-right: 20px;
-        }
-    }
-    div.navbar-wrapper.on-top {
-        position: static;
-        overflow: visible;
-        margin-bottom: 20px;
+@media (min-width: 768px) {
 
-        div.container div.navbar.navbar-inverse {
-            /*
-                Compensate the inverse negative margin in static
-                positioning.
-            */
-            margin-right: 20px;
+  /* Remove the edge padding needed for mobile */
+  .marketing {
+    padding-left: 0;
+    padding-right: 0;
+  }
 
-            button.btn.btn-navbar {
-                margin-right: 0;
-            }
-        }
-    }
-    div.carousel div.carousel-inner div.item {
-        div.container div.carousel-caption {
-            padding: 0 30px;
-            margin-top: 50px;
+  /* Navbar positioning foo */
+  .navbar-wrapper {
+    margin-top: 20px;
+  }
+  /* The navbar becomes detached from the top, so we round the corners */
+  .navbar-wrapper .navbar {
+    border-radius: 4px;
+  }
 
-            h1 {
-                font-size: 30px;
-            }
-            .lead, .btn {
-                font-size: 18px;
-            }
-        }
-        div.container.content {
-            margin-top: 70px;
-        }
-        img {
-            height: 300px;
-        }
-    }
-    div.marketing .span4 + .span4 {
-        margin-top: 40px;
-    }
-    .featurette-heading {
-        font-size: 30px;
-    }
-    .featurette .lead {
-        font-size: 18px;
-        line-height: 1.5;
-    }
-    @media (min-width: 400px) {
-        div.footer footer p a[href="#top"] {
-            visibility: visible;
-        }
-    }
+  /* Bump up size of carousel content */
+  .carousel-caption p {
+    margin-bottom: 20px;
+    font-size: 21px;
+    line-height: 1.4;
+  }
 
-        /* endregion */
+  .featurette-heading {
+    font-size: 50px;
+  }
 
-        /* region tablet */
+}
 
-    @media (min-width: @minimumTabletWidthInPX) {
-        div.navbar-wrapper div.navbar {
-            margin-bottom: 0;
-            width: auto;
-
-            div.navbar-inner {
-                border-radius: 0;
-                margin: -20px 0;
-
-                button.btn.btn-navbar {
-                    margin-top: 5px;
-                }
-            }
-        }
-        div.carousel div.carousel-inner {// region// endregion
-            div.item {
-                div.container div.carousel-caption {
-                    margin-top: 150px;
-                }
-                div.container.content {
-                    margin-top: 100px;
-                }
-            }
-            img {
-                width: auto;
-                height: 500px;
-            }
-        }
-        div.featurette {
-            height: auto;
-            padding: 0;
-        }
-        img.featurette-image.pull-left, img.featurette-image.pull-right {
-            display: block;
-            float: none;
-            max-width: 40%;
-            margin: 0 auto 20px;
-        }
-
-        /* endregion */
-
-        /* region desktop */
-
-        @media (min-width: @minimumDesktopWidthInPX) {
-            
-        }
-
-        /* endregionn */
-
-    }
+@media (min-width: 992px) {
+  .featurette-heading {
+    margin-top: 120px;
+  }
+}
 
     /* endregion */
 
