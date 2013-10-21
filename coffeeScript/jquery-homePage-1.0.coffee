@@ -73,7 +73,7 @@ this.require([
 
             @param {Object} options An options object.
 
-            @returns {$.Tools} Returns the current instance.
+            @returns {$.HomePage} Returns the current instance.
         ###
         initialize: (options) ->
             this._options.domNodes.topDomNode =
@@ -99,7 +99,7 @@ this.require([
         ###*
             @description This method triggers if the view port moves to top.
 
-            @returns {$.Tools} Returns the current instance.
+            @returns {$.HomePage} Returns the current instance.
         ###
         _onVieportMovesToTop: ->
             # Fixes overlay movement caused by the menu positioning
@@ -114,7 +114,7 @@ this.require([
             @description This method triggers if the view port moves away from
                          top.
 
-            @returns {$.Tools} Returns the current instance.
+            @returns {$.HomePage} Returns the current instance.
         ###
         _onVieportMovesAwayFromTop: ->
             # Fixes overlay movement caused by the menu positioning
@@ -127,7 +127,7 @@ this.require([
             @description This method triggers if the responsive design
                          switches to desktop mode.
 
-            @returns {$.Tools} Returns the current instance.
+            @returns {$.HomePage} Returns the current instance.
         ###
         _onChangeToDesktopMode: ->
             this._domNodes.dimensionIndicator.hide()
@@ -136,7 +136,7 @@ this.require([
             @description This method triggers if the responsive design
                          switches to tablet mode.
 
-            @returns {$.Tools} Returns the current instance.
+            @returns {$.HomePage} Returns the current instance.
         ###
         _onChangeToTabletMode: ->
             this._domNodes.dimensionIndicator.fadeOut 'slow', =>
@@ -148,7 +148,7 @@ this.require([
             @description This method triggers if the responsive design
                          switches to smartphone mode.
 
-            @returns {$.Tools} Returns the current instance.
+            @returns {$.HomePage} Returns the current instance.
         ###
         _onChangeToSmartphoneMode: ->
             this._domNodes.dimensionIndicator.fadeOut 'slow', =>
@@ -164,7 +164,7 @@ this.require([
 
             @param {String} hash Location to switch to.
 
-            @returns {$.Tools} Returns the current instance.
+            @returns {$.HomePage} Returns the current instance.
         ###
         _onSwitchSection: (hash) ->
             direction = false
@@ -197,7 +197,7 @@ this.require([
             @description This method triggers if all startup animations are
                          ready.
 
-            @returns {$.Tools} Returns the current instance.
+            @returns {$.HomePage} Returns the current instance.
         ###
         _onStartUpAnimationComplete: ->
             # All start up effects are ready. Handle direct
@@ -216,7 +216,7 @@ this.require([
             @description This method triggers if view port arrives at special
                          areas.
 
-            @returns {$.Tools} Returns the current instance.
+            @returns {$.HomePage} Returns the current instance.
         ###
         _bindScrollEvents: ->
             this.on window, 'scroll', =>
@@ -236,7 +236,7 @@ this.require([
                          switches its mode. This method is called initially
                          on startup.
 
-            @returns {$.Tools} Returns the current instance.
+            @returns {$.HomePage} Returns the current instance.
         ###
         _triggerWindowResizeEvents: ->
             this._domNodes.scrollToTopButtons.css(
@@ -245,7 +245,7 @@ this.require([
         ###*
             @description This method triggers after window is loaded.
 
-            @returns {$.Tools} Returns the current instance.
+            @returns {$.HomePage} Returns the current instance.
         ###
         _removeLoadingCover: ->
             window.setTimeout(
@@ -256,7 +256,7 @@ this.require([
         ###*
             @description This method adds triggers to switch section.
 
-            @returns {$.Tools} Returns the current instance.
+            @returns {$.HomePage} Returns the current instance.
         ###
         _addNavigationEvents: ->
             self = this._handleTouchWipe()
@@ -295,7 +295,7 @@ this.require([
         ###*
             @description Adds trigger to switch section on swipt gestures.
 
-            @returns {$.Tools} Returns the current instance.
+            @returns {$.HomePage} Returns the current instance.
         ###
         _handleTouchWipe: ->
             this._domNodes.parent.touchwipe(
