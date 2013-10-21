@@ -23,7 +23,7 @@
 ## standalone
 ## do ($=this.jQuery) ->
 this.require([
-    ['jQuery.Website', 'jquery-website-1.0.coffee'],
+    ['jQuery.Website', 'jquery-website-1.0.coffee']
 
     ['jQuery.fn.touchwipe', 'jquery-touchwipe.1.1.1']],
 ($) ->
