@@ -83,10 +83,14 @@ endregion -->
 <% PROJECTS = (
 <%     ('boostNode', 'http://thaibault.github.io/boostNode/'),
 <%     ('installArchLinux', 'http://thaibault.github.io/installArchLinux/'),
+<%     ('genericServiceHandler',
+<%      'http://thaibault.github.io/genericServiceHandler/'),
 <%     ('require', 'http://thaibault.github.io/require/'),
-<%     ('jquery-tools', 'http://thaibault.github.io/jquery-tools/'),
-<%     ('jquery-incrementer', 'http://thaibault.github.io/jquery-incrementer/'),
-<%     ('jquery-website', 'http://thaibault.github.io/jquery-website/'))
+<%     ('jquery-tools', 'http://thaibault.github.io/jQuery-tools/'),
+<%     ('jquery-lang', 'http://thaibault.github.io/jQuery-lang/'),
+<%     ('jquery-incrementer',
+<%      'http://thaibault.github.io/jQuery-incrementer/'),
+<%     ('jquery-website', 'http://thaibault.github.io/jQuery-website/'))
 
 <% # endregion
 
