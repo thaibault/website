@@ -17,28 +17,23 @@
     @author t.sickert@gmail.com (Torben Sickert)
     @version 1.0 stable
     @fileOverview
-    This module provides common logic for the whole webpage.
+    This module provides common logic for the whole web page.
 ###
 
-###*
-    @name jQuery
-    @see www.jquery.com
-###
 ## standalone
-## do (jQuery) ->
-this.window.require([
-    ['less.Parser', 'less-1.4.1'],
+## do ($=this.jQuery) ->
+this.require([
+    ['less.Parser', 'less-1.5.0']
 
-    ['jQuery.Tools', 'jquery-tools-1.0.coffee'],
+    ['jQuery', 'jquery-2.0.3']
+    ['jQuery.fn.carousel', 'bootstrap-3.0.0']
+    ['jQuery.scrollTo', 'jquery-scrollTo-1.4.3.1']
+    ['jQuery.fn.spin', 'jquery-spin-1.2.8']
+    ['jQuery.fn.hashchange', 'jquery-observeHashChange-1.0']
 
-    ['jQuery.fn.carousel', 'bootstrap-3.0.0'],
-
-    ['jQuery.scrollTo', 'jquery-scrollTo-1.4.3.1'],
-
-    ['jQuery.fn.spin', 'jquery-spin-1.2.8'],
-
-    ['jQuery.fn.hashchange', 'jquery-observeHashChange-1.0']],
-(less, lessParser, jQuery) ->
+    ['jQuery.Tools', 'jquery-tools-1.0.coffee']
+    ['jQuery.Lang', 'jquery-lang-1.0.coffee']],
+(less, lessParser, $) ->
 ##
 
 # endregion
@@ -46,24 +41,12 @@ this.window.require([
 # region plugins/classes
 
     ###*
-        @memberOf jQuery
+        @memberOf $
         @class
     ###
-    class Website extends jQuery.Tools.class
+    class Website extends $.Tools.class
 
-    # region private properties
-
-        __name__: 'Website'
-        __googleAnalyticsCode: "
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', '{1}', 'github.io');ga('send', 'pageview');"
-
-    # endregion
-
-    # region protected properties
+    # region properties
 
         ###*
             Saves default options for manipulating the default behaviour.
@@ -79,13 +62,13 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
         _parentOptions:
             logging: false
             domNodeSelectorPrefix: 'body.{1}'
-            onVieportMovesToTop: jQuery.noop()
-            onVieportMovesAwayFromTop: jQuery.noop()
-            onChangeToDesktopMode: jQuery.noop()
-            onChangeToTabletMode: jQuery.noop()
-            onChangeToSmartphoneMode: jQuery.noop()
-            onSwitchSection: jQuery.noop()
-            onStartUpAnimationComplete: jQuery.noop()
+            onViewportMovesToTop: $.noop()
+            onViewportMovesAwayFromTop: $.noop()
+            onChangeToDesktopMode: $.noop()
+            onChangeToTabletMode: $.noop()
+            onChangeToSmartphoneMode: $.noop()
+            onSwitchSection: $.noop()
+            onStartUpAnimationComplete: $.noop()
             addtionalPageLoadingTimeInMilliseconds: 0
             mediaQueryCssIndicatorStyleType: 'border-left-style'
             googleTrackingCode: 'UA-0-0'
@@ -104,6 +87,7 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
             startUpFadeInOptions:
                 easing: 'swing'
                 duration: 'slow'
+                always: -> $(this).removeAttr 'style'
             windowLoadingCoverFadeOutOptions:
                 easing: 'swing'
                 duration: 'slow'
@@ -124,40 +108,48 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
                 zIndex: 2e9 # The z-index (defaults to 2000000000)
                 top: 'auto' # Top position relative to parent in px
                 left: 'auto' # Left position relative to parent in px
-        ###*
-            Holds all needed dom nodes.
-
-            @property {Object}
-        ###
-        _domNodes: {}
+            language: {}
         ###*
             Determines weather the view port is on top of the page.
 
             @property {Boolean}
         ###
-        _vieportIsOnTop: true
+        _viewportIsOnTop: true
         ###*
             Describes the current mode defined by the css media queries.
 
             @property {String}
         ###
         _currentMediaQueryMode: ''
+        ###*
+            Saves the language handler instance.
+
+            @property {$.Lang}
+        ###
+        _languageHandler: null
+        __name__: 'Website'
+        __googleAnalyticsCode: "
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', '{1}', 'github.io');ga('send', 'pageview');"
 
     # endregion
 
     # region public methods
 
-        # region special methods
+        # region special
 
         ###*
-            @description Initializes the interactive webapp.
+            @description Initializes the interactive web app.
 
             @param {Object} options An options object.
 
-            @returns {jQuery.Tools} Returns the current instance.
+            @returns {$.Website} Returns the current instance.
         ###
         initialize: (options) ->
-            this._options = jQuery.extend(
+            this._options = $.extend(
                 true, this._parentOptions, this._options)
             super options
             this._domNodes = this.grabDomNodes this._options.domNodes
@@ -171,6 +163,9 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
             this._addNavigationEvents()._addMediaQueryChangeEvents(
             )._triggerWindowResizeEvents()._handleGoogleAnalytics(
                 this._options.trackingCode)
+            if not this._options.language.logging?
+                this._options.language.logging = this._options.logging
+            this._languageHandler = $.Lang this._options.language
 
         # endregion
 
@@ -178,14 +173,14 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
 
     # region protected methods
 
-        # region event methods
+        # region event
 
         ###*
-            @description This method triggers if the vieport moves to top.
+            @description This method triggers if the viewport moves to top.
 
-            @returns {jQuery.Tools} Returns the current instance.
+            @returns {$.Website} Returns the current instance.
         ###
-        _onVieportMovesToTop: ->
+        _onViewportMovesToTop: ->
             this._domNodes.scrollToTopButtons.animate(
                 bottom: '+=30'
                 opacity: 0
@@ -195,12 +190,12 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
                     this._domNodes.scrollToTopButtons.css 'bottom', '-=30')
             this
         ###*
-            @description This method triggers if the vieport moves away from
+            @description This method triggers if the viewport moves away from
                          top.
 
-            @returns {jQuery.Tools} Returns the current instance.
+            @returns {$.Website} Returns the current instance.
         ###
-        _onVieportMovesAwayFromTop: ->
+        _onViewportMovesAwayFromTop: ->
             this._domNodes.scrollToTopButtons.css(
                 bottom: '+=30'
                 display: 'block'
@@ -216,7 +211,7 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
             @description This method triggers if the responsive design
                          switches to desktop mode.
 
-            @returns {jQuery.Tools} Returns the current instance.
+            @returns {$.Website} Returns the current instance.
         ###
         _onChangeToDesktopMode: ->
             this
@@ -224,7 +219,7 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
             @description This method triggers if the responsive design
                          switches to tablet mode.
 
-            @returns {jQuery.Tools} Returns the current instance.
+            @returns {$.Website} Returns the current instance.
         ###
         _onChangeToTabletMode: ->
             this
@@ -232,14 +227,14 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
             @description This method triggers if the responsive design
                          switches to smart phone mode.
 
-            @returns {jQuery.Tools} Returns the current instance.
+            @returns {$.Website} Returns the current instance.
         ###
         _onChangeToSmartphoneMode: ->
             this
         ###*
             @description This method triggers if we change the current section.
 
-            @returns {jQuery.Tools} Returns the current instance.
+            @returns {$.Website} Returns the current instance.
         ###
         _onSwitchSection: ->
             this
@@ -247,20 +242,20 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
             @description This method is complete if last startup animation
                          was initialized.
 
-            @returns {jQuery.Tools} Returns the current instance.
+            @returns {$.Website} Returns the current instance.
         ###
         _onStartUpAnimationComplete: ->
             this
 
         # endregion
 
-        # region helper methods
+        # region helper
 
         ###*
             @description This method adds triggers for responsive design
                          switches.
 
-            @returns {jQuery.Tools} Returns the current instance.
+            @returns {$.Website} Returns the current instance.
         ###
         _addMediaQueryChangeEvents: ->
             this.on this._domNodes.window, 'resize', this.getMethod(
@@ -270,10 +265,10 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
             @description This method triggers if the responsive design
                          switches its mode.
 
-            @returns {jQuery.Tools} Returns the current instance.
+            @returns {$.Website} Returns the current instance.
         ###
         _triggerWindowResizeEvents: ->
-            jQuery.each(
+            $.each(
                 this._options.mediaQueryCssIndicator,
                 (mode, cssValue) =>
                     if (this._domNodes.parent.css(
@@ -286,32 +281,34 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
                                 mode.substr(0, 1).toUpperCase() +
                                     mode.substr 1),
                                 false, this
-                            ].concat this.argumentsObjectToArray arguments))
+                            ].concat this.argumentsObjectToArray arguments
+                        )
+            )
             this
         ###*
-            @description This method triggers if viewport arrives at special
+            @description This method triggers if view port arrives at special
                          areas.
 
-            @returns {jQuery.Tools} Returns the current instance.
+            @returns {$.Website} Returns the current instance.
         ###
         _bindScrollEvents: ->
             this.on window, 'scroll', =>
                 if this._domNodes.window.scrollTop()
-                    if this._vieportIsOnTop
-                        this._vieportIsOnTop = false
+                    if this._viewportIsOnTop
+                        this._viewportIsOnTop = false
                         this.fireEvent.apply this, [
-                            'vieportMovesAwayFromTop', false, this
+                            'viewportMovesAwayFromTop', false, this
                         ].concat this.argumentsObjectToArray arguments
-                else if not this._vieportIsOnTop
-                    this._vieportIsOnTop = true
+                else if not this._viewportIsOnTop
+                    this._viewportIsOnTop = true
                     this.fireEvent.apply this, [
-                        'vieportMovesToTop', false, this
+                        'viewportMovesToTop', false, this
                     ].concat this.argumentsObjectToArray arguments
             this
         ###*
             @description This method triggers after window is loaded.
 
-            @returns {jQuery.Tools} Returns the current instance.
+            @returns {$.Website} Returns the current instance.
         ###
         _removeLoadingCover: ->
             window.setTimeout(
@@ -320,7 +317,7 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
                         Hide startup animation dom nodes to show them step
                         by step.
                     ###
-                    jQuery(
+                    $(
                         '[class^="' +
                         this.sliceDomNodeSelectorPrefix(
                             this._options.domNodes
@@ -336,31 +333,31 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
 
             @param {Number} elementNumber The current start up step.
 
-            @returns {jQuery.Tools} Returns the current instance.
+            @returns {$.Website} Returns the current instance.
         ###
         _handleStartUpEffects: (elementNumber) ->
             # Stop and delete spinner instance.
             this._domNodes.windowLoadingSpinner.spin false
-            if not jQuery.isNumeric elementNumber
+            if not $.isNumeric elementNumber
                 elementNumber = 1
             window.setTimeout((=>
-                jQuery(
+                $(
                     this._options.domNodes.startUpAnimationClassPrefix +
                     elementNumber
                 ).fadeIn this._options.startUpFadeInOptions
-                if (jQuery(
+                if ($(
                     this._options.domNodes.startUpAnimationClassPrefix +
                     (elementNumber + 1)
                 ).length)
                     this._handleStartUpEffects elementNumber + 1
                 else if window.location.href.indexOf('#') != -1
-                    this.fireEvent 'startUpAnimationComplete'),
-                this._options.startUpAnimationElementDelayInMiliseconds)
+                    this.fireEvent 'startUpAnimationComplete'
+            ), this._options.startUpAnimationElementDelayInMiliseconds)
             this
         ###*
             @description This method adds triggers to switch section.
 
-            @returns {jQuery.Tools} Returns the current instance.
+            @returns {$.Website} Returns the current instance.
         ###
         _addNavigationEvents: ->
             this._domNodes.window.hashchange(=>
@@ -370,7 +367,7 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
         ###*
             @description Adds trigger to scroll top buttons.
 
-            @returns {jQuery.Tools} Returns the current instance.
+            @returns {$.Website} Returns the current instance.
         ###
         _handleScrollToTopButton: ->
             this.on(
@@ -386,9 +383,9 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
             @param {Function} onAfter Callback to call after effect has
                                       finished.
 
-            @returns {jQuery.Tools} Returns the current instance.
+            @returns {$.Website} Returns the current instance.
         ###
-        _scrollToTop: (onAfter=jQuery.noop()) ->
+        _scrollToTop: (onAfter=$.noop()) ->
             if this._options.scrollInLinearTime
                 distanceToTop = this._domNodes.window.scrollTop()
                 menuHeight = this._domNodes.topDomNode.find(
@@ -398,23 +395,23 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
                 if distanceToTop < menuHeight
                     distanceToScroll = distanceToScroll + menuHeight -
                         distanceToTop
-                jQuery.scrollTo(
+                $.scrollTo(
                     {top: "-=#{distanceToScroll}px", left: '-=0'},
                     # Scroll as fast as we have distance to top.
                     {duration: distanceToScroll, onAfter: onAfter})
             else
-                jQuery.scrollTo(
+                $.scrollTo(
                     {top: 0, left: 0},
                     {duration: 'slow', onAfter: onAfter})
             this
         ###*
             @description Scrolls to top of page. Runs the given function
-                         after vieport arrives.
+                         after viewport arrives.
 
             @param {String} trackingCode Google's javaScript embedding code
                                          snippet.
 
-            @returns {jQuery.Tools} Returns the current instance.
+            @returns {$.Website} Returns the current instance.
         ###
         _handleGoogleAnalytics: (trackingCode) ->
             try
@@ -431,14 +428,14 @@ ga('create', '{1}', 'github.io');ga('send', 'pageview');"
 
     # endregion
 
-    # region handle jQuery extending
+    # region handle $ extending
 
     ###* @ignore ###
-    jQuery.Website = ->
+    $.Website = ->
         self = new Website
         self._controller.apply self, arguments
     ###* @ignore ###
-    jQuery.Website.class = Website
+    $.Website.class = Website
 
     # endregion
 
