@@ -18,6 +18,19 @@
 
 # endregion
 
+# TODO use only in development mode
+this.less =
+    env: 'development'
+    async: false
+    fileAsync: false
+    poll: 1000
+    functions: {}
+    dumpLineNumbers: 'all'
+    relativeUrls: false
+    rootpath: ''
+    logLevel: 0
+    #sourceMap: true
+
 ## standalone
 ## this.jQuery.noConflict(true) ($) ->
 ##     $.HomePage googleTrackingCode: 'UA-40192634-1'
@@ -33,5 +46,6 @@ this.require [['jQuery.HomePage', 'jquery-homePage-1.0.coffee']], ($) ->
         because we will end up in race conditions by finishing tests and
         removing the main $ object.
     ###
-    $.noConflict(true) ($) -> $.HomePage googleTrackingCode: 'UA-40192634-1'
+    $.noConflict(true) ($) -> $.HomePage
+        googleTrackingCode: 'UA-40192634-1', logging: true
 ##

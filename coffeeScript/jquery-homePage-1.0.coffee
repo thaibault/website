@@ -49,17 +49,28 @@ this.require([
         _options:
             trackingCode: 'UA-40192634-1'
             scrollInLinearTime: true
+            dimensionIndicatorTemplate: '({1})'
             domNodes:
                 navigationBar: 'div.navbar-wrapper'
+                topDomNode: 'div.navbar-wrapper'
                 navigationButtons:
-                    'div.navbar-wrapper ul.nav li a, a[href="#about-this-website"]'
+                    'div.navbar-wrapper ul.nav li a, ' +
+                    'a[href="#about-this-website"]'
                 carousel: 'div.carousel.slide'
-                dimensionIndicator:
-                    'div.navbar-wrapper div.dimension-indicator'
+                dimensionIndicator: '.dimension-indicator'
                 footer: 'div.footer'
+                expandMenuButton: 'button.navbar-toggle'
             carouselOptions:
                 interval: false
                 pause: 'hover'
+            language:
+                onSwitched: (oldLanguage, newLanguage) ->
+                    # Add language toggle button functionality.
+                    $("a[href=\"#lang-#{newLanguage}\"]").fadeOut('fast', ->
+                        $(this).attr('href', "#lang-#{oldLanguage}").text(
+                            oldLanguage.substr 0, 2
+                        ).fadeIn 'fast'
+                    )
         __name__: 'HomePage'
 
     # endregion
@@ -76,8 +87,6 @@ this.require([
             @returns {$.HomePage} Returns the current instance.
         ###
         initialize: (options) ->
-            this._options.domNodes.topDomNode =
-                this._options.domNodes.navigationBar
             super options
             this._domNodes.carousel.carousel this._options.carouselOptions
             this.on this._domNodes.carousel, 'slide', =>
@@ -86,6 +95,10 @@ this.require([
                 this._domNodes.footer.fadeIn 'slow'
             # NOTE: Cycling is more intuitive for reaction on wipe gestures.
             this._domNodes.carousel.carousel 'cycle'
+            # NOTE: Avoid from seeing directly to the virtual generated scroll
+            # space.
+            this.on this._domNodes.expandMenuButton, 'click', =>
+                this._domNodes.carousel.css 'margin-top', 0
             this
 
         # endregion
@@ -97,26 +110,26 @@ this.require([
         # region event
 
         ###*
-            @description This method triggers if the view port moves to top.
+            @description This method triggers if the viewport moves to top.
 
             @returns {$.HomePage} Returns the current instance.
         ###
-        _onVieportMovesToTop: ->
+        _onViewportMovesToTop: ->
             # Fixes overlay movement caused by the menu positioning
             # transformation.
             this._domNodes.windowLoadingCover.css 'margin-top', '-20px'
             # Switch navigation bar from fixed positioning to static smooth
-            # in smartphone mode.
+            # in smart phone mode.
             this._domNodes.navigationBar.addClass(
                 this._options.domNodes.navigationOnTopIndicatorClass)
             super()
         ###*
-            @description This method triggers if the view port moves away from
+            @description This method triggers if the viewport moves away from
                          top.
 
             @returns {$.HomePage} Returns the current instance.
         ###
-        _onVieportMovesAwayFromTop: ->
+        _onViewportMovesAwayFromTop: ->
             # Fixes overlay movement caused by the menu positioning
             # transformation.
             this._domNodes.windowLoadingCover.css 'margin-top', 0
@@ -124,38 +137,47 @@ this.require([
                 this._options.domNodes.navigationOnTopIndicatorClass)
             super()
         ###*
-            @description This method triggers if the responsive design
-                         switches to desktop mode.
+            @description This method triggers if the responsive design switches
+                         to desktop mode.
 
             @returns {$.HomePage} Returns the current instance.
         ###
         _onChangeToDesktopMode: ->
-            this._domNodes.dimensionIndicator.hide()
+            this._domNodes.dimensionIndicator.fadeOut 'slow', =>
+                this._domNodes.dimensionIndicator.text(
+                    this.stringFormat(
+                        this._options.dimensionIndicatorTemplate,
+                        'desktop-mode')
+                ).fadeIn 'slow'
             super()
         ###*
-            @description This method triggers if the responsive design
-                         switches to tablet mode.
+            @description This method triggers if the responsive design switches
+                         to tablet mode.
 
             @returns {$.HomePage} Returns the current instance.
         ###
         _onChangeToTabletMode: ->
             this._domNodes.dimensionIndicator.fadeOut 'slow', =>
                 this._domNodes.dimensionIndicator.text(
-                    'tablet-mode'
+                    this.stringFormat(
+                        this._options.dimensionIndicatorTemplate,
+                        'tablet-mode')
                 ).fadeIn 'slow'
             super()
         ###*
-            @description This method triggers if the responsive design
-                         switches to smartphone mode.
+            @description This method triggers if the responsive design switches
+                         to smart phone mode.
 
             @returns {$.HomePage} Returns the current instance.
         ###
         _onChangeToSmartphoneMode: ->
             this._domNodes.dimensionIndicator.fadeOut 'slow', =>
                 this._domNodes.dimensionIndicator.text(
-                    'smartphone-mode'
+                    this.stringFormat(
+                        this._options.dimensionIndicatorTemplate,
+                        'smartphone-mode')
                 ).fadeIn 'slow'
-            if this._vieportIsOnTop
+            if this._viewportIsOnTop
                 this._domNodes.navigationBar.addClass(
                     this._options.domNodes.navigationOnTopIndicatorClass)
             super()
@@ -177,13 +199,13 @@ this.require([
                 button = $ button
                 sectionDomNode = button.parent 'li'
                 if button.attr('href') is hash or (
-                    index is 0 and hash is '#' and hash = button.attr('href')
+                    index is 0 and hash is '#' and hash = button.attr 'href'
                 )
                     if not sectionDomNode.hasClass 'active'
                         this.debug "Switch to section \"#{hash}\"."
                         if direction
                             index = direction
-                        if this._vieportIsOnTop
+                        if this._viewportIsOnTop
                             this._domNodes.carousel.carousel index
                         else
                             this._scrollToTop(=>
@@ -213,34 +235,29 @@ this.require([
         # region helper
 
         ###*
-            @description This method triggers if view port arrives at special
+            @description This method triggers if viewport arrives at special
                          areas.
 
             @returns {$.HomePage} Returns the current instance.
         ###
         _bindScrollEvents: ->
             this.on window, 'scroll', =>
-                distanceToTop = this._domNodes.window.scrollTop()
-                if distanceToTop
-                    menuHeight = this._domNodes.navigationBar.find(
-                        'div.navbar'
-                    ).outerHeight()
-                    if distanceToTop < menuHeight
-                        this._domNodes.carousel.css(
-                            'margin-top', (menuHeight - distanceToTop) + 'px')
-                else if not this._vieportIsOnTop
-                    this._domNodes.carousel.css 'margin-top', 0
-            super()
-        ###*
-            @description This method triggers if the responsive design
-                         switches its mode. This method is called initially
-                         on startup.
-
-            @returns {$.HomePage} Returns the current instance.
-        ###
-        _triggerWindowResizeEvents: ->
-            this._domNodes.scrollToTopButtons.css(
-                'right', this._domNodes.footer.find('p').offset().left)
+                if this._currentMediaQueryMode is 'smartphone'
+                    distanceToTop = this._domNodes.window.scrollTop()
+                    if distanceToTop
+                        menuHeight = this._domNodes.navigationBar.find(
+                            'div.navbar'
+                        ).outerHeight()
+                        if distanceToTop < menuHeight
+                            margin = menuHeight - distanceToTop
+                            distanceToBottom = this._domNodes.document.height() - this._domNodes.window.height() - distanceToTop
+                            if margin > distanceToBottom
+                                # NOTE: Avoid bouncing.
+                                margin = distanceToBottom
+                            this.log margin
+                            this._domNodes.carousel.css 'margin-top', "#{margin}px"
+                    else if not this._viewportIsOnTop
+                        this._domNodes.carousel.css 'margin-top', 0
             super()
         ###*
             @description This method triggers after window is loaded.
@@ -284,7 +301,7 @@ this.require([
                     else if hash is 'prev'
                         # NOTE: Subtracting 1 in the residue class ring means
                         # adding the number of numbers minus 1. This prevents
-                        # us from getting negative button indixes.
+                        # us from getting negative button indexes.
                         newIndex = (index + numberOfButtons - 1) %
                             numberOfButtons
                     hash = $(
@@ -293,7 +310,7 @@ this.require([
                     false
             hash
         ###*
-            @description Adds trigger to switch section on swipt gestures.
+            @description Adds trigger to switch section on swipe gestures.
 
             @returns {$.HomePage} Returns the current instance.
         ###

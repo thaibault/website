@@ -46,39 +46,67 @@ endregion -->
 
 <% SECTIONS = (
 <%     ('contact', (
-<%         'Hire me', 'Get in touch', "I'm a freelancer, ready to help you. "
-<%         "Let's talk about your project and what I can do.",
-<%         'TODO')),
+<%         {'enUS': 'Contact', 'deDE': 'Kontakt'},
+<%         {'enUS': 'Get in touch', 'deDE': 'Lernen wir uns kennen'},
+<%         {'enUS': "I'm a freelancer, ready to help you. Let's talk about "
+<%                  "your project and what I can do.",
+<%          'deDE': 'Ich arbeite selbständig und bereit Ihnen zu Helfen. '
+<%                  'Lassen Sie uns über Ihr Projetk sprechen und was ich für '
+<%                  'Sie tun kann.'},
+<%         {'enUS': 'TODO', 'deDE': 'TODO'})),
 <%     ('skills', (
-<%         'Skills', 'Knowing a lot of facts is not the same as being smart.',
-<%         'Ambition, manage projects with love..',
-<%         'TODO')),
+<%         {'enUS': 'Skills', 'deDE': 'Fähigkeiten'},
+<%         {'enUS': 'Knowing a lot of facts is not the same as being smart.',
+<%          'deDE': 'TODO'},
+<%         {'enUS': 'Ambition, manage projects with love..', 'deDE': 'TODO'},
+<%         {'enUS': 'TODO', 'deDE': 'TODO'})),
 <%     ('references', (
-<%         'References', "You don't want good service, instead of the result! "
-<%                       "Perfection kills!",
-<%         'Experiences from Posic, Akra, Virtual Identity, Chair of Humanoid'
-<%         'Robots Lab and Rechnernetze and Telematik in University Freiburg,'
-<%         'BPV, BTI, Vattenfall...',
-<%         'TODO')),
+<%         {'enUS': 'References', 'deDE': 'Referenzen'},
+<%         {'enUS': "You don't want good service, instead of the result! "
+<%                  "Perfection kills!",
+<%          'deDE': 'TODO'},
+<%         {'enUS': 'Experiences from Posic, Akra, Virtual Identity, Chair of '
+<%                  'Humanoid',
+<%          'deDE': 'TODO'},
+<%         {'enUS': 'Robots Lab and Rechnernetze and Telematik in University '
+<%                  'Freiburg, BPV, BTI, Vattenfall...',
+<%          'deDE': 'TODO'},
+<%         {'enUS': 'TODO', 'deDE': 'TODO'})),
 <%     ('about', (
-<%         'About', "I'm a computer scientist and love the challenge",
-<%         'Experiences from Posic, Akra, Virtual Identity, Chair of Humanoid'
-<%         'Robots Lab and Rechnernetze and Telematik in University Freiburg,'
-<%         'BPV, BTI, Vattenfall...',
-<%         'TODO')),
+<%         {'enUS': 'About me', 'deDE': 'Über mich'},
+<%         {'enUS': "I'm a computer scientist and love the challenge",
+<%          'deDE': 'Ich bin Informatiker und liebe Herausforderung'},
+<%         {'enUS': 'Experiences from Posic, Akra, Virtual Identity, Chair of '
+<%                  'Humanoid Robots Lab and Rechnernetze and Telematik in '
+<%                  'University Freiburg, BPV, BTI, Vattenfall...',
+<%          'deDE': 'TODO'},
+<%         {'enUS': 'TODO', 'deDE': 'TODO'})),
 <%     ('about-this-website', (
-<%         '', 'About this website', '',
-<%         '<p>Provider:</p>\n'
-<%         '<p>Torben Sickert</p>\n'
-<%         '<p>Christoph-Mang-Str. 14</p>\n'
-<%         '<p>79100 Freiburg</p>\n'
-<%         '<p>Tel. 0049 (0) 176 / 10248185</p>\n'
-<%         '<p>Internet: <a href="%s">%s</a></p>\n'
-<%         '<p>Email: <a href="mailto:%s">%s</a></p>\n'
-<%         '<br />\n'
-<%         '<p><a href="%s">public ssh key</a></p>' %
-<%         (SOCIAL_MEDIA[-1][1], SOCIAL_MEDIA[-1][1], SOCIAL_MEDIA[0][1],
-<%          SOCIAL_MEDIA[0][1], LINK_TO_PUBLIC_SSH_KEY))))
+<%         '', {'enUS': 'About this website', 'deDE': 'Impressum'}, '',
+<%         {'enUS': '<p>Provider:</p>\n'
+<%                  '<p>Torben Sickert</p>\n'
+<%                  '<p>Christoph-Mang-Str. 14</p>\n'
+<%                  '<p>79100 Freiburg</p>\n'
+<%                  '<p>Tel. 0049 (0) 176 / 10248185</p>\n'
+<%                  '<p>Internet: <a href="%s">%s</a></p>\n'
+<%                  '<p>Email: <a href="mailto:%s">%s</a></p>\n'
+<%                  '<br />\n'
+<%                  '<p><a href="%s">public ssh key</a></p>' %
+<%                  (SOCIAL_MEDIA[-1][1], SOCIAL_MEDIA[-1][1],
+<%                   SOCIAL_MEDIA[0][1], SOCIAL_MEDIA[0][1],
+<%                   LINK_TO_PUBLIC_SSH_KEY),
+<%          'deDE': '<p>Anbieter:</p>\n'
+<%                  '<p>Torben Sickert</p>\n'
+<%                  '<p>Christoph-Mang-Str. 14</p>\n'
+<%                  '<p>79100 Freiburg</p>\n'
+<%                  '<p>Tel. 0049 (0) 176 / 10248185</p>\n'
+<%                  '<p>Internet: <a href="%s">%s</a></p>\n'
+<%                  '<p>Email: <a href="mailto:%s">%s</a></p>\n'
+<%                  '<br />\n'
+<%                  '<p><a href="%s">öffentlicher SSH-Schlüssel</a></p>' %
+<%                  (SOCIAL_MEDIA[-1][1], SOCIAL_MEDIA[-1][1],
+<%                   SOCIAL_MEDIA[0][1], SOCIAL_MEDIA[0][1],
+<%                   LINK_TO_PUBLIC_SSH_KEY)})))
 
 <% PROJECTS = (
 <%     ('boostNode', 'http://thaibault.github.io/boostNode/'),
@@ -104,10 +132,7 @@ endregion -->
 
 <!-- region browser sniffing -->
 
-<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
-<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"><![endif]-->
-<!--[if IE 8]><html class="no-js lt-ie9"><![endif]-->
-<!--[if gt IE 8]><!--><html class="no-js"><!--<![endif]-->
+<html lang="en">
 
 <!-- endregion -->
 
@@ -128,22 +153,22 @@ endregion -->
 
     <!-- region fav and touch icons -->
 
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<%IMAGE_APPLE_TOUCH_ICON_PATH%>144x144-precomposed.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<%IMAGE_APPLE_TOUCH_ICON_PATH%>114x114-precomposed.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<%IMAGE_APPLE_TOUCH_ICON_PATH%>72x72-precomposed.png" />
-        <link rel="apple-touch-icon-precomposed" href="<%IMAGE_APPLE_TOUCH_ICON_PATH%>57x57-precomposed.png" />
-        <link rel="shortcut icon" type="image/x-icon" href="<%IMAGE_PATH%>favicon.ico" />
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<% IMAGE_APPLE_TOUCH_ICON_PATH %>144x144-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<% IMAGE_APPLE_TOUCH_ICON_PATH %>114x114-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<% IMAGE_APPLE_TOUCH_ICON_PATH %>72x72-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" href="<% IMAGE_APPLE_TOUCH_ICON_PATH %>57x57-precomposed.png" />
+        <link rel="shortcut icon" type="image/x-icon" href="<% IMAGE_PATH %>favicon.ico" />
 
     <!-- endregion -->
 
     <!-- region resources -->
 
-        <link type="text/css" rel="stylesheet/less" media="screen" href="<%LESS_PATH%>homePage-1.0.less" />
+        <link type="text/css" rel="stylesheet/less" media="screen" href="<% LESS_PATH %>homePage-1.0.less" />
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-        <!--[if lt IE 9]><script src="<%JAVA_SCRIPT_PATH%>html5shiv-3.6.2.js"></script><![endif]-->
-        <script type="text/javascript" src="<%JAVA_SCRIPT_PATH%>coffeeScript-1.6.3.js"></script>
-        <script type="text/coffeescript" src="<%COFFEE_SCRIPT_PATH%>require-1.0.coffee"></script>
-        <script type="text/coffeescript" src="<%COFFEE_SCRIPT_PATH%>main.coffee"></script>
+        <!--[if lt IE 9]><script src="<% JAVA_SCRIPT_PATH %>html5shiv-3.6.2.js"></script><![endif]-->
+        <script type="text/javascript" src="<% JAVA_SCRIPT_PATH %>coffeeScript-1.6.3.js"></script>
+        <script type="text/coffeescript" src="<% COFFEE_SCRIPT_PATH %>require-1.0.coffee"></script>
+        <script type="text/coffeescript" src="<% COFFEE_SCRIPT_PATH %>main.coffee"></script>
 
     <!-- endregion -->
 
@@ -154,35 +179,33 @@ endregion -->
 <!-- region body -->
 
     <body class="home-page" style="display: none">
-        <!--[if lt IE 7]>
-            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-        <![endif]-->
         <div class="window-loading-cover"><div></div></div>
 
     <!-- region menu -->
 
-        <div class="start-up-animation-number-<%START_UP_ANIMATION_NUMBER%> navbar-wrapper ">
+        <div class="start-up-animation-number-<% START_UP_ANIMATION_NUMBER %> navbar-wrapper ">
             <div class="container">
                 <div class="navbar navbar-inverse navbar-static-top">
                     <div class="container">
                         <div class="navbar-header">
+                            <a class="navbar-brand" href="#">thaibault <span class="dimension-indicator"></span></a>
+                            <div class="language-buttons">
+                                <% START_UP_ANIMATION_NUMBER += 1
+                                <a href="#lang-deDE" class="start-up-animation-number-<% START_UP_ANIMATION_NUMBER %>">de</a>
+                            </div>
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                                 <% for section in range(3):
                                     <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#">thaibault</a>
-                            <div class="dimension-indicator"></div>
                         </div>
                         <div class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
-                                <li class="active"><a href="#">Home</a></li>
-                                    <% for name, section in SECTIONS:
-                                        <% if section[0]:
-                                            <% START_UP_ANIMATION_NUMBER += 1
-                                            <li class="start-up-animation-number-<%START_UP_ANIMATION_NUMBER%><%' active' if name == SECTIONS[0][0] else ''%>">
-                                                <a href="#<%name%>"><%section[0]%></a>
-                                            </li>
-                                </li>
+                                <% for name, section in SECTIONS:
+                                    <% if section[0]:
+                                        <% START_UP_ANIMATION_NUMBER += 1
+                                        <li class="start-up-animation-number-<% START_UP_ANIMATION_NUMBER %><%' active' if name == SECTIONS[0][0] else ''%>">
+                                            <a href="#<% name %>"><% section[0]['enUS']%><!--deDE:<% section[0]['deDE'] %>--></a>
+                                        </li>
                             </ul>
                         </div>
                     </div>
@@ -195,59 +218,66 @@ endregion -->
     <!-- region carousel -->
 
         <% START_UP_ANIMATION_NUMBER += 1
-        <div id="myCarousel" class="start-up-animation-number-<%START_UP_ANIMATION_NUMBER%> carousel slide">
+        <div class="start-up-animation-number-<% START_UP_ANIMATION_NUMBER %> carousel slide">
             <div class="carousel-inner">
                 <% for name, section in SECTIONS:
                     <div class="item<%' active' if name == SECTIONS[0][0] else ''%>">
-                        <div class="carousel-image-<%name%>"></div>
+                        <div class="carousel-image-<% name %>"></div>
                         <div class="container">
                             <div class="carousel-caption">
-                                <h1><%section[1]%></h1>
+                                <h1>
+                                    <% section[1]['enUS'] %>
+                                    <!--deDE:<% section[1]['deDE'] %>-->
+                                </h1>
                                 <% if section[2]:
-                                    <p class="lead"><%section[2]%></p>
+                                    <p class="lead">
+                                        <% section[2]['enUS'] %>
+                                        <!--deDE:<% section[2]['deDE'] %>-->
+                                    </p>
                                     <% if name == 'contact':
                                         <p class="lead phone-number">+49 176 <span>/</span> 10 248 185</p>
                                         <% for name, link in SOCIAL_MEDIA:
                                             <% if '@' in link:
                                                 <% link = 'mailto:%s' % link
-                                            <a class="btn social-media social-media-<%name%>" href="<%link%>" target="_blank"></a>
+                                            <a class="btn social-media social-media-<% name %>" href="<% link %>" target="_blank"></a>
                                 <% START_UP_ANIMATION_NUMBER += 1
-                                <div class="start-up-animation-number-<%START_UP_ANIMATION_NUMBER%> container content">
+                                <div class="start-up-animation-number-<% START_UP_ANIMATION_NUMBER %> container content">
                                     <p class="lead">
                                         <% if name == 'references':
                                             <% for project_name, project_page_link in PROJECTS:
-                                                <a href="<%project_page_link%>"><%project_name%></a>
-                                        <%print(section[3])
+                                                <a href="<% project_page_link %>"><% project_name %></a>
+                                        <% section[3]['enUS'] %>
+                                        <!--<% section[3]['deDE'] %>-->
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
             </div>
-            <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-            <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
         </div>
 
     <!-- endregion -->
 
-        <!-- Wrap the rest of the page in another container to center all the content. -->
-        <% START_UP_ANIMATION_NUMBER += 1
-        <div class="start-up-animation-number-<%START_UP_ANIMATION_NUMBER%> container footer">
-
     <!-- region footer -->
 
+        <!--
+            Wrap the footer of the page in another container to center the
+            content.
+        -->
+        <% START_UP_ANIMATION_NUMBER += 1
+        <div class="start-up-animation-number-<% START_UP_ANIMATION_NUMBER %> container footer">
             <footer>
                 <p>
                     &copy; 2013 Torben Sickert, Inc. &middot; <a href="#about-this-website">about this website</a>
                 </p>
-                <p class="pull-right"><a href="#top">top</a></p>
             </footer>
+        </div>
 
     <!-- endregion -->
 
-        </div>
+        <a href="#top">top</a>
     </body>
 
-<!-- endregion body -->
+<!-- endregion -->
 
 </html>
