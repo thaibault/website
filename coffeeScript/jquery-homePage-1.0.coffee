@@ -250,7 +250,8 @@ this.require([
                         ).outerHeight()
                         if distanceToTop < menuHeight
                             margin = menuHeight - distanceToTop
-                            distanceToBottom = this._domNodes.document.height() - this._domNodes.window.height() - distanceToTop
+                            distanceToBottom = this._domNodes.document.height(
+                            ) - this._domNodes.window.height() - distanceToTop
                             if margin > distanceToBottom
                                 # NOTE: Avoid bouncing.
                                 margin = distanceToBottom
