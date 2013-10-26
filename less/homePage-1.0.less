@@ -26,6 +26,7 @@ License
 @color2: #1b1b1b;
 @shadowColor: rgba(0, 0, 0, .25);
 @footerMarginInPixel: 30px;
+@navigationHeightInPixel: 50px;
 
 // endregion
 
@@ -117,7 +118,7 @@ body.home-page {
 
     /* region responsive */
 
-        /* region smart phone mode */
+        /* region smartphone mode */
 
             /* region global */
 
@@ -137,11 +138,10 @@ body.home-page {
 
     /* Wrapper for the main navigation bar if viewport is on top of page. */
     > div.navbar-wrapper.on-top {
-        position: static;
+        position: relative;
     }
 
                 /* endregion */
-
 
     /* Normal Wrapper for the main navigation bar. Scrolls with viewport. */
     > div.navbar-wrapper {
@@ -156,6 +156,7 @@ body.home-page {
 
         > div.container > div.navbar.navbar-inverse {
             margin-bottom: 0px;
+            // TODO min-height: @navigationHeightInPixel;
 
             > div.container {
                 > div.navbar-header {
@@ -192,6 +193,14 @@ body.home-page {
 
             /* region carousel */
 
+    /*
+        Compensate relative height of navigation bar. The carousel is pressed
+        down by the navigation bar.
+    */
+    > div.carousel.on-top {
+        // TODO margin-top: -@navigationHeightInPixel;
+        margin-top: -52px;
+    }
     /* Define main content size. */
     > div.carousel > div.carousel-inner > div.item > div.container > .carousel-caption {
         > h1 {
@@ -274,6 +283,10 @@ body.home-page {
 
             /* region carousel */
 
+        /* Reset smartphone setting. */
+        > div.carousel.on-top {
+            margin-top: 0;
+        }
         > div.carousel > div.carousel-inner > div.item {
             /* Bump up size of carousel content */
             > div.container > .carousel-caption {
