@@ -75,7 +75,7 @@ endregion -->
 <%     ('about', (
 <%         {'enUS': 'About me', 'deDE': 'Über mich'},
 <%         {'enUS': "I'm a computer scientist and love the challenge",
-<%          'deDE': 'Ich bin Informatiker und liebe Herausforderung'},
+<%          'deDE': 'Ich bin Informatiker und liebe die Herausforderung'},
 <%         {'enUS': 'Experiences from Posic, Akra, Virtual Identity, Chair of '
 <%                  'Humanoid Robots Lab and Rechnernetze and Telematik in '
 <%                  'University Freiburg, BPV, BTI, Vattenfall...',
@@ -221,7 +221,7 @@ endregion -->
         <div class="start-up-animation-number-<% START_UP_ANIMATION_NUMBER %> carousel slide">
             <div class="carousel-inner">
                 <% for name, section in SECTIONS:
-                    <div class="item<%' active' if name == SECTIONS[0][0] else ''%>">
+                    <div class="item <% name %><%' active' if name == SECTIONS[0][0] else ''%>">
                         <div class="carousel-image-<% name %>"></div>
                         <div class="container">
                             <div class="carousel-caption">

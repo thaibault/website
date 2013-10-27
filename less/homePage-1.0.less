@@ -88,26 +88,45 @@ body.home-page {
     /* Main section slider. */
     > div.carousel {
         background-color: @color2;
+        overflow: hidden;
+        visibility: hidden;
+        position: relative;
 
-        > div.carousel-inner > div.item {
-            height: 440px;
+        > div.carousel-inner {
+            overflow: hidden;
+            position: relative;
 
-            /* Position content absolute to fill out the whole viewport. */
-            > div[class^=carousel-image-] {
-                position: absolute;
-                top: 0;
-                left: 0;
-                min-width: 100%;
-                height: 500px;
-            }
-            > div.container > div.carousel-caption {
-                z-index: 0;
-                color: @color3;
-                text-shadow: none;
+            > div.item {
+                float: left;
+                width: 100%;
+                position: relative;
+                /* Set a default content height. */
+                height: 440px;
+                /*
+                    Disable bootstraps startup effect and overwrite with swipe
+                    preferred effect properties.
+                */
+                display: inline;
+                -webkit-transition: 1000ms;
+                        transition: 1000ms;
 
-                a.glyphicon-social {
-                    font-size: 50px;
+                /* Position content absolute to fill out the whole viewport. */
+                > div[class^=carousel-image-] {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    min-width: 100%;
+                    height: 500px;
+                }
+                > div.container > div.carousel-caption {
+                    z-index: 0;
                     color: @color3;
+                    text-shadow: none;
+
+                    a.glyphicon-social {
+                        font-size: 50px;
+                        color: @color3;
+                    }
                 }
             }
         }
@@ -214,13 +233,19 @@ body.home-page {
         margin-top: -52px;
     }
     /* Define main content size. */
-    > div.carousel > div.carousel-inner > div.item > div.container > .carousel-caption {
-        > h1 {
-            font-size: 20px;
+    > div.carousel > div.carousel-inner > {
+        /* Set section specified heights. */
+        div.item.references {
+            height: 800px;
         }
-        > p {
-            font-size: 16px;
-            line-height: 1;
+        div.item > div.container > .carousel-caption {
+            > h1 {
+                font-size: 20px;
+            }
+            > p {
+                font-size: 16px;
+                line-height: 1;
+            }
         }
     }
 
@@ -351,7 +376,7 @@ body.home-page {
                 max-width: 940px;
             }
 
-                /* endregion */
+            /* endregion */
 
         }
 

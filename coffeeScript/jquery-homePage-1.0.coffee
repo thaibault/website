@@ -25,11 +25,14 @@
 this.require([
     ['jQuery.Website', 'jquery-website-1.0.coffee']
 
-    ['jQuery.fn.touchwipe', 'jquery-touchwipe.1.1.1']],
+    ['jQuery.fn.collapse', 'bootstrap-3.0.0']
+    ['jQuery.fn.Swipe', 'jquery-swipe-2.0']],
 ($) ->
 ##
 
 # endregion
+
+# TODO slide footer dependend of section height.
 
 # region plugins
 
@@ -65,8 +68,12 @@ this.require([
                 dimensionIndicator: '.dimension-indicator'
                 footer: 'div.footer'
             carouselOptions:
-                interval: false
-                pause: 'hover'
+                startSlide: 0
+                speed: 1000
+                auto: 0
+                continuous: true
+                disableScroll: false
+                stopPropagation: false
             language:
                 onSwitched: (oldLanguage, newLanguage) ->
                     # Add language toggle button functionality.
@@ -131,14 +138,8 @@ this.require([
         ###
         initialize: (options) ->
             super options
-            this._domNodes.carousel.carousel this._options.carouselOptions
-            this.on this._domNodes.carousel, 'slide', =>
-                this._domNodes.footer.fadeOut 'slow'
-            this.on this._domNodes.carousel, 'slid', =>
-                this._domNodes.footer.fadeIn 'slow'
-            # NOTE: Cycling is more intuitive for reaction on wipe gestures.
-            this._domNodes.carousel.carousel 'cycle'
-            # We have to manipulate the carousel behavior depending on
+            this._initializesSwipe()
+            # We have to manipulate the content behavior depending on
             # smartphone navigation bar state.
             this._handleCollapsingNavigationBarCompensations()
 
@@ -230,23 +231,30 @@ this.require([
             if $.inArray(hash, ['next', 'prev']) isnt -1
                 direction = hash
                 hash = this._determineRelativeSections hash
+                # Don't go into this section via swiping.
+                # TODO if hash is 
             if hash.substr(0, 1) isnt '#'
                 hash = "##{hash}"
             this._domNodes.navigationButtons.each (index, button) =>
                 button = $ button
+                # TODO this don't work for "about-this-website"
                 sectionDomNode = button.parent 'li'
                 if button.attr('href') is hash or (
                     index is 0 and hash is '#' and hash = button.attr 'href'
                 )
+                    # TODO siehe oben
                     if not sectionDomNode.hasClass 'active'
                         this.debug "Switch to section \"#{hash}\"."
                         if direction
                             index = direction
                         if this._viewportIsOnTop
-                            this._domNodes.carousel.carousel index
+                            this._domNodes.carousel.data('Swipe').slide(
+                                index)
                         else
                             this._scrollToTop(=>
-                                this._domNodes.carousel.carousel index)
+                                this._domNodes.carousel.data(
+                                    'Swipe'
+                                ).slide index)
                         sectionDomNode.addClass 'active'
                 else
                     sectionDomNode.removeClass 'active'
@@ -271,6 +279,30 @@ this.require([
 
         # region helper
 
+        ###*
+            @description Attaches needed event handler to the swipe plugin and
+                         initializes the slider.
+
+            @returns {$.Swipe} Returns the new generated swipe instance.
+        ###
+        _initializesSwipe: ->
+            # NOTE: We use "animate()" instead of "fadeOut()" and "fadeIn()"
+            # to avoid any sort of shifting in the page layout. "fadeIn()" or
+            # "fadeOut()" uses "display: none".
+            this._options.carouselOptions.callback = =>
+                this._domNodes.footer.animate opacity: 0
+                # NOTE: Workaround to avoid syntax error in swipe plugin.
+                return ->
+            this._options.carouselOptions.transitionEnd = (index, domNode) =>
+                this._domNodes.footer.stop().animate opacity: 100
+                this._domNodes.navigationButtons.each (subIndex, button) =>
+                    if index is subIndex
+                        this.fireEvent(
+                            'switchSection', false, this, $(button).attr(
+                                'href'))
+                        return false
+                return true
+            this._domNodes.carousel.Swipe this._options.carouselOptions
         ###*
             @description Handles needed page manipulations to compensate the
                          navigation's dualism from being fixed and relative
@@ -383,10 +415,9 @@ this.require([
             @returns {$.HomePage} Returns the current instance.
         ###
         _addNavigationEvents: ->
-            self = this._handleTouchWipe()
-            this.on this._domNodes.navigationButtons, 'click', ->
-                self.fireEvent(
-                    'switchSection', false, self, $(this).attr 'href')
+            this.on this._domNodes.navigationButtons, 'click', (event) =>
+                this.fireEvent(
+                    'switchSection', false, this, $(event.target).attr 'href')
             super()
         ###*
             @description Determines current section to the right or the left.
@@ -416,19 +447,6 @@ this.require([
                     ).attr 'href'
                     false
             hash
-        ###*
-            @description Adds trigger to switch section on swipe gestures.
-
-            @returns {$.HomePage} Returns the current instance.
-        ###
-        _handleTouchWipe: ->
-            this._domNodes.parent.touchwipe(
-                wipeLeft: =>
-                    this.fireEvent 'switchSection', false, this, 'next'
-                wipeRight: =>
-                    this.fireEvent 'switchSection', false, this, 'prev'
-                preventDefaultEvents: false)
-            this
 
         # endregion
 
