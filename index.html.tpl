@@ -34,11 +34,11 @@ endregion -->
 <% # region content
 
 <% SOCIAL_MEDIA = (
-<%     ('email', 't.sickert@gmail.com'),
+<%     ('e-mail', 't.sickert@gmail.com'),
 <%     ('github', 'https://github.com/thaibault'),
-<%     ('google', 'https://plus.google.com/110796145663857741723/posts'),
+<%     ('google-plus', 'https://plus.google.com/110796145663857741723/posts'),
 <%     ('xing', 'http://www.xing.com/profile/Torben_Sickert'),
-<%     ('linkedin', 'http://de.linkedin.com/pub/torben-sickert/28/aa9/919'),
+<%     ('linked-in', 'http://de.linkedin.com/pub/torben-sickert/28/aa9/919'),
 <%     ('skype', ''),
 <%     ('twitter', 'https://twitter.com/tsickert'),
 <%     ('facebook', 'https://de-de.facebook.com/tsickert'),
@@ -239,7 +239,7 @@ endregion -->
                                         <% for name, link in SOCIAL_MEDIA:
                                             <% if '@' in link:
                                                 <% link = 'mailto:%s' % link
-                                            <a class="btn social-media social-media-<% name %>" href="<% link %>" target="_blank"></a>
+                                            <a class="glyphicon-social glyphicon-social-<% name %>" href="<% link %>" target="_blank"></a>
                                 <% START_UP_ANIMATION_NUMBER += 1
                                 <div class="start-up-animation-number-<% START_UP_ANIMATION_NUMBER %> container content">
                                     <p class="lead">
