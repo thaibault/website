@@ -103,6 +103,13 @@ this.require([
         ###
         _expandedNavigationHeightInPixel: 0
         ###*
+            Saves the main content background color to attach a border with
+            same color for compensating with right colored margin.
+
+            @property {String}
+        ###
+        _sectionBackgroundColor: 'white'
+        ###*
             Saves the class name for introspection.
 
             @property {String}
@@ -154,7 +161,8 @@ this.require([
             # navigation bar. A negative margin with relative positioning
             # corresponds to no margin with fixed positioning.
             this._domNodes.carousel.css(
-                'margin-top', "-#{this._collapsedNavigationHeightInPixel}px")
+                'margin-top': "-#{this._collapsedNavigationHeightInPixel}px"
+                'border-top': 0)
             # Switch navigation bar from fixed positioning to static smooth in
             # smart phone mode.
             this._domNodes.transformIfViewportIsOnTop.addClass(
@@ -170,12 +178,14 @@ this.require([
             # Remove the navigation height space if we switch to fixed
             # navigation positioning.
             if this._navigationIsCollapsed
-                this._domNodes.carousel.css 'margin-top', 0
+                this._domNodes.carousel.css 'margin-top': 0, 'border-top': 0
             else
                 this._domNodes.carousel.css(
-                    'margin-top',
-                    "#{this._expandedNavigationHeightInPixel -
-                    this._collapsedNavigationHeightInPixel}px")
+                    'margin-top': 0
+                    'border-top':
+                        "#{this._expandedNavigationHeightInPixel -
+                        this._collapsedNavigationHeightInPixel}px solid " +
+                        this._sectionBackgroundColor)
             this._domNodes.transformIfViewportIsOnTop.removeClass(
                 this._options.viewportIsOnTopIndicatorClassName)
             super()
@@ -186,6 +196,7 @@ this.require([
             @returns {$.HomePage} Returns the current instance.
         ###
         _onChangeMediaQueryMode: (oldMode, newMode) ->
+            this._domNodes.carousel.removeAttr 'style'
             this._domNodes.dimensionIndicator.fadeOut 'slow', =>
                 this._domNodes.dimensionIndicator.text(
                     this.stringFormat(
@@ -265,6 +276,8 @@ this.require([
             @returns {$.HomePage} Returns the current instance.
         ###
         _handleCollapsingNavigationBarCompensations: ->
+            this._sectionBackgroundColor = this._domNodes.carousel.css(
+                'background-color')
             this._domNodes.navigationBar.on('show.bs.collapse', =>
                 this._collapsedNavigationHeightInPixel =
                     this._domNodes.navigationBarWrapper.height()
@@ -274,9 +287,11 @@ this.require([
                 this._navigationIsCollapsed = false
                 if not this._viewportIsOnTop
                     this._domNodes.carousel.css(
-                        'margin-top',
-                        "#{this._expandedNavigationHeightInPixel -
-                        this._collapsedNavigationHeightInPixel}px")
+                        'margin-top': 0
+                        'border-top':
+                            "#{this._expandedNavigationHeightInPixel -
+                            this._collapsedNavigationHeightInPixel}px solid " +
+                            this._sectionBackgroundColor)
                     $.scrollTo(
                         "+=#{this._expandedNavigationHeightInPixel -
                         this._collapsedNavigationHeightInPixel}px")
@@ -294,7 +309,7 @@ this.require([
                         {marginTop:
                             topMarginInPixel + this._distanceToTopInPixel -
                             this._expandedNavigationHeightInPixel +
-                            this._collapsedNavigationHeightInPixel}#,
+                            this._collapsedNavigationHeightInPixel},
                          complete: this.getMethod(
                             this._handleCollapsedNavigationBarCompensation)
                     )
@@ -311,30 +326,20 @@ this.require([
             this._navigationIsCollapsed = true
             if this._viewportIsOnTop
                 this._domNodes.carousel.css(
-                    'margin-top',
-                    "-#{this._collapsedNavigationHeightInPixel}px")
+                    'margin-top':
+                        "-#{this._collapsedNavigationHeightInPixel}px"
+                    'border-top': 0)
             else
                 # NOTE: Stopping the animation of reducing the margin avoids
                 # flicker effects.
                 this._domNodes.carousel.stop()
-                this._domNodes.carousel.css 'margin-top', 0
+                this._domNodes.carousel.css 'margin-top': 0, 'border-top': 0
                 $.scrollTo
                     top: "#{this._distanceToTopInPixel -
                          this._expandedNavigationHeightInPixel +
                          this._collapsedNavigationHeightInPixel}px"
                     left: '+=0'
             this
-        ###*
-            @description This method triggers after window is loaded.
-
-            @returns {$.HomePage} Returns the current instance.
-        ###
-        _removeLoadingCover: ->
-            window.setTimeout(
-                =>
-                    this._domNodes.windowLoadingCover.css 'margin-top', 0
-                , this._options.addtionalPageLoadingTimeInMilliseconds)
-            super()
         ###*
             @description This method adds triggers to switch section.
 

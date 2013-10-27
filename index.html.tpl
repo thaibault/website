@@ -265,7 +265,7 @@ endregion -->
             content.
         -->
         <% START_UP_ANIMATION_NUMBER += 1
-        <div class="start-up-animation-number-<% START_UP_ANIMATION_NUMBER %> container footer">
+        <div class="start-up-animation-number-<% START_UP_ANIMATION_NUMBER %> footer">
             <footer>
                 <p>
                     &copy; 2013 Torben Sickert, Inc. &middot; <a href="#about-this-website">about this website</a>

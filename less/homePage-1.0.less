@@ -23,12 +23,14 @@ License
 // region constants
 
 @color1: #5a5a5a;
-@color2: #1b1b1b;
+@color2: #ffffff;
+@color3: #222222;
 @shadowColor: rgba(0, 0, 0, .25);
 @footerMarginInPixel: 30px;
-@navigationHeightInPixel: 50px;
 
 // endregion
+
+// TODO make png composition.
 
 /* region cascading style sheets */
 
@@ -37,10 +39,13 @@ body.home-page {
     /* region global */
 
     color: @color1;
-    background-color: @color2;
+    background-color: @color3;
 
         /* region buttons */
 
+    a:hover {
+        text-decoration: none;
+    }
     /* Scroll to top button. */
     > a[href="#top"] {
         position: fixed;
@@ -62,7 +67,7 @@ body.home-page {
 
     /* Overlay the whole page till everything is loaded completely. */
     > div.window-loading-cover {
-        background-color: white;
+        background-color: @color2;
         position: fixed;
         height: 100%;
         width: 100%;
@@ -73,7 +78,6 @@ body.home-page {
             position: absolute;
             top: 50%;
             left: 50%;
-            background-color: @color2;
         }
     }
 
@@ -82,20 +86,59 @@ body.home-page {
     /* region carousel */
 
     /* Main section slider. */
-    > div.carousel > div.carousel-inner > div.item {
-        height: 440px;
-        background-color: #777;
+    > div.carousel {
+        background-color: @color2;
 
-        /* Position content absolute to fill out the whole viewport. */
-        > div[class^=carousel-image-] {
-            position: absolute;
-            top: 0;
-            left: 0;
-            min-width: 100%;
-            height: 500px;
-        }
-        > div.container > div.carousel-caption {
-            z-index: 0;
+        > div.carousel-inner > div.item {
+            height: 440px;
+
+            /* Position content absolute to fill out the whole viewport. */
+            > div[class^=carousel-image-] {
+                position: absolute;
+                top: 0;
+                left: 0;
+                min-width: 100%;
+                height: 500px;
+            }
+            > div.container > div.carousel-caption {
+                z-index: 0;
+                color: @color3;
+                text-shadow: none;
+
+        /* region social media buttons */
+
+                a.btn.social-media {
+                    width: 32px;
+                    height: 32px;
+                    padding: 0;
+                }
+                a.btn.social-media-email {
+                    background-image: url('@{imagePath}socialMedia/email.png');
+                }
+                a.btn.social-media-github {
+                    background-image: url('@{imagePath}socialMedia/github.png');
+                }
+                a.btn.social-media-google {
+                    background-image: url('@{imagePath}socialMedia/google.png');
+                }
+                a.btn.social-media-xing {
+                    background-image: url('@{imagePath}socialMedia/xing.png');
+                }
+                a.btn.social-media-linkedin {
+                    background-image: url('@{imagePath}socialMedia/linkedin.png');
+                }
+                a.btn.social-media-skype {
+                    background-image: url('@{imagePath}socialMedia/skype.png');
+                }
+                a.btn.social-media-twitter {
+                    background-image: url('@{imagePath}socialMedia/twitter.png');
+                }
+                a.btn.social-media-facebook {
+                    background-image: url('@{imagePath}socialMedia/facebook.png');
+                }
+
+            /* endregion */
+            }
         }
     }
 
@@ -149,14 +192,13 @@ body.home-page {
 
         position: fixed;
         top: 0;
-        z-index: 3;
+        z-index: 1;
         width: 100%;
 
         @buttonMarginInPercent: 5%;
 
         > div.container > div.navbar.navbar-inverse {
             margin-bottom: 0px;
-            // TODO min-height: @navigationHeightInPixel;
 
             > div.container {
                 > div.navbar-header {
@@ -198,7 +240,6 @@ body.home-page {
         down by the navigation bar.
     */
     > div.carousel.on-top {
-        // TODO margin-top: -@navigationHeightInPixel;
         margin-top: -52px;
     }
     /* Define main content size. */
@@ -242,42 +283,47 @@ body.home-page {
         > div.navbar-wrapper.on-top {
             position: fixed;
         }
+
+                /* endregion */
+
         /*
             Normal Wrapper for the main navigation bar. Scrolls with viewport.
         */
         > div.navbar-wrapper {
             margin-top: 20px;
 
-            > div.container > div.navbar.navbar-inverse {
-                #generic > .border-radius(4px);
+            > div.container {
+                max-width: 746px;
 
-                > div.container {
-                    /* Position language links. */
-                    > div.navbar-header > div.language-buttons {
-                        position: absolute;
-                        top: 16px;
-                        right: 18px;
-                    }
-                    > div.navbar-collapse {
-                        display: inline;
+                > div.navbar.navbar-inverse {
+                    #generic > .border-radius(4px);
 
-                        > ul.nav.navbar-nav {
-                            margin-bottom: 0;
+                    > div.container {
+                        /* Position language links. */
+                        > div.navbar-header > div.language-buttons {
+                            position: absolute;
+                            top: 16px;
+                            right: 18px;
+                        }
+                        > div.navbar-collapse {
+                            display: inline;
 
-                            /*
-                                Bring menu items to same height as navigation bar
-                                branding.
-                            */
-                            > li > a {
-                                line-height: 22px;
+                            > ul.nav.navbar-nav {
+                                margin-bottom: 0;
+
+                                /*
+                                    Bring menu items to same height as
+                                    navigation bar branding.
+                                */
+                                > li > a {
+                                    line-height: 22px;
+                                }
                             }
                         }
                     }
                 }
             }
         }
-
-                /* endregion */
 
             /* endregion */
 
@@ -326,8 +372,15 @@ body.home-page {
 
             /* region navigation bar */
 
+            /*
+                Normal Wrapper for the main navigation bar. Scrolls with
+                viewport.
+            */
+            > div.navbar-wrapper > div.container {
+                max-width: 940px;
+            }
 
-            /* endregion */
+                /* endregion */
 
         }
 
