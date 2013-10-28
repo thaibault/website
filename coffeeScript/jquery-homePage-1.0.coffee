@@ -32,8 +32,6 @@ this.require([
 
 # endregion
 
-# TODO slide footer dependend of section height.
-
 # region plugins
 
     ###*
@@ -56,8 +54,10 @@ this.require([
             viewportIsOnTopIndicatorClassName: 'on-top'
             navigationIsCollapsedClassName: 'navigation-is-collapsed'
             domNodes:
+                # TODO make nodes more tree like
                 navigationBarWrapper: 'div.navbar-wrapper'
                 navigationBar: 'div.navbar-collapse'
+                logoLink: 'a.navbar-brand'
                 carousel: 'div.carousel.slide'
                 section: 'div.item'
                 transformIfViewportIsOnTop:
@@ -118,12 +118,6 @@ this.require([
         ###
         _sectionBackgroundColor: 'white'
         ###*
-            Saves the current hash reference.
-
-            @property {String}
-        ###
-        _currentSection: ''
-        ###*
             Saves the class name for introspection.
 
             @property {String}
@@ -145,15 +139,18 @@ this.require([
         ###
         initialize: (options) ->
             super options
+            if not window.location.hash
+                window.location.hash = this._domNodes.navigationButton.parent(
+                    'li'
+                ).filter('.active').children(
+                    this._domNodes.navigationButton
+                ).attr 'href'
             # Handle "about-this-website" and main section switch.
             this.on this._domNodes.aboutThisWebsiteButton, 'click', =>
-                this._domNodes.aboutThisWebsiteSection.height(
-                    this._domNodes.carousel.find(
-                        this._domNodes.section
-                    ).filter(".#{this._currentSection.substr(1)}").height())
                 this._domNodes.aboutThisWebsiteSection.fadeIn()
-            this.on this._domNodes.navigationButton, 'click', =>
-                this._domNodes.aboutThisWebsiteSection.fadeOut()
+            this.on this._domNodes.navigationButton.add(
+                this._domNodes.logoLink
+            ), 'click', => this._domNodes.aboutThisWebsiteSection.fadeOut()
             this._initializeSwipe()
             # We have to manipulate the content behavior depending on
             # smartphone navigation bar state.
@@ -252,6 +249,7 @@ this.require([
                 hash = this._determineRelativeSections hash
             if hash.substr(0, 1) isnt '#'
                 hash = "##{hash}"
+            switched = false
             this._domNodes.navigationButton.each (index, button) =>
                 button = $ button
                 sectionButtonDomNode = button.parent 'li'
@@ -262,7 +260,9 @@ this.require([
                 )
                     if not sectionButtonDomNode.hasClass 'active'
                         this.debug "Switch to section \"#{hash}\"."
-                        this._currentSection = hash
+                        window.location.hash = hash
+                        this._adaptContentHeight()
+                        switched = true
                         # Swipe in endless cycle if we get a direction.
                         if direction
                             index = direction
@@ -274,11 +274,12 @@ this.require([
                                 this._domNodes.carousel.data(
                                     'Swipe'
                                 ).slide index)
-                        this._adaptFooterHeight()
                         sectionButtonDomNode.addClass 'active'
                 else
                     sectionButtonDomNode.removeClass 'active'
-            window.location.hash = hash
+            if not switched
+                window.location.hash = hash
+                this._adaptContentHeight()
             super()
         ###*
             @description This method triggers if all startup animations are
@@ -287,12 +288,15 @@ this.require([
             @returns {$.HomePage} Returns the current instance.
         ###
         _onStartUpAnimationComplete: ->
-            # All start up effects are ready. Handle direct
-            # section links.
-            this._domNodes.navigationButton.filter(
+            # All start up effects are ready. Handle direct section links.
+            this._domNodes.navigationButton.add(
+                this._domNodes.aboutThisWebsiteButton
+            ).filter(
                 "a[href=\"#{window.location.href.substr(
-                    window.location.href.indexOf '#' )}\"]"
-            ).trigger 'click',
+                    window.location.href.indexOf '#'
+                )}\"]"
+            ).trigger 'click'
+            this._adaptContentHeight()
             super()
 
         # endregion
@@ -305,11 +309,18 @@ this.require([
 
             @returns {$.Swipe} Returns the new generated swipe instance.
         ###
-        _adaptFooterHeight: ->
-            this._domNodes.carousel.animate(
-                height: this._domNodes.carousel.find(
-                    this._domNodes.section
-                ).filter(".#{this._currentSection.substr(1)}").height())
+        _adaptContentHeight: ->
+            newSectionHeightInPixel = this._domNodes.carousel.find(
+                this._domNodes.section
+            ).add(this._domNodes.aboutThisWebsiteSection).filter(
+                ".#{window.location.hash.substr(1)}"
+            ).outerHeight()
+            if this._currentMediaQueryMode is 'smartphone'
+                # TODO destroys compensations
+                #this._domNodes.carousel.css(
+                #    height: "#{newSectionHeightInPixel}px")
+            else
+                this._domNodes.carousel.animate height: newSectionHeightInPixel
             this
         ###*
             @description Attaches needed event handler to the swipe plugin and
