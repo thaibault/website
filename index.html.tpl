@@ -3,9 +3,9 @@
 vim: set tabstop=4 shiftwidth=4 expandtab:
 vim: foldmethod=marker foldmarker=region,endregion:
 
-endregion -->
+endregion
 
-<!-- region header
+region header
 
 Copyright Torben Sickert 16.12.2012
 
@@ -80,33 +80,7 @@ endregion -->
 <%                  'Humanoid Robots Lab and Rechnernetze and Telematik in '
 <%                  'University Freiburg, BPV, BTI, Vattenfall...',
 <%          'deDE': 'TODO'},
-<%         {'enUS': 'TODO', 'deDE': 'TODO'})),
-<%     ('about-this-website', (
-<%         '', {'enUS': 'About this website', 'deDE': 'Impressum'}, '',
-<%         {'enUS': '<p>Provider:</p>\n'
-<%                  '<p>Torben Sickert</p>\n'
-<%                  '<p>Christoph-Mang-Str. 14</p>\n'
-<%                  '<p>79100 Freiburg</p>\n'
-<%                  '<p>Tel. 0049 (0) 176 / 10248185</p>\n'
-<%                  '<p>Internet: <a href="%s">%s</a></p>\n'
-<%                  '<p>Email: <a href="mailto:%s">%s</a></p>\n'
-<%                  '<br />\n'
-<%                  '<p><a href="%s">public ssh key</a></p>' %
-<%                  (SOCIAL_MEDIA[-1][1], SOCIAL_MEDIA[-1][1],
-<%                   SOCIAL_MEDIA[0][1], SOCIAL_MEDIA[0][1],
-<%                   LINK_TO_PUBLIC_SSH_KEY),
-<%          'deDE': '<p>Anbieter:</p>\n'
-<%                  '<p>Torben Sickert</p>\n'
-<%                  '<p>Christoph-Mang-Str. 14</p>\n'
-<%                  '<p>79100 Freiburg</p>\n'
-<%                  '<p>Tel. 0049 (0) 176 / 10248185</p>\n'
-<%                  '<p>Internet: <a href="%s">%s</a></p>\n'
-<%                  '<p>Email: <a href="mailto:%s">%s</a></p>\n'
-<%                  '<br />\n'
-<%                  '<p><a href="%s">öffentlicher SSH-Schlüssel</a></p>' %
-<%                  (SOCIAL_MEDIA[-1][1], SOCIAL_MEDIA[-1][1],
-<%                   SOCIAL_MEDIA[0][1], SOCIAL_MEDIA[0][1],
-<%                   LINK_TO_PUBLIC_SSH_KEY)})))
+<%         {'enUS': 'TODO', 'deDE': 'TODO'})))
 
 <% PROJECTS = (
 <%     ('boostNode', 'http://thaibault.github.io/boostNode/'),
@@ -221,7 +195,7 @@ endregion -->
         <div class="start-up-animation-number-<% START_UP_ANIMATION_NUMBER %> carousel slide">
             <div class="carousel-inner">
                 <% for name, section in SECTIONS:
-                    <div class="item <% name %><%' active' if name == SECTIONS[0][0] else ''%>">
+                    <div class="item <% name %>">
                         <div class="carousel-image-<% name %>"></div>
                         <div class="container">
                             <div class="carousel-caption">
@@ -253,6 +227,35 @@ endregion -->
                             </div>
                         </div>
                     </div>
+            </div>
+        </div>
+
+    <!-- endregion -->
+
+    <!-- region about this website -->
+
+        <div class="about-this-website">
+            <div class="container">
+                <div class="carousel-image-about-this-website"></div>
+                <div class="container">
+                    <div class="caption">
+                        <h1>
+                            About this website
+                            <!--deDE:Impressum-->
+                        </h1>
+                        <p class="lead">
+                            <p>Provider of<!--deDE:Anbieter von--> <a href="<% SOCIAL_MEDIA[-1][1] %>"><% SOCIAL_MEDIA[-1][1] %></a>:</p>
+                            <p>Torben Sickert</p>
+                            <p>Christoph-Mang-Str. 14</p>
+                            <p>79100 Freiburg</p>
+                            <p>Tel. 0049 (0) 176 / 10248185</p>
+                            <p>Internet: <a href="<% SOCIAL_MEDIA[-1][1] %>"><% SOCIAL_MEDIA[-1][1] %></a></p>
+                            <p>Email: <a href="mailto:<% SOCIAL_MEDIA[0][1] %>"><% SOCIAL_MEDIA[0][1] %></a></p>
+                            <br />
+                            <p><a href="<% LINK_TO_PUBLIC_SSH_KEY %>">public ssh key<!--deDE:öffentlicher SSH-Schlüssel--></a></p>
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
 

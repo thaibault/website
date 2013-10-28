@@ -59,18 +59,20 @@ this.require([
                 navigationBarWrapper: 'div.navbar-wrapper'
                 navigationBar: 'div.navbar-collapse'
                 carousel: 'div.carousel.slide'
+                section: 'div.item'
                 transformIfViewportIsOnTop:
                     'div.navbar-wrapper, div.carousel.slide'
                 topDomNode: 'div.navbar-wrapper'
                 navigationButton: 'div.navbar-wrapper ul.nav li a'
-                pseudoNaviagtionButton: 'a[href="#about-this-website"]'
+                aboutThisWebsiteButton: 'a[href="#about-this-website"]'
+                aboutThisWebsiteSection: 'div.about-this-website'
                 dimensionIndicator: '.dimension-indicator'
                 footer: 'div.footer'
             carouselOptions:
                 startSlide: 0
                 speed: 1000
                 auto: 0
-                continuous: true
+                continuous: false
                 disableScroll: false
                 stopPropagation: false
             language:
@@ -81,13 +83,6 @@ this.require([
                             oldLanguage.substr 0, 2
                         ).fadeIn 'fast'
                     )
-        ###*
-            Indicates if we are currently allowed to switch into a pseudo
-            section.
-
-            @property {Boolean}
-        ###
-        _pseudoSectionsAllowed: false
         ###*
             Indicates if smartphone navigation is open or closed.
 
@@ -123,6 +118,12 @@ this.require([
         ###
         _sectionBackgroundColor: 'white'
         ###*
+            Saves the current hash reference.
+
+            @property {String}
+        ###
+        _currentSection: ''
+        ###*
             Saves the class name for introspection.
 
             @property {String}
@@ -143,11 +144,16 @@ this.require([
             @returns {$.HomePage} Returns the current instance.
         ###
         initialize: (options) ->
-            this._options.domNodes.navigationButton +=
-                ", #{this._options.domNodes.pseudoNaviagtionButton}"
             super options
-            this.on this._options.domNodes.pseudoNaviagtionButton, 'click', =>
-                this._pseudoSectionsAllowed = true
+            # Handle "about-this-website" and main section switch.
+            this.on this._domNodes.aboutThisWebsiteButton, 'click', =>
+                this._domNodes.aboutThisWebsiteSection.height(
+                    this._domNodes.carousel.find(
+                        this._domNodes.section
+                    ).filter(".#{this._currentSection.substr(1)}").height())
+                this._domNodes.aboutThisWebsiteSection.fadeIn()
+            this.on this._domNodes.navigationButton, 'click', =>
+                this._domNodes.aboutThisWebsiteSection.fadeOut()
             this._initializeSwipe()
             # We have to manipulate the content behavior depending on
             # smartphone navigation bar state.
@@ -248,14 +254,15 @@ this.require([
                 hash = "##{hash}"
             this._domNodes.navigationButton.each (index, button) =>
                 button = $ button
-                sectionDomNode = button.parent 'li'
-                if not sectionDomNode.length
-                    sectionDomNode = button
+                sectionButtonDomNode = button.parent 'li'
+                if not sectionButtonDomNode.length
+                    sectionButtonDomNode = button
                 if button.attr('href') is hash or (
                     index is 0 and hash is '#' and hash = button.attr 'href'
                 )
-                    if not sectionDomNode.hasClass 'active'
+                    if not sectionButtonDomNode.hasClass 'active'
                         this.debug "Switch to section \"#{hash}\"."
+                        this._currentSection = hash
                         # Swipe in endless cycle if we get a direction.
                         if direction
                             index = direction
@@ -267,9 +274,10 @@ this.require([
                                 this._domNodes.carousel.data(
                                     'Swipe'
                                 ).slide index)
-                        sectionDomNode.addClass 'active'
+                        this._adaptFooterHeight()
+                        sectionButtonDomNode.addClass 'active'
                 else
-                    sectionDomNode.removeClass 'active'
+                    sectionButtonDomNode.removeClass 'active'
             window.location.hash = hash
             super()
         ###*
@@ -292,35 +300,25 @@ this.require([
         # region helper
 
         ###*
+            @description Adapt the footer height to current main section
+                         height.
+
+            @returns {$.Swipe} Returns the new generated swipe instance.
+        ###
+        _adaptFooterHeight: ->
+            this._domNodes.carousel.animate(
+                height: this._domNodes.carousel.find(
+                    this._domNodes.section
+                ).filter(".#{this._currentSection.substr(1)}").height())
+            this
+        ###*
             @description Attaches needed event handler to the swipe plugin and
                          initializes the slider.
 
             @returns {$.Swipe} Returns the new generated swipe instance.
         ###
         _initializeSwipe: ->
-            # NOTE: We use "animate()" instead of "fadeOut()" and "fadeIn()"
-            # to avoid any sort of shifting in the page layout. "fadeIn()" or
-            # "fadeOut()" uses "display: none".
-            this._options.carouselOptions.callback = (index, domNode) =>
-                this._domNodes.footer.animate opacity: 0
-                this.log this._pseudoSectionsAllowed
-                if not this._pseudoSectionsAllowed
-                    this._domNodes.navigationButton.each (subIndex, button) =>
-                        swipe = this._domNodes.carousel.data 'Swipe'
-                        # TODO make generic with registered pseudo sections.
-                        # Jump over #about-this-website if we switch section via
-                        # swiping.
-                        if index is subIndex and $(button).attr('href') is '#about-this-website'
-                            if swipe.getPos() is ((subIndex + 1) % swipe.getNumSlides())
-                                swipe.next()
-                            else
-                                swipe.prev()
-                            return false
-                # NOTE: Workaround to avoid syntax error in swipe plugin.
-                return ->
             this._options.carouselOptions.transitionEnd = (index, domNode) =>
-                this._pseudoSectionsAllowed = false
-                this._domNodes.footer.stop().animate opacity: 100
                 this._domNodes.navigationButton.each (subIndex, button) =>
                     if index is subIndex
                         this.fireEvent(
