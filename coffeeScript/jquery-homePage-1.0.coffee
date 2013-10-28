@@ -62,9 +62,8 @@ this.require([
                 transformIfViewportIsOnTop:
                     'div.navbar-wrapper, div.carousel.slide'
                 topDomNode: 'div.navbar-wrapper'
-                navigationButtons:
-                    'div.navbar-wrapper ul.nav li a, ' +
-                    'a[href="#about-this-website"]'
+                navigationButton: 'div.navbar-wrapper ul.nav li a'
+                pseudoNaviagtionButton: 'a[href="#about-this-website"]'
                 dimensionIndicator: '.dimension-indicator'
                 footer: 'div.footer'
             carouselOptions:
@@ -82,6 +81,13 @@ this.require([
                             oldLanguage.substr 0, 2
                         ).fadeIn 'fast'
                     )
+        ###*
+            Indicates if we are currently allowed to switch into a pseudo
+            section.
+
+            @property {Boolean}
+        ###
+        _pseudoSectionsAllowed: false
         ###*
             Indicates if smartphone navigation is open or closed.
 
@@ -137,8 +143,12 @@ this.require([
             @returns {$.HomePage} Returns the current instance.
         ###
         initialize: (options) ->
+            this._options.domNodes.navigationButton +=
+                ", #{this._options.domNodes.pseudoNaviagtionButton}"
             super options
-            this._initializesSwipe()
+            this.on this._options.domNodes.pseudoNaviagtionButton, 'click', =>
+                this._pseudoSectionsAllowed = true
+            this._initializeSwipe()
             # We have to manipulate the content behavior depending on
             # smartphone navigation bar state.
             this._handleCollapsingNavigationBarCompensations()
@@ -157,16 +167,17 @@ this.require([
             @returns {$.HomePage} Returns the current instance.
         ###
         _onViewportMovesToTop: ->
-            # Move main content up for the height of navigation bar to make a
-            # smooth transition between relative and fixed positioning of the
-            # navigation bar. A negative margin with relative positioning
-            # corresponds to no margin with fixed positioning.
-            this._domNodes.carousel.css(
-                'margin-top': "-#{this._expandedNavigationHeightInPixel}px"
-                'border-top':
-                    "#{this._expandedNavigationHeightInPixel -
-                    this._collapsedNavigationHeightInPixel}px solid " +
-                    this._sectionBackgroundColor)
+            if this._currentMediaQueryMode is 'smartphone'
+                # Move main content up for the height of navigation bar to make
+                # a smooth transition between relative and fixed positioning of
+                # the navigation bar. A negative margin with relative
+                # positioning corresponds to no margin with fixed positioning.
+                this._domNodes.carousel.css(
+                    'margin-top': "-#{this._expandedNavigationHeightInPixel}px"
+                    'border-top':
+                        "#{this._expandedNavigationHeightInPixel -
+                        this._collapsedNavigationHeightInPixel}px solid " +
+                        this._sectionBackgroundColor)
             # Switch navigation bar from fixed positioning to static smooth in
             # smart phone mode.
             this._domNodes.transformIfViewportIsOnTop.addClass(
@@ -179,17 +190,19 @@ this.require([
             @returns {$.HomePage} Returns the current instance.
         ###
         _onViewportMovesAwayFromTop: ->
-            # Remove the navigation height space if we switch to fixed
-            # navigation positioning.
-            if this._navigationIsCollapsed
-                this._domNodes.carousel.css 'margin-top': 0, 'border-top': 0
-            else
-                this._domNodes.carousel.css(
-                    'margin-top': 0
-                    'border-top':
-                        "#{this._expandedNavigationHeightInPixel -
-                        this._collapsedNavigationHeightInPixel}px solid " +
-                        this._sectionBackgroundColor)
+            if this._currentMediaQueryMode is 'smartphone'
+                # Remove the navigation height space if we switch to fixed
+                # navigation positioning.
+                if this._navigationIsCollapsed
+                    this._domNodes.carousel.css(
+                        'margin-top': 0, 'border-top': 0)
+                else
+                    this._domNodes.carousel.css(
+                        'margin-top': 0
+                        'border-top':
+                            "#{this._expandedNavigationHeightInPixel -
+                            this._collapsedNavigationHeightInPixel}px solid " +
+                            this._sectionBackgroundColor)
             this._domNodes.transformIfViewportIsOnTop.removeClass(
                 this._options.viewportIsOnTopIndicatorClassName)
             super()
@@ -231,20 +244,19 @@ this.require([
             if $.inArray(hash, ['next', 'prev']) isnt -1
                 direction = hash
                 hash = this._determineRelativeSections hash
-                # Don't go into this section via swiping.
-                # TODO if hash is 
             if hash.substr(0, 1) isnt '#'
                 hash = "##{hash}"
-            this._domNodes.navigationButtons.each (index, button) =>
+            this._domNodes.navigationButton.each (index, button) =>
                 button = $ button
-                # TODO this don't work for "about-this-website"
                 sectionDomNode = button.parent 'li'
+                if not sectionDomNode.length
+                    sectionDomNode = button
                 if button.attr('href') is hash or (
                     index is 0 and hash is '#' and hash = button.attr 'href'
                 )
-                    # TODO siehe oben
                     if not sectionDomNode.hasClass 'active'
                         this.debug "Switch to section \"#{hash}\"."
+                        # Swipe in endless cycle if we get a direction.
                         if direction
                             index = direction
                         if this._viewportIsOnTop
@@ -269,7 +281,7 @@ this.require([
         _onStartUpAnimationComplete: ->
             # All start up effects are ready. Handle direct
             # section links.
-            this._domNodes.navigationButtons.filter(
+            this._domNodes.navigationButton.filter(
                 "a[href=\"#{window.location.href.substr(
                     window.location.href.indexOf '#' )}\"]"
             ).trigger 'click',
@@ -285,17 +297,31 @@ this.require([
 
             @returns {$.Swipe} Returns the new generated swipe instance.
         ###
-        _initializesSwipe: ->
+        _initializeSwipe: ->
             # NOTE: We use "animate()" instead of "fadeOut()" and "fadeIn()"
             # to avoid any sort of shifting in the page layout. "fadeIn()" or
             # "fadeOut()" uses "display: none".
-            this._options.carouselOptions.callback = =>
+            this._options.carouselOptions.callback = (index, domNode) =>
                 this._domNodes.footer.animate opacity: 0
+                this.log this._pseudoSectionsAllowed
+                if not this._pseudoSectionsAllowed
+                    this._domNodes.navigationButton.each (subIndex, button) =>
+                        swipe = this._domNodes.carousel.data 'Swipe'
+                        # TODO make generic with registered pseudo sections.
+                        # Jump over #about-this-website if we switch section via
+                        # swiping.
+                        if index is subIndex and $(button).attr('href') is '#about-this-website'
+                            if swipe.getPos() is ((subIndex + 1) % swipe.getNumSlides())
+                                swipe.next()
+                            else
+                                swipe.prev()
+                            return false
                 # NOTE: Workaround to avoid syntax error in swipe plugin.
                 return ->
             this._options.carouselOptions.transitionEnd = (index, domNode) =>
+                this._pseudoSectionsAllowed = false
                 this._domNodes.footer.stop().animate opacity: 100
-                this._domNodes.navigationButtons.each (subIndex, button) =>
+                this._domNodes.navigationButton.each (subIndex, button) =>
                     if index is subIndex
                         this.fireEvent(
                             'switchSection', false, this, $(button).attr(
@@ -415,7 +441,7 @@ this.require([
             @returns {$.HomePage} Returns the current instance.
         ###
         _addNavigationEvents: ->
-            this.on this._domNodes.navigationButtons, 'click', (event) =>
+            this.on this._domNodes.navigationButton, 'click', (event) =>
                 this.fireEvent(
                     'switchSection', false, this, $(event.target).attr 'href')
             super()
@@ -427,13 +453,13 @@ this.require([
             @returns {String} Returns the absolute hash string.
         ###
         _determineRelativeSections: (hash) ->
-            this._domNodes.navigationButtons.each (index, button) =>
+            this._domNodes.navigationButton.each (index, button) =>
                 if $(button).attr('href') is window.location.hash
                     # NOTE: We subtract 1 from navigation buttons length
                     # because we want to ignore the about this website section.
                     # And the index starts counting by zero.
                     numberOfButtons =
-                        this._domNodes.navigationButtons.length - 1
+                        this._domNodes.navigationButton.length - 1
                     if hash is 'next'
                         newIndex = (index + 1) % numberOfButtons
                     else if hash is 'prev'
@@ -443,7 +469,7 @@ this.require([
                         newIndex = (index + numberOfButtons - 1) %
                             numberOfButtons
                     hash = $(
-                        this._domNodes.navigationButtons[newIndex]
+                        this._domNodes.navigationButton[newIndex]
                     ).attr 'href'
                     false
             hash
