@@ -147,14 +147,28 @@ this.require([
                 ).attr 'href'
             # Handle "about-this-website" and main section switch.
             this.on this._domNodes.aboutThisWebsiteButton, 'click', =>
-                this._domNodes.aboutThisWebsiteSection.fadeIn()
+                # TODO
+                if not this._navigationIsCollapsed
+                    this._domNodes.navigationBar.collapse 'hide'
+                this._domNodes.footer.css position: 'absolute', 'top': '500px'
+                this._domNodes.aboutThisWebsiteSection.fadeIn 'normal', =>
+                    this._domNodes.section.hide()
             this.on this._domNodes.navigationButton.add(
                 this._domNodes.logoLink
-            ), 'click', => this._domNodes.aboutThisWebsiteSection.fadeOut()
+            ), 'click', =>
+                this._domNodes.section.show()
+                this._domNodes.footer.removeAttr 'style'
+                this._domNodes.aboutThisWebsiteSection.fadeOut()
             this._initializeSwipe()
             # We have to manipulate the content behavior depending on
             # smartphone navigation bar state.
             this._handleCollapsingNavigationBarCompensations()
+            # TODO describe.
+            # TODO wenn sodann wird initial kein border gesetzt.
+            this._handleBeforeExpandNavigationBarCompensation()
+            this._handleAfterExpandNavigationBarCompensation()
+            this._handleBeforeCollapseNavigationBarCompensation()
+            this._handleAfterCollapseNavigationBarCompensation()
 
         # endregion
 
@@ -309,16 +323,19 @@ this.require([
 
             @returns {$.Swipe} Returns the new generated swipe instance.
         ###
-        _adaptContentHeight: ->
+        _adaptContentHeight: (borderInPixel=0) ->
             newSectionHeightInPixel = this._domNodes.carousel.find(
                 this._domNodes.section
             ).add(this._domNodes.aboutThisWebsiteSection).filter(
                 ".#{window.location.hash.substr(1)}"
             ).outerHeight()
             if this._currentMediaQueryMode is 'smartphone'
-                # TODO destroys compensations
-                #this._domNodes.carousel.css(
-                #    height: "#{newSectionHeightInPixel}px")
+                if not this._navigationIsCollapsed
+                    border = this._domNodes.carousel.css('border-top-width')
+                    borderInPixel = window.parseInt(border.substr(
+                        0, border.length - 2))
+                this._domNodes.carousel.css(
+                    height: "#{newSectionHeightInPixel + borderInPixel}px")
             else
                 this._domNodes.carousel.animate height: newSectionHeightInPixel
             this
@@ -375,6 +392,9 @@ this.require([
                         "#{this._expandedNavigationHeightInPixel -
                         this._collapsedNavigationHeightInPixel}px solid " +
                         this._sectionBackgroundColor)
+                this._adaptContentHeight(
+                    this._expandedNavigationHeightInPixel -
+                    this._collapsedNavigationHeightInPixel)
             this
         ###*
             @description Compensates margin from switching between positions
@@ -433,6 +453,7 @@ this.require([
                     'margin-top':
                         "-#{this._collapsedNavigationHeightInPixel}px"
                     'border-top': 0)
+                this._adaptContentHeight()
             else
                 # NOTE: Stopping the animation of reducing the margin avoids
                 # flicker effects.
