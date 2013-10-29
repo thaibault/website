@@ -50,10 +50,10 @@ endregion -->
 <%         {'enUS': 'Get in touch', 'deDE': 'Lernen wir uns kennen'},
 <%         {'enUS': "I'm a freelancer, ready to help you. Let's talk about "
 <%                  "your project and what I can do.",
-<%          'deDE': 'Ich arbeite selbständig und bereit Ihnen zu Helfen. '
-<%                  'Lassen Sie uns über Ihr Projetk sprechen und was ich für '
-<%                  'Sie tun kann.'},
-<%         {'enUS': 'TODO', 'deDE': 'TODO'})),
+<%          'deDE': 'Ich arbeite selbständig und bin bereit für Ihr Projekt. '
+<%                  'Kontaktieren Sie mich und wir sprechen über Ihr '
+<%                  'Vorhaben.'},
+<%         {'enUS': '', 'deDE': ''})),
 <%     ('skills', (
 <%         {'enUS': 'Skills', 'deDE': 'Fähigkeiten'},
 <%         {'enUS': 'Knowing a lot of facts is not the same as being smart.',
@@ -98,6 +98,8 @@ endregion -->
 
 <% # region runtime
 
+<% DEFAULT_LANGUAGE = 'deDE'
+<% ALTERNATE_LANGUAGE = 'enUS'
 <% START_UP_ANIMATION_NUMBER = 1
 
 <% # endregion
@@ -163,10 +165,8 @@ endregion -->
                     <div class="container">
                         <div class="navbar-header">
                             <a class="navbar-brand" href="#">thaibault <span class="dimension-indicator"></span></a>
-                            <div class="language-buttons">
-                                <% START_UP_ANIMATION_NUMBER += 1
-                                <a href="#lang-deDE" class="start-up-animation-number-<% START_UP_ANIMATION_NUMBER %>">de</a>
-                            </div>
+                            <% START_UP_ANIMATION_NUMBER += 1
+                            <a href="#lang-deDE" class="start-up-animation-number-<% START_UP_ANIMATION_NUMBER %>">de</a>
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                                 <% for section in range(3):
                                     <span class="icon-bar"></span>
@@ -178,7 +178,7 @@ endregion -->
                                     <% if section[0]:
                                         <% START_UP_ANIMATION_NUMBER += 1
                                         <li class="start-up-animation-number-<% START_UP_ANIMATION_NUMBER %><%' active' if name == SECTIONS[0][0] else ''%>">
-                                            <a href="#<% name %>"><% section[0]['enUS']%><!--deDE:<% section[0]['deDE'] %>--></a>
+                                            <a href="#<% name %>"><% section[0][DEFAULT_LANGUAGE]%><!--<% ALTERNATE_LANGUAGE %>:<% section[0][ALTERNATE_LANGUAGE] %>--></a>
                                         </li>
                             </ul>
                         </div>
@@ -200,16 +200,16 @@ endregion -->
                         <div class="container">
                             <div class="carousel-caption">
                                 <h1>
-                                    <% section[1]['enUS'] %>
-                                    <!--deDE:<% section[1]['deDE'] %>-->
+                                    <% section[1][DEFAULT_LANGUAGE] %>
+                                    <!--enUS:<% section[1][ALTERNATE_LANGUAGE] %>-->
                                 </h1>
                                 <% if section[2]:
                                     <p class="lead">
-                                        <% section[2]['enUS'] %>
-                                        <!--deDE:<% section[2]['deDE'] %>-->
+                                        <% section[2][DEFAULT_LANGUAGE] %>
+                                        <!--<% ALTERNATE_LANGUAGE %>:<% section[2][ALTERNATE_LANGUAGE] %>-->
                                     </p>
                                     <% if name == 'contact':
-                                        <p class="lead phone-number">+49 176 <span>/</span> 10 248 185</p>
+                                        <p class="lead phone-number">Tel.<!--enEN:Phone--> +49 176 <span>/</span> 10 248 185</p>
                                         <% for name, link in SOCIAL_MEDIA:
                                             <% if '@' in link:
                                                 <% link = 'mailto:%s' % link
@@ -220,8 +220,8 @@ endregion -->
                                         <% if name == 'references':
                                             <% for project_name, project_page_link in PROJECTS:
                                                 <a href="<% project_page_link %>"><% project_name %></a>
-                                        <% section[3]['enUS'] %>
-                                        <!--<% section[3]['deDE'] %>-->
+                                        <% section[3][DEFAULT_LANGUAGE] %>
+                                        <!--<% section[3][ALTERNATE_LANGUAGE] %>-->
                                     </p>
                                 </div>
                             </div>
@@ -240,11 +240,11 @@ endregion -->
                 <div class="container">
                     <div class="caption">
                         <h1>
-                            About this website
-                            <!--deDE:Impressum-->
+                            Impressum
+                            <!--<% ALTERNATE_LANGUAGE %>:About this website-->
                         </h1>
                         <p class="lead">
-                            <p>Provider of<!--deDE:Anbieter von--> <a href="<% SOCIAL_MEDIA[-1][1] %>"><% SOCIAL_MEDIA[-1][1] %></a>:</p>
+                            <p>Anbieter von<!--<% ALTERNATE_LANGUAGE %>:Provider of--> <a href="<% SOCIAL_MEDIA[-1][1] %>"><% SOCIAL_MEDIA[-1][1] %></a>:</p>
                             <p>Torben Sickert</p>
                             <p>Christoph-Mang-Str. 14</p>
                             <p>79100 Freiburg</p>
@@ -252,7 +252,7 @@ endregion -->
                             <p>Internet: <a href="<% SOCIAL_MEDIA[-1][1] %>"><% SOCIAL_MEDIA[-1][1] %></a></p>
                             <p>Email: <a href="mailto:<% SOCIAL_MEDIA[0][1] %>"><% SOCIAL_MEDIA[0][1] %></a></p>
                             <br />
-                            <p><a href="<% LINK_TO_PUBLIC_SSH_KEY %>">public ssh key<!--deDE:öffentlicher SSH-Schlüssel--></a></p>
+                            <p><a href="<% LINK_TO_PUBLIC_SSH_KEY %>">öffentlicher SSH-Schlüssel<!--<% ALTERNATE_LANGUAGE %>:public ssh key--></a></p>
                         </p>
                     </div>
                 </div>

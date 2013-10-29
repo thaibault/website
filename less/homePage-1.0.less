@@ -22,12 +22,14 @@ License
 
 // region constants
 
-@color1: #5a5a5a;
-@color2: #ffffff;
-@color3: #222222;
+@fontColor: #5a5a5a;
+@backgroundColor: #ffffff;
+@defaultColor: #222222;
+@linkHoverColor: #2a6496;
 @shadowColor: rgba(0, 0, 0, .25);
+
 @footerMarginInPixel: 30px;
-@defaultContentHeightInPixel: 440px;
+@defaultContentHeightInPixel: 410px;
 
 // endregion
 
@@ -39,8 +41,8 @@ body.home-page {
 
     /* region global */
 
-    color: @color1;
-    background-color: @color3;
+    color: @fontColor;
+    background-color: @defaultColor;
 
         /* region buttons */
 
@@ -68,7 +70,7 @@ body.home-page {
 
     /* Overlay the whole page till everything is loaded completely. */
     > div.window-loading-cover {
-        background-color: @color2;
+        background-color: @backgroundColor;
         position: fixed;
         height: 100%;
         width: 100%;
@@ -84,24 +86,41 @@ body.home-page {
 
     /* endregion */
 
+    /* region navigation bar */
+
+    /* Normal Wrapper for the main navigation bar. Scrolls with viewport. */
+    > div.navbar-wrapper {
+        #generic > .opacity(0.95);
+
+        position: fixed;
+        z-index: 1;
+    }
+
+    /* endregion */
+
     /* region carousel */
 
-    /* Main section slider. */
-    > div.carousel {
-        background-color: @color2;
+    /* Main section slider wrapper. */
+    > div.carousel.slide {
+        background-color: @backgroundColor;
         overflow: hidden;
         visibility: hidden;
         position: relative;
 
+        /* Wraps the visible area from whole wide slider wrapper. */
         > div.carousel-inner {
             overflow: hidden;
             position: relative;
 
+            /* Contains each section content. */
             > div.item {
                 float: left;
                 width: 100%;
                 position: relative;
-                /* Set a default content height. */
+                /*
+                    Set a default content height. Could by vary depending on
+                    currently activated section.
+                */
                 height: @defaultContentHeightInPixel;
                 /*
                     Disable bootstraps startup effect and overwrite with swipe
@@ -111,7 +130,10 @@ body.home-page {
                 -webkit-transition: 1000ms;
                         transition: 1000ms;
 
-                /* Position content absolute to fill out the whole viewport. */
+                /*
+                    Position section dependent background image absolute to
+                    fill out the whole viewport.
+                */
                 > div[class^=carousel-image-] {
                     position: absolute;
                     top: 0;
@@ -119,15 +141,14 @@ body.home-page {
                     min-width: 100%;
                     height: 500px;
                 }
+                /* Contains each section text content. */
                 > div.container > div.carousel-caption {
+                    /* align caption from top instead from bottom. */
+                    top: 52px;
+                    bottom: none;
                     z-index: 0;
-                    color: @color3;
+                    color: @defaultColor;
                     text-shadow: none;
-
-                    a.glyphicon-social {
-                        font-size: 50px;
-                        color: @color3;
-                    }
                 }
             }
         }
@@ -135,23 +156,38 @@ body.home-page {
 
     /* endregion */
 
-    /* region about this website section */
+    /* region section */
 
+        /* region contact */
+
+    /* Show big dark social media icons. */
+    > div.carousel.slide > div.carousel-inner > div.item.contact > div.container > div.carousel-caption {
+        > a.glyphicon-social {
+            font-size: 50px;
+            color: @defaultColor;
+            letter-spacing: 10px;
+        }
+        > a.glyphicon-social:hover {
+            color: @linkHoverColor;
+        }
+    }
+
+        /* endregion */
+
+        /* region about this website */
+
+    /* Wraps the legal notice content. */
     div.about-this-website {
         height: @defaultContentHeightInPixel;
-        background-color: @color2;
+        background-color: @backgroundColor;
         position: absolute;
-        padding-top: 100px;
         top: 0;
         left: 0;
         width: 100%;
-        height: 500px;
         display: none;
-
-        > div.container {
-            margin-left: 20%;
-        }
     }
+
+        /* endregion */
 
     /* endregion */
 
@@ -192,22 +228,9 @@ body.home-page {
 
             /* region navigation bar */
 
-                /* region viewport is on top of page */
-
-    /* Wrapper for the main navigation bar if viewport is on top of page. */
-    > div.navbar-wrapper.on-top {
-        position: relative;
-    }
-
-                /* endregion */
-
     /* Normal Wrapper for the main navigation bar. Scrolls with viewport. */
     > div.navbar-wrapper {
-        #generic > .opacity(0.95);
-
-        position: fixed;
         top: 0;
-        z-index: 1;
         width: 100%;
 
         @buttonMarginInPercent: 5%;
@@ -229,8 +252,8 @@ body.home-page {
                             }
                         }
                     }
-                    /* Position language links. */
-                    > div.language-buttons {
+                    /* Position language link. */
+                    > a[href^="#lang-"] {
                         position: absolute;
                         top: 16px;
                         right: 70px;
@@ -250,26 +273,45 @@ body.home-page {
 
             /* region carousel */
 
-    /*
-        Compensate relative height of navigation bar. The carousel is pressed
-        down by the navigation bar.
-    */
-    > div.carousel.on-top {
-        margin-top: -52px;
-    }
     /* Define main content size. */
-    > div.carousel > div.carousel-inner > {
+    > div.carousel.slide > div.carousel-inner > {
         /* Set section specified heights. */
         div.item.references {
             height: 500px;
         }
         div.item > div.container > .carousel-caption {
             > h1 {
-                font-size: 20px;
+                font-size: 25px;
             }
             > p {
-                font-size: 16px;
-                line-height: 1;
+                font-size: 19px;
+                line-height: 20px;
+            }
+        }
+    }
+
+            /* endregion */
+
+            /* region section */
+
+    div.about-this-website {
+        color: @defaultColor;
+        padding-top: 72px;
+        padding-bottom: 20px;
+        height: 415px;
+
+        /* Wraps the text content, positions space around them. */
+        > div.container {
+            margin-left: 10%;
+        }
+        > div.container > div.container > div.caption {
+            > h1 {
+                font-size: 25px;
+            }
+            > p {
+                font-size: 17px;
+                line-height: 20px;
+                margin-bottom: 6px;
             }
         }
     }
@@ -296,17 +338,6 @@ body.home-page {
 
             /* region navigation bar */
 
-                /* region viewport is on top of page */
-
-        /*
-            Wrapper for the main navigation bar if viewport is on top of page.
-        */
-        > div.navbar-wrapper.on-top {
-            position: fixed;
-        }
-
-                /* endregion */
-
         /*
             Normal Wrapper for the main navigation bar. Scrolls with viewport.
         */
@@ -320,8 +351,8 @@ body.home-page {
                     #generic > .border-radius(4px);
 
                     > div.container {
-                        /* Position language links. */
-                        > div.navbar-header > div.language-buttons {
+                        /* Position language link. */
+                        > div.navbar-header > a[href^="#lang-"] {
                             position: absolute;
                             top: 16px;
                             right: 18px;
@@ -350,11 +381,7 @@ body.home-page {
 
             /* region carousel */
 
-        /* Reset smartphone setting. */
-        > div.carousel.on-top {
-            margin-top: 0;
-        }
-        > div.carousel > div.carousel-inner > div.item {
+        > div.carousel.slide > div.carousel-inner > div.item {
             /* Bump up size of carousel content */
             > div.container > .carousel-caption {
                 h1 {
