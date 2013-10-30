@@ -52,14 +52,47 @@ endregion -->
 <%                  "your project and what I can do.",
 <%          'deDE': 'Ich arbeite selbständig und bin bereit für Ihr Projekt. '
 <%                  'Kontaktieren Sie mich und wir sprechen über Ihr '
-<%                  'Vorhaben.'},
-<%         {'enUS': '', 'deDE': ''})),
+<%                  'Vorhaben.'})),
 <%     ('skills', (
 <%         {'enUS': 'Skills', 'deDE': 'Fähigkeiten'},
-<%         {'enUS': 'Knowing a lot of facts is not the same as being smart.',
-<%          'deDE': 'TODO'},
-<%         {'enUS': 'Ambition, manage projects with love..', 'deDE': 'TODO'},
-<%         {'enUS': 'TODO', 'deDE': 'TODO'})),
+<%         {'enUS': "I'm an ambitious IT guy and love what I'm doing!",
+<%          'deDE': "Ich bin ambitionierter IT'ler und liebe was ich tue!"},
+<%         {'enUS': {
+<%              'abstract': (
+<%                  'contacts', 'conception',
+<%                  'Implementation and optimization of applications for the '
+<%                  'web, ', 'desktop and server', 'quality Assurance',
+<%                  'High Reliability Applications', 'Test-driven Design',
+<%                  '(Web) progamming', 'Usabillity',
+<%                  'Web and search engine optimization',
+<%                  'administering servers on Linux, Mac or Windows',
+<%                  'Intranet Solutions', 'Community Portal solution',
+<%                  'Accessibility', 'Rich Internet Applications',
+<%                  'Content Management Systems', 'Web 2.0'),
+<%              'security': (
+<%                  'Design by Contract',
+<%                  'Integration, application, and unit tests',
+<%                  'Proofs of program properties'),
+<%              'other': (
+<%                  'economic theoretical knowledge',
+<%                  'matic computerized knowledge', 'mathematical knowledge'),
+<%              'programingTechnics': (
+<%                  'Functionally oriented programming',
+<%                  'Imperative Oriented Programming',
+<%                  'Object-Oriented Programming',
+<%                  'Aspect-Oriented Programming'),
+<%              'database': (
+<%                  'Object-Relational Modeling (ORM) with SQLAlchemy, POD or '
+<%                  'Propel', 'SQL'),
+<%              'versioning': ('GIT', 'SVN', 'CVS', 'Mercurial'),
+<%              'programingLanguage': (
+<%                  'C', 'C++', 'C# (with XNA)', 'Java', 'Python',
+<%                  'JavaScript', 'CoffeeScript', 'Scheme', 'PHP'),
+<%              'declarativeLanguage': ('XHTML', 'CSS', 'less'),
+<%              'server': ('apache', 'nginx'),
+<%              'framework': (
+<%                  'angularJS', 'django', 'jQuery', 'Mootools', 'bootstrap')},
+<%          'deDE': 'TODO'})),
 <%     ('references', (
 <%         {'enUS': 'References', 'deDE': 'Referenzen'},
 <%         {'enUS': "You don't want good service, instead of the result! "
@@ -70,8 +103,7 @@ endregion -->
 <%          'deDE': 'TODO'},
 <%         {'enUS': 'Robots Lab and Rechnernetze and Telematik in University '
 <%                  'Freiburg, BPV, BTI, Vattenfall...',
-<%          'deDE': 'TODO'},
-<%         {'enUS': 'TODO', 'deDE': 'TODO'})),
+<%          'deDE': 'TODO'})),
 <%     ('about', (
 <%         {'enUS': 'About me', 'deDE': 'Über mich'},
 <%         {'enUS': "I'm a computer scientist and love the challenge",
@@ -79,8 +111,7 @@ endregion -->
 <%         {'enUS': 'Experiences from Posic, Akra, Virtual Identity, Chair of '
 <%                  'Humanoid Robots Lab and Rechnernetze and Telematik in '
 <%                  'University Freiburg, BPV, BTI, Vattenfall...',
-<%          'deDE': 'TODO'},
-<%         {'enUS': 'TODO', 'deDE': 'TODO'})))
+<%          'deDE': 'TODO'})))
 
 <% PROJECTS = (
 <%     ('boostNode', 'http://thaibault.github.io/boostNode/'),
@@ -203,25 +234,26 @@ endregion -->
                                     <% section[1][DEFAULT_LANGUAGE] %>
                                     <!--enUS:<% section[1][ALTERNATE_LANGUAGE] %>-->
                                 </h1>
-                                <% if section[2]:
-                                    <p class="lead">
-                                        <% section[2][DEFAULT_LANGUAGE] %>
-                                        <!--<% ALTERNATE_LANGUAGE %>:<% section[2][ALTERNATE_LANGUAGE] %>-->
-                                    </p>
-                                    <% if name == 'contact':
-                                        <p class="lead phone-number">Tel.<!--enEN:Phone--> +49 176 <span>/</span> 10 248 185</p>
-                                        <% for name, link in SOCIAL_MEDIA:
-                                            <% if '@' in link:
-                                                <% link = 'mailto:%s' % link
-                                            <a class="glyphicon-social glyphicon-social-<% name %>" href="<% link %>" target="_blank"></a>
+                                <p class="lead">
+                                    <% section[2][DEFAULT_LANGUAGE] %>
+                                    <!--<% ALTERNATE_LANGUAGE %>:<% section[2][ALTERNATE_LANGUAGE] %>-->
+                                </p>
+
+                                <% if name == 'contact':
+                                    <p class="lead phone-number">Tel.<!--enEN:Phone--> +49 176 <span>/</span> 10 248 185</p>
+                                    <% for name, link in SOCIAL_MEDIA:
+                                        <% if '@' in link:
+                                            <% link = 'mailto:%s' % link
+                                        <a class="glyphicon-social glyphicon-social-<% name %>" href="<% link %>" target="_blank"></a>
+
                                 <% START_UP_ANIMATION_NUMBER += 1
                                 <div class="start-up-animation-number-<% START_UP_ANIMATION_NUMBER %> container content">
                                     <p class="lead">
+
                                         <% if name == 'references':
                                             <% for project_name, project_page_link in PROJECTS:
                                                 <a href="<% project_page_link %>"><% project_name %></a>
-                                        <% section[3][DEFAULT_LANGUAGE] %>
-                                        <!--<% section[3][ALTERNATE_LANGUAGE] %>-->
+
                                     </p>
                                 </div>
                             </div>
