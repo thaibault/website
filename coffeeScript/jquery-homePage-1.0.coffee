@@ -51,7 +51,7 @@ this.require([
             trackingCode: 'UA-40192634-1'
             scrollInLinearTime: true
             dimensionIndicatorTemplate: '({1})'
-            domNodes:
+            domNode:
                 # TODO make nodes more tree like
                 carousel: 'div.carousel.slide'
                 section: 'div.item'
@@ -108,20 +108,20 @@ this.require([
         initialize: (options) ->
             super options
             if not window.location.hash
-                window.location.hash = this._domNodes.navigationButton.parent(
+                window.location.hash = this.$domNode.navigationButton.parent(
                     'li'
                 ).filter('.active').children(
-                    this._domNodes.navigationButton
+                    this.$domNode.navigationButton
                 ).attr 'href'
             # Handle "about-this-website" and main section switch.
             # TODO options
-            # TODO _domNodes -> $domNode
-            this.on this._domNodes.aboutThisWebsiteButton, 'click', =>
-                this._domNodes.aboutThisWebsiteSection.fadeIn()
-            this.on this._domNodes.navigationButton.add(
-                this._domNodes.logoLink
+            this.on this.$domNode.aboutThisWebsiteButton, 'click', =>
+                this._scrollToTop()
+                this.$domNode.aboutThisWebsiteSection.fadeIn()
+            this.on this.$domNode.navigationButton.add(
+                this.$domNode.logoLink
             ), 'click', =>
-                this._domNodes.aboutThisWebsiteSection.fadeOut()
+                this.$domNode.aboutThisWebsiteSection.fadeOut()
             this._initializeSwipe()
 
         # endregion
@@ -139,8 +139,9 @@ this.require([
             @returns {$.HomePage} Returns the current instance.
         ###
         _onChangeMediaQueryMode: (oldMode, newMode) ->
-            this._domNodes.dimensionIndicator.fadeOut 'slow', =>
-                this._domNodes.dimensionIndicator.text(
+            # TODO options
+            this.$domNode.dimensionIndicator.fadeOut 'slow', =>
+                this.$domNode.dimensionIndicator.text(
                     this.stringFormat(
                         this._options.dimensionIndicatorTemplate,
                         "#{newMode}-mode")
@@ -161,7 +162,7 @@ this.require([
             if hash.substr(0, 1) isnt '#'
                 hash = "##{hash}"
             switched = false
-            this._domNodes.navigationButton.each (index, button) =>
+            this.$domNode.navigationButton.each (index, button) =>
                 button = $ button
                 sectionButtonDomNode = button.parent 'li'
                 if not sectionButtonDomNode.length
@@ -178,11 +179,10 @@ this.require([
                         if direction
                             index = direction
                         if this._viewportIsOnTop
-                            this._domNodes.carousel.data('Swipe').slide(
-                                index)
+                            this.$domNode.carousel.data('Swipe').slide index
                         else
                             this._scrollToTop(=>
-                                this._domNodes.carousel.data(
+                                this.$domNode.carousel.data(
                                     'Swipe'
                                 ).slide index)
                         sectionButtonDomNode.addClass 'active'
@@ -200,8 +200,8 @@ this.require([
         ###
         _onStartUpAnimationComplete: ->
             # All start up effects are ready. Handle direct section links.
-            this._domNodes.navigationButton.add(
-                this._domNodes.aboutThisWebsiteButton
+            this.$domNode.navigationButton.add(
+                this.$domNode.aboutThisWebsiteButton
             ).filter(
                 "a[href=\"#{window.location.href.substr(
                     window.location.href.indexOf '#'
@@ -221,20 +221,20 @@ this.require([
             @returns {$.Swipe} Returns the new generated swipe instance.
         ###
         _adaptContentHeight: ->
-            newSectionHeightInPixel = this._domNodes.carousel.find(
-                this._domNodes.section
-            ).add(this._domNodes.aboutThisWebsiteSection).filter(
+            newSectionHeightInPixel = this.$domNode.carousel.find(
+                this.$domNode.section
+            ).add(this.$domNode.aboutThisWebsiteSection).filter(
                 ".#{window.location.hash.substr(1)}"
             ).outerHeight()
             # TODO
             if window.location.hash is '#about-this-website'
-                this._domNodes.footer.css(
+                this.$domNode.footer.css(
                     position: 'absolute'
                     top: newSectionHeightInPixel)
-                this._domNodes.carousel.height newSectionHeightInPixel
+                this.$domNode.carousel.height newSectionHeightInPixel
             else
-                this._domNodes.footer.css position: 'relative', top: 0
-                this._domNodes.carousel.animate height: newSectionHeightInPixel
+                this.$domNode.footer.css position: 'relative', top: 0
+                this.$domNode.carousel.animate height: newSectionHeightInPixel
             this
         ###*
             @description Attaches needed event handler to the swipe plugin and
@@ -244,21 +244,21 @@ this.require([
         ###
         _initializeSwipe: ->
             this._options.carouselOptions.transitionEnd = (index, domNode) =>
-                this._domNodes.navigationButton.each (subIndex, button) =>
+                this.$domNode.navigationButton.each (subIndex, button) =>
                     if index is subIndex
                         this.fireEvent(
                             'switchSection', false, this, $(button).attr(
                                 'href'))
                         return false
                 return true
-            this._domNodes.carousel.Swipe this._options.carouselOptions
+            this.$domNode.carousel.Swipe this._options.carouselOptions
         ###*
             @description This method adds triggers to switch section.
 
             @returns {$.HomePage} Returns the current instance.
         ###
         _addNavigationEvents: ->
-            this.on this._domNodes.navigationButton, 'click', (event) =>
+            this.on this.$domNode.navigationButton, 'click', (event) =>
                 this.fireEvent(
                     'switchSection', false, this, $(event.target).attr 'href')
             super()
@@ -270,13 +270,13 @@ this.require([
             @returns {String} Returns the absolute hash string.
         ###
         _determineRelativeSections: (hash) ->
-            this._domNodes.navigationButton.each (index, button) =>
+            this.$domNode.navigationButton.each (index, button) =>
                 if $(button).attr('href') is window.location.hash
                     # NOTE: We subtract 1 from navigation buttons length
                     # because we want to ignore the about this website section.
                     # And the index starts counting by zero.
                     numberOfButtons =
-                        this._domNodes.navigationButton.length - 1
+                        this.$domNode.navigationButton.length - 1
                     if hash is 'next'
                         newIndex = (index + 1) % numberOfButtons
                     else if hash is 'prev'
@@ -286,7 +286,7 @@ this.require([
                         newIndex = (index + numberOfButtons - 1) %
                             numberOfButtons
                     hash = $(
-                        this._domNodes.navigationButton[newIndex]
+                        this.$domNode.navigationButton[newIndex]
                     ).attr 'href'
                     false
             hash
@@ -298,9 +298,9 @@ this.require([
     # region handle $ extending
 
     ###* @ignore ###
-    $.HomePage = ->
-        self = new HomePage
-        self._controller.apply self, arguments
+    $.HomePage = -> $.Tools().controller HomePage, arguments
+    ###* @ignore ###
+    $.HomePage.class = HomePage
 
     # endregion
 

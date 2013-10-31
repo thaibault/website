@@ -197,7 +197,7 @@ endregion -->
                         <div class="navbar-header">
                             <a class="navbar-brand" href="#">thaibault <span class="dimension-indicator"></span></a>
                             <% START_UP_ANIMATION_NUMBER += 1
-                            <a href="#lang-deDE" class="start-up-animation-number-<% START_UP_ANIMATION_NUMBER %>">de</a>
+                            <a href="#lang-<% ALTERNATE_LANGUAGE %>" class="start-up-animation-number-<% START_UP_ANIMATION_NUMBER %>"><% ALTERNATE_LANGUAGE[:-2] %></a>
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                                 <% for section in range(3):
                                     <span class="icon-bar"></span>
