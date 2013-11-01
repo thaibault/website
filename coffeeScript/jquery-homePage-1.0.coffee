@@ -52,16 +52,26 @@ this.require([
             scrollInLinearTime: true
             dimensionIndicatorTemplate: '({1})'
             domNode:
-                # TODO make nodes more tree like
-                carousel: 'div.carousel.slide'
-                section: 'div.item'
-                topDomNode: 'div.navbar-wrapper'
-                logoLink: 'a.navbar-brand'
-                navigationButton: 'div.navbar-wrapper ul.nav li a'
-                aboutThisWebsiteButton: 'a[href="#about-this-website"]'
-                aboutThisWebsiteSection: 'div.about-this-website'
-                dimensionIndicator: '.dimension-indicator'
-                footer: 'div.footer'
+                carousel: '> div.carousel.slide'
+                section: '> div.carousel.slide > div.carousel-inner > div.item'
+                top: '> div.navbar-wrapper'
+                logoLink:
+                    '> div.navbar-wrapper > div.container > ' +
+                    'div.navbar.navbar-inverse > div.container > ' +
+                    'div.navbar-header > a.navbar-brand'
+                navigationButton:
+                    '> div.navbar-wrapper > div.container > ' +
+                    'div.navbar.navbar-inverse > div.container > ' +
+                    'div.navbar-collapse > ul.nav.navbar-nav li a'
+                aboutThisWebsiteButton:
+                    '> div.footer > footer > p > a[href="#about-this-website"]'
+                aboutThisWebsiteSection: '> div.about-this-website'
+                dimensionIndicator:
+                    '> div.navbar-wrapper > div.container > ' +
+                    'div.navbar.navbar-inverse > div.container > ' +
+                    'div.navbar-header > a.navbar-brand > ' +
+                    'span.dimension-indicator'
+                footer: '> div.footer'
             carouselOptions:
                 startSlide: 0
                 speed: 1000
@@ -73,11 +83,16 @@ this.require([
                 default: 'deDE'
                 onSwitched: (oldLanguage, newLanguage) ->
                     # Add language toggle button functionality.
-                    $("a[href=\"#lang-#{newLanguage}\"]").fadeOut('fast', ->
+                    $("a[href=\"#lang-#{newLanguage}\"]").fadeOut 'fast', ->
                         $(this).attr('href', "#lang-#{oldLanguage}").text(
                             oldLanguage.substr 0, 2
                         ).fadeIn 'fast'
-                    )
+            dimensionIndicator:
+                fadeIn: duration: 'slow'
+                fadeOut: duration: 'slow'
+            aboutThisWebsiteSection:
+                fadeIn: duraction: 'normal'
+                fadeOut: duration: 'normal'
         ###*
             Saves the main content background color to attach a border with
             same color for compensating with right colored margin.
@@ -114,14 +129,15 @@ this.require([
                     this.$domNode.navigationButton
                 ).attr 'href'
             # Handle "about-this-website" and main section switch.
-            # TODO options
             this.on this.$domNode.aboutThisWebsiteButton, 'click', =>
                 this._scrollToTop()
-                this.$domNode.aboutThisWebsiteSection.fadeIn()
+                this.$domNode.aboutThisWebsiteSection.fadeIn(
+                    this._options.aboutThisWebsiteSection.fadeIn)
             this.on this.$domNode.navigationButton.add(
                 this.$domNode.logoLink
             ), 'click', =>
-                this.$domNode.aboutThisWebsiteSection.fadeOut()
+                this.$domNode.aboutThisWebsiteSection.fadeOut(
+                    this._options.aboutThisWebsiteSection.fadeOut)
             this._initializeSwipe()
 
         # endregion
@@ -139,13 +155,15 @@ this.require([
             @returns {$.HomePage} Returns the current instance.
         ###
         _onChangeMediaQueryMode: (oldMode, newMode) ->
-            # TODO options
-            this.$domNode.dimensionIndicator.fadeOut 'slow', =>
+            # Show responsive dimension indicator switching.
+            this._options.dimensionIndicator.fadeOut.always = =>
                 this.$domNode.dimensionIndicator.text(
                     this.stringFormat(
                         this._options.dimensionIndicatorTemplate,
                         "#{newMode}-mode")
-                ).fadeIn 'slow'
+                ).fadeIn this._options.dimensionIndicator.fadeIn
+            this.$domNode.dimensionIndicator.stop().fadeOut(
+                this._options.dimensionIndicator.fadeOut)
             super()
         ###*
             @description Switches to given section.
@@ -226,7 +244,8 @@ this.require([
             ).add(this.$domNode.aboutThisWebsiteSection).filter(
                 ".#{window.location.hash.substr(1)}"
             ).outerHeight()
-            # TODO
+            # TODO document
+            # TODO what about different size depending on text content!!
             if window.location.hash is '#about-this-website'
                 this.$domNode.footer.css(
                     position: 'absolute'
