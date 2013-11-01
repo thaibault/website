@@ -18,7 +18,10 @@
 
 # endregion
 
-# TODO use only in development mode
+
+# TODO adapt to support less source maps.
+## standalone
+##
 this.less =
     env: 'development'
     async: false
@@ -30,6 +33,7 @@ this.less =
     rootpath: ''
     logLevel: 0
     #sourceMap: true
+##
 
 ## standalone
 ## this.jQuery.noConflict(true) ($) ->
