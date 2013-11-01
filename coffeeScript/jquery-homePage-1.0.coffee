@@ -122,20 +122,20 @@ this.require([
         initialize: (options) ->
             super options
             if not window.location.hash
-                window.location.hash = this.$domNode.navigationButton.parent(
+                window.location.hash = this.$domNodes.navigationButton.parent(
                     'li'
                 ).filter('.active').children(
-                    this.$domNode.navigationButton
+                    this.$domNodes.navigationButton
                 ).attr 'href'
             # Handle "about-this-website" and main section switch.
-            this.on this.$domNode.aboutThisWebsiteButton, 'click', =>
+            this.on this.$domNodes.aboutThisWebsiteButton, 'click', =>
                 this._scrollToTop()
-                this.$domNode.aboutThisWebsiteSection.fadeIn(
+                this.$domNodes.aboutThisWebsiteSection.fadeIn(
                     this._options.aboutThisWebsiteSection.fadeIn)
-            this.on this.$domNode.navigationButton.add(
-                this.$domNode.logoLink
+            this.on this.$domNodes.navigationButton.add(
+                this.$domNodes.logoLink
             ), 'click', =>
-                this.$domNode.aboutThisWebsiteSection.fadeOut(
+                this.$domNodes.aboutThisWebsiteSection.fadeOut(
                     this._options.aboutThisWebsiteSection.fadeOut)
             this._initializeSwipe()
 
@@ -156,12 +156,12 @@ this.require([
         _onChangeMediaQueryMode: (oldMode, newMode) ->
             # Show responsive dimension indicator switching.
             this._options.dimensionIndicator.fadeOut.always = =>
-                this.$domNode.dimensionIndicator.text(
+                this.$domNodes.dimensionIndicator.text(
                     this.stringFormat(
                         this._options.dimensionIndicatorTemplate,
                         "#{newMode}-mode")
                 ).fadeIn this._options.dimensionIndicator.fadeIn
-            this.$domNode.dimensionIndicator.stop().fadeOut(
+            this.$domNodes.dimensionIndicator.stop().fadeOut(
                 this._options.dimensionIndicator.fadeOut)
             super()
         ###*
@@ -179,7 +179,7 @@ this.require([
             if hash.substr(0, 1) isnt '#'
                 hash = "##{hash}"
             switched = false
-            this.$domNode.navigationButton.each (index, button) =>
+            this.$domNodes.navigationButton.each (index, button) =>
                 button = $ button
                 sectionButtonDomNode = button.parent 'li'
                 if not sectionButtonDomNode.length
@@ -196,10 +196,10 @@ this.require([
                         if direction
                             index = direction
                         if this._viewportIsOnTop
-                            this.$domNode.carousel.data('Swipe').slide index
+                            this.$domNodes.carousel.data('Swipe').slide index
                         else
                             this._scrollToTop(=>
-                                this.$domNode.carousel.data(
+                                this.$domNodes.carousel.data(
                                     'Swipe'
                                 ).slide index)
                         sectionButtonDomNode.addClass 'active'
@@ -217,8 +217,8 @@ this.require([
         ###
         _onStartUpAnimationComplete: ->
             # All start up effects are ready. Handle direct section links.
-            this.$domNode.navigationButton.add(
-                this.$domNode.aboutThisWebsiteButton
+            this.$domNodes.navigationButton.add(
+                this.$domNodes.aboutThisWebsiteButton
             ).filter(
                 "a[href=\"#{window.location.href.substr(
                     window.location.href.indexOf '#'
@@ -238,21 +238,21 @@ this.require([
             @returns {$.Swipe} Returns the new generated swipe instance.
         ###
         _adaptContentHeight: ->
-            newSectionHeightInPixel = this.$domNode.carousel.find(
-                this.$domNode.section
-            ).add(this.$domNode.aboutThisWebsiteSection).filter(
+            newSectionHeightInPixel = this.$domNodes.carousel.find(
+                this.$domNodes.section
+            ).add(this.$domNodes.aboutThisWebsiteSection).filter(
                 ".#{window.location.hash.substr(1)}"
             ).outerHeight()
             # TODO document
             # TODO what about different size depending on text content!!
             if window.location.hash is '#about-this-website'
-                this.$domNode.footer.css(
+                this.$domNodes.footer.css(
                     position: 'absolute'
                     top: newSectionHeightInPixel)
-                this.$domNode.carousel.height newSectionHeightInPixel
+                this.$domNodes.carousel.height newSectionHeightInPixel
             else
-                this.$domNode.footer.css position: 'relative', top: 0
-                this.$domNode.carousel.animate height: newSectionHeightInPixel
+                this.$domNodes.footer.css position: 'relative', top: 0
+                this.$domNodes.carousel.animate height: newSectionHeightInPixel
             this
         ###*
             @description Attaches needed event handler to the swipe plugin and
@@ -262,21 +262,21 @@ this.require([
         ###
         _initializeSwipe: ->
             this._options.carouselOptions.transitionEnd = (index, domNode) =>
-                this.$domNode.navigationButton.each (subIndex, button) =>
+                this.$domNodes.navigationButton.each (subIndex, button) =>
                     if index is subIndex
                         this.fireEvent(
                             'switchSection', false, this, $(button).attr(
                                 'href'))
                         return false
                 return true
-            this.$domNode.carousel.Swipe this._options.carouselOptions
+            this.$domNodes.carousel.Swipe this._options.carouselOptions
         ###*
             @description This method adds triggers to switch section.
 
             @returns {$.HomePage} Returns the current instance.
         ###
         _addNavigationEvents: ->
-            this.on this.$domNode.navigationButton, 'click', (event) =>
+            this.on this.$domNodes.navigationButton, 'click', (event) =>
                 this.fireEvent(
                     'switchSection', false, this, $(event.target).attr 'href')
             super()
@@ -288,13 +288,13 @@ this.require([
             @returns {String} Returns the absolute hash string.
         ###
         _determineRelativeSections: (hash) ->
-            this.$domNode.navigationButton.each (index, button) =>
+            this.$domNodes.navigationButton.each (index, button) =>
                 if $(button).attr('href') is window.location.hash
                     # NOTE: We subtract 1 from navigation buttons length
                     # because we want to ignore the about this website section.
                     # And the index starts counting by zero.
                     numberOfButtons =
-                        this.$domNode.navigationButton.length - 1
+                        this.$domNodes.navigationButton.length - 1
                     if hash is 'next'
                         newIndex = (index + 1) % numberOfButtons
                     else if hash is 'prev'
@@ -304,7 +304,7 @@ this.require([
                         newIndex = (index + numberOfButtons - 1) %
                             numberOfButtons
                     hash = $(
-                        this.$domNode.navigationButton[newIndex]
+                        this.$domNodes.navigationButton[newIndex]
                     ).attr 'href'
                     false
             hash
