@@ -24,7 +24,6 @@
 ## do ($=this.jQuery) ->
 this.require([
     ['jQuery.Website', 'jquery-website-1.0.coffee']
-
     ['jQuery.fn.collapse', 'bootstrap-3.0.0']
     ['jQuery.fn.Swipe', 'jquery-swipe-2.0']],
 ($) ->

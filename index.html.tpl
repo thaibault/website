@@ -36,7 +36,7 @@ endregion -->
 <% SOCIAL_MEDIA = (
 <%     ('e-mail', 't.sickert@gmail.com'),
 <%     ('github', 'https://github.com/thaibault'),
-<%     ('google-plus', 'https://plus.google.com/110796145663857741723/posts'),
+<%     ('google-plus', 'https://plus.google.com/+TorbenSickert'),
 <%     ('xing', 'http://www.xing.com/profile/Torben_Sickert'),
 <%     ('linked-in', 'http://de.linkedin.com/pub/torben-sickert/28/aa9/919'),
 <%     ('skype', ''),
