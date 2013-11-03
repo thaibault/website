@@ -130,16 +130,6 @@ this.require([
                 ).filter('.active').children(
                     this.$domNodes.navigationButton
                 ).attr 'href'
-            # Handle "about-this-website" and main section switch.
-            this.on this.$domNodes.aboutThisWebsiteButton, 'click', =>
-                this._scrollToTop()
-                this.$domNodes.aboutThisWebsiteSection.fadeIn(
-                    this._options.aboutThisWebsiteSection.fadeIn)
-            this.on this.$domNodes.navigationButton.add(
-                this.$domNodes.logoLink
-            ), 'click', =>
-                this.$domNodes.aboutThisWebsiteSection.fadeOut(
-                    this._options.aboutThisWebsiteSection.fadeOut)
             this._initializeSwipe()
 
         # endregion
@@ -181,20 +171,23 @@ this.require([
                 hash = this._determineRelativeSections hash
             if hash.substr(0, 1) isnt '#'
                 hash = "##{hash}"
-            switched = false
+            if hash is this.$domNodes.aboutThisWebsiteButton.attr 'href'
+                this.debug "Switch to section \"#{hash}\"."
+                # Handle "about-this-website" and main section switch.
+                this._scrollToTop()
+                this.$domNodes.aboutThisWebsiteSection.fadeIn(
+                    this._options.aboutThisWebsiteSection.fadeIn)
             this.$domNodes.navigationButton.each (index, button) =>
                 button = $ button
                 sectionButtonDomNode = button.parent 'li'
                 if not sectionButtonDomNode.length
                     sectionButtonDomNode = button
-                if button.attr('href') is hash or (
-                    index is 0 and hash is '#' and hash = button.attr 'href'
-                )
+                if button.attr('href') is hash or (index is 0 and hash is '#')
+                    hash = button.attr 'href'
                     if not sectionButtonDomNode.hasClass 'active'
+                        this.$domNodes.aboutThisWebsiteSection.fadeOut(
+                            this._options.aboutThisWebsiteSection.fadeOut)
                         this.debug "Switch to section \"#{hash}\"."
-                        window.location.hash = hash
-                        this._adaptContentHeight()
-                        switched = true
                         # Swipe in endless cycle if we get a direction.
                         if direction
                             index = direction
@@ -208,9 +201,8 @@ this.require([
                         sectionButtonDomNode.addClass 'active'
                 else
                     sectionButtonDomNode.removeClass 'active'
-            if not switched
-                window.location.hash = hash
-                this._adaptContentHeight()
+            window.location.hash = hash
+            this._adaptContentHeight()
             super()
         ###*
             @description This method triggers if all startup animations are
@@ -227,7 +219,6 @@ this.require([
                     window.location.href.indexOf '#'
                 )}\"]"
             ).trigger 'click'
-            this._adaptContentHeight()
             super()
 
         # endregion
@@ -281,7 +272,9 @@ this.require([
             @returns {$.HomePage} Returns the current instance.
         ###
         _addNavigationEvents: ->
-            this.on this.$domNodes.navigationButton, 'click', (event) =>
+            this.on this.$domNodes.navigationButton.add(
+                this.$domNodes.aboutThisWebsiteButton
+            ), 'click', (event) =>
                 this.fireEvent(
                     'switchSection', false, this, $(event.target).attr 'href')
             super()
