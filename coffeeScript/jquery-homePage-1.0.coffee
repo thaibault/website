@@ -78,14 +78,7 @@ this.require([
                 continuous: false
                 disableScroll: false
                 stopPropagation: false
-            language:
-                default: 'deDE'
-                onSwitched: (oldLanguage, newLanguage) ->
-                    # Add language toggle button functionality.
-                    $("a[href=\"#lang-#{newLanguage}\"]").fadeOut 'fast', ->
-                        $(this).attr('href', "#lang-#{oldLanguage}").text(
-                            oldLanguage.substr 0, 2
-                        ).fadeIn 'fast'
+            language: default: 'deDE'
             dimensionIndicator:
                 fadeIn: duration: 'slow'
                 fadeOut: duration: 'slow'
@@ -120,6 +113,16 @@ this.require([
             @returns {$.HomePage} Returns the current instance.
         ###
         initialize: (options) ->
+            $.extend true, options, {
+                language: onSwitched: (oldLanguage, newLanguage) =>
+                    # Add language toggle button functionality.
+                    self = this
+                    $("a[href=\"#lang-#{newLanguage}\"]").fadeOut 'fast', ->
+                        $(this).attr('href', "#lang-#{oldLanguage}").text(
+                            oldLanguage.substr 0, 2)
+                        self._adaptContentHeight()
+                        $(this).fadeIn 'fast'
+            }
             super options
             if not window.location.hash
                 window.location.hash = this.$domNodes.navigationButton.parent(
@@ -243,12 +246,14 @@ this.require([
             ).add(this.$domNodes.aboutThisWebsiteSection).filter(
                 ".#{window.location.hash.substr(1)}"
             ).outerHeight()
-            # TODO document
-            # TODO what about different size depending on text content!!
+            # NOTE: If current section is "about-this-website" we place it in
+            # front of last selected section and position footer absolutely.
             if window.location.hash is '#about-this-website'
+                # Move footer from last known position.
                 this.$domNodes.footer.css(
                     position: 'absolute'
-                    top: newSectionHeightInPixel)
+                    top: this.$domNodes.carousel.height())
+                this.$domNodes.footer.animate top: newSectionHeightInPixel
                 this.$domNodes.carousel.height newSectionHeightInPixel
             else
                 this.$domNodes.footer.css position: 'relative', top: 0

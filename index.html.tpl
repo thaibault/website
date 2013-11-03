@@ -201,6 +201,7 @@ endregion -->
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                                 <% for section in range(3):
                                     <span class="icon-bar"></span>
+                                <% end
                             </button>
                         </div>
                         <div class="navbar-collapse collapse">
@@ -211,6 +212,8 @@ endregion -->
                                         <li class="start-up-animation-number-<% START_UP_ANIMATION_NUMBER %><%' active' if name == SECTIONS[0][0] else ''%>">
                                             <a href="#<% name %>"><% section[0][DEFAULT_LANGUAGE]%><!--<% ALTERNATE_LANGUAGE %>:<% section[0][ALTERNATE_LANGUAGE] %>--></a>
                                         </li>
+                                    <% end
+                                <% end
                             </ul>
                         </div>
                     </div>
@@ -227,38 +230,33 @@ endregion -->
             <div class="carousel-inner">
                 <% for name, section in SECTIONS:
                     <div class="item <% name %>">
-                        <div class="carousel-image-<% name %>"></div>
-                        <div class="container">
-                            <div class="carousel-caption">
+                        <div class="carousel-image-<% name %>">
+                            <div class="container">
                                 <h1>
                                     <% section[1][DEFAULT_LANGUAGE] %>
                                     <!--enUS:<% section[1][ALTERNATE_LANGUAGE] %>-->
                                 </h1>
-                                <p class="lead">
+                                <p>
                                     <% section[2][DEFAULT_LANGUAGE] %>
                                     <!--<% ALTERNATE_LANGUAGE %>:<% section[2][ALTERNATE_LANGUAGE] %>-->
                                 </p>
-
                                 <% if name == 'contact':
-                                    <p class="lead phone-number">Tel.<!--enEN:Phone--> +49 176 <span>/</span> 10 248 185</p>
-                                    <% for name, link in SOCIAL_MEDIA:
-                                        <% if '@' in link:
-                                            <% link = 'mailto:%s' % link
-                                        <a class="glyphicon-social glyphicon-social-<% name %>" href="<% link %>" target="_blank"></a>
-
-                                <% START_UP_ANIMATION_NUMBER += 1
-                                <div class="start-up-animation-number-<% START_UP_ANIMATION_NUMBER %> container content">
-                                    <p class="lead">
-
-                                        <% if name == 'references':
-                                            <% for project_name, project_page_link in PROJECTS:
-                                                <a href="<% project_page_link %>"><% project_name %></a>
-
+                                    <p class="phone-number">Tel.<!--enEN:Phone--> +49 176 <span>/</span> 10 248 185</p>
+                                        <% for name, link in SOCIAL_MEDIA:
+                                            <% if '@' in link:
+                                                <% link = 'mailto:%s' % link
+                                            <a class="glyphicon-social glyphicon-social-<% name %>" href="<% link %>" target="_blank"></a>
+                                            <% if name == 'references':
+                                                <% for project_name, project_page_link in PROJECTS:
+                                                    <a href="<% project_page_link %>"><% project_name %></a>
+                                                <% end
+                                            <% end
+                                        <% end
                                     </p>
-                                </div>
                             </div>
                         </div>
                     </div>
+                <% end
             </div>
         </div>
 
@@ -267,26 +265,23 @@ endregion -->
     <!-- region about this website -->
 
         <div class="about-this-website">
-            <div class="container">
-                <div class="carousel-image-about-this-website"></div>
+            <div class="carousel-image-about-this-website">
                 <div class="container">
-                    <div class="caption">
-                        <h1>
-                            Impressum
-                            <!--<% ALTERNATE_LANGUAGE %>:About this website-->
-                        </h1>
-                        <p class="lead">
-                            <p>Anbieter von<!--<% ALTERNATE_LANGUAGE %>:Provider of--> <a href="<% SOCIAL_MEDIA[-1][1] %>"><% SOCIAL_MEDIA[-1][1] %></a>:</p>
-                            <p>Torben Sickert</p>
-                            <p>Christoph-Mang-Str. 14</p>
-                            <p>79100 Freiburg</p>
-                            <p>Tel. 0049 (0) 176 / 10248185</p>
-                            <p>Internet: <a href="<% SOCIAL_MEDIA[-1][1] %>"><% SOCIAL_MEDIA[-1][1] %></a></p>
-                            <p>Email: <a href="mailto:<% SOCIAL_MEDIA[0][1] %>"><% SOCIAL_MEDIA[0][1] %></a></p>
-                            <br />
-                            <p><a href="<% LINK_TO_PUBLIC_SSH_KEY %>">öffentlicher SSH-Schlüssel<!--<% ALTERNATE_LANGUAGE %>:public ssh key--></a></p>
-                        </p>
-                    </div>
+                    <h1>
+                        Impressum
+                        <!--<% ALTERNATE_LANGUAGE %>:About this website-->
+                    </h1>
+                    <p class="lead">
+                        <p>Anbieter von<!--<% ALTERNATE_LANGUAGE %>:Provider of--> <a href="<% SOCIAL_MEDIA[-1][1] %>"><% SOCIAL_MEDIA[-1][1] %></a>:</p>
+                        <p>Torben Sickert</p>
+                        <p>Christoph-Mang-Str. 14</p>
+                        <p>79100 Freiburg</p>
+                        <p>Tel. 0049 (0) 176 / 10248185</p>
+                        <p>Internet: <a href="<% SOCIAL_MEDIA[-1][1] %>"><% SOCIAL_MEDIA[-1][1] %></a></p>
+                        <p>Email: <a href="mailto:<% SOCIAL_MEDIA[0][1] %>"><% SOCIAL_MEDIA[0][1] %></a></p>
+                        <br />
+                        <p><a href="<% LINK_TO_PUBLIC_SSH_KEY %>">öffentlicher SSH-Schlüssel<!--<% ALTERNATE_LANGUAGE %>:public ssh key--></a></p>
+                    </p>
                 </div>
             </div>
         </div>

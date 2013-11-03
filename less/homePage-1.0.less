@@ -29,7 +29,7 @@ License
 @shadowColor: rgba(0, 0, 0, .25);
 
 @footerMarginInPixel: 30px;
-@defaultContentHeightInPixel: 410px;
+@minimumContentHeightInPixel: 100px;
 
 // endregion
 
@@ -60,7 +60,9 @@ body.home-page {
         /* endregion */
 
     /* Shows the current dimension mode. */
-    > div.navbar-wrapper > div.container > div.navbar.navbar-inverse > div.container > div.navbar-header > a.navbar-brand > span.dimension-indicator {
+    > div.navbar-wrapper > div.container > div.navbar.navbar-inverse
+    > div.container > div.navbar-header > a.navbar-brand
+    > span.dimension-indicator {
         font-size: 12px;
     }
 
@@ -109,19 +111,18 @@ body.home-page {
 
         /* Wraps the visible area from whole wide slider wrapper. */
         > div.carousel-inner {
-            overflow: hidden;
-            position: relative;
+            overflow-y: visible;
 
             /* Contains each section content. */
             > div.item {
+                overflow-y: visible;
                 float: left;
                 width: 100%;
-                position: relative;
                 /*
                     Set a default content height. Could by vary depending on
                     currently activated section.
                 */
-                height: @defaultContentHeightInPixel;
+                min-height: @minimumContentHeightInPixel;
                 /*
                     Disable bootstraps startup effect and overwrite with swipe
                     preferred effect properties.
@@ -135,20 +136,18 @@ body.home-page {
                     fill out the whole viewport.
                 */
                 > div[class^=carousel-image-] {
-                    position: absolute;
                     top: 0;
                     left: 0;
                     min-width: 100%;
-                    height: 500px;
-                }
-                /* Contains each section text content. */
-                > div.container > div.carousel-caption {
-                    /* align caption from top instead from bottom. */
-                    top: 52px;
-                    bottom: none;
-                    z-index: 0;
-                    color: @defaultColor;
-                    text-shadow: none;
+                    min-height: @minimumContentHeightInPixel;
+
+                    /* Contains each section text content. */
+                    > div.container {
+                        z-index: 0;
+                        color: @defaultColor;
+                        text-shadow: none;
+                        text-align: center;
+                    }
                 }
             }
         }
@@ -161,7 +160,8 @@ body.home-page {
         /* region contact */
 
     /* Show big dark social media icons. */
-    > div.carousel.slide > div.carousel-inner > div.item.contact > div.container > div.carousel-caption {
+    > div.carousel.slide > div.carousel-inner > div.item.contact
+    > div[class^=carousel-image-] > div.container {
         > a.glyphicon-social {
             font-size: 50px;
             color: @defaultColor;
@@ -174,11 +174,11 @@ body.home-page {
 
         /* endregion */
 
-        /* region about this website */
+        /* region about this web site */
 
     /* Wraps the legal notice content. */
     div.about-this-website {
-        height: @defaultContentHeightInPixel;
+        min-height: @minimumContentHeightInPixel;
         background-color: @backgroundColor;
         position: absolute;
         top: 0;
@@ -218,6 +218,7 @@ body.home-page {
 
                 /* region buttons */
 
+        /* Smaller devices have usually a touch interface for scrolling. */
         > a[href="#top"] {
             visibility: hidden;
         }
@@ -274,19 +275,17 @@ body.home-page {
             /* region carousel */
 
     /* Define main content size. */
-    > div.carousel.slide > div.carousel-inner > {
-        /* Set section specified heights. */
-        div.item.references {
-            height: 500px;
+    > div.carousel.slide > div.carousel-inner > div.item
+    > div[class^=carousel-image-] > div.container {
+        padding-top: 64px;
+        max-width: 540px;
+
+        > h1 {
+            font-size: 25px;
         }
-        div.item > div.container > .carousel-caption {
-            > h1 {
-                font-size: 25px;
-            }
-            > p {
-                font-size: 19px;
-                line-height: 20px;
-            }
+        > p {
+            font-size: 19px;
+            line-height: 20px;
         }
     }
 
@@ -298,13 +297,12 @@ body.home-page {
         color: @defaultColor;
         padding-top: 72px;
         padding-bottom: 20px;
-        height: 415px;
 
         /* Wraps the text content, positions space around them. */
         > div.container {
             margin-left: 10%;
         }
-        > div.container > div.container > div.caption {
+        > div[class^=carousel-image-] > div.container {
             > h1 {
                 font-size: 25px;
             }
@@ -328,6 +326,7 @@ body.home-page {
 
                 /* region buttons */
 
+        /* Bigger devices get a scroll top button. */
         > a[href="#top"] {
             visibility: visible;
         }
@@ -383,7 +382,9 @@ body.home-page {
 
         > div.carousel.slide > div.carousel-inner > div.item {
             /* Bump up size of carousel content */
-            > div.container > .carousel-caption {
+            > div[class^=carousel-image-] div.container {
+                max-width: 600px;
+
                 h1 {
                     font-size: 24px;
                 }
@@ -406,7 +407,8 @@ body.home-page {
                 background-image: url('@{imagePath}carousel/skills.png');
             }
             > div.carousel-image-about-this-website {
-                background-image: url('@{imagePath}carousel/aboutThisWebsite.png');
+                background-image: url(
+                    '@{imagePath}carousel/aboutThisWebsite.png');
             }
         }
 
@@ -426,6 +428,15 @@ body.home-page {
             */
             > div.navbar-wrapper > div.container {
                 max-width: 940px;
+            }
+
+            /* endregion */
+
+            /* region carousel */
+
+            > div.carousel.slide > div.carousel-inner > div.item
+            > div[class^=carousel-image-] > div.container {
+                max-width: 800px;
             }
 
             /* endregion */
