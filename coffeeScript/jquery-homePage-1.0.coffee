@@ -134,11 +134,12 @@ this.require([
                 ).filter('.active').children(
                     this.$domNodes.navigationButton
                 ).attr 'href'
-            if this._currentMediaQueryMode isnt 'smartphone'
-                this._initializeBackstretch()
             this.on this.$domNodes.window, 'resize', this.debounce(
                 this.getMethod this._adaptContentHeight)
-            this._initializeSwipe()
+            # NOTE: A cyclic slide effect is more intuitive on touch devices.
+            if this._currentMediaQueryMode is 'smartphone'
+                this._options.carousel.continuous = true
+            this
 
         # endregion
 
@@ -227,6 +228,9 @@ this.require([
             @returns {$.HomePage} Returns the current instance.
         ###
         _onStartUpAnimationComplete: ->
+            if this._currentMediaQueryMode isnt 'smartphone'
+                this._initializeBackstretch()
+            this._initializeSwipe()
             # All start up effects are ready. Handle direct section links.
             this.$domNodes.navigationButton.add(
                 this.$domNodes.aboutThisWebsiteButton
