@@ -33,8 +33,6 @@ License
 
 // endregion
 
-// TODO make png composition.
-
 /* region cascading style sheets */
 
 body.home-page {
@@ -381,34 +379,40 @@ body.home-page {
             /* region carousel */
 
         > div.carousel.slide > div.carousel-inner > div.item {
-            /* Bump up size of carousel content */
-            > div[class^=carousel-image-] div.container {
-                max-width: 600px;
+            /* Bump up size of carousel content. */
+            > div[class^=carousel-image-] {
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: 50%;
 
-                h1 {
-                    font-size: 24px;
-                }
-                > p {
-                    font-size: 21px;
-                    line-height: 1.4;
+                div.container {
+                    max-width: 600px;
+
+                    > h1 {
+                        font-size: 24px;
+                    }
+                    > p {
+                        font-size: 21px;
+                        line-height: 1.4;
+                    }
                 }
             }
             /* Show background images on bigger devices. */
             > div.carousel-image-about {
-                background-image: url('@{imagePath}carousel/about.png');
+                background-image: url('@{imagePath}carousel/about.jpg');
             }
             > div.carousel-image-contact {
-                background-image: url('@{imagePath}carousel/contact.png');
+                background-image: url('@{imagePath}carousel/contact.jpg');
             }
             > div.carousel-image-references {
-                background-image: url('@{imagePath}carousel/references.png');
+                background-image: url('@{imagePath}carousel/references.jpg');
             }
             > div.carousel-image-skills {
                 background-image: url('@{imagePath}carousel/skills.jpg');
             }
             > div.carousel-image-about-this-website {
                 background-image: url(
-                    '@{imagePath}carousel/aboutThisWebsite.png');
+                    '@{imagePath}carousel/aboutThisWebsite.jpg');
             }
         }
 
@@ -436,7 +440,7 @@ body.home-page {
 
             > div.carousel.slide > div.carousel-inner > div.item
             > div[class^=carousel-image-] > div.container {
-                max-width: 800px;
+                max-width: 810px;
             }
 
             /* endregion */

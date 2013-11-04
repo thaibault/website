@@ -25,7 +25,8 @@
 this.require([
     ['jQuery.Website', 'jquery-website-1.0.coffee']
     ['jQuery.fn.collapse', 'bootstrap-3.0.0']
-    ['jQuery.fn.Swipe', 'jquery-swipe-2.0']],
+    ['jQuery.fn.Swipe', 'jquery-swipe-2.0']
+    ['jQuery.fn.backstretch', 'jquery-backstrech-2.0.4']],
 ($) ->
 ##
 
@@ -50,6 +51,8 @@ this.require([
             trackingCode: 'UA-40192634-1'
             scrollInLinearTime: true
             dimensionIndicatorTemplate: '({1})'
+            backgroundImagePath: 'image/carousel/'
+            backgroundImageFileExtension: '.jpg'
             domNode:
                 carousel: '> div.carousel.slide'
                 section: '> div.carousel.slide > div.carousel-inner > div.item'
@@ -71,7 +74,7 @@ this.require([
                     'div.navbar-header > a.navbar-brand > ' +
                     'span.dimension-indicator'
                 footer: '> div.footer'
-            carouselOptions:
+            carousel:
                 startSlide: 0
                 speed: 1000
                 auto: 0
@@ -85,6 +88,7 @@ this.require([
             aboutThisWebsiteSection:
                 fadeIn: duraction: 'normal'
                 fadeOut: duration: 'normal'
+            backstrech: {}
         ###*
             Saves the main content background color to attach a border with
             same color for compensating with right colored margin.
@@ -130,6 +134,10 @@ this.require([
                 ).filter('.active').children(
                     this.$domNodes.navigationButton
                 ).attr 'href'
+            if this._currentMediaQueryMode isnt 'smartphone'
+                this._initializeBackstretch()
+            this.on this.$domNodes.window, 'resize', this.debounce(
+                this.getMethod this._adaptContentHeight)
             this._initializeSwipe()
 
         # endregion
@@ -156,6 +164,14 @@ this.require([
                 ).fadeIn this._options.dimensionIndicator.fadeIn
             this.$domNodes.dimensionIndicator.stop().fadeOut(
                 this._options.dimensionIndicator.fadeOut)
+            # Activate backstretching in non smartphone mode only.
+            if((not oldMode or oldMode is 'smartphone') and
+               newMode isnt 'smartphone')
+                this._initializeBackstretch()
+            this.$domNodes.section.each ->
+                $this = $ this
+                if $this.data 'backstretch'
+                    $this.backstretch 'resize'
             super()
         ###*
             @description Switches to given section.
@@ -226,17 +242,32 @@ this.require([
         # region helper
 
         ###*
+            @description Initializes the backstretch instance on every section
+                         background image.
+
+            @returns {$.HomePage} Returns the current instance.
+        ###
+        _initializeBackstretch: ->
+            self = this
+            this.$domNodes.navigationButton.each ->
+                hash = $(this).attr('href').substr 1
+                $this = self.$domNodes.section.filter ".#{hash}"
+                if not $this.data 'backstrech'
+                    $this.backstretch(
+                        self._options.backgroundImagePath + hash +
+                        self._options.backgroundImageFileExtension,
+                        self._options.backstretch)
+            this
+        ###*
             @description Adapt the carousel height to current main section
                          height.
 
             @returns {$.Swipe} Returns the new generated swipe instance.
         ###
         _adaptContentHeight: ->
-            newSectionHeightInPixel = this.$domNodes.carousel.find(
-                this.$domNodes.section
-            ).add(this.$domNodes.aboutThisWebsiteSection).filter(
-                ".#{window.location.hash.substr(1)}"
-            ).outerHeight()
+            newSectionHeightInPixel = this.$domNodes.section.add(
+                this.$domNodes.aboutThisWebsiteSection
+            ).filter(".#{window.location.hash.substr(1)}").outerHeight()
             # NOTE: If current section is "about-this-website" we place it in
             # front of last selected section and position footer absolutely.
             if window.location.hash is '#about-this-website'
@@ -257,7 +288,7 @@ this.require([
             @returns {$.Swipe} Returns the new generated swipe instance.
         ###
         _initializeSwipe: ->
-            this._options.carouselOptions.transitionEnd = (index, domNode) =>
+            this._options.carousel.transitionEnd = (index, domNode) =>
                 this.$domNodes.navigationButton.each (subIndex, button) =>
                     if index is subIndex
                         this.fireEvent(
@@ -265,7 +296,7 @@ this.require([
                                 'href'))
                         return false
                 return true
-            this.$domNodes.carousel.Swipe this._options.carouselOptions
+            this.$domNodes.carousel.Swipe this._options.carousel
         ###*
             @description This method adds triggers to switch section.
 
