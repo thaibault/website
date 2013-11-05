@@ -242,17 +242,16 @@ endregion -->
                                 </p>
                                 <% if name == 'contact':
                                     <p class="phone-number">Tel.<!--enEN:Phone--> +49 176 <span>/</span> 10 248 185</p>
-                                        <% for name, link in SOCIAL_MEDIA:
-                                            <% if '@' in link:
-                                                <% link = 'mailto:%s' % link
-                                            <a class="glyphicon-social glyphicon-social-<% name %>" href="<% link %>" target="_blank"></a>
-                                            <% if name == 'references':
-                                                <% for project_name, project_page_link in PROJECTS:
-                                                    <a href="<% project_page_link %>"><% project_name %></a>
-                                                <% end
+                                    <% for name, link in SOCIAL_MEDIA:
+                                        <% if '@' in link:
+                                            <% link = 'mailto:%s' % link
+                                        <a class="glyphicon-social glyphicon-social-<% name %>" href="<% link %>" target="_blank"></a>
+                                        <% if name == 'references':
+                                            <% for project_name, project_page_link in PROJECTS:
+                                                <a href="<% project_page_link %>"><% project_name %></a>
                                             <% end
                                         <% end
-                                    </p>
+                                    <% end
                             </div>
                         </div>
                     </div>
