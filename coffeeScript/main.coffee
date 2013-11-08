@@ -35,7 +35,7 @@ this.less =
 ##
 
 ## standalone
-## this.jQuery(($) ->
+## this.jQuery ($) ->
 ##     $.HomePage googleTrackingCode: 'UA-40192634-1'
 this.require.noConflict = true
 this.require [['jQuery.HomePage', 'jquery-homePage-1.0.coffee']], ($) ->
