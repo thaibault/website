@@ -165,9 +165,9 @@ this.require([
                 ).fadeIn this._options.dimensionIndicator.fadeIn
             this.$domNodes.dimensionIndicator.stop().fadeOut(
                 this._options.dimensionIndicator.fadeOut)
-            # Activate backstretching in non smartphone mode only.
-            if((not oldMode or oldMode is 'smartphone') and
-               newMode isnt 'smartphone')
+            # Activate backstretching in non extra small mode only.
+            if((not oldMode or oldMode is 'extraSmall') and
+               newMode isnt 'extraSmall')
                 this._initializeBackstretch()
             this.$domNodes.section.each ->
                 $this = $ this

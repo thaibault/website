@@ -221,16 +221,16 @@ body.home-page {
 
     /* region responsive */
 
-        /* region smartphone mode */
+        /* region extra extra small */
 
             /* region global */
 
                 /* region buttons */
 
-        /* Smaller devices have usually a touch interface for scrolling. */
-        > a[href="#top"] {
-            visibility: hidden;
-        }
+    /* Smaller devices have usually a touch interface for scrolling. */
+    > a[href="#top"] {
+        visibility: hidden;
+    }
 
                 /* endregion */
 
@@ -256,10 +256,6 @@ body.home-page {
 
                         > span.dimension-indicator {
                             visibility: hidden;
-
-                            @media (min-width: 400px) {
-                                visibility: visible;
-                            }
                         }
                     }
                     /* Position language link. */
@@ -332,18 +328,28 @@ body.home-page {
 
         /* endregion */
 
-        /* region tablet */
+        /* region extra small */
 
-    @media (min-width: @minimumTabletWidthInPixel) {
+    @media (min-width: 400px) {
+        /* Show current dimension mode in indicator dom node. */
+        > div.navbar-wrapper > div.container > div.navbar.navbar-inverse
+        > div.container > div.navbar-header > a.navbar-brand
+        > span.dimension-indicator {
+            visibility: visible;
+        }
+
+        /* endregion */
+
+        /* region small */
+
+        @media (min-width: @minimumSmallWidthInPixel) {
 
             /* region global */
 
                 /* region buttons */
 
-        /* Bigger devices get a scroll top button. */
-        > a[href="#top"] {
-            visibility: visible;
-        }
+            /* Bigger devices get a scroll top button. */
+            > a[href="#top"] { visibility: visible; }
 
                 /* endregion */
 
@@ -351,121 +357,119 @@ body.home-page {
 
             /* region navigation bar */
 
-        /*
-            Normal Wrapper for the main navigation bar. Scrolls with viewport.
-        */
-        > div.navbar-wrapper {
-            margin-top: 20px;
+            /*
+                Normal Wrapper for the main navigation bar. Scrolls with viewport.
+            */
+            > div.navbar-wrapper {
+                margin-top: 20px;
 
-            > div.container {
-                max-width: 746px;
+                > div.container {
+                    max-width: 746px;
 
-                > div.navbar.navbar-inverse {
-                    #generic > .border-radius(4px);
+                    > div.navbar.navbar-inverse {
+                        #generic > .border-radius(4px);
 
-                    > div.container {
-                        /* Position language link. */
-                        > div.navbar-header > a[href^="#lang-"] {
-                            position: absolute;
-                            top: 16px;
-                            right: 18px;
-                        }
-                        > div.navbar-collapse {
-                            display: inline;
+                        > div.container {
+                            /* Position language link. */
+                            > div.navbar-header > a[href^="#lang-"] {
+                                position: absolute;
+                                top: 16px;
+                                right: 18px;
+                            }
+                            > div.navbar-collapse {
+                                display: inline;
 
-                            > ul.nav.navbar-nav {
-                                margin-bottom: 0;
+                                > ul.nav.navbar-nav {
+                                    margin-bottom: 0;
 
-                                /*
-                                    Bring menu items to same height as
-                                    navigation bar branding.
-                                */
-                                > li > a {
-                                    line-height: 22px;
+                                    /*
+                                        Bring menu items to same height as
+                                        navigation bar branding.
+                                    */
+                                    > li > a {
+                                        line-height: 22px;
+                                    }
                                 }
                             }
                         }
                     }
                 }
             }
-        }
 
             /* endregion */
 
             /* region carousel */
 
-        > div.carousel.slide > div.carousel-inner > div.item {
-            /* Show any background image on higher resolutions. */
-            div.backstretch {
-                display: block;
-            }
-            /* Bump up size of carousel content. */
-            > div[class^=carousel-image-] {
-                background-size: cover;
-                background-repeat: no-repeat;
-                background-position: 50%;
+            > div.carousel.slide > div.carousel-inner > div.item {
+                /* Show any background image on higher resolutions. */
+                div.backstretch { display: block; }
+                /* Bump up size of carousel content. */
+                > div[class^=carousel-image-] {
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-position: 50%;
 
-                div.container {
-                    max-width: 600px;
+                    div.container {
+                        max-width: 600px;
 
-                    > h1 {
-                        font-size: 24px;
-                    }
-                    > p {
-                        font-size: 21px;
-                        line-height: 1.4;
+                        > h1 { font-size: 24px; }
+                        > p {
+                            font-size: 21px;
+                            line-height: 1.4;
+                        }
                     }
                 }
+                /* Show background images on bigger devices. */
+                > div.carousel-image-about {
+                    background-image: url('@{imagePath}carousel/about.jpg');
+                }
+                > div.carousel-image-contact {
+                    background-image: url('@{imagePath}carousel/contact.jpg');
+                }
+                > div.carousel-image-references {
+                    background-image: url('@{imagePath}carousel/references.jpg');
+                }
+                > div.carousel-image-skills {
+                    background-image: url('@{imagePath}carousel/skills.jpg');
+                }
             }
-            /* Show background images on bigger devices. */
-            > div.carousel-image-about {
-                background-image: url('@{imagePath}carousel/about.jpg');
-            }
-            > div.carousel-image-contact {
-                background-image: url('@{imagePath}carousel/contact.jpg');
-            }
-            > div.carousel-image-references {
-                background-image: url('@{imagePath}carousel/references.jpg');
-            }
-            > div.carousel-image-skills {
-                background-image: url('@{imagePath}carousel/skills.jpg');
-            }
-        }
 
             /* endregion */
 
         /* endregion */
 
-        /* region desktop */
+        /* region medium */
 
-        @media (min-width: @minimumDesktopWidthInPixel) {
+            @media (min-width: @minimumMediumWidthInPixel) {
 
             /* region navigation bar */
 
-            /*
-                Normal Wrapper for the main navigation bar. Scrolls with
-                viewport.
-            */
-            > div.navbar-wrapper > div.container {
-                max-width: 940px;
-            }
+                /*
+                    Normal Wrapper for the main navigation bar. Scrolls with
+                    viewport.
+                */
+                > div.navbar-wrapper > div.container {
+                    max-width: 940px;
+                }
 
             /* endregion */
 
             /* region carousel */
 
-            > div.carousel.slide > div.carousel-inner > div.item
-            > div[class^=carousel-image-] > div.container {
-                max-width: 810px;
-            }
+                > div.carousel.slide > div.carousel-inner > div.item
+                > div[class^=carousel-image-] > div.container {
+                    max-width: 810px;
+                }
 
             /* endregion */
 
+            }
+
         }
 
-        /* endregion */
-
     }
+
+        /* endregion */
 
     /* endregion */
 
