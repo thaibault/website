@@ -133,7 +133,7 @@ body.home-page {
                     Position section dependent background image absolute to
                     fill out the whole viewport.
                 */
-                > div[class^=carousel-image-] {
+                > div[class^="carousel-image-"] {
                     top: 0;
                     left: 0;
                     min-width: 100%;
@@ -145,6 +145,17 @@ body.home-page {
                         color: @defaultColor;
                         text-shadow: none;
                         text-align: center;
+
+                        > a[href^="tel:"] {
+                            color: @defaultColor;
+                            display: block;
+                            font-size: 21px;
+                            line-height: 1.4;
+                            margin-bottom: 10px;
+                        }
+                        > a[href^="tel:"]:hover {
+                            color: @defaultColor;
+                        }
                     }
                 }
             }
