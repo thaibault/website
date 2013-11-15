@@ -115,7 +115,7 @@ endregion -->
 
 <% PROJECTS = (
 <%     ('boostNode', 'http://thaibault.github.io/boostNode/'),
-<%     ('installArchLinux', 'http://thaibault.github.io/installArchLinux/'),
+<%     ('installArchLinux', 'http://archinstall.github.io/archInstall/'),
 <%     ('genericServiceHandler',
 <%      'http://thaibault.github.io/genericServiceHandler/'),
 <%     ('require', 'http://thaibault.github.io/require/'),
