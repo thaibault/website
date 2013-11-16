@@ -241,7 +241,7 @@ endregion -->
                                     <!--<% ALTERNATE_LANGUAGE %>:<% section[2][ALTERNATE_LANGUAGE] %>-->
                                 </p>
                                 <% if name == 'contact':
-                                    <a href="tel:004917610248185">Tel.<!--enEN:Phone--> +49 176 <span>/</span> 10 248 185</a>
+                                    <a href="tel:004917610248185">Tel.<!--enEN:Phone--> +49 (0) 176 <span>/</span> 10 248 185</a>
                                     <% for name, link in SOCIAL_MEDIA:
                                         <% if '@' in link:
                                             <% link = 'mailto:%s' % link
