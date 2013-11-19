@@ -40,6 +40,17 @@ this.require([
     ###
     class HomePage extends $.Website.class
 
+    # region properties
+
+        ###*
+            Holds the class name to provide inspection features.
+
+            @property {String}
+        ###
+        __name__: 'HomePage'
+
+    # endregion
+
     # region public methods
 
         # region special
@@ -51,9 +62,7 @@ this.require([
 
             @returns {$.HomePage} Returns the current instance.
         ###
-        initialize: (
-            options={}, @_sectionBackgroundColor='white', @__name__='HomePage'
-        ) ->
+        initialize: (options={}, @_sectionBackgroundColor='white') ->
             ###*
                 Saves default options for manipulating the default behaviour.
 
