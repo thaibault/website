@@ -40,71 +40,6 @@ this.require([
     ###
     class HomePage extends $.Website.class
 
-    # region properties
-
-        ###*
-            Saves default options for manipulating the default behaviour.
-
-            @property {Object}
-        ###
-        _options:
-            trackingCode: 'UA-40192634-1'
-            scrollInLinearTime: true
-            dimensionIndicatorTemplate: '({1})'
-            backgroundImagePath: 'image/carousel/'
-            backgroundImageFileExtension: '.jpg'
-            domNode:
-                carousel: '> div.carousel.slide'
-                section: '> div.carousel.slide > div.carousel-inner > div.item'
-                top: '> div.navbar-wrapper'
-                logoLink:
-                    '> div.navbar-wrapper > div.container > ' +
-                    'div.navbar.navbar-inverse > div.container > ' +
-                    'div.navbar-header > a.navbar-brand'
-                navigationButton:
-                    '> div.navbar-wrapper > div.container > ' +
-                    'div.navbar.navbar-inverse > div.container > ' +
-                    'div.navbar-collapse > ul.nav.navbar-nav li a'
-                aboutThisWebsiteButton:
-                    '> div.footer > footer > p > a[href="#about-this-website"]'
-                aboutThisWebsiteSection: '> div.about-this-website'
-                dimensionIndicator:
-                    '> div.navbar-wrapper > div.container > ' +
-                    'div.navbar.navbar-inverse > div.container > ' +
-                    'div.navbar-header > a.navbar-brand > ' +
-                    'span.dimension-indicator'
-                footer: '> div.footer'
-            carousel:
-                startSlide: 0
-                speed: 1000
-                auto: 0
-                continuous: false
-                disableScroll: false
-                stopPropagation: false
-            language: default: 'deDE'
-            dimensionIndicator:
-                fadeIn: duration: 'slow'
-                fadeOut: duration: 'slow'
-            aboutThisWebsiteSection:
-                fadeIn: duraction: 'normal'
-                fadeOut: duration: 'normal'
-            backstrech: {}
-        ###*
-            Saves the main content background color to attach a border with
-            same color for compensating with right colored margin.
-
-            @property {String}
-        ###
-        _sectionBackgroundColor: 'white'
-        ###*
-            Saves the class name for introspection.
-
-            @property {String}
-        ###
-        __name__: 'HomePage'
-
-    # endregion
-
     # region public methods
 
         # region special
@@ -116,17 +51,66 @@ this.require([
 
             @returns {$.HomePage} Returns the current instance.
         ###
-        initialize: (options) ->
-            $.extend true, options, {
-                language: onSwitched: (oldLanguage, newLanguage) =>
-                    # Add language toggle button functionality.
-                    self = this
-                    $("a[href=\"#lang-#{newLanguage}\"]").fadeOut 'fast', ->
-                        $(this).attr('href', "#lang-#{oldLanguage}").text(
-                            oldLanguage.substr 0, 2)
-                        self._adaptContentHeight()
-                        $(this).fadeIn 'fast'
-            }
+        initialize: (
+            options={}, @_sectionBackgroundColor='white', @__name__='HomePage'
+        ) ->
+            ###*
+                Saves default options for manipulating the default behaviour.
+
+                @property {Object}
+            ###
+            this._options =
+                trackingCode: 'UA-40192634-1'
+                scrollInLinearTime: true
+                dimensionIndicatorTemplate: '({1})'
+                backgroundImagePath: 'image/carousel/'
+                backgroundImageFileExtension: '.jpg'
+                domNode:
+                    carousel: '> div.carousel.slide'
+                    section: '> div.carousel.slide > div.carousel-inner > div.item'
+                    top: '> div.navbar-wrapper'
+                    logoLink:
+                        '> div.navbar-wrapper > div.container > ' +
+                        'div.navbar.navbar-inverse > div.container > ' +
+                        'div.navbar-header > a.navbar-brand'
+                    navigationButton:
+                        '> div.navbar-wrapper > div.container > ' +
+                        'div.navbar.navbar-inverse > div.container > ' +
+                        'div.navbar-collapse > ul.nav.navbar-nav li a'
+                    aboutThisWebsiteButton:
+                        '> div.footer > footer > p > a[href="#about-this-website"]'
+                    aboutThisWebsiteSection: '> div.about-this-website'
+                    dimensionIndicator:
+                        '> div.navbar-wrapper > div.container > ' +
+                        'div.navbar.navbar-inverse > div.container > ' +
+                        'div.navbar-header > a.navbar-brand > ' +
+                        'span.dimension-indicator'
+                    footer: '> div.footer'
+                carousel:
+                    startSlide: 0
+                    speed: 1000
+                    auto: 0
+                    continuous: false
+                    disableScroll: false
+                    stopPropagation: false
+                language: default: 'deDE'
+                dimensionIndicator:
+                    fadeIn: duration: 'slow'
+                    fadeOut: duration: 'slow'
+                aboutThisWebsiteSection:
+                    fadeIn: duraction: 'normal'
+                    fadeOut: duration: 'normal'
+                backstrech: {}
+            $.extend true, options, language: onSwitched: (
+                oldLanguage, newLanguage
+            ) =>
+                # Add language toggle button functionality.
+                self = this
+                $("a[href=\"#lang-#{newLanguage}\"]").fadeOut 'fast', ->
+                    $(this).attr('href', "#lang-#{oldLanguage}").text(
+                        oldLanguage.substr 0, 2)
+                    self._adaptContentHeight()
+                    $(this).fadeIn 'fast'
             super options
             if not window.location.hash
                 window.location.hash = this.$domNodes.navigationButton.parent(
