@@ -16,8 +16,8 @@ License
 
 endregion -->
 
-Use case<!--deDE:Einsatz--><!--frFR:Utilisier-->
-------------------------------------------------
+Use case
+--------
 
-Here's my website development hosted (no security by obscurity :-)).
-See the gh-pages branch for the page load optimized version.
+Here's my website development hosted (no security by obscurity :-)). See the
+gh-pages branch for the page load optimized version.
