@@ -22,9 +22,9 @@
 
 ## standalone
 ## do ($=this.jQuery) ->
+this.require.scopeIndicator = 'jQuery.HomePage'
 this.require([
-    ['jQuery.Website', 'jquery-website-1.0.coffee']
-    ['jQuery.fn.collapse', 'bootstrap-3.0.0']
+    'jquery-website-1.0.coffee', ['jQuery.fn.collapse', 'bootstrap-3.0.0']
     ['jQuery.fn.Swipe', 'jquery-swipe-2.0']
     ['jQuery.fn.backstretch', 'jquery-backstrech-2.0.4']],
 ($) ->
