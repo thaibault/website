@@ -34,9 +34,11 @@ this.less =
     #sourceMap: true
 ##
 
+# TODO logging should be "false" after tracking code ist debugged.
+
 ## standalone
 ## this.jQuery ($) ->
-##     $.HomePage googleTrackingCode: 'UA-40192634-1'
+##     $.HomePage googleTrackingCode: 'UA-40192634-1', logging: true
 this.require.noConflict = true
 this.require [['jQuery.HomePage', 'jquery-homePage-1.0.coffee']], ($) ->
     ###
