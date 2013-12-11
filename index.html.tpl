@@ -148,10 +148,9 @@ endregion -->
     <head>
         <title>Torben Sickert development</title>
 
-    <!-- region meta informations --> 
+    <!-- region meta informations -->
 
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="description" content="development responsive python javascript coffeescript bash design">
         <meta name="author" content="Torben Sickert">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -267,7 +266,7 @@ endregion -->
                         Impressum
                         <!--<% ALTERNATE_LANGUAGE %>:About this website-->
                     </h1>
-                    <p class="lead">
+                    <div class="lead">
                         <p>Anbieter von<!--<% ALTERNATE_LANGUAGE %>:Provider of--> <a href="<% SOCIAL_MEDIA[-1][1] %>"><% SOCIAL_MEDIA[-1][1] %></a>:</p>
                         <p>Torben Sickert</p>
                         <p>Christoph-Mang-Str. 14</p>
@@ -277,7 +276,7 @@ endregion -->
                         <p>Email: <a href="mailto:<% SOCIAL_MEDIA[0][1] %>"><% SOCIAL_MEDIA[0][1] %></a></p>
                         <br />
                         <p><a href="<% LINK_TO_PUBLIC_SSH_KEY %>">öffentlicher SSH-Schlüssel<!--<% ALTERNATE_LANGUAGE %>:public ssh key--></a></p>
-                    </p>
+                    </div>
                 </div>
             </div>
         </div>
