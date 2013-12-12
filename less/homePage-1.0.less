@@ -149,7 +149,7 @@ body.home-page {
                         > a[href^="tel:"] {
                             color: @defaultColor;
                             display: block;
-                            font-size: 21px;
+                            font-size: 25px;
                             line-height: 1.4;
                             margin-bottom: 10px;
                         }
@@ -176,9 +176,7 @@ body.home-page {
             color: @defaultColor;
             letter-spacing: 10px;
         }
-        > a.glyphicon-social:hover {
-            color: @linkHoverColor;
-        }
+        > a.glyphicon-social:hover { color: @linkHoverColor; }
     }
 
         /* endregion */
@@ -282,16 +280,13 @@ body.home-page {
     /* Define main content size. */
     > div.carousel.slide > div.carousel-inner > div.item {
         /* Don't show any background image in smartphone mode. */
-        div.backstretch {
-            display: none;
-        }
+        div.backstretch { display: none; }
         > div[class^=carousel-image-] > div.container {
-            padding-top: 64px;
+            padding-top: 60px;
+            padding-bottom: 15px;
             max-width: 540px;
 
-            > h1 {
-                font-size: 25px;
-            }
+            > h1 { font-size: 25px; }
             > p {
                 font-size: 19px;
                 line-height: 20px;
@@ -309,13 +304,9 @@ body.home-page {
         padding-bottom: 20px;
 
         /* Wraps the text content, positions space around them. */
-        > div.container {
-            margin-left: 10%;
-        }
+        > div.container { margin-left: 10%; }
         > div[class^=carousel-image-] > div.container {
-            > h1 {
-                font-size: 25px;
-            }
+            > h1 { font-size: 25px; }
             > p {
                 font-size: 17px;
                 line-height: 20px;
@@ -336,6 +327,11 @@ body.home-page {
         > div.container > div.navbar-header > a.navbar-brand
         > span.dimension-indicator {
             visibility: visible;
+        }
+        > div.carousel.slide > div.carousel-inner > div.item
+        > div[class^=carousel-image-] > div.container {
+            padding-top: 70px;
+            padding-bottom: 25px;
         }
 
         /* endregion */
@@ -409,12 +405,14 @@ body.home-page {
                     background-repeat: no-repeat;
                     background-position: 50%;
 
-                    div.container {
+                    > div.container {
+                        padding-top: 100px;
+                        padding-bottom: 50px;
                         max-width: 600px;
 
-                        > h1 { font-size: 24px; }
+                        > h1 { font-size: 35px; }
                         > p {
-                            font-size: 21px;
+                            font-size: 25px;
                             line-height: 1.4;
                         }
                     }
@@ -464,9 +462,7 @@ body.home-page {
             /* endregion */
 
             }
-
         }
-
     }
 
         /* endregion */
