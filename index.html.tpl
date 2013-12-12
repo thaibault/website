@@ -42,7 +42,7 @@ endregion -->
 <%     ('skype', ''),
 <%     ('twitter', 'https://twitter.com/tsickert'),
 <%     ('facebook', 'https://de-de.facebook.com/tsickert'),
-<%     ('website', 'http://thaibault.github.io/website/'))
+<%     ('website', 'http://thaibault.github.com'))
 
 <% SECTIONS = (
 <%     ('contact', (
@@ -114,16 +114,16 @@ endregion -->
 <%          'deDE': 'TODO'})))
 
 <% PROJECTS = (
-<%     ('boostNode', 'http://thaibault.github.io/boostNode/'),
-<%     ('installArchLinux', 'http://archinstall.github.io/archInstall/'),
+<%     ('boostNode', 'http://thaibault.github.com/boostNode'),
+<%     ('installArchLinux', 'http://archinstall.github.com'),
 <%     ('genericServiceHandler',
-<%      'http://thaibault.github.io/genericServiceHandler/'),
-<%     ('require', 'http://thaibault.github.io/require/'),
-<%     ('jquery-tools', 'http://thaibault.github.io/jQuery-tools/'),
-<%     ('jquery-lang', 'http://thaibault.github.io/jQuery-lang/'),
+<%      'http://thaibault.github.com/genericServiceHandler'),
+<%     ('require', 'http://thaibault.github.com/require'),
+<%     ('jquery-tools', 'http://thaibault.github.com/jQuery-tools'),
+<%     ('jquery-lang', 'http://thaibault.github.com/jQuery-lang'),
 <%     ('jquery-incrementer',
-<%      'http://thaibault.github.io/jQuery-incrementer/'),
-<%     ('jquery-website', 'http://thaibault.github.io/jQuery-website/'))
+<%      'http://thaibault.github.com/jQuery-incrementer'),
+<%     ('jquery-website', 'http://thaibault.github.com/jQuery-website'))
 
 <% # endregion
 

@@ -164,8 +164,7 @@ this.require [
                 this._initializeBackstretch()
             this.$domNodes.section.each ->
                 $this = $ this
-                if $this.data 'backstretch'
-                    $this.backstretch 'resize'
+                $this.backstretch 'resize' if $this.data 'backstretch'
             super()
         ###*
             @description Switches to given section.
@@ -179,8 +178,7 @@ this.require [
             if $.inArray(hash, ['next', 'prev']) isnt -1
                 direction = hash
                 hash = this._determineRelativeSections hash
-            if hash.substr(0, 1) isnt '#'
-                hash = "##{hash}"
+            hash = "##{hash}" if hash.substr(0, 1) isnt '#'
             if hash is this.$domNodes.aboutThisWebsiteButton.attr 'href'
                 this.debug "Switch to section \"#{hash}\"."
                 # Handle "about-this-website" and main section switch.
@@ -199,8 +197,7 @@ this.require [
                             this._options.aboutThisWebsiteSection.fadeOut)
                         this.debug "Switch to section \"#{hash}\"."
                         # Swipe in endless cycle if we get a direction.
-                        if direction
-                            index = direction
+                        index = direction if direction
                         if this._viewportIsOnTop
                             this.$domNodes.carousel.data('Swipe').slide index
                         else

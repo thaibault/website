@@ -151,9 +151,7 @@ body.home-page {
                             line-height: 1.4;
                             margin-bottom: 10px;
                         }
-                        > a[href^="tel:"]:hover {
-                            color: @defaultColor;
-                        }
+                        > a[href^="tel:"]:hover { color: @defaultColor; }
                     }
                 }
             }
@@ -190,6 +188,7 @@ body.home-page {
         left: 0;
         width: 100%;
         display: none;
+        text-align: center;
     }
 
         /* endregion */
@@ -246,9 +245,12 @@ body.home-page {
                 > div.container {
                     > div.navbar-header {
                         > a.navbar-brand {
-                            max-width: 238px;
+                            max-width: 219px;
 
-                            > span.dimension-indicator { visibility: hidden; }
+                            > span.dimension-indicator {
+                                position: absolute;
+                                visibility: hidden;
+                            }
                         }
                         /* Position language link. */
                         > a[href^="#lang-"] {
@@ -258,7 +260,7 @@ body.home-page {
                         }
                     }
                     > div.navbar-collapse > ul.nav.navbar-nav {
-                        margin-top: 0;
+                        margin-top: 10px;
                         margin-bottom: 10px;
                         margin-left: 5%;
                         margin-right: 5%;
@@ -293,22 +295,26 @@ body.home-page {
 
             /* region section */
 
-    div.about-this-website {
+                /* region about this web site */
+
+    > div.about-this-website {
         color: @defaultColor;
-        padding-top: 72px;
-        padding-bottom: 20px;
+        padding-top: 60px;
+        padding-bottom: 15px;
 
         /* Wraps the text content, positions space around them. */
         > div.container { margin-left: 10%; }
         > div[class^=carousel-image-] > div.container {
             > h1 { font-size: 25px; }
-            > p {
-                font-size: 17px;
+            > div.lead {
+                font-size: 19px;
                 line-height: 20px;
                 margin-bottom: 6px;
             }
         }
     }
+
+                /* endregion */
 
             /* endregion */
 
@@ -317,17 +323,40 @@ body.home-page {
         /* region extra small */
 
     @media (min-width: 400px) {
+
+            /* region navigation bar */
+
         /* Show current dimension mode in indicator dom node. */
         > div.navbar-wrapper > div.container > div.navbar.navbar-inverse
-        > div.container > div.navbar-header > a.navbar-brand
-        > span.dimension-indicator {
-            visibility: visible;
+        > div.container > div.navbar-header > a.navbar-brand {
+            max-width: 238px;
+
+            > span.dimension-indicator {
+                position: initial;
+                visibility: visible;
+            }
         }
+
+            /* endregion */
+
+            /* region carousel */
+
         > div.carousel.slide > div.carousel-inner > div.item
         > div[class^=carousel-image-] > div.container {
             padding-top: 70px;
             padding-bottom: 25px;
         }
+
+            /* endregion */
+
+            /* region section */
+
+        > div.about-this-website {
+            padding-top: 70px;
+            padding-bottom: 25px;
+        }
+
+            /* endregion */
 
         /* endregion */
 
@@ -371,15 +400,13 @@ body.home-page {
                                 display: inline;
 
                                 > ul.nav.navbar-nav {
-                                    margin-bottom: 0;
+                                    margin: 0;
 
                                     /*
                                         Bring menu items to same height as
                                         navigation bar branding.
                                     */
-                                    > li > a {
-                                        line-height: 22px;
-                                    }
+                                    > li > a { line-height: 22px; }
                                 }
                             }
                         }
@@ -393,7 +420,7 @@ body.home-page {
 
             > div.carousel.slide > div.carousel-inner > div.item {
                 /* Show any background image on higher resolutions. */
-                div.backstretch { display: block; }
+                > div.backstretch { display: block; }
                 /* Bump up size of carousel content. */
                 > div[class^=carousel-image-] {
                     background-size: cover;
@@ -424,6 +451,23 @@ body.home-page {
                 }
                 > div.carousel-image-skills {
                     background-image: url('@{imagePath}carousel/skills.jpg');
+                }
+            }
+
+            /* endregion */
+
+            /* region section */
+
+            > div.about-this-website {
+                padding-top: 100px;
+                padding-bottom: 50px;
+
+                > div[class^=carousel-image-] > div.container {
+                    > h1 { font-size: 35px; }
+                    > div.lead {
+                        font-size: 25px;
+                        line-height: 1.4;
+                    }
                 }
             }
 
