@@ -60,9 +60,7 @@ body.home-page {
     /* Shows the current dimension mode. */
     > div.navbar-wrapper > div.container > div.navbar.navbar-inverse
     > div.container > div.navbar-header > a.navbar-brand
-    > span.dimension-indicator {
-        font-size: 12px;
-    }
+    > span.dimension-indicator { font-size: 12px; }
 
     /* endregion */
 
@@ -226,9 +224,7 @@ body.home-page {
                 /* region buttons */
 
     /* Smaller devices have usually a touch interface for scrolling. */
-    > a[href="#top"] {
-        visibility: hidden;
-    }
+    > a[href="#top"] { visibility: hidden; }
 
                 /* endregion */
 
@@ -241,33 +237,32 @@ body.home-page {
         top: 0;
         width: 100%;
 
-        @buttonMarginInPercent: 5%;
+        > div.container {
+            padding: 0;
 
-        > div.container > div.navbar.navbar-inverse {
-            margin-bottom: 0px;
+            > div.navbar.navbar-inverse {
+                margin-bottom: 0px;
 
-            > div.container {
-                > div.navbar-header {
-                    > a.navbar-brand {
-                        max-width: 238px;
-                        margin-left: @buttonMarginInPercent;
+                > div.container {
+                    > div.navbar-header {
+                        > a.navbar-brand {
+                            max-width: 238px;
 
-                        > span.dimension-indicator {
-                            visibility: hidden;
+                            > span.dimension-indicator { visibility: hidden; }
+                        }
+                        /* Position language link. */
+                        > a[href^="#lang-"] {
+                            position: absolute;
+                            top: 16px;
+                            right: 70px;
                         }
                     }
-                    /* Position language link. */
-                    > a[href^="#lang-"] {
-                        position: absolute;
-                        top: 16px;
-                        right: 70px;
+                    > div.navbar-collapse > ul.nav.navbar-nav {
+                        margin-top: 0;
+                        margin-bottom: 10px;
+                        margin-left: 5%;
+                        margin-right: 5%;
                     }
-                }
-                > div.navbar-collapse > ul.nav.navbar-nav {
-                    margin-top: 0;
-                    margin-bottom: 10px;
-                    margin-left: @buttonMarginInPercent;
-                    margin-right: @buttonMarginInPercent;
                 }
             }
         }
