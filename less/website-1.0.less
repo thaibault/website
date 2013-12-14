@@ -16,21 +16,23 @@ License
     see http://creativecommons.org/licenses/by/3.0/deed.de
 */
 
-@import url(../cascadingStyleSheet/bootstrap-3.0.0.css);
+@import url(../cascadingStyleSheet/bootstrap-3.0.3.css);
 
 @import 'bootstrap-glyphicons-1.0.0';
+@import 'glyphicons-social-1.8';
 
 @import 'generic-1.0';
 
 // endregion
 
-// region constants 
+// region constants
 
 @imagePath: '../image/';
 @fontPath: '../font/';
 
-@minimumTabletWidthInPixel: 767px;
-@minimumDesktopWidthInPixel: 979px;
+@minimumSmallWidthInPixel: 768px;
+@minimumMediumWidthInPixel: 992px;
+@minimumLargeWidthInPixel: 1200px;
 
 @color1: #1b1b1b;
 @color2: #1b1b1b;
@@ -41,33 +43,19 @@ License
 
 @font-face {
     font-family: 'Glyphicons Halflings';
-    src: url('@{fontPath}glyphiconshalflings-regular.eot');
-    src: url('@{fontPath}glyphiconshalflings-regular.eot?#iefix') format('embedded-opentype'),
-         url('@{fontPath}glyphiconshalflings-regular.woff') format('woff'),
-         url('@{fontPath}glyphiconshalflings-regular.ttf') format('truetype'),
-         url('@{fontPath}glyphiconshalflings-regular.svg#glyphicons_halflingsregular') format('svg');
+    src: url('@{fontPath}glyphicons-halflings-regular.eot');
+    src: url('@{fontPath}glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+         url('@{fontPath}glyphicons-halflings-regular.woff') format('woff'),
+         url('@{fontPath}glyphicons-halflings-regular.ttf') format('truetype'),
+         url('@{fontPath}glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
-
-/* endregion */
-
-/* region style sheets */
-
-body {
-
-    /* region media query change indicator */
-
-    border-left-width: 0;
-    /* smartphone mode */
-    border-left-style: dotted;
-    @media (min-width: @minimumTabletWidthInPixel) {
-        border-left-style: solid;
-    }
-    @media (min-width: @minimumDesktopWidthInPixel) {
-        border-left-style: dashed;
-    }
-
-    /* endregion */
-
+@font-face {
+    font-family: 'Glyphicons Social Regular';
+    src: url('@{fontPath}glyphicons-halflings-social-regular.eot');
+    src: url('@{fontPath}glyphicons-halflings-social-regular.eot?#iefix') format('embedded-opentype'),
+         url('@{fontPath}glyphicons-halflings-social-regular.woff') format('woff'),
+         url('@{fontPath}glyphicons-halflings-social-regular.ttf') format('truetype'),
+         url('@{fontPath}glyphicons-halflings-social-regular.svg#glyphicons_socialregular') format('svg');
 }
 
 /* endregion */

@@ -18,7 +18,9 @@
 
 # endregion
 
-# TODO use only in development mode
+# TODO adapt to support less source maps.
+## standalone
+##
 this.less =
     env: 'development'
     async: false
@@ -30,21 +32,25 @@ this.less =
     rootpath: ''
     logLevel: 0
     #sourceMap: true
+##
+
+# TODO logging should be "false" after tracking code ist debugged.
 
 ## standalone
-## this.jQuery.noConflict(true) ($) ->
-##     $.HomePage googleTrackingCode: 'UA-40192634-1'
+## this.jQuery ($) ->
+##     $.HomePage googleTrackingCode: 'UA-40192634-1', logging: true
 this.require.noConflict = true
 this.require [['jQuery.HomePage', 'jquery-homePage-1.0.coffee']], ($) ->
     ###
-        Embed $ and require full compatible to all other JavaScripts. The
-        global scope is clean after this sequence. The given function is
-        called when the dom-tree was loaded.
+        Embed $ and require full compatible to all other
+        JavaScripts.
+        The global scope is clean after this sequence. The given
+        function is called when the dom-tree was loaded.
     ###
     ###
-        NOTE: "$.noConflict()" should become "true" for parameter "removeAll",
-        because we will end up in race conditions by finishing tests and
-        removing the main $ object.
+        NOTE: "jQuery.noConflict()" should become "true" for parameter
+        "removeAll", because we will end up in race conditions by finishing
+        tests and removing the main $ object.
     ###
     $.noConflict(true) ($) -> $.HomePage
         googleTrackingCode: 'UA-40192634-1', logging: true
