@@ -129,9 +129,6 @@ this.require [
                 ).attr 'href'
             this.on this.$domNodes.window, 'resize', this.debounce(
                 this.getMethod this._adaptContentHeight)
-            # NOTE: A cyclic slide effect is more intuitive on touch devices.
-            if this._currentMediaQueryMode is 'extraSmall'
-                this._options.carousel.continuous = true
             this
 
         # endregion
@@ -290,6 +287,9 @@ this.require [
                                 'href'))
                         return false
                 return true
+            # NOTE: A cyclic slide effect is more intuitive on touch devices.
+            if this._currentMediaQueryMode is 'extraSmall'
+                this._options.carousel.continuous = true
             this.$domNodes.carousel.Swipe this._options.carousel
         ###*
             @description This method adds triggers to switch section.
