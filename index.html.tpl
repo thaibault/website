@@ -39,7 +39,7 @@ endregion -->
 <%     ('google-plus', 'https://plus.google.com/+TorbenSickert'),
 <%     ('xing', 'http://www.xing.com/profile/Torben_Sickert'),
 <%     ('linked-in', 'http://de.linkedin.com/pub/torben-sickert/28/aa9/919'),
-<%     ('skype', ''),
+<%     ('skype', 'skype:t.sickert?add'),
 <%     ('twitter', 'https://twitter.com/tsickert'),
 <%     ('facebook', 'https://de-de.facebook.com/tsickert'),
 <%     ('website', 'http://thaibault.github.com'))
