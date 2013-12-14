@@ -130,7 +130,7 @@ this.require [
             this.on this.$domNodes.window, 'resize', this.debounce(
                 this.getMethod this._adaptContentHeight)
             # NOTE: A cyclic slide effect is more intuitive on touch devices.
-            if this._currentMediaQueryMode is 'smartphone'
+            if this._currentMediaQueryMode is 'extraSmall'
                 this._options.carousel.continuous = true
             this
 
@@ -218,7 +218,7 @@ this.require [
             @returns {$.HomePage} Returns the current instance.
         ###
         _onStartUpAnimationComplete: ->
-            if this._currentMediaQueryMode isnt 'smartphone'
+            if this._currentMediaQueryMode isnt 'extraSmall'
                 this._initializeBackstretch()
             this._initializeSwipe()
             # All start up effects are ready. Handle direct section links.
