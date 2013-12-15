@@ -204,6 +204,7 @@ endregion -->
                             </button>
                         </div>
                         <div class="navbar-collapse collapse">
+                            <div class="navbar-highlighter"></div>
                             <ul class="nav navbar-nav">
                                 <% for name, section in SECTIONS:
                                     <% if section[0]:

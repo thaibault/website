@@ -268,11 +268,14 @@ body.home-page {
                             right: 70px;
                         }
                     }
-                    > div.navbar-collapse > ul.nav.navbar-nav {
-                        margin-top: 10px;
-                        margin-bottom: 10px;
-                        margin-left: 5%;
-                        margin-right: 5%;
+                    > div.navbar-collapse {
+                        > div.navbar-highlighter { display: none; }
+                        > ul.nav.navbar-nav {
+                            margin-top: 10px;
+                            margin-bottom: 10px;
+                            margin-left: 5%;
+                            margin-right: 5%;
+                        }
                     }
                 }
             }
@@ -408,12 +411,24 @@ body.home-page {
                                     top: 16px;
                                     right: 18px;
                                 }
+                                > a.navbar-brand { padding-right: 30px; }
                                 > a.navbar-brand:hover,
                                 > a.navbar-brand:focus { color: #666 }
                             }
                             > div.navbar-collapse {
                                 display: inline;
 
+                                > div.navbar-highlighter {
+                                    #generic > .opacity(0.5);
+
+                                    position: absolute;
+                                    left: 209px;
+                                    display: block;
+                                    border-top: 2px solid #666;
+                                    height: 50px;
+                                    width: 100px;
+                                    background-color: #e8e8e8;
+                                }
                                 > ul.nav.navbar-nav {
                                     margin: 0;
 
@@ -424,19 +439,18 @@ body.home-page {
                                     > li {
                                         > a {
                                             line-height: 22px;
-                                            color: #666;
-                                            border-top: 1px solid @backgroundColor;
+                                            color: #999999;
                                         }
                                         > a:hover, a:focus {
                                             background-color: transparent;
-                                            border-top: 1px solid #666;
+                                            color: #666;
                                         }
                                     }
                                     > li.active > a:hover,
                                     > li.active > a:focus,
                                     > li.active > a {
                                         background-color: transparent;
-                                        border-top: 1px solid #666;
+                                        color: #666;
                                     }
                                 }
                             }
@@ -517,7 +531,7 @@ body.home-page {
                     Normal Wrapper for the main navigation bar. Scrolls with
                     viewport.
                 */
-                > div.navbar-wrapper > div.container { max-width: 940px; }
+                > div.navbar-wrapper > div.container { max-width: 700px; }
 
             /* endregion */
 

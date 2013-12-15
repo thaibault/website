@@ -10,14 +10,35 @@
 # region header
 
 ###!
-    Copyright see require on https://github.com/thaibault/require
+[Project page](https://thaibault.github.com)
 
-    Conventions see require on https://github.com/thaibault/require
+This module provides common logic for the whole home page.
 
-    @author t.sickert@gmail.com (Torben Sickert)
-    @version 1.0 stable
-    @fileOverview
-    This module provides common logic for the whole web page.
+Copyright
+---------
+
+Torben Sickert 16.12.2012
+
+License
+-------
+
+This library written by Torben Sickert stand under a creative commons naming
+3.0 unported license. see http://creativecommons.org/licenses/by/3.0/deed.de
+
+Extending this module
+---------------------
+
+For conventions see require on https://github.com/thaibault/require
+
+Author
+------
+
+t.sickert@gmail.com (Torben Sickert)
+
+Version
+-------
+
+1.0 stable
 ###
 
 ## standalone
@@ -32,20 +53,16 @@ this.require [
 
 # endregion
 
-# region plugins
+# region plugins/classes
 
-    ###*
-        @memberOf $
-        @class
-    ###
     class HomePage extends $.Website.class
+        ###This plugin holds all needed methods to extend a whole homepage.###
 
     # region properties
 
-        ###*
+        ###
+            **__name__ {String}**
             Holds the class name to provide inspection features.
-
-            @property {String}
         ###
         __name__: 'HomePage'
 
@@ -55,19 +72,15 @@ this.require [
 
         # region special
 
-        ###*
-            @description Initializes the interactive web application.
-
-            @param {Object} options An options object.
-
-            @returns {$.HomePage} Returns the current instance.
-        ###
         initialize: (options={}, @_sectionBackgroundColor='white') ->
-            ###*
-                Saves default options for manipulating the default behaviour.
-
-                @property {Object}
             ###
+                Initializes the interactive web application.
+
+                **options {Object}**     - An options object.
+
+                **returns {$.HomePage}** - Returns the current instance.
+            ###
+            # Saves default options for manipulating the default behaviour.
             this._options =
                 trackingCode: 'UA-40192634-1'
                 scrollInLinearTime: true
@@ -76,7 +89,8 @@ this.require [
                 backgroundImageFileExtension: '.jpg'
                 domNode:
                     carousel: '> div.carousel.slide'
-                    section: '> div.carousel.slide > div.carousel-inner > div.item'
+                    section: '> div.carousel.slide > div.carousel-inner > ' +
+                             'div.item'
                     top: '> div.navbar-wrapper'
                     logoLink:
                         '> div.navbar-wrapper > div.container > ' +
@@ -87,7 +101,8 @@ this.require [
                         'div.navbar.navbar-inverse > div.container > ' +
                         'div.navbar-collapse > ul.nav.navbar-nav li a'
                     aboutThisWebsiteButton:
-                        '> div.footer > footer > p > a[href="#about-this-website"]'
+                        '> div.footer > footer > p > ' +
+                        'a[href="#about-this-website"]'
                     aboutThisWebsiteSection: '> div.about-this-website'
                     dimensionIndicator:
                         '> div.navbar-wrapper > div.container > ' +
@@ -95,6 +110,10 @@ this.require [
                         'div.navbar-header > a.navbar-brand > ' +
                         'span.dimension-indicator'
                     footer: '> div.footer'
+                    menuHighlighter: '> div.navbar-wrapper > div.container ' +
+                                     '> div.navbar.navbar-inverse ' +
+                                     '> div.container > div.navbar-collapse ' +
+                                     '> div.navbar-highlighter'
                 carousel:
                     startSlide: 0
                     speed: 1000
@@ -139,13 +158,13 @@ this.require [
 
         # region event
 
-        ###*
-            @description This method triggers if the responsive design switches
-                         to desktop mode.
-
-            @returns {$.HomePage} Returns the current instance.
-        ###
         _onChangeMediaQueryMode: (oldMode, newMode) ->
+            ###
+                This method triggers if the responsive design switches to
+                desktop mode.
+
+                **returns {$.HomePage}** - Returns the current instance.
+            ###
             # Show responsive dimension indicator switching.
             this._options.dimensionIndicator.fadeOut.always = =>
                 this.$domNodes.dimensionIndicator.text(
@@ -163,14 +182,14 @@ this.require [
                 $this = $ this
                 $this.backstretch 'resize' if $this.data 'backstretch'
             super()
-        ###*
-            @description Switches to given section.
-
-            @param {String} hash Location to switch to.
-
-            @returns {$.HomePage} Returns the current instance.
-        ###
         _onSwitchSection: (hash) ->
+            ###
+                Switches to given section.
+
+                **hash {String}**        - Location to switch to.
+
+                **returns {$.HomePage}** - Returns the current instance.
+            ###
             direction = false
             if $.inArray(hash, ['next', 'prev']) isnt -1
                 direction = hash
@@ -183,13 +202,13 @@ this.require [
                 this.$domNodes.aboutThisWebsiteSection.fadeIn(
                     this._options.aboutThisWebsiteSection.fadeIn)
             this.$domNodes.navigationButton.each (index, button) =>
-                button = $ button
-                sectionButtonDomNode = button.parent 'li'
-                if not sectionButtonDomNode.length
-                    sectionButtonDomNode = button
-                if button.attr('href') is hash or (index is 0 and hash is '#')
-                    hash = button.attr 'href'
-                    if not sectionButtonDomNode.hasClass 'active'
+                $button = $ button
+                $sectionButtonDomNode = $button.parent 'li'
+                if not $sectionButtonDomNode.length
+                    $sectionButtonDomNode = $button
+                if $button.attr('href') is hash or (index is 0 and hash is '#')
+                    hash = $button.attr 'href'
+                    if not $sectionButtonDomNode.hasClass 'active'
                         this.$domNodes.aboutThisWebsiteSection.fadeOut(
                             this._options.aboutThisWebsiteSection.fadeOut)
                         this.debug "Switch to section \"#{hash}\"."
@@ -202,19 +221,19 @@ this.require [
                                 this.$domNodes.carousel.data(
                                     'Swipe'
                                 ).slide index)
-                        sectionButtonDomNode.addClass 'active'
+                        this._highlightMenuEntry(
+                            $sectionButtonDomNode.addClass 'active')
                 else
-                    sectionButtonDomNode.removeClass 'active'
+                    $sectionButtonDomNode.removeClass 'active'
             window.location.hash = hash
             this._adaptContentHeight()
             super()
-        ###*
-            @description This method triggers if all startup animations are
-                         ready.
-
-            @returns {$.HomePage} Returns the current instance.
-        ###
         _onStartUpAnimationComplete: ->
+            ###
+                This method triggers if all startup animations are ready.
+
+                **returns {$.HomePage}** - Returns the current instance.
+            ###
             # TODO if this._currentMediaQueryMode isnt 'extraSmall'
             #    this._initializeBackstretch()
             this._initializeSwipe()
@@ -232,13 +251,26 @@ this.require [
 
         # region helper
 
-        ###*
-            @description Initializes the backstretch instance on every section
-                         background image.
+        _highlightMenuEntry: ($sectionButtonDomNode) ->
+            ###
+                Highlights current menu entry.
 
-            @returns {$.HomePage} Returns the current instance.
-        ###
+                **$sectionButtonDomNode {domNode}** - The current section
+                                                      button.
+
+                @returns {$.HomePage} - Returns the current instance.
+            ###
+            this.$domNodes.menuHighlighter.animate
+                left: $sectionButtonDomNode.position().left
+                width: $sectionButtonDomNode.width()
+            this
         _initializeBackstretch: ->
+            ###
+                Initializes the backstretch instance on every section
+                background image.
+
+                @returns {$.HomePage} - Returns the current instance.
+            ###
             self = this
             this.$domNodes.navigationButton.each ->
                 hash = $(this).attr('href').substr 1
@@ -249,13 +281,13 @@ this.require [
                         self._options.backgroundImageFileExtension,
                         self._options.backstretch)
             this
-        ###*
-            @description Adapt the carousel height to current main section
-                         height.
-
-            @returns {$.Swipe} Returns the new generated swipe instance.
-        ###
         _adaptContentHeight: ->
+            ###
+                Adapt the carousel height to current main section height.
+
+                **returns {$.Swipe}** - Returns the new generated swipe
+                                        instance.
+            ###
             # TODO
             $('div[class^=carousel-image-]').css('min-height', $(window).height() - 80)
 
@@ -275,13 +307,14 @@ this.require [
                 this.$domNodes.footer.css position: 'relative', top: 0
                 this.$domNodes.carousel.animate height: newSectionHeightInPixel
             this
-        ###*
-            @description Attaches needed event handler to the swipe plugin and
-                         initializes the slider.
-
-            @returns {$.Swipe} Returns the new generated swipe instance.
-        ###
         _initializeSwipe: ->
+            ###
+                Attaches needed event handler to the swipe plugin and
+                initializes the slider.
+
+                **returns {$.Swipe}** - Returns the new generated swipe
+                                        instance.
+            ###
             this._options.carousel.transitionEnd = (index, domNode) =>
                 this.$domNodes.navigationButton.each (subIndex, button) =>
                     if index is subIndex
@@ -294,39 +327,43 @@ this.require [
             if this._currentMediaQueryMode is 'extraSmall'
                 this._options.carousel.continuous = true
             this.$domNodes.carousel.Swipe this._options.carousel
-        ###*
-            @description This method adds triggers to switch section.
-
-            @returns {$.HomePage} Returns the current instance.
-        ###
         _addNavigationEvents: ->
+            ###
+                This method adds triggers to switch section.
+
+                **returns {$.HomePage}** - Returns the current instance.
+            ###
             this.on this.$domNodes.navigationButton.add(
                 this.$domNodes.aboutThisWebsiteButton
             ), 'click', (event) =>
                 this.fireEvent(
                     'switchSection', false, this, $(event.target).attr 'href')
             super()
-        ###*
-            @description Determines current section to the right or the left.
-
-            @param {String} hash Relative section ("next" or "prev"),
-
-            @returns {String} Returns the absolute hash string.
-        ###
         _determineRelativeSections: (hash) ->
+            ###
+                Determines current section to the right or the left.
+
+                **hash {String}**    - Relative section ("next" or "prev"),
+
+                **returns {String}** - Returns the absolute hash string.
+            ###
             this.$domNodes.navigationButton.each (index, button) =>
                 if $(button).attr('href') is window.location.hash
-                    # NOTE: We subtract 1 from navigation buttons length
-                    # because we want to ignore the about this website section.
-                    # And the index starts counting by zero.
+                    ###
+                        NOTE: We subtract 1 from navigation buttons length
+                        because we want to ignore the about this website
+                        section. And the index starts counting by zero.
+                    ###
                     numberOfButtons =
                         this.$domNodes.navigationButton.length - 1
                     if hash is 'next'
                         newIndex = (index + 1) % numberOfButtons
                     else if hash is 'prev'
-                        # NOTE: Subtracting 1 in the residue class ring means
-                        # adding the number of numbers minus 1. This prevents
-                        # us from getting negative button indexes.
+                        ###
+                            NOTE: Subtracting 1 in the residue class ring means
+                            adding the number of numbers minus 1. This prevents
+                            us from getting negative button indexes.
+                        ###
                         newIndex = (index + numberOfButtons - 1) %
                             numberOfButtons
                     hash = $(
@@ -341,9 +378,7 @@ this.require [
 
     # region handle $ extending
 
-    ###* @ignore ###
     $.HomePage = -> $.Tools().controller HomePage, arguments
-    ###* @ignore ###
     $.HomePage.class = HomePage
 
     # endregion
