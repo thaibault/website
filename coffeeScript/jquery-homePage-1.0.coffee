@@ -142,11 +142,14 @@ this.require [
                     $(this).fadeIn 'fast'
             super options
             if not window.location.hash
-                window.location.hash = this.$domNodes.navigationButton.parent(
-                    'li'
-                ).filter('.active').children(
-                    this.$domNodes.navigationButton
-                ).attr 'href'
+                if this._currentMediaQueryMode is 'extraSmall'
+                    window.location.hash = '#contact'
+                else
+                    window.location.hash = this.$domNodes.navigationButton.parent(
+                        'li'
+                    ).filter('.active').children(
+                        this.$domNodes.navigationButton
+                    ).attr 'href'
             this.on this.$domNodes.window, 'resize', this.debounce(
                 this.getMethod this._adaptContentHeight)
             this
