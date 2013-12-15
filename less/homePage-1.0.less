@@ -24,7 +24,7 @@ License
 
 @defaultColor: #222222;
 @fontColor: #5a5a5a;
-@backgroundColor: #ffffff;
+@backgroundColor: #f2f2f2;
 @linkHoverColor: #2a6496;
 @shadowColor: rgba(0, 0, 0, .25);
 
@@ -44,9 +44,7 @@ body.home-page {
 
         /* region buttons */
 
-    a:hover {
-        text-decoration: none;
-    }
+    a:hover { text-decoration: none; }
     /* Scroll to top button. */
     > a[href="#top"] {
         position: fixed;
@@ -92,6 +90,10 @@ body.home-page {
 
         position: fixed;
         z-index: 1;
+
+        > div.container > div.navbar.navbar-inverse.navbar-static-top {
+            border: 0;
+        }
     }
 
     /* endregion */
@@ -152,6 +154,13 @@ body.home-page {
                             margin-bottom: 10px;
                         }
                         > a[href^="tel:"]:hover { color: @defaultColor; }
+                        > div.container {
+                            border: 1px solid red;
+                            width: 800px;
+                            text-align: left;
+
+                            > div { border: 1px solid blue; }
+                        }
                     }
                 }
             }
@@ -378,7 +387,8 @@ body.home-page {
             /* region navigation bar */
 
             /*
-                Normal Wrapper for the main navigation bar. Scrolls with viewport.
+                Normal Wrapper for the main navigation bar. Scrolls with
+                viewport.
             */
             > div.navbar-wrapper {
                 margin-top: 20px;
@@ -388,13 +398,18 @@ body.home-page {
 
                     > div.navbar.navbar-inverse {
                         #generic > .border-radius(4px);
+                        background: @backgroundColor;
 
                         > div.container {
                             /* Position language link. */
-                            > div.navbar-header > a[href^="#lang-"] {
-                                position: absolute;
-                                top: 16px;
-                                right: 18px;
+                            > div.navbar-header {
+                                > a[href^="#lang-"] {
+                                    position: absolute;
+                                    top: 16px;
+                                    right: 18px;
+                                }
+                                > a.navbar-brand:hover,
+                                > a.navbar-brand:focus { color: #666 }
                             }
                             > div.navbar-collapse {
                                 display: inline;
@@ -406,7 +421,23 @@ body.home-page {
                                         Bring menu items to same height as
                                         navigation bar branding.
                                     */
-                                    > li > a { line-height: 22px; }
+                                    > li {
+                                        > a {
+                                            line-height: 22px;
+                                            color: #666;
+                                            border-top: 1px solid @backgroundColor;
+                                        }
+                                        > a:hover, a:focus {
+                                            background-color: transparent;
+                                            border-top: 1px solid #666;
+                                        }
+                                    }
+                                    > li.active > a:hover,
+                                    > li.active > a:focus,
+                                    > li.active > a {
+                                        background-color: transparent;
+                                        border-top: 1px solid #666;
+                                    }
                                 }
                             }
                         }
@@ -423,12 +454,13 @@ body.home-page {
                 > div.backstretch { display: block; }
                 /* Bump up size of carousel content. */
                 > div[class^=carousel-image-] {
-                    background-size: cover;
                     background-repeat: no-repeat;
-                    background-position: 50%;
+                    background-size: auto 100%;
+                    background-position: center;
+                    margin-top: 80px;
 
                     > div.container {
-                        padding-top: 100px;
+                        padding-top: 30px;
                         padding-bottom: 50px;
                         max-width: 600px;
 
@@ -485,9 +517,7 @@ body.home-page {
                     Normal Wrapper for the main navigation bar. Scrolls with
                     viewport.
                 */
-                > div.navbar-wrapper > div.container {
-                    max-width: 940px;
-                }
+                > div.navbar-wrapper > div.container { max-width: 940px; }
 
             /* endregion */
 

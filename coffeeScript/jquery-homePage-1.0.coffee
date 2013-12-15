@@ -156,9 +156,9 @@ this.require [
             this.$domNodes.dimensionIndicator.stop().fadeOut(
                 this._options.dimensionIndicator.fadeOut)
             # Activate backstretching in non extra small mode only.
-            if((not oldMode or oldMode is 'extraSmall') and
-               newMode isnt 'extraSmall')
-                this._initializeBackstretch()
+            # TODO if((not oldMode or oldMode is 'extraSmall') and
+            #   newMode isnt 'extraSmall')
+            #    this._initializeBackstretch()
             this.$domNodes.section.each ->
                 $this = $ this
                 $this.backstretch 'resize' if $this.data 'backstretch'
@@ -215,8 +215,8 @@ this.require [
             @returns {$.HomePage} Returns the current instance.
         ###
         _onStartUpAnimationComplete: ->
-            if this._currentMediaQueryMode isnt 'extraSmall'
-                this._initializeBackstretch()
+            # TODO if this._currentMediaQueryMode isnt 'extraSmall'
+            #    this._initializeBackstretch()
             this._initializeSwipe()
             # All start up effects are ready. Handle direct section links.
             this.$domNodes.navigationButton.add(
@@ -256,6 +256,9 @@ this.require [
             @returns {$.Swipe} Returns the new generated swipe instance.
         ###
         _adaptContentHeight: ->
+            # TODO
+            $('div[class^=carousel-image-]').css('min-height', $(window).height() - 80)
+
             newSectionHeightInPixel = this.$domNodes.section.add(
                 this.$domNodes.aboutThisWebsiteSection
             ).filter(".#{window.location.hash.substr(1)}").outerHeight()
