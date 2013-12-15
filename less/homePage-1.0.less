@@ -25,7 +25,10 @@ License
 @defaultColor: #222222;
 @fontColor: #5a5a5a;
 @backgroundColor: #f2f2f2;
-@linkHoverColor: #2a6496;
+@linkColor: #ff8888;
+@linkHoverColor: #ff6666;
+@menuColor: #666;
+@menuHoverColor: #444;
 @shadowColor: rgba(0, 0, 0, .25);
 
 @footerMarginInPixel: 30px;
@@ -44,7 +47,14 @@ body.home-page {
 
         /* region buttons */
 
-    a:hover { text-decoration: none; }
+    a {
+        color: @linkColor;
+        outline: none;
+    }
+    a:hover {
+        color: @linkHoverColor;
+        text-decoration: none;
+    }
     /* Scroll to top button. */
     > a[href="#top"] {
         position: fixed;
@@ -59,6 +69,15 @@ body.home-page {
     > div.navbar-wrapper > div.container > div.navbar.navbar-inverse
     > div.container > div.navbar-header > a.navbar-brand
     > span.dimension-indicator { font-size: 12px; }
+
+    /* endregion */
+
+    /* region bootstrap resets */
+
+    .navbar-inverse .navbar-collapse {
+        border: 0;
+        box-shadow: none;
+    }
 
     /* endregion */
 
@@ -106,6 +125,7 @@ body.home-page {
         overflow: hidden;
         visibility: hidden;
         position: relative;
+        height: 200px;
 
         /* Wraps the visible area from whole wide slider wrapper. */
         > div.carousel-inner {
@@ -273,8 +293,6 @@ body.home-page {
                         > ul.nav.navbar-nav {
                             margin-top: 10px;
                             margin-bottom: 10px;
-                            margin-left: 5%;
-                            margin-right: 5%;
                         }
                     }
                 }
@@ -393,65 +411,62 @@ body.home-page {
                 Normal Wrapper for the main navigation bar. Scrolls with
                 viewport.
             */
-            > div.navbar-wrapper {
-                margin-top: 20px;
+            > div.navbar-wrapper > div.container {
+                max-width: 746px;
 
-                > div.container {
-                    max-width: 746px;
+                > div.navbar.navbar-inverse {
+                    #generic > .border-radius(4px);
+                    background: @backgroundColor;
 
-                    > div.navbar.navbar-inverse {
-                        #generic > .border-radius(4px);
-                        background: @backgroundColor;
-
-                        > div.container {
-                            /* Position language link. */
-                            > div.navbar-header {
-                                > a[href^="#lang-"] {
-                                    position: absolute;
-                                    top: 16px;
-                                    right: 18px;
-                                }
-                                > a.navbar-brand { padding-right: 30px; }
-                                > a.navbar-brand:hover,
-                                > a.navbar-brand:focus { color: #666 }
+                    > div.container {
+                        /* Position language link. */
+                        > div.navbar-header {
+                            > a[href^="#lang-"] {
+                                position: absolute;
+                                top: 16px;
+                                right: 18px;
                             }
-                            > div.navbar-collapse {
-                                display: inline;
+                            > a.navbar-brand {
+                                color: @menuColor;
+                                padding-right: 30px;
+                            }
+                            > a.navbar-brand:hover,
+                            > a.navbar-brand:focus { color: @menuHoverColor; }
+                        }
+                        > div.navbar-collapse {
+                            display: inline;
 
-                                > div.navbar-highlighter {
-                                    #generic > .opacity(0.5);
+                            > div.navbar-highlighter {
+                                position: absolute;
+                                left: 209px;
+                                display: block;
+                                border-top: 2px solid @linkColor;
+                                height: 50px;
+                                width: 100px;
+                                background-color: #eee;
+                            }
+                            > ul.nav.navbar-nav {
+                                margin: 0;
 
-                                    position: absolute;
-                                    left: 209px;
-                                    display: block;
-                                    border-top: 2px solid #666;
-                                    height: 50px;
-                                    width: 100px;
-                                    background-color: #e8e8e8;
-                                }
-                                > ul.nav.navbar-nav {
-                                    margin: 0;
-
-                                    /*
-                                        Bring menu items to same height as
-                                        navigation bar branding.
-                                    */
-                                    > li {
-                                        > a {
-                                            line-height: 22px;
-                                            color: #999999;
-                                        }
-                                        > a:hover, a:focus {
-                                            background-color: transparent;
-                                            color: #666;
-                                        }
+                                /*
+                                    Bring menu items to same height as
+                                    navigation bar branding.
+                                */
+                                > li {
+                                    > a {
+                                        line-height: 22px;
+                                        color: @menuColor;
                                     }
-                                    > li.active > a:hover,
-                                    > li.active > a:focus,
-                                    > li.active > a {
+                                    > a:hover, a:focus {
                                         background-color: transparent;
-                                        color: #666;
+                                        color: @menuHoverColor;
                                     }
+                                }
+                                > li.active > a:hover,
+                                > li.active > a:focus,
+                                > li.active > a {
+                                    background-color: transparent;
+                                    color: @menuHoverColor;
                                 }
                             }
                         }
