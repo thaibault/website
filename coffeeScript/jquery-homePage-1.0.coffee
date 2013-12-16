@@ -71,7 +71,10 @@ this.require [
 
         # region special
 
-        initialize: (options={}, @_sectionBackgroundColor='white') ->
+        initialize: (
+            options={}, @_sectionBackgroundColor='white',
+            @_oldSectionHeightInPixel=200, @_sectionTopMarginInPixel=0
+        ) ->
             ###
                 Initializes the interactive web application.
 
@@ -87,6 +90,8 @@ this.require [
                 backgroundImagePath: 'image/carousel/'
                 backgroundImageFileExtension: '.jpg'
                 backgroundDependentHeightSections: ['about']
+                maximumBackgroundDependentHeight: 750
+                menuHighlightAnimation: {}
                 domNode:
                     carousel: '> div.carousel.slide'
                     section: '> div.carousel.slide > div.carousel-inner > ' +
@@ -128,7 +133,7 @@ this.require [
                 aboutThisWebsiteSection:
                     fadeIn: duraction: 'normal'
                     fadeOut: duration: 'normal'
-                # Adapt menu highlighter after language switching.
+            # Adapt menu highlighter after language switching.
             $.extend true, options,
                 language:
                     onSwitched: =>
@@ -152,8 +157,9 @@ this.require [
                     ).filter('.active').children(
                         this.$domNodes.navigationButton
                     ).attr 'href'
-            this.on this.$domNodes.window, 'resize', this.debounce(
-                this.getMethod this._adaptContentHeight)
+            this._initializeSwipe()
+            this.on this.$domNodes.window, 'resize', this.getMethod(
+                this._adaptContentHeight)
             this
 
         # endregion
@@ -171,6 +177,11 @@ this.require [
 
                 **returns {$.HomePage}** - Returns the current instance.
             ###
+            # Determine top margin for background image dependent sections.
+            this.$domNodes.section.children().css 'margin-top', ''
+            this._sectionTopMarginInPixel = window.parseInt(
+                this.$domNodes.section.children().css(
+                    'margin-top'))
             # Show responsive dimension indicator switching.
             this._options.dimensionIndicator.fadeIn.always = =>
                 # Adapt menu highlighter after changing layout and
@@ -247,7 +258,7 @@ this.require [
 
                 **returns {$.HomePage}** - Returns the current instance.
             ###
-            this._highlightMenuEntry()._initializeSwipe()
+            this._highlightMenuEntry()
             # All start up effects are ready. Handle direct section links.
             this.$domNodes.navigationButton.add(
                 this.$domNodes.aboutThisWebsiteButton
@@ -256,6 +267,14 @@ this.require [
                     window.location.href.indexOf '#'
                 )}\"]"
             ).trigger 'click'
+            super()
+        _removeLoadingCover: ->
+            ###
+                This method triggers after window is loaded.
+
+                **returns {$.Website}** - Returns the current instance.
+            ###
+            # TODO handle to run erst after startup animation
             super()
 
         # endregion
@@ -276,9 +295,12 @@ this.require [
                     'li'
                 ).filter '.active'
                 if $sectionButtonDomNode.position()?.left
-                    this.$domNodes.menuHighlighter.show().animate
+                    $.extend true, this._options.menuHighlightAnimation,
                         left: $sectionButtonDomNode.position().left
                         width: $sectionButtonDomNode.width()
+                        duration: this._options.carousel.speed
+                    this.$domNodes.menuHighlighter.show().animate(
+                        this._options.menuHighlightAnimation)
             this
         _adaptContentHeight: ->
             ###
@@ -289,15 +311,21 @@ this.require [
             ###
             $currentSection = this.$domNodes.section.add(
                 this.$domNodes.aboutThisWebsiteSection
-            ).filter(".#{window.location.hash.substr(1)}")
+            ).filter ".#{window.location.hash.substr(1)}"
             if this._currentMediaQueryMode is 'extraSmall' or $.inArray(
-                   window.location.hash.substr(1),
-                   this._options.backgroundDependentHeightSections
-               ) is -1
+                window.location.hash.substr(1),
+                this._options.backgroundDependentHeightSections
+            ) is -1
                 newSectionHeightInPixel = $currentSection.outerHeight()
             else
                 newSectionHeightInPixel = this.$domNodes.window.height()
-            if newSectionHeightInPixel
+            if(newSectionHeightInPixel and
+               newSectionHeightInPixel isnt this._oldSectionHeightInPixel)
+                this._oldSectionHeightInPixel = newSectionHeightInPixel
+                # First stop currently running animations.
+                if this.startUpAnimationIsComplete
+                    this.$domNodes.footer.stop true
+                    this.$domNodes.carousel.stop true
                 # NOTE: If current section is "about-this-website" we place it
                 # in front of last selected section and position footer
                 # absolutely.
@@ -306,21 +334,38 @@ this.require [
                     this.$domNodes.footer.css(
                         position: 'absolute'
                         top: this.$domNodes.carousel.height())
-                    this.$domNodes.footer.animate top: newSectionHeightInPixel
+                    this.$domNodes.footer.animate
+                        top: newSectionHeightInPixel
+                        duration: this._options.carousel.speed
                     this.$domNodes.carousel.height newSectionHeightInPixel
                 else
                     this.$domNodes.footer.css position: 'relative', top: 0
-                    this.$domNodes.carousel.animate(
-                        height: newSectionHeightInPixel)
+                    this.$domNodes.carousel.animate
+                        height: newSectionHeightInPixel
+                        duration: this._options.carousel.speed
                     if $.inArray(
                         window.location.hash.substr(1),
                         this._options.backgroundDependentHeightSections
                     ) isnt -1 and this._currentMediaQueryMode isnt 'extraSmall'
-                        $currentSection.children().animate(
+                        additionalMarginTopInPixel = 0
+                        if(newSectionHeightInPixel >
+                           this._options.maximumBackgroundDependentHeight)
+                            additionalMarginTopInPixel = (
+                                newSectionHeightInPixel -
+                                this._options.maximumBackgroundDependentHeight
+                            ) / 2
+                            newSectionHeightInPixel =
+                                this._options.maximumBackgroundDependentHeight
+                        $currentSection.children().css(
                             height: newSectionHeightInPixel -
-                                    window.parseInt(
-                                        this.$domNodes.section.children().css(
-                                            'margin-top')))
+                                this._sectionTopMarginInPixel
+                            duration: this._options.carousel.speed)
+                        this.$domNodes.section.children().css(
+                            'margin-top', this._sectionTopMarginInPixel +
+                                additionalMarginTopInPixel)
+                    else
+                        this.$domNodes.section.children().css(
+                            'margin-top', this._sectionTopMarginInPixel)
             this
         _initializeSwipe: ->
             ###

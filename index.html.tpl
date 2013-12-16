@@ -57,8 +57,8 @@ endregion -->
 <%          'deDE': 'Ich arbeite selbständig und bin bereit für Ihr Projekt. '
 <%                  'Kontaktieren Sie mich und wir sprechen über Ihr '
 <%                  'Vorhaben.'})),
-<%     ('skills', (
-<%         {'enUS': 'Skills', 'deDE': 'Fähigkeiten'},
+<%     ('work', (
+<%         {'enUS': 'Work', 'deDE': 'Arbeiten'},
 <%         {'enUS': "I'm an ambitious IT guy and love what I'm doing!",
 <%          'deDE': "Ich bin ambitionierter IT'ler und liebe was ich tue!"},
 <%         {'enUS': {
@@ -96,17 +96,6 @@ endregion -->
 <%              'server': ('apache', 'nginx'),
 <%              'framework': (
 <%                  'angularJS', 'django', 'jQuery', 'Mootools', 'bootstrap')},
-<%          'deDE': 'TODO'})),
-<%     ('references', (
-<%         {'enUS': 'References', 'deDE': 'Referenzen'},
-<%         {'enUS': "You don't want good service, instead of the result! "
-<%                  "Perfection kills!",
-<%          'deDE': 'TODO'},
-<%         {'enUS': 'Experiences from Posic, Akra, Virtual Identity, Chair of '
-<%                  'Humanoid',
-<%          'deDE': 'TODO'},
-<%         {'enUS': 'Robots Lab and Rechnernetze and Telematik in University '
-<%                  'Freiburg, BPV, BTI, Vattenfall...',
 <%          'deDE': 'TODO'})))
 
 <% PROJECTS = (
@@ -221,41 +210,36 @@ endregion -->
 
     <!-- region carousel -->
 
-        <% START_UP_ANIMATION_NUMBER += 1
-        <div class="start-up-animation-number-<% START_UP_ANIMATION_NUMBER %> carousel slide">
+        <div class="carousel slide">
             <div class="carousel-inner">
                 <% for name, section in SECTIONS:
                     <div class="item <% name %>">
                         <div class="carousel-image-<% name %>">
-                            <% if name == 'about':
-                                <div class="lead">
-                                    <% section[2][DEFAULT_LANGUAGE] %>
-                                    <!--<% ALTERNATE_LANGUAGE %>:<% section[2][ALTERNATE_LANGUAGE] %>-->
-                                </div>
-                            <% else:
-                                <div class="container">
+                            <div class="container">
+                                <% if section[1]:
                                     <h1>
                                         <% section[1][DEFAULT_LANGUAGE] %>
                                         <!--enUS:<% section[1][ALTERNATE_LANGUAGE] %>-->
                                     </h1>
+                                <% if section[2]:
                                     <p class="lead">
                                         <% section[2][DEFAULT_LANGUAGE] %>
                                         <!--<% ALTERNATE_LANGUAGE %>:<% section[2][ALTERNATE_LANGUAGE] %>-->
                                     </p>
-                                    <% if name == 'contact':
-                                        <a href="tel:004917610248185">Tel.<!--enEN:Phone--> +49 (0) 176 <span>/</span> 10 248 185</a>
-                                        <% for name, link in SOCIAL_MEDIA:
-                                            <% if '@' in link:
-                                                <% link = 'mailto:%s' % link
-                                            <a class="glyphicon-social glyphicon-social-<% name %>" href="<% link %>" target="_blank"></a>
-                                    <% elif name == 'references':
-                                        <div class="container">
-                                            <% for project_name, project_page_link, project_description in PROJECTS:
-                                                <div>
-                                                    <a href="<% project_page_link %>"><% project_name %></a>
-                                                </div>
-                                        </div>
-                                </div>
+                                <% if name == 'contact':
+                                    <a href="tel:004917610248185">Tel.<!--enEN:Phone--> +49 (0) 176 <span>/</span> 10 248 185</a>
+                                    <% for name, link in SOCIAL_MEDIA:
+                                        <% if '@' in link:
+                                            <% link = 'mailto:%s' % link
+                                        <a class="glyphicon-social glyphicon-social-<% name %>" href="<% link %>" target="_blank"></a>
+                                <% elif name == 'references':
+                                    <div class="container">
+                                        <% for project_name, project_page_link, project_description in PROJECTS:
+                                            <div>
+                                                <a href="<% project_page_link %>"><% project_name %></a>
+                                            </div>
+                                    </div>
+                            </div>
                         </div>
                     </div>
                 <% end
