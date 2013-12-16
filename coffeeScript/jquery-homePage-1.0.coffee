@@ -128,18 +128,20 @@ this.require [
                 aboutThisWebsiteSection:
                     fadeIn: duraction: 'normal'
                     fadeOut: duration: 'normal'
-            $.extend true, options, language: onSwitched: (
-                oldLanguage, newLanguage
-            ) =>
                 # Adapt menu highlighter after language switching.
-                this._highlightMenuEntry()
-                # Add language toggle button functionality.
-                self = this
-                $("a[href=\"#lang-#{newLanguage}\"]").fadeOut 'fast', ->
-                    $(this).attr('href', "#lang-#{oldLanguage}").text(
-                        oldLanguage.substr 0, 2)
-                    self._adaptContentHeight()
-                    $(this).fadeIn 'fast'
+            $.extend true, options,
+                language:
+                    onSwitched: =>
+                        this._highlightMenuEntry()._adaptContentHeight()
+                    onSwitch: (oldLanguage, newLanguage) =>
+                        # Add language toggle button functionality.
+                        self = this
+                        $("a[href=\"#lang-#{newLanguage}\"]").fadeOut(
+                            'fast', ->
+                                $(this).attr(
+                                    'href', "#lang-#{oldLanguage}"
+                                ).text(oldLanguage.substr 0, 2).fadeIn 'fast'
+                        )
             super options
             if not window.location.hash
                 if this._currentMediaQueryMode is 'extraSmall'
@@ -208,6 +210,7 @@ this.require [
             if hash is this.$domNodes.aboutThisWebsiteButton.attr 'href'
                 this.debug "Switch to section \"#{hash}\"."
                 # Handle "about-this-website" and main section switch.
+                this.$domNodes.menuHighlighter.hide()
                 this._scrollToTop()
                 this.$domNodes.aboutThisWebsiteSection.fadeIn(
                     this._options.aboutThisWebsiteSection.fadeIn)
@@ -272,8 +275,8 @@ this.require [
                 $sectionButtonDomNode = this.$domNodes.navigationButton.parent(
                     'li'
                 ).filter '.active'
-                if $sectionButtonDomNode.position().left
-                    this.$domNodes.menuHighlighter.animate
+                if $sectionButtonDomNode.position()?.left
+                    this.$domNodes.menuHighlighter.show().animate
                         left: $sectionButtonDomNode.position().left
                         width: $sectionButtonDomNode.width()
             this
