@@ -46,13 +46,9 @@ endregion -->
 
 <% SECTIONS = (
 <%     ('about', (
-<%         {'enUS': 'About me', 'deDE': 'Über mich'},
+<%         {'enUS': 'About me', 'deDE': 'Über mich'}, False,
 <%         {'enUS': "I'm a computer scientist and love the challenge",
-<%          'deDE': 'Ich bin Informatiker und liebe die Herausforderung'},
-<%         {'enUS': 'Experiences from Posic, Akra, Virtual Identity, Chair of '
-<%                  'Humanoid Robots Lab and Rechnernetze and Telematik in '
-<%                  'University Freiburg, BPV, BTI, Vattenfall...',
-<%          'deDE': 'TODO'})),
+<%          'deDE': 'Ich bin Informatiker und liebe die Herausforderung'})),
 <%     ('contact', (
 <%         {'enUS': 'Contact', 'deDE': 'Kontakt'},
 <%         {'enUS': 'Get in touch', 'deDE': 'Lernen wir uns kennen'},
@@ -231,29 +227,35 @@ endregion -->
                 <% for name, section in SECTIONS:
                     <div class="item <% name %>">
                         <div class="carousel-image-<% name %>">
-                            <div class="container">
-                                <h1>
-                                    <% section[1][DEFAULT_LANGUAGE] %>
-                                    <!--enUS:<% section[1][ALTERNATE_LANGUAGE] %>-->
-                                </h1>
-                                <p>
+                            <% if name == 'about':
+                                <div class="lead">
                                     <% section[2][DEFAULT_LANGUAGE] %>
                                     <!--<% ALTERNATE_LANGUAGE %>:<% section[2][ALTERNATE_LANGUAGE] %>-->
-                                </p>
-                                <% if name == 'contact':
-                                    <a href="tel:004917610248185">Tel.<!--enEN:Phone--> +49 (0) 176 <span>/</span> 10 248 185</a>
-                                    <% for name, link in SOCIAL_MEDIA:
-                                        <% if '@' in link:
-                                            <% link = 'mailto:%s' % link
-                                        <a class="glyphicon-social glyphicon-social-<% name %>" href="<% link %>" target="_blank"></a>
-                                <% elif name == 'references':
-                                    <div class="container">
-                                        <% for project_name, project_page_link, project_description in PROJECTS:
-                                            <div>
-                                                <a href="<% project_page_link %>"><% project_name %></a>
-                                            </div>
-                                    </div>
-                            </div>
+                                </div>
+                            <% else:
+                                <div class="container">
+                                    <h1>
+                                        <% section[1][DEFAULT_LANGUAGE] %>
+                                        <!--enUS:<% section[1][ALTERNATE_LANGUAGE] %>-->
+                                    </h1>
+                                    <p class="lead">
+                                        <% section[2][DEFAULT_LANGUAGE] %>
+                                        <!--<% ALTERNATE_LANGUAGE %>:<% section[2][ALTERNATE_LANGUAGE] %>-->
+                                    </p>
+                                    <% if name == 'contact':
+                                        <a href="tel:004917610248185">Tel.<!--enEN:Phone--> +49 (0) 176 <span>/</span> 10 248 185</a>
+                                        <% for name, link in SOCIAL_MEDIA:
+                                            <% if '@' in link:
+                                                <% link = 'mailto:%s' % link
+                                            <a class="glyphicon-social glyphicon-social-<% name %>" href="<% link %>" target="_blank"></a>
+                                    <% elif name == 'references':
+                                        <div class="container">
+                                            <% for project_name, project_page_link, project_description in PROJECTS:
+                                                <div>
+                                                    <a href="<% project_page_link %>"><% project_name %></a>
+                                                </div>
+                                        </div>
+                                </div>
                         </div>
                     </div>
                 <% end

@@ -44,17 +44,17 @@ body.home-page {
 
     color: @fontColor;
     background-color: @defaultColor;
+    font-size: 16px;
+    overflow-y: scroll;
 
-        /* region buttons */
+        /* region link */
 
     a {
         color: @linkColor;
         outline: none;
+        font-size: 18px;
     }
-    a:hover {
-        color: @linkHoverColor;
-        text-decoration: none;
-    }
+    a:hover { color: @linkHoverColor; }
     /* Scroll to top button. */
     > a[href="#top"] {
         position: fixed;
@@ -195,9 +195,9 @@ body.home-page {
 
     /* Show big dark social media icons. */
     > div.carousel.slide > div.carousel-inner > div.item.contact
-    > div[class^=carousel-image-] > div.container {
+    > div[class^="carousel-image-"] > div.container {
         > a.glyphicon-social {
-            font-size: 40px;
+            font-size: 32px;
             color: @defaultColor;
             letter-spacing: 10px;
         }
@@ -284,7 +284,7 @@ body.home-page {
                         /* Position language link. */
                         > a[href^="#lang-"] {
                             position: absolute;
-                            top: 16px;
+                            top: 14px;
                             right: 70px;
                         }
                     }
@@ -308,12 +308,12 @@ body.home-page {
     > div.carousel.slide > div.carousel-inner > div.item {
         /* Don't show any background image in smartphone mode. */
         div.backstretch { display: none; }
-        > div[class^=carousel-image-] > div.container {
+        > div[class^="carousel-image-"] > div.container {
             padding-top: 60px;
             padding-bottom: 15px;
             max-width: 540px;
 
-            > h1 { font-size: 25px; }
+            > h1 { font-size: 38px; }
             > p {
                 font-size: 19px;
                 line-height: 20px;
@@ -334,8 +334,8 @@ body.home-page {
 
         /* Wraps the text content, positions space around them. */
         > div.container { margin-left: 10%; }
-        > div[class^=carousel-image-] > div.container {
-            > h1 { font-size: 25px; }
+        > div[class^="carousel-image-"] > div.container {
+            > h1 { font-size: 38px; }
             > div.lead {
                 font-size: 19px;
                 line-height: 20px;
@@ -372,7 +372,7 @@ body.home-page {
             /* region carousel */
 
         > div.carousel.slide > div.carousel-inner > div.item
-        > div[class^=carousel-image-] > div.container {
+        > div[class^="carousel-image-"] > div.container {
             padding-top: 70px;
             padding-bottom: 25px;
         }
@@ -423,7 +423,6 @@ body.home-page {
                         > div.navbar-header {
                             > a[href^="#lang-"] {
                                 position: absolute;
-                                top: 16px;
                                 right: 18px;
                             }
                             > a.navbar-brand {
@@ -482,7 +481,7 @@ body.home-page {
                 /* Show any background image on higher resolutions. */
                 > div.backstretch { display: block; }
                 /* Bump up size of carousel content. */
-                > div[class^=carousel-image-] {
+                > div[class^="carousel-image-"] {
                     background-repeat: no-repeat;
                     background-size: auto 100%;
                     background-position: center;
@@ -493,8 +492,8 @@ body.home-page {
                         padding-bottom: 50px;
                         max-width: 600px;
 
-                        > h1 { font-size: 35px; }
-                        > p {
+                        > h1 { font-size: 72px; }
+                        > p.lead {
                             font-size: 25px;
                             line-height: 1.4;
                         }
@@ -522,13 +521,17 @@ body.home-page {
             > div.about-this-website {
                 padding-bottom: 50px;
 
-                > div[class^=carousel-image-] > div.container {
-                    > h1 { font-size: 35px; }
+                > div[class^="carousel-image-"] > div.container {
+                    > h1 { font-size: 72px; }
                     > div.lead {
                         font-size: 25px;
                         line-height: 1.4;
                     }
                 }
+            }
+            > div.carousel.slide > div.carousel-inner > div.item
+            > div[class="carousel-image-about"] > div {
+                border: 1px solid red;
             }
 
             /* endregion */
@@ -552,7 +555,7 @@ body.home-page {
             /* region carousel */
 
                 > div.carousel.slide > div.carousel-inner > div.item
-                > div[class^=carousel-image-] > div.container {
+                > div[class^="carousel-image-"] > div.container {
                     max-width: 810px;
                 }
 
