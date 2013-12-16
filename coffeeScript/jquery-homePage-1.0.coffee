@@ -116,7 +116,7 @@ this.require [
                                      '> div.navbar-highlighter'
                 carousel:
                     startSlide: 0
-                    speed: 1000
+                    speed: 400
                     auto: 0
                     continuous: false
                     disableScroll: false
