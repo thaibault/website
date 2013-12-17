@@ -227,7 +227,7 @@ endregion -->
                                         <% section[2][DEFAULT_LANGUAGE] %>
                                         <!--<% ALTERNATE_LANGUAGE %>:<% section[2][ALTERNATE_LANGUAGE] %>-->
                                         <% if name == 'about':
-                                            <a href="<% LINK_CURRICULUM_VITAE %>">Lebenslauf<!--<% ALTERNATE_LANGUAGE %>:Curriculum Vitae--></a>
+                                            <a href="<% LINK_CURRICULUM_VITAE %>" target="_blank">Lebenslauf<!--<% ALTERNATE_LANGUAGE %>:Curriculum Vitae--></a>
                                     </p>
                                 <% if name == 'contact':
                                     <a href="tel:004917610248185">Tel.<!--enEN:Phone--> +49 (0) 176 <span>/</span> 10 248 185</a>
@@ -239,7 +239,7 @@ endregion -->
                                     <div class="container">
                                         <% for project_name, project_page_link, project_description in PROJECTS:
                                             <div>
-                                                <a href="<% project_page_link %>"><% project_name %></a>
+                                                <a href="<% project_page_link %>" target="_blank"><% project_name %></a>
                                             </div>
                                     </div>
                             </div>
@@ -269,7 +269,7 @@ endregion -->
                         <p>Internet: <a href="<% SOCIAL_MEDIA[-1][1] %>"><% SOCIAL_MEDIA[-1][1] %></a></p>
                         <p>Email: <a href="mailto:<% SOCIAL_MEDIA[0][1] %>"><% SOCIAL_MEDIA[0][1] %></a></p>
                         <br />
-                        <p><a href="<% LINK_TO_PUBLIC_SSH_KEY %>">öffentlicher SSH-Schlüssel<!--<% ALTERNATE_LANGUAGE %>:public ssh key--></a></p>
+                        <p><a href="<% LINK_TO_PUBLIC_SSH_KEY %>" target="_blank">öffentlicher SSH-Schlüssel<!--<% ALTERNATE_LANGUAGE %>:public ssh key--></a></p>
                     </div>
                 </div>
             </div>
