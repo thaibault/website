@@ -229,7 +229,7 @@ endregion -->
                                         <% if name == 'about':
                                             <a href="<% LINK_CURRICULUM_VITAE %>">Lebenslauf<!--<% ALTERNATE_LANGUAGE %>:Curriculum Vitae--></a>
                                     </p>
-                                <% elif name == 'contact':
+                                <% if name == 'contact':
                                     <a href="tel:004917610248185">Tel.<!--enEN:Phone--> +49 (0) 176 <span>/</span> 10 248 185</a>
                                     <% for name, link in SOCIAL_MEDIA:
                                         <% if '@' in link:
