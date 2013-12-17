@@ -22,12 +22,13 @@ endregion -->
 <% IMAGE_APPLE_TOUCH_ICON_PATH = IMAGE_PATH + 'appleTouchIcon/'
 
 <% LESS_PATH = 'less/'
-<% STYLE_SHEET_PATH = 'cascardingStyleSheet/'
+<% CASCADING_STYLE_SHEET_PATH = 'cascadingStyleSheet/'
 
 <% COFFEE_SCRIPT_PATH = 'coffeeScript/'
 <% JAVA_SCRIPT_PATH = 'javaScript/'
 
-<% LINK_TO_PUBLIC_SSH_KEY = 'https://www.dropbox.com/s/u6ic4cgbxdf7ko7/id_rsa.pub'
+<% LINK_TO_PUBLIC_SSH_KEY = 'data/publicSSHKey.txt'
+<% LINK_CURRICULUM_VITAE = 'data/curriculumVitae.pdf'
 
 <% # endregion
 
@@ -225,14 +226,16 @@ endregion -->
                                     <p class="lead">
                                         <% section[2][DEFAULT_LANGUAGE] %>
                                         <!--<% ALTERNATE_LANGUAGE %>:<% section[2][ALTERNATE_LANGUAGE] %>-->
+                                        <% if name == 'about':
+                                            <a href="<% LINK_CURRICULUM_VITAE %>">Lebenslauf<!--<% ALTERNATE_LANGUAGE %>:Curriculum Vitae--></a>
                                     </p>
-                                <% if name == 'contact':
+                                <% elif name == 'contact':
                                     <a href="tel:004917610248185">Tel.<!--enEN:Phone--> +49 (0) 176 <span>/</span> 10 248 185</a>
                                     <% for name, link in SOCIAL_MEDIA:
                                         <% if '@' in link:
                                             <% link = 'mailto:%s' % link
                                         <a class="glyphicon-social glyphicon-social-<% name %>" href="<% link %>" target="_blank"></a>
-                                <% elif name == 'references':
+                                <% elif name == 'work':
                                     <div class="container">
                                         <% for project_name, project_page_link, project_description in PROJECTS:
                                             <div>
