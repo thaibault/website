@@ -73,7 +73,8 @@ this.require [
 
         initialize: (
             options={}, @_sectionBackgroundColor='white',
-            @_oldSectionHeightInPixel=200, @_sectionTopMarginInPixel=0
+            @_oldSectionHeightInPixel=200, @_sectionTopMarginInPixel=0,
+            @_initialContentHeightAdaptionHappens=false
         ) ->
             ###
                 Initializes the interactive web application.
@@ -225,38 +226,42 @@ this.require [
                 this._scrollToTop()
                 this.$domNodes.aboutThisWebsiteSection.fadeIn(
                     this._options.aboutThisWebsiteSection.fadeIn)
-            this.$domNodes.navigationButton.each (index, button) =>
-                $button = $ button
-                $sectionButtonDomNode = $button.parent 'li'
-                if not $sectionButtonDomNode.length
-                    $sectionButtonDomNode = $button
-                if $button.attr('href') is hash or (index is 0 and hash is '#')
-                    hash = $button.attr 'href'
-                    if not $sectionButtonDomNode.hasClass 'active'
-                        this.$domNodes.aboutThisWebsiteSection.fadeOut(
-                            this._options.aboutThisWebsiteSection.fadeOut)
-                        this.debug "Switch to section \"#{hash}\"."
-                        # Swipe in endless cycle if we get a direction.
-                        index = direction if direction
-                        if this._viewportIsOnTop
-                            this.$domNodes.carousel.data('Swipe').slide index
-                        else
-                            this._scrollToTop(=>
-                                this.$domNodes.carousel.data(
-                                    'Swipe'
-                                ).slide index)
-                        $sectionButtonDomNode.addClass 'active'
-                        this._highlightMenuEntry()
-                else
-                    $sectionButtonDomNode.removeClass 'active'
+            else
+                this.$domNodes.navigationButton.each (index, button) =>
+                    $button = $ button
+                    $sectionButtonDomNode = $button.parent 'li'
+                    if not $sectionButtonDomNode.length
+                        $sectionButtonDomNode = $button
+                    if($button.attr('href') is hash or
+                       (index is 0 and hash is '#'))
+                        hash = $button.attr 'href'
+                        if not $sectionButtonDomNode.hasClass 'active'
+                            this.$domNodes.aboutThisWebsiteSection.fadeOut(
+                                this._options.aboutThisWebsiteSection.fadeOut)
+                            this.debug "Switch to section \"#{hash}\"."
+                            # Swipe in endless cycle if we get a direction.
+                            index = direction if direction
+                            if this._viewportIsOnTop
+                                this.$domNodes.carousel.data('Swipe').slide(
+                                    index)
+                            else
+                                this._scrollToTop(=>
+                                    this.$domNodes.carousel.data(
+                                        'Swipe'
+                                    ).slide index)
+                            $sectionButtonDomNode.addClass 'active'
+                            this._highlightMenuEntry()
+                    else
+                        $sectionButtonDomNode.removeClass 'active'
+                    # TODO wenn section nicht vorhanden geh in default section!
             window.location.hash = hash
             this._adaptContentHeight()
             super()
-        _onStartUpAnimationComplete: ->
+        _removeLoadingCover: ->
             ###
-                This method triggers if all startup animations are ready.
+                This method triggers after window is loaded.
 
-                **returns {$.HomePage}** - Returns the current instance.
+                **returns {$.Website}** - Returns the current instance.
             ###
             this._highlightMenuEntry()
             # All start up effects are ready. Handle direct section links.
@@ -267,15 +272,9 @@ this.require [
                     window.location.href.indexOf '#'
                 )}\"]"
             ).trigger 'click'
-            super()
-        _removeLoadingCover: ->
-            ###
-                This method triggers after window is loaded.
-
-                **returns {$.Website}** - Returns the current instance.
-            ###
-            # TODO handle to run erst after startup animation
-            super()
+            if this._initialContentHeightAdaptionHappens
+                super()
+            this
 
         # endregion
 
@@ -326,6 +325,9 @@ this.require [
                 if this.startUpAnimationIsComplete
                     this.$domNodes.footer.stop true
                     this.$domNodes.carousel.stop true
+                transitionMethod = 'css'
+                if this._initialContentHeightAdaptionHappens
+                    transitionMethod = 'animate'
                 # NOTE: If current section is "about-this-website" we place it
                 # in front of last selected section and position footer
                 # absolutely.
@@ -334,13 +336,13 @@ this.require [
                     this.$domNodes.footer.css(
                         position: 'absolute'
                         top: this.$domNodes.carousel.height())
-                    this.$domNodes.footer.animate
+                    this.$domNodes.footer[transitionMethod]
                         top: newSectionHeightInPixel
                         duration: this._options.carousel.speed
                     this.$domNodes.carousel.height newSectionHeightInPixel
                 else
                     this.$domNodes.footer.css position: 'relative', top: 0
-                    this.$domNodes.carousel.animate
+                    this.$domNodes.carousel[transitionMethod]
                         height: newSectionHeightInPixel
                         duration: this._options.carousel.speed
                     if $.inArray(
@@ -366,6 +368,9 @@ this.require [
                     else
                         this.$domNodes.section.children().css(
                             'margin-top', this._sectionTopMarginInPixel)
+            if not this._initialContentHeightAdaptionHappens
+                this._initialContentHeightAdaptionHappens = true
+                this._removeLoadingCover()
             this
         _initializeSwipe: ->
             ###
