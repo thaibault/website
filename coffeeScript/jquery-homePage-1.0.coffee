@@ -151,7 +151,7 @@ this.require [
             super options
             if not window.location.hash
                 if this._currentMediaQueryMode is 'extraSmall'
-                    window.location.hash = '#contact'
+                    window.location.hash = 'contact'
                 else
                     window.location.hash = this.$domNodes.navigationButton.parent(
                         'li'
@@ -159,6 +159,7 @@ this.require [
                         this.$domNodes.navigationButton
                     ).attr 'href'
             this._initializeSwipe()
+            this.fireEvent 'switchSection', false, this, window.location.hash
             this.on this.$domNodes.window, 'resize', this.getMethod(
                 this._adaptContentHeight)
             this
@@ -226,7 +227,10 @@ this.require [
                 this._scrollToTop()
                 this.$domNodes.aboutThisWebsiteSection.fadeIn(
                     this._options.aboutThisWebsiteSection.fadeIn)
+                this.$domNodes.navigationButton.parent('li').removeClass(
+                    'active')
             else
+                sectionFound = false
                 this.$domNodes.navigationButton.each (index, button) =>
                     $button = $ button
                     $sectionButtonDomNode = $button.parent 'li'
@@ -235,6 +239,7 @@ this.require [
                     if($button.attr('href') is hash or
                        (index is 0 and hash is '#'))
                         hash = $button.attr 'href'
+                        sectionFound = true
                         if not $sectionButtonDomNode.hasClass 'active'
                             this.$domNodes.aboutThisWebsiteSection.fadeOut(
                                 this._options.aboutThisWebsiteSection.fadeOut)
@@ -245,15 +250,20 @@ this.require [
                                 this.$domNodes.carousel.data('Swipe').slide(
                                     index)
                             else
-                                this._scrollToTop(=>
+                                this._scrollToTop =>
                                     this.$domNodes.carousel.data(
                                         'Swipe'
-                                    ).slide index)
+                                    ).slide index
                             $sectionButtonDomNode.addClass 'active'
                             this._highlightMenuEntry()
                     else
                         $sectionButtonDomNode.removeClass 'active'
-                    # TODO wenn section nicht vorhanden geh in default section!
+                # If no section could be determined initialize the first one.
+                if not sectionFound
+                    forceSection = this.$domNodes.navigationButton.first(
+                    ).attr 'href'
+                    this.debug "Force section \"#{forceSection}\"."
+                    return this._onSwitchSection forceSection
             window.location.hash = hash
             this._adaptContentHeight()
             super()
@@ -263,16 +273,8 @@ this.require [
 
                 **returns {$.Website}** - Returns the current instance.
             ###
-            this._highlightMenuEntry()
-            # All start up effects are ready. Handle direct section links.
-            this.$domNodes.navigationButton.add(
-                this.$domNodes.aboutThisWebsiteButton
-            ).filter(
-                "a[href=\"#{window.location.href.substr(
-                    window.location.href.indexOf '#'
-                )}\"]"
-            ).trigger 'click'
             if this._initialContentHeightAdaptionHappens
+                this._highlightMenuEntry()
                 super()
             this
 
