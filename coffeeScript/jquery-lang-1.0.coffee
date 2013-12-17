@@ -95,8 +95,8 @@ this.require [
                 domNodeClassPrefix: ''
                 fadeEffect: true
                 textNodeParent:
-                    fadeIn: duration: 'normal'
-                    fadeOut: duration: 'normal'
+                    fadeIn: duration: 'fast'
+                    fadeOut: duration: 'fast'
                 replacementLanguagePattern: '^([a-z]{2}[A-Z]{2}):((.|\\s)*)$'
                 currentLanguagePattern: '^[a-z]{2}[A-Z]{2}$'
                 replacementDomNodeName: '#comment'
@@ -106,21 +106,17 @@ this.require [
                 currentLanguageIndicatorClassName: 'current'
                 cookieDescription: '{1}Last'
                 languageMapping:
-                    deDE: ['de', 'de-de']
+                    deDE: ['de', 'de-de', 'german', 'deutsch']
                     enUS: ['en', 'en-us']
-                    enEN: ['en-en']
-                    frFR: ['fr', 'fr-fr']
+                    enEN: ['en-en', 'english']
+                    frFR: ['fr', 'fr-fr', 'french']
                 onSwitched: $.noop()
+                onSwitch: $.noop()
             super options
             this._options.toolsLockDescription = this.stringFormat(
                 this._options.toolsLockDescription, this.__name__)
             this._options.cookieDescription = this.stringFormat(
                 this._options.cookieDescription, this.__name__)
-            this._options.textNodeParent.fadeIn.always = =>
-                this._numberOfFadedDomNodes += 1
-                if this._numberOfFadedDomNodes is this._$domNodeToFade.length
-                    this._numberOfFadedDomNodes = 0
-                    this.releaseLock this._options.toolsLockDescription
             this.$domNodes = this.grabDomNode()
             this.$domNodes.switchLanguageButtons = $(
                 "a[href^=\"##{this._options.languageHashPrefix}\"]")
@@ -143,65 +139,76 @@ this.require [
 
                 **returns {$.Lang}**  - Returns the current instance.
             ###
-            this.acquireLock(this._options.toolsLockDescription, =>
+            # TODO reduce complexity
+            this.acquireLock this._options.toolsLockDescription, =>
                 language = this._normalizeLanguage language
-                this.debug 'Switch to {1}', language
-                this._$domNodeToFade = null
-                this._replacements = []
-                $currentTextNodeToTranslate = null
-                $currentLanguageDomNode = null
-                $lastTextNodeToTranslate = null
-                $lastLanguageDomNode = null
-                self = this
-                this.$domNodes.parent.find(':not(iframe)').contents().each ->
-                    if $.inArray(
-                        this.nodeName.toLowerCase(),
-                        self._options.replaceDomNodeNames
-                    ) isnt -1
-                        $this = $ this
-                        # NOTE: We skip empty and nested text nodes
-                        if $.trim($this.text()) and $this.parents(
-                            self._options.replaceDomNodeNames.join()
-                        ).length is 0
-                            $lastLanguageDomNode = \
-                            self._checkLastTextNodeHavingLanguageIndicator(
-                                $lastTextNodeToTranslate, $lastLanguageDomNode)
-                            $currentTextNodeToTranslate = $this
-                    else
-                        $currentDomNode = $ this
-                        if $currentTextNodeToTranslate?
-                            if(this.nodeName is
-                               self._options.replacementDomNodeName)
-                                match = this.textContent.match(new RegExp(
-                                    self._options.replacementLanguagePattern))
-                                if match and match[1] is language
-                                    self._registerTextNodeToChange(
-                                        $currentTextNodeToTranslate,
-                                        $currentDomNode, match,
-                                        $currentLanguageDomNode)
-                                    $lastTextNodeToTranslate = \
-                                        $currentTextNodeToTranslate
-                                    $lastLanguageDomNode = \
-                                        $currentLanguageDomNode
-                                    $currentTextNodeToTranslate = null
-                                    $currentLanguageDomNode = null
-                                else
+                if this.currentLanguage isnt language
+                    this.debug 'Switch to {1}', language
+                    this.fireEvent(
+                        'switch', true, this, this.currentLanguage, language)
+                    this._$domNodeToFade = null
+                    this._replacements = []
+                    $currentTextNodeToTranslate = null
+                    $currentLanguageDomNode = null
+                    $lastTextNodeToTranslate = null
+                    $lastLanguageDomNode = null
+                    self = this
+                    this.$domNodes.parent.find(
+                        ':not(iframe)'
+                    ).contents().each ->
+                        if $.inArray(
+                            this.nodeName.toLowerCase(),
+                            self._options.replaceDomNodeNames
+                        ) isnt -1
+                            $this = $ this
+                            # NOTE: We skip empty and nested text nodes
+                            if $.trim($this.text()) and $this.parents(
+                                self._options.replaceDomNodeNames.join()
+                            ).length is 0
+                                $lastLanguageDomNode = \
+                                self._checkLastTextNodeHavingLanguageIndicator(
+                                    $lastTextNodeToTranslate,
+                                    $lastLanguageDomNode)
+                                $currentTextNodeToTranslate = $this
+                        else
+                            $currentDomNode = $ this
+                            if $currentTextNodeToTranslate?
+                                if(this.nodeName is
+                                   self._options.replacementDomNodeName)
                                     match = this.textContent.match(new RegExp(
-                                        self._options.currentLanguagePattern))
-                                    if match
-                                        $currentLanguageDomNode = \
-                                            $currentDomNode
-                                return true
-                            $lastTextNodeToTranslate = \
-                                $currentTextNodeToTranslate
-                            $lastLanguageDomNode = $currentLanguageDomNode
-                            $currentTextNodeToTranslate = null
-                            $currentDomNode = null
-                    return true
-                this._checkLastTextNodeHavingLanguageIndicator(
-                    $lastTextNodeToTranslate, $lastLanguageDomNode)
-                this._handleSwitchEffect language
-            )
+                                        self._options
+                                            .replacementLanguagePattern))
+                                    if match and match[1] is language
+                                        self._registerTextNodeToChange(
+                                            $currentTextNodeToTranslate,
+                                            $currentDomNode, match,
+                                            $currentLanguageDomNode)
+                                        $lastTextNodeToTranslate = \
+                                            $currentTextNodeToTranslate
+                                        $lastLanguageDomNode = \
+                                            $currentLanguageDomNode
+                                        $currentTextNodeToTranslate = null
+                                        $currentLanguageDomNode = null
+                                    else
+                                        match = this.textContent.match(
+                                            new RegExp(
+                                                self._options
+                                                    .currentLanguagePattern))
+                                        if match
+                                            $currentLanguageDomNode = \
+                                                $currentDomNode
+                                    return true
+                                $lastTextNodeToTranslate = \
+                                    $currentTextNodeToTranslate
+                                $lastLanguageDomNode = $currentLanguageDomNode
+                                $currentTextNodeToTranslate = null
+                                $currentDomNode = null
+                        return true
+                    this._checkLastTextNodeHavingLanguageIndicator(
+                        $lastTextNodeToTranslate, $lastLanguageDomNode)
+                    this._handleSwitchEffect language
+                else
+                    this.releaseLock this._options.toolsLockDescription
             this
 
     # endregion
@@ -329,7 +336,7 @@ this.require [
             $lastLanguageDomNode
         _handleLanguageSwitching: (thisFunction, self, language) ->
             ###
-                Initialized the language switch an performs an effect if
+                Initialized the language switch and performs an effect if
                 specified.
 
                 **thisFunction {Function}** - The function itself.
@@ -341,15 +348,25 @@ this.require [
                 **returns {$.Lang}**        - Returns the current instance.
             ###
             this._numberOfFadedDomNodes += 1
+            oldLanguage = this.currentLanguage
             if this._options.fadeEffect and this._$domNodeToFade?
                 if this._numberOfFadedDomNodes is this._$domNodeToFade.length
                     this._switchLanguage language
                     this._numberOfFadedDomNodes = 0
+                    this._options.textNodeParent.fadeIn.always = =>
+                        this._numberOfFadedDomNodes += 1
+                        if(this._numberOfFadedDomNodes is
+                           this._$domNodeToFade.length)
+                            this._numberOfFadedDomNodes = 0
+                            this.fireEvent(
+                                'switched', true, this, oldLanguage, language)
+                            this.releaseLock this._options.toolsLockDescription
                     this._$domNodeToFade.fadeIn(
                         this._options.textNodeParent.fadeIn)
             else
                 this._switchLanguage language
                 this._numberOfFadedDomNodes = 0
+                this.fireEvent 'switched', true, this, oldLanguage, language
                 this.releaseLock this._options.toolsLockDescription
             this
         _switchLanguage: (language) ->
@@ -394,8 +411,6 @@ this.require [
                 replacement.$commentNodeToReplace.remove()
             this._switchCurrentLanguageIndicator language
             $.cookie this._options.cookieDescription, language
-            this.fireEvent(
-                'switched', true, this, this.currentLanguage, language)
             this.currentLanguage = language
             this
         _switchCurrentLanguageIndicator: (language) ->

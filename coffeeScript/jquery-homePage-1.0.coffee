@@ -10,14 +10,35 @@
 # region header
 
 ###!
-    Copyright see require on https://github.com/thaibault/require
+[Project page](https://thaibault.github.com)
 
-    Conventions see require on https://github.com/thaibault/require
+This module provides common logic for the whole home page.
 
-    @author t.sickert@gmail.com (Torben Sickert)
-    @version 1.0 stable
-    @fileOverview
-    This module provides common logic for the whole web page.
+Copyright
+---------
+
+Torben Sickert 16.12.2012
+
+License
+-------
+
+This library written by Torben Sickert stand under a creative commons naming
+3.0 unported license. see http://creativecommons.org/licenses/by/3.0/deed.de
+
+Extending this module
+---------------------
+
+For conventions see require on https://github.com/thaibault/require
+
+Author
+------
+
+t.sickert@gmail.com (Torben Sickert)
+
+Version
+-------
+
+1.0 stable
 ###
 
 ## standalone
@@ -25,27 +46,22 @@
 this.require.scopeIndicator = 'jQuery.HomePage'
 this.require [
     'jquery-website-1.0.coffee', ['jQuery.fn.collapse', 'bootstrap-3.0.3']
-    ['jQuery.fn.Swipe', 'jquery-swipe-2.0']
-    ['jQuery.fn.backstretch', 'jquery-backstrech-2.0.4']],
+    ['jQuery.fn.Swipe', 'jquery-swipe-2.0']],
 ($) ->
 ##
 
 # endregion
 
-# region plugins
+# region plugins/classes
 
-    ###*
-        @memberOf $
-        @class
-    ###
     class HomePage extends $.Website.class
+        ###This plugin holds all needed methods to extend a whole homepage.###
 
     # region properties
 
-        ###*
+        ###
+            **__name__ {String}**
             Holds the class name to provide inspection features.
-
-            @property {String}
         ###
         __name__: 'HomePage'
 
@@ -55,28 +71,31 @@ this.require [
 
         # region special
 
-        ###*
-            @description Initializes the interactive web application.
-
-            @param {Object} options An options object.
-
-            @returns {$.HomePage} Returns the current instance.
-        ###
-        initialize: (options={}, @_sectionBackgroundColor='white') ->
-            ###*
-                Saves default options for manipulating the default behaviour.
-
-                @property {Object}
+        initialize: (
+            options={}, @_sectionBackgroundColor='white',
+            @_oldSectionHeightInPixel=200, @_sectionTopMarginInPixel=0
+        ) ->
             ###
+                Initializes the interactive web application.
+
+                **options {Object}**     - An options object.
+
+                **returns {$.HomePage}** - Returns the current instance.
+            ###
+            # Saves default options for manipulating the default behaviour.
             this._options =
                 trackingCode: 'UA-40192634-1'
                 scrollInLinearTime: true
                 dimensionIndicatorTemplate: '({1})'
                 backgroundImagePath: 'image/carousel/'
                 backgroundImageFileExtension: '.jpg'
+                backgroundDependentHeightSections: ['about']
+                maximumBackgroundDependentHeight: 750
+                menuHighlightAnimation: {}
                 domNode:
                     carousel: '> div.carousel.slide'
-                    section: '> div.carousel.slide > div.carousel-inner > div.item'
+                    section: '> div.carousel.slide > div.carousel-inner > ' +
+                             'div.item'
                     top: '> div.navbar-wrapper'
                     logoLink:
                         '> div.navbar-wrapper > div.container > ' +
@@ -87,7 +106,8 @@ this.require [
                         'div.navbar.navbar-inverse > div.container > ' +
                         'div.navbar-collapse > ul.nav.navbar-nav li a'
                     aboutThisWebsiteButton:
-                        '> div.footer > footer > p > a[href="#about-this-website"]'
+                        '> div.footer > footer > p > ' +
+                        'a[href="#about-this-website"]'
                     aboutThisWebsiteSection: '> div.about-this-website'
                     dimensionIndicator:
                         '> div.navbar-wrapper > div.container > ' +
@@ -95,9 +115,13 @@ this.require [
                         'div.navbar-header > a.navbar-brand > ' +
                         'span.dimension-indicator'
                     footer: '> div.footer'
+                    menuHighlighter: '> div.navbar-wrapper > div.container ' +
+                                     '> div.navbar.navbar-inverse ' +
+                                     '> div.container > div.navbar-collapse ' +
+                                     '> div.navbar-highlighter'
                 carousel:
                     startSlide: 0
-                    speed: 1000
+                    speed: 400
                     auto: 0
                     continuous: false
                     disableScroll: false
@@ -109,26 +133,33 @@ this.require [
                 aboutThisWebsiteSection:
                     fadeIn: duraction: 'normal'
                     fadeOut: duration: 'normal'
-                backstrech: {}
-            $.extend true, options, language: onSwitched: (
-                oldLanguage, newLanguage
-            ) =>
-                # Add language toggle button functionality.
-                self = this
-                $("a[href=\"#lang-#{newLanguage}\"]").fadeOut 'fast', ->
-                    $(this).attr('href', "#lang-#{oldLanguage}").text(
-                        oldLanguage.substr 0, 2)
-                    self._adaptContentHeight()
-                    $(this).fadeIn 'fast'
+            # Adapt menu highlighter after language switching.
+            $.extend true, options,
+                language:
+                    onSwitched: =>
+                        this._highlightMenuEntry()._adaptContentHeight()
+                    onSwitch: (oldLanguage, newLanguage) =>
+                        # Add language toggle button functionality.
+                        self = this
+                        $("a[href=\"#lang-#{newLanguage}\"]").fadeOut(
+                            'fast', ->
+                                $(this).attr(
+                                    'href', "#lang-#{oldLanguage}"
+                                ).text(oldLanguage.substr 0, 2).fadeIn 'fast'
+                        )
             super options
             if not window.location.hash
-                window.location.hash = this.$domNodes.navigationButton.parent(
-                    'li'
-                ).filter('.active').children(
-                    this.$domNodes.navigationButton
-                ).attr 'href'
-            this.on this.$domNodes.window, 'resize', this.debounce(
-                this.getMethod this._adaptContentHeight)
+                if this._currentMediaQueryMode is 'extraSmall'
+                    window.location.hash = '#contact'
+                else
+                    window.location.hash = this.$domNodes.navigationButton.parent(
+                        'li'
+                    ).filter('.active').children(
+                        this.$domNodes.navigationButton
+                    ).attr 'href'
+            this._initializeSwipe()
+            this.on this.$domNodes.window, 'resize', this.getMethod(
+                this._adaptContentHeight)
             this
 
         # endregion
@@ -139,14 +170,23 @@ this.require [
 
         # region event
 
-        ###*
-            @description This method triggers if the responsive design switches
-                         to desktop mode.
-
-            @returns {$.HomePage} Returns the current instance.
-        ###
         _onChangeMediaQueryMode: (oldMode, newMode) ->
+            ###
+                This method triggers if the responsive design switches to
+                another resolution mode.
+
+                **returns {$.HomePage}** - Returns the current instance.
+            ###
+            # Determine top margin for background image dependent sections.
+            this.$domNodes.section.children().css 'margin-top', ''
+            this._sectionTopMarginInPixel = window.parseInt(
+                this.$domNodes.section.children().css(
+                    'margin-top'))
             # Show responsive dimension indicator switching.
+            this._options.dimensionIndicator.fadeIn.always = =>
+                # Adapt menu highlighter after changing layout and
+                # dimension indicator.
+                this._highlightMenuEntry()
             this._options.dimensionIndicator.fadeOut.always = =>
                 this.$domNodes.dimensionIndicator.text(
                     this.stringFormat(
@@ -155,22 +195,24 @@ this.require [
                 ).fadeIn this._options.dimensionIndicator.fadeIn
             this.$domNodes.dimensionIndicator.stop().fadeOut(
                 this._options.dimensionIndicator.fadeOut)
-            # Activate backstretching in non extra small mode only.
-            if((not oldMode or oldMode is 'extraSmall') and
-               newMode isnt 'extraSmall')
-                this._initializeBackstretch()
-            this.$domNodes.section.each ->
-                $this = $ this
-                $this.backstretch 'resize' if $this.data 'backstretch'
             super()
-        ###*
-            @description Switches to given section.
+        _onChangeToExtraSmallMode: ->
+            ###
+                This method triggers if the responsive design switches to
+                extra small mode.
 
-            @param {String} hash Location to switch to.
-
-            @returns {$.HomePage} Returns the current instance.
-        ###
+                **returns {$.HomePage}** - Returns the current instance.
+            ###
+            # Resets the image dependent section heights.
+            this.$domNodes.section.children().css height: 'auto'
         _onSwitchSection: (hash) ->
+            ###
+                Switches to given section.
+
+                **hash {String}**        - Location to switch to.
+
+                **returns {$.HomePage}** - Returns the current instance.
+            ###
             direction = false
             if $.inArray(hash, ['next', 'prev']) isnt -1
                 direction = hash
@@ -179,17 +221,18 @@ this.require [
             if hash is this.$domNodes.aboutThisWebsiteButton.attr 'href'
                 this.debug "Switch to section \"#{hash}\"."
                 # Handle "about-this-website" and main section switch.
+                this.$domNodes.menuHighlighter.hide()
                 this._scrollToTop()
                 this.$domNodes.aboutThisWebsiteSection.fadeIn(
                     this._options.aboutThisWebsiteSection.fadeIn)
             this.$domNodes.navigationButton.each (index, button) =>
-                button = $ button
-                sectionButtonDomNode = button.parent 'li'
-                if not sectionButtonDomNode.length
-                    sectionButtonDomNode = button
-                if button.attr('href') is hash or (index is 0 and hash is '#')
-                    hash = button.attr 'href'
-                    if not sectionButtonDomNode.hasClass 'active'
+                $button = $ button
+                $sectionButtonDomNode = $button.parent 'li'
+                if not $sectionButtonDomNode.length
+                    $sectionButtonDomNode = $button
+                if $button.attr('href') is hash or (index is 0 and hash is '#')
+                    hash = $button.attr 'href'
+                    if not $sectionButtonDomNode.hasClass 'active'
                         this.$domNodes.aboutThisWebsiteSection.fadeOut(
                             this._options.aboutThisWebsiteSection.fadeOut)
                         this.debug "Switch to section \"#{hash}\"."
@@ -202,22 +245,20 @@ this.require [
                                 this.$domNodes.carousel.data(
                                     'Swipe'
                                 ).slide index)
-                        sectionButtonDomNode.addClass 'active'
+                        $sectionButtonDomNode.addClass 'active'
+                        this._highlightMenuEntry()
                 else
-                    sectionButtonDomNode.removeClass 'active'
+                    $sectionButtonDomNode.removeClass 'active'
             window.location.hash = hash
             this._adaptContentHeight()
             super()
-        ###*
-            @description This method triggers if all startup animations are
-                         ready.
-
-            @returns {$.HomePage} Returns the current instance.
-        ###
         _onStartUpAnimationComplete: ->
-            if this._currentMediaQueryMode isnt 'extraSmall'
-                this._initializeBackstretch()
-            this._initializeSwipe()
+            ###
+                This method triggers if all startup animations are ready.
+
+                **returns {$.HomePage}** - Returns the current instance.
+            ###
+            this._highlightMenuEntry()
             # All start up effects are ready. Handle direct section links.
             this.$domNodes.navigationButton.add(
                 this.$domNodes.aboutThisWebsiteButton
@@ -227,58 +268,113 @@ this.require [
                 )}\"]"
             ).trigger 'click'
             super()
+        _removeLoadingCover: ->
+            ###
+                This method triggers after window is loaded.
+
+                **returns {$.Website}** - Returns the current instance.
+            ###
+            # TODO handle to run erst after startup animation
+            super()
 
         # endregion
 
         # region helper
 
-        ###*
-            @description Initializes the backstretch instance on every section
-                         background image.
+        _highlightMenuEntry: ->
+            ###
+                Highlights current menu entry.
 
-            @returns {$.HomePage} Returns the current instance.
-        ###
-        _initializeBackstretch: ->
-            self = this
-            this.$domNodes.navigationButton.each ->
-                hash = $(this).attr('href').substr 1
-                $this = self.$domNodes.section.filter ".#{hash}"
-                if not $this.data 'backstrech'
-                    $this.backstretch(
-                        self._options.backgroundImagePath + hash +
-                        self._options.backgroundImageFileExtension,
-                        self._options.backstretch)
+                **$sectionButtonDomNode {domNode}** - The current section
+                                                      button.
+
+                @returns {$.HomePage} - Returns the current instance.
+            ###
+            if this._currentMediaQueryMode isnt 'extraSmall'
+                $sectionButtonDomNode = this.$domNodes.navigationButton.parent(
+                    'li'
+                ).filter '.active'
+                if $sectionButtonDomNode.position()?.left
+                    $.extend true, this._options.menuHighlightAnimation,
+                        left: $sectionButtonDomNode.position().left
+                        width: $sectionButtonDomNode.width()
+                        duration: this._options.carousel.speed
+                    this.$domNodes.menuHighlighter.show().animate(
+                        this._options.menuHighlightAnimation)
             this
-        ###*
-            @description Adapt the carousel height to current main section
-                         height.
-
-            @returns {$.Swipe} Returns the new generated swipe instance.
-        ###
         _adaptContentHeight: ->
-            newSectionHeightInPixel = this.$domNodes.section.add(
-                this.$domNodes.aboutThisWebsiteSection
-            ).filter(".#{window.location.hash.substr(1)}").outerHeight()
-            # NOTE: If current section is "about-this-website" we place it in
-            # front of last selected section and position footer absolutely.
-            if window.location.hash is '#about-this-website'
-                # Move footer from last known position.
-                this.$domNodes.footer.css(
-                    position: 'absolute'
-                    top: this.$domNodes.carousel.height())
-                this.$domNodes.footer.animate top: newSectionHeightInPixel
-                this.$domNodes.carousel.height newSectionHeightInPixel
-            else
-                this.$domNodes.footer.css position: 'relative', top: 0
-                this.$domNodes.carousel.animate height: newSectionHeightInPixel
-            this
-        ###*
-            @description Attaches needed event handler to the swipe plugin and
-                         initializes the slider.
+            ###
+                Adapt the carousel height to current main section height.
 
-            @returns {$.Swipe} Returns the new generated swipe instance.
-        ###
+                **returns {$.Swipe}** - Returns the new generated swipe
+                                        instance.
+            ###
+            $currentSection = this.$domNodes.section.add(
+                this.$domNodes.aboutThisWebsiteSection
+            ).filter ".#{window.location.hash.substr(1)}"
+            if this._currentMediaQueryMode is 'extraSmall' or $.inArray(
+                window.location.hash.substr(1),
+                this._options.backgroundDependentHeightSections
+            ) is -1
+                newSectionHeightInPixel = $currentSection.outerHeight()
+            else
+                newSectionHeightInPixel = this.$domNodes.window.height()
+            if(newSectionHeightInPixel and
+               newSectionHeightInPixel isnt this._oldSectionHeightInPixel)
+                this._oldSectionHeightInPixel = newSectionHeightInPixel
+                # First stop currently running animations.
+                if this.startUpAnimationIsComplete
+                    this.$domNodes.footer.stop true
+                    this.$domNodes.carousel.stop true
+                # NOTE: If current section is "about-this-website" we place it
+                # in front of last selected section and position footer
+                # absolutely.
+                if window.location.hash is '#about-this-website'
+                    # Move footer from last known position.
+                    this.$domNodes.footer.css(
+                        position: 'absolute'
+                        top: this.$domNodes.carousel.height())
+                    this.$domNodes.footer.animate
+                        top: newSectionHeightInPixel
+                        duration: this._options.carousel.speed
+                    this.$domNodes.carousel.height newSectionHeightInPixel
+                else
+                    this.$domNodes.footer.css position: 'relative', top: 0
+                    this.$domNodes.carousel.animate
+                        height: newSectionHeightInPixel
+                        duration: this._options.carousel.speed
+                    if $.inArray(
+                        window.location.hash.substr(1),
+                        this._options.backgroundDependentHeightSections
+                    ) isnt -1 and this._currentMediaQueryMode isnt 'extraSmall'
+                        additionalMarginTopInPixel = 0
+                        if(newSectionHeightInPixel >
+                           this._options.maximumBackgroundDependentHeight)
+                            additionalMarginTopInPixel = (
+                                newSectionHeightInPixel -
+                                this._options.maximumBackgroundDependentHeight
+                            ) / 2
+                            newSectionHeightInPixel =
+                                this._options.maximumBackgroundDependentHeight
+                        $currentSection.children().css(
+                            height: newSectionHeightInPixel -
+                                this._sectionTopMarginInPixel
+                            duration: this._options.carousel.speed)
+                        this.$domNodes.section.children().css(
+                            'margin-top', this._sectionTopMarginInPixel +
+                                additionalMarginTopInPixel)
+                    else
+                        this.$domNodes.section.children().css(
+                            'margin-top', this._sectionTopMarginInPixel)
+            this
         _initializeSwipe: ->
+            ###
+                Attaches needed event handler to the swipe plugin and
+                initializes the slider.
+
+                **returns {$.Swipe}** - Returns the new generated swipe
+                                        instance.
+            ###
             this._options.carousel.transitionEnd = (index, domNode) =>
                 this.$domNodes.navigationButton.each (subIndex, button) =>
                     if index is subIndex
@@ -291,39 +387,43 @@ this.require [
             if this._currentMediaQueryMode is 'extraSmall'
                 this._options.carousel.continuous = true
             this.$domNodes.carousel.Swipe this._options.carousel
-        ###*
-            @description This method adds triggers to switch section.
-
-            @returns {$.HomePage} Returns the current instance.
-        ###
         _addNavigationEvents: ->
+            ###
+                This method adds triggers to switch section.
+
+                **returns {$.HomePage}** - Returns the current instance.
+            ###
             this.on this.$domNodes.navigationButton.add(
                 this.$domNodes.aboutThisWebsiteButton
             ), 'click', (event) =>
                 this.fireEvent(
                     'switchSection', false, this, $(event.target).attr 'href')
             super()
-        ###*
-            @description Determines current section to the right or the left.
-
-            @param {String} hash Relative section ("next" or "prev"),
-
-            @returns {String} Returns the absolute hash string.
-        ###
         _determineRelativeSections: (hash) ->
+            ###
+                Determines current section to the right or the left.
+
+                **hash {String}**    - Relative section ("next" or "prev"),
+
+                **returns {String}** - Returns the absolute hash string.
+            ###
             this.$domNodes.navigationButton.each (index, button) =>
                 if $(button).attr('href') is window.location.hash
-                    # NOTE: We subtract 1 from navigation buttons length
-                    # because we want to ignore the about this website section.
-                    # And the index starts counting by zero.
+                    ###
+                        NOTE: We subtract 1 from navigation buttons length
+                        because we want to ignore the about this website
+                        section. And the index starts counting by zero.
+                    ###
                     numberOfButtons =
                         this.$domNodes.navigationButton.length - 1
                     if hash is 'next'
                         newIndex = (index + 1) % numberOfButtons
                     else if hash is 'prev'
-                        # NOTE: Subtracting 1 in the residue class ring means
-                        # adding the number of numbers minus 1. This prevents
-                        # us from getting negative button indexes.
+                        ###
+                            NOTE: Subtracting 1 in the residue class ring means
+                            adding the number of numbers minus 1. This prevents
+                            us from getting negative button indexes.
+                        ###
                         newIndex = (index + numberOfButtons - 1) %
                             numberOfButtons
                     hash = $(
@@ -338,9 +438,7 @@ this.require [
 
     # region handle $ extending
 
-    ###* @ignore ###
     $.HomePage = -> $.Tools().controller HomePage, arguments
-    ###* @ignore ###
     $.HomePage.class = HomePage
 
     # endregion
