@@ -270,21 +270,31 @@ this.require [
             window.location.hash = hash
             this._adaptContentHeight()
             super()
-        _removeLoadingCover: ->
-            ###
-                This method triggers after window is loaded.
-
-                **returns {$.Website}** - Returns the current instance.
-            ###
-            if this._initialContentHeightAdaptionHappens
-                this._highlightMenuEntry()
-                super()
-            this
 
         # endregion
 
         # region helper
 
+        _onStartUpAnimationComplete: ->
+            ###
+                This method is complete if last startup animation was
+                initialized.
+
+                **returns {$.Website}** - Returns the current instance.
+            ###
+            super()
+            this._highlightMenuEntry()
+        _removeLoadingCover: ->
+            ###
+                This method triggers after window is loaded. It overwrites the
+                super method to wait for removing the loading cover until
+                section height is adapted.
+
+                **returns {$.Website}** - Returns the current instance.
+            ###
+            if this._initialContentHeightAdaptionHappens
+                super()
+            this
         _highlightMenuEntry: ->
             ###
                 Highlights current menu entry.

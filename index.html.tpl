@@ -44,10 +44,9 @@ endregion -->
 <%     ('twitter', 'https://twitter.com/tsickert'),
 <%     ('facebook', 'https://de-de.facebook.com/tsickert'),
 <%     ('website', 'http://thaibault.github.com'))
-
 <% SECTIONS = (
 <%     ('about', (
-<%         {'enUS': 'About me', 'deDE': 'Über mich'}, False,
+<%         {'enUS': 'About me', 'deDE': 'Über mich'}, {'enUS': '', 'deDE': ''},
 <%         {'enUS': "I'm a computer scientist and love the challenge",
 <%          'deDE': 'Ich bin Informatiker und liebe die Herausforderung'})),
 <%     ('contact', (
@@ -60,56 +59,103 @@ endregion -->
 <%                  'Vorhaben.'})),
 <%     ('work', (
 <%         {'enUS': 'Work', 'deDE': 'Arbeiten'},
-<%         {'enUS': "I'm an ambitious IT guy and love what I'm doing!",
-<%          'deDE': "Ich bin ambitionierter IT'ler und liebe was ich tue!"},
-<%         {'enUS': {
-<%              'abstract': (
-<%                  'contacts', 'conception',
-<%                  'Implementation and optimization of applications for the '
-<%                  'web, ', 'desktop and server', 'quality Assurance',
-<%                  'High Reliability Applications', 'Test-driven Design',
-<%                  '(Web) progamming', 'Usabillity',
-<%                  'Web and search engine optimization',
-<%                  'administering servers on Linux, Mac or Windows',
-<%                  'Intranet Solutions', 'Community Portal solution',
-<%                  'Accessibility', 'Rich Internet Applications',
-<%                  'Content Management Systems', 'Web 2.0'),
-<%              'security': (
+<%         {'enUS': "I love what I'm doing",
+<%          'deDE': "Ich liebe was ich mache"},
+<%         {'enUS': 'in a nutshell', 'deDE': 'in aller Kürze'},
+<%         {'enUS': (
+<%              ('abstract', (
+<%                   'contacts', 'conception',
+<%                   'Implementation and optimization of applications for the '
+<%                   'web, desktop and server', 'quality Assurance',
+<%                   'High Reliability Applications', 'Test-driven Design',
+<%                   '(Web) progamming', 'Usabillity',
+<%                   'Web and search engine optimization',
+<%                   'administering servers on Linux, Mac or Windows',
+<%                   'Intranet Solutions', 'Community Portal solution',
+<%                   'Accessibility', 'Rich Internet Applications',
+<%                   'Content Management Systems', 'Web 2.0')),
+<%              ('security', (
+<%                   'Design by Contract',
+<%                   'Integration, application, and unit tests',
+<%                   'Proofs of program properties')),
+<%              ('knowledge', (
+<%                   'economic theoretical knowledge',
+<%                   'matic computerized knowledge',
+<%                   'mathematical knowledge')),
+<%              ('programing Techniques', (
+<%                   'Functionally oriented programming',
+<%                   'Imperative Oriented Programming',
+<%                   'Object-Oriented Programming',
+<%                   'Aspect-Oriented Programming')),
+<%              ('database', (
+<%                   'Object-Relational Modeling (ORM) with SQLAlchemy, POD '
+<%                   'or Propel', 'SQL')),
+<%              ('versioning', ('GIT', 'SVN', 'CVS', 'Mercurial')),
+<%              ('programing Language', (
+<%                   'C', 'C++', 'C# (with XNA)', 'Java', 'Python',
+<%                   'JavaScript', 'CofProgrammier TechnikenfeeScript',
+<%                   'Scheme', 'PHP')),
+<%              ('declarative Language', ('XHTML', 'CSS', 'less')),
+<%              ('server', ('apache', 'nginx')),
+<%              ('framework', (
+<%                  'angularJS', 'django', 'jQuery', 'Mootools', 'bootstrap'))
+<%         ), 'deDE': (
+<%              ('Abstrakt', (
+<%                  'Kontakte', 'Konzeption',
+<%                  'Umsetzung und Optimierung von Anwendungen fürs Web, '
+<%                  'Desktop und Server', 'Qualitätsicherung',
+<%                  'Hochzuverlässigkeits-Anwendungen', 'Test-driven Design',
+<%                  '(Web)Progammierung', 'Usabillity', 'Web- und '
+<%                  'Suchengine-Optimierung',
+<%                  'Administrierung für Server auf Linux Mac oder Windows',
+<%                  'Intranet Lösungen', 'Community Portallösung',
+<%                  'Barrierefreiheit', 'Rich Internet Applications',
+<%                  'Content Management Systeme', 'Web 2.0')),
+<%              ('Sicherheit', (
 <%                  'Design by Contract',
-<%                  'Integration, application, and unit tests',
-<%                  'Proofs of program properties'),
-<%              'other': (
-<%                  'economic theoretical knowledge',
-<%                  'matic computerized knowledge', 'mathematical knowledge'),
-<%              'programingTechnics': (
-<%                  'Functionally oriented programming',
-<%                  'Imperative Oriented Programming',
-<%                  'Object-Oriented Programming',
-<%                  'Aspect-Oriented Programming'),
-<%              'database': (
-<%                  'Object-Relational Modeling (ORM) with SQLAlchemy, POD or '
-<%                  'Propel', 'SQL'),
-<%              'versioning': ('GIT', 'SVN', 'CVS', 'Mercurial'),
-<%              'programingLanguage': (
-<%                  'C', 'C++', 'C# (with XNA)', 'Java', 'Python',
-<%                  'JavaScript', 'CoffeeScript', 'Scheme', 'PHP'),
-<%              'declarativeLanguage': ('XHTML', 'CSS', 'less'),
-<%              'server': ('apache', 'nginx'),
-<%              'framework': (
-<%                  'angularJS', 'django', 'jQuery', 'Mootools', 'bootstrap')},
-<%          'deDE': 'TODO'})))
-
+<%                  'Integrations-, Anwendung und Unit-Tests',
+<%                  'Beweisen von Programmeigenschaften')),
+<%              ('Wissen', (
+<%                  'wirtschaftstheoretisches Wissen', 'informatisches Wissen',
+<%                  'mathematisches Wissen')),
+<%              ('Programmiertechniken', (
+<%                  'Funktionalorientierte Programmierung',
+<%                  'Imperativorientierte Programmierung',
+<%                  'Objektorientierte Programmierung',
+<%                  'Aspektorientierte Programmierung')),
+<%              ('Datenbanken', (
+<%                  'Relationale-Objekt-Modelierung (ORM) mit sqlAlchemy; '
+<%                  'POD oder Propel', 'SQL')),
+<%              ('Versionierung', ('GIT', 'SVN', 'CVS', 'Mercurial')),
+<%              ('Programmiersprachen', (
+<%                  'C', 'C++', 'C# (mit XNA)', 'Java', 'Python', 'JavaScript',
+<%                  'CoffeeScript', 'Scheme', 'PHP')),
+<%              ('Deklarative Sprachen', ('XHTML', 'CSS', 'less')),
+<%              ('Server', ('apache', 'nginx')),
+<%              ('Framework', (
+<%                  'angularJS', 'django', 'jQuery', 'Mootools', 'bootstrap'))
+<%         )}, {'enUS': 'Projects', 'deDE': 'Projekte'})))
 <% PROJECTS = (
-<%     ('boostNode', 'http://thaibault.github.com/boostNode', 'TODO'),
-<%     ('installArchLinux', 'http://archinstall.github.com', ''),
+<%     ('boostNode', 'http://thaibault.github.com/boostNode',
+<%      {'enUS': 'TODO mmmmmmmmmmmmmmm mmmmmmmmmmmmmmm mmmmmmmmmmmmmmmmmmmmmmm'
+<%               'mmmmmm m m m mmmmmmmmmmmmmmmmmm mmmmmmmmmmmmmm mm m m mm',
+<%       'deDE': 'TODO'}),
+<%     ('installArchLinux', 'http://archinstall.github.com',
+<%      {'enUS': '', 'deDE': 'TODO'}),
 <%     ('genericServiceHandler',
-<%      'http://thaibault.github.com/genericServiceHandler', ''),
-<%     ('require', 'http://thaibault.github.com/require', ''),
-<%     ('jQuery-tools', 'http://thaibault.github.com/jQuery-tools', ''),
-<%     ('jQuery-lang', 'http://thaibault.github.com/jQuery-lang', ''),
+<%      'http://thaibault.github.com/genericServiceHandler',
+<%      {'enUS': '', 'deDE': 'TODO'}),
+<%     ('require', 'http://thaibault.github.com/require',
+<%      {'enUS': '', 'deDE': 'TODO'}),
+<%     ('jQuery-tools', 'http://thaibault.github.com/jQuery-tools',
+<%      {'enUS': '', 'deDE': 'TODO'}),
+<%     ('jQuery-lang', 'http://thaibault.github.com/jQuery-lang',
+<%      {'enUS': '', 'deDE': 'TODO'}),
 <%     ('jQuery-incrementer',
-<%      'http://thaibault.github.com/jQuery-incrementer', ''),
-<%     ('jQuery-website', 'http://thaibault.github.com/jQuery-website', ''))
+<%      'http://thaibault.github.com/jQuery-incrementer',
+<%      {'enUS': '', 'deDE': 'TODO'}),
+<%     ('jQuery-website', 'http://thaibault.github.com/jQuery-website',
+<%      {'enUS': '', 'deDE': 'TODO'}))
 
 <% # endregion
 
@@ -217,12 +263,43 @@ endregion -->
                     <div class="item <% name %>">
                         <div class="carousel-image-<% name %>">
                             <div class="container">
-                                <% if section[1]:
+                                <% if section[1][DEFAULT_LANGUAGE]:
                                     <h1>
                                         <% section[1][DEFAULT_LANGUAGE] %>
                                         <!--enUS:<% section[1][ALTERNATE_LANGUAGE] %>-->
                                     </h1>
-                                <% if section[2]:
+                                <% if name == 'work':
+                                    <h2>
+                                        <% section[2][DEFAULT_LANGUAGE] %>
+                                        <!--<% ALTERNATE_LANGUAGE %>:<% section[2][ALTERNATE_LANGUAGE] %>-->
+                                    </h2>
+                                    <p>
+                                        <langReplace>
+                                            <% for title, keywords in section[3][DEFAULT_LANGUAGE]:
+                                                <strong><% title %></strong>
+                                                <% ' '.join(keywords) %>
+                                        </langReplace>
+                                        <!--<% ALTERNATE_LANGUAGE %>:
+                                            <% for title, keywords in section[3][ALTERNATE_LANGUAGE]:
+                                                    <strong><% title %></strong>
+                                                    <% ' '.join(keywords) %>
+                                        -->
+                                    </p>
+                                    <h2>
+                                        <% section[4][DEFAULT_LANGUAGE] %>
+                                        <!--<% ALTERNATE_LANGUAGE %>:<% section[4][ALTERNATE_LANGUAGE] %>-->
+                                    </h2>
+                                    <dl class="dl-horizontal">
+                                        <% for project_name, project_page_link, project_description in PROJECTS:
+                                            <dt>
+                                                <a href="<% project_page_link %>" target="_blank"><% project_name %></a>
+                                            </dt>
+                                            <dd>
+                                                <% project_description[DEFAULT_LANGUAGE] %>
+                                                <!--<% ALTERNATE_LANGUAGE %>:<% project_description[ALTERNATE_LANGUAGE] %>-->
+                                            </dd>
+                                    </dl>
+                                <% else:
                                     <p class="lead">
                                         <% section[2][DEFAULT_LANGUAGE] %>
                                         <!--<% ALTERNATE_LANGUAGE %>:<% section[2][ALTERNATE_LANGUAGE] %>-->
@@ -235,13 +312,6 @@ endregion -->
                                         <% if '@' in link:
                                             <% link = 'mailto:%s' % link
                                         <a class="glyphicon-social glyphicon-social-<% name %>" href="<% link %>" target="_blank"></a>
-                                <% elif name == 'work':
-                                    <div class="container">
-                                        <% for project_name, project_page_link, project_description in PROJECTS:
-                                            <div>
-                                                <a href="<% project_page_link %>" target="_blank"><% project_name %></a>
-                                            </div>
-                                    </div>
                             </div>
                         </div>
                     </div>
@@ -267,7 +337,7 @@ endregion -->
                         <p>79100 Freiburg</p>
                         <p>Tel. 0049 (0) 176 / 10248185</p>
                         <p>Internet: <a href="<% SOCIAL_MEDIA[-1][1] %>"><% SOCIAL_MEDIA[-1][1] %></a></p>
-                        <p>Email: <a href="mailto:<% SOCIAL_MEDIA[0][1] %>"><% SOCIAL_MEDIA[0][1] %></a></p>
+                        <p>Email: <a href="mailto:#"><% SOCIAL_MEDIA[0][1] %></a></p>
                         <br />
                         <p><a href="<% LINK_TO_PUBLIC_SSH_KEY %>" target="_blank">öffentlicher SSH-Schlüssel<!--<% ALTERNATE_LANGUAGE %>:public ssh key--></a></p>
                     </div>

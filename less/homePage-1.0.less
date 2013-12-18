@@ -66,12 +66,17 @@ body.home-page {
 
         /* endregion */
 
+        /* description line */
+
+    .dl-horizontal dt { width: 286px; }
+    strong { font-weight: normal; }
+
+        /* endregion */
+
     /* Shows the current dimension mode. */
     > div.navbar-wrapper > div.container > div.navbar.navbar-inverse
     > div.container > div.navbar-header > a.navbar-brand
     > span.dimension-indicator { font-size: 12px; }
-
-    /* endregion */
 
     /* region bootstrap resets */
 
@@ -319,7 +324,7 @@ body.home-page {
                 > h1 { font-size: 38px; }
                 > p {
                     font-size: 19px;
-                    line-height: 20px;
+                    line-height: 1.4;
                 }
             }
         }
@@ -342,7 +347,7 @@ body.home-page {
             > h1 { font-size: 38px; }
             > div.lead {
                 font-size: 19px;
-                line-height: 20px;
+                line-height: 1.4;
                 margin-bottom: 6px;
             }
         }
@@ -508,6 +513,7 @@ body.home-page {
                             > p.lead {
                                 font-size: 25px;
                                 line-height: 1.4;
+                                margin-top: 10px;
                             }
                         }
                     }
@@ -535,27 +541,35 @@ body.home-page {
                 padding-bottom: 50px;
 
                 > div[class^="carousel-image-"] > div.container {
+                    width: 485px;
+
                     > h1 { font-size: 72px; }
                     > div.lead {
+                        margin-top: 30px;
+                        text-align: left;
                         font-size: 25px;
-                        line-height: 1.4;
+                        line-height: 1.1;
                     }
                 }
             }
-            > div.carousel.slide > div.carousel-inner > div.item
-            > div[class="carousel-image-about"] > div.container {
-                position: relative;
+            > div.carousel.slide > div.carousel-inner > div.item {
+                > div[class="carousel-image-about"] > div.container {
+                    position: relative;
 
-                > p.lead {
-                    position: absolute;
-                    right: 0;
-                    width: 268px;
-                    text-align: right;
+                    > p.lead {
+                        position: absolute;
+                        right: 0;
+                        width: 268px;
+                        text-align: right;
 
-                    > a {
-                        display: block;
-                        margin-top: 30px;
+                        > a {
+                            display: block;
+                            margin-top: 30px;
+                        }
                     }
+                }
+                > div[class="carousel-image-work"] > div.container > p {
+                    margin-top: 25px;
                 }
             }
 
