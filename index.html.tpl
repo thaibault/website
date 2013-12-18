@@ -60,13 +60,13 @@ endregion -->
 <%     ('work', (
 <%         {'enUS': 'Work', 'deDE': 'Arbeiten'},
 <%         {'enUS': "I love what I'm doing",
-<%          'deDE': "Ich liebe was ich mache"},
-<%         {'enUS': 'in a nutshell', 'deDE': 'in aller Kürze'},
+<%          'deDE': 'Ich liebe was ich mache'},
+<%         {'enUS': 'in a nutshell', 'deDE': 'in Kürze'},
 <%         {'enUS': (
 <%              ('abstract', (
 <%                   'contacts', 'conception',
 <%                   'Implementation and optimization of applications for the '
-<%                   'web, desktop and server', 'quality Assurance',
+<%                   'web; desktop and server', 'quality Assurance',
 <%                   'High Reliability Applications', 'Test-driven Design',
 <%                   '(Web) progamming', 'Usabillity',
 <%                   'Web and search engine optimization',
@@ -141,21 +141,21 @@ endregion -->
 <%               'mmmmmm m m m mmmmmmmmmmmmmmmmmm mmmmmmmmmmmmmm mm m m mm',
 <%       'deDE': 'TODO'}),
 <%     ('installArchLinux', 'http://archinstall.github.com',
-<%      {'enUS': '', 'deDE': 'TODO'}),
+<%      {'enUS': 'TODO', 'deDE': 'TODO'}),
 <%     ('genericServiceHandler',
 <%      'http://thaibault.github.com/genericServiceHandler',
-<%      {'enUS': '', 'deDE': 'TODO'}),
+<%      {'enUS': 'TODO', 'deDE': 'TODO'}),
 <%     ('require', 'http://thaibault.github.com/require',
-<%      {'enUS': '', 'deDE': 'TODO'}),
+<%      {'enUS': 'TODO', 'deDE': 'TODO'}),
 <%     ('jQuery-tools', 'http://thaibault.github.com/jQuery-tools',
-<%      {'enUS': '', 'deDE': 'TODO'}),
+<%      {'enUS': 'TODO', 'deDE': 'TODO'}),
 <%     ('jQuery-lang', 'http://thaibault.github.com/jQuery-lang',
-<%      {'enUS': '', 'deDE': 'TODO'}),
+<%      {'enUS': 'TODO', 'deDE': 'TODO'}),
 <%     ('jQuery-incrementer',
 <%      'http://thaibault.github.com/jQuery-incrementer',
-<%      {'enUS': '', 'deDE': 'TODO'}),
+<%      {'enUS': 'TODO', 'deDE': 'TODO'}),
 <%     ('jQuery-website', 'http://thaibault.github.com/jQuery-website',
-<%      {'enUS': '', 'deDE': 'TODO'}))
+<%      {'enUS': 'TODO', 'deDE': 'TODO'}))
 
 <% # endregion
 
@@ -277,12 +277,12 @@ endregion -->
                                         <langReplace>
                                             <% for title, keywords in section[3][DEFAULT_LANGUAGE]:
                                                 <strong><% title %></strong>
-                                                <% ' '.join(keywords) %>
+                                                <% ', '.join(keywords) %>
                                         </langReplace>
                                         <!--<% ALTERNATE_LANGUAGE %>:
                                             <% for title, keywords in section[3][ALTERNATE_LANGUAGE]:
-                                                    <strong><% title %></strong>
-                                                    <% ' '.join(keywords) %>
+                                                <strong><% title %></strong>
+                                                <% ', '.join(keywords) %>
                                         -->
                                     </p>
                                     <h2>
