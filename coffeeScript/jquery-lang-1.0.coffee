@@ -425,16 +425,12 @@ this.require [
 
                 **returns {$.Lang}**  - Returns the current instance.
             ###
-            console.log "a[href=\"##{this._options.languageHashPrefix}" +
-                "#{this.currentLanguage}\"]." +
-                this._options.currentLanguageIndicatorClassName
             $(
-                "a[href=\"##{this._options.languageHashPrefix}" +
+                "a[href^=\"##{this._options.languageHashPrefix}" +
                 "#{this.currentLanguage}\"]." +
                 this._options.currentLanguageIndicatorClassName
-            ).removeClass(
-                this._options.currentLanguageIndicatorClassName
-            ).filter(
+            ).removeClass this._options.currentLanguageIndicatorClassName
+            $(
                 "a[href=\"##{this._options.languageHashPrefix}#{language}\"]"
             ).addClass this._options.currentLanguageIndicatorClassName
             this
