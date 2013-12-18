@@ -149,6 +149,9 @@ this.require [
                                 ).text(oldLanguage.substr 0, 2).fadeIn 'fast'
                         )
             super options
+            # Disable tab functionality to prevent inconsistent carousel states
+            this.on this.$domNodes.parent, 'keydown', (event) ->
+                event.preventDefault() if event.keyCode is 9
             if not window.location.hash
                 if this._currentMediaQueryMode is 'extraSmall'
                     window.location.hash = 'contact'
