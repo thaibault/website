@@ -47,8 +47,8 @@ endregion -->
 <% SECTIONS = (
 <%     ('about', (
 <%         {'enUS': 'About me', 'deDE': 'Über mich'}, {'enUS': '', 'deDE': ''},
-<%         {'enUS': "I'm a computer scientist and love the challenge",
-<%          'deDE': 'Ich bin Informatiker und liebe die Herausforderung'})),
+<%         {'enUS': "I'm ambitious and love the challenge",
+<%          'deDE': 'Ich bin ambitioniert und liebe die Herausforderung'})),
 <%     ('contact', (
 <%         {'enUS': 'Contact', 'deDE': 'Kontakt'},
 <%         {'enUS': 'Get in touch', 'deDE': 'Lernen wir uns kennen'},
