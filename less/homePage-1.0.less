@@ -593,9 +593,12 @@ body.home-page {
 
             /* region carousel */
 
-                > div.carousel.slide > div.carousel-inner > div.item
-                > div[class^="carousel-image-"] > div.container {
-                    max-width: 810px;
+                > div.carousel.slide > div.carousel-inner > div.item {
+                    > div[class^="carousel-image-"] > div.container {
+                        max-width: 810px;
+                    }
+                    > div[class="carousel-image-about"] > div.container 
+                    > p.lead { right: 0; }
                 }
 
             /* endregion */
