@@ -61,7 +61,7 @@ endregion -->
 <%         {'enUS': 'Work', 'deDE': 'Arbeiten'},
 <%         {'enUS': "I love what I'm doing",
 <%          'deDE': 'Ich liebe was ich mache'},
-<%         {'enUS': 'in a nutshell', 'deDE': 'in Kürze'},
+<%         {'enUS': 'I offer', 'deDE': 'ich biete'},
 <%         {'enUS': (
 <%              ('abstract', (
 <%                   'contacts', 'conception',
