@@ -137,25 +137,80 @@ endregion -->
 <%         )}, {'enUS': 'Projects', 'deDE': 'Projekte'})))
 <% PROJECTS = (
 <%     ('boostNode', 'http://thaibault.github.com/boostNode',
-<%      {'enUS': 'TODO mmmmmmmmmmmmmmm mmmmmmmmmmmmmmm mmmmmmmmmmmmmmmmmmmmmmm'
-<%               'mmmmmm m m m mmmmmmmmmmmmmmmmmm mmmmmmmmmmmmmm mm m m mm',
-<%       'deDE': 'TODO'}),
+<%      {'enUS': (
+<%          'TODO',
+<%          ('TODO', 'TODO', 'TODO', 'TODO', 'TODO', 'TODO')),
+<%       'deDE': (
+<%          'Ein universelles Python-Framework zur Anwendung von '
+<%          'platformunabhängiger Desktopanwendungen mit '
+<%          'Web-Technologien. Das Framework bietet '
+<%          'Hochzuverlässigkeitsmerkmale:',
+<%          ('100% branch coverage getestet',
+<%           'Type checking im Entwicklungsmodus',
+<%           'zyklomatische Komplexität kleiner acht',
+<%           'vollständige API-Dokumentation '
+<%           'http://thaibault.github.com/boostNode/api',
+<%           'stets kompatibel zu den neusten beiden Pythonversionen durch '
+<%           'integrierte macros',
+<%           'Plattform unabhängige Web-View und flexibler multiprozess- und '
+<%           'multithread Web-Server'))}),
 <%     ('installArchLinux', 'http://archinstall.github.com',
-<%      {'enUS': 'TODO', 'deDE': 'TODO'}),
+<%      {'enUS': ('TODO',),
+<%       'deDE': (
+<%          'Installiere ein konfiguriertes ArchLinux mit Pacman als '
+<%          'Paketverwaltung an beliebige Orte wie Festplatten, USB-Stick, '
+<%          'alternative Partition oder in das bestehende System als '
+<%          'Sandboxumgebung. Automatische Konfiguration bestehender posix '
+<%          'konformer unix-artiger Systeme. Sowohl Online- als auch '
+<%          'Offline-Installationen sind möglich. Selbst ohne root Rechte '
+<%          'kann das System in eine eigene Umgebung unterhalb des Home-Ordner'
+<%          ' installiert werden. Alle benötigten Abhängigkeiten zum '
+<%          'Aufsetzen sind durch eine einfache posix-Umgebung gegeben wie '
+<%          'Busybox oder ArchLinux selbst.',)}),
 <%     ('genericServiceHandler',
 <%      'http://thaibault.github.com/genericServiceHandler',
-<%      {'enUS': 'TODO', 'deDE': 'TODO'}),
+<%      {'enUS': ('TODO',),
+<%       'deDE': (
+<%          'Dieses bash-Modul bietet einen generischen Service-Handler zur '
+<%          'Steuerung jeglicher Dienste, welche standard Prozesssignale '
+<%          'unterstützen. Das Projekt ist vom Systemd-Service-Handling '
+<%          'inspiriert und kann in jeder unix-artigen Umgebung eingesetzt '
+<%          'werden. Es eignet sich besonders um Dienste in den Hoch- und '
+<%          'Herunterfahr-Prozess des Betriebssystems einzubetten.',)}),
 <%     ('require', 'http://thaibault.github.com/require',
-<%      {'enUS': 'TODO', 'deDE': 'TODO'}),
+<%      {'enUS': ('TODO',),
+<%       'deDE': (
+<%          'Dieses native JavaScript Module bietet einen vollständigen '
+<%          'Importmechanismus für JavaScript wie er aus python, php, oder '
+<%          'ruby bekannt ist. Hierdurch wird es möglich, dass jede JavaScript'
+<%          ' Datei seine eigenen Abhängigkeiten definiert und keine globale '
+<%          'iListe an benötigten Dateien im html-Header verwaltet werden '
+<%          'muss. Entschiedener Vorteil gegenüber "RequireJS" oder "YepNope" '
+<%          'besteht darin, dass auch die Abhängigkeiten der Abhängigkeiten '
+<%          'beliebig tief in einer topologischen Sortierung aufgelöst werden '
+<%          'können. Das Einbinden von less, coffeeScript oder css ist '
+<%          'ebenfalls möglich. Zudem können sich entsprechende "Handler" '
+<%          'hinzufügen lassen um im Browser entsprechende SourceMaps zu '
+<%          'generieren oder sonstige Aktionen auszulösen.',)}),
 <%     ('jQuery-tools', 'http://thaibault.github.com/jQuery-tools',
-<%      {'enUS': 'TODO', 'deDE': 'TODO'}),
-<%     ('jQuery-lang', 'http://thaibault.github.com/jQuery-lang',
-<%      {'enUS': 'TODO', 'deDE': 'TODO'}),
-<%     ('jQuery-incrementer',
-<%      'http://thaibault.github.com/jQuery-incrementer',
-<%      {'enUS': 'TODO', 'deDE': 'TODO'}),
-<%     ('jQuery-website', 'http://thaibault.github.com/jQuery-website',
-<%      {'enUS': 'TODO', 'deDE': 'TODO'}))
+<%      {'enUS': ('TODO',),
+<%       'deDE': (
+<%          'jQuery-tools ist ein auf jQuery aufsetzendes Plugin, um '
+<%          'objektorientierte jQery-Plugins ähnlich wie bei MooTools oder '
+<%          'Prototype zu erstellen. Verschiedene generische Software-Pattern '
+<%          'werden durch eine wiederverwendbare Controller-Logik möglich. '
+<%          'Zudem werden einige nützliche Werkzeuge zum Bauen von grafischen '
+<%          'Oberflächen angeboten wie, Wechselseitiger Ausschluss, '
+<%          'Scope-basiertes Event-Handling und einige Low-Level '
+<%          'Erweiterungen für native Datentypen. Beispiel-Implementierungen '
+<%          'findet sich in den Projekten:', (
+<%              ('jQery-incrementer',
+<%               'http://thaibault.github.com/jQuery-incrementer'),
+<%              ('jQery-lang', 'http://thaibault.github.com/jQuery-lang'),
+<%              ('jQuery-website',
+<%               'http://thaibault.github.com/jQuery-website'),
+<%              ('Meine persönliche Website', 'http://thaibault.github.com')
+<%          ))}))
 
 <% # endregion
 
@@ -295,8 +350,19 @@ endregion -->
                                                 <a href="<% project_page_link %>" target="_blank"><% project_name %></a>
                                             </dt>
                                             <dd>
-                                                <% project_description[DEFAULT_LANGUAGE] %>
-                                                <!--<% ALTERNATE_LANGUAGE %>:<% project_description[ALTERNATE_LANGUAGE] %>-->
+                                                <% project_description[DEFAULT_LANGUAGE][0] %>
+                                                <!--<% ALTERNATE_LANGUAGE %>:<% project_description[ALTERNATE_LANGUAGE][0] %>-->
+                                                <% if len(project_description[DEFAULT_LANGUAGE]) > 1:
+                                                    <ul>
+                                                        <% for index, element in enumerate(project_description[DEFAULT_LANGUAGE][1]):
+                                                            <li>
+                                                                <% if is_type_of(element, tuple):
+                                                                    <a href="<% element[1] %>"><% element[0] %></a>
+                                                                <% else:
+                                                                    <% element %>
+                                                                    <!--<% ALTERNATE_LANGUAGE %>:<% project_description[ALTERNATE_LANGUAGE][1][index] %>-->
+                                                            </li>
+                                                    </ul>
                                             </dd>
                                     </dl>
                                 <% else:
