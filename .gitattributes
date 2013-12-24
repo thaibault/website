@@ -1,0 +1,5 @@
+# normalize line endings to LF - unix standard except for microsoft's vCard
+# format.
+
+* text eol=lf
+*.vcf eol=crlf
