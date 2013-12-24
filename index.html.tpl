@@ -338,7 +338,7 @@ endregion -->
                                         </langReplace>
                                         <!--<% ALTERNATE_LANGUAGE %>:
                                             <% for title, keywords in section[3][ALTERNATE_LANGUAGE]:
-                                                <% if title != section[3][DEFAULT_LANGUAGE][0][0]:
+                                                <% if title != section[3][ALTERNATE_LANGUAGE][0][0]:
                                                     <strong><% title %></strong>
                                                 <% ', '.join(keywords) %>
                                         -->

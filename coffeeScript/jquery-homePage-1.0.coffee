@@ -148,6 +148,15 @@ this.require [
                                     'href', "#lang-#{oldLanguage}"
                                 ).text(oldLanguage.substr 0, 2).fadeIn 'fast'
                         )
+                        # Adapt curriculum vitae link.
+                        $curriculumVitaeLink = $ 'a[href*="curriculumVitae"]'
+                        linkPath = $curriculumVitaeLink.attr 'href'
+                        $curriculumVitaeLink.attr(
+                            'href', linkPath.substr(
+                                0, linkPath.indexOf('.') - oldLanguage.length
+                            ) + newLanguage.substr(0, 2).toUpperCase() +
+                            newLanguage.substr(2).toLowerCase() +
+                            linkPath.substr(linkPath.indexOf '.'))
             super options
             # Disable tab functionality to prevent inconsistent carousel states
             this.on this.$domNodes.parent, 'keydown', (event) ->
