@@ -16,6 +16,14 @@ License
 
 endregion -->
 
+<% # region runtime
+
+<% DEFAULT_LANGUAGE = 'deDE'
+<% ALTERNATE_LANGUAGE = 'enUS'
+<% START_UP_ANIMATION_NUMBER = 1
+
+<% # endregion
+
 <% # region location
 
 <% IMAGE_PATH = 'image/'
@@ -27,8 +35,9 @@ endregion -->
 <% COFFEE_SCRIPT_PATH = 'coffeeScript/'
 <% JAVA_SCRIPT_PATH = 'javaScript/'
 
-<% LINK_TO_PUBLIC_SSH_KEY = 'data/publicSSHKey.txt'
-<% LINK_CURRICULUM_VITAE = 'data/curriculumVitae.pdf'
+<% LINK_PUBLIC_SSH_KEY = 'data/publicSSHKey.txt'
+<% LINK_V_CARD = 'data/vCard.vcf'
+<% LINK_CURRICULUM_VITAE = 'data/curriculumVitae%s.pdf' % DEFAULT_LANGUAGE.swapcase()
 
 <% # endregion
 
@@ -214,14 +223,6 @@ endregion -->
 
 <% # endregion
 
-<% # region runtime
-
-<% DEFAULT_LANGUAGE = 'deDE'
-<% ALTERNATE_LANGUAGE = 'enUS'
-<% START_UP_ANIMATION_NUMBER = 1
-
-<% # endregion
-
 <!doctype html>
 
 <!-- region browser sniffing -->
@@ -373,6 +374,7 @@ endregion -->
                                         <!--<% ALTERNATE_LANGUAGE %>:<% section[2][ALTERNATE_LANGUAGE] %>-->
                                         <% if name == 'about':
                                             <a href="<% LINK_CURRICULUM_VITAE %>" target="_blank">Lebenslauf<!--<% ALTERNATE_LANGUAGE %>:Curriculum Vitae--></a>
+                                            <a href="<% LINK_V_CARD %>" target="_blank">vCard</a>
                                     </p>
                                 <% if name == 'contact':
                                     <a href="tel:004917610248185">Tel.<!--enEN:Phone--> +49 (0) 176 <span>/</span> 10 248 185</a>
@@ -409,7 +411,7 @@ endregion -->
                         <p>Email: <a href="mailto:#"><% SOCIAL_MEDIA[0][1] %></a></p>
                         <p>Website:<!--deDE:Webseite:--><!--frFR:Site:--> <a href="<% SOCIAL_MEDIA[-1][1] %>"><% SOCIAL_MEDIA[-1][1] %></a></p>
                         <br />
-                        <p><a href="<% LINK_TO_PUBLIC_SSH_KEY %>" target="_blank">öffentlicher SSH-Schlüssel<!--<% ALTERNATE_LANGUAGE %>:public ssh key--></a></p>
+                        <p><a href="<% LINK_PUBLIC_SSH_KEY %>" target="_blank">öffentlicher SSH-Schlüssel<!--<% ALTERNATE_LANGUAGE %>:public ssh key--></a></p>
                     </div>
                     <% include('aboutThisWebsite')
                 </div>
