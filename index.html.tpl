@@ -86,7 +86,7 @@ endregion -->
 <%                   'Implementation and optimization of applications for the '
 <%                   'web; desktop and server', 'quality Assurance',
 <%                   'High Reliability Applications', 'Test-driven Design',
-<%                   '(Web) progamming', 'Usabillity',
+<%                   '(Web)programming', 'Usabillity',
 <%                   'Web and search engine optimization',
 <%                   'administering servers on Linux, Mac or Windows',
 <%                   'Intranet Solutions', 'Community Portal solution',
@@ -122,7 +122,7 @@ endregion -->
 <%                  'Umsetzung und Optimierung von Anwendungen fürs Web, '
 <%                  'Desktop und Server', 'Qualitätsicherung',
 <%                  'Hochzuverlässigkeits-Anwendungen', 'Test-driven Design',
-<%                  '(Web)Progammierung', 'Usabillity', 'Web- und '
+<%                  '(Web)Programmierung', 'Usabillity', 'Web- und '
 <%                  'Suchengine-Optimierung',
 <%                  'Administrierung für Server auf Linux Mac oder Windows',
 <%                  'Intranet Lösungen', 'Community Portallösung',
