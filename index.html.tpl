@@ -8,6 +8,8 @@ endregion
 sync with
     skillKeywordsEnglish.txt
     skillKeywordsGerman.txt
+    projectDescriptionEnglish.txt
+    projectDescriptionGerman.txt
     xing.de
     linked-in.com
     facebook.com
@@ -153,8 +155,18 @@ endregion -->
 <% PROJECTS = (
 <%     ('boostNode', 'http://thaibault.github.com/boostNode',
 <%      {'enUS': (
-<%          'TODO',
-<%          ('TODO', 'TODO', 'TODO', 'TODO', 'TODO', 'TODO')),
+<%          'A universal python framework for platform independent application'
+<%          ' developement with web technoligies. The framework provides High '
+<%          'reliability features:',
+<%          ('100% branch coverage tested',
+<%           'Type checking in development mode',
+<%           'Cyclomatic complexity smaller than eight',
+<%           'Full API documentation '
+<%           'http://thaibault.github.com/boostNode/api',
+<%           'Always compatible with the latest versions of both Python '
+<%           'through integrated macros',
+<%           'Platform independent web-view and flexible multi-process and '
+<%           'multi-threaded Web server')),
 <%       'deDE': (
 <%          'Ein universelles Python-Framework zur Anwendung von '
 <%          'platformunabhängiger Desktopanwendungen mit '
@@ -169,8 +181,17 @@ endregion -->
 <%           'integrierte macros',
 <%           'Plattform unabhängige Web-View und flexibler multiprozess- und '
 <%           'multithread Web-Server'))}),
-<%     ('installArchLinux', 'http://archinstall.github.com',
-<%      {'enUS': ('TODO',),
+<%     ('archInstall', 'http://archinstall.github.com',
+<%      {'enUS': (
+<%          'Install a configured ArchLinux with pacman as a package '
+<%          'management in any places such as hard drives, USB flash drive, '
+<%          'partition, or in an existing system as a sandbox environment. '
+<%          'Automatic configuration of existing posix compliant unix-like '
+<%          'systems. Both online and Offline installations are possible. Even'
+<%          ' without root privileges, the system is able to be installed into'
+<%          ' its own environment below the home folder. All required '
+<%          'dependencies could be served via a typical posix environment '
+<%          'given by Busybox or ArchLinux itself.',),
 <%       'deDE': (
 <%          'Installiere ein konfiguriertes ArchLinux mit Pacman als '
 <%          'Paketverwaltung an beliebige Orte wie Festplatten, USB-Stick, '
@@ -184,7 +205,13 @@ endregion -->
 <%          'Busybox oder ArchLinux selbst.',)}),
 <%     ('genericServiceHandler',
 <%      'http://thaibault.github.com/genericServiceHandler',
-<%      {'enUS': ('TODO',),
+<%      {'enUS': (
+<%          'This bash module provides a generic service handlers to control '
+<%          'any services which support standard process signals. The project '
+<%          'is inspired by the systemd service handling and can live in any '
+<%          'unix-like environment. It is particularly suitable for beeing '
+<%          "integrated into the operating system's boot and shutdown "
+<%          'process.',),
 <%       'deDE': (
 <%          'Dieses bash-Modul bietet einen generischen Service-Handler zur '
 <%          'Steuerung jeglicher Dienste, welche standard Prozesssignale '
@@ -193,7 +220,17 @@ endregion -->
 <%          'werden. Es eignet sich besonders um Dienste in den Hoch- und '
 <%          'Herunterfahr-Prozess des Betriebssystems einzubetten.',)}),
 <%     ('require', 'http://thaibault.github.com/require',
-<%      {'enUS': ('TODO',),
+<%      {'enUS': (
+<%          'This native JavaScript modules offers a full import mechanism for'
+<%          ' JavaScript as it is known from python, php, or ruby. This makes '
+<%          'it possible that each JavaScript file defines its own '
+<%          'dependencies, and no global list of required files in the '
+<%          'html-header have to be maintained. A decisive advantage over '
+<%          '"RequireJS" or "YepNope" is that nested dependencies could be '
+<%          'determined automatically. The inclusion of less, coffee script or'
+<%          ' css is also possible. In addition, it can add corresponding '
+<%          '"handler" allowing to generate the browser corresponding source '
+<%          'maps or other actions.',),
 <%       'deDE': (
 <%          'Dieses native JavaScript Module bietet einen vollständigen '
 <%          'Importmechanismus für JavaScript wie er aus python, php, oder '
@@ -208,7 +245,20 @@ endregion -->
 <%          'hinzufügen lassen um im Browser entsprechende SourceMaps zu '
 <%          'generieren oder sonstige Aktionen auszulösen.',)}),
 <%     ('jQuery-tools', 'http://thaibault.github.com/jQuery-tools',
-<%      {'enUS': ('TODO',),
+<%      {'enUS': (
+<%          'jQuery-tools brings an object oriented jQuery Plugin concept. It '
+<%          'provides a class pattern structure similar to MooTools or '
+<%          'Prototype. In Addition many reusable helper and a cool controller'
+<%          ' logic is included. Furthermore some handler for dealing with '
+<%          'mutual exclusion, scope-based event handling and some low-level '
+<%          'extensions for native data types are available. Example '
+<%          'implementations can be found in the projects:', (
+<%              ('jQery-incrementer',
+<%               'http://thaibault.github.com/jQuery-incrementer'),
+<%              ('jQery-lang', 'http://thaibault.github.com/jQuery-lang'),
+<%              ('jQuery-website',
+<%               'http://thaibault.github.com/jQuery-website'),
+<%              ('My personal website', 'http://thaibault.github.com'))),
 <%       'deDE': (
 <%          'jQuery-tools ist ein auf jQuery aufsetzendes Plugin, um '
 <%          'objektorientierte jQery-Plugins ähnlich wie bei MooTools oder '

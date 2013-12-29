@@ -150,7 +150,6 @@ this.require [
                         )
                         # Adapt curriculum vitae link.
                         $curriculumVitaeLink = $ 'a[href*="curriculumVitae"]'
-                        console.log $curriculumVitaeLink[0]
                         linkPath = $curriculumVitaeLink.attr 'href'
                         $curriculumVitaeLink.attr(
                             'href', linkPath.substr(
