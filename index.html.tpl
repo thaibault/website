@@ -5,6 +5,13 @@ vim: foldmethod=marker foldmarker=region,endregion:
 
 endregion
 
+sync with
+    skillKeywordsEnglish.txt
+    skillKeywordsGerman.txt
+    xing.de
+    linked-in.com
+    facebook.com
+
 region header
 
 Copyright Torben Sickert 16.12.2012
@@ -101,13 +108,12 @@ endregion -->
 <%                   'or Propel', 'SQL')),
 <%              ('versioning', ('GIT', 'SVN', 'CVS', 'Mercurial')),
 <%              ('programing Language', (
-<%                   'C', 'C++', 'C# (with XNA)', 'Java', 'Python',
-<%                   'JavaScript', 'CofProgrammier TechnikenfeeScript',
-<%                   'Scheme', 'PHP')),
+<%                   'Python', 'CoffeeScript', 'JavaScript', 'C++', 'C',
+<%                   'C# (mit XNA)', 'Java', 'Scheme', 'PHP')),
 <%              ('declarative Language', ('XHTML', 'CSS', 'less')),
 <%              ('server', ('apache', 'nginx')),
 <%              ('framework', (
-<%                  'angularJS', 'django', 'jQuery', 'Mootools', 'bootstrap'))
+<%                  'AngularJS', 'django', 'jQuery', 'Mootools', 'Bootstrap'))
 <%         ), 'deDE': (
 <%              ('Abstrakt', (
 <%                  'Kontakte', 'Konzeption',
@@ -137,12 +143,12 @@ endregion -->
 <%                  'POD oder Propel', 'SQL')),
 <%              ('Versionierung', ('GIT', 'SVN', 'CVS', 'Mercurial')),
 <%              ('Programmiersprachen', (
-<%                  'C', 'C++', 'C# (mit XNA)', 'Java', 'Python', 'JavaScript',
-<%                  'CoffeeScript', 'Scheme', 'PHP')),
+<%                  'Python', 'CoffeeScript', 'JavaScript', 'C++', 'C',
+<%                  'C# (mit XNA)', 'Java', 'Scheme', 'PHP')),
 <%              ('Deklarative Sprachen', ('XHTML', 'CSS', 'less')),
 <%              ('Server', ('apache', 'nginx')),
 <%              ('Framework', (
-<%                  'angularJS', 'django', 'jQuery', 'Mootools', 'bootstrap'))
+<%                  'AngularJS', 'django', 'jQuery', 'Mootools', 'Bootstrap'))
 <%         )}, {'enUS': 'Projects', 'deDE': 'Projekte'})))
 <% PROJECTS = (
 <%     ('boostNode', 'http://thaibault.github.com/boostNode',
