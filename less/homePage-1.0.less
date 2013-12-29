@@ -65,6 +65,9 @@ body.home-page {
         bottom: @footerMarginInPixel;
         right: 60px;
     }
+    /* Show phone links as normal text. */
+    a[href^="tel:"] { color: @defaultColor; }
+    a[href^="tel:"]:hover { color: @defaultColor; }
 
         /* endregion */
 
@@ -194,7 +197,6 @@ body.home-page {
                             line-height: 1.4;
                             margin-bottom: 10px;
                         }
-                        > a[href^="tel:"]:hover { color: @defaultColor; }
                         > div.container {
                             border: 1px solid red;
                             width: 800px;
@@ -360,11 +362,6 @@ body.home-page {
         > div.container { margin-left: 10%; }
         > div[class^="carousel-image-"] > div.container {
             > h1 { font-size: 38px; }
-            > div.lead {
-                font-size: 19px;
-                line-height: 1.4;
-                margin-bottom: 6px;
-            }
         }
     }
 
@@ -498,12 +495,6 @@ body.home-page {
 
             /* endregion */
 
-            > div.carousel.slide, > div.about-this-website {
-                a {
-                    font-size: 25px;
-                }
-            }
-
             /* region carousel */
 
             > div.carousel.slide {
@@ -556,15 +547,9 @@ body.home-page {
                 padding-bottom: 50px;
 
                 > div[class^="carousel-image-"] > div.container {
-                    width: 485px;
+                    width: 608px;
 
                     > h1 { font-size: 72px; }
-                    > div.lead, > p { text-align: left; }
-                    > div.lead {
-                        margin-top: 30px;
-                        font-size: 25px;
-                        line-height: 1.1;
-                    }
                 }
             }
             > div.carousel.slide > div.carousel-inner > div.item {

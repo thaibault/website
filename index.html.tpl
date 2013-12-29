@@ -408,16 +408,16 @@ endregion -->
                         <!--<% ALTERNATE_LANGUAGE %>:About this website-->
                     </h1>
                     <h2>Kontakt<!--<% ALTERNATE_LANGUAGE %>:Contact--></h2>
-                    <div class="lead">
-                        <p>Anbieter von<!--<% ALTERNATE_LANGUAGE %>:Provider of--> <a href="<% SOCIAL_MEDIA[-1][1] %>"><% SOCIAL_MEDIA[-1][1] %></a>:</p>
-                        <p>Torben Sickert</p>
-                        <p>Christoph-Mang-Str. 14</p>
-                        <p>79100 Freiburg</p>
-                        <p>Tel. 0049 (0) 176 / 10248185</p>
-                        <p>Email: <a href="mailto:#"><% SOCIAL_MEDIA[0][1] %></a></p>
-                        <p>Website:<!--deDE:Webseite:--><!--frFR:Site:--> <a href="<% SOCIAL_MEDIA[-1][1] %>"><% SOCIAL_MEDIA[-1][1] %></a></p>
+                    <div>
+                        Anbieter von<!--<% ALTERNATE_LANGUAGE %>:Provider of--> <a href="<% SOCIAL_MEDIA[-1][1] %>"><% SOCIAL_MEDIA[-1][1] %></a>:<br />
+                        Torben Sickert<br />
+                        Christoph-Mang-Str. 14<br />
+                        79100 Freiburg<br />
+                        <a href="tel:004917610248185">Tel.<!--enEN:Phone-->: +49 (0) 176 <span>/</span> 10 248 185</a><br />
+                        Email: <a href="mailto:#"><% SOCIAL_MEDIA[0][1] %></a><br />
+                        Website:<!--deDE:Webseite:--><!--frFR:Site:--> <a href="<% SOCIAL_MEDIA[-1][1] %>"><% SOCIAL_MEDIA[-1][1] %></a><br />
                         <br />
-                        <p><a href="<% LINK_PUBLIC_SSH_KEY %>" target="_blank">öffentlicher SSH-Schlüssel<!--<% ALTERNATE_LANGUAGE %>:public ssh key--></a></p>
+                        <a href="<% LINK_PUBLIC_SSH_KEY %>" target="_blank">öffentlicher SSH-Schlüssel<!--<% ALTERNATE_LANGUAGE %>:public ssh key--></a>
                     </div>
                     <% include('aboutThisWebsite')
                 </div>
