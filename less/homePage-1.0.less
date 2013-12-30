@@ -48,8 +48,6 @@ body.home-page {
     font-size: 16px;
     overflow-y: scroll;
 
-    /* endregion */
-
         /* region link */
 
     a {
@@ -77,32 +75,20 @@ body.home-page {
 
         /* endregion */
 
-        /* region description line */
-
-    /* TODO beachte responsive view */
-    .dl-horizontal {
-        dt { width: 286px; }
-        dd {
-            margin-top: 15px;
-            text-align: left;
-            margin-left: 335px;
-        }
-    }
-    strong { font-weight: normal; }
-
-        /* endregion */
-
     /* Shows the current dimension mode. */
     > div.navbar-wrapper > div.container > div.navbar.navbar-inverse
     > div.container > div.navbar-header > a.navbar-brand
     > span.dimension-indicator { font-size: 12px; }
+    strong { font-weight: normal; }
 
-    /* region bootstrap resets */
+        /* region bootstrap resets */
 
     .navbar-inverse .navbar-collapse {
         border: 0;
         box-shadow: none;
     }
+
+        /* endregion */
 
     /* endregion */
 
@@ -190,6 +176,7 @@ body.home-page {
                         text-shadow: none;
                         text-align: center;
 
+                        > dl.dl-horizontal > dd { text-align: left; }
                         > a[href^="tel:"] {
                             color: @defaultColor;
                             display: block;
@@ -596,6 +583,14 @@ body.home-page {
                 > div.carousel.slide > div.carousel-inner > div.item {
                     > div[class^="carousel-image-"] > div.container {
                         max-width: 810px;
+
+                        > dl.dl-horizontal {
+                            > dt { width: 286px; }
+                            > dd {
+                                margin-top: 15px;
+                                margin-left: 335px;
+                            }
+                        }
                     }
                     > div[class="carousel-image-about"] > div.container 
                     > p.lead { right: 0; }
