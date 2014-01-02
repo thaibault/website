@@ -46,7 +46,8 @@ endregion -->
 
 <% LINK_PUBLIC_SSH_KEY = 'data/publicSSHKey.txt'
 <% LINK_V_CARD = 'data/vCard.vcf'
-<% LINK_CURRICULUM_VITAE = 'data/curriculumVitae%s.pdf' % DEFAULT_LANGUAGE.swapcase()
+<% LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE = 'data/curriculumVitae%s.pdf' % DEFAULT_LANGUAGE.swapcase()
+<% LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE = 'data/curriculumVitae%s.pdf' % ALTERNATE_LANGUAGE.swapcase()
 
 <% # endregion
 
@@ -429,7 +430,9 @@ endregion -->
                                         <% section[2][DEFAULT_LANGUAGE] %>
                                         <!--<% ALTERNATE_LANGUAGE %>:<% section[2][ALTERNATE_LANGUAGE] %>-->
                                         <% if name == 'about':
-                                            <a href="<% LINK_CURRICULUM_VITAE %>" target="_blank">Lebenslauf<!--<% ALTERNATE_LANGUAGE %>:Curriculum Vitae--></a>
+                                            <a href="<% LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE %>" target="_blank" class="hidden-xs">Lebenslauf<!--<% ALTERNATE_LANGUAGE %>:Curriculum Vitae--></a>
+                                            <a href="<% LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE %>" target="_blank" class="visible-xs">Lebenslauf (Deutsch)<!--<% ALTERNATE_LANGUAGE %>:Curriculum Vitae (German)--></a>
+                                            <a href="<% LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE %>" target="_blank" class="visible-xs">Lebenslauf (English)<!--<% ALTERNATE_LANGUAGE %>:Curriculum Vitae (English)--></a>
                                             <a href="<% LINK_V_CARD %>" target="_blank">vCard</a>
                                     </p>
                                 <% if name == 'contact':
