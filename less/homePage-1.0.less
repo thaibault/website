@@ -338,6 +338,16 @@ body.home-page {
 
             /* region section */
 
+                /* region about */
+
+    > div.carousel.slide > div.carousel-inner > div.item
+    > div[class^="carousel-image-about"] > div.container > p.lead
+    > a:first-child {
+        margin-top: 35px;
+    }
+
+                /* endregion */
+
                 /* region about this web site */
 
     > div.about-this-website {
@@ -347,8 +357,8 @@ body.home-page {
 
         /* Wraps the text content, positions space around them. */
         > div.container { margin-left: 10%; }
-        > div[class^="carousel-image-"] > div.container {
-            > h1 { font-size: 38px; }
+        > div[class^="carousel-image-"] > div.container > h1 {
+            font-size: 38px;
         }
     }
 
@@ -389,10 +399,24 @@ body.home-page {
 
             /* region section */
 
+                /* region about this website */
+
         > div.about-this-website {
             padding-top: @topMargin;
             padding-bottom: 25px;
         }
+
+                /* endregion */
+
+                /* region about */
+
+        > div.carousel.slide > div.carousel-inner > div.item
+        > div[class^="carousel-image-about"] > div.container > p.lead
+        > a:first-child {
+            margin-top: 50px;
+        }
+
+                /* endregion */
 
             /* endregion */
 
