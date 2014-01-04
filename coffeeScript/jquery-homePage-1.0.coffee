@@ -405,6 +405,9 @@ this.require [
                 **returns {$.Swipe}** - Returns the new generated swipe
                                         instance.
             ###
+            # Remove anchor ids to avoid conflicts with native section
+            # switching.
+            $('h1').attr 'id', ''
             this._options.carousel.transitionEnd = (index, domNode) =>
                 this.$domNodes.navigationButton.each (subIndex, button) =>
                     if index is subIndex

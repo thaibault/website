@@ -378,13 +378,12 @@ endregion -->
                         <div class="carousel-image-<% name %>">
                             <div class="container">
                                 <% if section[1][DEFAULT_LANGUAGE]:
-                                    <h1 id="<% String(name).delimit() %>">
+                                    <h1 id="<% name %>">
                                         <% section[1][DEFAULT_LANGUAGE] %>
                                         <!--<% ALTERNATE_LANGUAGE %>:<% section[1][ALTERNATE_LANGUAGE] %>-->
                                     </h1>
                                 <% else:
-                                    <!--Only visible if JavaScript isn't supported.-->
-                                    <h1 id="<% String(name).delimit() %>" class="hidden-on-javascript-enabled">
+                                    <h1 id="<% name %>" class="hidden-on-javascript-enabled">
                                         <% section[0][DEFAULT_LANGUAGE] %>
                                     </h1>
                                 <% if name == 'work':
