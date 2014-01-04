@@ -75,6 +75,16 @@ body.home-page {
 
         /* endregion */
 
+    /*
+        Makes space before each anchor to have enough space for a fixed
+        positioned header menu.
+    */
+    h1:before {
+        content: "";
+        display: block;
+        height: @topMargin;
+    }
+
     /* Shows the current dimension mode. */
     > div.navbar-wrapper > div.container > div.navbar.navbar-inverse
     > div.container > div.navbar-header > a.navbar-brand
@@ -389,7 +399,6 @@ body.home-page {
 
         > div.carousel.slide > div.carousel-inner > div.item
         > div[class^="carousel-image-"] > div.container {
-            padding-top: @topMargin;
             padding-bottom: 25px;
         }
 
@@ -399,10 +408,7 @@ body.home-page {
 
                 /* region about this website */
 
-        > div.about-this-website {
-            padding-top: @topMargin;
-            padding-bottom: 25px;
-        }
+        > div.about-this-website { padding-bottom: 25px; }
 
                 /* endregion */
 
@@ -515,7 +521,6 @@ body.home-page {
                         background-repeat: no-repeat;
                         background-size: auto 100%;
                         background-position: center;
-                        margin-top: @topMargin;
 
                         > div.container {
                             padding-top: 0;
@@ -562,6 +567,7 @@ body.home-page {
             > div.carousel.slide > div.carousel-inner > div.item {
                 > div[class="carousel-image-about"] > div.container {
                     position: relative;
+                    margin-top: @topMargin;
 
                     > p.lead {
                         position: absolute;
