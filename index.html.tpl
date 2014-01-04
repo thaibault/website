@@ -343,7 +343,7 @@ endregion -->
                             <a class="navbar-brand" href="#">thaibault <span class="dimension-indicator"></span></a>
                             <% START_UP_ANIMATION_NUMBER += 1
                             <a href="#lang-<% ALTERNATE_LANGUAGE %>" class="visible-on-javascript-enabled start-up-animation-number-<% START_UP_ANIMATION_NUMBER %>"><% ALTERNATE_LANGUAGE[:-2] %></a>
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <button type="button" class="navbar-toggle visible-on-javascript-enabled" data-toggle="collapse" data-target=".navbar-collapse">
                                 <% for section in range(3):
                                     <span class="icon-bar"></span>
                                 <% end
@@ -434,9 +434,9 @@ endregion -->
                                         <% section[2][DEFAULT_LANGUAGE] %>
                                         <!--<% ALTERNATE_LANGUAGE %>:<% section[2][ALTERNATE_LANGUAGE] %>-->
                                         <% if name == 'about':
-                                            <a href="<% LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE %>" target="_blank" class="visible-xs hidden-on-javascript-enabled">Lebenslauf (Deutsch)<!--<% ALTERNATE_LANGUAGE %>:Curriculum Vitae (German)--></a>
-                                            <a href="<% LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE %>" target="_blank" class="visible-xs hidden-on-javascript-enabled">Lebenslauf (Englisch)<!--<% ALTERNATE_LANGUAGE %>:Curriculum Vitae (English)--></a>
-                                            <a href="<% LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE %>" target="_blank" class="hidden-xs visible-on-javascript-enabled">Lebenslauf<!--<% ALTERNATE_LANGUAGE %>:Curriculum Vitae--></a>
+                                            <a href="<% LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE %>" target="_blank" class="visible-xs">Lebenslauf (Deutsch)<!--<% ALTERNATE_LANGUAGE %>:Curriculum Vitae (German)--></a>
+                                            <a href="<% LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE %>" target="_blank" class="visible-xs">Lebenslauf (Englisch)<!--<% ALTERNATE_LANGUAGE %>:Curriculum Vitae (English)--></a>
+                                            <a href="<% LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE %>" target="_blank" class="hidden-xs">Lebenslauf<!--<% ALTERNATE_LANGUAGE %>:Curriculum Vitae--></a>
                                             <a href="<% LINK_V_CARD %>" target="_blank">vCard</a>
                                     </p>
                                 <% if name == 'contact':
