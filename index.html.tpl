@@ -44,10 +44,11 @@ endregion -->
 <% COFFEE_SCRIPT_PATH = 'coffeeScript/'
 <% JAVA_SCRIPT_PATH = 'javaScript/'
 
-<% LINK_PUBLIC_SSH_KEY = 'data/publicSSHKey.txt'
-<% LINK_V_CARD = 'data/vCard.vcf'
-<% LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE = 'data/curriculumVitae%s.pdf' % DEFAULT_LANGUAGE.swapcase()
-<% LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE = 'data/curriculumVitae%s.pdf' % ALTERNATE_LANGUAGE.swapcase()
+<% DATA_PATH = 'data/'
+<% LINK_PUBLIC_SSH_KEY = DATA_PATH + 'publicSSHKey.txt'
+<% LINK_V_CARD = DATA_PATH + 'vCard.vcf'
+<% LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE = DATA_PATH + 'curriculumVitae%s.pdf' % DEFAULT_LANGUAGE.swapcase()
+<% LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE = DATA_PATH + 'curriculumVitae%s.pdf' % ALTERNATE_LANGUAGE.swapcase()
 
 <% # endregion
 
@@ -329,8 +330,8 @@ endregion -->
 
 <!-- region body -->
 
-    <body class="home-page" style="display: none">
-        <div class="window-loading-cover"><div></div></div>
+    <body class="home-page hidden-on-javascript-enabled">
+        <div class="window-loading-cover visible-on-javascript-enabled"><div></div></div>
 
     <!-- region menu -->
 
@@ -341,7 +342,7 @@ endregion -->
                         <div class="navbar-header">
                             <a class="navbar-brand" href="#">thaibault <span class="dimension-indicator"></span></a>
                             <% START_UP_ANIMATION_NUMBER += 1
-                            <a href="#lang-<% ALTERNATE_LANGUAGE %>" class="start-up-animation-number-<% START_UP_ANIMATION_NUMBER %>"><% ALTERNATE_LANGUAGE[:-2] %></a>
+                            <a href="#lang-<% ALTERNATE_LANGUAGE %>" class="visible-on-javascript-enabled start-up-animation-number-<% START_UP_ANIMATION_NUMBER %>"><% ALTERNATE_LANGUAGE[:-2] %></a>
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                                 <% for section in range(3):
                                     <span class="icon-bar"></span>
@@ -355,7 +356,7 @@ endregion -->
                                     <% if section[0]:
                                         <% START_UP_ANIMATION_NUMBER += 1
                                         <li class="start-up-animation-number-<% START_UP_ANIMATION_NUMBER %><%' active' if name == SECTIONS[0][0] else ''%>">
-                                            <a href="#<% name %>"><% section[0][DEFAULT_LANGUAGE]%><!--<% ALTERNATE_LANGUAGE %>:<% section[0][ALTERNATE_LANGUAGE] %>--></a>
+                                            <a href="#<% name %>"><% section[0][DEFAULT_LANGUAGE] %><!--<% ALTERNATE_LANGUAGE %>:<% section[0][ALTERNATE_LANGUAGE] %>--></a>
                                         </li>
                                     <% end
                                 <% end
@@ -377,9 +378,14 @@ endregion -->
                         <div class="carousel-image-<% name %>">
                             <div class="container">
                                 <% if section[1][DEFAULT_LANGUAGE]:
-                                    <h1>
+                                    <h1 id="<% String(name).delimit() %>">
                                         <% section[1][DEFAULT_LANGUAGE] %>
-                                        <!--enUS:<% section[1][ALTERNATE_LANGUAGE] %>-->
+                                        <!--<% ALTERNATE_LANGUAGE %>:<% section[1][ALTERNATE_LANGUAGE] %>-->
+                                    </h1>
+                                <% else:
+                                    <!--Only visible if JavaScript isn't supported.-->
+                                    <h1 id="<% String(name).delimit() %>" class="hidden-on-javascript-enabled">
+                                        <% section[0][DEFAULT_LANGUAGE] %>
                                     </h1>
                                 <% if name == 'work':
                                     <h2>
@@ -456,7 +462,7 @@ endregion -->
             <div class="carousel-image-about-this-website">
                 <div class="container">
                     <% include
-                    <h1>
+                    <h1 id="about-this-website">
                         Impressum
                         <!--<% ALTERNATE_LANGUAGE %>:About this website-->
                     </h1>
