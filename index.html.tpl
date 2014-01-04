@@ -383,9 +383,8 @@ endregion -->
                                         <!--<% ALTERNATE_LANGUAGE %>:<% section[1][ALTERNATE_LANGUAGE] %>-->
                                     </h1>
                                 <% else:
-                                    <h1 id="<% name %>" class="hidden-on-javascript-enabled">
-                                        <% section[0][DEFAULT_LANGUAGE] %>
-                                    </h1>
+                                    <!--Serves as anchor point if javaScript isn't supported.-->
+                                    <h1 id="<% name %>"></h1>
                                 <% if name == 'work':
                                     <h2>
                                         <% section[2][DEFAULT_LANGUAGE] %>
