@@ -149,7 +149,8 @@ this.require [
                                 ).text(oldLanguage.substr 0, 2).fadeIn 'fast'
                         )
                         # Adapt curriculum vitae link.
-                        $curriculumVitaeLink = $ 'a[href*="curriculumVitae"]'
+                        $curriculumVitaeLink = $(
+                            'a[href*="curriculumVitae"].hidden-xs')
                         linkPath = $curriculumVitaeLink.attr 'href'
                         $curriculumVitaeLink.attr(
                             'href', linkPath.substr(

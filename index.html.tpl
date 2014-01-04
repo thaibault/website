@@ -436,7 +436,7 @@ endregion -->
                                         <!--<% ALTERNATE_LANGUAGE %>:<% section[2][ALTERNATE_LANGUAGE] %>-->
                                         <% if name == 'about':
                                             <a href="<% LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE %>" target="_blank" class="visible-xs hidden-on-javascript-enabled">Lebenslauf (Deutsch)<!--<% ALTERNATE_LANGUAGE %>:Curriculum Vitae (German)--></a>
-                                            <a href="<% LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE %>" target="_blank" class="visible-x hidden-on-javascript-enableds">Lebenslauf (English)<!--<% ALTERNATE_LANGUAGE %>:Curriculum Vitae (English)--></a>
+                                            <a href="<% LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE %>" target="_blank" class="visible-xs hidden-on-javascript-enabled">Lebenslauf (English)<!--<% ALTERNATE_LANGUAGE %>:Curriculum Vitae (English)--></a>
                                             <a href="<% LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE %>" target="_blank" class="hidden-xs visible-on-javascript-enabled">Lebenslauf<!--<% ALTERNATE_LANGUAGE %>:Curriculum Vitae--></a>
                                             <a href="<% LINK_V_CARD %>" target="_blank">vCard</a>
                                     </p>
