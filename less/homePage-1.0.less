@@ -322,21 +322,17 @@ body.home-page {
             /* region carousel */
 
     /* Define main content size. */
-    > div.carousel.slide {
-        // TODO visibility: hidden;
+    > div.carousel.slide > div.carousel-inner > div.item {
+        /* Don't show any background image in smartphone mode. */
+        div.backstretch { display: none; }
+        > div[class^="carousel-image-"] > div.container {
+            padding-bottom: 15px;
+            max-width: 540px;
 
-        > div.carousel-inner > div.item {
-            /* Don't show any background image in smartphone mode. */
-            div.backstretch { display: none; }
-            > div[class^="carousel-image-"] > div.container {
-                padding-bottom: 15px;
-                max-width: 540px;
-
-                > h1 { font-size: 38px; }
-                > p {
-                    font-size: 19px;
-                    line-height: 1.4;
-                }
+            > h1 { font-size: 38px; }
+            > p {
+                font-size: 19px;
+                line-height: 1.4;
             }
         }
     }
@@ -349,7 +345,7 @@ body.home-page {
 
     > div.carousel.slide > div.carousel-inner > div.item
     > div[class^="carousel-image-about"] > div.container {
-        padding-top: @topMargin;
+        padding-top: 90px;
 
         > h1#about { margin-top: -@topMargin;}
         > p.lead > a:first-child { margin-top: 35px; }
@@ -510,45 +506,41 @@ body.home-page {
 
             /* region carousel */
 
-            > div.carousel.slide {
-                visibility: visible;
+            > div.carousel.slide > div.carousel-inner > div.item {
+                /* Show any background image on higher resolutions. */
+                > div.backstretch { display: block; }
+                /* Bump up size of carousel content. */
+                > div[class^="carousel-image-"] {
+                    background-repeat: no-repeat;
+                    background-size: auto 100%;
+                    background-position: center;
 
-                > div.carousel-inner > div.item {
-                    /* Show any background image on higher resolutions. */
-                    > div.backstretch { display: block; }
-                    /* Bump up size of carousel content. */
-                    > div[class^="carousel-image-"] {
-                        background-repeat: no-repeat;
-                        background-size: auto 100%;
-                        background-position: center;
+                    > div.container {
+                        padding-top: 0;
+                        padding-bottom: 50px;
+                        max-width: 600px;
 
-                        > div.container {
-                            padding-top: 0;
-                            padding-bottom: 50px;
-                            max-width: 600px;
-
-                            > h1 { font-size: 72px; }
-                            > p.lead {
-                                font-size: 25px;
-                                line-height: 1.4;
-                                margin-top: 10px;
-                            }
+                        > h1 { font-size: 72px; }
+                        > p.lead {
+                            font-size: 25px;
+                            line-height: 1.4;
+                            margin-top: 10px;
                         }
                     }
-                    /* Show background images on bigger devices. */
-                    > div.carousel-image-about {
-                        background-image: url('@{imagePath}carousel/about.jpg');
-                    }
-                    /*> div.carousel-image-contact {
-                        background-image: url('@{imagePath}carousel/contact.jpg');
-                    }
-                    > div.carousel-image-references {
-                        background-image: url('@{imagePath}carousel/references.jpg');
-                    }
-                    > div.carousel-image-skills {
-                        background-image: url('@{imagePath}carousel/skills.jpg');
-                    }*/
                 }
+                /* Show background images on bigger devices. */
+                > div.carousel-image-about {
+                    background-image: url('@{imagePath}carousel/about.jpg');
+                }
+                /*> div.carousel-image-contact {
+                    background-image: url('@{imagePath}carousel/contact.jpg');
+                }
+                > div.carousel-image-references {
+                    background-image: url('@{imagePath}carousel/references.jpg');
+                }
+                > div.carousel-image-skills {
+                    background-image: url('@{imagePath}carousel/skills.jpg');
+                }*/
             }
 
             /* endregion */
