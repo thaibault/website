@@ -349,9 +349,9 @@ body.home-page {
                 /* region about */
 
     > div.carousel.slide > div.carousel-inner > div.item
-    > div[class^="carousel-image-about"] > div.container > p.lead
-    > a:first-child {
-        margin-top: 35px;
+    > div[class^="carousel-image-about"] > div.container {
+        > h1#about { margin-top: -@topMargin;}
+        > p.lead > a:first-child { margin-top: 35px; }
     }
 
                 /* endregion */
