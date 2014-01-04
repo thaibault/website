@@ -167,11 +167,14 @@ this.require [
                 if this._currentMediaQueryMode is 'extraSmall'
                     window.location.hash = 'contact'
                 else
-                    window.location.hash = this.$domNodes.navigationButton.parent(
-                        'li'
-                    ).filter('.active').children(
-                        this.$domNodes.navigationButton
-                    ).attr 'href'
+                    window.location.hash =
+                        this.$domNodes.navigationButton.parent(
+                            'li'
+                        ).filter('.active').children(
+                            this.$domNodes.navigationButton
+                        ).attr 'href'
+            this.$domNodes.aboutThisWebsiteSection.hide().css(
+                'position', 'absolute')
             this._initializeSwipe()
             this.fireEvent 'switchSection', false, this, window.location.hash
             this.on this.$domNodes.window, 'resize', this.getMethod(
