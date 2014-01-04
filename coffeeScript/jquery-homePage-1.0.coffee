@@ -411,7 +411,9 @@ this.require [
             ###
             # Remove anchor ids to avoid conflicts with native section
             # switching.
-            $('h1').attr 'id', ''
+            $('h1').removeAttr('id').filter(->
+                not $.trim $(this).html()
+            ).remove()
             this._options.carousel.transitionEnd = (index, domNode) =>
                 this.$domNodes.navigationButton.each (subIndex, button) =>
                     if index is subIndex
