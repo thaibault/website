@@ -160,7 +160,8 @@ this.require [
                             newLanguage.substr(2).toLowerCase() +
                             linkPath.substr(linkPath.lastIndexOf '.'))
             super options
-            # Disable tab functionality to prevent inconsistent carousel states
+            # Disable tab functionality to prevent inconsistent carousel
+            # states.
             this.on this.$domNodes.parent, 'keydown', (event) ->
                 event.preventDefault() if event.keyCode is 9
             if not window.location.hash
@@ -199,8 +200,7 @@ this.require [
             # Determine top margin for background image dependent sections.
             this.$domNodes.section.children().css 'margin-top', ''
             this._sectionTopMarginInPixel = window.parseInt(
-                this.$domNodes.section.children().css(
-                    'margin-top'))
+                window.getComputedStyle($('h1')[1], ':before').height)
             # Show responsive dimension indicator switching.
             this._options.dimensionIndicator.fadeIn.always = =>
                 # Adapt menu highlighter after changing layout and
@@ -253,8 +253,15 @@ this.require [
                     $sectionButtonDomNode = $button.parent 'li'
                     if not $sectionButtonDomNode.length
                         $sectionButtonDomNode = $button
-                    if($button.attr('href') is hash or
-                       (index is 0 and hash is '#'))
+                    if($button.attr('href') is hash or (
+                        hash is '#' and ((
+                            this._currentMediaQueryMode is 'extraSmall' and
+                            $button.attr('href') is '#contact'
+                        ) or (
+                            this._currentMediaQueryMode isnt 'extraSmall' and
+                            index is 0
+                        ))
+                    ))
                         hash = $button.attr 'href'
                         sectionFound = true
                         if not $sectionButtonDomNode.hasClass 'active'
@@ -392,11 +399,7 @@ this.require [
                                 this._sectionTopMarginInPixel
                             duration: this._options.carousel.speed)
                         this.$domNodes.section.children().css(
-                            'margin-top', this._sectionTopMarginInPixel +
-                                additionalMarginTopInPixel)
-                    else
-                        this.$domNodes.section.children().css(
-                            'margin-top', this._sectionTopMarginInPixel)
+                            'margin-top', additionalMarginTopInPixel)
             if not this._initialContentHeightAdaptionHappens
                 this._initialContentHeightAdaptionHappens = true
                 this._removeLoadingCover()

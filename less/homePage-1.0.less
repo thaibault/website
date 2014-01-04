@@ -329,7 +329,6 @@ body.home-page {
             /* Don't show any background image in smartphone mode. */
             div.backstretch { display: none; }
             > div[class^="carousel-image-"] > div.container {
-                padding-top: 60px;
                 padding-bottom: 15px;
                 max-width: 540px;
 
@@ -350,6 +349,8 @@ body.home-page {
 
     > div.carousel.slide > div.carousel-inner > div.item
     > div[class^="carousel-image-about"] > div.container {
+        padding-top: @topMargin;
+
         > h1#about { margin-top: -@topMargin;}
         > p.lead > a:first-child { margin-top: 35px; }
     }
@@ -360,7 +361,6 @@ body.home-page {
 
     > div.about-this-website {
         color: @defaultColor;
-        padding-top: 60px;
         padding-bottom: 15px;
 
         /* Wraps the text content, positions space around them. */
