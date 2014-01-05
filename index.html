@@ -1,0 +1,487 @@
+<!-- region vim modline
+
+vim: set tabstop=4 shiftwidth=4 expandtab:
+vim: foldmethod=marker foldmarker=region,endregion:
+
+endregion
+
+sync with
+    skillKeywordsEnglish.txt
+    skillKeywordsGerman.txt
+    projectDescriptionEnglish.txt
+    projectDescriptionGerman.txt
+    xing.de
+    linked-in.com
+    facebook.com
+
+region header
+
+Copyright Torben Sickert 16.12.2012
+
+License
+   This library written by Torben Sickert stand under a creative commons
+   naming 3.0 unported license.
+   see http://creativecommons.org/licenses/by/3.0/deed.de
+
+endregion -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!doctype html>
+
+<!-- region browser sniffing -->
+
+<html lang="en">
+
+<!-- endregion -->
+
+<!-- region header -->
+
+    <head>
+        <title>Torben Sickert development</title>
+
+    <!-- region meta informations -->
+
+        <meta charset="utf-8">
+        <meta name="description" content="development responsive python javascript coffeescript bash design">
+        <meta name="author" content="Torben Sickert">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- endregion -->
+
+    <!-- region fav and touch icons -->
+
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="image/appleTouchIcon/144x144-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="image/appleTouchIcon/114x114-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="image/appleTouchIcon/72x72-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" href="image/appleTouchIcon/57x57-precomposed.png" />
+        <link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico" />
+
+    <!-- endregion -->
+
+    <!-- region resources -->
+
+        <link type="text/css" rel="stylesheet/less" media="screen" href="less/homePage-1.0.less" />
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]><script src="javaScript/html5shiv-3.7.0.js"></script><![endif]-->
+        <script type="text/javascript" src="javaScript/coffeeScript-1.6.3.js"></script>
+        <script type="text/coffeescript" src="coffeeScript/require-1.0.coffee"></script>
+        <script type="text/coffeescript" src="coffeeScript/main.coffee"></script>
+
+    <!-- endregion -->
+
+    </head>
+
+<!-- endregion -->
+
+<!-- region body -->
+
+    <body class="home-page hidden-on-javascript-enabled">
+        <div class="window-loading-cover visible-on-javascript-enabled"><div></div></div>
+
+    <!-- region menu -->
+
+        <div class="start-up-animation-number-1 navbar-wrapper ">
+            <div class="container">
+                <div class="navbar navbar-inverse navbar-static-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="#">thaibault <span class="dimension-indicator"></span></a>
+                            <a href="#lang-enUS" class="visible-on-javascript-enabled start-up-animation-number-2">en</a>
+                            <button type="button" class="navbar-toggle visible-on-javascript-enabled" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <div class="navbar-highlighter visible-on-javascript-enabled"></div>
+                            <ul class="nav navbar-nav">
+                                <li class="start-up-animation-number-3 active">
+                                    <a href="#about">Über mich<!--enUS:About me--></a>
+                                </li>
+                                <li class="start-up-animation-number-4">
+                                    <a href="#contact">Kontakt<!--enUS:Contact--></a>
+                                </li>
+                                <li class="start-up-animation-number-5">
+                                    <a href="#work">Arbeiten<!--enUS:Work--></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- endregion -->
+
+    <!-- region carousel -->
+
+        <div class="carousel slide">
+            <div class="carousel-inner">
+                <div class="item about">
+                    <div class="carousel-image-about">
+                        <div class="container">
+                            <!--Serves as anchor point if javaScript isn't supported.-->
+                            <h1 id="about"></h1>
+                            <p class="lead">
+                                Ich bin ambitioniert und liebe die Herausforderung
+                                <!--enUS:I'm ambitious and love the challenge-->
+                                <a href="data/curriculumVitaeDEde.pdf" target="_blank" class="visible-xs">Lebenslauf (Deutsch)<!--enUS:Curriculum Vitae (German)--></a>
+                                <a href="data/curriculumVitaeENus.pdf" target="_blank" class="visible-xs">Lebenslauf (Englisch)<!--enUS:Curriculum Vitae (English)--></a>
+                                <a href="data/curriculumVitaeDEde.pdf" target="_blank" class="hidden-xs">Lebenslauf<!--enUS:Curriculum Vitae--></a>
+                                <a href="data/vCard.vcf" target="_blank">vCard</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item contact">
+                    <div class="carousel-image-contact">
+                        <div class="container">
+                            <h1 id="contact">
+                                Lernen wir uns kennen
+                                <!--enUS:Get in touch-->
+                            </h1>
+                            <p class="lead">
+                                Ich arbeite selbständig und bin bereit für Ihr Projekt. Kontaktieren Sie mich und wir sprechen über Ihr Vorhaben.
+                                <!--enUS:I'm a freelancer, ready to help you. Let's talk about your project and what I can do.-->
+                            </p>
+                            <a href="tel:004917610248185">Tel.<!--enUS:Phone--> +49 (0) 176 <span>/</span> 10 248 185</a>
+                            <a class="glyphicon-social glyphicon-social-e-mail" href="mailto:t.sickert@gmail.com" target="_blank"></a>
+                            <a class="glyphicon-social glyphicon-social-github" href="https://github.com/thaibault" target="_blank"></a>
+                            <a class="glyphicon-social glyphicon-social-google-plus" href="https://plus.google.com/+TorbenSickert" target="_blank"></a>
+                            <a class="glyphicon-social glyphicon-social-xing" href="http://www.xing.com/profile/Torben_Sickert" target="_blank"></a>
+                            <a class="glyphicon-social glyphicon-social-linked-in" href="http://de.linkedin.com/pub/torben-sickert/28/aa9/919" target="_blank"></a>
+                            <a class="glyphicon-social glyphicon-social-skype" href="skype:t.sickert?add" target="_blank"></a>
+                            <a class="glyphicon-social glyphicon-social-twitter" href="https://twitter.com/tsickert" target="_blank"></a>
+                            <a class="glyphicon-social glyphicon-social-facebook" href="https://de-de.facebook.com/tsickert" target="_blank"></a>
+                            <a class="glyphicon-social glyphicon-social-website" href="http://thaibault.github.com" target="_blank"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item work">
+                    <div class="carousel-image-work">
+                        <div class="container">
+                            <h1 id="work">
+                                Ich liebe was ich mache
+                                <!--enUS:I love what I'm doing-->
+                            </h1>
+                            <h2>
+                                ich biete
+                                <!--enUS:I offer-->
+                            </h2>
+                            <p>
+                                <langReplace>
+                                    Kontakte, Konzeption, Umsetzung und Optimierung von Anwendungen fürs Web, Desktop und Server, Qualitätsicherung, Hochzuverlässigkeits-Anwendungen, Test-driven Design, (Web)Programmierung, Usabillity, Web- und Suchengine-Optimierung, Administrierung für Server auf Linux Mac oder Windows, Intranet Lösungen, Community Portallösung, Barrierefreiheit, Rich Internet Applications, Content Management Systeme, Web 2.0
+                                    <strong>Sicherheit</strong>
+                                    Design by Contract, Integrations-, Anwendung und Unit-Tests, Beweisen von Programmeigenschaften
+                                    <strong>Wissen</strong>
+                                    wirtschaftstheoretisches Wissen, informatisches Wissen, mathematisches Wissen
+                                    <strong>Programmiertechniken</strong>
+                                    Funktionalorientierte Programmierung, Imperativorientierte Programmierung, Objektorientierte Programmierung, Aspektorientierte Programmierung
+                                    <strong>Datenbanken</strong>
+                                    Relationale-Objekt-Modelierung (ORM) mit sqlAlchemy; POD oder Propel, SQL
+                                    <strong>Versionierung</strong>
+                                    GIT, SVN, CVS, Mercurial
+                                    <strong>Programmiersprachen</strong>
+                                    Python, CoffeeScript, JavaScript, C++, C, C# (mit XNA), Java, Scheme, PHP
+                                    <strong>Deklarative Sprachen</strong>
+                                    XHTML, CSS, less
+                                    <strong>Server</strong>
+                                    apache, nginx
+                                    <strong>Framework</strong>
+                                    AngularJS, django, jQuery, Mootools, Bootstrap
+                                </langReplace>
+                                <!--enUS:
+                                    contacts, conception, Implementation and optimization of applications for the web; desktop and server, quality Assurance, High Reliability Applications, Test-driven Design, (Web)programming, Usabillity, Web and search engine optimization, administering servers on Linux, Mac or Windows, Intranet Solutions, Community Portal solution, Accessibility, Rich Internet Applications, Content Management Systems, Web 2.0
+                                    <strong>security</strong>
+                                    Design by Contract, Integration, application, and unit tests, Proofs of program properties
+                                    <strong>knowledge</strong>
+                                    economic theoretical knowledge, matic computerized knowledge, mathematical knowledge
+                                    <strong>programing Techniques</strong>
+                                    Functionally oriented programming, Imperative Oriented Programming, Object-Oriented Programming, Aspect-Oriented Programming
+                                    <strong>database</strong>
+                                    Object-Relational Modeling (ORM) with SQLAlchemy, POD or Propel, SQL
+                                    <strong>versioning</strong>
+                                    GIT, SVN, CVS, Mercurial
+                                    <strong>programing Language</strong>
+                                    Python, CoffeeScript, JavaScript, C++, C, C# (mit XNA), Java, Scheme, PHP
+                                    <strong>declarative Language</strong>
+                                    XHTML, CSS, less
+                                    <strong>server</strong>
+                                    apache, nginx
+                                    <strong>framework</strong>
+                                    AngularJS, django, jQuery, Mootools, Bootstrap
+                                -->
+                            </p>
+                            <h2>
+                                Projekte
+                                <!--enUS:Projects-->
+                            </h2>
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    <a href="http://thaibault.github.com/boostNode" target="_blank">boostNode</a>
+                                </dt>
+                                <dd>
+                                    Ein universelles Python-Framework zur Anwendung von platformunabhängiger Desktopanwendungen mit Web-Technologien. Das Framework bietet Hochzuverlässigkeitsmerkmale:
+                                    <!--enUS:A universal python framework for platform independent application developement with web technoligies. The framework provides High reliability features:-->
+                                    <ul>
+                                        <li>
+                                            100% branch coverage getestet
+                                            <!--enUS:100% branch coverage tested-->
+                                        </li>
+                                        <li>
+                                            Type checking im Entwicklungsmodus
+                                            <!--enUS:Type checking in development mode-->
+                                        </li>
+                                        <li>
+                                            zyklomatische Komplexität kleiner acht
+                                            <!--enUS:Cyclomatic complexity smaller than eight-->
+                                        </li>
+                                        <li>
+                                            vollständige API-Dokumentation http://thaibault.github.com/boostNode/api
+                                            <!--enUS:Full API documentation http://thaibault.github.com/boostNode/api-->
+                                        </li>
+                                        <li>
+                                            stets kompatibel zu den neusten beiden Pythonversionen durch integrierte macros
+                                            <!--enUS:Always compatible with the latest versions of both Python through integrated macros-->
+                                        </li>
+                                        <li>
+                                            Plattform unabhängige Web-View und flexibler multiprozess- und multithread Web-Server
+                                            <!--enUS:Platform independent web-view and flexible multi-process and multi-threaded Web server-->
+                                        </li>
+                                    </ul>
+                                </dd>
+                                <dt>
+                                    <a href="http://archinstall.github.com" target="_blank">archInstall</a>
+                                </dt>
+                                <dd>
+                                    Installiere ein konfiguriertes ArchLinux mit Pacman als Paketverwaltung an beliebige Orte wie Festplatten, USB-Stick, alternative Partition oder in das bestehende System als Sandboxumgebung. Automatische Konfiguration bestehender posix konformer unix-artiger Systeme. Sowohl Online- als auch Offline-Installationen sind möglich. Selbst ohne root Rechte kann das System in eine eigene Umgebung unterhalb des Home-Ordner installiert werden. Alle benötigten Abhängigkeiten zum Aufsetzen sind durch eine einfache posix-Umgebung gegeben wie Busybox oder ArchLinux selbst.
+                                    <!--enUS:Install a configured ArchLinux with pacman as a package management in any places such as hard drives, USB flash drive, partition, or in an existing system as a sandbox environment. Automatic configuration of existing posix compliant unix-like systems. Both online and Offline installations are possible. Even without root privileges, the system is able to be installed into its own environment below the home folder. All required dependencies could be served via a typical posix environment given by Busybox or ArchLinux itself.-->
+                                </dd>
+                                <dt>
+                                    <a href="http://thaibault.github.com/genericServiceHandler" target="_blank">genericServiceHandler</a>
+                                </dt>
+                                <dd>
+                                    Dieses bash-Modul bietet einen generischen Service-Handler zur Steuerung jeglicher Dienste, welche standard Prozesssignale unterstützen. Das Projekt ist vom Systemd-Service-Handling inspiriert und kann in jeder unix-artigen Umgebung eingesetzt werden. Es eignet sich besonders um Dienste in den Hoch- und Herunterfahr-Prozess des Betriebssystems einzubetten.
+                                    <!--enUS:This bash module provides a generic service handlers to control any services which support standard process signals. The project is inspired by the systemd service handling and can live in any unix-like environment. It is particularly suitable for beeing integrated into the operating system's boot and shutdown process.-->
+                                </dd>
+                                <dt>
+                                    <a href="http://thaibault.github.com/require" target="_blank">require</a>
+                                </dt>
+                                <dd>
+                                    Dieses native JavaScript Module bietet einen vollständigen Importmechanismus für JavaScript wie er aus python, php, oder ruby bekannt ist. Hierdurch wird es möglich, dass jede JavaScript Datei seine eigenen Abhängigkeiten definiert und keine globale iListe an benötigten Dateien im html-Header verwaltet werden muss. Entschiedener Vorteil gegenüber "RequireJS" oder "YepNope" besteht darin, dass auch die Abhängigkeiten der Abhängigkeiten beliebig tief in einer topologischen Sortierung aufgelöst werden können. Das Einbinden von less, coffeeScript oder css ist ebenfalls möglich. Zudem können sich entsprechende "Handler" hinzufügen lassen um im Browser entsprechende SourceMaps zu generieren oder sonstige Aktionen auszulösen.
+                                    <!--enUS:This native JavaScript modules offers a full import mechanism for JavaScript as it is known from python, php, or ruby. This makes it possible that each JavaScript file defines its own dependencies, and no global list of required files in the html-header have to be maintained. A decisive advantage over "RequireJS" or "YepNope" is that nested dependencies could be determined automatically. The inclusion of less, coffee script or css is also possible. In addition, it can add corresponding "handler" allowing to generate the browser corresponding source maps or other actions.-->
+                                </dd>
+                                <dt>
+                                    <a href="http://thaibault.github.com/jQuery-tools" target="_blank">jQuery-tools</a>
+                                </dt>
+                                <dd>
+                                    jQuery-tools ist ein auf jQuery aufsetzendes Plugin, um objektorientierte jQery-Plugins ähnlich wie bei MooTools oder Prototype zu erstellen. Verschiedene generische Software-Pattern werden durch eine wiederverwendbare Controller-Logik möglich. Zudem werden einige nützliche Werkzeuge zum Bauen von grafischen Oberflächen angeboten wie, Wechselseitiger Ausschluss, Scope-basiertes Event-Handling und einige Low-Level Erweiterungen für native Datentypen. Beispiel-Implementierungen findet sich in den Projekten:
+                                    <!--enUS:jQuery-tools brings an object oriented jQuery Plugin concept. It provides a class pattern structure similar to MooTools or Prototype. In Addition many reusable helper and a cool controller logic is included. Furthermore some handler for dealing with mutual exclusion, scope-based event handling and some low-level extensions for native data types are available. Example implementations can be found in the projects:-->
+                                    <ul>
+                                        <li>
+                                            <a href="http://thaibault.github.com/jQuery-incrementer">jQery-incrementer</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://thaibault.github.com/jQuery-lang">jQery-lang</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://thaibault.github.com/jQuery-website">jQuery-website</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://thaibault.github.com">Meine persönliche Website</a>
+                                        </li>
+                                    </ul>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- endregion -->
+
+    <!-- region about this website -->
+
+        <div class="about-this-website">
+            <div class="carousel-image-about-this-website">
+                <div class="container">
+                    <h1 id="about-this-website">
+                        Impressum
+                        <!--enUS:About this website-->
+                    </h1>
+                    <h2>Kontakt<!--enUS:Contact--></h2>
+                    <div>
+                        Anbieter von<!--enUS:Provider of--> <a href="http://thaibault.github.com">http://thaibault.github.com</a>:<br />
+                        Torben Sickert<br />
+                        Christoph-Mang-Str. 14<br />
+                        79100 Freiburg<br />
+                        <a href="tel:004917610248185">Tel.<!--enUS:Phone-->: +49 (0) 176 <span>/</span> 10 248 185</a><br />
+                        Email: <a href="mailto:#">t.sickert@gmail.com</a><br />
+                        Website<!--enUS:Webseite-->: <a href="http://thaibault.github.com">http://thaibault.github.com</a><br />
+                        <br />
+                        <a href="data/publicSSHKey.txt" target="_blank">öffentlicher SSH-Schlüssel<!--enUS:public ssh key--></a>
+                    </div>
+<h2>
+    Disclaimer
+    <!--deDE:Haftungsausschluss-->
+    <!--frFR:Désistement-->
+</h2>
+<h3>
+    Liability for content
+    <!--deDE:Haftung für Inhalte-->
+    <!--frFR:Responsabilité quant au contenu-->
+</h3>
+<p>
+    Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die
+    Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch
+    keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG
+    für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen
+    verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch
+    nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu
+    überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige
+    Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der
+    Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon
+    unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der
+    Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekannt werden von
+    entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend
+    entfernen.
+</p>
+<h3>
+    Liability for links
+    <!--deDE:Haftung für Links-->
+    <!--frFR:Responsabilité pour les liens-->
+</h3>
+<p>
+    Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren
+    Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden
+    Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten
+    Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten
+    verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung
+    auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum
+    Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche
+    Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte
+    einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von
+    Rechtsverletzungen werden wir derartige Links umgehend entfernen.
+</p>
+<h3>
+    Copyright
+    <!--deDE:Urheberrecht-->
+    <!--frFR:Droit d'auteur-->
+</h3>
+<p>
+    Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen
+    Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung,
+    Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen
+    des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen
+    Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den
+    privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf
+    dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte
+    Dritter beachtet. Insbesondere werden Inhalte Dritter als solche
+    gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung
+    aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei
+    Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend
+    entfernen.
+</p>
+<h3>
+    Privacy Policy
+    <!--deDE:Datenschutz-->
+    <!--frFR:Politique de confidentialité-->
+</h3>
+<p>
+    Die Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener
+    Daten möglich. Soweit auf unseren Seiten personenbezogene Daten
+    (beispielsweise Name, Anschrift oder eMail-Adressen) erhoben werden,
+    erfolgt dies, soweit möglich, stets auf freiwilliger Basis. Diese Daten
+    werden ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben.
+    Wir darauf hin, dass die Datenübertragung im Internet (z.B. bei der
+    Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser
+    Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich. Der
+    Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten
+    durch Dritte zur Übersendung von nicht ausdrücklich angeforderter Werbung
+    und Informationsmaterialien wird hiermit ausdrücklich widersprochen. Die
+    Betreiber der Seiten behalten sich ausdrücklich rechtliche Schritte im
+    Falle der unverlangten Zusendung von Werbeinformationen, etwa durch
+    Spam-Mails, vor.
+</p>
+<h3>
+    Privacy Statement for using Google Analytics
+    <!--deDE:Datenschutzerklärung für die Nutzung von Google Analytics-->
+    <!--frFR:Déclaration de confidentialité de l'utilisation de Google Analytics-->
+</h3>
+<p>
+    Diese Website benutzt Google Analytics, einen Webanalysedienst der Google
+    Inc. ("Google"). Google Analytics verwendet sog. "Cookies", Textdateien,
+    die auf Ihrem Computer gespeichert werden und die eine Analyse der
+    Benutzung der Website durch Sie ermöglichen. Die durch den Cookie erzeugten
+    Informationen über Ihre Benutzung dieser Website werden in der Regel an
+    einen Server von Google in den USA übertragen und dort gespeichert. Im
+    Falle der Aktivierung der IP-Anonymisierung auf dieser Webseite wird Ihre
+    IP-Adresse von Google jedoch innerhalb von Mitgliedstaaten der Europäischen
+    Union oder in anderen Vertragsstaaten des Abkommens über den Europäischen
+    Wirtschaftsraum zuvor gekürzt. Nur in Ausnahmefällen wird die volle
+    IP-Adresse an einen Server von Google in den USA übertragen und dort
+    gekürzt. Im Auftrag des Betreibers dieser Website wird Google diese
+    Informationen benutzen, um Ihre Nutzung der Website auszuwerten, um Reports
+    über die Websiteaktivitäten zusammenzustellen und um weitere mit der
+    Websitenutzung und der Internetnutzung verbundene Dienstleistungen
+    gegenüber dem Websitebetreiber zu erbringen. Die im Rahmen von Google
+    Analytics von Ihrem Browser übermittelte IP-Adresse wird nicht mit anderen
+    Daten von Google zusammengeführt. Sie können die Speicherung der Cookies
+    durch eine entsprechende Einstellung Ihrer Browser-Software verhindern; wir
+    weisen Sie jedoch darauf hin, dass Sie in diesem Fall gegebenenfalls nicht
+    sämtliche Funktionen dieser Website vollumfänglich werden nutzen können.
+    Sie können darüber hinaus die Erfassung der durch das Cookie erzeugten und
+    auf Ihre Nutzung der Website bezogenen Daten (inkl. Ihrer IP-Adresse) an
+    Google sowie die Verarbeitung dieser Daten durch Google verhindern, indem
+    Sie das unter dem folgenden Link verfügbare Browser-Plugin herunterladen
+    und installieren: http://tools.google.com/dlpage/gaoptout?hl=de.
+</p>
+<h3>Copyright Statement</h3>
+<p>
+    Unless noted otherwise, all artwork on this website is protected property
+    of the website author. Any use for commercial purpose, reproduction and
+    publication requires the author's written permission. Commercial work
+    created in cooperation or bound by contract with third parties are
+    specifically marked. Respective copyrights apply.
+</p>
+                </div>
+            </div>
+        </div>
+
+    <!-- endregion -->
+
+    <!-- region footer -->
+
+        <!--
+            Wrap the footer of the page in another container to center the
+            content.
+        -->
+        <div class="start-up-animation-number-6 footer">
+            <footer>
+                <p>
+                    &copy; 2013 Torben Sickert, Inc. &middot; <a href="#about-this-website">about this website<!--enUS:impressum--></a>
+                </p>
+            </footer>
+        </div>
+
+    <!-- endregion -->
+
+        <a href="#top">top</a>
+    </body>
+
+<!-- endregion -->
+
+</html>

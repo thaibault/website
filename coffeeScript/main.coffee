@@ -39,7 +39,6 @@ this.less =
 ## standalone
 ## this.jQuery ($) ->
 ##     $.HomePage googleTrackingCode: 'UA-40192634-1', logging: true
-this.require.noConflict = true
 this.require [['jQuery.HomePage', 'jquery-homePage-1.0.coffee']], ($) ->
     ###
         Embed $ and require full compatible to all other
@@ -52,6 +51,6 @@ this.require [['jQuery.HomePage', 'jquery-homePage-1.0.coffee']], ($) ->
         "removeAll", because we will end up in race conditions by finishing
         tests and removing the main $ object.
     ###
-    $.noConflict(true) ($) -> $.HomePage
+    $.noConflict() ($) -> $.HomePage
         googleTrackingCode: 'UA-40192634-1', logging: true
 ##
