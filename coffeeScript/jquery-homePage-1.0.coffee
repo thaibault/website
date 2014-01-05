@@ -398,8 +398,10 @@ this.require [
                             height: newSectionHeightInPixel -
                                 this._sectionTopMarginInPixel
                             duration: this._options.carousel.speed)
-                        this.$domNodes.section.children().css(
-                            'margin-top', additionalMarginTopInPixel)
+                        this.$domNodes.section.children().animate(
+                            marginTop: additionalMarginTopInPixel)
+                    else
+                        this.$domNodes.section.children().animate marginTop: 0
             if not this._initialContentHeightAdaptionHappens
                 this._initialContentHeightAdaptionHappens = true
                 this._removeLoadingCover()
