@@ -160,10 +160,15 @@ this.require [
                             newLanguage.substr(2).toLowerCase() +
                             linkPath.substr(linkPath.lastIndexOf '.'))
             super options
+            this.$domNodes.aboutThisWebsiteSection.hide().css(
+                'position', 'absolute')
             # Disable tab functionality to prevent inconsistent carousel
             # states.
-            this.on this.$domNodes.parent, 'keydown', (event) ->
-                event.preventDefault() if event.keyCode is 9
+            this.on this.$domNodes.parent, 'keydown', (event) =>
+                event.preventDefault() if event.keyCode is this.keyCode.TAB
+            this.on this.$domNodes.window, 'resize', this.getMethod(
+                this._adaptContentHeight)
+            this._initializeSwipe()
             if not window.location.hash
                 if this._currentMediaQueryMode is 'extraSmall'
                     window.location.hash = 'contact'
@@ -174,12 +179,7 @@ this.require [
                         ).filter('.active').children(
                             this.$domNodes.navigationButton
                         ).attr 'href'
-            this.$domNodes.aboutThisWebsiteSection.hide().css(
-                'position', 'absolute')
-            this._initializeSwipe()
             this.fireEvent 'switchSection', false, this, window.location.hash
-            this.on this.$domNodes.window, 'resize', this.getMethod(
-                this._adaptContentHeight)
             this
 
         # endregion

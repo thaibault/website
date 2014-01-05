@@ -426,8 +426,9 @@ ga('send', 'pageview');'''
                 **returns {$.Website}** - Returns the current instance.
             ###
             this.$domNodes.window.hashchange(=>
-                this.fireEvent 'switchSection', false,
-                this, window.location.hash)
+                if this.startUpAnimationIsComplete
+                    this.fireEvent(
+                        'switchSection', false, this, window.location.hash))
             this._handleScrollToTopButton()
         _handleScrollToTopButton: ->
             ###
