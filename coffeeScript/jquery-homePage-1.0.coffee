@@ -92,7 +92,7 @@ this.require [
                 backgroundImageFileExtension: '.jpg'
                 backgroundDependentHeightSections: ['about']
                 maximumBackgroundDependentHeight: 750
-                menuHighlightAnimation: {}
+                menuHighlightAnimation: easing: 'linear'
                 domNode:
                     carousel: '> div.carousel.slide'
                     section: '> div.carousel.slide > div.carousel-inner > ' +
