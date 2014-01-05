@@ -97,7 +97,6 @@ this.require [
                     carousel: '> div.carousel.slide'
                     section: '> div.carousel.slide > div.carousel-inner > ' +
                              'div.item'
-                    top: '> div.navbar-wrapper'
                     logoLink:
                         '> div.navbar-wrapper > div.container > ' +
                         'div.navbar.navbar-inverse > div.container > ' +
