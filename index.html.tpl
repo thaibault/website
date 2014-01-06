@@ -493,7 +493,7 @@ endregion -->
         <div class="start-up-animation-number-<% START_UP_ANIMATION_NUMBER %> footer">
             <footer>
                 <p>
-                    &copy; 2013 Torben Sickert, Inc. &middot; <a href="#about-this-website">about this website<!--<% ALTERNATE_LANGUAGE %>:impressum--></a>
+                    &copy; 2013 Torben Sickert &middot; <a href="#about-this-website">about this website<!--<% ALTERNATE_LANGUAGE %>:impressum--></a>
                 </p>
             </footer>
         </div>
