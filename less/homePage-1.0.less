@@ -88,7 +88,7 @@ body.home-page {
     /* Shows the current dimension mode. */
     > div.navbar-wrapper > div.container > div.navbar.navbar-inverse
     > div.container > div.navbar-header > a.navbar-brand
-    > span.dimension-indicator { font-size: 12px; }
+    > span.dimension-indicator { font-size: 13px; }
     strong { font-weight: normal; }
 
         /* region bootstrap resets */
@@ -293,11 +293,9 @@ body.home-page {
                     > div.navbar-header {
                         > a.navbar-brand {
                             max-width: 219px;
+                            height: 50px;
 
-                            > span.dimension-indicator {
-                                position: absolute;
-                                visibility: hidden;
-                            }
+                            > span.dimension-indicator { visibility: hidden; }
                         }
                         /* Position language link. */
                         > a[href^="#lang-"] {
@@ -384,10 +382,7 @@ body.home-page {
         > div.container > div.navbar-header > a.navbar-brand {
             max-width: 238px;
 
-            > span.dimension-indicator {
-                position: initial;
-                visibility: visible;
-            }
+            > span.dimension-indicator { visibility: visible; }
         }
 
             /* endregion */

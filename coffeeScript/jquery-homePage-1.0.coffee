@@ -128,11 +128,11 @@ this.require [
                     stopPropagation: false
                 language: default: 'deDE'
                 dimensionIndicator:
-                    fadeIn: duration: 'slow'
-                    fadeOut: duration: 'slow'
+                    fadeIn: duration: 'fast'
+                    fadeOut: duration: 'fast'
                 aboutThisWebsiteSection:
-                    fadeIn: duraction: 'normal'
-                    fadeOut: duration: 'normal'
+                    fadeIn: duraction: 'fast'
+                    fadeOut: duration: 'fast'
             # Adapt menu highlighter after language switching.
             $.extend true, options,
                 language:
