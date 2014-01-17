@@ -377,13 +377,21 @@ this.require [
                     this.$domNodes.carousel.height newSectionHeightInPixel
                 else
                     this.$domNodes.footer.css position: 'relative', top: 0
-                    this.$domNodes.carousel[transitionMethod]
+                    this.$domNodes.carousel[transitionMethod] {
                         height: newSectionHeightInPixel
                         duration: this._options.carousel.speed
+                    }, always: =>
+                        # Check if height has changed after adaption.
+                        if(newSectionHeightInPixel isnt
+                           $currentSection.outerHeight())
+                            this._adaptContentHeight()
                     if $.inArray(
                         window.location.hash.substr(1),
                         this._options.backgroundDependentHeightSections
-                    ) isnt -1 and this._currentMediaQueryMode isnt 'extraSmall'
+                    ) is -1 or this._currentMediaQueryMode is 'extraSmall'
+                        this.$domNodes.section.children().stop().animate
+                            marginTop: 0
+                    else
                         additionalMarginTopInPixel = 0
                         if(newSectionHeightInPixel >
                            this._options.maximumBackgroundDependentHeight)
@@ -399,9 +407,6 @@ this.require [
                             duration: this._options.carousel.speed)
                         this.$domNodes.section.children().stop().animate(
                             marginTop: additionalMarginTopInPixel)
-                    else
-                        this.$domNodes.section.children().stop().animate
-                            marginTop: 0
             if not this._initialContentHeightAdaptionHappens
                 this._initialContentHeightAdaptionHappens = true
                 this._removeLoadingCover()
