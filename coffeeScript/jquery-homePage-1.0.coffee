@@ -86,6 +86,7 @@ this.require [
             # Saves default options for manipulating the default behaviour.
             this._options =
                 trackingCode: 'UA-40192634-1'
+                maximumFooterHeightInPercent: 50
                 scrollInLinearTime: true
                 dimensionIndicatorTemplate: '({1})'
                 backgroundImagePath: 'image/carousel/'
@@ -237,21 +238,14 @@ this.require [
                 hash = this._determineRelativeSections hash
             hash = "##{hash}" if hash.substr(0, 1) isnt '#'
             if hash is this.$domNodes.aboutThisWebsiteButton.attr 'href'
-                this.debug "Switch to section \"#{hash}\"."
-                # Handle "about-this-website" and main section switch.
-                this.$domNodes.menuHighlighter.hide()
-                this._scrollToTop()
-                this.$domNodes.aboutThisWebsiteSection.fadeIn(
-                    this._options.aboutThisWebsiteSection.fadeIn)
-                this.$domNodes.navigationButton.parent('li').removeClass(
-                    'active')
+                this._handleSwitchToAboutThisWebsite hash
             else
                 sectionFound = false
                 this.$domNodes.navigationButton.each (index, button) =>
                     $button = $ button
-                    $sectionButtonDomNode = $button.parent 'li'
-                    if not $sectionButtonDomNode.length
-                        $sectionButtonDomNode = $button
+                    $sectionButton = $button.parent 'li'
+                    if not $sectionButton.length
+                        $sectionButton = $button
                     if($button.attr('href') is hash or (
                         hash is '#' and ((
                             this._currentMediaQueryMode is 'extraSmall' and
@@ -263,24 +257,11 @@ this.require [
                     ))
                         hash = $button.attr 'href'
                         sectionFound = true
-                        if not $sectionButtonDomNode.hasClass 'active'
-                            this.$domNodes.aboutThisWebsiteSection.fadeOut(
-                                this._options.aboutThisWebsiteSection.fadeOut)
-                            this.debug "Switch to section \"#{hash}\"."
-                            # Swipe in endless cycle if we get a direction.
-                            index = direction if direction
-                            if this._viewportIsOnTop
-                                this.$domNodes.carousel.data('Swipe').slide(
-                                    index)
-                            else
-                                this._scrollToTop =>
-                                    this.$domNodes.carousel.data(
-                                        'Swipe'
-                                    ).slide index
-                            $sectionButtonDomNode.addClass 'active'
-                            this._highlightMenuEntry()
+                        if not $sectionButton.hasClass 'active'
+                            this._performSectionSwitch(
+                                hash, direction, index, $sectionButton)
                     else
-                        $sectionButtonDomNode.removeClass 'active'
+                        $sectionButton.removeClass 'active'
                 # If no section could be determined initialize the first one.
                 if not sectionFound
                     forceSection = this.$domNodes.navigationButton.first(
@@ -295,6 +276,47 @@ this.require [
 
         # region helper
 
+        _performSectionSwitch: (hash, direction, index, $sectionButton) ->
+            ###
+                Switches to given section.
+
+                **hash {String}**              - Section hash value.
+
+                **direction {String|Boolean}** - Relative section position.
+
+                **index {Number}**             - Index of section to switch to.
+
+                **$sectionButton {domNode}**   - The current section button.
+
+                **returns {$.Website}**        - Returns the current instance.
+            ###
+            this.$domNodes.aboutThisWebsiteSection.fadeOut(
+                this._options.aboutThisWebsiteSection.fadeOut)
+            this.debug "Switch to section \"#{hash}\"."
+            # Swipe in endless cycle if we get a direction.
+            index = direction if direction
+            if this._viewportIsOnTop
+                this.$domNodes.carousel.data('Swipe').slide index
+            else
+                this._scrollToTop =>
+                    this.$domNodes.carousel.data('Swipe').slide index
+            $sectionButton.addClass 'active'
+            this._highlightMenuEntry()
+        _handleSwitchToAboutThisWebsite: (hash) ->
+            ###
+                Switches to about this website section.
+
+                **hash {String}**       - Section hash value.
+
+                **returns {$.Website}** - Returns the current instance.
+            ###
+            this.debug "Switch to section \"#{hash}\"."
+            this.$domNodes.menuHighlighter.hide()
+            this._scrollToTop()
+            this.$domNodes.aboutThisWebsiteSection.fadeIn(
+                this._options.aboutThisWebsiteSection.fadeIn)
+            this.$domNodes.navigationButton.parent('li').removeClass 'active'
+            this
         _onStartUpAnimationComplete: ->
             ###
                 This method is complete if last startup animation was
@@ -319,19 +341,18 @@ this.require [
             ###
                 Highlights current menu entry.
 
-                **$sectionButtonDomNode {domNode}** - The current section
-                                                      button.
+                **$sectionButton {domNode}** - The current section button.
 
-                @returns {$.HomePage} - Returns the current instance.
+                @returns {$.HomePage}        - Returns the current instance.
             ###
             if this._currentMediaQueryMode isnt 'extraSmall'
-                $sectionButtonDomNode = this.$domNodes.navigationButton.parent(
+                $sectionButton = this.$domNodes.navigationButton.parent(
                     'li'
                 ).filter '.active'
-                if $sectionButtonDomNode.position()?.left
+                if $sectionButton.position()?.left
                     $.extend true, this._options.menuHighlightAnimation,
-                        left: $sectionButtonDomNode.position().left
-                        width: $sectionButtonDomNode.width()
+                        left: $sectionButton.position().left
+                        width: $sectionButton.width()
                         duration: this._options.carousel.speed
                     this.$domNodes.menuHighlighter.show().animate(
                         this._options.menuHighlightAnimation)
@@ -346,13 +367,8 @@ this.require [
             $currentSection = this.$domNodes.section.add(
                 this.$domNodes.aboutThisWebsiteSection
             ).filter ".#{window.location.hash.substr(1)}"
-            if this._currentMediaQueryMode is 'extraSmall' or $.inArray(
-                window.location.hash.substr(1),
-                this._options.backgroundDependentHeightSections
-            ) is -1
-                newSectionHeightInPixel = $currentSection.outerHeight()
-            else
-                newSectionHeightInPixel = this.$domNodes.window.height()
+            newSectionHeightInPixel = this._determineNewSectionHeightInPixel(
+                $currentSection)
             if(newSectionHeightInPixel and
                newSectionHeightInPixel isnt this._oldSectionHeightInPixel)
                 this._oldSectionHeightInPixel = newSectionHeightInPixel
@@ -376,41 +392,91 @@ this.require [
                         duration: this._options.carousel.speed
                     this.$domNodes.carousel.height newSectionHeightInPixel
                 else
-                    this.$domNodes.footer.css position: 'relative', top: 0
-                    this.$domNodes.carousel[transitionMethod] {
-                        height: newSectionHeightInPixel
-                        duration: this._options.carousel.speed
-                    }, always: =>
-                        # Check if height has changed after adaption.
-                        if(newSectionHeightInPixel isnt
-                           $currentSection.outerHeight())
-                            this._adaptContentHeight()
-                    if $.inArray(
-                        window.location.hash.substr(1),
-                        this._options.backgroundDependentHeightSections
-                    ) is -1 or this._currentMediaQueryMode is 'extraSmall'
-                        this.$domNodes.section.children().stop().animate
-                            marginTop: 0
-                    else
-                        additionalMarginTopInPixel = 0
-                        if(newSectionHeightInPixel >
-                           this._options.maximumBackgroundDependentHeight)
-                            additionalMarginTopInPixel = (
-                                newSectionHeightInPixel -
-                                this._options.maximumBackgroundDependentHeight
-                            ) / 2
-                            newSectionHeightInPixel =
-                                this._options.maximumBackgroundDependentHeight
-                        $currentSection.children().css(
-                            height: newSectionHeightInPixel -
-                                this._sectionTopMarginInPixel
-                            duration: this._options.carousel.speed)
-                        this.$domNodes.section.children().stop().animate(
-                            marginTop: additionalMarginTopInPixel)
+                    this._adaptSectionHeight(
+                        transitionMethod, newSectionHeightInPixel,
+                        $currentSection)
             if not this._initialContentHeightAdaptionHappens
                 this._initialContentHeightAdaptionHappens = true
                 this._removeLoadingCover()
             this
+        _adaptSectionHeight: (
+            transitionMethod, newSectionHeightInPixel, $currentSection
+        ) ->
+            ###
+                Adapts the new section height after window resizing or section
+                switch.
+
+                **transitionMethod {String}**      - Method name to perform
+                                                     adaption.
+
+                **newSectionHeightInPixel {Number} - Section height to adapt
+                                                     to.
+
+                **$currentSection {domNode}**      - The current section dom
+                                                     node.
+
+                **returns {$.HomePage}**           - Returns the current
+                                                     instance.
+            ###
+            this.$domNodes.footer.css position: 'relative', top: 0
+            this.$domNodes.carousel[transitionMethod] {
+                height: newSectionHeightInPixel
+                duration: this._options.carousel.speed
+            }, always: =>
+                # Check if height has changed after adaption.
+                if(newSectionHeightInPixel isnt
+                   $currentSection.outerHeight())
+                    this._adaptContentHeight()
+            if $.inArray(
+                window.location.hash.substr(1),
+                this._options.backgroundDependentHeightSections
+            ) is -1 or this._currentMediaQueryMode is 'extraSmall'
+                this.$domNodes.section.children().stop().animate
+                    marginTop: 0
+            else
+                additionalMarginTopInPixel = 0
+                if(newSectionHeightInPixel >
+                   this._options.maximumBackgroundDependentHeight)
+                    additionalMarginTopInPixel = (
+                        newSectionHeightInPixel -
+                        this._options.maximumBackgroundDependentHeight
+                    ) / 2
+                    newSectionHeightInPixel =
+                        this._options.maximumBackgroundDependentHeight
+                $currentSection.children().css(
+                    height: newSectionHeightInPixel -
+                        this._sectionTopMarginInPixel
+                    duration: this._options.carousel.speed)
+                this.$domNodes.section.children().stop().animate(
+                    marginTop: additionalMarginTopInPixel)
+            this
+        _determineNewSectionHeightInPixel: ($currentSection) ->
+            ###
+                Determines the new section height in pixel after webview size
+                or section has changed.
+
+                **$currentSection {domNode}** - The current section dom node.
+
+                **returns {Number}**          - Returns the new computed
+                                                section height.
+            ###
+            if this._currentMediaQueryMode is 'extraSmall' or $.inArray(
+                window.location.hash.substr(1),
+                this._options.backgroundDependentHeightSections
+            ) is -1
+                newSectionHeightInPixel = $currentSection.outerHeight()
+                footerHeightInPixel = this.$domNodes.window.height() -
+                    newSectionHeightInPixel
+                footerHeightInPercent = (footerHeightInPixel * 100) /
+                    this.$domNodes.window.height()
+                if(this._options.maximumFooterHeightInPercent <
+                   footerHeightInPercent and newSectionHeightInPixel <
+                   this.$domNodes.window.height() -
+                   this.$domNodes.footer.height())
+                    return this.$domNodes.window.height() -
+                        this.$domNodes.footer.height()
+                return newSectionHeightInPixel
+            this.$domNodes.window.height()
         _initializeSwipe: ->
             ###
                 Attaches needed event handler to the swipe plugin and
