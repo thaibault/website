@@ -431,7 +431,7 @@ this.require [
                 window.location.hash.substr(1),
                 this._options.backgroundDependentHeightSections
             ) is -1 or this._currentMediaQueryMode is 'extraSmall'
-                this.$domNodes.section.children().stop().animate
+                this.$domNodes.section.children().stop().css
                     marginTop: 0
             else
                 additionalMarginTopInPixel = 0
