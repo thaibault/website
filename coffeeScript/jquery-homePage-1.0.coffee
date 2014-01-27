@@ -352,7 +352,7 @@ this.require [
                         left: $sectionButton.position().left
                         width: $sectionButton.width()
                         duration: this._options.carousel.speed
-                    this.$domNodes.menuHighlighter.show().animate(
+                    this.$domNodes.menuHighlighter.stop().show().animate(
                         this._options.menuHighlightAnimation)
             this
         _adaptContentHeight: ->
