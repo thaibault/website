@@ -20,7 +20,6 @@
 
 # endregion
 
-# TODO adapt to support less source maps.
 ## standalone
 ##
 this.less =
@@ -35,8 +34,6 @@ this.less =
     logLevel: 0
     #sourceMap: true
 ##
-
-# TODO logging should be "false" after tracking code ist debugged.
 
 ## standalone
 ## this.jQuery ($) ->
@@ -54,5 +51,5 @@ this.require [['jQuery.HomePage', 'jquery-homePage-1.0.coffee']], ($) ->
         tests and removing the main $ object.
     ###
     $.noConflict() ($) -> $.HomePage
-        googleTrackingCode: 'UA-40192634-1', logging: true
+        googleTrackingCode: 'UA-40192634-1', logging: false
 ##
