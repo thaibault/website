@@ -177,7 +177,9 @@ this.require [
                         ).filter('.active').children(
                             this.$domNodes.navigationButton
                         ).attr 'href'
-            this.fireEvent 'switchSection', false, this, window.location.hash
+            this.fireEvent(
+                'switchSection', false, this, window.location.hash
+            ).$domNodes.window.ready this.getMethod this._highlightMenuEntry
             this
 
         # endregion
