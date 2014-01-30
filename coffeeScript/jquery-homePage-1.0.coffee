@@ -72,7 +72,8 @@ this.require [
         initialize: (
             options={}, @_sectionBackgroundColor='white',
             @_oldSectionHeightInPixel=200, @_sectionTopMarginInPixel=0,
-            @_initialContentHeightAdaptionHappens=false
+            @_initialContentHeightAdaptionDone=false,
+            @_initialMenuHightlightDone=false
         ) ->
             ###
                 Initializes the interactive web application.
@@ -178,7 +179,8 @@ this.require [
                             this.$domNodes.navigationButton
                         ).attr 'href'
             this.fireEvent 'switchSection', false, this, window.location.hash
-            this.$domNodes.window.ready this.getMethod this._highlightMenuEntry
+            this.$domNodes.window.ready =>
+                this._highlightMenuEntry() if this._initialMenuHightlightDone
             this
 
         # endregion
@@ -333,7 +335,7 @@ this.require [
 
                 **returns {$.Website}** - Returns the current instance.
             ###
-            if this._initialContentHeightAdaptionHappens
+            if this._initialContentHeightAdaptionDone
                 super()
             this
         _highlightMenuEntry: ->
@@ -345,6 +347,7 @@ this.require [
                 @returns {$.HomePage}        - Returns the current instance.
             ###
             if this._currentMediaQueryMode isnt 'extraSmall'
+                this._initialMenuHightlightDone = true
                 $sectionButton = this.$domNodes.navigationButton.parent(
                     'li'
                 ).filter '.active'
@@ -376,7 +379,7 @@ this.require [
                     this.$domNodes.footer.stop true
                     this.$domNodes.carousel.stop true
                 transitionMethod = 'css'
-                if this._initialContentHeightAdaptionHappens
+                if this._initialContentHeightAdaptionDone
                     transitionMethod = 'animate'
                 # NOTE: If current section is "about-this-website" we place it
                 # in front of last selected section and position footer
@@ -394,8 +397,8 @@ this.require [
                     this._adaptSectionHeight(
                         transitionMethod, newSectionHeightInPixel,
                         $currentSection)
-            if not this._initialContentHeightAdaptionHappens
-                this._initialContentHeightAdaptionHappens = true
+            if not this._initialContentHeightAdaptionDone
+                this._initialContentHeightAdaptionDone = true
                 this._removeLoadingCover()
             this
         _adaptSectionHeight: (
