@@ -206,7 +206,7 @@ this.require [
             this._options.dimensionIndicator.fadeIn.always = =>
                 # Adapt menu highlighter after changing layout and
                 # dimension indicator.
-                this._highlightMenuEntry()
+                this._highlightMenuEntry() if this._initialMenuHightlightDone
             this._options.dimensionIndicator.fadeOut.always = =>
                 this.$domNodes.dimensionIndicator.text(
                     this.stringFormat(
@@ -302,7 +302,7 @@ this.require [
                 this._scrollToTop =>
                     this.$domNodes.carousel.data('Swipe').slide index
             $sectionButton.addClass 'active'
-            this._highlightMenuEntry()
+            this._highlightMenuEntry() if this._initialMenuHightlightDone
         _handleSwitchToAboutThisWebsite: (hash) ->
             ###
                 Switches to about this website section.
