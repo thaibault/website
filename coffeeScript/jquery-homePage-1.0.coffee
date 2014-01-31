@@ -348,19 +348,24 @@ this.require [
                 @returns {$.HomePage}        - Returns the current instance.
             ###
             if this._currentMediaQueryMode isnt 'extraSmall'
-                this._initialMenuHightlightDone = true
                 $sectionButton = this.$domNodes.navigationButton.parent(
                     'li'
                 ).filter '.active'
                 if $sectionButton.position()?.left
                     # TODO
                     console.log 'highlight'
-                    $.extend true, this._options.menuHighlightAnimation,
-                        left: $sectionButton.position().left
-                        width: $sectionButton.width()
-                        duration: this._options.carousel.speed
-                    this.$domNodes.menuHighlighter.stop().show().animate(
-                        this._options.menuHighlightAnimation)
+                    if this._initialMenuHightlightDone
+                        $.extend true, this._options.menuHighlightAnimation,
+                            left: $sectionButton.position().left
+                            width: $sectionButton.width()
+                            duration: this._options.carousel.speed
+                        this.$domNodes.menuHighlighter.stop().show().animate(
+                            this._options.menuHighlightAnimation)
+                    else
+                        this._initialMenuHightlightDone = true
+                        this.$domNodes.menuHighlighter.css
+                            left: $sectionButton.position().left
+                            width: $sectionButton.width()
             this
         _adaptContentHeight: ->
             ###
