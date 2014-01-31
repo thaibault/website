@@ -72,6 +72,7 @@ this.require [
         initialize: (
             options={}, @_sectionBackgroundColor='white',
             @_oldSectionHeightInPixel=200, @_sectionTopMarginInPixel=0,
+            @_initialContentHeightAdaptionDone=false,
             @_initialMenuHightlightDone=false, @_loadingCoverRemoved=false
         ) ->
             ###
@@ -326,7 +327,7 @@ this.require [
             # TODO
             console.log 'startup complete'
             this._highlightMenuEntry()
-        _removeLoadingCover: (initialContentHeightAdaptionDone=false) ->
+        _removeLoadingCover: ->
             ###
                 This method triggers after window is loaded. It overwrites the
                 super method to wait for removing the loading cover until
@@ -334,7 +335,7 @@ this.require [
 
                 **returns {$.Website}** - Returns the current instance.
             ###
-            if(initialContentHeightAdaptionDone and
+            if(this._initialContentHeightAdaptionDone and
                not this._loadingCoverRemoved)
                 this._loadingCoverRemoved = true
                 super()
@@ -405,9 +406,10 @@ this.require [
                     this._adaptSectionHeight(
                         transitionMethod, newSectionHeightInPixel,
                         $currentSection)
-            if not this._initialContentHeightAdaptionDone
-                this._initialContentHeightAdaptionDone = true
-                this._removeLoadingCover(true)
+            this._initialContentHeightAdaptionDone = true
+            if(not this._initialContentHeightAdaptionDone and
+               this._windowLoaded)
+                this._removeLoadingCover()
             this
         _adaptSectionHeight: (
             transitionMethod, newSectionHeightInPixel, $currentSection
