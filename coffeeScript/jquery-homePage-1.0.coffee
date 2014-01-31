@@ -355,12 +355,12 @@ this.require [
             ###
             # TODO
             console.log this._currentMediaQueryMode
-            console.log $sectionButton.position()?.left
             if this._currentMediaQueryMode isnt 'extraSmall'
                 this._initialMenuHightlightDone = true
                 $sectionButton = this.$domNodes.navigationButton.parent(
                     'li'
                 ).filter '.active'
+                console.log $sectionButton.position()?.left
                 if $sectionButton.position()?.left
                     # TODO
                     console.log 'highlight'
