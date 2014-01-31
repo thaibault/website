@@ -137,6 +137,8 @@ this.require [
             $.extend true, options,
                 language:
                     onSwitched: =>
+                        # TODO
+                        console.log 'lang switch'
                         this._highlightMenuEntry()._adaptContentHeight()
                     onSwitch: (oldLanguage, newLanguage) =>
                         # Add language toggle button functionality.
@@ -180,7 +182,8 @@ this.require [
                         ).attr 'href'
             this.fireEvent 'switchSection', false, this, window.location.hash
             this.$domNodes.window.ready =>
-                this._highlightMenuEntry() if this._initialMenuHightlightDone
+                console.log 'window ready'
+                this._highlightMenuEntry()
             this
 
         # endregion
@@ -206,7 +209,9 @@ this.require [
             this._options.dimensionIndicator.fadeIn.always = =>
                 # Adapt menu highlighter after changing layout and
                 # dimension indicator.
-                this._highlightMenuEntry() if this._initialMenuHightlightDone
+                # TODO
+                console.log 'media query change'
+                this._highlightMenuEntry()
             this._options.dimensionIndicator.fadeOut.always = =>
                 this.$domNodes.dimensionIndicator.text(
                     this.stringFormat(
@@ -302,7 +307,9 @@ this.require [
                 this._scrollToTop =>
                     this.$domNodes.carousel.data('Swipe').slide index
             $sectionButton.addClass 'active'
-            this._highlightMenuEntry() if this._initialMenuHightlightDone
+            # TODO
+            console.log 'section switch'
+            this._highlightMenuEntry()
         _handleSwitchToAboutThisWebsite: (hash) ->
             ###
                 Switches to about this website section.
@@ -326,6 +333,8 @@ this.require [
                 **returns {$.Website}** - Returns the current instance.
             ###
             super()
+            # TODO
+            console.log 'startup complete'
             this._highlightMenuEntry()
         _removeLoadingCover: ->
             ###
