@@ -348,7 +348,8 @@ this.require [
 
                 @returns {$.HomePage}        - Returns the current instance.
             ###
-            if this._currentMediaQueryMode isnt 'extraSmall'
+            if(this._currentMediaQueryMode isnt 'extraSmall' and
+               this.windowLoaded)
                 $sectionButton = this.$domNodes.navigationButton.parent(
                     'li'
                 ).filter '.active'
