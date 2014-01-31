@@ -136,8 +136,6 @@ this.require [
             $.extend true, options,
                 language:
                     onSwitched: =>
-                        # TODO
-                        console.log 'lang switch'
                         this._highlightMenuEntry()._adaptContentHeight()
                     onSwitch: (oldLanguage, newLanguage) =>
                         # Add language toggle button functionality.
@@ -205,8 +203,6 @@ this.require [
             this._options.dimensionIndicator.fadeIn.always = =>
                 # Adapt menu highlighter after changing layout and
                 # dimension indicator.
-                # TODO
-                console.log 'media query change'
                 this._highlightMenuEntry()
             this._options.dimensionIndicator.fadeOut.always = =>
                 this.$domNodes.dimensionIndicator.text(
@@ -303,8 +299,6 @@ this.require [
                 this._scrollToTop =>
                     this.$domNodes.carousel.data('Swipe').slide index
             $sectionButton.addClass 'active'
-            # TODO
-            console.log 'section switch'
             this._highlightMenuEntry()
         _handleSwitchToAboutThisWebsite: (hash) ->
             ###
@@ -353,14 +347,11 @@ this.require [
 
                 @returns {$.HomePage}        - Returns the current instance.
             ###
-            # TODO
-            console.log this._currentMediaQueryMode
             if this._currentMediaQueryMode isnt 'extraSmall'
                 this._initialMenuHightlightDone = true
                 $sectionButton = this.$domNodes.navigationButton.parent(
                     'li'
                 ).filter '.active'
-                console.log $sectionButton.position()?.left
                 if $sectionButton.position()?.left
                     # TODO
                     console.log 'highlight'
