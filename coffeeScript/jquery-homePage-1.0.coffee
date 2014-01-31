@@ -73,7 +73,7 @@ this.require [
             options={}, @_sectionBackgroundColor='white',
             @_oldSectionHeightInPixel=200, @_sectionTopMarginInPixel=0,
             @_initialContentHeightAdaptionDone=false,
-            @_initialMenuHightlightDone=false
+            @_initialMenuHightlightDone=false, @_loadingCoverRemoved=false
         ) ->
             ###
                 Initializes the interactive web application.
@@ -182,8 +182,12 @@ this.require [
                         ).attr 'href'
             this.fireEvent 'switchSection', false, this, window.location.hash
             this.$domNodes.window.ready =>
-                console.log 'window ready'
-                this._highlightMenuEntry()
+                # NOTE: Potentially we have to reposition the highlighter after
+                # fonts are loaded complete.
+                if this._initialMenuHightlightDone
+                    # TODO
+                    console.log 'window ready'
+                    this._highlightMenuEntry()
             this
 
         # endregion
@@ -344,7 +348,9 @@ this.require [
 
                 **returns {$.Website}** - Returns the current instance.
             ###
-            if this._initialContentHeightAdaptionDone
+            if(this._initialContentHeightAdaptionDone and
+               not this._loadingCoverRemoved)
+                this._loadingCoverRemoved = true
                 super()
             this
         _highlightMenuEntry: ->
