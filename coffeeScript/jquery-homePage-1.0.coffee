@@ -72,7 +72,6 @@ this.require [
         initialize: (
             options={}, @_sectionBackgroundColor='white',
             @_oldSectionHeightInPixel=200, @_sectionTopMarginInPixel=0,
-            @_initialContentHeightAdaptionDone=false,
             @_initialMenuHightlightDone=false, @_loadingCoverRemoved=false
         ) ->
             ###
@@ -181,9 +180,6 @@ this.require [
                             this.$domNodes.navigationButton
                         ).attr 'href'
             this.fireEvent 'switchSection', false, this, window.location.hash
-            # TODO
-            this.$domNodes.window.ready =>
-                console.log 'window ready'
             this
 
         # endregion
@@ -333,9 +329,10 @@ this.require [
                 **returns {$.Website}** - Returns the current instance.
             ###
             super()
+            # TODO
             console.log 'startup complete'
             this._highlightMenuEntry()
-        _removeLoadingCover: ->
+        _removeLoadingCover: (initialContentHeightAdaptionDone=false) ->
             ###
                 This method triggers after window is loaded. It overwrites the
                 super method to wait for removing the loading cover until
@@ -343,9 +340,8 @@ this.require [
 
                 **returns {$.Website}** - Returns the current instance.
             ###
-            if(this._initialContentHeightAdaptionDone and
+            if(initialContentHeightAdaptionDone and
                not this._loadingCoverRemoved)
-                console.log 'should be after window is loaded!'
                 this._loadingCoverRemoved = true
                 super()
             this
@@ -410,7 +406,7 @@ this.require [
                         $currentSection)
             if not this._initialContentHeightAdaptionDone
                 this._initialContentHeightAdaptionDone = true
-                this._removeLoadingCover()
+                this._removeLoadingCover(true)
             this
         _adaptSectionHeight: (
             transitionMethod, newSectionHeightInPixel, $currentSection
