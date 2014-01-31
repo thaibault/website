@@ -181,13 +181,9 @@ this.require [
                             this.$domNodes.navigationButton
                         ).attr 'href'
             this.fireEvent 'switchSection', false, this, window.location.hash
+            # TODO
             this.$domNodes.window.ready =>
-                # NOTE: Potentially we have to reposition the highlighter after
-                # fonts are loaded complete.
-                if this._initialMenuHightlightDone
-                    # TODO
-                    console.log 'window ready'
-                    this._highlightMenuEntry()
+                console.log 'window ready'
             this
 
         # endregion
@@ -337,7 +333,6 @@ this.require [
                 **returns {$.Website}** - Returns the current instance.
             ###
             super()
-            # TODO
             console.log 'startup complete'
             this._highlightMenuEntry()
         _removeLoadingCover: ->
@@ -350,6 +345,7 @@ this.require [
             ###
             if(this._initialContentHeightAdaptionDone and
                not this._loadingCoverRemoved)
+                console.log 'should be after window is loaded!'
                 this._loadingCoverRemoved = true
                 super()
             this
