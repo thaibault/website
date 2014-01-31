@@ -324,8 +324,6 @@ this.require [
                 **returns {$.Website}** - Returns the current instance.
             ###
             super()
-            # TODO
-            console.log 'startup complete'
             this._highlightMenuEntry()
         _removeLoadingCover: ->
             ###
@@ -354,8 +352,6 @@ this.require [
                     'li'
                 ).filter '.active'
                 if $sectionButton.position()?.left
-                    # TODO
-                    console.log 'highlight'
                     if this._initialMenuHightlightDone
                         $.extend true, this._options.menuHighlightAnimation,
                             left: $sectionButton.position().left
