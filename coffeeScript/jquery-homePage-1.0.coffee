@@ -408,7 +408,7 @@ this.require [
                         $currentSection)
             this._initialContentHeightAdaptionDone = true
             if(not this._initialContentHeightAdaptionDone and
-               this._windowLoaded)
+               this.windowLoaded)
                 this._removeLoadingCover()
             this
         _adaptSectionHeight: (
