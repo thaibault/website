@@ -403,10 +403,9 @@ this.require [
                     this._adaptSectionHeight(
                         transitionMethod, newSectionHeightInPixel,
                         $currentSection)
-            this._initialContentHeightAdaptionDone = true
-            if(not this._initialContentHeightAdaptionDone and
-               this.windowLoaded)
-                this._removeLoadingCover()
+            if not this._initialContentHeightAdaptionDone
+                this._initialContentHeightAdaptionDone = true
+                this._removeLoadingCover() if this.windowLoaded
             this
         _adaptSectionHeight: (
             transitionMethod, newSectionHeightInPixel, $currentSection
