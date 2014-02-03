@@ -43,7 +43,7 @@ Version
 ## do ($=this.jQuery) ->
 this.require.scopeIndicator = 'jQuery.HomePage'
 this.require [
-    'jquery-website-1.0.coffee', ['jQuery.fn.collapse', 'bootstrap-3.0.3']
+    'jquery-website-1.0.coffee', ['jQuery.fn.collapse', 'bootstrap-3.1.0']
     ['jQuery.fn.Swipe', 'jquery-swipe-2.0']],
 ($) ->
 ##
