@@ -137,13 +137,19 @@ this.require [
             $.extend true, options,
                 language:
                     onSwitched: =>
-                        this._highlightMenuEntry()._adaptContentHeight()
+                        # Only adapt menu highlighter if a section is currently
+                        # selected.
+                        this._highlightMenuEntry false
+                        if this.$domNodes.navigationButton.parent(
+                            'li'
+                        ).filter('.active').length
+                            this.$domNodes.menuHighlighter.fadeIn 'fast'
+                        this._adaptContentHeight()
                     onSwitch: (oldLanguage, newLanguage) =>
                         # Add language toggle button functionality.
-                        self = this
+                        this.$domNodes.menuHighlighter.fadeOut 'fast'
                         $("a[href=\"#lang-#{newLanguage}\"]").fadeOut(
                             'fast', ->
-                                self._highlightMenuEntry()._adaptContentHeight()
                                 $(this).attr(
                                     'href', "#lang-#{oldLanguage}"
                                 ).text(oldLanguage.substr 0, 2).fadeIn 'fast'
@@ -205,7 +211,7 @@ this.require [
             this._options.dimensionIndicator.fadeIn.always = =>
                 # Adapt menu highlighter after changing layout and
                 # dimension indicator.
-                this._highlightMenuEntry()
+                this._highlightMenuEntry false
             this._options.dimensionIndicator.fadeOut.always = =>
                 this.$domNodes.dimensionIndicator.text(
                     this.stringFormat(
@@ -339,7 +345,7 @@ this.require [
                 this._loadingCoverRemoved = true
                 super()
             this
-        _highlightMenuEntry: ->
+        _highlightMenuEntry: (transition=true) ->
             ###
                 Highlights current menu entry.
 
@@ -353,7 +359,7 @@ this.require [
                     'li'
                 ).filter '.active'
                 if $sectionButton.position()?.left
-                    if this._initialMenuHightlightDone
+                    if this._initialMenuHightlightDone and transition
                         $.extend true, this._options.menuHighlightAnimation,
                             left: $sectionButton.position().left
                             width: $sectionButton.width()
@@ -362,7 +368,7 @@ this.require [
                             this._options.menuHighlightAnimation)
                     else
                         this._initialMenuHightlightDone = true
-                        this.$domNodes.menuHighlighter.css
+                        this.$domNodes.menuHighlighter.stop().css
                             left: $sectionButton.position().left
                             width: $sectionButton.width()
             this
