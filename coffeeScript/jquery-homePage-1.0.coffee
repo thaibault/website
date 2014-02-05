@@ -143,6 +143,7 @@ this.require [
                         self = this
                         $("a[href=\"#lang-#{newLanguage}\"]").fadeOut(
                             'fast', ->
+                                self._highlightMenuEntry()._adaptContentHeight()
                                 $(this).attr(
                                     'href', "#lang-#{oldLanguage}"
                                 ).text(oldLanguage.substr 0, 2).fadeIn 'fast'
