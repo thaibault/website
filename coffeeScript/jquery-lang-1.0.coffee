@@ -144,18 +144,21 @@ this.require [
 
         # endregion
 
-        switch: (language) ->
+        switch: (language, force=false) ->
             ###
                 Switches the current language to given language. This method is
                 mutual synchronized.
 
                 **language {String}** - New language.
 
+                **force {Boolean}**   - Indicates if the whole dom should be
+                                        checked again current language.
+
                 **returns {$.Lang}**  - Returns the current instance.
             ###
             this.acquireLock this._options.toolsLockDescription, =>
                 language = this._normalizeLanguage language
-                if this.currentLanguage isnt language
+                if force or this.currentLanguage isnt language
                     this.debug 'Switch to "{1}".', language
                     this._switchCurrentLanguageIndicator language
                     this.fireEvent(
