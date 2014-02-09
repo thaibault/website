@@ -328,7 +328,7 @@ this.require [
                 ).length is 0 and self.knownLanguage[$.trim(
                     this.textContent)]?
                 )
-                    self._textNodesWithKnownLanguage
+                    self._addTextNodeToFade $currentDomNode
                     if(self._textNodesWithKnownLanguage\
                         [self.knownLanguage[$.trim(this.textContent)]]?
                     )
@@ -400,6 +400,21 @@ this.require [
                 this._handleLanguageSwitching(
                     this._handleLanguageSwitching, this, language, ensure)
             this
+        _addTextNodeToFade: ($textNode) ->
+            ###
+                Registers a text node to change its content with given
+                replacement.
+
+                **$textNode {$}**    - Text node with content to translate.
+
+                **returns {$.Lang}** - Returns the current instance.
+            ###
+            $parent = $textNode.parent()
+            if this._$domNodeToFade is null
+                this._$domNodeToFade = $parent
+            else
+                this._$domNodeToFade = this._$domNodeToFade.add $parent
+            this
         _registerTextNodeToChange: (
             $currentTextNodeToTranslate, $currentDomNode, match,
             $currentLanguageDomNode
@@ -426,11 +441,7 @@ this.require [
                 **returns {$.Lang}**                 - Returns the current
                                                        instance.
             ###
-            $parent = $currentTextNodeToTranslate.parent()
-            if this._$domNodeToFade is null
-                this._$domNodeToFade = $parent
-            else
-                this._$domNodeToFade = this._$domNodeToFade.add $parent
+            this._addTextNodeToFade $currentTextNodeToTranslate
             if $currentDomNode?
                 this._replacements.push(
                     $textNodeToTranslate: $currentTextNodeToTranslate
