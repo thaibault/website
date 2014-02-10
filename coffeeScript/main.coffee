@@ -37,7 +37,7 @@ this.less =
 
 ## standalone
 ## this.jQuery.noConflict() ($) ->
-##     $.HomePage googleTrackingCode: 'UA-40192634-1', logging: true
+##     $.HomePage googleTrackingCode: 'UA-40192634-1'
 this.require [['jQuery.HomePage', 'jquery-homePage-1.0.coffee']], ($) ->
     ###
         Embed $ and require full compatible to all other JavaScripts. The
@@ -45,5 +45,5 @@ this.require [['jQuery.HomePage', 'jquery-homePage-1.0.coffee']], ($) ->
         when the dom-tree was loaded.
     ###
     $.noConflict() ($) -> $.HomePage
-        googleTrackingCode: 'UA-40192634-1', logging: false
+        googleTrackingCode: 'UA-40192634-1', logging: true
 ##
