@@ -276,6 +276,8 @@ this.require [
                     ).attr 'href'
                     this.debug "Force section \"#{forceSection}\"."
                     return this._onSwitchSection forceSection
+            if not this._initialContentHeightAdaptionDone
+                this._adaptContentHeight()
             super()
 
         # endregion
@@ -386,6 +388,10 @@ this.require [
                 $currentSection)
             if(newSectionHeightInPixel and
                newSectionHeightInPixel isnt this._oldSectionHeightInPixel)
+                this._adaptBackgroundDependentHeight(
+                    newSectionHeightInPixel, $currentSection)
+                newSectionHeightInPixel =
+                this._determineNewSectionHeightInPixel $currentSection
                 this._oldSectionHeightInPixel = newSectionHeightInPixel
                 # First stop currently running animations.
                 if this.startUpAnimationIsComplete
@@ -434,8 +440,8 @@ this.require [
                                                      instance.
             ###
             this.$domNodes.footer.css position: 'relative', top: 0
+            newPseudoCarouselHeightInPixel = newSectionHeightInPixel
             # Make smooth transition till viewport ending.
-            newPseudoSectionHeightInPixel = newSectionHeightInPixel
             if transitionMethod is 'animate'
                 if this.$domNodes.carousel.height() > this.$domNodes.window.height()
                     # If section height is larger than current viewport pre set
@@ -445,22 +451,38 @@ this.require [
                     # If new section height height is larger than current
                     # viewport make the transition till current viewport and
                     # reset after animation ist complete.
-                    newPseudoSectionHeightInPixel = this.$domNodes.window.height()
+                    newPseudoCarouselHeightInPixel = this.$domNodes.window.height()
             this.$domNodes.carousel[transitionMethod] {
-                height: newPseudoSectionHeightInPixel
+                height: newPseudoCarouselHeightInPixel
                 duration: this._options.carousel.speed
             }, always: =>
                 this.$domNodes.carousel.css height: newSectionHeightInPixel
                 # Check if height has changed after adaption.
                 if newSectionHeightInPixel isnt $currentSection.outerHeight()
                     this._adaptContentHeight()
+            this
+        _adaptBackgroundDependentHeight: (
+            newSectionHeightInPixel, $currentSection
+        ) ->
+            ###
+                Adapts the background dependent sections height.
+
+                **newSectionHeightInPixel {Number} - Section height to adapt
+                                                     to.
+
+                **$currentSection {domNode}**      - The current section dom
+                                                     node.
+
+                **returns {$.HomePage}**           - Returns the current
+                                                     instance.
+            ###
             if $.inArray(
                 window.location.hash.substr(1),
                 this._options.backgroundDependentHeightSections
             ) is -1 or this._currentMediaQueryMode is 'extraSmall'
-                this.$domNodes.section.children().stop().css
-                    marginTop: 0
+                this.$domNodes.section.children().css marginTop: 0
             else
+                # Calculate stretched background sections.
                 additionalMarginTopInPixel = 0
                 if(newSectionHeightInPixel >
                    this._options.maximumBackgroundDependentHeight)
@@ -472,9 +494,8 @@ this.require [
                         this._options.maximumBackgroundDependentHeight
                 $currentSection.children().css(
                     height: newSectionHeightInPixel -
-                        this._sectionTopMarginInPixel
-                    duration: this._options.carousel.speed)
-                this.$domNodes.section.children().stop().animate(
+                        this._sectionTopMarginInPixel)
+                this.$domNodes.section.children().css(
                     marginTop: additionalMarginTopInPixel)
             this
         _determineNewSectionHeightInPixel: ($currentSection) ->
