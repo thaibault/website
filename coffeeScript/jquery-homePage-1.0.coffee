@@ -381,44 +381,46 @@ this.require [
                 **returns {$.Swipe}** - Returns the new generated swipe
                                         instance.
             ###
-            $currentSection = this.$domNodes.section.add(
-                this.$domNodes.aboutThisWebsiteSection
-            ).filter ".#{window.location.hash.substr(1)}"
-            newSectionHeightInPixel = this._determineNewSectionHeightInPixel(
-                $currentSection)
-            if(newSectionHeightInPixel and
-               newSectionHeightInPixel isnt this._oldSectionHeightInPixel)
-                this._adaptBackgroundDependentHeight(
-                    newSectionHeightInPixel, $currentSection)
+            if(window.location.hash and
+                $currentSection = this.$domNodes.section.add(
+                    this.$domNodes.aboutThisWebsiteSection
+                ).filter ".#{window.location.hash.substr(1)}"
+            )
                 newSectionHeightInPixel =
                 this._determineNewSectionHeightInPixel $currentSection
-                this._oldSectionHeightInPixel = newSectionHeightInPixel
-                # First stop currently running animations.
-                if this.startUpAnimationIsComplete
-                    this.$domNodes.footer.stop true
-                    this.$domNodes.carousel.stop true
-                transitionMethod = 'css'
-                if this._initialContentHeightAdaptionDone
-                    transitionMethod = 'animate'
-                # NOTE: If current section is "about-this-website" we place it
-                # in front of last selected section and position footer
-                # absolutely.
-                if window.location.hash is '#about-this-website'
-                    # Move footer from last known position.
-                    this.$domNodes.footer.css(
-                        position: 'absolute'
-                        top: this.$domNodes.carousel.height())
-                    this.$domNodes.footer[transitionMethod]
-                        top: newSectionHeightInPixel
-                        duration: this._options.carousel.speed
-                    this.$domNodes.carousel.height newSectionHeightInPixel
-                else
-                    this._adaptSectionHeight(
-                        transitionMethod, newSectionHeightInPixel,
-                        $currentSection)
-            if not this._initialContentHeightAdaptionDone
-                this._initialContentHeightAdaptionDone = true
-                this._removeLoadingCover() if this.windowLoaded
+                if(newSectionHeightInPixel and
+                   newSectionHeightInPixel isnt this._oldSectionHeightInPixel)
+                    this._adaptBackgroundDependentHeight(
+                        newSectionHeightInPixel, $currentSection)
+                    newSectionHeightInPixel =
+                    this._determineNewSectionHeightInPixel $currentSection
+                    this._oldSectionHeightInPixel = newSectionHeightInPixel
+                    # First stop currently running animations.
+                    if this.startUpAnimationIsComplete
+                        this.$domNodes.footer.stop true
+                        this.$domNodes.carousel.stop true
+                    transitionMethod = 'css'
+                    if this._initialContentHeightAdaptionDone
+                        transitionMethod = 'animate'
+                    # NOTE: If current section is "about-this-website" we place
+                    # it in front of last selected section and position footer
+                    # absolutely.
+                    if window.location.hash is '#about-this-website'
+                        # Move footer from last known position.
+                        this.$domNodes.footer.css(
+                            position: 'absolute'
+                            top: this.$domNodes.carousel.height())
+                        this.$domNodes.footer[transitionMethod]
+                            top: newSectionHeightInPixel
+                            duration: this._options.carousel.speed
+                        this.$domNodes.carousel.height newSectionHeightInPixel
+                    else
+                        this._adaptSectionHeight(
+                            transitionMethod, newSectionHeightInPixel,
+                            $currentSection)
+                if not this._initialContentHeightAdaptionDone
+                    this._initialContentHeightAdaptionDone = true
+                    this._removeLoadingCover() if this.windowLoaded
             this
         _adaptSectionHeight: (
             transitionMethod, newSectionHeightInPixel, $currentSection
