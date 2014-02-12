@@ -126,7 +126,6 @@ this.require [
                     continuous: false
                     disableScroll: false
                     stopPropagation: false
-                language: default: 'deDE'
                 dimensionIndicator:
                     fadeIn: duration: 'fast'
                     fadeOut: duration: 'fast'

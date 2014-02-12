@@ -494,7 +494,7 @@ endregion -->
         <div class="start-up-animation-number-<% START_UP_ANIMATION_NUMBER %> footer">
             <footer>
                 <p>
-                    &copy; 2013 Torben Sickert &middot; <a href="#about-this-website">Impressum<!--<% ALTERNATE_LANGUAGE %>:about this website--></a>
+                    &copy; 2013 Torben Sickert &middot; <a href="#about-this-website">about this website<!--<% ALTERNATE_LANGUAGE %>:Impressum--></a>
                 </p>
             </footer>
         </div>
