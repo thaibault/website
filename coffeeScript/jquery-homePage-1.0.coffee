@@ -134,26 +134,35 @@ this.require [
                     fadeIn: duraction: 'fast'
                     fadeOut: duration: 'fast'
             # Adapt menu highlighter after language switching.
-            $.extend true, options,
-                language:
-                    onSwitched: =>
-                        # Only adapt menu highlighter if a section is currently
-                        # selected.
-                        this._highlightMenuEntry false
-                        if this.$domNodes.navigationButton.parent(
+            self = this
+            initialOnSwitchedCallback = options.language?.onSwitched?
+            initialOnSwitchCallback = options.language?.onSwitch?
+            $.extend true, options, language:
+                onSwitched: ->
+                    if(not initialOnSwitchedCallback or
+                        initialOnSwitchedCallback.call(this, arguments
+                        ) isnt false
+                    )
+                        # Only adapt menu highlighter if a section is
+                        # currently selected.
+                        self._highlightMenuEntry false
+                        if self.$domNodes.navigationButton.parent(
                             'li'
                         ).filter('.active').length
-                            this.$domNodes.menuHighlighter.fadeIn 'fast'
-                        this._adaptContentHeight()
-                    onSwitch: (oldLanguage, newLanguage) =>
+                            self.$domNodes.menuHighlighter.fadeIn 'fast'
+                        self._adaptContentHeight()
+                onSwitch: (oldLanguage, newLanguage) ->
+                    if(not initialOnSwitchCallback or
+                        initialOnSwitchCallback.call(this, arguments
+                        ) isnt false
+                    )
                         # Add language toggle button functionality.
-                        this.$domNodes.menuHighlighter.fadeOut 'fast'
+                        self.$domNodes.menuHighlighter.fadeOut 'fast'
                         $("a[href=\"#lang-#{newLanguage}\"]").fadeOut(
                             'fast', ->
                                 $(this).attr(
                                     'href', "#lang-#{oldLanguage}"
-                                ).text(oldLanguage.substr 0, 2).fadeIn 'fast'
-                        )
+                                ).text(oldLanguage.substr 0, 2).fadeIn 'fast')
                         # Adapt curriculum vitae link.
                         $curriculumVitaeLink = $(
                             'a[href*="curriculumVitae"].hidden-xs')
@@ -164,17 +173,14 @@ this.require [
                                 oldLanguage.length
                             ) + newLanguage.substr(0, 2).toUpperCase() +
                             newLanguage.substr(2).toLowerCase() +
-                            linkPath.substr(linkPath.lastIndexOf '.'))
+                            linkPath.substr linkPath.lastIndexOf '.')
             super options
-            this.$domNodes.aboutThisWebsiteSection.hide().css(
-                'position', 'absolute')
             # Disable tab functionality to prevent inconsistent carousel
             # states.
             this.on this.$domNodes.parent, 'keydown', (event) =>
                 event.preventDefault() if event.keyCode is this.keyCode.TAB
-            this.on this.$domNodes.window, 'resize', this.getMethod(
-                this._adaptContentHeight)
-            this._initializeSwipe()
+            this.$domNodes.aboutThisWebsiteSection.hide().css(
+                'position', 'absolute')
             if not window.location.hash
                 if this._currentMediaQueryMode is 'extraSmall'
                     window.location.hash = 'contact'
@@ -185,7 +191,10 @@ this.require [
                         ).filter('.active').children(
                             this.$domNodes.navigationButton
                         ).attr 'href'
+            this._initializeSwipe()
             this.fireEvent 'switchSection', false, this, window.location.hash
+            this.on this.$domNodes.window, 'resize', this.getMethod(
+                this._adaptContentHeight)
             this
 
         # endregion
@@ -254,6 +263,8 @@ this.require [
                     $sectionButton = $button.parent 'li'
                     if not $sectionButton.length
                         $sectionButton = $button
+                    # NOTE: We need both brackets to follow the right logical
+                    # execution order.
                     if $button.attr('href') is hash or (
                         hash is '#' and ((
                             this._currentMediaQueryMode is 'extraSmall' and
@@ -381,20 +392,19 @@ this.require [
                 **returns {$.Swipe}** - Returns the new generated swipe
                                         instance.
             ###
-            if(window.location.hash and
-                $currentSection = this.$domNodes.section.add(
+            if(window.location.hash and $currentSection =
+                this.$domNodes.section.add(
                     this.$domNodes.aboutThisWebsiteSection
-                ).filter ".#{window.location.hash.substr(1)}"
+                ).filter ".#{window.location.hash.substr 1}"
             )
                 newSectionHeightInPixel =
-                this._determineNewSectionHeightInPixel $currentSection
+                this._determineSectionHeightInPixelForFooterPositioning $currentSection
                 if(newSectionHeightInPixel and
                    newSectionHeightInPixel isnt this._oldSectionHeightInPixel)
+                    this._oldSectionHeightInPixel = newSectionHeightInPixel
+                    newSectionHeightInPixel =
                     this._adaptBackgroundDependentHeight(
                         newSectionHeightInPixel, $currentSection)
-                    newSectionHeightInPixel =
-                    this._determineNewSectionHeightInPixel $currentSection
-                    this._oldSectionHeightInPixel = newSectionHeightInPixel
                     # First stop currently running animations.
                     if this.startUpAnimationIsComplete
                         this.$domNodes.footer.stop true
@@ -475,32 +485,43 @@ this.require [
                 **$currentSection {domNode}**      - The current section dom
                                                      node.
 
-                **returns {$.HomePage}**           - Returns the current
-                                                     instance.
+                **returns {Number}**               - Returns the new calculated
+                                                     section height in pixel.
             ###
-            if $.inArray(
+            if this._currentMediaQueryMode is 'extraSmall' or $.inArray(
                 window.location.hash.substr(1),
                 this._options.backgroundDependentHeightSections
-            ) is -1 or this._currentMediaQueryMode is 'extraSmall'
+            ) is -1
                 this.$domNodes.section.children().css marginTop: 0
-            else
-                # Calculate stretched background sections.
-                additionalMarginTopInPixel = 0
-                if(newSectionHeightInPixel >
-                   this._options.maximumBackgroundDependentHeight)
-                    additionalMarginTopInPixel = (
-                        newSectionHeightInPixel -
-                        this._options.maximumBackgroundDependentHeight
-                    ) / 2
-                    newSectionHeightInPixel =
-                        this._options.maximumBackgroundDependentHeight
-                $currentSection.children().css(
-                    height: newSectionHeightInPixel -
-                        this._sectionTopMarginInPixel)
-                this.$domNodes.section.children().css(
-                    marginTop: additionalMarginTopInPixel)
-            this
-        _determineNewSectionHeightInPixel: ($currentSection) ->
+                return this._determineSectionHeightInPixelForFooterPositioning(
+                    $currentSection)
+            # Calculate stretched background sections.
+            additionalMarginTopInPixel = 0
+            if(newSectionHeightInPixel >
+               this._options.maximumBackgroundDependentHeight)
+                # Calculate the vertical centering margins.
+                additionalMarginTopInPixel = (
+                    newSectionHeightInPixel -
+                    this._options.maximumBackgroundDependentHeight
+                ) / 2
+                newSectionHeightInPixel =
+                    this._options.maximumBackgroundDependentHeight
+            $currentSection.children().css(
+                height: newSectionHeightInPixel -
+                    this._sectionTopMarginInPixel)
+            this.$domNodes.section.children().css(
+                marginTop: additionalMarginTopInPixel)
+            window.Math.max(
+                this._determineSectionHeightInPixelForFooterPositioning(
+                    $currentSection
+                ), window.parseInt(
+                    this.$domNodes.section.children().outerHeight()
+                ) + window.parseInt(this.$domNodes.section.children().css(
+                    'marginTop'
+                )) + this._sectionTopMarginInPixel)
+        _determineSectionHeightInPixelForFooterPositioning: (
+            $currentSection
+        ) ->
             ###
                 Determines the new section height in pixel after webview size
                 or section has changed.
@@ -523,6 +544,8 @@ this.require [
                    footerHeightInPercent and newSectionHeightInPixel <
                    this.$domNodes.window.height() -
                    this.$domNodes.footer.height())
+                    # If we have high screens we will let the footer stay on
+                    # the bottom.
                     return this.$domNodes.window.height() -
                         this.$domNodes.footer.height()
                 return newSectionHeightInPixel
