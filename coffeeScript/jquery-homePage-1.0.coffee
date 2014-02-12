@@ -344,7 +344,7 @@ this.require [
                 **returns {$.Website}** - Returns the current instance.
             ###
             super()
-            this._highlightMenuEntry()
+            this._highlightMenuEntry()._adaptContentHeight()
         _removeLoadingCover: ->
             ###
                 This method triggers after window is loaded. It overwrites the
@@ -392,13 +392,15 @@ this.require [
                 **returns {$.Swipe}** - Returns the new generated swipe
                                         instance.
             ###
-            if(window.location.hash and $currentSection =
+            if(window.location.hash and ($currentSection =
                 this.$domNodes.section.add(
                     this.$domNodes.aboutThisWebsiteSection
-                ).filter ".#{window.location.hash.substr 1}"
+                ).filter(".#{window.location.hash.substr 1}")) and
+                $currentSection.length
             )
                 newSectionHeightInPixel =
-                this._determineSectionHeightInPixelForFooterPositioning $currentSection
+                this._determineSectionHeightInPixelForFooterPositioning(
+                    $currentSection)
                 if(newSectionHeightInPixel and
                    newSectionHeightInPixel isnt this._oldSectionHeightInPixel)
                     this._oldSectionHeightInPixel = newSectionHeightInPixel
@@ -455,15 +457,18 @@ this.require [
             newPseudoCarouselHeightInPixel = newSectionHeightInPixel
             # Make smooth transition till viewport ending.
             if transitionMethod is 'animate'
-                if this.$domNodes.carousel.height() > this.$domNodes.window.height()
+                if(this.$domNodes.carousel.height() >
+                   this.$domNodes.window.height())
                     # If section height is larger than current viewport pre set
                     # height to current viewport.
-                    this.$domNodes.carousel.css height: this.$domNodes.window.height()
+                    this.$domNodes.carousel.css(
+                        height: this.$domNodes.window.height())
                 if newSectionHeightInPixel > this.$domNodes.window.height()
                     # If new section height height is larger than current
                     # viewport make the transition till current viewport and
                     # reset after animation ist complete.
-                    newPseudoCarouselHeightInPixel = this.$domNodes.window.height()
+                    newPseudoCarouselHeightInPixel =
+                        this.$domNodes.window.height()
             this.$domNodes.carousel[transitionMethod] {
                 height: newPseudoCarouselHeightInPixel
                 duration: this._options.carousel.speed
