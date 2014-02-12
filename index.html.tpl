@@ -28,8 +28,8 @@ endregion -->
 
 <% # region runtime
 
-<% DEFAULT_LANGUAGE = 'deDE'
-<% ALTERNATE_LANGUAGE = 'enUS'
+<% DEFAULT_LANGUAGE = 'enUS'
+<% ALTERNATE_LANGUAGE = 'deDE'
 <% START_UP_ANIMATION_NUMBER = 1
 
 <% # endregion
@@ -435,13 +435,13 @@ endregion -->
                                         <% section[2][DEFAULT_LANGUAGE] %>
                                         <!--<% ALTERNATE_LANGUAGE %>:<% section[2][ALTERNATE_LANGUAGE] %>-->
                                         <% if name == 'about':
-                                            <a href="<% LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE %>" target="_blank" class="visible-xs">Lebenslauf (Deutsch)<!--<% ALTERNATE_LANGUAGE %>:Curriculum Vitae (German)--></a>
-                                            <a href="<% LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE %>" target="_blank" class="visible-xs">Lebenslauf (Englisch)<!--<% ALTERNATE_LANGUAGE %>:Curriculum Vitae (English)--></a>
-                                            <a href="<% LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE %>" target="_blank" class="hidden-xs">Lebenslauf<!--<% ALTERNATE_LANGUAGE %>:Curriculum Vitae--></a>
+                                            <a href="<% LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE %>" target="_blank" class="visible-xs">Curriculum Vitae (German)<!--<% ALTERNATE_LANGUAGE %>:Lebenslauf (Deutsch)--></a>
+                                            <a href="<% LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE %>" target="_blank" class="visible-xs">Curriculum Vitae (English)<!--<% ALTERNATE_LANGUAGE %>:Lebenslauf (Englisch)--></a>
+                                            <a href="<% LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE %>" target="_blank" class="hidden-xs">Curriculum Vitae<!--<% ALTERNATE_LANGUAGE %>:Lebenslauf--></a>
                                             <a href="<% LINK_V_CARD %>" target="_blank">vCard</a>
                                     </p>
                                 <% if name == 'contact':
-                                    <a href="tel:004917610248185">Tel.<!--<% ALTERNATE_LANGUAGE %>:Phone--> +49 (0) 176 <span>/</span> 10 248 185</a>
+                                    <a href="tel:004917610248185">Phone<!--<% ALTERNATE_LANGUAGE %>:Tel.--> +49 (0) 176 <span>/</span> 10 248 185</a>
                                     <% for name, link in SOCIAL_MEDIA:
                                         <% if '@' in link:
                                             <% link = 'mailto:%s' % link
@@ -462,20 +462,20 @@ endregion -->
                 <div class="container">
                     <% include
                     <h1 id="about-this-website">
-                        Impressum
-                        <!--<% ALTERNATE_LANGUAGE %>:About this website-->
+                        About this website
+                        <!--<% ALTERNATE_LANGUAGE %>:Impressum-->
                     </h1>
-                    <h2>Kontakt<!--<% ALTERNATE_LANGUAGE %>:Contact--></h2>
+                    <h2>Contact<!--<% ALTERNATE_LANGUAGE %>:Kontakt--></h2>
                     <div>
-                        Anbieter von<!--<% ALTERNATE_LANGUAGE %>:Provider of--> <a href="<% SOCIAL_MEDIA[-1][1] %>"><% SOCIAL_MEDIA[-1][1] %></a>:<br />
+                        Provider of<!--<% ALTERNATE_LANGUAGE %>:Anbieter von--> <a href="<% SOCIAL_MEDIA[-1][1] %>"><% SOCIAL_MEDIA[-1][1] %></a>:<br />
                         Torben Sickert<br />
                         Christoph-Mang-Str. 14<br />
                         79100 Freiburg<br />
-                        <a href="tel:004917610248185">Tel.<!--<% ALTERNATE_LANGUAGE %>:Phone-->: +49 (0) 176 <span>/</span> 10 248 185</a><br />
+                        <a href="tel:004917610248185">Phone<!--<% ALTERNATE_LANGUAGE %>:Tel.-->: +49 (0) 176 <span>/</span> 10 248 185</a><br />
                         Email: <a href="mailto:#"><% SOCIAL_MEDIA[0][1] %></a><br />
                         Website<!--<% ALTERNATE_LANGUAGE %>:Webseite-->: <a href="<% SOCIAL_MEDIA[-1][1] %>"><% SOCIAL_MEDIA[-1][1] %></a><br />
                         <br />
-                        <a href="<% LINK_PUBLIC_SSH_KEY %>" target="_blank">öffentlicher SSH-Schlüssel<!--<% ALTERNATE_LANGUAGE %>:public ssh key--></a>
+                        <a href="<% LINK_PUBLIC_SSH_KEY %>" target="_blank">public ssh key<!--<% ALTERNATE_LANGUAGE %>:öffentlicher SSH-Schlüssel--></a>
                     </div>
                     <% include('aboutThisWebsite')
                 </div>
@@ -494,7 +494,7 @@ endregion -->
         <div class="start-up-animation-number-<% START_UP_ANIMATION_NUMBER %> footer">
             <footer>
                 <p>
-                    &copy; 2013 Torben Sickert &middot; <a href="#about-this-website">about this website<!--<% ALTERNATE_LANGUAGE %>:impressum--></a>
+                    &copy; 2013 Torben Sickert &middot; <a href="#about-this-website">Impressum<!--<% ALTERNATE_LANGUAGE %>:about this website--></a>
                 </p>
             </footer>
         </div>
