@@ -134,45 +134,56 @@ this.require [
                     fadeOut: duration: 'fast'
             # Adapt menu highlighter after language switching.
             self = this
-            initialOnSwitchedCallback = options.language?.onSwitched?
-            initialOnSwitchCallback = options.language?.onSwitch?
+            initialOnSwitchedCallback = options.language?.onSwitched
+            initialOnSwitchCallback = options.language?.onSwitch
+            initialLanguageFadeOutAlwaysCallback = options.language?.textNodeParent?.fadeOut?.always
             $.extend true, options, language:
                 onSwitched: ->
-                    if(not initialOnSwitchedCallback or
-                        initialOnSwitchedCallback.call(this, arguments
-                        ) isnt false
-                    )
-                        # Only adapt menu highlighter if a section is
-                        # currently selected.
-                        self._highlightMenuEntry false
-                        if self.$domNodes.navigationButton.parent(
-                            'li'
-                        ).filter('.active').length
-                            self.$domNodes.menuHighlighter.fadeIn 'fast'
-                        self._adaptContentHeight()
+                    result = not initialOnSwitchedCallback or (
+                        initialOnSwitchedCallback?.apply this, arguments)
+                    # Only adapt menu highlighter if a section is
+                    # currently selected.
+                    self._highlightMenuEntry false
+                    fadeInOptions = self.languageHandler?._options
+                                        .textNodeParent.fadeIn or {}
+                    if self.$domNodes.navigationButton.parent('li').filter(
+                        '.active'
+                    ).length
+                        self.$domNodes.menuHighlighter.fadeIn fadeInOptions
+                    self._adaptContentHeight()
+                    result
                 onSwitch: (oldLanguage, newLanguage) ->
-                    if(not initialOnSwitchCallback or
-                        initialOnSwitchCallback.call(this, arguments
-                        ) isnt false
-                    )
-                        # Add language toggle button functionality.
-                        self.$domNodes.menuHighlighter.fadeOut 'fast'
-                        $("a[href=\"#lang-#{newLanguage}\"]").fadeOut(
-                            'fast', ->
-                                $(this).attr(
-                                    'href', "#lang-#{oldLanguage}"
-                                ).text(oldLanguage.substr 0, 2).fadeIn 'fast')
-                        # Adapt curriculum vitae link.
-                        $curriculumVitaeLink = $(
-                            'a[href*="curriculumVitae"].hidden-xs')
-                        linkPath = $curriculumVitaeLink.attr 'href'
-                        $curriculumVitaeLink.attr(
-                            'href', linkPath.substr(
-                                0, linkPath.lastIndexOf('.') -
-                                oldLanguage.length
-                            ) + newLanguage.substr(0, 2).toUpperCase() +
-                            newLanguage.substr(2).toLowerCase() +
-                            linkPath.substr linkPath.lastIndexOf '.')
+                    result = not initialOnSwitchCallback or (
+                        initialOnSwitchCallback?.apply this, arguments)
+                    # Add language toggle button functionality.
+                    fadeOutOptions = self.languageHandler?._options
+                                         .textNodeParent.fadeOut or {}
+                    fadeInOptions = self.languageHandler?._options
+                                        .textNodeParent.fadeIn or {}
+                    self.$domNodes.menuHighlighter.fadeOut fadeOutOptions
+                    fadeOutOptions = $.extend true, {}, fadeOutOptions, {
+                        always: ->
+                            result =
+                            initialLanguageFadeOutAlwaysCallback?.apply(
+                                this, arguments)
+                            $(this).attr(
+                                'href', "#lang-#{oldLanguage}"
+                            ).text(oldLanguage.substr 0, 2).fadeIn(
+                                fadeInOptions)
+                            result
+                    }
+                    $("a[href=\"#lang-#{newLanguage}\"]").fadeOut fadeOutOptions
+                    # Adapt curriculum vitae link.
+                    $curriculumVitaeLink = $(
+                        'a[href*="curriculumVitae"].hidden-xs')
+                    linkPath = $curriculumVitaeLink.attr 'href'
+                    $curriculumVitaeLink.attr(
+                        'href', linkPath.substr(
+                            0, linkPath.lastIndexOf('.') - oldLanguage.length
+                        ) + newLanguage.substr(0, 2).toUpperCase() +
+                        newLanguage.substr(2).toLowerCase() +
+                        linkPath.substr linkPath.lastIndexOf '.')
+                    result
             super options
             # Disable tab functionality to prevent inconsistent carousel
             # states.
@@ -329,7 +340,8 @@ this.require [
                 **returns {$.Website}** - Returns the current instance.
             ###
             this.debug "Switch to section \"#{window.location.hash}\"."
-            this.$domNodes.menuHighlighter.hide()
+            this.$domNodes.menuHighlighter.fadeOut(
+                this._options.aboutThisWebsiteSection.fadeOut)
             this._scrollToTop()
             this.$domNodes.aboutThisWebsiteSection.fadeIn(
                 this._options.aboutThisWebsiteSection.fadeIn)
@@ -376,11 +388,14 @@ this.require [
                             left: $sectionButton.position().left
                             width: $sectionButton.width()
                             duration: this._options.carousel.speed
-                        this.$domNodes.menuHighlighter.stop().show().animate(
-                            this._options.menuHighlightAnimation)
+                        this.$domNodes.menuHighlighter.stop().fadeIn(
+                            this._options.aboutThisWebsiteSection.fadeIn
+                        ).animate this._options.menuHighlightAnimation
                     else
                         this._initialMenuHightlightDone = true
-                        this.$domNodes.menuHighlighter.stop().css
+                        this.$domNodes.menuHighlighter.stop().fadeIn(
+                            this._options.aboutThisWebsiteSection.fadeIn
+                        ).css
                             left: $sectionButton.position().left
                             width: $sectionButton.width()
             this
