@@ -324,15 +324,15 @@ this.require [
             this.debug "Switch to section \"#{hash}\"."
             # Swipe in endless cycle if we get a direction.
             index = direction if direction
+            $sectionButton.addClass 'active'
             if this._viewportIsOnTop
                 this.$domNodes.carousel.data('Swipe').slide index
                 this._adaptContentHeight()
-            else
-                this._scrollToTop =>
-                    this.$domNodes.carousel.data('Swipe').slide index
-                    this._adaptContentHeight()
-            $sectionButton.addClass 'active'
-            this._highlightMenuEntry()
+                return this._highlightMenuEntry()
+            this._scrollToTop =>
+                this.$domNodes.carousel.data('Swipe').slide index
+                this._adaptContentHeight()
+                this._highlightMenuEntry()
         _handleSwitchToAboutThisWebsite: ->
             ###
                 Switches to about this website section.
