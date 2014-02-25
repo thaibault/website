@@ -89,7 +89,7 @@ endregion -->
 <%                   'Implementation and optimization of applications for the '
 <%                   'web; desktop and server', 'quality Assurance',
 <%                   'High Reliability Applications', 'Test-driven Design',
-<%                   '(Web)programming', 'Usabillity',
+<%                   '(Web)programming', 'Usability',
 <%                   'Web and search engine optimization',
 <%                   'administering servers on Linux, Mac or Windows',
 <%                   'Intranet Solutions', 'Community Portal solution',

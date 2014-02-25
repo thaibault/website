@@ -135,15 +135,17 @@ this.require [
             # Adapt menu highlighter after language switching.
             self = this
             initialOnSwitchedCallback = options.language?.onSwitched
+            initialOnEnsuredCallback = options.language?.onEnsureded
             initialOnSwitchCallback = options.language?.onSwitch
+            initialOnEnsureCallback = options.language?.onEnsure
             initialLanguageFadeOutAlwaysCallback =
                 options.language?.textNodeParent?.fadeOut?.always
             $.extend true, options, language:
                 onSwitched: ->
                     result = not initialOnSwitchedCallback or (
                         initialOnSwitchedCallback?.apply this, arguments)
-                    # Only adapt menu highlighter if a section is
-                    # currently selected.
+                    # Only adapt menu highlighter if a section is currently
+                    # selected.
                     self._highlightMenuEntry false
                     fadeInOptions = self.languageHandler?._options
                                         .textNodeParent.fadeIn or {}
@@ -151,6 +153,14 @@ this.require [
                         '.active'
                     ).length
                         self.$domNodes.menuHighlighter.fadeIn fadeInOptions
+                    self._adaptContentHeight()
+                    result
+                onEnsured: ->
+                    result = not initialOnEnsuredCallback or (
+                        initialOnEnsuredCallback?.apply this, arguments)
+                    # Only adapt menu highlighter if a section is currently
+                    # selected.
+                    self._highlightMenuEntry false
                     self._adaptContentHeight()
                     result
                 onSwitch: (oldLanguage, newLanguage) ->
@@ -173,17 +183,19 @@ this.require [
                                 fadeInOptions)
                             result
                     }
-                    $("a[href=\"#lang-#{newLanguage}\"]").fadeOut fadeOutOptions
+                    $("a[href=\"#lang-#{newLanguage}\"]").fadeOut(
+                        fadeOutOptions)
                     # Adapt curriculum vitae link.
-                    $curriculumVitaeLink = $(
-                        'a[href*="curriculumVitae"].hidden-xs')
-                    linkPath = $curriculumVitaeLink.attr 'href'
-                    $curriculumVitaeLink.attr(
-                        'href', linkPath.substr(
-                            0, linkPath.lastIndexOf('.') - oldLanguage.length
-                        ) + newLanguage.substr(0, 2).toUpperCase() +
-                        newLanguage.substr(2).toLowerCase() +
-                        linkPath.substr linkPath.lastIndexOf '.')
+                    self._adaptCurriculumVitaeLink oldLanguage, newLanguage
+                    result
+                onEnsure: (oldLanguage, newLanguage) ->
+                    result = not initialOnEnsureCallback or (
+                        initialOnEnsureCallback?.apply this, arguments)
+                    # Add language toggle button functionality.
+                    $("a[href=\"#lang-#{newLanguage}\"]").attr(
+                        'href', "#lang-#{oldLanguage}"
+                    ).text(oldLanguage.substr 0, 2)
+                    self._adaptCurriculumVitaeLink oldLanguage, newLanguage
                     result
             super options
             # Disable tab functionality to prevent inconsistent carousel
@@ -216,6 +228,20 @@ this.require [
 
         # region event
 
+        _adaptCurriculumVitaeLink: (oldLanguage, newLanguage) ->
+            ###
+                Switches the language dependent curriculum vitae links.
+
+                **returns {$.HomePage}** - Returns the current instance.
+            ###
+            $curriculumVitaeLink = $ 'a[href*="curriculumVitae"].hidden-xs'
+            linkPath = $curriculumVitaeLink.attr 'href'
+            $curriculumVitaeLink.attr 'href', linkPath.substr(
+                0, linkPath.lastIndexOf('.') - oldLanguage.length
+            ) + newLanguage.substr(0, 2).toUpperCase() + newLanguage.substr(
+                2
+            ).toLowerCase() + linkPath.substr linkPath.lastIndexOf '.'
+            this
         _onChangeMediaQueryMode: (oldMode, newMode) ->
             ###
                 This method triggers if the responsive design switches to
