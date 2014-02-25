@@ -136,7 +136,8 @@ this.require [
             self = this
             initialOnSwitchedCallback = options.language?.onSwitched
             initialOnSwitchCallback = options.language?.onSwitch
-            initialLanguageFadeOutAlwaysCallback = options.language?.textNodeParent?.fadeOut?.always
+            initialLanguageFadeOutAlwaysCallback =
+                options.language?.textNodeParent?.fadeOut?.always
             $.extend true, options, language:
                 onSwitched: ->
                     result = not initialOnSwitchedCallback or (
