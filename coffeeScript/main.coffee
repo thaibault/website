@@ -1,13 +1,6 @@
 #!/usr/bin/env coffee
 # -*- coding: utf-8 -*-
 
-# region vim modline
-
-# vim: set tabstop=4 shiftwidth=4 expandtab:
-# vim: foldmethod=marker foldmarker=region,endregion:
-
-# endregion
-
 # region header
 
 # Copyright Torben Sickert 16.12.2012
@@ -47,3 +40,10 @@ this.require [['jQuery.HomePage', 'jquery-homePage-1.0.coffee']], ($) ->
     $.noConflict() ($) -> $.HomePage
         googleTrackingCode: 'UA-40192634-1', logging: true
 ##
+
+# region vim modline
+
+# vim: set tabstop=4 shiftwidth=4 expandtab:
+# vim: foldmethod=marker foldmarker=region,endregion:
+
+# endregion

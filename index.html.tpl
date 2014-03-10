@@ -1,11 +1,7 @@
-<!-- region vim modline
+<!doctype html>
+<!-- -*- coding: utf-8 -*- -->
 
-vim: set tabstop=4 shiftwidth=4 expandtab:
-vim: foldmethod=marker foldmarker=region,endregion:
-
-endregion
-
-sync with
+<!-- sync with
     skillKeywordsEnglish.txt
     skillKeywordsGerman.txt
     projectDescriptionEnglish.txt
@@ -282,8 +278,6 @@ endregion -->
 
 <% # endregion
 
-<!doctype html>
-
 <!-- region browser sniffing -->
 
 <html lang="en">
@@ -507,3 +501,10 @@ endregion -->
 <!-- endregion -->
 
 </html>
+
+<!-- region vim modline
+
+vim: set tabstop=4 shiftwidth=4 expandtab:
+vim: foldmethod=marker foldmarker=region,endregion:
+
+endregion -->

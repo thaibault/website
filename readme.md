@@ -1,9 +1,5 @@
-<!-- region vim modline
-
-vim: set tabstop=4 shiftwidth=4 expandtab:
-vim: foldmethod=marker foldmarker=region,endregion:
-
-endregion -->
+<!-- #!/usr/bin/env markdown
+-*- coding: utf-8 -*- -->
 
 <!-- region header
 
@@ -22,3 +18,10 @@ Use case
 
 Here's my website development hosted (no security by obscurity :-)). See the
 gh-pages branch for the page load optimized version.
+
+<!-- region vim modline
+
+vim: set tabstop=4 shiftwidth=4 expandtab:
+vim: foldmethod=marker foldmarker=region,endregion:
+
+endregion -->
