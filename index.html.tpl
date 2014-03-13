@@ -105,8 +105,8 @@ endregion -->
 <%                   'Object-Oriented Programming',
 <%                   'Aspect-Oriented Programming')),
 <%              ('database', (
-<%                   'Object-Relational Modeling (ORM) with SQLAlchemy, POD '
-<%                   'or Propel', 'SQL')),
+<%                   'Object-Relational Modeling (ORM) with SQLAlchemy or '
+                     'Django ORM', 'SQL')),
 <%              ('versioning', ('GIT', 'SVN', 'CVS', 'Mercurial')),
 <%              ('programing Language', (
 <%                   'Python', 'CoffeeScript', 'JavaScript', 'C++', 'C',
@@ -140,8 +140,8 @@ endregion -->
 <%                  'Objektorientierte Programmierung',
 <%                  'Aspektorientierte Programmierung')),
 <%              ('Datenbanken', (
-<%                  'Relationale-Objekt-Modelierung (ORM) mit sqlAlchemy; '
-<%                  'POD oder Propel', 'SQL')),
+<%                  'Relationale-Objekt-Modelierung (ORM) mit sqlAlchemy oder '
+<%                  'Django ORM', 'SQL')),
 <%              ('Versionierung', ('GIT', 'SVN', 'CVS', 'Mercurial')),
 <%              ('Programmiersprachen', (
 <%                  'Python', 'CoffeeScript', 'JavaScript', 'C++', 'C',
