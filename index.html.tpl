@@ -106,7 +106,7 @@ endregion -->
 <%                   'Aspect-Oriented Programming')),
 <%              ('database', (
 <%                   'Object-Relational Modeling (ORM) with SQLAlchemy or '
-                     'Django ORM', 'SQL')),
+<%                   'Django ORM', 'SQL')),
 <%              ('versioning', ('GIT', 'SVN', 'CVS', 'Mercurial')),
 <%              ('programing Language', (
 <%                   'Python', 'CoffeeScript', 'JavaScript', 'C++', 'C',
