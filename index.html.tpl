@@ -411,11 +411,11 @@ endregion -->
                                             <dd>
                                                 <% project_description[DEFAULT_LANGUAGE][0] %>
                                                 <!--<% ALTERNATE_LANGUAGE %>:<% project_description[ALTERNATE_LANGUAGE][0] %>-->
-                                                <% if len(project_description[DEFAULT_LANGUAGE]) > 1:
+                                                <% if length(project_description[DEFAULT_LANGUAGE]) > 1:
                                                     <ul>
                                                         <% for index, element in enumerate(project_description[DEFAULT_LANGUAGE][1]):
                                                             <li>
-                                                                <% if is_type_of(element, tuple):
+                                                                <% if is_type_of(element, Tuple):
                                                                     <a href="<% element[1] %>"><% element[0] %></a>
                                                                 <% else:
                                                                     <% element %>
