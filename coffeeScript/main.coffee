@@ -31,12 +31,13 @@ this.less =
 ## standalone
 ## this.jQuery.noConflict() ($) ->
 ##     $.HomePage googleTrackingCode: 'UA-40192634-1'
-this.require [['jQuery.HomePage', 'jquery-homePage-1.0.coffee']], ($) ->
+this.require [['jQuery.HomePage', 'jquery-homePage-1.0.coffee']], ($) =>
     ###
         Embed $ and require full compatible to all other JavaScripts. The
         global scope is clean after this sequence. The given function is called
         when the dom-tree was loaded.
     ###
+    this.require.clearOldPathReminder()
     $.noConflict() ($) -> $.HomePage
         googleTrackingCode: 'UA-40192634-1', logging: true
 ##
