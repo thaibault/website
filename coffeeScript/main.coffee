@@ -13,8 +13,24 @@
 
 # endregion
 
-## standalone
-##
+###
+    Simple notation for the deployment script to know which dependencies are
+    needed.
+
+    require [
+        'jQuery/jquery-2.1.0', 'jQuery/jquery-observeHashChange-1.0'
+        'jQuery/jquery-scrollTo-1.4.3.1', 'jQuery/jquery-spin-1.2.8'
+        'bootstrap-3.1.0', 'jquery-swipe-2.0'
+
+        'jQuery/jquery-tools-1.0.coffee', 'jQuery/jquery-lang-1.0.coffee'
+        'jQuery/jquery-website-1.0.coffee'
+        'jQuery/jquery-homePage-1.0.coffee'
+    ]
+###
+
+# # standalone
+# # this.jQuery.noConflict() ($) ->
+# #     $.HomePage googleTrackingCode: 'UA-40192634-1'
 this.less =
     env: 'development'
     async: false
@@ -26,11 +42,9 @@ this.less =
     rootpath: ''
     logLevel: 0
     #sourceMap: true
-##
-
-## standalone
-## this.jQuery.noConflict() ($) ->
-##     $.HomePage googleTrackingCode: 'UA-40192634-1'
+this.require.localStoragePathReminderPrefix = 'resolvedDependency'
+this.require().basePath.coffee.push "#{this.require.basePath.coffee[0]}jQuery/"
+this.require.basePath.js.push "#{this.require.basePath.js[0]}jQuery/"
 this.require [['jQuery.HomePage', 'jquery-homePage-1.0.coffee']], ($) =>
     ###
         Embed $ and require full compatible to all other JavaScripts. The
@@ -40,7 +54,7 @@ this.require [['jQuery.HomePage', 'jquery-homePage-1.0.coffee']], ($) =>
     this.require.clearOldPathReminder()
     $.noConflict() ($) -> $.HomePage
         googleTrackingCode: 'UA-40192634-1', logging: true
-##
+# #
 
 # region vim modline
 
