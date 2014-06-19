@@ -42,7 +42,7 @@ this.less =
     rootpath: ''
     logLevel: 0
     #sourceMap: true
-this.require.localStoragePathReminderPrefix = 'resolvedDependency'
+this.require.localStoragePathReminderPrefix = 'websiteResolvedDependency'
 this.require().basePath.coffee.push "#{this.require.basePath.coffee[0]}jQuery/"
 this.require.basePath.js.push "#{this.require.basePath.js[0]}jQuery/"
 this.require [['jQuery.HomePage', 'jquery-homePage-1.0.coffee']], ($) =>
