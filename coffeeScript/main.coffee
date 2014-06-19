@@ -53,7 +53,8 @@ this.require [['jQuery.HomePage', 'jquery-homePage-1.0.coffee']], ($) =>
     ###
     this.require.clearOldPathReminder()
     $.noConflict() ($) -> $.HomePage
-        googleTrackingCode: 'UA-40192634-1', logging: true
+        googleTrackingCode: 'UA-40192634-1', logging: true, language:
+            allowedLanguages: ['enUS', 'deDE']
 # #
 
 # region vim modline
