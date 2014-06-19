@@ -55,6 +55,7 @@ this.require [['jQuery.HomePage', 'jquery-homePage-1.0.coffee']], ($) =>
     $.noConflict() ($) -> $.HomePage
         googleTrackingCode: 'UA-40192634-1', logging: true, language:
             allowedLanguages: ['enUS', 'deDE']
+            sessionDescription: 'website{1}'
 # #
 
 # region vim modline
