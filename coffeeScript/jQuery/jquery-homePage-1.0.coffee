@@ -228,12 +228,22 @@ this.require [
                 **returns {$.HomePage}** - Returns the current instance.
             ###
             $curriculumVitaeLink = $ 'a[href*="curriculumVitae"].hidden-xs'
-            linkPath = $curriculumVitaeLink.attr 'href'
-            $curriculumVitaeLink.attr 'href', linkPath.substr(
-                0, linkPath.lastIndexOf('.') - oldLanguage.length
-            ) + newLanguage.substr(0, 2).toUpperCase() + newLanguage.substr(
-                2
-            ).toLowerCase() + linkPath.substr linkPath.lastIndexOf '.'
+            if not $curriculumVitaeLink.data(oldLanguage)?
+                $curriculumVitaeLink.data(
+                    oldLanguage, $curriculumVitaeLink.attr 'href')
+            if not $curriculumVitaeLink.data(newLanguage)?
+                $curriculumVitaeLink.data(
+                    newLanguage, $curriculumVitaeLink.data(oldLanguage).substr(
+                        0, $curriculumVitaeLink.data(oldLanguage).lastIndexOf(
+                            '.'
+                        ) - oldLanguage.length
+                    ) + newLanguage.substr(0, 2).toUpperCase(
+                    ) + newLanguage.substr(2).toLowerCase(
+                    ) + $curriculumVitaeLink.data(oldLanguage).substr(
+                        $curriculumVitaeLink.data(oldLanguage).lastIndexOf '.'
+                    ))
+            $curriculumVitaeLink.attr 'href', $curriculumVitaeLink.data(
+                newLanguage)
             this
         _onChangeMediaQueryMode: (oldMode, newMode) ->
             ###
