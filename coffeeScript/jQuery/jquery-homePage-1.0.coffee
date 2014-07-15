@@ -87,28 +87,28 @@ this.require [
                 maximumBackgroundDependentHeight: 750
                 menuHighlightAnimation: easing: 'linear'
                 domNode:
-                    carousel: '> div.carousel.slide'
-                    section: '> div.carousel.slide > div.carousel-inner > ' +
+                    carousel: 'div.carousel.slide'
+                    section: 'div.carousel.slide > div.carousel-inner > ' +
                              'div.item'
                     logoLink:
-                        '> div.navbar-wrapper > div.container > ' +
+                        'div.navbar-wrapper > div.container > ' +
                         'div.navbar.navbar-inverse > div.container > ' +
                         'div.navbar-header > a.navbar-brand'
                     navigationButton:
-                        '> div.navbar-wrapper > div.container > ' +
+                        'div.navbar-wrapper > div.container > ' +
                         'div.navbar.navbar-inverse > div.container > ' +
                         'div.navbar-collapse > ul.nav.navbar-nav li a'
                     aboutThisWebsiteButton:
-                        '> div.footer > footer > p > ' +
+                        'div.footer > footer > p > ' +
                         'a[href="#about-this-website"]'
-                    aboutThisWebsiteSection: '> div.about-this-website'
+                    aboutThisWebsiteSection: 'div.about-this-website'
                     dimensionIndicator:
-                        '> div.navbar-wrapper > div.container > ' +
+                        'div.navbar-wrapper > div.container > ' +
                         'div.navbar.navbar-inverse > div.container > ' +
                         'div.navbar-header > a.navbar-brand > ' +
                         'span.dimension-indicator'
-                    footer: '> div.footer'
-                    menuHighlighter: '> div.navbar-wrapper > div.container ' +
+                    footer: 'div.footer'
+                    menuHighlighter: 'div.navbar-wrapper > div.container ' +
                                      '> div.navbar.navbar-inverse ' +
                                      '> div.container > div.navbar-collapse ' +
                                      '> div.navbar-highlighter'
