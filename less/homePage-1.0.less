@@ -36,183 +36,162 @@ This library written by Torben Sickert stand under a creative commons naming
 /* region cascading style sheets */
 
 body.home-page {
-    div.website {
+    #website > .bootstrap;
+    .website;
 
     /* region global */
 
-        color: @fontColor;
-        background-color: @defaultColor;
-        font-size: 16px;
-        overflow-y: scroll;
+    color: @fontColor;
+    background-color: @defaultColor;
+    font-size: 16px;
+    overflow-y: scroll;
 
         /* region link */
 
-        a {
-            color: @linkColor;
-            font-size: 18px;
-        }
-        a:hover { color: @linkHoverColor; }
-        a:focus { outline: none; }
-        /* Scroll to top button. */
-        > a[href="#top"] {
-            position: fixed;
-            z-index: 1;
-            bottom: @footerMarginInPixel;
-            right: 60px;
-        }
-        /* Show phone links as normal text. */
-        a[href^="tel:"] { color: @defaultColor; }
-        a[href^="tel:"]:hover { color: @defaultColor; }
+    a {
+        color: @linkColor;
+        font-size: 18px;
+    }
+    a:hover { color: @linkHoverColor; }
+    a:focus { outline: none; }
+    /* Scroll to top button. */
+    > a[href="#top"] {
+        position: fixed;
+        z-index: 1;
+        bottom: @footerMarginInPixel;
+        right: 60px;
+    }
+    /* Show phone links as normal text. */
+    a[href^="tel:"] { color: @defaultColor; }
+    a[href^="tel:"]:hover { color: @defaultColor; }
 
         /* endregion */
 
         /* region list */
 
-        ul, ol { margin-top: 15px; }
+    ul, ol { margin-top: 15px; }
 
         /* endregion */
 
-        /*
-            Makes space before each anchor to have enough space for a fixed
-            positioned header menu.
-        */
-        h1:before {
-            content: "";
-            display: block;
-            height: @topMargin;
-        }
-
-        /* Shows the current dimension mode. */
-        > div.navbar-wrapper > div.container > div.navbar.navbar-inverse
-        > div.container > div.navbar-header > a.navbar-brand
-        > span.dimension-indicator { font-size: 13px; }
-        strong { font-weight: normal; }
+    /*
+        Makes space before each anchor to have enough space for a fixed
+        positioned header menu.
+    */
+    h1:before {
+        content: "";
+        display: block;
+        height: @topMargin;
+    }
+    /* Shows the current dimension mode. */
+    > div.navbar-wrapper > div.container > div.navbar.navbar-inverse
+    > div.container > div.navbar-header > a.navbar-brand
+    > span.dimension-indicator { font-size: 13px; }
+    strong { font-weight: normal; }
 
         /* region bootstrap resets */
 
-        .navbar-inverse .navbar-collapse {
-            border: 0;
+    .navbar-inverse .navbar-collapse {
+        border: 0;
+        box-shadow: none;
+    }
+    div.navbar-collapse.collapse > ul {
+        > li > a {
+            text-shadow: 0 0 0 rgba(0, 0, 0, 0);
+        }
+        > li.active > a {
+            background: 0;
             box-shadow: none;
         }
-        div.navbar-collapse.collapse > ul {
-            > li > a {
-                text-shadow: 0 0 0 rgba(0, 0, 0, 0);
-            }
-            > li.active > a {
-                background: 0;
-                box-shadow: none;
-            }
-        }
+    }
 
         /* endregion */
-
-    /* endregion */
-
-    /* region window loading cover */
-
-        /* Overlay the whole page till everything is loaded completely. */
-        > div.window-loading-cover {
-            background-color: @backgroundColor;
-            /* always cover full viewport */
-            position: fixed;
-            height: 100%;
-            width: 100%;
-            z-index: 2;
-
-            /* Positioning the loading spinner in center in the loading overlay. */
-            > div {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-            }
-        }
 
     /* endregion */
 
     /* region navigation bar */
 
-        /* Normal Wrapper for the main navigation bar. Scrolls with viewport. */
-        > div.navbar-wrapper {
-            #generic > .opacity(0.95);
+    /* Normal Wrapper for the main navigation bar. Scrolls with viewport. */
+    > div.navbar-wrapper {
+        #generic > .opacity(0.95);
 
-            position: fixed;
-            z-index: 1;
+        position: fixed;
+        z-index: 1;
 
-            > div.container > div.navbar.navbar-inverse.navbar-static-top {
-                border: 0;
-            }
+        > div.container > div.navbar.navbar-inverse.navbar-static-top {
+            border: 0;
         }
+    }
 
     /* endregion */
 
     /* region carousel */
 
-        /* Main section slider wrapper. */
-        > div.carousel.slide {
-            background-color: @backgroundColor;
-            overflow: hidden;
-            position: relative;
-            min-height: @minimumContentHeightInPixel;
+    /* Main section slider wrapper. */
+    > div.carousel.slide {
+        background-color: @backgroundColor;
+        overflow: hidden;
+        position: relative;
+        min-height: @minimumContentHeightInPixel;
 
-            /* Wraps the visible area from whole wide slider wrapper. */
-            > div.carousel-inner {
+        /* Wraps the visible area from whole wide slider wrapper. */
+        > div.carousel-inner {
+            overflow-y: visible;
+
+            /* Contains each section content. */
+            > div.item {
                 overflow-y: visible;
+                float: left;
+                width: 100%;
+                /*
+                    Set a default content height. Could by vary depending on
+                    currently activated section.
+                */
+                min-height: @minimumContentHeightInPixel;
+                /*
+                    Disable bootstraps startup effect and overwrite with swipe
+                    preferred effect properties.
+                */
+                display: inline;
+                -webkit-transition: 1000ms;
+                        transition: 1000ms;
 
-                /* Contains each section content. */
-                > div.item {
-                    overflow-y: visible;
-                    float: left;
-                    width: 100%;
-                    /*
-                        Set a default content height. Could by vary depending on
-                        currently activated section.
-                    */
+                /*
+                    Position section dependent background image absolute to
+                    fill out the whole viewport.
+                */
+                > div[class^="carousel-image-"] {
+                    top: 0;
+                    left: 0;
+                    min-width: 100%;
                     min-height: @minimumContentHeightInPixel;
-                    /*
-                        Disable bootstraps startup effect and overwrite with swipe
-                        preferred effect properties.
-                    */
-                    display: inline;
-                    -webkit-transition: 1000ms;
-                            transition: 1000ms;
 
-                    /*
-                        Position section dependent background image absolute to
-                        fill out the whole viewport.
-                    */
-                    > div[class^="carousel-image-"] {
-                        top: 0;
-                        left: 0;
-                        min-width: 100%;
-                        min-height: @minimumContentHeightInPixel;
+                    /* Contains each section text content. */
+                    > div.container {
+                        z-index: 0;
+                        color: @defaultColor;
+                        text-shadow: none;
+                        text-align: center;
 
-                        /* Contains each section text content. */
-                        > div.container {
-                            z-index: 0;
+                        > dl.dl-horizontal > dd { text-align: left; }
+                        > a[href^="tel:"] {
                             color: @defaultColor;
-                            text-shadow: none;
-                            text-align: center;
+                            display: block;
+                            font-size: 25px;
+                            line-height: 1.4;
+                            margin-bottom: 10px;
+                        }
+                        > div.container {
+                            border: 1px solid red;
+                            width: 800px;
+                            text-align: left;
 
-                            > dl.dl-horizontal > dd { text-align: left; }
-                            > a[href^="tel:"] {
-                                color: @defaultColor;
-                                display: block;
-                                font-size: 25px;
-                                line-height: 1.4;
-                                margin-bottom: 10px;
-                            }
-                            > div.container {
-                                border: 1px solid red;
-                                width: 800px;
-                                text-align: left;
-
-                                > div { border: 1px solid blue; }
-                            }
+                            > div { border: 1px solid blue; }
                         }
                     }
                 }
             }
         }
+    }
 
     /* endregion */
 
@@ -220,29 +199,29 @@ body.home-page {
 
         /* region contact */
 
-        /* Show big dark social media icons. */
-        > div.carousel.slide > div.carousel-inner > div.item.contact
-        > div[class^="carousel-image-"] > div.container {
-            > a.glyphicon-social {
-                font-size: 32px;
-                color: @defaultColor;
-                letter-spacing: 10px;
-            }
-            > a.glyphicon-social:hover { color: @linkHoverColor; }
+    /* Show big dark social media icons. */
+    > div.carousel.slide > div.carousel-inner > div.item.contact
+    > div[class^="carousel-image-"] > div.container {
+        > a.glyphicon-social {
+            font-size: 32px;
+            color: @defaultColor;
+            letter-spacing: 10px;
         }
+        > a.glyphicon-social:hover { color: @linkHoverColor; }
+    }
 
         /* endregion */
 
         /* region about this web site */
 
-        /* Wraps the legal notice content. */
-        div.about-this-website {
-            min-height: @minimumContentHeightInPixel;
-            background-color: @backgroundColor;
-            top: 0;
-            left: 0;
-            width: 100%;
-        }
+    /* Wraps the legal notice content. */
+    div.about-this-website {
+        min-height: @minimumContentHeightInPixel;
+        background-color: @backgroundColor;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
 
         /* endregion */
 
@@ -250,20 +229,20 @@ body.home-page {
 
     /* region footer */
 
-        /* Centered footer */
-        > div.footer {
-            width: 100%;
+    /* Centered footer */
+    > div.footer {
+        width: 100%;
 
-            > footer {
-                text-align: center;
+        > footer {
+            text-align: center;
 
-                > p {
-                    padding-top: @footerMarginInPixel;
-                    padding-bottom: @footerMarginInPixel;
-                    margin: 0;
-                }
+            > p {
+                padding-top: @footerMarginInPixel;
+                padding-bottom: @footerMarginInPixel;
+                margin: 0;
             }
         }
+    }
 
     /* endregion
 
@@ -275,8 +254,8 @@ body.home-page {
 
                 /* region buttons */
 
-        /* Smaller devices have usually a touch interface for scrolling. */
-        > a[href="#top"] { visibility: hidden; }
+    /* Smaller devices have usually a touch interface for scrolling. */
+    > a[href="#top"] { visibility: hidden; }
 
                 /* endregion */
 
@@ -284,63 +263,63 @@ body.home-page {
 
             /* region navigation bar */
 
-        /* Normal Wrapper for the main navigation bar. Scrolls with viewport. */
-        > div.navbar-wrapper {
-            top: 0;
-            width: 100%;
+    /* Normal Wrapper for the main navigation bar. Scrolls with viewport. */
+    > div.navbar-wrapper {
+        top: 0;
+        width: 100%;
 
-            > div.container {
-                padding: 0;
+        > div.container {
+            padding: 0;
 
-                > div.navbar.navbar-inverse {
-                    margin-bottom: 0px;
+            > div.navbar.navbar-inverse {
+                margin-bottom: 0px;
 
-                    > div.container {
-                        > div.navbar-header {
-                            > a.navbar-brand {
-                                max-width: 219px;
-                                height: 50px;
+                > div.container {
+                    > div.navbar-header {
+                        > a.navbar-brand {
+                            max-width: 219px;
+                            height: 50px;
 
-                                > span.dimension-indicator { visibility: hidden; }
-                            }
-                            /* Position language link. */
-                            > a[href^="#lang-"] {
-                                position: absolute;
-                                top: 14px;
-                                right: 70px;
-                            }
+                            > span.dimension-indicator { visibility: hidden; }
                         }
-                        > div.navbar-collapse {
-                            > div.navbar-highlighter { visibility: hidden; }
-                            > ul.nav.navbar-nav {
-                                margin-top: 10px;
-                                margin-bottom: 10px;
-                            }
+                        /* Position language link. */
+                        > a[href^="#lang-"] {
+                            position: absolute;
+                            top: 14px;
+                            right: 70px;
+                        }
+                    }
+                    > div.navbar-collapse {
+                        > div.navbar-highlighter { visibility: hidden; }
+                        > ul.nav.navbar-nav {
+                            margin-top: 10px;
+                            margin-bottom: 10px;
                         }
                     }
                 }
             }
         }
+    }
 
             /* endregion */
 
             /* region carousel */
 
-        /* Define main content size. */
-        > div.carousel.slide > div.carousel-inner > div.item {
-            /* Don't show any background image in smartphone mode. */
-            div.backstretch { display: none; }
-            > div[class^="carousel-image-"] > div.container {
-                padding-bottom: 15px;
-                max-width: 540px;
+    /* Define main content size. */
+    > div.carousel.slide > div.carousel-inner > div.item {
+        /* Don't show any background image in smartphone mode. */
+        div.backstretch { display: none; }
+        > div[class^="carousel-image-"] > div.container {
+            padding-bottom: 15px;
+            max-width: 540px;
 
-                > h1 { font-size: 38px; }
-                > p {
-                    font-size: 19px;
-                    line-height: 1.4;
-                }
+            > h1 { font-size: 38px; }
+            > p {
+                font-size: 19px;
+                line-height: 1.4;
             }
         }
+    }
 
             /* endregion */
 
@@ -348,28 +327,28 @@ body.home-page {
 
                 /* region about */
 
-        > div.carousel.slide > div.carousel-inner > div.item
-        > div[class^="carousel-image-about"] > div.container {
-            padding-top: 90px;
+    > div.carousel.slide > div.carousel-inner > div.item
+    > div[class^="carousel-image-about"] > div.container {
+        padding-top: 90px;
 
-            > h1#about { margin-top: -@topMargin;}
-            > p.lead > a:first-child { margin-top: 35px; }
-        }
+        > h1#about { margin-top: -@topMargin;}
+        > p.lead > a:first-child { margin-top: 35px; }
+    }
 
                 /* endregion */
 
                 /* region about this web site */
 
-        > div.about-this-website {
-            color: @defaultColor;
-            padding-bottom: 15px;
+    > div.about-this-website {
+        color: @defaultColor;
+        padding-bottom: 15px;
 
-            /* Wraps the text content, positions space around them. */
-            > div.container { margin-left: 10%; }
-            > div[class^="carousel-image-"] > div.container > h1 {
-                font-size: 38px;
-            }
+        /* Wraps the text content, positions space around them. */
+        > div.container { margin-left: 10%; }
+        > div[class^="carousel-image-"] > div.container > h1 {
+            font-size: 38px;
         }
+    }
 
                 /* endregion */
 
@@ -379,26 +358,26 @@ body.home-page {
 
         /* region extra small */
 
-        @media (min-width: 400px) {
+    @media (min-width: 400px) {
 
             /* region navigation bar */
 
-            /* Show current dimension mode in indicator dom node. */
-            > div.navbar-wrapper > div.container > div.navbar.navbar-inverse
-            > div.container > div.navbar-header > a.navbar-brand {
-                max-width: 238px;
+        /* Show current dimension mode in indicator dom node. */
+        > div.navbar-wrapper > div.container > div.navbar.navbar-inverse
+        > div.container > div.navbar-header > a.navbar-brand {
+            max-width: 238px;
 
-                > span.dimension-indicator { visibility: visible; }
-            }
+            > span.dimension-indicator { visibility: visible; }
+        }
 
             /* endregion */
 
             /* region carousel */
 
-            > div.carousel.slide > div.carousel-inner > div.item
-            > div[class^="carousel-image-"] > div.container {
-                padding-bottom: 25px;
-            }
+        > div.carousel.slide > div.carousel-inner > div.item
+        > div[class^="carousel-image-"] > div.container {
+            padding-bottom: 25px;
+        }
 
             /* endregion */
 
@@ -406,15 +385,15 @@ body.home-page {
 
                 /* region about this website */
 
-            > div.about-this-website { padding-bottom: 25px; }
+        > div.about-this-website { padding-bottom: 25px; }
 
                 /* endregion */
 
                 /* region about */
 
-            > div.carousel.slide > div.carousel-inner > div.item
-            > div[class^="carousel-image-about"] > div.container > p.lead
-            > a:first-child { margin-top: 50px; }
+        > div.carousel.slide > div.carousel-inner > div.item
+        > div[class^="carousel-image-about"] > div.container > p.lead
+        > a:first-child { margin-top: 50px; }
 
                 /* endregion */
 
@@ -424,14 +403,14 @@ body.home-page {
 
         /* region small */
 
-            @media (min-width: @minimumSmallWidthInPixel) {
+        @media (min-width: @minimumSmallWidthInPixel) {
 
             /* region global */
 
                 /* region buttons */
 
-                /* Bigger devices get a scroll top button. */
-                > a[href="#top"] { visibility: visible; }
+            /* Bigger devices get a scroll top button. */
+            > a[href="#top"] { visibility: visible; }
 
                 /* endregion */
 
@@ -439,149 +418,140 @@ body.home-page {
 
             /* region navigation bar */
 
-                /*
-                    Normal Wrapper for the main navigation bar. Scrolls with
-                    viewport.
-                */
-                > div.navbar-wrapper > div.container {
-                    max-width: 550px;
+            /*
+                Normal Wrapper for the main navigation bar. Scrolls with
+                viewport.
+            */
+            > div.navbar-wrapper > div.container {
+                max-width: 550px;
 
-                    > div.navbar.navbar-inverse {
-                        background: @backgroundColor;
+                > div.navbar.navbar-inverse {
+                    background: @backgroundColor;
 
-                        > div.container {
-                            /* Position language link. */
-                            > div.navbar-header {
-                                > button.navbar-toggle {
-                                    display: none !important;
-                                }
-                                > a[href^="#lang-"] {
-                                    position: absolute;
-                                    right: 10px;
-                                }
-                                > a.navbar-brand {
-                                    color: @menuColor;
-                                    padding-right: 30px;
-                                }
-                                > a.navbar-brand:hover,
-                                > a.navbar-brand:focus { color: @menuHoverColor; }
+                    > div.container {
+                        /* Position language link. */
+                        > div.navbar-header {
+                            > button.navbar-toggle {
+                                display: none !important;
                             }
-                            > div.navbar-collapse {
-                                display: inline;
+                            > a[href^="#lang-"] {
+                                position: absolute;
+                                right: 10px;
+                            }
+                            > a.navbar-brand {
+                                color: @menuColor;
+                                padding-right: 30px;
+                            }
+                            > a.navbar-brand:hover,
+                            > a.navbar-brand:focus { color: @menuHoverColor; }
+                        }
+                        > div.navbar-collapse {
+                            display: inline;
 
-                                > div.navbar-highlighter {
-                                    position: absolute;
-                                    left: 197px;
-                                    visibility: visible;
-                                    border-top: 2px solid @linkColor;
-                                    height: 50px;
-                                    width: 119px;
-                                    background-color: #eee;
-                                }
-                                > ul.nav.navbar-nav {
-                                    margin: 0;
+                            > div.navbar-highlighter {
+                                position: absolute;
+                                left: 197px;
+                                visibility: visible;
+                                border-top: 2px solid @linkColor;
+                                height: 50px;
+                                width: 119px;
+                                background-color: #eee;
+                            }
+                            > ul.nav.navbar-nav {
+                                margin: 0;
 
-                                    /*
-                                        Bring menu items to same height as
-                                        navigation bar branding.
-                                    */
-                                    > li {
-                                        > a {
-                                            line-height: 22px;
-                                            color: @menuColor;
-                                        }
-                                        > a:hover, a:focus {
-                                            background-color: transparent;
-                                            color: @menuHoverColor;
-                                        }
+                                /*
+                                    Bring menu items to same height as
+                                    navigation bar branding.
+                                */
+                                > li {
+                                    > a {
+                                        line-height: 22px;
+                                        color: @menuColor;
                                     }
-                                    > li.active > a:hover,
-                                    > li.active > a:focus,
-                                    > li.active > a {
+                                    > a:hover, a:focus {
                                         background-color: transparent;
                                         color: @menuHoverColor;
                                     }
+                                }
+                                > li.active > a:hover,
+                                > li.active > a:focus,
+                                > li.active > a {
+                                    background-color: transparent;
+                                    color: @menuHoverColor;
                                 }
                             }
                         }
                     }
                 }
+            }
 
             /* endregion */
 
             /* region carousel */
 
-                > div.carousel.slide > div.carousel-inner > div.item {
-                    /* Show any background image on higher resolutions. */
-                    > div.backstretch { display: block; }
-                    /* Bump up size of carousel content. */
-                    > div[class^="carousel-image-"] {
-                        background-repeat: no-repeat;
-                        background-size: auto 100%;
-                        background-position: center;
+            > div.carousel.slide > div.carousel-inner > div.item {
+                /* Show any background image on higher resolutions. */
+                > div.backstretch { display: block; }
+                /* Bump up size of carousel content. */
+                > div[class^="carousel-image-"] {
+                    background-repeat: no-repeat;
+                    background-size: auto 100%;
+                    background-position: center;
 
-                        > div.container {
-                            padding-top: 0;
-                            padding-bottom: 50px;
-                            max-width: 600px;
+                    > div.container {
+                        padding-top: 0;
+                        padding-bottom: 50px;
+                        max-width: 600px;
 
-                            > h1 { font-size: 72px; }
-                            > p.lead {
-                                font-size: 25px;
-                                line-height: 1.4;
-                                margin-top: 10px;
-                            }
+                        > h1 { font-size: 72px; }
+                        > p.lead {
+                            font-size: 25px;
+                            line-height: 1.4;
+                            margin-top: 10px;
                         }
                     }
-                    /* Show background images on bigger devices. */
-                    > div.carousel-image-about {
-                        background-image: url('@{imagePath}carousel/about.jpg');
-                    }
-                    /*> div.carousel-image-contact {
-                        background-image: url('@{imagePath}carousel/contact.jpg');
-                    }
-                    > div.carousel-image-references {
-                        background-image: url('@{imagePath}carousel/references.jpg');
-                    }
-                    > div.carousel-image-skills {
-                        background-image: url('@{imagePath}carousel/skills.jpg');
-                    }*/
                 }
+                /* Show background images on bigger devices. */
+                > div.carousel-image-about {
+                    background-image: url('@{imagePath}carousel/about.jpg');
+                }
+            }
 
             /* endregion */
 
             /* region section */
 
-                > div.about-this-website {
-                    padding-bottom: 50px;
+            > div.about-this-website {
+                padding-bottom: 50px;
 
-                    > div[class^="carousel-image-"] > div.container {
-                        width: 608px;
+                > div[class^="carousel-image-"] > div.container {
+                    width: 608px;
 
-                        > h1 { font-size: 72px; }
-                    }
+                    > h1 { font-size: 72px; }
                 }
-                > div.carousel.slide > div.carousel-inner > div.item {
-                    > div[class="carousel-image-about"] > div.container {
-                        position: relative;
-                        margin-top: @topMargin;
+            }
+            > div.carousel.slide > div.carousel-inner > div.item {
+                > div[class="carousel-image-about"] > div.container {
+                    position: relative;
+                    margin-top: @topMargin;
 
-                        > p.lead {
-                            position: absolute;
-                            right: -38px;
-                            width: 300px;
-                            text-align: right;
+                    > p.lead {
+                        position: absolute;
+                        right: -38px;
+                        width: 300px;
+                        text-align: right;
 
-                            > a {
-                                display: block;
-                                margin-top: 30px;
-                            }
+                        > a {
+                            display: block;
+                            margin-top: 30px;
                         }
                     }
-                    > div[class="carousel-image-work"] > div.container > p {
-                        margin-top: 25px;
-                    }
                 }
+                > div[class="carousel-image-work"] > div.container > p {
+                    margin-top: 25px;
+                }
+            }
 
             /* endregion */
 
@@ -589,35 +559,35 @@ body.home-page {
 
         /* region medium */
 
-                @media (min-width: @minimumMediumWidthInPixel) {
+            @media (min-width: @minimumMediumWidthInPixel) {
 
             /* region navigation bar */
 
-                    /*
-                        Normal Wrapper for the main navigation bar. Scrolls with
-                        viewport.
-                    */
-                    > div.navbar-wrapper > div.container { max-width: 600px; }
+                /*
+                    Normal Wrapper for the main navigation bar. Scrolls with
+                    viewport.
+                */
+                > div.navbar-wrapper > div.container { max-width: 600px; }
 
             /* endregion */
 
             /* region carousel */
 
-                    > div.carousel.slide > div.carousel-inner > div.item {
-                        > div[class^="carousel-image-"] > div.container {
-                            max-width: 810px;
+                > div.carousel.slide > div.carousel-inner > div.item {
+                    > div[class^="carousel-image-"] > div.container {
+                        max-width: 810px;
 
-                            > dl.dl-horizontal {
-                                > dt { width: 286px; }
-                                > dd {
-                                    margin-top: 15px;
-                                    margin-left: 335px;
-                                }
+                        > dl.dl-horizontal {
+                            > dt { width: 286px; }
+                            > dd {
+                                margin-top: 15px;
+                                margin-left: 335px;
                             }
                         }
-                        > div[class="carousel-image-about"] > div.container 
-                        > p.lead { right: 0; }
                     }
+                    > div[class="carousel-image-about"] > div.container 
+                    > p.lead { right: 0; }
+                }
 
             /* endregion */
 
@@ -629,7 +599,6 @@ body.home-page {
 
     /* endregion */
 
-    }
 }
 
 /* endregion */
