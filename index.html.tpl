@@ -325,8 +325,8 @@ endregion -->
 
 <!-- region body -->
 
-    <body class="home-page website-hidden-on-javascript-enabled">
-        <div class="window-loading-cover website-visible-on-javascript-enabled">
+    <body class="home-page tools-hidden-on-javascript-enabled">
+        <div class="window-loading-cover tools-visible-on-javascript-enabled">
             <div></div>
         </div>
 
@@ -342,17 +342,17 @@ endregion -->
                                 <span class="dimension-indicator"></span>
                             </a>
                             <% START_UP_ANIMATION_NUMBER += 1
-                            <a href="#lang-<% ALTERNATE_LANGUAGE %>" class="website-visible-on-javascript-enabled start-up-animation-number-<% START_UP_ANIMATION_NUMBER %>">
+                            <a href="#lang-<% ALTERNATE_LANGUAGE %>" class="tools-visible-on-javascript-enabled start-up-animation-number-<% START_UP_ANIMATION_NUMBER %>">
                                 <% ALTERNATE_LANGUAGE[:-2] %>
                             </a>
-                            <button type="button" class="navbar-toggle website-visible-on-javascript-enabled" data-toggle="collapse" data-target=".navbar-collapse">
+                            <button type="button" class="navbar-toggle tools-visible-on-javascript-enabled" data-toggle="collapse" data-target=".navbar-collapse">
                                 <% for section in range(3):
                                     <span class="icon-bar"></span>
                                 <% end
                             </button>
                         </div>
                         <div class="navbar-collapse collapse">
-                            <div class="navbar-highlighter website-visible-on-javascript-enabled"></div>
+                            <div class="navbar-highlighter tools-visible-on-javascript-enabled"></div>
                             <ul class="nav navbar-nav">
                                 <% for name, section in SECTIONS:
                                     <% if section[0]:
