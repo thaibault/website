@@ -126,7 +126,7 @@ endregion -->
 <%                  'Administrierung für Server auf Linux Mac oder Windows',
 <%                  'Intranet Lösungen', 'Community Portallösung',
 <%                  'Barrierefreiheit', 'Rich Internet Applications',
-<%                  'Content Management Systeme', 'Web 2.0')),
+<%                  'Content Management Systeme', 'Web 2.0', 'ERP', 'CRM')),
 <%              ('Sicherheit', (
 <%                  'Design by Contract',
 <%                  'Integrations-, Anwendung und Unit-Tests',
