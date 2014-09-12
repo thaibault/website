@@ -39,6 +39,7 @@ body.home-page {
 
     /* region global */
 
+    /* TODO convert font-site px to em */
     #website > #bootstrap;
     #website;
     color: @fontColor;
@@ -48,12 +49,11 @@ body.home-page {
 
         /* region link */
 
-    a {
+    a, a:visited, a:focus {
         color: @linkColor;
         font-size: 18px;
     }
     a:hover { color: @linkHoverColor; }
-    a:focus { outline: none; }
     /* Scroll to top button. */
     > a[href="#top"] {
         position: fixed;
