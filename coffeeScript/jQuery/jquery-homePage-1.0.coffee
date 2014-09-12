@@ -1,4 +1,4 @@
-#!/usr/bin/env require
+#!/usr/bin/env coffee
 # -*- coding: utf-8 -*-
 
 # region header
@@ -32,14 +32,7 @@ Version
 1.0 stable
 ###
 
-# # standalone
-# # do ($=this.jQuery) ->
-this.require.scopeIndicator = 'jQuery.HomePage'
-this.require [
-    'jquery-website-1.0.coffee', ['jQuery.fn.collapse', 'bootstrap-3.2.0']
-    ['jQuery.fn.Swipe', 'jquery-swipe-2.0']],
-($) ->
-# #
+main = ($) ->
 
 # endregion
 
@@ -679,6 +672,19 @@ this.require [
     $.HomePage.class = HomePage
 
     # endregion
+
+# endregion
+
+# region dependencies
+
+if this.require?
+    this.require.scopeIndicator = 'jQuery.HomePage'
+    this.require [
+        'jquery-website-1.0.coffee', ['jQuery.fn.collapse', 'bootstrap-3.2.0']
+        ['jQuery.fn.Swipe', 'jquery-swipe-2.0']
+    ], main
+else
+    main this.jQuery
 
 # endregion
 

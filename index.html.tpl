@@ -313,7 +313,7 @@ endregion -->
         <link type="text/css" rel="stylesheet/less" media="screen" href="<% LESS_PATH %>homePage-1.0.less" />
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]><script src="<% JAVA_SCRIPT_PATH %>html5shiv-3.7.0.js"></script><![endif]-->
-        <script type="text/javascript" src="<% JAVA_SCRIPT_PATH %>coffeeScript-1.7.1.js"></script>
+        <script type="text/javascript" src="<% JAVA_SCRIPT_PATH %>coffeeScript-1.8.0.js"></script>
         <script type="text/coffeescript" src="<% COFFEE_SCRIPT_PATH %>require-1.0.coffee"></script>
         <script type="text/coffeescript" src="<% COFFEE_SCRIPT_PATH %>main.coffee"></script>
 
@@ -332,7 +332,7 @@ endregion -->
 
     <!-- region menu -->
 
-        <div class="start-up-animation-number-<% START_UP_ANIMATION_NUMBER %> navbar-wrapper ">
+        <div class="website-start-up-animation-number-<% START_UP_ANIMATION_NUMBER %> navbar-wrapper ">
             <div class="container">
                 <div class="navbar navbar-inverse navbar-static-top">
                     <div class="container">
@@ -342,7 +342,7 @@ endregion -->
                                 <span class="dimension-indicator"></span>
                             </a>
                             <% START_UP_ANIMATION_NUMBER += 1
-                            <a href="#lang-<% ALTERNATE_LANGUAGE %>" class="tools-visible-on-javascript-enabled start-up-animation-number-<% START_UP_ANIMATION_NUMBER %>">
+                            <a href="#lang-<% ALTERNATE_LANGUAGE %>" class="tools-visible-on-javascript-enabled website-start-up-animation-number-<% START_UP_ANIMATION_NUMBER %>">
                                 <% ALTERNATE_LANGUAGE[:-2] %>
                             </a>
                             <button type="button" class="navbar-toggle tools-visible-on-javascript-enabled" data-toggle="collapse" data-target=".navbar-collapse">
@@ -357,7 +357,7 @@ endregion -->
                                 <% for name, section in SECTIONS:
                                     <% if section[0]:
                                         <% START_UP_ANIMATION_NUMBER += 1
-                                        <li class="start-up-animation-number-<% START_UP_ANIMATION_NUMBER %><%' active' if name == SECTIONS[0][0] else ''%>">
+                                        <li class="website-start-up-animation-number-<% START_UP_ANIMATION_NUMBER %><%' active' if name == SECTIONS[0][0] else ''%>">
                                             <a href="#<% name %>"><% section[0][DEFAULT_LANGUAGE] %><!--<% ALTERNATE_LANGUAGE %>:<% section[0][ALTERNATE_LANGUAGE] %>--></a>
                                         </li>
                                     <% end
@@ -492,7 +492,7 @@ endregion -->
             content.
         -->
         <% START_UP_ANIMATION_NUMBER += 1
-        <div class="start-up-animation-number-<% START_UP_ANIMATION_NUMBER %> footer">
+        <div class="website-start-up-animation-number-<% START_UP_ANIMATION_NUMBER %> footer">
             <footer>
                 <p>
                     &copy; 2013 Torben Sickert &middot; <a href="#about-this-website">about this website<!--<% ALTERNATE_LANGUAGE %>:Impressum--></a>
