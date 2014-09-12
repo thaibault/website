@@ -326,7 +326,7 @@ endregion -->
 <!-- region body -->
 
     <body class="home-page tools-hidden-on-javascript-enabled">
-        <div class="window-loading-cover tools-visible-on-javascript-enabled">
+        <div class="website-window-loading-cover tools-visible-on-javascript-enabled">
             <div></div>
         </div>
 
