@@ -73,7 +73,6 @@ main = ($) ->
                 trackingCode: 'UA-40192634-1'
                 maximumFooterHeightInPercent: 50
                 scrollInLinearTime: true
-                dimensionIndicatorTemplate: '({1})'
                 backgroundImagePath: 'image/carousel/'
                 backgroundImageFileExtension: '.jpg'
                 backgroundDependentHeightSections: ['about']
@@ -113,8 +112,12 @@ main = ($) ->
                     disableScroll: false
                     stopPropagation: false
                 dimensionIndicator:
-                    fadeIn: duration: 'fast'
-                    fadeOut: duration: 'fast'
+                    template: '<span ' +
+                              'class="glyphicon glyphicon-resize-horizontal"' +
+                              '></span> <span>{1}</span>'
+                    effectOptions:
+                        fadeIn: duration: 'fast'
+                        fadeOut: duration: 'fast'
                 aboutThisWebsiteSection:
                     fadeIn: duraction: 'fast'
                     fadeOut: duration: 'fast'
@@ -250,18 +253,17 @@ main = ($) ->
             this._sectionTopMarginInPixel = window.parseInt(
                 window.getComputedStyle($('h1')[1], ':before').height)
             # Show responsive dimension indicator switching.
-            this._options.dimensionIndicator.fadeIn.always = =>
+            this._options.dimensionIndicator.effectOptions.fadeIn.always = =>
                 # Adapt menu highlighter after changing layout and
                 # dimension indicator.
                 this._highlightMenuEntry false
-            this._options.dimensionIndicator.fadeOut.always = =>
-                this.$domNodes.dimensionIndicator.text(
+            this._options.dimensionIndicator.effectOptions.fadeOut.always = =>
+                this.$domNodes.dimensionIndicator.html(
                     this.stringFormat(
-                        this._options.dimensionIndicatorTemplate,
-                        "#{newMode}-mode")
-                ).fadeIn this._options.dimensionIndicator.fadeIn
+                        this._options.dimensionIndicator.template, newMode)
+                ).fadeIn this._options.dimensionIndicator.effectOptions.fadeIn
             this.$domNodes.dimensionIndicator.stop().fadeOut(
-                this._options.dimensionIndicator.fadeOut)
+                this._options.dimensionIndicator.effectOptions.fadeOut)
             super()
         _onChangeToExtraSmallMode: ->
             ###
