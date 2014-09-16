@@ -201,11 +201,41 @@ body.home-page {
     /* Show big dark social media icons. */
     > div.carousel.slide > div.carousel-inner > div.item.contact
     > div[class^="carousel-image-"] > div.container {
-        > a.glyphicon-social {
+        /* NOTE: Should be synchronized with the social icon font styles. */
+        a.glyphicon.glyphicon-globe {
+            color: #1d1d1b;
+            display: inline;
+            display: inline-block;
+            padding-left: 30px;
+            position: relative;
+            text-decoration: none;
+            vertical-align: middle;
+            zoom: 1;
+        }
+        a.glyphicon.glyphicon-globe:before {
+            display: inline;
+            display: inline-block;
+            font-size: 24px/1em;
+            font-style: normal;
+            font-weight: normal;
+            left: 0;
+            /* NOTE: "-1px" was initially "0". */
+            margin: -1px 5px 0 0;
+            position: absolute;
+            text-transform: none;
+            top: 0;
+            vertical-align: middle;
+            webkit-font-smoothing: antialiased;
+            zoom: 1;
+        }
+        a.glyphicon-social, a.glyphicon.glyphicon-globe {
             color: @defaultColor;
             letter-spacing: 10px;
+            height: 26px;
         }
-        > a.glyphicon-social:hover { color: @linkHoverColor; }
+        a.glyphicon-social:hover, a.glyphicon.glyphicon-globe:hover {
+            color: @linkHoverColor !important;
+        }
     }
 
         /* endregion */

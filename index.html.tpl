@@ -446,7 +446,10 @@ endregion -->
                                     <% for name, link in SOCIAL_MEDIA:
                                         <% if '@' in link:
                                             <% link = 'mailto:%s' % link
-                                        <a class="glyphicon-social glyphicon-social-<% name %>" href="<% link %>" target="_blank"></a>
+                                        <% if 'website' == name:
+                                            <a class="glyphicon glyphicon-globe" href="<% link %>" target="_blank"></a>
+                                        <% else:
+                                            <a class="glyphicon-social glyphicon-social-<% name %>" href="<% link %>" target="_blank"></a>
                             </div>
                         </div>
                     </div>
