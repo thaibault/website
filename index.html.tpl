@@ -22,11 +22,10 @@ This library written by Torben Sickert stand under a creative commons naming
 
 endregion -->
 
-<% # region runtime
+<% # region language
 
 <% DEFAULT_LANGUAGE = 'enUS'
 <% ALTERNATE_LANGUAGE = 'deDE'
-<% START_UP_ANIMATION_NUMBER = 1
 
 <% # endregion
 
@@ -42,10 +41,16 @@ endregion -->
 <% JAVA_SCRIPT_PATH = 'javaScript/'
 
 <% DATA_PATH = 'data/'
-<% LINK_PUBLIC_SSH_KEY = DATA_PATH + 'publicSSHKey.txt'
-<% LINK_V_CARD = DATA_PATH + 'vCard.vcf'
-<% LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE = DATA_PATH + 'curriculumVitae%s.pdf' % DEFAULT_LANGUAGE.swapcase()
-<% LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE = DATA_PATH + 'curriculumVitae%s.pdf' % ALTERNATE_LANGUAGE.swapcase()
+<% LINK_PUBLIC_SSH_KEY_PATH = DATA_PATH + 'publicSSHKey.txt'
+<% LINK_V_CARD_PATH = DATA_PATH + 'vCard.vcf'
+<% LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE_PATH = DATA_PATH + 'curriculumVitae%s.pdf' % DEFAULT_LANGUAGE.swapcase()
+<% LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE_PATH = DATA_PATH + 'curriculumVitae%s.pdf' % ALTERNATE_LANGUAGE.swapcase()
+
+<% # endregion
+
+<% # region runtime
+
+<% START_UP_ANIMATION_NUMBER = 1
 
 <% # endregion
 
@@ -436,10 +441,10 @@ endregion -->
                                         <% section[2][DEFAULT_LANGUAGE] %>
                                         <!--<% ALTERNATE_LANGUAGE %>:<% section[2][ALTERNATE_LANGUAGE] %>-->
                                         <% if name == 'about':
-                                            <a href="<% LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE %>" target="_blank" class="visible-xs">Curriculum Vitae (German)<!--<% ALTERNATE_LANGUAGE %>:Lebenslauf (Deutsch)--></a>
-                                            <a href="<% LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE %>" target="_blank" class="visible-xs">Curriculum Vitae (English)<!--<% ALTERNATE_LANGUAGE %>:Lebenslauf (Englisch)--></a>
-                                            <a href="<% LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE %>" target="_blank" class="hidden-xs">Curriculum Vitae<!--<% ALTERNATE_LANGUAGE %>:Lebenslauf--></a>
-                                            <a href="<% LINK_V_CARD %>" target="_blank">vCard</a>
+                                            <a href="<% LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE_PATH %>" target="_blank" class="visible-xs">Curriculum Vitae (German)<!--<% ALTERNATE_LANGUAGE %>:Lebenslauf (Deutsch)--></a>
+                                            <a href="<% LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE_PATH %>" target="_blank" class="visible-xs">Curriculum Vitae (English)<!--<% ALTERNATE_LANGUAGE %>:Lebenslauf (Englisch)--></a>
+                                            <a href="<% LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE_PATH %>" target="_blank" class="hidden-xs">Curriculum Vitae<!--<% ALTERNATE_LANGUAGE %>:Lebenslauf--></a>
+                                            <a href="<% LINK_V_CARD_PATH %>" target="_blank">vCard</a>
                                     </p>
                                 <% if name == 'contact':
                                     <a href="tel:004917610248185">Phone<!--<% ALTERNATE_LANGUAGE %>:Tel.--> +49 (0) 176 <span>/</span> 10 248 185</a>
@@ -479,7 +484,7 @@ endregion -->
                         Email: <a href="mailto:#"><% SOCIAL_MEDIA[0][1] %></a><br />
                         Website<!--<% ALTERNATE_LANGUAGE %>:Webseite-->: <a href="<% SOCIAL_MEDIA[-1][1] %>"><% SOCIAL_MEDIA[-1][1] %></a><br />
                         <br />
-                        <a href="<% LINK_PUBLIC_SSH_KEY %>" target="_blank">public ssh key<!--<% ALTERNATE_LANGUAGE %>:öffentlicher SSH-Schlüssel--></a>
+                        <a href="<% LINK_PUBLIC_SSH_KEY_PATH %>" target="_blank">public ssh key<!--<% ALTERNATE_LANGUAGE %>:öffentlicher SSH-Schlüssel--></a>
                     </div>
                     <% include('aboutThisWebsite')
                 </div>

@@ -284,14 +284,16 @@ body.home-page {
 
     /* region responsive */
 
-        /* region extra extra small */
+        /* region extra extra extra small */
 
             /* region global */
 
                 /* region buttons */
 
     /* Smaller devices have usually a touch interface for scrolling. */
-    > a[href="#top"] { visibility: hidden; }
+    a[href="#top"] {
+        visibility: hidden;
+    }
 
                 /* endregion */
 
@@ -300,7 +302,7 @@ body.home-page {
             /* region navigation bar */
 
     /* Normal Wrapper for the main navigation bar. Scrolls with viewport. */
-    > div.navbar-wrapper {
+    div.navbar-wrapper {
         top: 0;
         width: 100%;
 
@@ -392,9 +394,9 @@ body.home-page {
 
         /* endregion */
 
-        /* region extra small */
+        /* region extra extra small */
 
-    @media (min-width: 400px) {
+    @media (min-width: @minimumExtraExtraSmallWidthInPixel) {
 
             /* region navigation bar */
 
@@ -403,7 +405,9 @@ body.home-page {
         > div.container > div.navbar-header > a.navbar-brand {
             max-width: 238px;
 
-            > span.dimension-indicator { visibility: visible; }
+            > span.dimension-indicator {
+                visibility: visible;
+            }
         }
 
             /* endregion */
