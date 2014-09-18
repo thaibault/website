@@ -1,9 +1,16 @@
-<!-- region vim modline
+<!-- -*- coding: utf-8 -*-
 
-vim: set tabstop=4 shiftwidth=4 expandtab:
-vim: foldmethod=marker foldmarker=region,endregion:
+region header
 
-endregion
+Copyright Torben Sickert 16.12.2012
+
+License
+-------
+
+This library written by Torben Sickert stand under a creative commons naming
+3.0 unported license. see http://creativecommons.org/licenses/by/3.0/deed.de
+
+endregion -->
 
 <h2>
     Disclaimer
@@ -119,8 +126,9 @@ endregion
     Sie können darüber hinaus die Erfassung der durch das Cookie erzeugten und
     auf Ihre Nutzung der Website bezogenen Daten (inkl. Ihrer IP-Adresse) an
     Google sowie die Verarbeitung dieser Daten durch Google verhindern, indem
-    Sie das unter dem folgenden Link verfügbare Browser-Plugin herunterladen
-    und installieren: http://tools.google.com/dlpage/gaoptout?hl=de.
+    Sie das unter dem folgenden
+    <a href="http://tools.google.com/dlpage/gaoptout?hl=de">Link</a>
+    verfügbare Browser-Plugin herunterladen und installieren: .
 </p>
 <h3>Copyright Statement</h3>
 <p>
@@ -130,3 +138,10 @@ endregion
     created in cooperation or bound by contract with third parties are
     specifically marked. Respective copyrights apply.
 </p>
+
+<!-- region vim modline
+
+vim: set tabstop=4 shiftwidth=4 expandtab:
+vim: foldmethod=marker foldmarker=region,endregion:
+
+endregion -->
