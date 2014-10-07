@@ -6,9 +6,10 @@
     skillKeywordsGerman.txt
     projectDescriptionEnglish.txt
     projectDescriptionGerman.txt
-    xing.de
-    linked-in.com
-    facebook.com
+    https://www.xing.com/
+    https://www.linkedin.com/
+    https://www.facebook.com/
+    https://plus.google.com
 
 region header
 
@@ -273,6 +274,8 @@ endregion -->
 <%          'Scope-basiertes Event-Handling und einige Low-Level '
 <%          'Erweiterungen für native Datentypen. Beispiel-Implementierungen '
 <%          'findet sich in den Projekten:', (
+<%              ('jQery-storeLocator',
+<%               'http://thaibault.github.com/jQuery-storeLocator'),
 <%              ('jQery-incrementer',
 <%               'http://thaibault.github.com/jQuery-incrementer'),
 <%              ('jQery-lang', 'http://thaibault.github.com/jQuery-lang'),
