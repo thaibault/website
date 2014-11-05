@@ -294,7 +294,6 @@ endregion -->
 <!-- region header -->
 
     <head>
-        <title>Torben Sickert development</title>
 
     <!-- region meta informations -->
 
@@ -304,6 +303,8 @@ endregion -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- endregion -->
+
+        <title>Torben Sickert development</title>
 
     <!-- region fav and touch icons -->
 
