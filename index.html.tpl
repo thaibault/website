@@ -257,9 +257,11 @@ endregion -->
 <%          'mutual exclusion, scope-based event handling and some low-level '
 <%          'extensions for native data types are available. Example '
 <%          'implementations can be found in the projects:', (
-<%              ('jQery-incrementer',
+<%              ('jQuery-storeLocator',
+<%               'http://thaibault.github.com/jQuery-storeLocator'),
+<%              ('jQuery-incrementer',
 <%               'http://thaibault.github.com/jQuery-incrementer'),
-<%              ('jQery-lang', 'http://thaibault.github.com/jQuery-lang'),
+<%              ('jQuery-lang', 'http://thaibault.github.com/jQuery-lang'),
 <%              ('jQuery-website',
 <%               'http://thaibault.github.com/jQuery-website'),
 <%              ('My personal website', 'http://thaibault.github.com'))),
@@ -273,11 +275,11 @@ endregion -->
 <%          'Scope-basiertes Event-Handling und einige Low-Level '
 <%          'Erweiterungen für native Datentypen. Beispiel-Implementierungen '
 <%          'findet sich in den Projekten:', (
-<%              ('jQery-storeLocator',
+<%              ('jQuery-storeLocator',
 <%               'http://thaibault.github.com/jQuery-storeLocator'),
-<%              ('jQery-incrementer',
+<%              ('jQuery-incrementer',
 <%               'http://thaibault.github.com/jQuery-incrementer'),
-<%              ('jQery-lang', 'http://thaibault.github.com/jQuery-lang'),
+<%              ('jQuery-lang', 'http://thaibault.github.com/jQuery-lang'),
 <%              ('jQuery-website',
 <%               'http://thaibault.github.com/jQuery-website'),
 <%              ('Meine persönliche Website', 'http://thaibault.github.com')
@@ -412,25 +414,42 @@ endregion -->
                                     </p>
                                     <h2>
                                         <% section[4][DEFAULT_LANGUAGE] %>
-                                        <!--<% ALTERNATE_LANGUAGE %>:<% section[4][ALTERNATE_LANGUAGE] %>-->
+                                        <!--<% ALTERNATE_LANGUAGE %>:
+                                            <% section[4][ALTERNATE_LANGUAGE] %>
+                                        -->
                                     </h2>
                                     <dl class="dl-horizontal">
                                         <% for project_name, project_page_link, project_description in PROJECTS:
                                             <dt>
-                                                <a href="<% project_page_link %>" target="_blank"><% project_name %></a>
+                                                <a href="<% project_page_link %>" target="_blank">
+                                                    <% project_name %>
+                                                </a>
                                             </dt>
                                             <dd>
                                                 <% project_description[DEFAULT_LANGUAGE][0] %>
-                                                <!--<% ALTERNATE_LANGUAGE %>:<% project_description[ALTERNATE_LANGUAGE][0] %>-->
+                                                <!--<% ALTERNATE_LANGUAGE %>:
+                                                    <% project_description[ALTERNATE_LANGUAGE][0] %>
+                                                -->
                                                 <% if length(project_description[DEFAULT_LANGUAGE]) > 1:
                                                     <ul>
                                                         <% for index, element in enumerate(project_description[DEFAULT_LANGUAGE][1]):
                                                             <li>
                                                                 <% if is_type_of(element, Tuple):
-                                                                    <a href="<% element[1] %>"><% element[0] %></a>
+                                                                    <langreplace>
+                                                                        <a href="<% element[1] %>">
+                                                                            <% element[0] %>
+                                                                        </a>
+                                                                    </langreplace>
+                                                                    <langreplacement><% ALTERNATE_LANGUAGE %>:
+                                                                        <a href="<% project_description[ALTERNATE_LANGUAGE][1][index][1] %>">
+                                                                            <% project_description[ALTERNATE_LANGUAGE][1][index][0] %>
+                                                                        </a>
+                                                                    </langreplacement>
                                                                 <% else:
                                                                     <% element %>
-                                                                    <!--<% ALTERNATE_LANGUAGE %>:<% project_description[ALTERNATE_LANGUAGE][1][index] %>-->
+                                                                    <!--<% ALTERNATE_LANGUAGE %>:
+                                                                        <% project_description[ALTERNATE_LANGUAGE][1][index] %>
+                                                                    -->
                                                             </li>
                                                     </ul>
                                             </dd>
