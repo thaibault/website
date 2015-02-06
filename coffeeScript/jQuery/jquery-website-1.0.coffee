@@ -1,11 +1,5 @@
-#!/usr/bin/env require
-
-# region vim modline
-
-# vim: set tabstop=4 shiftwidth=4 expandtab:
-# vim: foldmethod=marker foldmarker=region,endregion:
-
-# endregion
+#!/usr/bin/env coffee
+# -*- coding: utf-8 -*-
 
 # region header
 
@@ -14,10 +8,7 @@
 
 This module provides common logic for the whole web page.
 
-Copyright
----------
-
-Torben Sickert 16.12.2012
+Copyright Torben Sickert 16.12.2012
 
 License
 -------
@@ -33,7 +24,7 @@ For conventions see require on https://github.com/thaibault/require
 Author
 ------
 
-t.sickert@gmail.com (Torben Sickert)
+t.sickert["~at~"]gmail.com (Torben Sickert)
 
 Version
 -------
@@ -41,18 +32,7 @@ Version
 1.0 stable
 ###
 
-## standalone
-## do ($=this.jQuery) ->
-this.require.scopeIndicator = 'jQuery.Website'
-this.require [
-    ['less.Parser', 'less-1.5.0']
-
-    'jquery-tools-1.0.coffee', ['jQuery.scrollTo', 'jquery-scrollTo-1.4.3.1']
-    ['jQuery.fn.spin', 'jquery-spin-1.2.8']
-    ['jQuery.fn.hashchange', 'jquery-observeHashChange-1.0']
-    'jquery-lang-1.0.coffee'
-], (less, lessParser, $) ->
-##
+main = (less, lessParser, $) ->
 
 # endregion
 
@@ -95,11 +75,14 @@ this.require [
                     ['large', 'lg']
                 ],
                 domNode:
-                    top: 'div.navigation-bar'
-                    scrollToTopButtons: 'a[href="#top"]'
-                    startUpAnimationClassPrefix: '.start-up-animation-number-'
-                    windowLoadingCover: '> div.window-loading-cover'
-                    windowLoadingSpinner: '> div.window-loading-cover > div'
+                    mediaQueryIndicator: '<div class="media-query-indicator">'
+                    top: '> div.navbar-wrapper'
+                    scrollToTopButton: 'a[href="#top"]'
+                    startUpAnimationClassPrefix:
+                        '.website-start-up-animation-number-'
+                    windowLoadingCover: 'div.website-window-loading-cover'
+                    windowLoadingSpinner:
+                        'div.website-window-loading-cover > div'
                 startUpFadeIn:
                     easing: 'swing'
                     duration: 'slow'
@@ -125,18 +108,23 @@ this.require [
                     left: 'auto' # Left position relative to parent in px
                 activateLanguageSupport: true
                 language: {}
-                scrollInLinearTime: false
-                scrollToTop: duration: 'slow'
+                scrollToTop:
+                    inLinearTime: true
+                    options: duration: 'normal'
+                    button:
+                        slideDistanceInPixel: 30
+                        showAnimation: duration: 'normal'
+                        hideAnimation: duration: 'normal'
                 domain: 'auto'
-            }, @startUpAnimationIsComplete=false, @_viewportIsOnTop=true,
+            }, @startUpAnimationIsComplete=false, @_viewportIsOnTop=false,
             @_currentMediaQueryMode='', @languageHandler=null,
-            @__googleAnalyticsCode='''
+            @__analyticsCode='''
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', '{1}', '{2}');
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new window.Date();
+a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;
+m.parentNode.insertBefore(a,m)})(
+window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', '{1}', '{2}');ga('set','anonymizeIp',true);
 ga('send', 'pageview');'''
         ) ->
             ###
@@ -155,22 +143,47 @@ ga('send', 'pageview');'''
                 true, {}, this._parentOptions, this._options)
             super options
             this.$domNodes = this.grabDomNode this._options.domNode
-            this._options.windowLoadingCoverFadeOut.always =
+            this.disableScrolling()._options.windowLoadingCoverFadeOut.always =
                 this.getMethod this._handleStartUpEffects
             this.$domNodes.windowLoadingSpinner.spin(
                 this._options.windowLoadingSpinner)
             this._bindScrollEvents().$domNodes.parent.show()
-            this.$domNodes.window.ready this.getMethod(
-                this._removeLoadingCover)
+            onLoaded = =>
+                this.windowLoaded = true
+                this._removeLoadingCover()
+            if window.less?
+                window.less.pageLoadFinished.then onLoaded
+            else
+                this.on this.$domNodes.window, 'load', onLoaded
             this._addNavigationEvents()._addMediaQueryChangeEvents(
             )._triggerWindowResizeEvents()._handleGoogleAnalytics()
             if not this._options.language.logging?
                 this._options.language.logging = this._options.logging
             if this._options.activateLanguageSupport
-                this._languageHandler = $.Lang this._options.language
+                this.languageHandler = $.Lang this._options.language
             this
 
         # endregion
+
+        disableScrolling: ->
+            ###
+                This method disables scrolling on the given web view.
+
+                **returns {$.Website}** - Returns the current instance.
+            ###
+            this.$domNodes.parent.addClass('disable-scrolling').on(
+                'touchmove', (event) -> event.preventDefault())
+            this
+        enableScrolling: ->
+            ###
+                This method disables scrolling on the given web view.
+
+                **returns {$.Website}** - Returns the current instance.
+            ###
+            this.off(
+                this.$domNodes.parent.removeClass('disable-scrolling'),
+                'touchmove')
+            this
 
     # endregion
 
@@ -184,14 +197,18 @@ ga('send', 'pageview');'''
 
                 **returns {$.Website}** - Returns the current instance.
             ###
-            if this.$domNodes.scrollToTopButtons.css(
-                'visibility'
-            ) isnt 'hidden'
-                this.$domNodes.scrollToTopButtons.animate(
-                    {bottom: '+=30', opacity: 0},
-                    {duration: 'normal', always: =>
-                        this.$domNodes.scrollToTopButtons.css(
-                            'bottom', '-=30')})
+            if this.$domNodes.scrollToTopButton.css('visibility') is 'hidden'
+                this.$domNodes.scrollToTopButton.css 'opacity', 0
+            else
+                this._options.scrollToTop.button.hideAnimation.always = =>
+                    this.$domNodes.scrollToTopButton.css
+                        bottom: '-=' +
+                        this._options.scrollToTop.button.slideDistanceInPixel
+                this.$domNodes.scrollToTopButton.finish().animate({
+                    bottom: '+=' +
+                    this._options.scrollToTop.button.slideDistanceInPixel
+                    opacity: 0
+                }, this._options.scrollToTop.button.hideAnimation)
             this
         _onViewportMovesAwayFromTop: ->
             ###
@@ -199,14 +216,18 @@ ga('send', 'pageview');'''
 
                 **returns {$.Website}** - Returns the current instance.
             ###
-            if this.$domNodes.scrollToTopButtons.css(
-                'visibility'
-            ) isnt 'hidden'
-                this.$domNodes.scrollToTopButtons.css(
-                    bottom: '+=30', display: 'block', opacity: 0
-                ).animate(
-                    {bottom: '-=30', queue: false, opacity: 1},
-                    {duration: 'normal'})
+            if this.$domNodes.scrollToTopButton.css('visibility') is 'hidden'
+                this.$domNodes.scrollToTopButton.css 'opacity', 1
+            else
+                this.$domNodes.scrollToTopButton.finish().css(
+                    bottom: '+=' +
+                    this._options.scrollToTop.button.slideDistanceInPixel
+                    display: 'block', opacity: 0
+                ).animate({
+                    bottom: '-=' +
+                    this._options.scrollToTop.button.slideDistanceInPixel
+                    queue: false, opacity: 1
+                }, this._options.scrollToTop.button.showAnimation)
             this
         _onChangeMediaQueryMode: (oldMode, newMode) ->
             ###
@@ -308,8 +329,10 @@ ga('send', 'pageview');'''
                 **returns {$.Website}** - Returns the current instance.
             ###
             $.each this._options.mediaQueryCssIndicator, (key, value) =>
-                this.$domNodes.parent.addClass "hidden-#{value[1]}"
-                if(this.$domNodes.parent.is(':hidden') and
+                this.$domNodes.mediaQueryIndicator.prependTo(
+                    this.$domNodes.parent
+                ).addClass "hidden-#{value[1]}"
+                if(this.$domNodes.mediaQueryIndicator.is(':hidden') and
                    value[0] isnt this._currentMediaQueryMode)
                     this.fireEvent.apply(
                         this, [
@@ -321,14 +344,14 @@ ga('send', 'pageview');'''
                         this, [
                             this.stringFormat(
                                 'changeTo{1}Mode',
-                                value[0].substr(0, 1).toUpperCase() +
-                                value[0].substr 1
+                                this.stringCapitalize(value[0])
                             ), false, this, this._currentMediaQueryMode,
                             value[0]
                         ].concat this.argumentsObjectToArray arguments
                     )
                     this._currentMediaQueryMode = value[0]
-                this.$domNodes.parent.removeClass "hidden-#{value[1]}"
+                this.$domNodes.mediaQueryIndicator.removeClass(
+                    "hidden-#{value[1]}")
             this
         _bindScrollEvents: ->
             ###
@@ -336,7 +359,7 @@ ga('send', 'pageview');'''
 
                 **returns {$.Website}** - Returns the current instance.
             ###
-            this.on window, 'scroll', =>
+            this.on this.$domNodes.window, 'scroll', =>
                 if this.$domNodes.window.scrollTop()
                     if this._viewportIsOnTop
                         this._viewportIsOnTop = false
@@ -348,6 +371,16 @@ ga('send', 'pageview');'''
                     this.fireEvent.apply this, [
                         'viewportMovesToTop', false, this
                     ].concat this.argumentsObjectToArray arguments
+            if this.$domNodes.window.scrollTop()
+                this._viewportIsOnTop = false
+                this.fireEvent.apply this, [
+                    'viewportMovesAwayFromTop', false, this
+                ].concat this.argumentsObjectToArray arguments
+            else
+                this._viewportIsOnTop = true
+                this.fireEvent.apply this, [
+                    'viewportMovesToTop', false, this
+                ].concat this.argumentsObjectToArray arguments
             this
         _removeLoadingCover: ->
             ###
@@ -358,13 +391,16 @@ ga('send', 'pageview');'''
             window.setTimeout(=>
                 # Hide startup animation dom nodes to show them step by step.
                 $(this.stringFormat(
-                    '[class^="{1}"], [class*=" {1}"]',
+                    '[class^="{1}"], [class*=" {1}"]'
                     this.sliceDomNodeSelectorPrefix(
                         this._options.domNode.startUpAnimationClassPrefix
-                    ).substr(1))
+                    ).substr 1)
                 ).hide()
-                this.$domNodes.windowLoadingCover.fadeOut(
-                    this._options.windowLoadingCoverFadeOut)
+                if this.$domNodes.windowLoadingCover.length
+                    this.enableScrolling().$domNodes.windowLoadingCover.fadeOut(
+                        this._options.windowLoadingCoverFadeOut)
+                else
+                    this._options.windowLoadingCoverFadeOut.always()
             , this._options.additionalPageLoadingTimeInMilliseconds)
             this
         _handleStartUpEffects: (elementNumber) ->
@@ -378,21 +414,29 @@ ga('send', 'pageview');'''
             # Stop and delete spinner instance.
             this.$domNodes.windowLoadingSpinner.spin false
             elementNumber = 1 if not $.isNumeric elementNumber
-            window.setTimeout((=>
-                lastElementTriggered = false
-                this._options.startUpFadeIn.always = =>
-                    if lastElementTriggered
-                        this.fireEvent 'startUpAnimationComplete'
-                $(
-                    this._options.domNode.startUpAnimationClassPrefix +
-                    elementNumber
-                ).fadeIn this._options.startUpFadeIn
-                if $(this._options.domNode.startUpAnimationClassPrefix +
-                     (elementNumber + 1)).length
-                    this._handleStartUpEffects elementNumber + 1
-                else
-                    lastElementTriggered = true
-            ), this._options.startUpAnimationElementDelayInMiliseconds)
+            if $(this.stringFormat(
+                '[class^="{1}"], [class*=" {1}"]'
+                this.sliceDomNodeSelectorPrefix(
+                    this._options.domNode.startUpAnimationClassPrefix
+                ).substr 1)
+            ).length
+                window.setTimeout((=>
+                    lastElementTriggered = false
+                    this._options.startUpFadeIn.always = =>
+                        if lastElementTriggered
+                            this.fireEvent 'startUpAnimationComplete'
+                    $(
+                        this._options.domNode.startUpAnimationClassPrefix +
+                        elementNumber
+                    ).fadeIn this._options.startUpFadeIn
+                    if $(this._options.domNode.startUpAnimationClassPrefix +
+                         (elementNumber + 1)).length
+                        this._handleStartUpEffects elementNumber + 1
+                    else
+                        lastElementTriggered = true
+                ), this._options.startUpAnimationElementDelayInMiliseconds)
+            else
+                this.fireEvent 'startUpAnimationComplete'
             this
         _addNavigationEvents: ->
             ###
@@ -401,8 +445,9 @@ ga('send', 'pageview');'''
                 **returns {$.Website}** - Returns the current instance.
             ###
             this.$domNodes.window.hashchange(=>
-                this.fireEvent 'switchSection', false,
-                this, window.location.hash)
+                if this.startUpAnimationIsComplete
+                    this.fireEvent(
+                        'switchSection', false, this, window.location.hash))
             this._handleScrollToTopButton()
         _handleScrollToTopButton: ->
             ###
@@ -411,11 +456,10 @@ ga('send', 'pageview');'''
                 **returns {$.Website}** - Returns the current instance.
             ###
             this.on(
-                this.$domNodes.scrollToTopButtons, 'click', (event) =>
+                this.$domNodes.scrollToTopButton, 'click', (event) =>
                     event.preventDefault()
                     this._scrollToTop()
             )
-            this.$domNodes.scrollToTopButtons.hide()
             this
         _scrollToTop: (onAfter=$.noop()) ->
             ###
@@ -427,16 +471,17 @@ ga('send', 'pageview');'''
 
                 **returns {$.Website}** - Returns the current instance.
             ###
-            this._options.scrollToTop.onAfter = onAfter
-            if this._options.scrollInLinearTime
+            this._options.scrollToTop.options.onAfter = onAfter
+            if this._options.scrollToTop.inLinearTime
                 distanceToTopInPixel = this.$domNodes.window.scrollTop()
-                # Scroll as fast as we have distance to top.
-                this._options.scrollToTop.duration = distanceToTopInPixel
+                # Scroll four times faster as we have distance to top.
+                this._options.scrollToTop.options.duration =
+                    distanceToTopInPixel / 4
                 $.scrollTo(
                     {top: "-=#{distanceToTopInPixel}", left: '+=0'},
-                    this._options.scrollToTop)
+                    this._options.scrollToTop.options)
             else
-                $.scrollTo {top: 0, left: 0}, this._options.scrollToTop
+                $.scrollTo {top: 0, left: 0}, this._options.scrollToTop.options
             this
         _handleGoogleAnalytics: () ->
             ###
@@ -445,11 +490,11 @@ ga('send', 'pageview');'''
                 **returns {$.Website}**   - Returns the current instance.
             ###
             this.debug(
-                "Run analytics code: \"#{this.__googleAnalyticsCode}\"",
+                "Run analytics code: \"#{this.__analyticsCode}\"",
                 this._options.trackingCode, this._options.domain)
             try
                 (new Function(this.stringFormat(
-                    this.__googleAnalyticsCode, this._options.trackingCode,
+                    this.__analyticsCode, this._options.trackingCode
                     this._options.domain
                 )))()
             catch exception
@@ -468,5 +513,30 @@ ga('send', 'pageview');'''
     $.Website.class = Website
 
     # endregion
+
+# endregion
+
+# region dependencies
+
+if this.require?
+    this.require.scopeIndicator = 'jQuery.Website'
+    this.require [
+        ['less.Parser', 'less-2.1.1']
+
+        'jquery-tools-1.0.coffee'
+        ['jQuery.scrollTo', 'jquery-scrollTo-1.4.3.1']
+        ['jQuery.fn.spin', 'jquery-spin-2.0.1']
+        ['jQuery.fn.hashchange', 'jquery-observeHashChange-1.0']
+        'jquery-lang-1.0.coffee'
+    ], main
+else
+    main null, null, this.jQuery
+
+# endregion
+
+# region vim modline
+
+# vim: set tabstop=4 shiftwidth=4 expandtab:
+# vim: foldmethod=marker foldmarker=region,endregion:
 
 # endregion

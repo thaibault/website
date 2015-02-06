@@ -1,19 +1,15 @@
-// region vim modline
+//!/usr/bin/env lessc
+// -*- coding: utf-8 -*-
 
-// vim: set tabstop=4 shiftwidth=4 expandtab:
-// vim: foldmethod=marker foldmarker=region,endregion:
+/* region header
 
-// endregion
-
-/* region header */
-
-/*
 Copyright Torben Sickert 16.12.2012
 
 License
-    This library written by Torben Sickert stand under a creative commons
-    naming 3.0 unported license.
-    see http://creativecommons.org/licenses/by/3.0/deed.de
+-------
+
+This library written by Torben Sickert stand under a creative commons naming
+3.0 unported license. see http://creativecommons.org/licenses/by/3.0/deed.de
 */
 
 @import 'website-1.0';
@@ -43,16 +39,26 @@ body.home-page {
 
     /* region global */
 
+    #website > #bootstrap;
+    #website;
     color: @fontColor;
     background-color: @defaultColor;
     font-size: 16px;
     overflow-y: scroll;
 
+        /* region headline */
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: @fontFamilyCondensed;
+    }
+
+        /* endregion */
+
         /* region link */
 
-    a {
+    a, a:visited, a:focus {
         color: @linkColor;
-        font-size: 18px;
+        font-size: 1.2em;
     }
     a:hover { color: @linkHoverColor; }
     /* Scroll to top button. */
@@ -62,42 +68,53 @@ body.home-page {
         bottom: @footerMarginInPixel;
         right: 60px;
     }
+    /* Show phone links as normal text. */
+    a[href^="tel:"] { color: @defaultColor; }
+    a[href^="tel:"]:hover { color: @defaultColor; }
 
         /* endregion */
 
+        /* region list */
+
+    ul, ol { margin-top: 15px; }
+
+        /* endregion */
+
+    /*
+        Makes space before each anchor to have enough space for a fixed
+        positioned header menu.
+    */
+    h1:before {
+        content: "";
+        display: block;
+        height: @topMargin;
+    }
     /* Shows the current dimension mode. */
     > div.navbar-wrapper > div.container > div.navbar.navbar-inverse
     > div.container > div.navbar-header > a.navbar-brand
-    > span.dimension-indicator { font-size: 12px; }
+    > span.dimension-indicator { font-size: 0.7em; }
+    strong { font-weight: bold; }
 
-    /* endregion */
-
-    /* region bootstrap resets */
+        /* region bootstrap resets */
 
     .navbar-inverse .navbar-collapse {
         border: 0;
         box-shadow: none;
     }
-
-    /* endregion */
-
-    /* region window loading cover */
-
-    /* Overlay the whole page till everything is loaded completely. */
-    > div.window-loading-cover {
-        background-color: @backgroundColor;
-        position: fixed;
-        height: 100%;
-        width: 100%;
-        z-index: 2;
-
-        /* Positioning the loading spinner in center in the loading overlay. */
-        > div {
-            position: absolute;
-            top: 50%;
-            left: 50%;
+    p.lead {
+        font-weight: initial;
+    }
+    div.navbar-collapse.collapse > ul {
+        > li > a {
+            text-shadow: 0 0 0 rgba(0, 0, 0, 0);
+        }
+        > li.active > a {
+            background: 0;
+            box-shadow: none;
         }
     }
+
+        /* endregion */
 
     /* endregion */
 
@@ -110,8 +127,12 @@ body.home-page {
         position: fixed;
         z-index: 1;
 
-        > div.container > div.navbar.navbar-inverse.navbar-static-top {
+        div.navbar.navbar-inverse {
             border: 0;
+
+            div.navbar-header > a.navbar-brand {
+                font-size: 1.2em;
+            }
         }
     }
 
@@ -124,7 +145,7 @@ body.home-page {
         background-color: @backgroundColor;
         overflow: hidden;
         position: relative;
-        height: @minimumContentHeightInPixel;
+        min-height: @minimumContentHeightInPixel;
 
         /* Wraps the visible area from whole wide slider wrapper. */
         > div.carousel-inner {
@@ -165,14 +186,14 @@ body.home-page {
                         text-shadow: none;
                         text-align: center;
 
+                        > dl.dl-horizontal > dd { text-align: left; }
                         > a[href^="tel:"] {
                             color: @defaultColor;
                             display: block;
-                            font-size: 25px;
+                            font-size: 1.5em;
                             line-height: 1.4;
                             margin-bottom: 10px;
                         }
-                        > a[href^="tel:"]:hover { color: @defaultColor; }
                         > div.container {
                             border: 1px solid red;
                             width: 800px;
@@ -195,12 +216,41 @@ body.home-page {
     /* Show big dark social media icons. */
     > div.carousel.slide > div.carousel-inner > div.item.contact
     > div[class^="carousel-image-"] > div.container {
-        > a.glyphicon-social {
-            font-size: 32px;
+        /* NOTE: Should be synchronized with the social icon font styles. */
+        a.glyphicon.glyphicon-globe {
+            color: #1d1d1b;
+            display: inline;
+            display: inline-block;
+            padding-left: 30px;
+            position: relative;
+            text-decoration: none;
+            vertical-align: middle;
+            zoom: 1;
+        }
+        a.glyphicon.glyphicon-globe:before {
+            display: inline;
+            display: inline-block;
+            font-size: 24px/1em;
+            font-style: normal;
+            font-weight: normal;
+            left: 0;
+            /* NOTE: "-1px" was initially "0". */
+            margin: -1px 5px 0 0;
+            position: absolute;
+            text-transform: none;
+            top: 0;
+            vertical-align: middle;
+            webkit-font-smoothing: antialiased;
+            zoom: 1;
+        }
+        a.glyphicon-social, a.glyphicon.glyphicon-globe {
             color: @defaultColor;
             letter-spacing: 10px;
+            height: 26px;
         }
-        > a.glyphicon-social:hover { color: @linkHoverColor; }
+        a.glyphicon-social:hover, a.glyphicon.glyphicon-globe:hover {
+            color: @linkHoverColor !important;
+        }
     }
 
         /* endregion */
@@ -211,21 +261,18 @@ body.home-page {
     div.about-this-website {
         min-height: @minimumContentHeightInPixel;
         background-color: @backgroundColor;
-        position: absolute;
         top: 0;
         left: 0;
         width: 100%;
-        display: none;
-        text-align: center;
     }
 
         /* endregion */
 
     /* endregion */
 
-    /* region footer  */
+    /* region footer */
 
-    /* Centered footer. */
+    /* Centered footer */
     > div.footer {
         width: 100%;
 
@@ -244,14 +291,16 @@ body.home-page {
 
     /* region responsive */
 
-        /* region extra extra small */
+        /* region extra extra extra small */
 
             /* region global */
 
                 /* region buttons */
 
     /* Smaller devices have usually a touch interface for scrolling. */
-    > a[href="#top"] { visibility: hidden; }
+    a[href="#top"] {
+        visibility: hidden;
+    }
 
                 /* endregion */
 
@@ -260,7 +309,7 @@ body.home-page {
             /* region navigation bar */
 
     /* Normal Wrapper for the main navigation bar. Scrolls with viewport. */
-    > div.navbar-wrapper {
+    div.navbar-wrapper {
         top: 0;
         width: 100%;
 
@@ -274,24 +323,28 @@ body.home-page {
                     > div.navbar-header {
                         > a.navbar-brand {
                             max-width: 219px;
+                            height: 50px;
 
-                            > span.dimension-indicator {
-                                position: absolute;
-                                visibility: hidden;
-                            }
+                            > span.dimension-indicator { visibility: hidden; }
                         }
                         /* Position language link. */
                         > a[href^="#lang-"] {
                             position: absolute;
-                            top: 14px;
+                            top: 10px;
                             right: 70px;
                         }
                     }
                     > div.navbar-collapse {
-                        > div.navbar-highlighter { display: none; }
+                        > div.navbar-highlighter { visibility: hidden; }
                         > ul.nav.navbar-nav {
                             margin-top: 10px;
                             margin-bottom: 10px;
+
+                            > li.active > a:hover,
+                            > li.active > a:focus,
+                            > li.active > a {
+                                background-color: @shadowColor;
+                            }
                         }
                     }
                 }
@@ -304,22 +357,17 @@ body.home-page {
             /* region carousel */
 
     /* Define main content size. */
-    > div.carousel.slide {
-        visibility: hidden;
+    > div.carousel.slide > div.carousel-inner > div.item {
+        /* Don't show any background image in smartphone mode. */
+        div.backstretch { display: none; }
+        > div[class^="carousel-image-"] > div.container {
+            padding-bottom: 15px;
+            max-width: 540px;
 
-        > div.carousel-inner > div.item {
-            /* Don't show any background image in smartphone mode. */
-            div.backstretch { display: none; }
-            > div[class^="carousel-image-"] > div.container {
-                padding-top: 60px;
-                padding-bottom: 15px;
-                max-width: 540px;
-
-                > h1 { font-size: 38px; }
-                > p {
-                    font-size: 19px;
-                    line-height: 20px;
-                }
+            > h1 { font-size: 2.5em; }
+            > p {
+                font-size: 1.2em;
+                line-height: 1.4;
             }
         }
     }
@@ -328,22 +376,28 @@ body.home-page {
 
             /* region section */
 
+                /* region about */
+
+    > div.carousel.slide > div.carousel-inner > div.item
+    > div[class^="carousel-image-about"] > div.container {
+        padding-top: 90px;
+
+        > h1#about { margin-top: -@topMargin;}
+        > p.lead > a:first-child { margin-top: 35px; }
+    }
+
+                /* endregion */
+
                 /* region about this web site */
 
     > div.about-this-website {
         color: @defaultColor;
-        padding-top: 60px;
         padding-bottom: 15px;
 
         /* Wraps the text content, positions space around them. */
         > div.container { margin-left: 10%; }
-        > div[class^="carousel-image-"] > div.container {
-            > h1 { font-size: 38px; }
-            > div.lead {
-                font-size: 19px;
-                line-height: 20px;
-                margin-bottom: 6px;
-            }
+        > div[class^="carousel-image-"] > div.container > h1 {
+            font-size: 2.5em;
         }
     }
 
@@ -353,9 +407,9 @@ body.home-page {
 
         /* endregion */
 
-        /* region extra small */
+        /* region extra extra small */
 
-    @media (min-width: 400px) {
+    @media (min-width: @minimumExtraExtraSmallWidthInPixel) {
 
             /* region navigation bar */
 
@@ -365,7 +419,6 @@ body.home-page {
             max-width: 238px;
 
             > span.dimension-indicator {
-                position: initial;
                 visibility: visible;
             }
         }
@@ -376,7 +429,6 @@ body.home-page {
 
         > div.carousel.slide > div.carousel-inner > div.item
         > div[class^="carousel-image-"] > div.container {
-            padding-top: @topMargin;
             padding-bottom: 25px;
         }
 
@@ -384,10 +436,19 @@ body.home-page {
 
             /* region section */
 
-        > div.about-this-website {
-            padding-top: @topMargin;
-            padding-bottom: 25px;
-        }
+                /* region about this website */
+
+        > div.about-this-website { padding-bottom: 25px; }
+
+                /* endregion */
+
+                /* region about */
+
+        > div.carousel.slide > div.carousel-inner > div.item
+        > div[class^="carousel-image-about"] > div.container > p.lead
+        > a:first-child { margin-top: 50px; }
+
+                /* endregion */
 
             /* endregion */
 
@@ -423,9 +484,13 @@ body.home-page {
                     > div.container {
                         /* Position language link. */
                         > div.navbar-header {
+                            > button.navbar-toggle {
+                                display: none !important;
+                            }
                             > a[href^="#lang-"] {
                                 position: absolute;
-                                right: 18px;
+                                top: 12px;
+                                right: 10px;
                             }
                             > a.navbar-brand {
                                 color: @menuColor;
@@ -439,11 +504,11 @@ body.home-page {
 
                             > div.navbar-highlighter {
                                 position: absolute;
-                                left: 209px;
-                                display: block;
+                                left: 177px;
+                                visibility: visible;
                                 border-top: 2px solid @linkColor;
                                 height: 50px;
-                                width: 100px;
+                                width: 124px;
                                 background-color: #eee;
                             }
                             > ul.nav.navbar-nav {
@@ -477,52 +542,33 @@ body.home-page {
 
             /* endregion */
 
-            > div.carousel.slide, > div.about-this-website {
-                a {
-                    font-size: 25px;
-                }
-            }
-
             /* region carousel */
 
-            > div.carousel.slide {
-                visibility: visible;
+            > div.carousel.slide > div.carousel-inner > div.item {
+                /* Show any background image on higher resolutions. */
+                > div.backstretch { display: block; }
+                /* Bump up size of carousel content. */
+                > div[class^="carousel-image-"] {
+                    background-repeat: no-repeat;
+                    background-size: auto 100%;
+                    background-position: center;
 
-                > div.carousel-inner > div.item {
-                    /* Show any background image on higher resolutions. */
-                    > div.backstretch { display: block; }
-                    /* Bump up size of carousel content. */
-                    > div[class^="carousel-image-"] {
-                        background-repeat: no-repeat;
-                        background-size: auto 100%;
-                        background-position: center;
-                        margin-top: @topMargin;
+                    > div.container {
+                        padding-top: 0;
+                        padding-bottom: 50px;
+                        max-width: 600px;
 
-                        > div.container {
-                            padding-top: 0;
-                            padding-bottom: 50px;
-                            max-width: 600px;
-
-                            > h1 { font-size: 72px; }
-                            > p.lead {
-                                font-size: 25px;
-                                line-height: 1.4;
-                            }
+                        > h1 { font-size: 4.5em; }
+                        > p.lead {
+                            font-size: 1.5em;
+                            line-height: 1.4;
+                            margin-top: 10px;
                         }
                     }
-                    /* Show background images on bigger devices. */
-                    > div.carousel-image-about {
-                        background-image: url('@{imagePath}carousel/about.jpg');
-                    }
-                    /*> div.carousel-image-contact {
-                        background-image: url('@{imagePath}carousel/contact.jpg');
-                    }
-                    > div.carousel-image-references {
-                        background-image: url('@{imagePath}carousel/references.jpg');
-                    }
-                    > div.carousel-image-skills {
-                        background-image: url('@{imagePath}carousel/skills.jpg');
-                    }*/
+                }
+                /* Show background images on bigger devices. */
+                > div.carousel-image-about {
+                    background-image: url('@{imagePath}carousel/about.jpg');
                 }
             }
 
@@ -534,27 +580,30 @@ body.home-page {
                 padding-bottom: 50px;
 
                 > div[class^="carousel-image-"] > div.container {
-                    > h1 { font-size: 72px; }
-                    > div.lead {
-                        font-size: 25px;
-                        line-height: 1.4;
-                    }
+                    width: 608px;
+
+                    > h1 { font-size: 4.5em; }
                 }
             }
-            > div.carousel.slide > div.carousel-inner > div.item
-            > div[class="carousel-image-about"] > div.container {
-                position: relative;
+            > div.carousel.slide > div.carousel-inner > div.item {
+                > div[class="carousel-image-about"] > div.container {
+                    position: relative;
+                    margin-top: @topMargin;
 
-                > p.lead {
-                    position: absolute;
-                    right: 0;
-                    width: 268px;
-                    text-align: right;
+                    > p.lead {
+                        position: absolute;
+                        right: -38px;
+                        width: 300px;
+                        text-align: right;
 
-                    > a {
-                        display: block;
-                        margin-top: 30px;
+                        > a {
+                            display: block;
+                            margin-top: 30px;
+                        }
                     }
+                }
+                > div[class="carousel-image-work"] > div.container > p {
+                    margin-top: 25px;
                 }
             }
 
@@ -578,9 +627,20 @@ body.home-page {
 
             /* region carousel */
 
-                > div.carousel.slide > div.carousel-inner > div.item
-                > div[class^="carousel-image-"] > div.container {
-                    max-width: 810px;
+                > div.carousel.slide > div.carousel-inner > div.item {
+                    > div[class^="carousel-image-"] > div.container {
+                        max-width: 810px;
+
+                        > dl.dl-horizontal {
+                            > dt { width: 286px; }
+                            > dd {
+                                margin-top: 15px;
+                                margin-left: 335px;
+                            }
+                        }
+                    }
+                    > div[class="carousel-image-about"] > div.container 
+                    > p.lead { right: 0; }
                 }
 
             /* endregion */
@@ -596,3 +656,10 @@ body.home-page {
 }
 
 /* endregion */
+
+// region vim modline
+
+// vim: set tabstop=4 shiftwidth=4 expandtab:
+// vim: foldmethod=marker foldmarker=region,endregion:
+
+// endregion

@@ -1,25 +1,38 @@
-<!-- region vim modline
+<!doctype html>
+<!-- -*- coding: utf-8 -*- -->
 
-vim: set tabstop=4 shiftwidth=4 expandtab:
-vim: foldmethod=marker foldmarker=region,endregion:
-
-endregion
+<!-- sync with
+    skillKeywordsEnglish.txt
+    skillKeywordsGerman.txt
+    projectDescriptionEnglish.txt
+    projectDescriptionGerman.txt
+    https://www.xing.com/
+    https://www.linkedin.com/
+    https://www.facebook.com/
+    https://plus.google.com
 
 region header
 
 Copyright Torben Sickert 16.12.2012
 
 License
-   This library written by Torben Sickert stand under a creative commons
-   naming 3.0 unported license.
-   see http://creativecommons.org/licenses/by/3.0/deed.de
+=======
+
+This library written by Torben Sickert stand under a creative commons naming
+3.0 unported license. see http://creativecommons.org/licenses/by/3.0/deed.de
 
 endregion -->
+
+<% # region language
+
+<% DEFAULT_LANGUAGE = 'enUS'
+<% ALTERNATE_LANGUAGE = 'deDE'
+
+<% # endregion
 
 <% # region location
 
 <% IMAGE_PATH = 'image/'
-<% IMAGE_APPLE_TOUCH_ICON_PATH = IMAGE_PATH + 'appleTouchIcon/'
 
 <% LESS_PATH = 'less/'
 <% CASCADING_STYLE_SHEET_PATH = 'cascadingStyleSheet/'
@@ -27,8 +40,17 @@ endregion -->
 <% COFFEE_SCRIPT_PATH = 'coffeeScript/'
 <% JAVA_SCRIPT_PATH = 'javaScript/'
 
-<% LINK_TO_PUBLIC_SSH_KEY = 'data/publicSSHKey.txt'
-<% LINK_CURRICULUM_VITAE = 'data/curriculumVitae.pdf'
+<% DATA_PATH = 'data/'
+<% LINK_PUBLIC_SSH_KEY_PATH = DATA_PATH + 'publicSSHKey.txt'
+<% LINK_V_CARD_PATH = DATA_PATH + 'vCard.vcf'
+<% LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE_PATH = DATA_PATH + 'curriculumVitae%s.pdf' % DEFAULT_LANGUAGE.swapcase()
+<% LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE_PATH = DATA_PATH + 'curriculumVitae%s.pdf' % ALTERNATE_LANGUAGE.swapcase()
+
+<% # endregion
+
+<% # region runtime
+
+<% START_UP_ANIMATION_NUMBER = 1
 
 <% # endregion
 
@@ -37,19 +59,18 @@ endregion -->
 <% SOCIAL_MEDIA = (
 <%     ('e-mail', 't.sickert@gmail.com'),
 <%     ('github', 'https://github.com/thaibault'),
-<%     ('google-plus', 'https://plus.google.com/+TorbenSickert'),
+<%     ('google_plus', 'https://plus.google.com/+TorbenSickert'),
 <%     ('xing', 'http://www.xing.com/profile/Torben_Sickert'),
-<%     ('linked-in', 'http://de.linkedin.com/pub/torben-sickert/28/aa9/919'),
+<%     ('linked_in', 'http://de.linkedin.com/pub/torben-sickert/28/aa9/919'),
 <%     ('skype', 'skype:t.sickert?add'),
 <%     ('twitter', 'https://twitter.com/tsickert'),
 <%     ('facebook', 'https://de-de.facebook.com/tsickert'),
 <%     ('website', 'http://thaibault.github.com'))
-
 <% SECTIONS = (
 <%     ('about', (
-<%         {'enUS': 'About me', 'deDE': 'Über mich'}, False,
-<%         {'enUS': "I'm a computer scientist and love the challenge",
-<%          'deDE': 'Ich bin Informatiker und liebe die Herausforderung'})),
+<%         {'enUS': 'About me', 'deDE': 'Über mich'}, {'enUS': '', 'deDE': ''},
+<%         {'enUS': "I'm ambitious and love the challenge",
+<%          'deDE': 'Ich bin ambitioniert und liebe die Herausforderung'})),
 <%     ('contact', (
 <%         {'enUS': 'Contact', 'deDE': 'Kontakt'},
 <%         {'enUS': 'Get in touch', 'deDE': 'Lernen wir uns kennen'},
@@ -60,68 +81,211 @@ endregion -->
 <%                  'Vorhaben.'})),
 <%     ('work', (
 <%         {'enUS': 'Work', 'deDE': 'Arbeiten'},
-<%         {'enUS': "I'm an ambitious IT guy and love what I'm doing!",
-<%          'deDE': "Ich bin ambitionierter IT'ler und liebe was ich tue!"},
-<%         {'enUS': {
-<%              'abstract': (
-<%                  'contacts', 'conception',
-<%                  'Implementation and optimization of applications for the '
-<%                  'web, ', 'desktop and server', 'quality Assurance',
-<%                  'High Reliability Applications', 'Test-driven Design',
-<%                  '(Web) progamming', 'Usabillity',
-<%                  'Web and search engine optimization',
-<%                  'administering servers on Linux, Mac or Windows',
-<%                  'Intranet Solutions', 'Community Portal solution',
-<%                  'Accessibility', 'Rich Internet Applications',
-<%                  'Content Management Systems', 'Web 2.0'),
-<%              'security': (
+<%         {'enUS': "I love what I'm doing",
+<%          'deDE': 'Ich liebe was ich mache'},
+<%         {'enUS': 'I offer', 'deDE': 'ich biete'},
+<%         {'enUS': (
+<%              ('abstract', (
+<%                   'contacts', 'conception',
+<%                   'Implementation and optimization of applications for the '
+<%                   'web; desktop and server', 'quality Assurance',
+<%                   'High Reliability Applications', 'Test-driven Design',
+<%                   '(Web)programming', 'Usability',
+<%                   'Web and search engine optimization',
+<%                   'administering servers on Linux, Mac or Windows',
+<%                   'Intranet Solutions', 'Community Portal solution',
+<%                   'Accessibility', 'Rich Internet Applications',
+<%                   'Content Management Systems', 'Web 2.0')),
+<%              ('security', (
+<%                   'Design by Contract',
+<%                   'Integration, application, and unit tests',
+<%                   'Proofs of program properties')),
+<%              ('knowledge', (
+<%                   'economic theoretical knowledge',
+<%                   'matic computerized knowledge',
+<%                   'mathematical knowledge')),
+<%              ('programing Techniques', (
+<%                   'Functionally oriented programming',
+<%                   'Imperative Oriented Programming',
+<%                   'Object-Oriented Programming',
+<%                   'Aspect-Oriented Programming')),
+<%              ('database', (
+<%                   'Object-Relational Modeling (ORM) with SQLAlchemy or '
+<%                   'Django ORM', 'SQL')),
+<%              ('versioning', ('GIT', 'SVN', 'CVS', 'Mercurial')),
+<%              ('programing Language', (
+<%                   'Python', 'CoffeeScript', 'JavaScript', 'C++', 'C',
+<%                   'C# (mit XNA)', 'Java', 'Scheme', 'PHP')),
+<%              ('declarative Language', ('XHTML', 'CSS', 'less')),
+<%              ('server', ('apache', 'nginx')),
+<%              ('framework', (
+<%                  'AngularJS', 'django', 'jQuery', 'Mootools', 'Bootstrap'))
+<%         ), 'deDE': (
+<%              ('Abstrakt', (
+<%                  'Kontakte', 'Konzeption',
+<%                  'Umsetzung und Optimierung von Anwendungen fürs Web, '
+<%                  'Desktop und Server', 'Qualitätsicherung',
+<%                  'Hochzuverlässigkeits-Anwendungen', 'Test-driven Design',
+<%                  '(Web)Programmierung', 'Usabillity', 'Web- und '
+<%                  'Suchengine-Optimierung',
+<%                  'Administrierung für Server auf Linux Mac oder Windows',
+<%                  'Intranet Lösungen', 'Community Portallösung',
+<%                  'Barrierefreiheit', 'Rich Internet Applications',
+<%                  'Content Management Systeme', 'Web 2.0', 'ERP', 'CRM')),
+<%              ('Sicherheit', (
 <%                  'Design by Contract',
-<%                  'Integration, application, and unit tests',
-<%                  'Proofs of program properties'),
-<%              'other': (
-<%                  'economic theoretical knowledge',
-<%                  'matic computerized knowledge', 'mathematical knowledge'),
-<%              'programingTechnics': (
-<%                  'Functionally oriented programming',
-<%                  'Imperative Oriented Programming',
-<%                  'Object-Oriented Programming',
-<%                  'Aspect-Oriented Programming'),
-<%              'database': (
-<%                  'Object-Relational Modeling (ORM) with SQLAlchemy, POD or '
-<%                  'Propel', 'SQL'),
-<%              'versioning': ('GIT', 'SVN', 'CVS', 'Mercurial'),
-<%              'programingLanguage': (
-<%                  'C', 'C++', 'C# (with XNA)', 'Java', 'Python',
-<%                  'JavaScript', 'CoffeeScript', 'Scheme', 'PHP'),
-<%              'declarativeLanguage': ('XHTML', 'CSS', 'less'),
-<%              'server': ('apache', 'nginx'),
-<%              'framework': (
-<%                  'angularJS', 'django', 'jQuery', 'Mootools', 'bootstrap')},
-<%          'deDE': 'TODO'})))
-
+<%                  'Integrations-, Anwendung und Unit-Tests',
+<%                  'Beweisen von Programmeigenschaften')),
+<%              ('Wissen', (
+<%                  'wirtschaftstheoretisches Wissen', 'informatisches Wissen',
+<%                  'mathematisches Wissen')),
+<%              ('Programmiertechniken', (
+<%                  'Funktionalorientierte Programmierung',
+<%                  'Imperativorientierte Programmierung',
+<%                  'Objektorientierte Programmierung',
+<%                  'Aspektorientierte Programmierung')),
+<%              ('Datenbanken', (
+<%                  'Relationale-Objekt-Modelierung (ORM) mit sqlAlchemy oder '
+<%                  'Django ORM', 'SQL')),
+<%              ('Versionierung', ('GIT', 'SVN', 'CVS', 'Mercurial')),
+<%              ('Programmiersprachen', (
+<%                  'Python', 'CoffeeScript', 'JavaScript', 'C++', 'C',
+<%                  'C# (mit XNA)', 'Java', 'Scheme', 'PHP')),
+<%              ('Deklarative Sprachen', ('XHTML', 'CSS', 'less')),
+<%              ('Server', ('apache', 'nginx')),
+<%              ('Framework', (
+<%                  'AngularJS', 'django', 'jQuery', 'Mootools', 'Bootstrap'))
+<%         )}, {'enUS': 'Projects', 'deDE': 'Projekte'})))
 <% PROJECTS = (
-<%     ('boostNode', 'http://thaibault.github.com/boostNode', 'TODO'),
-<%     ('installArchLinux', 'http://archinstall.github.com', ''),
+<%     ('boostNode', 'http://thaibault.github.com/boostNode',
+<%      {'enUS': (
+<%          'A universal python framework for platform independent application'
+<%          ' developement with web technoligies. The framework provides High '
+<%          'reliability features:',
+<%          ('100% branch coverage tested',
+<%           'Type checking in development mode',
+<%           'Cyclomatic complexity smaller than eight',
+<%           'Full API documentation '
+<%           'http://thaibault.github.com/boostNode/api',
+<%           'Always compatible with the latest versions of both Python '
+<%           'through integrated macros',
+<%           'Platform independent web-view and flexible multi-process and '
+<%           'multi-threaded Web server')),
+<%       'deDE': (
+<%          'Ein universelles Python-Framework zur Anwendung von '
+<%          'platformunabhängiger Desktopanwendungen mit '
+<%          'Web-Technologien. Das Framework bietet '
+<%          'Hochzuverlässigkeitsmerkmale:',
+<%          ('100% branch coverage getestet',
+<%           'Type checking im Entwicklungsmodus',
+<%           'zyklomatische Komplexität kleiner acht',
+<%           'vollständige API-Dokumentation '
+<%           'http://thaibault.github.com/boostNode/api',
+<%           'stets kompatibel zu den neusten beiden Pythonversionen durch '
+<%           'integrierte macros',
+<%           'Plattform unabhängige Web-View und flexibler multiprozess- und '
+<%           'multithread Web-Server'))}),
+<%     ('archInstall', 'http://archinstall.github.com',
+<%      {'enUS': (
+<%          'Install a configured ArchLinux with pacman as a package '
+<%          'management in any places such as hard drives, USB flash drive, '
+<%          'partition, or in an existing system as a sandbox environment. '
+<%          'Automatic configuration of existing posix compliant unix-like '
+<%          'systems. Both online and Offline installations are possible. Even'
+<%          ' without root privileges, the system is able to be installed into'
+<%          ' its own environment below the home folder. All required '
+<%          'dependencies could be served via a typical posix environment '
+<%          'given by Busybox or ArchLinux itself.',),
+<%       'deDE': (
+<%          'Installiere ein konfiguriertes ArchLinux mit Pacman als '
+<%          'Paketverwaltung an beliebige Orte wie Festplatten, USB-Stick, '
+<%          'alternative Partition oder in das bestehende System als '
+<%          'Sandboxumgebung. Automatische Konfiguration bestehender posix '
+<%          'konformer unix-artiger Systeme. Sowohl Online- als auch '
+<%          'Offline-Installationen sind möglich. Selbst ohne root Rechte '
+<%          'kann das System in eine eigene Umgebung unterhalb des Home-Ordner'
+<%          ' installiert werden. Alle benötigten Abhängigkeiten zum '
+<%          'Aufsetzen sind durch eine einfache posix-Umgebung gegeben wie '
+<%          'Busybox oder ArchLinux selbst.',)}),
 <%     ('genericServiceHandler',
-<%      'http://thaibault.github.com/genericServiceHandler', ''),
-<%     ('require', 'http://thaibault.github.com/require', ''),
-<%     ('jQuery-tools', 'http://thaibault.github.com/jQuery-tools', ''),
-<%     ('jQuery-lang', 'http://thaibault.github.com/jQuery-lang', ''),
-<%     ('jQuery-incrementer',
-<%      'http://thaibault.github.com/jQuery-incrementer', ''),
-<%     ('jQuery-website', 'http://thaibault.github.com/jQuery-website', ''))
+<%      'http://thaibault.github.com/genericServiceHandler',
+<%      {'enUS': (
+<%          'This bash module provides a generic service handlers to control '
+<%          'any services which support standard process signals. The project '
+<%          'is inspired by the systemd service handling and can live in any '
+<%          'unix-like environment. It is particularly suitable for beeing '
+<%          "integrated into the operating system's boot and shutdown "
+<%          'process.',),
+<%       'deDE': (
+<%          'Dieses bash-Modul bietet einen generischen Service-Handler zur '
+<%          'Steuerung jeglicher Dienste, welche standard Prozesssignale '
+<%          'unterstützen. Das Projekt ist vom Systemd-Service-Handling '
+<%          'inspiriert und kann in jeder unix-artigen Umgebung eingesetzt '
+<%          'werden. Es eignet sich besonders um Dienste in den Hoch- und '
+<%          'Herunterfahr-Prozess des Betriebssystems einzubetten.',)}),
+<%     ('require', 'http://thaibault.github.com/require',
+<%      {'enUS': (
+<%          'This native JavaScript modules offers a full import mechanism for'
+<%          ' JavaScript as it is known from python, php, or ruby. This makes '
+<%          'it possible that each JavaScript file defines its own '
+<%          'dependencies, and no global list of required files in the '
+<%          'html-header have to be maintained. A decisive advantage over '
+<%          '"RequireJS" or "YepNope" is that nested dependencies could be '
+<%          'determined automatically. The inclusion of less, coffee script or'
+<%          ' css is also possible. In addition, it can add corresponding '
+<%          '"handler" allowing to generate the browser corresponding source '
+<%          'maps or other actions.',),
+<%       'deDE': (
+<%          'Dieses native JavaScript Module bietet einen vollständigen '
+<%          'Importmechanismus für JavaScript wie er aus python, php, oder '
+<%          'ruby bekannt ist. Hierdurch wird es möglich, dass jede JavaScript'
+<%          ' Datei seine eigenen Abhängigkeiten definiert und keine globale '
+<%          'iListe an benötigten Dateien im html-Header verwaltet werden '
+<%          'muss. Entschiedener Vorteil gegenüber "RequireJS" oder "YepNope" '
+<%          'besteht darin, dass auch die Abhängigkeiten der Abhängigkeiten '
+<%          'beliebig tief in einer topologischen Sortierung aufgelöst werden '
+<%          'können. Das Einbinden von less, coffeeScript oder css ist '
+<%          'ebenfalls möglich. Zudem können sich entsprechende "Handler" '
+<%          'hinzufügen lassen um im Browser entsprechende SourceMaps zu '
+<%          'generieren oder sonstige Aktionen auszulösen.',)}),
+<%     ('jQuery-tools', 'http://thaibault.github.com/jQuery-tools',
+<%      {'enUS': (
+<%          'jQuery-tools brings an object oriented jQuery Plugin concept. It '
+<%          'provides a class pattern structure similar to MooTools or '
+<%          'Prototype. In Addition many reusable helper and a cool controller'
+<%          ' logic is included. Furthermore some handler for dealing with '
+<%          'mutual exclusion, scope-based event handling and some low-level '
+<%          'extensions for native data types are available. Example '
+<%          'implementations can be found in the projects:', (
+<%              ('jQuery-storeLocator',
+<%               'http://thaibault.github.com/jQuery-storeLocator'),
+<%              ('jQuery-incrementer',
+<%               'http://thaibault.github.com/jQuery-incrementer'),
+<%              ('jQuery-lang', 'http://thaibault.github.com/jQuery-lang'),
+<%              ('jQuery-website',
+<%               'http://thaibault.github.com/jQuery-website'),
+<%              ('My personal website', 'http://thaibault.github.com'))),
+<%       'deDE': (
+<%          'jQuery-tools ist ein auf jQuery aufsetzendes Plugin, um '
+<%          'objektorientierte jQery-Plugins ähnlich wie bei MooTools oder '
+<%          'Prototype zu erstellen. Verschiedene generische Software-Pattern '
+<%          'werden durch eine wiederverwendbare Controller-Logik möglich. '
+<%          'Zudem werden einige nützliche Werkzeuge zum Bauen von grafischen '
+<%          'Oberflächen angeboten wie, Wechselseitiger Ausschluss, '
+<%          'Scope-basiertes Event-Handling und einige Low-Level '
+<%          'Erweiterungen für native Datentypen. Beispiel-Implementierungen '
+<%          'findet sich in den Projekten:', (
+<%              ('jQuery-storeLocator',
+<%               'http://thaibault.github.com/jQuery-storeLocator'),
+<%              ('jQuery-incrementer',
+<%               'http://thaibault.github.com/jQuery-incrementer'),
+<%              ('jQuery-lang', 'http://thaibault.github.com/jQuery-lang'),
+<%              ('jQuery-website',
+<%               'http://thaibault.github.com/jQuery-website'),
+<%              ('Meine persönliche Website', 'http://thaibault.github.com')
+<%          ))}))
 
 <% # endregion
-
-<% # region runtime
-
-<% DEFAULT_LANGUAGE = 'deDE'
-<% ALTERNATE_LANGUAGE = 'enUS'
-<% START_UP_ANIMATION_NUMBER = 1
-
-<% # endregion
-
-<!doctype html>
 
 <!-- region browser sniffing -->
 
@@ -132,7 +296,6 @@ endregion -->
 <!-- region header -->
 
     <head>
-        <title>Torben Sickert development</title>
 
     <!-- region meta informations -->
 
@@ -143,12 +306,10 @@ endregion -->
 
     <!-- endregion -->
 
+        <title>Torben Sickert development</title>
+
     <!-- region fav and touch icons -->
 
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<% IMAGE_APPLE_TOUCH_ICON_PATH %>144x144-precomposed.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<% IMAGE_APPLE_TOUCH_ICON_PATH %>114x114-precomposed.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<% IMAGE_APPLE_TOUCH_ICON_PATH %>72x72-precomposed.png" />
-        <link rel="apple-touch-icon-precomposed" href="<% IMAGE_APPLE_TOUCH_ICON_PATH %>57x57-precomposed.png" />
         <link rel="shortcut icon" type="image/x-icon" href="<% IMAGE_PATH %>favicon.ico" />
 
     <!-- endregion -->
@@ -158,7 +319,7 @@ endregion -->
         <link type="text/css" rel="stylesheet/less" media="screen" href="<% LESS_PATH %>homePage-1.0.less" />
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]><script src="<% JAVA_SCRIPT_PATH %>html5shiv-3.7.0.js"></script><![endif]-->
-        <script type="text/javascript" src="<% JAVA_SCRIPT_PATH %>coffeeScript-1.6.3.js"></script>
+        <script type="text/javascript" src="<% JAVA_SCRIPT_PATH %>coffeeScript-1.8.0.js"></script>
         <script type="text/coffeescript" src="<% COFFEE_SCRIPT_PATH %>require-1.0.coffee"></script>
         <script type="text/coffeescript" src="<% COFFEE_SCRIPT_PATH %>main.coffee"></script>
 
@@ -170,33 +331,40 @@ endregion -->
 
 <!-- region body -->
 
-    <body class="home-page" style="display: none">
-        <div class="window-loading-cover"><div></div></div>
+    <body class="home-page tools-hidden-on-javascript-enabled">
+        <div class="website-window-loading-cover tools-visible-on-javascript-enabled">
+            <div></div>
+        </div>
 
     <!-- region menu -->
 
-        <div class="start-up-animation-number-<% START_UP_ANIMATION_NUMBER %> navbar-wrapper ">
+        <div class="website-start-up-animation-number-<% START_UP_ANIMATION_NUMBER %> navbar-wrapper ">
             <div class="container">
                 <div class="navbar navbar-inverse navbar-static-top">
                     <div class="container">
                         <div class="navbar-header">
-                            <a class="navbar-brand" href="#">thaibault <span class="dimension-indicator"></span></a>
+                            <a class="navbar-brand" href="#">
+                                thaibault
+                                <span class="dimension-indicator"></span>
+                            </a>
                             <% START_UP_ANIMATION_NUMBER += 1
-                            <a href="#lang-<% ALTERNATE_LANGUAGE %>" class="start-up-animation-number-<% START_UP_ANIMATION_NUMBER %>"><% ALTERNATE_LANGUAGE[:-2] %></a>
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <a href="#lang-<% ALTERNATE_LANGUAGE %>" class="tools-visible-on-javascript-enabled website-start-up-animation-number-<% START_UP_ANIMATION_NUMBER %>">
+                                <% ALTERNATE_LANGUAGE[:-2] %>
+                            </a>
+                            <button type="button" class="navbar-toggle tools-visible-on-javascript-enabled" data-toggle="collapse" data-target=".navbar-collapse">
                                 <% for section in range(3):
                                     <span class="icon-bar"></span>
                                 <% end
                             </button>
                         </div>
                         <div class="navbar-collapse collapse">
-                            <div class="navbar-highlighter"></div>
+                            <div class="navbar-highlighter tools-visible-on-javascript-enabled"></div>
                             <ul class="nav navbar-nav">
                                 <% for name, section in SECTIONS:
                                     <% if section[0]:
                                         <% START_UP_ANIMATION_NUMBER += 1
-                                        <li class="start-up-animation-number-<% START_UP_ANIMATION_NUMBER %><%' active' if name == SECTIONS[0][0] else ''%>">
-                                            <a href="#<% name %>"><% section[0][DEFAULT_LANGUAGE]%><!--<% ALTERNATE_LANGUAGE %>:<% section[0][ALTERNATE_LANGUAGE] %>--></a>
+                                        <li class="website-start-up-animation-number-<% START_UP_ANIMATION_NUMBER %><%' active' if name == SECTIONS[0][0] else ''%>">
+                                            <a href="#<% name %>"><% section[0][DEFAULT_LANGUAGE] %><!--<% ALTERNATE_LANGUAGE %>:<% section[0][ALTERNATE_LANGUAGE] %>--></a>
                                         </li>
                                     <% end
                                 <% end
@@ -217,31 +385,94 @@ endregion -->
                     <div class="item <% name %>">
                         <div class="carousel-image-<% name %>">
                             <div class="container">
-                                <% if section[1]:
-                                    <h1>
+                                <% if section[1][DEFAULT_LANGUAGE]:
+                                    <h1 id="<% name %>">
                                         <% section[1][DEFAULT_LANGUAGE] %>
-                                        <!--enUS:<% section[1][ALTERNATE_LANGUAGE] %>-->
+                                        <!--<% ALTERNATE_LANGUAGE %>:<% section[1][ALTERNATE_LANGUAGE] %>-->
                                     </h1>
-                                <% if section[2]:
+                                <% else:
+                                    <!--Serves as anchor point if javaScript isn't supported.-->
+                                    <h1 id="<% name %>"></h1>
+                                <% if name == 'work':
+                                    <h2>
+                                        <% section[2][DEFAULT_LANGUAGE] %>
+                                        <!--<% ALTERNATE_LANGUAGE %>:<% section[2][ALTERNATE_LANGUAGE] %>-->
+                                    </h2>
+                                    <p>
+                                        <langReplace>
+                                            <% for title, keywords in section[3][DEFAULT_LANGUAGE]:
+                                                <% if title != section[3][DEFAULT_LANGUAGE][0][0]:
+                                                    <strong><% title %></strong>
+                                                <% ', '.join(keywords) %>
+                                        </langReplace>
+                                        <!--<% ALTERNATE_LANGUAGE %>:
+                                            <% for title, keywords in section[3][ALTERNATE_LANGUAGE]:
+                                                <% if title != section[3][ALTERNATE_LANGUAGE][0][0]:
+                                                    <strong><% title %></strong>
+                                                <% ', '.join(keywords) %>
+                                        -->
+                                    </p>
+                                    <h2>
+                                        <% section[4][DEFAULT_LANGUAGE] %>
+                                        <!--<% ALTERNATE_LANGUAGE %>:
+                                            <% section[4][ALTERNATE_LANGUAGE] %>
+                                        -->
+                                    </h2>
+                                    <dl class="dl-horizontal">
+                                        <% for project_name, project_page_link, project_description in PROJECTS:
+                                            <dt>
+                                                <a href="<% project_page_link %>" target="_blank">
+                                                    <% project_name %>
+                                                </a>
+                                            </dt>
+                                            <dd>
+                                                <% project_description[DEFAULT_LANGUAGE][0] %>
+                                                <!--<% ALTERNATE_LANGUAGE %>:
+                                                    <% project_description[ALTERNATE_LANGUAGE][0] %>
+                                                -->
+                                                <% if length(project_description[DEFAULT_LANGUAGE]) > 1:
+                                                    <ul>
+                                                        <% for index, element in enumerate(project_description[DEFAULT_LANGUAGE][1]):
+                                                            <li>
+                                                                <% if is_type_of(element, Tuple):
+                                                                    <langreplace>
+                                                                        <a href="<% element[1] %>">
+                                                                            <% element[0] %>
+                                                                        </a>
+                                                                    </langreplace>
+                                                                    <langreplacement><% ALTERNATE_LANGUAGE %>:
+                                                                        <a href="<% project_description[ALTERNATE_LANGUAGE][1][index][1] %>">
+                                                                            <% project_description[ALTERNATE_LANGUAGE][1][index][0] %>
+                                                                        </a>
+                                                                    </langreplacement>
+                                                                <% else:
+                                                                    <% element %>
+                                                                    <!--<% ALTERNATE_LANGUAGE %>:
+                                                                        <% project_description[ALTERNATE_LANGUAGE][1][index] %>
+                                                                    -->
+                                                            </li>
+                                                    </ul>
+                                            </dd>
+                                    </dl>
+                                <% else:
                                     <p class="lead">
                                         <% section[2][DEFAULT_LANGUAGE] %>
                                         <!--<% ALTERNATE_LANGUAGE %>:<% section[2][ALTERNATE_LANGUAGE] %>-->
                                         <% if name == 'about':
-                                            <a href="<% LINK_CURRICULUM_VITAE %>">Lebenslauf<!--<% ALTERNATE_LANGUAGE %>:Curriculum Vitae--></a>
+                                            <a href="<% LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE_PATH %>" target="_blank" class="visible-xs">Curriculum Vitae (German)<!--<% ALTERNATE_LANGUAGE %>:Lebenslauf (Deutsch)--></a>
+                                            <a href="<% LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE_PATH %>" target="_blank" class="visible-xs">Curriculum Vitae (English)<!--<% ALTERNATE_LANGUAGE %>:Lebenslauf (Englisch)--></a>
+                                            <a href="<% LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE_PATH %>" target="_blank" class="hidden-xs">Curriculum Vitae<!--<% ALTERNATE_LANGUAGE %>:Lebenslauf--></a>
+                                            <a href="<% LINK_V_CARD_PATH %>" target="_blank">vCard</a>
                                     </p>
                                 <% if name == 'contact':
-                                    <a href="tel:004917610248185">Tel.<!--enEN:Phone--> +49 (0) 176 <span>/</span> 10 248 185</a>
+                                    <a href="tel:004917610248185">Phone<!--<% ALTERNATE_LANGUAGE %>:Tel.--> +49 (0) 176 <span>/</span> 10 248 185</a>
                                     <% for name, link in SOCIAL_MEDIA:
                                         <% if '@' in link:
                                             <% link = 'mailto:%s' % link
-                                        <a class="glyphicon-social glyphicon-social-<% name %>" href="<% link %>" target="_blank"></a>
-                                <% elif name == 'work':
-                                    <div class="container">
-                                        <% for project_name, project_page_link, project_description in PROJECTS:
-                                            <div>
-                                                <a href="<% project_page_link %>"><% project_name %></a>
-                                            </div>
-                                    </div>
+                                        <% if 'website' == name:
+                                            <a class="glyphicon glyphicon-globe" href="<% link %>" target="_blank"></a>
+                                        <% else:
+                                            <a class="glyphicon-social glyphicon-social-<% name %>" href="<% link %>" target="_blank"></a>
                             </div>
                         </div>
                     </div>
@@ -256,21 +487,24 @@ endregion -->
         <div class="about-this-website">
             <div class="carousel-image-about-this-website">
                 <div class="container">
-                    <h1>
-                        Impressum
-                        <!--<% ALTERNATE_LANGUAGE %>:About this website-->
+                    <% include
+                    <h1 id="about-this-website">
+                        About this website
+                        <!--<% ALTERNATE_LANGUAGE %>:Impressum-->
                     </h1>
-                    <div class="lead">
-                        <p>Anbieter von<!--<% ALTERNATE_LANGUAGE %>:Provider of--> <a href="<% SOCIAL_MEDIA[-1][1] %>"><% SOCIAL_MEDIA[-1][1] %></a>:</p>
-                        <p>Torben Sickert</p>
-                        <p>Christoph-Mang-Str. 14</p>
-                        <p>79100 Freiburg</p>
-                        <p>Tel. 0049 (0) 176 / 10248185</p>
-                        <p>Internet: <a href="<% SOCIAL_MEDIA[-1][1] %>"><% SOCIAL_MEDIA[-1][1] %></a></p>
-                        <p>Email: <a href="mailto:<% SOCIAL_MEDIA[0][1] %>"><% SOCIAL_MEDIA[0][1] %></a></p>
+                    <h2>Contact<!--<% ALTERNATE_LANGUAGE %>:Kontakt--></h2>
+                    <div>
+                        Provider of<!--<% ALTERNATE_LANGUAGE %>:Anbieter von--> <a href="<% SOCIAL_MEDIA[-1][1] %>"><% SOCIAL_MEDIA[-1][1] %></a>:<br />
+                        Torben Sickert<br />
+                        Christoph-Mang-Str. 14<br />
+                        79100 Freiburg<br />
+                        <a href="tel:004917610248185">Phone<!--<% ALTERNATE_LANGUAGE %>:Tel.-->: +49 (0) 176 <span>/</span> 10 248 185</a><br />
+                        Email: <a href="mailto:#"><% SOCIAL_MEDIA[0][1] %></a><br />
+                        Website<!--<% ALTERNATE_LANGUAGE %>:Webseite-->: <a href="<% SOCIAL_MEDIA[-1][1] %>"><% SOCIAL_MEDIA[-1][1] %></a><br />
                         <br />
-                        <p><a href="<% LINK_TO_PUBLIC_SSH_KEY %>">öffentlicher SSH-Schlüssel<!--<% ALTERNATE_LANGUAGE %>:public ssh key--></a></p>
+                        <a href="<% LINK_PUBLIC_SSH_KEY_PATH %>" target="_blank">public ssh key<!--<% ALTERNATE_LANGUAGE %>:öffentlicher SSH-Schlüssel--></a>
                     </div>
+                    <% include('aboutThisWebsite')
                 </div>
             </div>
         </div>
@@ -284,19 +518,26 @@ endregion -->
             content.
         -->
         <% START_UP_ANIMATION_NUMBER += 1
-        <div class="start-up-animation-number-<% START_UP_ANIMATION_NUMBER %> footer">
+        <div class="website-start-up-animation-number-<% START_UP_ANIMATION_NUMBER %> footer">
             <footer>
                 <p>
-                    &copy; 2013 Torben Sickert, Inc. &middot; <a href="#about-this-website">about this website<!--<% ALTERNATE_LANGUAGE %>:impressum--></a>
+                    &copy; 2013 Torben Sickert &middot; <a href="#about-this-website">about this website<!--<% ALTERNATE_LANGUAGE %>:Impressum--></a>
                 </p>
             </footer>
         </div>
 
     <!-- endregion -->
 
-        <a href="#top">top</a>
+        <a href="#top">top<!--deDE:nach oben--></a>
     </body>
 
 <!-- endregion -->
 
 </html>
+
+<!-- region vim modline
+
+vim: set tabstop=4 shiftwidth=4 expandtab:
+vim: foldmethod=marker foldmarker=region,endregion:
+
+endregion -->

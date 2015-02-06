@@ -1,96 +1,177 @@
+//!/usr/bin/env lessc
+// -*- coding: utf-8 -*-
+
+/* region header
+
+Copyright Torben Sickert 16.12.2012
+
+License
+-------
+
+This library written by Torben Sickert stand under a creative commons naming
+3.0 unported license. see http://creativecommons.org/licenses/by/3.0/deed.de
+*/
+
+@import '../cascadingStyleSheet/open-sans.css';
+@import '../cascadingStyleSheet/open-sans-condensed.css';
+
+    /* region font */
+
+@fontPath: '../font/';
+@font-face {
+    font-family: 'Glyphicons Halflings';
+    src: url('@{fontPath}glyphicons-halflings/glyphicons-halflings-regular.eot');
+    src: url('@{fontPath}glyphicons-halflings/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+         url('@{fontPath}glyphicons-halflings/glyphicons-halflings-regular.woff') format('woff'),
+         url('@{fontPath}glyphicons-halflings/glyphicons-halflings-regular.ttf') format('truetype'),
+         url('@{fontPath}glyphicons-halflings/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+@font-face {
+    font-family: 'Glyphicons Social Regular';
+    src: url('@{fontPath}glyphicons-halflings/glyphicons-halflings-social-regular.eot');
+    src: url('@{fontPath}glyphicons-halflings/glyphicons-halflings-social-regular.eot?#iefix') format('embedded-opentype'),
+         url('@{fontPath}glyphicons-halflings/glyphicons-halflings-social-regular.woff') format('woff'),
+         url('@{fontPath}glyphicons-halflings/glyphicons-halflings-social-regular.ttf') format('truetype'),
+         url('@{fontPath}glyphicons-halflings/glyphicons-halflings-social-regular.svg#glyphicons_socialregular') format('svg');
+}
+@import '../cascadingStyleSheet/glyphicons-social-1.8.css';
+
+    /* endregion */
+
+@import 'generic-1.0';
+
+/* endregion */
+
+// region constants
+
+@imagePath: '../image/';
+
+    // region smartphone dimension
+
+@minimumExtraExtraSmallWidthInPixel: 360px;
+@minimumExtraSmallWidthInPixel: 500px;
+
+    // endregion
+
+    // region bootstrap default
+
+@minimumSmallWidthInPixel: 768px;
+@minimumMediumWidthInPixel: 992px;
+@minimumLargeWidthInPixel: 1200px;
+
+    // endregion
+
+@backgroundColor: #ffffff;
+
+@fontFamily: 'Open Sans', open-sans, sans-serif;
+@fontFamilyCondensed: 'Open Sans Condensed', open-sans-condensed, sans-serif;
+
+// endregion
+
+#website() {
+    #bootstrap() {
+        @import (less) '../cascadingStyleSheet/bootstrap-3.2.0.css';
+
+        /* region bootstrap fixes */
+
+        /*
+            This fix allows label nested non checkbox input fields to avoid
+            referencing inputs via ids.
+        */
+        form label:not([for]) {
+            margin: 0;
+            width: 100%;
+
+            textarea, select, input:not([type="checkbox"]) {
+                margin-top: 5px;
+                font-weight: normal;
+            }
+        }
+        form label.website-sr-only:not([for]) {
+            textarea, select, input:not([type="checkbox"]) {
+                margin-top: 0;
+            }
+        }
+
+        /* endregion */
+
+    }
+    margin: 0;
+    font-family: @fontFamily;
+    font-size: 14px;
+
+    langreplacement {
+        display: none;
+    }
+
+    // region headline
+
+    h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+        font-family: @fontFamily;
+    }
+    h1, h2 {
+        font-family: @fontFamilyCondensed;
+        font-weight: normal;
+        font-size: 3em;
+    }
+    h2 {
+        font-size: 2em;
+    }
+
+    // endregion
+
+    // region link
+
+    a, a:hover, a:focus, a:visited {
+        outline: none;
+        text-decoration: none;
+    }
+
+    // endregion
+
+}
+
+/* region classes */
+
+/*
+    NOTE: Classes should be usable for the body itself and their for have to be
+    outside.
+*/
+/* Hide JavaScript dependent dom nodes. */
+.tools-hidden-on-javascript-enabled { display: initial; }
+/* Show JavaScript dependent dom nodes. */
+.tools-visible-on-javascript-enabled { display: none; }
+/* Disables and hides a scrolling and scrollbar. */
+.tools-disable-scrolling {
+    height: 100% !important;
+    overflow: hidden !important;
+}
+.website-action {
+    cursor: pointer;
+}
+// Overlay the whole page till everything is loaded completely.
+div.website-window-loading-cover {
+    background-color: @backgroundColor;
+    /* always cover full viewport */
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+
+    // Positioning the loading spinner in center in the loading
+    // overlay.
+    > div {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+    }
+}
+
+/* endregion */
+
 // region vim modline
 
 // vim: set tabstop=4 shiftwidth=4 expandtab:
 // vim: foldmethod=marker foldmarker=region,endregion:
 
 // endregion
-
-// region header
-
-/*
-Copyright Torben Sickert 16.12.2012
-
-License
-    This library written by Torben Sickert stand under a creative commons
-    naming 3.0 unported license.
-    see http://creativecommons.org/licenses/by/3.0/deed.de
-*/
-
-@import url(../cascadingStyleSheet/bootstrap-3.0.3.css);
-@import url(../cascadingStyleSheet/open-sans.css);
-@import url(../cascadingStyleSheet/open-sans-condensed.css);
-
-@import 'bootstrap-glyphicons-1.0.0';
-@import 'glyphicons-social-1.8';
-
-@import 'generic-1.0';
-
-// endregion
-
-// region constants
-
-@imagePath: '../image/';
-@fontPath: '../font/';
-
-@minimumSmallWidthInPixel: 768px;
-@minimumMediumWidthInPixel: 992px;
-@minimumLargeWidthInPixel: 1200px;
-
-@color1: #1b1b1b;
-@color2: #1b1b1b;
-
-// endregion
-
-/* region font */
-
-@font-face {
-    font-family: 'Glyphicons Halflings';
-    src: url('@{fontPath}glyphicons-halflings-regular.eot');
-    src: url('@{fontPath}glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
-         url('@{fontPath}glyphicons-halflings-regular.woff') format('woff'),
-         url('@{fontPath}glyphicons-halflings-regular.ttf') format('truetype'),
-         url('@{fontPath}glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
-}
-@font-face {
-    font-family: 'Glyphicons Social Regular';
-    src: url('@{fontPath}glyphicons-halflings-social-regular.eot');
-    src: url('@{fontPath}glyphicons-halflings-social-regular.eot?#iefix') format('embedded-opentype'),
-         url('@{fontPath}glyphicons-halflings-social-regular.woff') format('woff'),
-         url('@{fontPath}glyphicons-halflings-social-regular.ttf') format('truetype'),
-         url('@{fontPath}glyphicons-halflings-social-regular.svg#glyphicons_socialregular') format('svg');
-}
-
-/* endregion */
-
-/* region global */
-
-body {
-    font-family: 'Open Sans';
-    font-weight: 100;
-
-    /* region headline */
-
-    h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-        font-family: 'Open Sans';
-    }
-    h1, h2 {
-        font-family: 'Open Sans Condensed';
-        font-weight: normal;
-        font-size: 3em;
-    }
-
-    /* endregion */
-
-    /* region link */
-
-    a { outline: none; }
-    a:hover, a:focus {
-        outline: none;
-        text-decoration: none;
-    }
-
-    /* endregion */
-
-}
-
-/* endregion */
