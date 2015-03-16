@@ -682,7 +682,8 @@ main = ($) ->
 if this.require?
     this.require.scopeIndicator = 'jQuery.HomePage'
     this.require [
-        'jquery-website-1.0.coffee', ['jQuery.fn.collapse', 'bootstrap-3.2.0']
+        ['jQuery.Website', 'jquery-website-1.0.coffee']
+        ['jQuery.fn.collapse', 'bootstrap-3.2.0']
         ['jQuery.fn.Swipe', 'jquery-swipe-2.0']
     ], main
 else

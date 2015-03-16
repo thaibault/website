@@ -434,7 +434,7 @@ endregion -->
                                                     <ul>
                                                         <% for index, element in enumerate(project_description[DEFAULT_LANGUAGE][1]):
                                                             <li>
-                                                                <% if is_type_of(element, Tuple):
+                                                                <% if isTypeOf(element, Tuple):
                                                                     <langreplace>
                                                                         <a href="<% element[1] %>">
                                                                             <% element[0] %>
