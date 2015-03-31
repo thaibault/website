@@ -66,18 +66,19 @@ body.home-page {
     a, a:visited, a:focus {
         color: @linkColor;
         font-size: 1.2em;
+
+        &:hover { color: @linkHoverColor; }
+        /* Show phone links as normal text. */
+        &[href^="tel:"] { color: @defaultColor; }
+        &[href^="tel:"]:hover { color: @defaultColor; }
+        /* Scroll to top button. */
+        &[href="#top"] {
+            position: fixed;
+            z-index: 1;
+            bottom: @footerMarginInPixel;
+            right: 60px;
+        }
     }
-    a:hover { color: @linkHoverColor; }
-    /* Scroll to top button. */
-    > a[href="#top"] {
-        position: fixed;
-        z-index: 1;
-        bottom: @footerMarginInPixel;
-        right: 60px;
-    }
-    /* Show phone links as normal text. */
-    a[href^="tel:"] { color: @defaultColor; }
-    a[href^="tel:"]:hover { color: @defaultColor; }
 
         /* endregion */
 
@@ -201,13 +202,6 @@ body.home-page {
                             line-height: 1.4;
                             margin-bottom: 10px;
                         }
-                        > div.container {
-                            border: 1px solid red;
-                            width: 800px;
-                            text-align: left;
-
-                            > div { border: 1px solid blue; }
-                        }
                     }
                 }
             }
@@ -224,39 +218,46 @@ body.home-page {
     > div.carousel.slide > div.carousel-inner > div.item.contact
     > div[class^="carousel-image-"] > div.container {
         /* NOTE: Should be synchronized with the social icon font styles. */
-        a.glyphicon.glyphicon-globe {
-            color: #1d1d1b;
-            display: inline;
-            display: inline-block;
-            padding-left: 30px;
-            position: relative;
-            text-decoration: none;
-            vertical-align: middle;
-            zoom: 1;
-        }
-        a.glyphicon.glyphicon-globe:before {
-            display: inline;
-            display: inline-block;
-            font-size: 24px/1em;
-            font-style: normal;
-            font-weight: normal;
-            left: 0;
-            /* NOTE: "-1px" was initially "0". */
-            margin: -1px 5px 0 0;
-            position: absolute;
-            text-transform: none;
-            top: 0;
-            vertical-align: middle;
-            webkit-font-smoothing: antialiased;
-            zoom: 1;
-        }
-        a.glyphicon-social, a.glyphicon.glyphicon-globe {
-            color: @defaultColor;
-            letter-spacing: 10px;
-            height: 26px;
-        }
-        a.glyphicon-social:hover, a.glyphicon.glyphicon-globe:hover {
-            color: @linkHoverColor !important;
+        a.glyphicon {
+            &.glyphicon-globe {
+                color: @defaultColor;
+                letter-spacing: 10px;
+                display: inline;
+                height: 26px;
+                display: inline-block;
+                padding-left: 30px;
+                position: relative;
+                text-decoration: none;
+                vertical-align: middle;
+                zoom: 1;
+
+                &:before {
+                    display: inline;
+                    display: inline-block;
+                    font-size: 24px/1em;
+                    font-style: normal;
+                    font-weight: normal;
+                    left: 0;
+                    /* NOTE: "-1px" was initially "0". */
+                    margin: -1px 5px 0 0;
+                    position: absolute;
+                    text-transform: none;
+                    top: 0;
+                    webkit-font-smoothing: antialiased;
+                }
+                &:hover {
+                    color: @linkHoverColor !important;
+                }
+            }
+            &-social {
+                color: @defaultColor;
+                letter-spacing: 10px;
+                height: 26px;
+
+                &:hover {
+                    color: @linkHoverColor !important;
+                }
+            }
         }
     }
 
@@ -494,17 +495,21 @@ body.home-page {
                             > button.navbar-toggle {
                                 display: none !important;
                             }
-                            > a[href^="#lang-"] {
-                                position: absolute;
-                                top: 12px;
-                                right: 10px;
+                            > a {
+                                &[href^="#lang-"] {
+                                    position: absolute;
+                                    top: 12px;
+                                    right: 10px;
+                                }
+                                &.navbar-brand {
+                                    color: @menuColor;
+                                    padding-right: 30px;
+
+                                    &:hover, &:focus {
+                                        color: @menuHoverColor;
+                                    }
+                                }
                             }
-                            > a.navbar-brand {
-                                color: @menuColor;
-                                padding-right: 30px;
-                            }
-                            > a.navbar-brand:hover,
-                            > a.navbar-brand:focus { color: @menuHoverColor; }
                         }
                         > div.navbar-collapse {
                             display: inline;
@@ -520,7 +525,6 @@ body.home-page {
                             }
                             > ul.nav.navbar-nav {
                                 margin: 0;
-
                                 /*
                                     Bring menu items to same height as
                                     navigation bar branding.
@@ -552,30 +556,32 @@ body.home-page {
             /* region carousel */
 
             > div.carousel.slide > div.carousel-inner > div.item {
-                /* Show any background image on higher resolutions. */
-                > div.backstretch { display: block; }
-                /* Bump up size of carousel content. */
-                > div[class^="carousel-image-"] {
-                    background-repeat: no-repeat;
-                    background-size: auto 100%;
-                    background-position: center;
+                > div {
+                    /* Show any background image on higher resolutions. */
+                    &.backstretch { display: block; }
+                    /* Bump up size of carousel content. */
+                    &[class^="carousel-image-"] {
+                        background-repeat: no-repeat;
+                        background-size: auto 100%;
+                        background-position: center;
 
-                    > div.container {
-                        padding-top: 0;
-                        padding-bottom: 50px;
-                        max-width: 600px;
+                        > div.container {
+                            padding-top: 0;
+                            padding-bottom: 50px;
+                            max-width: 600px;
 
-                        > h1 { font-size: 4.5em; }
-                        > p.lead {
-                            font-size: 1.5em;
-                            line-height: 1.4;
-                            margin-top: 10px;
+                            > h1 { font-size: 4.5em; }
+                            > p.lead {
+                                font-size: 1.5em;
+                                line-height: 1.4;
+                                margin-top: 10px;
+                            }
                         }
                     }
-                }
-                /* Show background images on bigger devices. */
-                > div.carousel-image-about {
-                    background-image: url('@{imagePath}carousel/about.jpg');
+                    /* Show background images on bigger devices. */
+                    &.carousel-image-about {
+                        background-image: url('@{imagePath}carousel/about.jpg');
+                    }
                 }
             }
 
@@ -583,34 +589,36 @@ body.home-page {
 
             /* region section */
 
-            > div.about-this-website {
-                padding-bottom: 50px;
+            > div {
+                &.about-this-website {
+                    padding-bottom: 50px;
 
-                > div[class^="carousel-image-"] > div.container {
-                    width: 608px;
+                    > div[class^="carousel-image-"] > div.container {
+                        width: 608px;
 
-                    > h1 { font-size: 4.5em; }
-                }
-            }
-            > div.carousel.slide > div.carousel-inner > div.item {
-                > div[class="carousel-image-about"] > div.container {
-                    position: relative;
-                    margin-top: @topMargin;
-
-                    > p.lead {
-                        position: absolute;
-                        right: -38px;
-                        width: 300px;
-                        text-align: right;
-
-                        > a {
-                            display: block;
-                            margin-top: 30px;
-                        }
+                        > h1 { font-size: 4.5em; }
                     }
                 }
-                > div[class="carousel-image-work"] > div.container > p {
-                    margin-top: 25px;
+                &.carousel.slide > div.carousel-inner > div.item > div {
+                    &.carousel-image-about > div.container {
+                        position: relative;
+                        margin-top: @topMargin;
+
+                        > p.lead {
+                            position: absolute;
+                            right: -38px;
+                            width: 300px;
+                            text-align: right;
+
+                            > a {
+                                display: block;
+                                margin-top: 30px;
+                            }
+                        }
+                    }
+                    &.carousel-image-work > div.container > p {
+                        margin-top: 25px;
+                    }
                 }
             }
 
@@ -634,8 +642,8 @@ body.home-page {
 
             /* region carousel */
 
-                > div.carousel.slide > div.carousel-inner > div.item {
-                    > div[class^="carousel-image-"] > div.container {
+                > div.carousel.slide > div.carousel-inner > div.item > div {
+                    &[class^="carousel-image-"] > div.container {
                         max-width: 810px;
 
                         > dl.dl-horizontal {
@@ -646,8 +654,9 @@ body.home-page {
                             }
                         }
                     }
-                    > div[class="carousel-image-about"] > div.container 
-                    > p.lead { right: 0; }
+                    &.carousel-image-about > div.container > p.lead {
+                        right: 0;
+                    }
                 }
 
             /* endregion */
