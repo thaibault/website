@@ -124,7 +124,7 @@ endregion -->
 <%              ('Abstrakt', (
 <%                  'Kontakte', 'Konzeption',
 <%                  'Umsetzung und Optimierung von Anwendungen fürs Web, '
-<%                  'Desktop und Server', 'Qualitätsicherung',
+<%                  'Desktop und Server', 'Qualitätssicherung',
 <%                  'Hochzuverlässigkeits-Anwendungen', 'Test-driven Design',
 <%                  '(Web)Programmierung', 'Usabillity', 'Web- und '
 <%                  'Suchengine-Optimierung',
@@ -134,7 +134,7 @@ endregion -->
 <%                  'Content Management Systeme', 'Web 2.0', 'ERP', 'CRM')),
 <%              ('Sicherheit', (
 <%                  'Design by Contract',
-<%                  'Integrations-, Anwendung und Unit-Tests',
+<%                  'Integrationstests, Ende-zu-Ende-Tests und Unit-Tests',
 <%                  'Beweisen von Programmeigenschaften')),
 <%              ('Wissen', (
 <%                  'wirtschaftstheoretisches Wissen', 'informatisches Wissen',
@@ -173,7 +173,7 @@ endregion -->
 <%           'multi-threaded Web server')),
 <%       'deDE': (
 <%          'Ein universelles Python-Framework zur Anwendung von '
-<%          'platformunabhängiger Desktopanwendungen mit '
+<%          'plattformunabhängigen Desktopanwendungen mit '
 <%          'Web-Technologien. Das Framework bietet '
 <%          'Hochzuverlässigkeitsmerkmale:',
 <%          ('100% branch coverage getestet',
@@ -182,8 +182,8 @@ endregion -->
 <%           'vollständige API-Dokumentation '
 <%           'http://thaibault.github.com/boostNode/api',
 <%           'stets kompatibel zu den neusten beiden Pythonversionen durch '
-<%           'integrierte macros',
-<%           'Plattform unabhängige Web-View und flexibler multiprozess- und '
+<%           'integrierte Macros',
+<%           'plattformunabhängige Web-View und flexibler multiprozess- und '
 <%           'multithread Web-Server'))}),
 <%     ('archInstall', 'http://archinstall.github.com',
 <%      {'enUS': (
@@ -237,7 +237,7 @@ endregion -->
 <%          'maps or other actions.',),
 <%       'deDE': (
 <%          'Dieses native JavaScript Module bietet einen vollständigen '
-<%          'Importmechanismus für JavaScript wie er aus python, php, oder '
+<%          'Importmechanismus für JavaScript wie es aus python, php, oder '
 <%          'ruby bekannt ist. Hierdurch wird es möglich, dass jede JavaScript'
 <%          ' Datei seine eigenen Abhängigkeiten definiert und keine globale '
 <%          'iListe an benötigten Dateien im html-Header verwaltet werden '
@@ -271,7 +271,7 @@ endregion -->
 <%          'Prototype zu erstellen. Verschiedene generische Software-Pattern '
 <%          'werden durch eine wiederverwendbare Controller-Logik möglich. '
 <%          'Zudem werden einige nützliche Werkzeuge zum Bauen von grafischen '
-<%          'Oberflächen angeboten wie, Wechselseitiger Ausschluss, '
+<%          'Oberflächen angeboten wie Wechselseitiger Ausschluss, '
 <%          'Scope-basiertes Event-Handling und einige Low-Level '
 <%          'Erweiterungen für native Datentypen. Beispiel-Implementierungen '
 <%          'findet sich in den Projekten:', (
@@ -319,7 +319,7 @@ endregion -->
         <link type="text/css" rel="stylesheet/less" media="screen" href="<% LESS_PATH %>homePage-1.0.less" />
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]><script src="<% JAVA_SCRIPT_PATH %>html5shiv-3.7.0.js"></script><![endif]-->
-        <script type="text/javascript" src="<% JAVA_SCRIPT_PATH %>coffeeScript-1.8.0.js"></script>
+        <script type="text/javascript" src="<% JAVA_SCRIPT_PATH %>coffeeScript-1.9.1.js"></script>
         <script type="text/coffeescript" src="<% COFFEE_SCRIPT_PATH %>require-1.0.coffee"></script>
         <script type="text/coffeescript" src="<% COFFEE_SCRIPT_PATH %>main.coffee"></script>
 
@@ -434,7 +434,7 @@ endregion -->
                                                     <ul>
                                                         <% for index, element in enumerate(project_description[DEFAULT_LANGUAGE][1]):
                                                             <li>
-                                                                <% if is_type_of(element, Tuple):
+                                                                <% if isTypeOf(element, Tuple):
                                                                     <langreplace>
                                                                         <a href="<% element[1] %>">
                                                                             <% element[0] %>
