@@ -4,7 +4,7 @@
 # region header
 
 ###!
-[Project page](https://thaibault.github.com)
+[Project page](http://torben.website)
 
 This module provides common logic for the whole home page.
 
@@ -78,32 +78,34 @@ main = ($) ->
                 backgroundDependentHeightSections: ['about']
                 maximumBackgroundDependentHeight: 750
                 menuHighlightAnimation: easing: 'linear'
+                hideMobileMenuAfterSelection: true
                 domNode:
                     carousel: 'div.carousel.slide'
-                    section: 'div.carousel.slide > div.carousel-inner > ' +
-                             'div.item'
+                    section:
+                        'div.carousel.slide div.carousel-inner div.item'
                     logoLink:
-                        'div.navbar-wrapper > div.container > ' +
-                        'div.navbar.navbar-inverse > div.container > ' +
-                        'div.navbar-header > a.navbar-brand'
+                        'div.navbar-wrapper div.navbar.navbar-inverse ' +
+                        'div.navbar-header a.navbar-brand'
                     navigationButton:
-                        'div.navbar-wrapper > div.container > ' +
-                        'div.navbar.navbar-inverse > div.container > ' +
-                        'div.navbar-collapse > ul.nav.navbar-nav li a'
+                        'div.navbar-wrapper div.navbar.navbar-inverse ' +
+                        'div.navbar-collapse ul.nav.navbar-nav li a'
                     aboutThisWebsiteButton:
-                        'div.footer > footer > p > ' +
-                        'a[href="#about-this-website"]'
+                        'div.footer footer a[href="#about-this-website"]'
                     aboutThisWebsiteSection: 'div.about-this-website'
                     dimensionIndicator:
-                        'div.navbar-wrapper > div.container > ' +
-                        'div.navbar.navbar-inverse > div.container > ' +
-                        'div.navbar-header > a.navbar-brand > ' +
+                        'div.navbar-wrapper div.navbar.navbar-inverse ' +
+                        'div.navbar-header a.navbar-brand ' +
                         'span.dimension-indicator'
                     footer: 'div.footer'
-                    menuHighlighter: 'div.navbar-wrapper > div.container ' +
-                                     '> div.navbar.navbar-inverse ' +
-                                     '> div.container > div.navbar-collapse ' +
-                                     '> div.navbar-highlighter'
+                    menuHighlighter:
+                        'div.navbar-wrapper div.navbar.navbar-inverse ' +
+                         'div.navbar-collapse div.navbar-highlighter'
+                    mobileCollapseButton:
+                        'div.navbar-wrapper div.navbar.navbar-inverse ' +
+                        'div.navbar-header button.navbar-toggle'
+                    navigationWrapper:
+                        'div.navbar-wrapper div.navbar.navbar-inverse ' +
+                        'div.navbar-collapse'
                 carousel:
                     startSlide: 0
                     speed: 400
@@ -137,7 +139,7 @@ main = ($) ->
                     # selected.
                     self._highlightMenuEntry false
                     fadeInOptions = self.languageHandler?._options
-                                        .textNodeParent.fadeIn or {}
+                        .textNodeParent.fadeIn or {}
                     if self.$domNodes.navigationButton.parent('li').filter(
                         '.active'
                     ).length
@@ -157,9 +159,9 @@ main = ($) ->
                         initialOnSwitchCallback?.apply this, arguments)
                     # Add language toggle button functionality.
                     fadeOutOptions = self.languageHandler?._options
-                                         .textNodeParent.fadeOut or {}
+                        .textNodeParent.fadeOut or {}
                     fadeInOptions = self.languageHandler?._options
-                                        .textNodeParent.fadeIn or {}
+                        .textNodeParent.fadeIn or {}
                     self.$domNodes.menuHighlighter.fadeOut fadeOutOptions
                     fadeOutOptions = $.extend true, {}, fadeOutOptions, {
                         always: ->
@@ -194,15 +196,10 @@ main = ($) ->
             this.$domNodes.aboutThisWebsiteSection.hide().css(
                 'position', 'absolute')
             if not window.location.hash
-                if this._currentMediaQueryMode is 'extraSmall'
-                    window.location.hash = 'contact'
-                else
-                    window.location.hash =
-                        this.$domNodes.navigationButton.parent(
-                            'li'
-                        ).filter('.active').children(
-                            this.$domNodes.navigationButton
-                        ).attr 'href'
+                window.location.hash =
+                    this.$domNodes.navigationButton.parent('li').filter(
+                        '.active'
+                    ).children(this.$domNodes.navigationButton).attr 'href'
             this._initializeSwipe()
             this.fireEvent 'switchSection', false, this, window.location.hash
             this.on this.$domNodes.window, 'resize', this.getMethod(
@@ -616,8 +613,8 @@ main = ($) ->
                         return false
                 return true
             # NOTE: A cyclic slide effect is more intuitive on touch devices.
-            if this._currentMediaQueryMode is 'extraSmall'
-                this._options.carousel.continuous = true
+            this._options.carousel.continuous =
+                this._currentMediaQueryMode is 'extraSmall'
             this.$domNodes.carousel.Swipe this._options.carousel
         _addNavigationEvents: ->
             ###
@@ -625,6 +622,38 @@ main = ($) ->
 
                 **returns {$.HomePage}** - Returns the current instance.
             ###
+            toggleMobilMenu = (event) =>
+                # This handler rebuilds bootstrap mobile menu collapse feature.
+                slideOut = this.$domNodes.navigationWrapper.is '.in'
+                this.$domNodes.navigationWrapper.one(
+                    this.transitionEndEventNames, =>
+                        if slideOut
+                            this.$domNodes.navigationWrapper.removeClass(
+                                'collapsing in')
+                            this.$domNodes.navigationWrapper.addClass(
+                                'collapse')
+                        else
+                            this.$domNodes.navigationWrapper.removeClass(
+                                'collapsing')
+                            this.$domNodes.navigationWrapper.addClass(
+                                'collapse in')
+                )
+                this.$domNodes.navigationWrapper.removeClass 'collapse'
+                this.$domNodes.navigationWrapper.addClass 'collapsing'
+                if slideOut
+                    this.$domNodes.navigationWrapper.height 0
+                    this.$domNodes.navigationWrapper.removeClass 'in'
+                else
+                    this.$domNodes.navigationWrapper.height(
+                        this.$domNodes.navigationWrapper.find(
+                            'ul'
+                        ).outerHeight true)
+            this.on(
+                this.$domNodes.mobileCollapseButton, 'click', toggleMobilMenu)
+            if this._options.hideMobileMenuAfterSelection
+                this.on this.$domNodes.navigationButton, 'click', =>
+                    if this._currentMediaQueryMode is 'extraSmall'
+                        toggleMobilMenu.apply this, arguments
             this.on this.$domNodes.navigationButton.add(
                 this.$domNodes.aboutThisWebsiteButton
             ), 'click', (event) =>

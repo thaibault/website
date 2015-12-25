@@ -19,7 +19,17 @@ This library written by Torben Sickert stand under a creative commons naming
 
 /// endregion
 
-@import 'website-1.0';
+#bootstrap() {
+    @import (less) '@{cascadingStyleSheetImportPath}bootstrap-3.3.5.css';
+}
+@import '@{lessImportPath}generic-1.0';
+@import '@{lessImportPath}website-1.0';
+
+/* endregion */
+
+/* region font */
+
+@import '@{cascadingStyleSheetImportPath}glyphicons-social-1.8.css';
 
 /* endregion */
 
@@ -46,26 +56,27 @@ body.home-page {
 
     /* region global */
 
-    #website > #bootstrap;
+    #bootstrap;
+    #website > #bootstrap-nested-labels;
     #website;
     color: @fontColor;
     background-color: @defaultColor;
     font-size: 16px;
     overflow-y: scroll;
 
-        /* region headline */
+    /** region headline */
 
     h1, h2, h3, h4, h5, h6 {
         font-family: @fontFamilyCondensed;
     }
 
-        /* endregion */
+    /** endregion */
 
-        /* region link */
+    /** region link */
 
     a, a:visited, a:focus {
         color: @linkColor;
-        font-size: 1.2em;
+        font-size: 1.2rem;
 
         &:hover { color: @linkHoverColor; }
         /* Show phone links as normal text. */
@@ -80,13 +91,13 @@ body.home-page {
         }
     }
 
-        /* endregion */
+    /** endregion */
 
-        /* region list */
+    /** region list */
 
     ul, ol { margin-top: 15px; }
 
-        /* endregion */
+    /** endregion */
 
     /*
         Makes space before each anchor to have enough space for a fixed
@@ -103,7 +114,7 @@ body.home-page {
     > span.dimension-indicator { font-size: 0.7em; }
     strong { font-weight: bold; }
 
-        /* region bootstrap resets */
+    /** region bootstrap resets */
 
     .navbar-inverse .navbar-collapse {
         border: 0;
@@ -122,7 +133,7 @@ body.home-page {
         }
     }
 
-        /* endregion */
+    /** endregion */
 
     /* endregion */
 
@@ -212,7 +223,7 @@ body.home-page {
 
     /* region section */
 
-        /* region contact */
+    /** region contact */
 
     /* Show big dark social media icons. */
     > div.carousel.slide > div.carousel-inner > div.item.contact
@@ -261,9 +272,9 @@ body.home-page {
         }
     }
 
-        /* endregion */
+    /** endregion */
 
-        /* region about this web site */
+    /** region about this web site */
 
     /* Wraps the legal notice content. */
     div.about-this-website {
@@ -274,7 +285,7 @@ body.home-page {
         width: 100%;
     }
 
-        /* endregion */
+    /** endregion */
 
     /* endregion */
 
@@ -299,22 +310,22 @@ body.home-page {
 
     /* region responsive */
 
-        /* region extra extra extra small */
+    /** region extra extra extra small */
 
-            /* region global */
+    /*** region global */
 
-                /* region buttons */
+    /**** region buttons */
 
     /* Smaller devices have usually a touch interface for scrolling. */
     a[href="#top"] {
         visibility: hidden;
     }
 
-                /* endregion */
+    /**** endregion */
 
-            /* endregion */
+    /*** endregion */
 
-            /* region navigation bar */
+    /*** region navigation bar */
 
     /* Normal Wrapper for the main navigation bar. Scrolls with viewport. */
     div.navbar-wrapper {
@@ -362,7 +373,7 @@ body.home-page {
 
             /* endregion */
 
-            /* region carousel */
+    /*** region carousel */
 
     /* Define main content size. */
     > div.carousel.slide > div.carousel-inner > div.item {
@@ -374,17 +385,17 @@ body.home-page {
 
             > h1 { font-size: 2.5em; }
             > p {
-                font-size: 1.2em;
+                font-size: 1.2rem;
                 line-height: 1.4;
             }
         }
     }
 
-            /* endregion */
+    /*** endregion */
 
-            /* region section */
+    /*** region section */
 
-                /* region about */
+    /**** region about */
 
     > div.carousel.slide > div.carousel-inner > div.item
     > div[class^="carousel-image-about"] > div.container {
@@ -394,9 +405,9 @@ body.home-page {
         > p.lead > a:first-child { margin-top: 35px; }
     }
 
-                /* endregion */
+    /**** endregion */
 
-                /* region about this web site */
+    /**** region about this web site */
 
     > div.about-this-website {
         color: @defaultColor;
@@ -409,17 +420,17 @@ body.home-page {
         }
     }
 
-                /* endregion */
+    /**** endregion */
 
-            /* endregion */
+    /*** endregion */
 
-        /* endregion */
+    /** endregion */
 
-        /* region extra extra small */
+    /** region extra extra small */
 
     @media (min-width: @minimumExtraExtraSmallWidthInPixel) {
 
-            /* region navigation bar */
+        /** region navigation bar */
 
         /* Show current dimension mode in indicator dom node. */
         > div.navbar-wrapper > div.container > div.navbar.navbar-inverse
@@ -431,51 +442,55 @@ body.home-page {
             }
         }
 
-            /* endregion */
+        /** endregion */
 
-            /* region carousel */
+        /** region carousel */
 
-        > div.carousel.slide > div.carousel-inner > div.item
-        > div[class^="carousel-image-"] > div.container {
-            padding-bottom: 25px;
+        > div.carousel.slide > div.carousel-inner > div.item {
+            &.about > div[class^=carousel-image-] > div.container > p {
+                font-size: 1.6rem;
+            }
+            > div[class^="carousel-image-"] > div.container {
+                padding-bottom: 25px;
+            }
         }
 
-            /* endregion */
+        /** endregion */
 
-            /* region section */
+        /** region section */
 
-                /* region about this website */
+        /*** region about this website */
 
         > div.about-this-website { padding-bottom: 25px; }
 
-                /* endregion */
+        /*** endregion */
 
-                /* region about */
+        /*** region about */
 
         > div.carousel.slide > div.carousel-inner > div.item
         > div[class^="carousel-image-about"] > div.container > p.lead
         > a:first-child { margin-top: 50px; }
 
-                /* endregion */
+        /*** endregion */
 
-            /* endregion */
+        /** endregion */
 
         /* endregion */
 
-        /* region small */
+        /** region small */
 
         @media (min-width: @minimumSmallWidthInPixel) {
 
-            /* region global */
+        /** region global */
 
-                /* region buttons */
+            /** region buttons */
 
             /* Bigger devices get a scroll top button. */
             > a[href="#top"] { visibility: visible; }
 
-                /* endregion */
+            /** endregion */
 
-            /* endregion */
+        /** endregion */
 
             /* region navigation bar */
 
@@ -624,7 +639,7 @@ body.home-page {
 
             /* endregion */
 
-        /* endregion */
+        /** endregion */
 
         /* region medium */
 

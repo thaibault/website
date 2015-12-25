@@ -1,13 +1,11 @@
 BEGIN:VCARD
-N:Sickert;Torben;;;
-ADR;INTL;PARCEL;WORK:;;Adelhauserstraße 19;Freiburg i.Br.;Baden-Württemberg;79098;Deutschland
+N:Sickert;Torben;;Beratung und Entwicklung;
+ADR;INTL;PARCEL;WORK:;;Christoph-Mang-Str.14;Freiburg i.Br.;Baden-Württemberg;79100;Deutschland
 ADR;DOM;PARCEL;HOME:;;Christoph-Mang-Str.14;Freiburg i.Br.;Baden-Württemberg;79100;Deutschland
-EMAIL;INTERNET:torben@posic.de
-EMAIL;INTERNET:t.sickert@gmail.com
-ORG:posic
+EMAIL;INTERNET:info@torben.website
 TEL;WORK:+49 (0) 176 / 10 248 185
 TEL;CELL:+49 (0) 151/ 40 328 065
-TITLE:Beratung und Entwicklung
-URL;WORK:http://posic.de/
-URL:http://thaibault.github.com
+TITLE:Entwickler, Consultant
+URL;WORK:http://torben.website
+URL:http://torben.website
 END:VCARD
