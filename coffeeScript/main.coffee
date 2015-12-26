@@ -14,7 +14,7 @@
 # endregion
 
 this.jQuery.noConflict() ($) -> $.HomePage(
-    googleTrackingCode: 'UA-40192634-1', logging: true, language:
+    googleTrackingCode: 'UA-40192634-1', language:
         allowedLanguages: ['enUS', 'deDE']
         sessionDescription: 'website{1}')
 

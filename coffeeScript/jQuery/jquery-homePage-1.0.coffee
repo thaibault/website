@@ -56,9 +56,9 @@ main = ($) ->
         # region special
 
         initialize: (
-            options={}, @_sectionBackgroundColor='white',
-            @_oldSectionHeightInPixel=200, @_sectionTopMarginInPixel=0,
-            @_initialContentHeightAdaptionDone=false,
+            options={}, @_sectionBackgroundColor='white'
+            @_oldSectionHeightInPixel=200, @_sectionTopMarginInPixel=0
+            @_initialContentHeightAdaptionDone=false
             @_initialMenuHightlightDone=false, @_loadingCoverRemoved=false
         ) ->
             ###
