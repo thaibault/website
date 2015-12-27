@@ -201,7 +201,9 @@ main = ($) ->
                         '.active'
                     ).children(this.$domNodes.navigationButton).attr 'href'
             this._initializeSwipe()
-            this.fireEvent 'switchSection', false, this, window.location.hash
+            this.fireEvent(
+                'switchSection', false, this, window.location.hash.substring(
+                    '#'.length))
             this.on this.$domNodes.window, 'resize', this.getMethod(
                 this._adaptContentHeight)
             this
@@ -261,7 +263,7 @@ main = ($) ->
                 ).fadeIn this._options.dimensionIndicator.effectOptions.fadeIn
             this.$domNodes.dimensionIndicator.stop().fadeOut(
                 this._options.dimensionIndicator.effectOptions.fadeOut)
-            super()
+            super
         _onChangeToExtraSmallMode: ->
             ###
                 This method triggers if the responsive design switches to
@@ -271,19 +273,19 @@ main = ($) ->
             ###
             # Resets the image dependent section heights.
             this.$domNodes.section.children().css height: 'auto'
-        _onSwitchSection: (hash) ->
+        _onSwitchSection: (sectionName) ->
             ###
                 Switches to given section.
 
-                **hash {String}**        - Location to switch to.
+                **sectionName {String}** - Location to switch to.
 
                 **returns {$.HomePage}** - Returns the current instance.
             ###
             direction = false
-            if $.inArray(hash, ['next', 'prev']) isnt -1
-                direction = hash
-                hash = this._determineRelativeSections hash
-            hash = "##{hash}" if hash.substr(0, 1) isnt '#'
+            if $.inArray(sectionName, ['next', 'prev']) isnt -1
+                direction = sectionName
+                sectionName = this._determineRelativeSections sectionName
+            hash = "##{sectionName}"
             if hash is this.$domNodes.aboutThisWebsiteButton.attr 'href'
                 window.location.hash = hash
                 this._handleSwitchToAboutThisWebsite()
@@ -310,7 +312,7 @@ main = ($) ->
                         sectionFound = true
                         if not $sectionButton.hasClass 'active'
                             this._performSectionSwitch(
-                                hash, direction, index, $sectionButton)
+                                sectionName, direction, index, $sectionButton)
                     else
                         $sectionButton.removeClass 'active'
                 # If no section could be determined initialize the first one.
@@ -321,17 +323,19 @@ main = ($) ->
                     return this._onSwitchSection forceSection
             if not this._initialContentHeightAdaptionDone
                 this._adaptContentHeight()
-            super()
+            super
 
         # endregion
 
         # region helper
 
-        _performSectionSwitch: (hash, direction, index, $sectionButton) ->
+        _performSectionSwitch: (
+            sectionName, direction, index, $sectionButton
+        ) ->
             ###
                 Switches to given section.
 
-                **hash {String}**              - Section hash value.
+                **sectionName {String}**       - Section name.
 
                 **direction {String|Boolean}** - Relative section position.
 
@@ -343,7 +347,7 @@ main = ($) ->
             ###
             this.$domNodes.aboutThisWebsiteSection.fadeOut(
                 this._options.aboutThisWebsiteSection.fadeOut)
-            this.debug "Switch to section \"#{hash}\"."
+            this.debug "Switch to section \"#{sectionName}\"."
             # Swipe in endless cycle if we get a direction.
             index = direction if direction
             $sectionButton.addClass 'active'
@@ -361,7 +365,9 @@ main = ($) ->
 
                 **returns {$.Website}** - Returns the current instance.
             ###
-            this.debug "Switch to section \"#{window.location.hash}\"."
+            this.debug(
+                'Switch to section "' +
+                "#{window.location.hash.substring '#'.length}\".")
             this.$domNodes.menuHighlighter.fadeOut(
                 this._options.aboutThisWebsiteSection.fadeOut)
             this._scrollToTop()
@@ -376,7 +382,7 @@ main = ($) ->
 
                 **returns {$.Website}** - Returns the current instance.
             ###
-            super()
+            super
             this._highlightMenuEntry()._adaptContentHeight()
         _removeLoadingCover: ->
             ###
@@ -389,7 +395,7 @@ main = ($) ->
             if(this._initialContentHeightAdaptionDone and
                not this._loadingCoverRemoved)
                 this._loadingCoverRemoved = true
-                super()
+                super
             this
         _highlightMenuEntry: (transition=true) ->
             ###
@@ -530,7 +536,7 @@ main = ($) ->
                                                      section height in pixel.
             ###
             if this._currentMediaQueryMode is 'extraSmall' or $.inArray(
-                window.location.hash.substr(1),
+                window.location.hash.substring '#'.length
                 this._options.backgroundDependentHeightSections
             ) is -1
                 this.$domNodes.section.children().css marginTop: 0
@@ -573,7 +579,7 @@ main = ($) ->
                                                 section height.
             ###
             if this._currentMediaQueryMode is 'extraSmall' or $.inArray(
-                window.location.hash.substr(1),
+                window.location.hash.substring '#'.length
                 this._options.backgroundDependentHeightSections
             ) is -1
                 newSectionHeightInPixel = $currentSection.outerHeight()
@@ -609,7 +615,8 @@ main = ($) ->
                     if index is subIndex
                         this.fireEvent(
                             'switchSection', false, this, $(button).attr(
-                                'href'))
+                                'href'
+                            ).substring '#'.length)
                         return false
                 return true
             # NOTE: A cyclic slide effect is more intuitive on touch devices.
@@ -658,15 +665,17 @@ main = ($) ->
                 this.$domNodes.aboutThisWebsiteButton
             ), 'click', (event) =>
                 this.fireEvent(
-                    'switchSection', false, this, $(event.target).attr 'href')
-            super()
-        _determineRelativeSections: (hash) ->
+                    'switchSection', false, this, $(event.target).attr(
+                        'href'
+                    ).substring '#'.length)
+            super
+        _determineRelativeSections: (sectionName) ->
             ###
                 Determines current section to the right or the left.
 
-                **hash {String}**    - Relative section ("next" or "prev"),
+                **sectionName {String}** - Relative section ("next" or "prev").
 
-                **returns {String}** - Returns the absolute hash string.
+                **returns {String}**     - Returns the absolute section name.
             ###
             this.$domNodes.navigationButton.each (index, button) =>
                 if $(button).attr('href') is window.location.hash
@@ -677,9 +686,9 @@ main = ($) ->
                     ###
                     numberOfButtons =
                         this.$domNodes.navigationButton.length - 1
-                    if hash is 'next'
+                    if sectionName is 'next'
                         newIndex = (index + 1) % numberOfButtons
-                    else if hash is 'prev'
+                    else if sectionName is 'prev'
                         ###
                             NOTE: Subtracting 1 in the residue class ring means
                             adding the number of numbers minus 1. This prevents
@@ -687,11 +696,11 @@ main = ($) ->
                         ###
                         newIndex = (index + numberOfButtons - 1) %
                             numberOfButtons
-                    hash = $(
+                    sectionName = $(
                         this.$domNodes.navigationButton[newIndex]
-                    ).attr 'href'
+                    ).attr('href').substring '#'.length
                     false
-            hash
+            sectionName
 
         # endregion
 
