@@ -480,6 +480,7 @@ html(lang='en')
             div
                 | Provider of
                 //<% ALTERNATE_LANGUAGE %>:Anbieter von
+                =' '
                 a(href='<% SOCIAL_MEDIA[-1][1] %>') <% SOCIAL_MEDIA[-1][1] %>
                 | :
                 br
@@ -497,10 +498,13 @@ html(lang='en')
                     | 10 248 185
                     br
                 | Email:
+                //<% ALTERNATE_LANGUAGE %>:E-Mail
+                =' '
                 a(href='mailto:#') <% SOCIAL_MEDIA[0][1] %>
                 br
                 | Website
                 //<% ALTERNATE_LANGUAGE %>:Webseite
+                =' '
                 | :
                 a(href='<% SOCIAL_MEDIA[-1][1] %>') <% SOCIAL_MEDIA[-1][1] %>
                 br
