@@ -392,8 +392,10 @@ main = ($) ->
 
                 **returns {$.Website}** - Returns the current instance.
             ###
-            if(this._initialContentHeightAdaptionDone and
-               not this._loadingCoverRemoved)
+            if(
+                this._initialContentHeightAdaptionDone and
+                not this._loadingCoverRemoved
+            )
                 this._loadingCoverRemoved = true
                 super
             this

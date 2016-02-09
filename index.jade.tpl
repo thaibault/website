@@ -285,7 +285,7 @@ doctype html
 
 <% # endregion
 
-html(lang='en')
+html.no-javascript(lang='en')
 
     // region head
 
@@ -317,6 +317,10 @@ html(lang='en')
         link(
             type='text/css' rel='stylesheet'
             href='<% CASCADING_STYLE_SHEET_PATH %>main.css')
+        script(type="text/javascript").
+            window.document.documentElement.className =
+                window.document.documentElement.className.replace(
+                    /(^|\s)no-javascript(\s|$)/, '$1javascript$2');
 
         // endregion
 
@@ -325,8 +329,7 @@ html(lang='en')
     // region body
 
     body.home-page.tools-hidden-on-javascript-enabled
-        .website-window-loading-cover.tools-visible-on-javascript-enabled
-            div
+        .website-window-loading-cover.tools-visible-on-javascript-enabled: div
 
         // region menu
 
