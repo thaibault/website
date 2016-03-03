@@ -299,6 +299,9 @@ html.no-javascript(lang='en')
             content='development responsive python javascript coffeescript bash design')
         meta(name='author' content='Torben Sickert')
         meta(name='viewport' content='width=device-width, initial-scale=1.0')
+        meta(
+            name='google-site-verification'
+            content='_43uvhbSI6YxLaUm_PkMhYiN4-d0RRSo-ILtdFv9CG0')
 
         // endregion
 
