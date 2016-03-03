@@ -301,7 +301,7 @@ html.no-javascript(lang='en')
         meta(name='viewport' content='width=device-width, initial-scale=1.0')
         meta(
             name='google-site-verification'
-            content='_43uvhbSI6YxLaUm_PkMhYiN4-d0RRSo-ILtdFv9CG0')
+            content='1_qh0NqpYkHYZeDLXPujeE6dzcpozXmOLItTv7hbbXU')
 
         // endregion
 
