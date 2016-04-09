@@ -1,15 +1,15 @@
 {
+    "name": "website",
     "description": "website",
-    "devDependencies": {
+    "version": "1.0.0",
+    "license": "CC-BY-3.0",
+    "keywords": ["website"],
+    "dependencies": {
         "webOptimizer": "git+ssh://git@github.com/thaibault/webOptimizer.git",
         "jQuery-website": "git+ssh://git@github.com/thaibault/jQuery-website.git",
         "bootstrap": "^3.3.6",
-        "qunitjs": "*"
     },
-    "license": "CC-BY-3.0",
-    "name": "website",
-    "version": "1.0.0",
-    "keywords": ["website"],
+    "devDependencies": {"qunitjs": "*"},
     "files": ["source"],
     "main": "source/javaScript/main.js",
     "repository": {"type": "git", "url": "git@github.io:thaibault/.git"},
@@ -19,11 +19,10 @@
             "jquery": "jquery/src/jquery",
             "bootstrap": "bootstrap/dist/css/bootstrap"
         },
-        "internalInjects": [
-            "less/main",
-            "javaScript/main"
-        ],
-        "externalInjects": ["babel-polyfill"],
+        "injects": {
+            "internal": ["less/main", "javaScript/main"],
+            "external": ["babel-polyfill"]
+        },
         "preprocessor": {
             "modernJavaScript": {
                 "plugins": [
