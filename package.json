@@ -8,7 +8,7 @@
         "webOptimizer": "git+ssh://git@github.com/thaibault/webOptimizer.git",
         "jQuery-website": "git+ssh://git@github.com/thaibault/jQuery-website.git",
         "legalNotes": "git+ssh://git@github.com/thaibault/legalNotes.git",
-        "bootstrap": "^3.3.6",
+        "bootstrap": "^3.3.6"
     },
     "devDependencies": {"qunitjs": "*"},
     "files": ["source"],
