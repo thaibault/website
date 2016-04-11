@@ -1,8 +1,6 @@
 //!/usr/bin/env lessc
 // -*- coding: utf-8 -*-
-
 /* region header
-
 Copyright Torben Sickert 16.12.2012
 
 License
@@ -11,30 +9,8 @@ License
 This library written by Torben Sickert stand under a creative commons naming
 3.0 unported license. see http://creativecommons.org/licenses/by/3.0/deed.de
 */
-
-/// region locations
-
-@lessImportPath: '';
-@cascadingStyleSheetImportPath: '../cascadingStyleSheet/';
-
 /// endregion
-
-#bootstrap() {
-    @import (less) '@{cascadingStyleSheetImportPath}bootstrap-3.3.5.css';
-}
-@import '@{lessImportPath}generic-1.0';
-@import '@{lessImportPath}website-1.0';
-
-/* endregion */
-
-/* region font */
-
-@import '@{cascadingStyleSheetImportPath}glyphicons-social-1.8.css';
-
-/* endregion */
-
 // region constants
-
 @defaultColor: #222222;
 @fontColor: #5a5a5a;
 @backgroundColor: #f2f2f2;
@@ -47,33 +23,25 @@ This library written by Torben Sickert stand under a creative commons naming
 @footerMarginInPixel: 30px;
 @minimumContentHeightInPixel: 300px;
 @topMargin: 65px;
-
 // endregion
-
 /* region cascading style sheets */
-
 body.home-page {
-
     /* region global */
+    @import '~jQuery-website';
 
-    #bootstrap;
-    #website > #bootstrap-nested-labels;
-    #website;
+    .website;
+    .website.bootstrap;
+    .website.bootstrap.fixes;
+    .website.bootstrap.fixes.nested-labels;
+
     color: @fontColor;
     background-color: @defaultColor;
     font-size: 16px;
     overflow-y: scroll;
-
     /** region headline */
-
-    h1, h2, h3, h4, h5, h6 {
-        font-family: @fontFamilyCondensed;
-    }
-
+    h1, h2, h3, h4, h5, h6 { font-family: @fontFamilyCondensed; }
     /** endregion */
-
     /** region link */
-
     a, a:visited, a:focus {
         color: @linkColor;
         font-size: 1.2rem;
@@ -90,15 +58,10 @@ body.home-page {
             right: 60px;
         }
     }
-
     /** endregion */
-
     /** region list */
-
     ul, ol { margin-top: 15px; }
-
     /** endregion */
-
     /*
         Makes space before each anchor to have enough space for a fixed
         positioned header menu.
@@ -113,16 +76,12 @@ body.home-page {
     > div.container > div.navbar-header > a.navbar-brand
     > span.dimension-indicator { font-size: 0.7em; }
     strong { font-weight: bold; }
-
     /** region bootstrap resets */
-
     .navbar-inverse .navbar-collapse {
         border: 0;
         box-shadow: none;
     }
-    p.lead {
-        font-weight: initial;
-    }
+    p.lead { font-weight: initial; }
     div.navbar-collapse.collapse > ul {
         > li > a {
             text-shadow: 0 0 0 rgba(0, 0, 0, 0);
@@ -132,13 +91,9 @@ body.home-page {
             box-shadow: none;
         }
     }
-
     /** endregion */
-
     /* endregion */
-
     /* region navigation bar */
-
     /* Normal Wrapper for the main navigation bar. Scrolls with viewport. */
     > div.navbar-wrapper {
         #generic > .opacity(0.95);
@@ -154,11 +109,8 @@ body.home-page {
             }
         }
     }
-
     /* endregion */
-
     /* region carousel */
-
     /* Main section slider wrapper. */
     > div.carousel.slide {
         background-color: @backgroundColor;
@@ -218,13 +170,9 @@ body.home-page {
             }
         }
     }
-
     /* endregion */
-
     /* region section */
-
     /** region contact */
-
     /* Show big dark social media icons. */
     > div.carousel.slide > div.carousel-inner > div.item.contact
     > div[class^="carousel-image-"] > div.container {
@@ -271,11 +219,8 @@ body.home-page {
             }
         }
     }
-
     /** endregion */
-
     /** region about this web site */
-
     /* Wraps the legal notice content. */
     div.about-this-website {
         min-height: @minimumContentHeightInPixel;
@@ -284,13 +229,9 @@ body.home-page {
         left: 0;
         width: 100%;
     }
-
     /** endregion */
-
     /* endregion */
-
     /* region footer */
-
     /* Centered footer */
     > div.footer {
         width: 100%;
@@ -305,28 +246,16 @@ body.home-page {
             }
         }
     }
-
     /* endregion
-
     /* region responsive */
-
     /** region extra extra extra small */
-
     /*** region global */
-
     /**** region buttons */
-
     /* Smaller devices have usually a touch interface for scrolling. */
-    a[href="#top"] {
-        visibility: hidden;
-    }
-
+    a[href="#top"] { visibility: hidden; }
     /**** endregion */
-
     /*** endregion */
-
     /*** region navigation bar */
-
     /* Normal Wrapper for the main navigation bar. Scrolls with viewport. */
     div.navbar-wrapper {
         top: 0;
@@ -371,10 +300,8 @@ body.home-page {
         }
     }
 
-            /* endregion */
-
+    /*** endregion */
     /*** region carousel */
-
     /* Define main content size. */
     > div.carousel.slide > div.carousel-inner > div.item {
         /* Don't show any background image in smartphone mode. */
@@ -390,13 +317,9 @@ body.home-page {
             }
         }
     }
-
     /*** endregion */
-
     /*** region section */
-
     /**** region about */
-
     > div.carousel.slide > div.carousel-inner > div.item
     > div[class^="carousel-image-about"] > div.container {
         padding-top: 90px;
@@ -404,11 +327,8 @@ body.home-page {
         > h1#about { margin-top: -@topMargin;}
         > p.lead > a:first-child { margin-top: 35px; }
     }
-
     /**** endregion */
-
     /**** region about this web site */
-
     > div.about-this-website {
         color: @defaultColor;
         padding-bottom: 15px;
@@ -419,19 +339,12 @@ body.home-page {
             font-size: 2.5em;
         }
     }
-
     /**** endregion */
-
     /*** endregion */
-
     /** endregion */
-
     /** region extra extra small */
-
     @media (min-width: @minimumExtraExtraSmallWidthInPixel) {
-
         /** region navigation bar */
-
         /* Show current dimension mode in indicator dom node. */
         > div.navbar-wrapper > div.container > div.navbar.navbar-inverse
         > div.container > div.navbar-header > a.navbar-brand {
@@ -441,11 +354,8 @@ body.home-page {
                 visibility: visible;
             }
         }
-
         /** endregion */
-
         /** region carousel */
-
         > div.carousel.slide > div.carousel-inner > div.item {
             &.about > div[class^=carousel-image-] > div.container > p {
                 font-size: 1.6rem;
@@ -454,46 +364,27 @@ body.home-page {
                 padding-bottom: 25px;
             }
         }
-
         /** endregion */
-
         /** region section */
-
         /*** region about this website */
-
         > div.about-this-website { padding-bottom: 25px; }
-
         /*** endregion */
-
         /*** region about */
-
         > div.carousel.slide > div.carousel-inner > div.item
         > div[class^="carousel-image-about"] > div.container > p.lead
         > a:first-child { margin-top: 50px; }
-
         /*** endregion */
-
         /** endregion */
-
         /* endregion */
-
         /** region small */
-
         @media (min-width: @minimumSmallWidthInPixel) {
-
-        /** region global */
-
+            /* region global */
             /** region buttons */
-
             /* Bigger devices get a scroll top button. */
             > a[href="#top"] { visibility: visible; }
-
             /** endregion */
-
-        /** endregion */
-
+            /* endregion */
             /* region navigation bar */
-
             /*
                 Normal Wrapper for the main navigation bar. Scrolls with
                 viewport.
@@ -565,11 +456,8 @@ body.home-page {
                     }
                 }
             }
-
             /* endregion */
-
             /* region carousel */
-
             > div.carousel.slide > div.carousel-inner > div.item {
                 > div {
                     /* Show any background image on higher resolutions. */
@@ -599,11 +487,8 @@ body.home-page {
                     }
                 }
             }
-
             /* endregion */
-
             /* region section */
-
             > div {
                 &.about-this-website {
                     padding-bottom: 50px;
@@ -636,27 +521,18 @@ body.home-page {
                     }
                 }
             }
-
             /* endregion */
-
         /** endregion */
-
-        /* region medium */
-
+            /* region medium */
             @media (min-width: @minimumMediumWidthInPixel) {
-
-            /* region navigation bar */
-
+                /* region navigation bar */
                 /*
                     Normal Wrapper for the main navigation bar. Scrolls with
                     viewport.
                 */
                 > div.navbar-wrapper > div.container { max-width: 600px; }
-
-            /* endregion */
-
-            /* region carousel */
-
+                /* endregion */
+                /* region carousel */
                 > div.carousel.slide > div.carousel-inner > div.item > div {
                     &[class^="carousel-image-"] > div.container {
                         max-width: 810px;
@@ -673,24 +549,15 @@ body.home-page {
                         right: 0;
                     }
                 }
-
-            /* endregion */
-
+                /* endregion */
             }
+            /* endregion */
         }
     }
-
-        /* endregion */
-
     /* endregion */
-
 }
-
 /* endregion */
-
 // region vim modline
-
 // vim: set tabstop=4 shiftwidth=4 expandtab:
 // vim: foldmethod=marker foldmarker=region,endregion:
-
 // endregion

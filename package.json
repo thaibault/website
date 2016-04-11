@@ -5,6 +5,7 @@
     "license": "CC-BY-3.0",
     "keywords": ["website"],
     "dependencies": {
+        "Swipe": "https://github.com/thebird/Swipe",
         "webOptimizer": "git+ssh://git@github.com/thaibault/webOptimizer.git",
         "jQuery-website": "git+ssh://git@github.com/thaibault/jQuery-website.git",
         "legalNotes": "git+ssh://git@github.com/thaibault/legalNotes.git",
@@ -18,7 +19,8 @@
         "library": false,
         "moduleAliases": {
             "jquery": "jquery/src/jquery",
-            "bootstrap": "bootstrap/dist/css/bootstrap"
+            "bootstrap": "bootstrap/dist/css/bootstrap",
+            "swipe": "Swipe/swipe"
         },
         "injects": {
             "internal": ["less/main", "javaScript/main"],
