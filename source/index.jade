@@ -22,11 +22,21 @@ doctype html
 
     endregion
 -
+    // region helper functions
+    const swapCase = (letters) => {
+        let newLetters = ''
+        for (var i = 0; i < letters.length; i++)
+            if (letters[i] === letters[i].toLowerCase())
+                newLetters += letters[i].toUpperCase()
+            else
+                newLetters += letters[i].toLowerCase()
+        return newLetters
+    }
+    // endregion
     // region language
     DEFAULT_LANGUAGE = 'enUS'
     ALTERNATE_LANGUAGE = 'deDE'
     // endregion
--
     // region location
     IMAGE_PATH = 'image/'
 
@@ -37,14 +47,11 @@ doctype html
     JAVA_SCRIPT_PATH = 'javaScript/'
 
     DATA_PATH = 'data/'
-    LINK_PUBLIC_SSH_KEY_PATH = DATA_PATH + 'publicSSHKey.txt'
-    LINK_V_CARD_PATH = DATA_PATH + 'vCard.vcf'
-    // TODO
-    LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE_PATH = DATA_PATH + 'curriculumVitae' + DEFAULT_LANGUAGE.swapcase() + '.pdf'
-    // TODO
-    LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE_PATH = DATA_PATH + 'curriculumVitae' + ALTERNATE_LANGUAGE.swapcase() + '.pdf'
+    LINK_PUBLIC_SSH_KEY_PATH = `${DATA_PATH}publicSSHKey.txt`
+    LINK_V_CARD_PATH = `${DATA_PATH}vCard.vcf`
+    LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE_PATH = `${DATA_PATH}curriculumVitae${swapCase(DEFAULT_LANGUAGE)}.pdf`
+    LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE_PATH = `${DATA_PATH}curriculumVitae${swapCase(ALTERNATE_LANGUAGE)}.pdf`
     // endregion
--
     // region runtime
     START_UP_ANIMATION_NUMBER = 1
     // endregion
@@ -302,12 +309,12 @@ html.no-javascript(lang='en')
         // region fav and touch icons
         link(
             rel='shortcut icon' type='image/x-icon'
-            href=IMAGE_PATH + 'favicon.ico')
+            href=`${IMAGE_PATH}favicon.ico`)
         // endregion
         // region pre load resources
         link(
             type='text/css' rel='stylesheet'
-            href=CASCADING_STYLE_SHEET_PATH + 'main.css')
+            href=`${CASCADING_STYLE_SHEET_PATH}main.css}`)
         script(type="text/javascript").
             window.document.documentElement.className =
                 window.document.documentElement.className.replace(
@@ -319,7 +326,7 @@ html.no-javascript(lang='en')
         .website-window-loading-cover.tools-visible-on-javascript-enabled: div
         // region menu
         .navbar-wrapper(
-            class='website-start-up-animation-number-' + START_UP_ANIMATION_NUMBER
+            class=`website-start-up-animation-number-${START_UP_ANIMATION_NUMBER}`
         )
             .container: .navbar.navbar-inverse.navbar-static-top: .container
                 .navbar-header
@@ -329,8 +336,8 @@ html.no-javascript(lang='en')
                         span.dimension-indicator
                     - START_UP_ANIMATION_NUMBER += 1
                     a.tools-visible-on-javascript-enabled(
-                        href='#lang-' + ALTERNATE_LANGUAGE
-                        class='website-start-up-animation-number-' + START_UP_ANIMATION_NUMBER
+                        href=`#lang-${ALTERNATE_LANGUAGE}`
+                        class=`website-start-up-animation-number-${START_UP_ANIMATION_NUMBER}`
                     ) #{ALTERNATE_LANGUAGE.slice(0, ALTERNATE_LANGUAGE.length() - 2)}
                     button.navbar-toggle.tools-visible-on-javascript-enabled(
                         type='button' data-toggle='collapse'
@@ -345,9 +352,9 @@ html.no-javascript(lang='en')
                             if (section[1][0])
                                 - START_UP_ANIMATION_NUMBER += 1
                                 li(
-                                    class='website-start-up-animation-number-' + START_UP_ANIMATION_NUMBER + (section[0] === SECTIONS[0][0] ? '.active' : '')
+                                    class=`website-start-up-animation-number-${START_UP_ANIMATION_NUMBER}${(section[0] === SECTIONS[0][0] ? '.active' : '')}`
                                 )
-                                    a(href='#' + section[0])
+                                    a(href=`#${section[0]}`)
                                         | #{section[1][0][DEFAULT_LANGUAGE]}
                                         //#{ALTERNATE_LANGUAGE}:#{section[1][0][ALTERNATE_LANGUAGE]}
         // endregion
@@ -355,7 +362,7 @@ html.no-javascript(lang='en')
         .carousel.slide: .carousel-inner
             - for (section of SECTIONS)
                 .item(class=section[0]): div(
-                    class='carousel-image-' + section[0]
+                    class=`carousel-image-${section[0]}`
                 ): .container
                     if (section[1][1][DEFAULT_LANGUAGE])
                         h1(id=section[0])
@@ -446,14 +453,14 @@ html.no-javascript(lang='en')
                             | 10 248 185
                         - for (link of SOCIAL_MEDIA)
                             if (link[1].indexOf('@') !== -1)
-                                - link[1] = 'mailto:' + link[1]
+                                - link[1] = `mailto:${link[1]}`
                             if ('website' === link[0])
                                 a.glyphicon.glyphicon-globe(
                                     href=link[1] target='_blank')
                             else
                                 a.glyphicon-social(
-                                    href='<% link[1] %>' target='_blank'
-                                    class='glyphicon-social-' + link[0])
+                                    href=link[1] target='_blank'
+                                    class=`glyphicon-social-${link[0]}`)
         // endregion
         // region about this website
         .about-this-website: .carousel-image-about-this-website: .container
@@ -508,7 +515,7 @@ html.no-javascript(lang='en')
             content.
         - START_UP_ANIMATION_NUMBER += 1
         .footer(
-            class='website-start-up-animation-number-' + START_UP_ANIMATION_NUMBER
+            class=`website-start-up-animation-number-${START_UP_ANIMATION_NUMBER}`
         )
             footer: p
                 | &copy; 2013 Torben Sickert &middot;
@@ -521,7 +528,7 @@ html.no-javascript(lang='en')
             | top
             //deDE:nach oben
         // region post load resources
-        script(type='text/javascript' src=JAVA_SCRIPT_PATH + 'main.js')
+        script(type='text/javascript' src=`${JAVA_SCRIPT_PATH}main.js`)
         // endregion
     // endregion
 //-

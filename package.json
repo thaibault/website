@@ -15,7 +15,7 @@
     "main": "source/javaScript/main.js",
     "repository": {"type": "git", "url": "git@github.io:thaibault/.git"},
     "webOptimizer": {
-        "debug": true,
+        "library": false,
         "moduleAliases": {
             "jquery": "jquery/src/jquery",
             "bootstrap": "bootstrap/dist/css/bootstrap"
