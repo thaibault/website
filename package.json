@@ -24,7 +24,7 @@
             "jQuery-website.less": "jQuery-website/index.less"
         },
         "injects": {
-            "internal": ["less/index", "javaScript/index"],
+            "internal": ["less/index", "coffeeScript/index"],
             "external": ["babel-polyfill"]
         },
         "preprocessor": {

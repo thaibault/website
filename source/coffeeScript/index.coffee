@@ -34,7 +34,7 @@ Version
 $ = require 'jquery'
 require 'jQuery-website'
 require 'bootstrap'
-require 'jQuery-swip'
+require 'swipe'
 # region plugins/classes
 class HomePage extends $.Website.class
     ###This plugin holds all needed methods to extend a whole homepage.###
