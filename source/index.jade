@@ -500,26 +500,28 @@ html.no-javascript(lang='en')
                 a(href=LINK_PUBLIC_SSH_KEY_PATH target='_blank')
                     | public ssh key
                     //#{ALTERNATE_LANGUAGE}:öffentlicher SSH-Schlüssel
-            <% include('aboutThisWebsite.jade')
+            include 'legalNotes'
         // endregion
         // region footer
         //
             Wrap the footer of the page in another container to center the
             content.
-        <% START_UP_ANIMATION_NUMBER += 1
-        .website-start-up-animation-number-<% START_UP_ANIMATION_NUMBER %>.footer
+        - START_UP_ANIMATION_NUMBER += 1
+        .footer(
+            class='website-start-up-animation-number-' + START_UP_ANIMATION_NUMBER
+        )
             footer: p
                 | &copy; 2013 Torben Sickert &middot;
                 = ' '
                 a(href='#about-this-website')
                     | about this website
-                    //<% ALTERNATE_LANGUAGE %>:Impressum
+                    //#{ALTERNATE_LANGUAGE}:Impressum
         // endregion
         a(href='#top')
             | top
             //deDE:nach oben
         // region post load resources
-        script(type='text/javascript' src='<% JAVA_SCRIPT_PATH %>main.js')
+        script(type='text/javascript' src=JAVA_SCRIPT_PATH + 'main.js')
         // endregion
     // endregion
 //-
