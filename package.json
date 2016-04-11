@@ -13,17 +13,18 @@
     },
     "devDependencies": {"qunitjs": "*"},
     "files": ["source"],
-    "main": "source/javaScript/main.js",
+    "main": "source/coffeeScript/index.coffee",
     "repository": {"type": "git", "url": "git@github.io:thaibault/.git"},
     "webOptimizer": {
         "library": false,
         "moduleAliases": {
-            "jquery": "jquery/src/jquery",
-            "bootstrap": "bootstrap/dist/css/bootstrap",
-            "swipe": "Swipe/swipe"
+            "bootstrap.less": "bootstrap/less/bootstrap",
+            "swipe": "Swipe/swipe",
+            "genericStyle.less": "genericStyle/index.less",
+            "jQuery-website.less": "jQuery-website/index.less"
         },
         "injects": {
-            "internal": ["less/main", "javaScript/main"],
+            "internal": ["less/index", "javaScript/index"],
             "external": ["babel-polyfill"]
         },
         "preprocessor": {

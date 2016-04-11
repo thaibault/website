@@ -290,7 +290,7 @@ doctype html
             ]
         ]
     }]]
-/- endregion
+    // endregion
 html.no-javascript(lang='en')
     // region head
     head
@@ -312,9 +312,6 @@ html.no-javascript(lang='en')
             href=`${IMAGE_PATH}favicon.ico`)
         // endregion
         // region pre load resources
-        link(
-            type='text/css' rel='stylesheet'
-            href=`${CASCADING_STYLE_SHEET_PATH}main.css}`)
         script(type="text/javascript").
             window.document.documentElement.className =
                 window.document.documentElement.className.replace(
@@ -527,9 +524,6 @@ html.no-javascript(lang='en')
         a(href='#top')
             | top
             //deDE:nach oben
-        // region post load resources
-        script(type='text/javascript' src=`${JAVA_SCRIPT_PATH}main.js`)
-        // endregion
     // endregion
 //-
     region vim modline
