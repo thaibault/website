@@ -381,7 +381,7 @@ html.no-javascript(lang='en')
                     a.tools-visible-on-javascript-enabled(
                         href=`#lang-${ALTERNATE_LANGUAGE}`
                         class=`website-start-up-animation-number-${START_UP_ANIMATION_NUMBER}`
-                    ) #{ALTERNATE_LANGUAGE.slice(0, ALTERNATE_LANGUAGE.length() - 2)}
+                    ) #{ALTERNATE_LANGUAGE.substring(0, ALTERNATE_LANGUAGE.length - 2)}
                     button.navbar-toggle.tools-visible-on-javascript-enabled(
                         type='button' data-toggle='collapse'
                         data-target='.navbar-collapse'
@@ -443,7 +443,7 @@ html.no-javascript(lang='en')
                                     | #{project.content[DEFAULT_LANGUAGE][0]}
                                     //#{ALTERNATE_LANGUAGE}:
                                         #{project.content[ALTERNATE_LANGUAGE][0]}
-                                    if (project.content[DEFAULT_LANGUAGE].length() > 1)
+                                    if (project.content[DEFAULT_LANGUAGE].length > 1)
                                         ul
                                             - index = 0
                                             - for (element of project.content[DEFAULT_LANGUAGE][1])
@@ -517,8 +517,8 @@ html.no-javascript(lang='en')
                 | Provider of
                 //#{ALTERNATE_LANGUAGE}:Anbieter von
                 =' '
-                a(href=SOCIAL_MEDIA[SOCIAL_MEDIA.length() - 1].url).
-                    #{SOCIAL_MEDIA[SOCIAL_MEDIA.length() - 1].url}
+                a(href=SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url).
+                    #{SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url}
                 | :
                 br
                 | Torben Sickert
@@ -543,14 +543,14 @@ html.no-javascript(lang='en')
                 //#{ALTERNATE_LANGUAGE}:Webseite
                 =' '
                 | :
-                a(href=SOCIAL_MEDIA[SOCIAL_MEDIA.length() - 1].url).
-                    #{SOCIAL_MEDIA[-1].url}
+                a(href=SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url).
+                    #{SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url}
                 br
                 br
                 a(href=LINK_PUBLIC_SSH_KEY_PATH target='_blank')
                     | public ssh key
                     //#{ALTERNATE_LANGUAGE}:öffentlicher SSH-Schlüssel
-            != require('legalNotes')
+            // TODO != require('legalNotes')
         // endregion
         // region footer
         //
