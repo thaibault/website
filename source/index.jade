@@ -23,7 +23,7 @@ doctype html
     endregion
 -
     // region helper functions
-    const swapCase = (letters) => {
+    swapCase = (letters) => {
         let newLetters = ''
         for (var i = 0; i < letters.length; i++)
             if (letters[i] === letters[i].toLowerCase())
@@ -504,7 +504,7 @@ html.no-javascript(lang='en')
                 a(href=LINK_PUBLIC_SSH_KEY_PATH target='_blank')
                     | public ssh key
                     //#{ALTERNATE_LANGUAGE}:öffentlicher SSH-Schlüssel
-            include 'legalNotes'
+            != require('legalNotes')
         // endregion
         // region footer
         //
