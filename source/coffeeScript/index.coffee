@@ -33,7 +33,9 @@ Version
 # endregion
 $ = require 'jquery'
 require 'jQuery-website'
-require 'swipe'
+require(
+    'imports?jQuery=jquery!imports?$=jquery!imports?window=>{jQuery: jQuery}' +
+    '!swipe')
 # region plugins/classes
 class HomePage extends $.Website.class
     ###This plugin holds all needed methods to extend a whole homepage.###
