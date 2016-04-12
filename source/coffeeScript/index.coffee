@@ -33,7 +33,6 @@ Version
 # endregion
 $ = require 'jquery'
 require 'jQuery-website'
-require 'bootstrap'
 require 'swipe'
 # region plugins/classes
 class HomePage extends $.Website.class
