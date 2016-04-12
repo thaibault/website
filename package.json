@@ -21,7 +21,7 @@
             "bootstrap.less": "bootstrap/less/bootstrap",
             "swipe": "Swipe/swipe",
             "genericStyle.less": "genericStyle/index.less",
-            "jQuery-website.less": "jQuery-website/style.less"
+            "jQuery-website.less": "jQuery-website/index.less"
         },
         "injects": {
             "internal": ["less/index", "coffeeScript/index"],
