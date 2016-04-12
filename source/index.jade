@@ -337,7 +337,9 @@ doctype html
         }
     ]
     // endregion
-html.no-javascript(lang='en')
+html.no-javascript(lang='en')&attributes({
+    manifest: includeManifest && 'manifest.appcache'
+})
     // region head
     head
         // region meta informations
@@ -563,7 +565,7 @@ html.no-javascript(lang='en')
                     | public ssh key
                     != `<!--${ALTERNATE_LANGUAGE}:öffentlicher SSH-Schlüssel-->`
             // TODO
-            // != require('legalNotes')
+            != require('legalNotes')
         // endregion
         // region footer
         //
