@@ -399,7 +399,7 @@ html.no-javascript(lang='en')
                                 )
                                     a(href=`#${section.title}`)
                                         | #{section.content[0][DEFAULT_LANGUAGE]}
-                                        //#{ALTERNATE_LANGUAGE}:#{section.content[0][ALTERNATE_LANGUAGE]}
+                                        != `<!--${ALTERNATE_LANGUAGE}:${section.content[0][ALTERNATE_LANGUAGE]}-->`
         // endregion
         // region carousel
         .carousel.slide: .carousel-inner
@@ -410,14 +410,14 @@ html.no-javascript(lang='en')
                     if (section.content[1][DEFAULT_LANGUAGE])
                         h1(id=section.title)
                             | #{section.content[1][DEFAULT_LANGUAGE]}
-                            //#{ALTERNATE_LANGUAGE}:#{section.content[1][ALTERNATE_LANGUAGE]}
+                            != `<!--${ALTERNATE_LANGUAGE}:${section.content[1][ALTERNATE_LANGUAGE]}-->`
                     else
                         // Serves as anchor point if javaScript isn't supported.
                         h1(id=section.title)
                     if (section.title === 'work')
                         h2
                             | #{section.content[2][DEFAULT_LANGUAGE]}
-                            //#{ALTERNATE_LANGUAGE}:#{section.content[2][ALTERNATE_LANGUAGE]}
+                            != `<!--${ALTERNATE_LANGUAGE}:${section.content[2][ALTERNATE_LANGUAGE]}-->`
                         p
                             langReplace
                                 - for (keywords of section.content[3][DEFAULT_LANGUAGE])
@@ -426,23 +426,26 @@ html.no-javascript(lang='en')
                                         strong #{keywords[0]}
                                         = ' '
                                     | #{keywords[1].join(', ')}
-                            //#{ALTERNATE_LANGUAGE}:
+                            != `<!--${ALTERNATE_LANGUAGE}:`
                                 - for (keywords of section.content[3][ALTERNATE_LANGUAGE])
                                     if (keywords[0] !== section.content[3][ALTERNATE_LANGUAGE][0][0])
                                         strong #{keywords[0]}
-                                    #{keywords[1].join(', ')}
+                                    | #{keywords[1].join(', ')}
+                            != '-->'
                         h2
                             | #{section.content[4][DEFAULT_LANGUAGE]}
-                            //#{ALTERNATE_LANGUAGE}:
-                                #{section.content[4][ALTERNATE_LANGUAGE]}
+                            != `<!--${ALTERNATE_LANGUAGE}:`
+                                | #{section.content[4][ALTERNATE_LANGUAGE]}
+                            != '-->'
                         dl.dl-horizontal
                             - for (project of PROJECTS)
                                 dt: a(href=project.url, target='_blank').
                                     #{project.title}
                                 dd
                                     | #{project.content[DEFAULT_LANGUAGE][0]}
-                                    //#{ALTERNATE_LANGUAGE}:
-                                        #{project.content[ALTERNATE_LANGUAGE][0]}
+                                    != `<!--${ALTERNATE_LANGUAGE}:`
+                                        | #{project.content[ALTERNATE_LANGUAGE][0]}
+                                    != '-->'
                                     if (project.content[DEFAULT_LANGUAGE].length > 1)
                                         ul
                                             - index = 0
@@ -459,36 +462,45 @@ html.no-javascript(lang='en')
                                                             ) #{project.content[ALTERNATE_LANGUAGE][1][index][0]}
                                                     else
                                                         | #{element}
-                                                        //#{ALTERNATE_LANGUAGE}:
-                                                            #{project.content[ALTERNATE_LANGUAGE][1][index]}
+                                                        != `${ALTERNATE_LANGUAGE}:`
+                                                            | #{project.content[ALTERNATE_LANGUAGE][1][index]}
+                                                        != '-->'
                     else
                         p.lead
                             | #{section.content[2][DEFAULT_LANGUAGE]}
-                            //#{ALTERNATE_LANGUAGE}:#{section.content[2][ALTERNATE_LANGUAGE]}
+                            != `<!--${ALTERNATE_LANGUAGE}:`
+                                | #{section.content[2][ALTERNATE_LANGUAGE]}
+                            != '-->'
                             if (section.title === 'about')
                                 a.visible-xs(
                                     href=LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE_PATH
                                     target='_blank'
                                 )
                                     | Curriculum Vitae (German)
-                                    //#{ALTERNATE_LANGUAGE}:Lebenslauf (Deutsch)
+                                    != `<!--${ALTERNATE_LANGUAGE}:`
+                                        | Lebenslauf (Deutsch)
+                                    != '-->'
                                 a.visible-xs(
                                     href=LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE_PATH
                                     target='_blank'
                                 )
                                     | Curriculum Vitae (English)
-                                    //#{ALTERNATE_LANGUAGE}:Lebenslauf (Englisch)
+                                    != `<!--${ALTERNATE_LANGUAGE}:`
+                                        | Lebenslauf (Englisch)
+                                    != '-->'
                                 a.hidden-xs(
                                     href=LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE_PATH
                                     target='_blank'
                                 )
                                     | Curriculum Vitae
-                                    //#{ALTERNATE_LANGUAGE}:Lebenslauf
+                                    != `<!--${ALTERNATE_LANGUAGE}:`
+                                        | Lebenslauf
+                                    != '-->'
                                 a(href=LINK_V_CARD_PATH, target='_blank') vCard
                     if (section.title === 'contact')
                         a(href='tel:004917610248185')
                             | Phone
-                            //#{ALTERNATE_LANGUAGE}:Tel.
+                            != `<!--${ALTERNATE_LANGUAGE}:Tel.-->`
                             | +49 (0) 176
                             = ' '
                             span /
@@ -509,13 +521,13 @@ html.no-javascript(lang='en')
         .about-this-website: .carousel-image-about-this-website: .container
             h1(id='about-this-website')
                 | About this website
-                //#{ALTERNATE_LANGUAGE}:Impressum
+                != `<!--${ALTERNATE_LANGUAGE}:Impressum-->`
             h2
                 | Contact
-                //#{ALTERNATE_LANGUAGE}:Kontakt
+                != `<!--${ALTERNATE_LANGUAGE}:Kontakt-->`
             div
                 | Provider of
-                //#{ALTERNATE_LANGUAGE}:Anbieter von
+                != `<!--${ALTERNATE_LANGUAGE}:Anbieter von-->`
                 =' '
                 a(href=SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url).
                     #{SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url}
@@ -529,18 +541,18 @@ html.no-javascript(lang='en')
                 br
                 a(href='tel:004917610248185')
                     | Phone
-                    //#{ALTERNATE_LANGUAGE}:Tel.
+                    != `<!--${ALTERNATE_LANGUAGE}:Tel.-->`
                     | : +49 (0) 176
                     span /
                     | 10 248 185
                     br
                 | Email:
-                //#{ALTERNATE_LANGUAGE}:E-Mail
+                != `<!--${ALTERNATE_LANGUAGE}:E-Mail-->`
                 =' '
                 a(href='mailto:#') #{SOCIAL_MEDIA[0].url}
                 br
                 | Website
-                //#{ALTERNATE_LANGUAGE}:Webseite
+                != `<!--${ALTERNATE_LANGUAGE}:Webseite-->`
                 =' '
                 | :
                 a(href=SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url).
@@ -549,7 +561,7 @@ html.no-javascript(lang='en')
                 br
                 a(href=LINK_PUBLIC_SSH_KEY_PATH target='_blank')
                     | public ssh key
-                    //#{ALTERNATE_LANGUAGE}:öffentlicher SSH-Schlüssel
+                    != `<!--${ALTERNATE_LANGUAGE}:öffentlicher SSH-Schlüssel-->`
             // TODO != require('legalNotes')
         // endregion
         // region footer
@@ -565,7 +577,7 @@ html.no-javascript(lang='en')
                 = ' '
                 a(href='#about-this-website')
                     | about this website
-                    //#{ALTERNATE_LANGUAGE}:Impressum
+                    != `<!--${ALTERNATE_LANGUAGE}:Impressum-->`
         // endregion
         a(href='#top')
             | top
