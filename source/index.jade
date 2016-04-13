@@ -25,11 +25,11 @@ doctype html
     // region helper functions
     swapCase = (letters) => {
         var newLetters = ''
-        for (var i = 0; i < letters.length; i++)
-            if (letters[i] === letters[i].toLowerCase())
-                newLetters += letters[i].toUpperCase()
+        for (var index = 0; index < letters.length; index++)
+            if (letters[index] === letters[index].toLowerCase())
+                newLetters += letters[index].toUpperCase()
             else
-                newLetters += letters[i].toLowerCase()
+                newLetters += letters[index].toLowerCase()
         return newLetters
     }
     // endregion
@@ -388,12 +388,12 @@ html.no-javascript(lang='en')&attributes({
                         type='button' data-toggle='collapse'
                         data-target='.navbar-collapse'
                     )
-                        - for (section of [1, 2, 3])
+                        each section in [1, 2, 3]
                             span.icon-bar
                 .navbar-collapse.collapse
                     .navbar-highlighter.tools-visible-on-javascript-enabled
                     ul.nav.navbar-nav
-                        - for (section of SECTIONS)
+                        each section in SECTIONS
                             if (section.content[0])
                                 - START_UP_ANIMATION_NUMBER += 1
                                 li(
@@ -405,7 +405,7 @@ html.no-javascript(lang='en')&attributes({
         // endregion
         // region carousel
         .carousel.slide: .carousel-inner
-            - for (section of SECTIONS)
+            each section in SECTIONS
                 .item(class=section.title): div(
                     class=`carousel-image-${section.title}`
                 ): .container
@@ -422,14 +422,14 @@ html.no-javascript(lang='en')&attributes({
                             != `<!--${ALTERNATE_LANGUAGE}:${section.content[2][ALTERNATE_LANGUAGE]}-->`
                         p
                             langReplace
-                                - for (keywords of section.content[3][DEFAULT_LANGUAGE])
+                                each keywords in section.content[3][DEFAULT_LANGUAGE]
                                     if (keywords[0] !== section.content[3][DEFAULT_LANGUAGE][0][0])
                                         = ' '
                                         strong #{keywords[0]}
                                         = ' '
                                     | #{keywords[1].join(', ')}
                             != `<!--${ALTERNATE_LANGUAGE}:`
-                                - for (keywords of section.content[3][ALTERNATE_LANGUAGE])
+                                each keywords of section.content[3][ALTERNATE_LANGUAGE]
                                     if (keywords[0] !== section.content[3][ALTERNATE_LANGUAGE][0][0])
                                         strong #{keywords[0]}
                                     | #{keywords[1].join(', ')}
@@ -440,7 +440,7 @@ html.no-javascript(lang='en')&attributes({
                                 | #{section.content[4][ALTERNATE_LANGUAGE]}
                             != '-->'
                         dl.dl-horizontal
-                            - for (project of PROJECTS)
+                            each project in PROJECTS
                                 dt: a(href=project.url, target='_blank').
                                     #{project.title}
                                 dd
@@ -451,7 +451,7 @@ html.no-javascript(lang='en')&attributes({
                                     if (project.content[DEFAULT_LANGUAGE].length > 1)
                                         ul
                                             - index = 0
-                                            - for (element of project.content[DEFAULT_LANGUAGE][1])
+                                            each element in project.content[DEFAULT_LANGUAGE][1]
                                                 li
                                                     if (Array.isArray(element))
                                                         langreplace: a(
@@ -508,7 +508,7 @@ html.no-javascript(lang='en')&attributes({
                             span /
                             = ' '
                             | 10 248 185
-                        - for (link of SOCIAL_MEDIA)
+                        each link in SOCIAL_MEDIA
                             if (link.url.indexOf('@') !== -1)
                                 - link.url = `mailto:${link.url}`
                             if ('website' === link.title)
@@ -564,7 +564,6 @@ html.no-javascript(lang='en')&attributes({
                 a(href=LINK_PUBLIC_SSH_KEY_PATH target='_blank')
                     | public ssh key
                     != `<!--${ALTERNATE_LANGUAGE}:öffentlicher SSH-Schlüssel-->`
-            // TODO
             != require('legalNotes')
         // endregion
         // region footer
