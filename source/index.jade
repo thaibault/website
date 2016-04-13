@@ -429,7 +429,7 @@ html.no-javascript(lang='en')&attributes({
                                         = ' '
                                     | #{keywords[1].join(', ')}
                             != `<!--${ALTERNATE_LANGUAGE}:`
-                                each keywords of section.content[3][ALTERNATE_LANGUAGE]
+                                each keywords in section.content[3][ALTERNATE_LANGUAGE]
                                     if (keywords[0] !== section.content[3][ALTERNATE_LANGUAGE][0][0])
                                         strong #{keywords[0]}
                                     | #{keywords[1].join(', ')}
