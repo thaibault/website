@@ -564,7 +564,7 @@ html.no-javascript(lang='en')&attributes({
                 a(href=LINK_PUBLIC_SSH_KEY_PATH target='_blank')
                     | public ssh key
                     != `<!--${ALTERNATE_LANGUAGE}:öffentlicher SSH-Schlüssel-->`
-            != require('legalNotes')
+            != require('legalNotes').replace(/\n/g, '\n            ')
         // endregion
         // region footer
         //
