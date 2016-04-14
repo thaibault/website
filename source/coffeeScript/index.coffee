@@ -182,12 +182,16 @@ class HomePage extends $.Website.class
                 self._adaptCurriculumVitaeLink oldLanguage, newLanguage
                 result
         super options
-        # Disable tab functionality to prevent inconsistent carousel
-        # states.
+        # Disable tab functionality to prevent inconsistent carousel states.
         this.on this.$domNodes.parent, 'keydown', (event) =>
             event.preventDefault() if event.keyCode is this.keyCode.TAB
         this.$domNodes.aboutThisWebsiteSection.hide().css(
             'position', 'absolute')
+        console.log(
+            this.$domNodes.navigationButton.parent('li'),
+            this.$domNodes.navigationButton.parent('li').filter(
+                '.active'
+            ).length)
         if not window.location.hash
             window.location.hash =
                 this.$domNodes.navigationButton.parent('li').filter(
