@@ -12,8 +12,16 @@ This library written by Torben Sickert stand under a creative commons naming
 /// endregion
 /* region cascading style sheets */
 body.home-page {
+    // region imports
+    @import '~jQuery-website';
+
+    .website;
+    .website.bootstrap;
+    .website.bootstrap.fixes;
+    .website.bootstrap.fixes.nested-labels;
+    // endregion
     // region constants
-    @imagePath: '../image/';
+    @imagePath: 'image/';
 
     @defaultColor: #222222;
     @fontColor: #5a5a5a;
@@ -29,13 +37,6 @@ body.home-page {
     @topMargin: 65px;
     // endregion
     /* region global */
-    @import '~jQuery-website';
-
-    .website;
-    .website.bootstrap;
-    .website.bootstrap.fixes;
-    .website.bootstrap.fixes.nested-labels;
-
     color: @fontColor;
     background-color: @defaultColor;
     font-size: 16px;
@@ -47,11 +48,10 @@ body.home-page {
     a, a:visited, a:focus {
         color: @linkColor;
         font-size: 1.2rem;
+        text-decoration: none !important;
 
         &:hover { color: @linkHoverColor; }
         /* Show phone links as normal text. */
-        &[href^="tel:"] { color: @defaultColor; }
-        &[href^="tel:"]:hover { color: @defaultColor; }
         /* Scroll to top button. */
         &[href="#top"] {
             position: fixed;
@@ -155,13 +155,11 @@ body.home-page {
                     /* Contains each section text content. */
                     > div.container {
                         z-index: 0;
-                        color: @defaultColor;
                         text-shadow: none;
                         text-align: center;
 
                         > dl.dl-horizontal > dd { text-align: left; }
                         > a[href^="tel:"] {
-                            color: @defaultColor;
                             display: block;
                             font-size: 1.5em;
                             line-height: 1.4;
@@ -181,7 +179,7 @@ body.home-page {
         /* NOTE: Should be synchronized with the social icon font styles. */
         a.glyphicon {
             &.glyphicon-globe {
-                color: @defaultColor;
+                color: @fontColor;
                 letter-spacing: 10px;
                 display: inline;
                 height: 26px;
@@ -211,13 +209,11 @@ body.home-page {
                 }
             }
             &-social {
-                color: @defaultColor;
+                color: @fontColor;
                 letter-spacing: 10px;
                 height: 26px;
 
-                &:hover {
-                    color: @linkHoverColor !important;
-                }
+                &:hover { color: @linkHoverColor !important; }
             }
         }
     }
@@ -271,6 +267,8 @@ body.home-page {
 
                 > div.container {
                     > div.navbar-header {
+                        margin-left: -15px;
+
                         > a.navbar-brand {
                             max-width: 219px;
                             height: 50px;
@@ -332,7 +330,6 @@ body.home-page {
     /**** endregion */
     /**** region about this web site */
     > div.about-this-website {
-        color: @defaultColor;
         padding-bottom: 15px;
 
         /* Wraps the text content, positions space around them. */

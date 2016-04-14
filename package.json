@@ -26,7 +26,7 @@
             "jQuery-website.less": "jQuery-website/index.less"
         },
         "injects": {
-            "internal": ["less/index", "coffeeScript/index"],
+            "internal": ["index.less", "index.coffee"],
             "external": ["babel-polyfill"]
         },
         "preprocessor": {
@@ -37,7 +37,8 @@
                     "transform-flow-strip-types"
                 ]
             }
-        }
+        },
+        "path": {"asset": {"coffeeScript": "./", "less": "./"}}
     },
     "scripts": {
         "lint": "webOptimizer lint",

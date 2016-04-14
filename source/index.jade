@@ -397,7 +397,7 @@ html.no-javascript(lang='en')&attributes({
                             if (section.content[0])
                                 - START_UP_ANIMATION_NUMBER += 1
                                 li(
-                                    class=`website-start-up-animation-number-${START_UP_ANIMATION_NUMBER}${(section.title === SECTIONS[0].title ? '.active' : '')}`
+                                    class=`website-start-up-animation-number-${START_UP_ANIMATION_NUMBER}${(section.title === SECTIONS[0].title ? ' active' : '')}`
                                 )
                                     a(href=`#${section.title}`)
                                         | #{section.content[0][DEFAULT_LANGUAGE]}

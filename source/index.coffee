@@ -187,12 +187,13 @@ class HomePage extends $.Website.class
             event.preventDefault() if event.keyCode is this.keyCode.TAB
         this.$domNodes.aboutThisWebsiteSection.hide().css(
             'position', 'absolute')
-        console.log(
-            this.$domNodes.navigationButton.parent('li'),
-            this.$domNodes.navigationButton.parent('li').filter(
-                '.active'
-            ).length)
-        if not window.location.hash
+        if not (
+            window.location.hash and this.$domNodes.navigationButton.parent(
+                'li'
+            ).children(this.$domNodes.navigationButton).filter(
+                "[href=\"#{window.location.hash}\"]"
+            ).length
+        )
             window.location.hash =
                 this.$domNodes.navigationButton.parent('li').filter(
                     '.active'
@@ -310,7 +311,7 @@ class HomePage extends $.Website.class
             # If no section could be determined initialize the first one.
             if not sectionFound
                 forceSection = this.$domNodes.navigationButton.first(
-                ).attr 'href'
+                ).attr('href').substring('#'.length)
                 this.debug "Force section \"#{forceSection}\"."
                 return this._onSwitchSection forceSection
         if not this._initialContentHeightAdaptionDone
