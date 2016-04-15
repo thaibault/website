@@ -29,15 +29,6 @@
             "internal": ["index.less", "index.coffee"],
             "external": ["babel-polyfill"]
         },
-        "preprocessor": {
-            "modernJavaScript": {
-                "plugins": [
-                    "transform-decorators-legacy",
-                    "transform-class-properties",
-                    "transform-flow-strip-types"
-                ]
-            }
-        },
         "path": {"asset": {"coffeeScript": "./", "less": "./"}}
     },
     "scripts": {
