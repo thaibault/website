@@ -457,9 +457,10 @@ html.no-javascript(lang='en')&attributes({
                                                             ) #{project.content[ALTERNATE_LANGUAGE][1][index][0]}
                                                     else
                                                         | #{element}
-                                                        != `${ALTERNATE_LANGUAGE}:`
+                                                        != `<!--${ALTERNATE_LANGUAGE}:`
                                                             | #{project.content[ALTERNATE_LANGUAGE][1][index]}
                                                         != '-->'
+                                                - index += 1
                     else
                         p.lead
                             | #{section.content[2][DEFAULT_LANGUAGE]}
