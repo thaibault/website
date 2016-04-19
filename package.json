@@ -13,7 +13,7 @@
     },
     "devDependencies": {"qunitjs": "*"},
     "files": ["source"],
-    "main": "source/coffeeScript/index.coffee",
+    "main": "build/index.html",
     "repository": {"type": "git", "url": "git@github.io:thaibault/.git"},
     "webOptimizer": {
         "library": false,
@@ -34,6 +34,8 @@
     "scripts": {
         "lint": "webOptimizer lint",
         "clear": "webOptimizer clear",
+        "preinstall": "mkdir --parents build && touch build/index.html",
+        "postinstall": "npm run build",
         "build": "webOptimizer build",
         "serve": "webOptimizer serve",
         "start": "webOptimizer serve"
