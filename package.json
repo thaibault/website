@@ -1,6 +1,6 @@
 {
     "name": "website",
-    "description": "website",
+    "description": "Here's my website development hosted (no security by obscurity).",
     "version": "1.0.0",
     "license": "CC-BY-3.0",
     "keywords": ["website"],
@@ -17,17 +17,18 @@
     "repository": {"type": "git", "url": "git@github.io:thaibault/.git"},
     "webOptimizer": {
         "library": false,
-        "moduleAliases": {
+        "module": {"aliases": {
             "bootstrap.less": "bootstrap/less/bootstrap",
+            "spin": "spin.js/spin",
             "jQuery-scrollTo": "jquery.scrollto/jquery.scrollTo",
             "jQuery-spin": "spin.js/jquery.spin",
             "swipe": "Swipe/swipe",
             "genericStyle.less": "genericStyle/index.less",
             "jQuery-website.less": "jQuery-website/index.less"
-        },
+        }},
         "injects": {
-            "internal": ["index.less", "index.coffee"],
-            "external": ["babel-polyfill"]
+            "a": "babel-polyfill",
+            "internal": ["index.less", "index.coffee"]
         },
         "path": {"asset": {"coffeeScript": "./", "less": "./"}}
     },
