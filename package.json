@@ -26,7 +26,7 @@
             "genericStyle.less": "genericStyle/index.less",
             "jQuery-website.less": "jQuery-website/index.less"
         }},
-        "injects": {
+        "injection": {
             "internal": ["babel-polyfill", "index.less", "index.coffee"]
         },
         "path": {"asset": {"coffeeScript": "./", "less": "./"}}
