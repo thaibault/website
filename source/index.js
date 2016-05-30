@@ -50,8 +50,8 @@ class HomePage extends $.Website.class {
     // region dynamic properties
     $domNodes:{[key:string]:$DomNode};
     // endregion
-    # region public methods
-    ## region special
+    // region public methods
+    // / region special
     initialize: (
         options={}, @_sectionBackgroundColor='white'
         @_oldSectionHeightInPixel=200, @_sectionTopMarginInPixel=0
@@ -209,10 +209,10 @@ class HomePage extends $.Website.class {
         this.on this.$domNodes.window, 'resize', this.getMethod(
             this._adaptContentHeight)
         this
-    ## endregion
-    # endregion
-    # region protected methods
-    ## region event
+    // / endregion
+    // endregion
+    // region protected methods
+    // / region event
     _adaptCurriculumVitaeLink: (oldLanguage, newLanguage) ->
         ###
             Switches the language dependent curriculum vitae links.
@@ -321,8 +321,8 @@ class HomePage extends $.Website.class {
         if not this._initialContentHeightAdaptionDone
             this._adaptContentHeight()
         super
-    ## endregion
-    ## region helper
+    // / endregion
+    // / region helper
     _performSectionSwitch: (
         sectionName, direction, index, $sectionButton
     ) ->
@@ -700,8 +700,8 @@ class HomePage extends $.Website.class {
                 ).attr('href').substring '#'.length
                 false
         sectionName
-    ## endregion
-    # endregion
+    // / endregion
+    // endregion
 }
 // endregion
 $.HomePage = function():any {
