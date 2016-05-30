@@ -1,51 +1,55 @@
-#!/usr/bin/env coffee
-# -*- coding: utf-8 -*-
+// @flow
+// #!/usr/bin/env node
+// -*- coding: utf-8 -*-
+/** @module jQuery-homePage */
 'use strict'
-# region header
-###!
-[Project page](http://torben.website)
+/* !
+    region header
+    [Project page](http://torben.website)
 
-This module provides common logic for the whole home page.
+    Copyright Torben Sickert (info["~at~"]torben.website) 16.12.2012
 
-Copyright Torben Sickert 16.12.2012
+    License
+    -------
 
-License
--------
-
-This library written by Torben Sickert stand under a creative commons naming
-3.0 unported license. see http://creativecommons.org/licenses/by/3.0/deed.de
-
-Extending this module
----------------------
-
-For conventions see require on https://github.com/thaibault/require
-
-Author
-------
-
-t.sickert["~at~"]gmail.com (Torben Sickert)
-
-Version
--------
-
-1.0 stable
-###
-# endregion
-$ = require 'jquery'
-require 'jQuery-website'
+    This library written by Torben Sickert stand under a creative commons
+    naming 3.0 unported license.
+    See http://creativecommons.org/licenses/by/3.0/deed.de
+    endregion
+*/
+// region imports
+import $ from 'jquery'
+import 'jQuery-website'
+import type {$DomNode} from 'jQuery-tools'
 require(
     'imports?jQuery=jquery!imports?$=jquery!imports?window=>{jQuery: jQuery}' +
     '!swipe')
-# region plugins/classes
-class HomePage extends $.Website.class
-    ###This plugin holds all needed methods to extend a whole homepage.###
-    # region properties
-    ###
-        **__name__ {String}**
-        Holds the class name to provide inspection features.
-    ###
-    __name__: 'HomePage'
-    # endregion
+// endregion
+const context:Object = (():Object => {
+    if ($.type(window) === 'undefined') {
+        if ($.type(global) === 'undefined')
+            return ($.type(module) === 'undefined') ? {} : module
+        return global
+    }
+    return window
+})()
+if (!context.hasOwnProperty('document') && $.hasOwnProperty('context'))
+    context.document = $.context
+// region plugins/classes
+/**
+ * This plugin holds all needed methods to extend a whole homepage.
+ * @extends jQuery-website:Website
+ * @property static:_name - Defines this class name to allow retrieving them
+ * after name mangling.
+ * TODO
+ */
+class HomePage extends $.Website.class {
+    // region static properties
+    static _name:string = 'HomePage'
+    // endregion
+    // region dynamic properties
+    $domNodes:{[key:string]:$DomNode};
+    // endregion
     # region public methods
     ## region special
     initialize: (
@@ -698,13 +702,20 @@ class HomePage extends $.Website.class
         sectionName
     ## endregion
     # endregion
-# endregion
-module.exports = $.HomePage = -> $.Tools().controller HomePage, arguments
+}
+// endregion
+$.HomePage = function():any {
+    return $.Tools().controller(HomePage, arguments)
+}
 $.HomePage.class = HomePage
-$.noConflict() ($) -> $.HomePage(
-    googleTrackingCode: 'UA-40192634-1', language:
-        allowedLanguages: ['enUS', 'deDE'], sessionDescription: 'website{1}')
-# region vim modline
-# vim: set tabstop=4 shiftwidth=4 expandtab:
-# vim: foldmethod=marker foldmarker=region,endregion:
-# endregion
+/** The jQuery-incrementer plugin class. */
+export default HomePage
+$.noConflict()(($):HomePage => $.HomePage({
+    googleTrackingCode: 'UA-40192634-1', language: {
+        allowedLanguages: ['enUS', 'deDE'], sessionDescription: 'website{1}'
+    }
+}))
+// region vim modline
+// vim: set tabstop=4 shiftwidth=4 expandtab:
+// vim: foldmethod=marker foldmarker=region,endregion:
+// endregion
