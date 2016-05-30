@@ -49,112 +49,129 @@ class HomePage extends $.Website.class {
     // endregion
     // region dynamic properties
     $domNodes:{[key:string]:$DomNode};
+    // TODO
     // endregion
     // region public methods
     // / region special
-    initialize: (
-        options={}, @_sectionBackgroundColor='white'
+    /**
+     * Initializes the interactive web application.
+     * @param options - An options object.
+     * TODO
+     * @returns Returns the current instance.
+     */
+    initialize(
+        options:Object = {}, @_sectionBackgroundColor='white'
         @_oldSectionHeightInPixel=200, @_sectionTopMarginInPixel=0
         @_initialContentHeightAdaptionDone=false
         @_initialMenuHightlightDone=false, @_loadingCoverRemoved=false
     ) ->
-        ###
-            Initializes the interactive web application.
-
-            **options {Object}**     - An options object.
-
-            **returns {$.HomePage}** - Returns the current instance.
-        ###
-        # Saves default options for manipulating the default behaviour.
-        this._options =
-            trackingCode: 'UA-40192634-1'
-            maximumFooterHeightInPercent: 50
-            scrollInLinearTime: true
-            backgroundImagePath: 'image/carousel/'
-            backgroundImageFileExtension: '.jpg'
-            backgroundDependentHeightSections: ['about']
-            maximumBackgroundDependentHeight: 750
-            menuHighlightAnimation: easing: 'linear'
-            hideMobileMenuAfterSelection: true
-            domNode:
-                carousel: 'div.carousel.slide'
-                section:
-                    'div.carousel.slide div.carousel-inner div.item'
+        // Saves default options for manipulating the default behaviour.
+        this._options = {
+            trackingCode: 'UA-40192634-1',
+            maximumFooterHeightInPercent: 50,
+            scrollInLinearTime: true,
+            backgroundImagePath: 'image/carousel/',
+            backgroundImageFileExtension: '.jpg',
+            backgroundDependentHeightSections: ['about'],
+            maximumBackgroundDependentHeight: 750,
+            menuHighlightAnimation: {easing: 'linear'},
+            hideMobileMenuAfterSelection: true,
+            domNode: {
+                carousel: 'div.carousel.slide',
+                section: 'div.carousel.slide div.carousel-inner div.item',
                 logoLink:
                     'div.navbar-wrapper div.navbar.navbar-inverse ' +
-                    'div.navbar-header a.navbar-brand'
+                    'div.navbar-header a.navbar-brand',
                 navigationButton:
                     'div.navbar-wrapper div.navbar.navbar-inverse ' +
-                    'div.navbar-collapse ul.nav.navbar-nav li a'
+                    'div.navbar-collapse ul.nav.navbar-nav li a',
                 aboutThisWebsiteButton:
                     'div.footer footer a[href="#about-this-website"]'
-                aboutThisWebsiteSection: 'div.about-this-website'
+                aboutThisWebsiteSection: 'div.about-this-website',
                 dimensionIndicator:
                     'div.navbar-wrapper div.navbar.navbar-inverse ' +
                     'div.navbar-header a.navbar-brand ' +
-                    'span.dimension-indicator'
-                footer: 'div.footer'
+                    'span.dimension-indicator',
+                footer: 'div.footer',
                 menuHighlighter:
                     'div.navbar-wrapper div.navbar.navbar-inverse ' +
-                     'div.navbar-collapse div.navbar-highlighter'
+                     'div.navbar-collapse div.navbar-highlighter',
                 mobileCollapseButton:
                     'div.navbar-wrapper div.navbar.navbar-inverse ' +
-                    'div.navbar-header button.navbar-toggle'
+                    'div.navbar-header button.navbar-toggle',
                 navigationWrapper:
                     'div.navbar-wrapper div.navbar.navbar-inverse ' +
                     'div.navbar-collapse'
-            carousel:
-                startSlide: 0
-                speed: 400
-                auto: 0
-                continuous: false
-                disableScroll: false
+            },
+            carousel: {
+                startSlide: 0,
+                speed: 400,
+                auto: 0,
+                continuous: false,
+                disableScroll: false,
                 stopPropagation: false
-            dimensionIndicator:
+            },
+            dimensionIndicator: {
                 template: '<span ' +
                           'class="glyphicon glyphicon-resize-horizontal"' +
-                          '></span> <span>{1}</span>'
-                effectOptions:
-                    fadeIn: duration: 'fast'
-                    fadeOut: duration: 'fast'
-            aboutThisWebsiteSection:
-                fadeIn: duraction: 'fast'
-                fadeOut: duration: 'fast'
-        # Adapt menu highlighter after language switching.
-        self = this
+                          '></span> <span>{1}</span>',
+                effectOptions: {
+                    fadeIn: {duration: 'fast'},
+                    fadeOut: {duration: 'fast'}
+                }
+            },
+            aboutThisWebsiteSection: {
+                fadeIn: {duraction: 'fast'},
+                fadeOut: {duration: 'fast'}
+            }
+        }
+        // Adapt menu highlighter after language switching.
         initialOnSwitchedCallback = options.language?.onSwitched
         initialOnEnsuredCallback = options.language?.onEnsureded
         initialOnSwitchCallback = options.language?.onSwitch
         initialOnEnsureCallback = options.language?.onEnsure
         initialLanguageFadeOutAlwaysCallback =
             options.language?.textNodeParent?.fadeOut?.always
-        $.extend true, options, language:
-            onSwitched: ->
-                result = not initialOnSwitchedCallback or (
-                    initialOnSwitchedCallback?.apply this, arguments)
-                # Only adapt menu highlighter if a section is currently
-                # selected.
-                self._highlightMenuEntry false
-                fadeInOptions = self.languageHandler?._options
-                    .textNodeParent.fadeIn or {}
-                if self.$domNodes.navigationButton.parent('li').filter(
+        const self:HomePage = this
+        $.extend(true, options, {language: {
+            onSwitched: function():boolean {
+                const result:boolean = !initialOnSwitchedCallback || (
+                    initialOnSwitchedCallback &&
+                    initialOnSwitchedCallback.apply(this, arguments))
+                /*
+                    Only adapt menu highlighter if a section is currently
+                    selected.
+                */
+                self._highlightMenuEntry(false)
+                let fadeInOptions:Object = {}
+                if (self.languageHandler)
+                    fadeInOptions:Object =
+                        self.languageHandler._options.textNodeParent.fadeIn
+                if (self.$domNodes.navigationButton.parent('li').filter(
                     '.active'
-                ).length
-                    self.$domNodes.menuHighlighter.fadeIn fadeInOptions
+                ).length)
+                    self.$domNodes.menuHighlighter.fadeIn(fadeInOptions)
                 self._adaptContentHeight()
-                result
-            onEnsured: ->
-                result = not initialOnEnsuredCallback or (
-                    initialOnEnsuredCallback?.apply this, arguments)
-                # Only adapt menu highlighter if a section is currently
-                # selected.
-                self._highlightMenuEntry false
+                return result
+            },
+            onEnsured: function():boolean {
+                const result:boolean = !initialOnEnsuredCallback || (
+                    initialOnEnsuredCallback.apply(this, arguments))
+                /*
+                    Only adapt menu highlighter if a section is currently
+                    selected.
+                */
+                self._highlightMenuEntry(false)
                 self._adaptContentHeight()
-                result
-            onSwitch: (oldLanguage, newLanguage) ->
-                result = not initialOnSwitchCallback or (
-                    initialOnSwitchCallback?.apply this, arguments)
-                # Add language toggle button functionality.
+                return result
+            },
+            onSwitch: function(
+                oldLanguage:string, newLanguage:string
+            ):boolean {
+                const result:boolean = !initialOnSwitchCallback || (
+                    initialOnSwitchCallback.apply(this, arguments))
+                // Add language toggle button functionality.
+                // TODO stand
                 fadeOutOptions = self.languageHandler?._options
                     .textNodeParent.fadeOut or {}
                 fadeInOptions = self.languageHandler?._options
