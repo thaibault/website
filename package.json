@@ -5,26 +5,24 @@
     "license": "CC-BY-3.0",
     "keywords": ["website"],
     "dependencies": {
+        "bootstrap": "^3.3.6",
         "Swipe": "https://github.com/thebird/Swipe",
         "webOptimizer": "git+ssh://git@github.com/thaibault/webOptimizer.git",
         "jQuery-website": "git+ssh://git@github.com/thaibault/jQuery-website.git",
-        "legalNotes": "git+ssh://git@github.com/thaibault/legalNotes.git",
-        "bootstrap": "^3.3.6"
+        "legalNotes": "git+ssh://git@github.com/thaibault/legalNotes.git"
     },
-    "devDependencies": {"qunitjs": "*"},
     "files": ["source"],
     "main": "build/index.html",
     "repository": {"type": "git", "url": "git@github.io:thaibault/.git"},
     "webOptimizer": {
         "library": false,
         "module": {"aliases": {
-            "bootstrap.less": "bootstrap/less/bootstrap",
-            "spin": "spin.js/spin",
-            "jQuery-scrollTo": "jquery.scrollto/jquery.scrollTo",
-            "jQuery-spin": "spin.js/jquery.spin",
-            "swipe": "Swipe/swipe",
-            "genericStyle.less": "genericStyle/index.less",
-            "jQuery-website.less": "jQuery-website/index.less"
+            "bootstrap.less$": "bootstrap/less/bootstrap",
+            "jQuery-scrollTo$": "jquery.scrollto/jquery.scrollTo",
+            "jQuery-spin$": "spin.js/jquery.spin",
+            "swipe$": "Swipe/swipe",
+            "genericStyle.less$": "genericStyle/index.less",
+            "jQuery-website.less$": "jQuery-website/index.less"
         }},
         "injection": {
             "internal": ["babel-polyfill", "index.less", "index.coffee"]
@@ -32,11 +30,12 @@
         "path": {"asset": {"coffeeScript": "./", "less": "./"}}
     },
     "scripts": {
-        "lint": "webOptimizer lint",
+        "build": "webOptimizer build",
         "clear": "webOptimizer clear",
+        "document": "webOptimizer document",
+        "lint": "webOptimizer typeCheck && webOptimizer lint",
         "preinstall": "mkdir --parents build && touch build/index.html",
         "postinstall": "npm run build",
-        "build": "webOptimizer build",
         "serve": "webOptimizer serve",
         "start": "webOptimizer serve"
     }
