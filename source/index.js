@@ -22,9 +22,10 @@ import $ from 'jquery'
 import 'jQuery-website'
 import type {DomNode} from 'webOptimizer/type'
 import type {$DomNode} from 'jQuery-tools'
-require(
-    'imports?jQuery=jquery!imports?$=jquery!imports?window=>{jQuery: jQuery}' +
-    '!swipe')
+/* eslint-disable max-len */
+// IgnoreTypeCheck
+import 'imports?jQuery=jquery!imports?$=jquery!imports?window=>{jQuery: jQuery}!swipe'
+/* eslint-enable max-len */
 // endregion
 const context:Object = (():Object => {
     if ($.type(window) === 'undefined') {
@@ -149,7 +150,7 @@ class HomePage extends $.Website.class {
                     'div.navbar-wrapper div.navbar.navbar-inverse ' +
                     'div.navbar-collapse ul.nav.navbar-nav li a',
                 aboutThisWebsiteButton:
-                    'div.footer footer a[href="#about-this-website"]'
+                    'div.footer footer a[href="#about-this-website"]',
                 aboutThisWebsiteSection: 'div.about-this-website',
                 dimensionIndicator:
                     'div.navbar-wrapper div.navbar.navbar-inverse ' +
@@ -220,7 +221,7 @@ class HomePage extends $.Website.class {
                 self._highlightMenuEntry(false)
                 let fadeInOptions:Object = {}
                 if (self.languageHandler)
-                    fadeInOptions:Object =
+                    fadeInOptions =
                         self.languageHandler._options.textNodeParent.fadeIn
                 if (self.$domNodes.navigationButton.parent('li').filter(
                     '.active'
@@ -272,7 +273,7 @@ class HomePage extends $.Website.class {
                 self._adaptCurriculumVitaeLink(oldLanguage, newLanguage)
                 return result
             },
-            onEnsure: (oldLanguage, newLanguage) {
+            onEnsure: (oldLanguage:string, newLanguage:string):any => {
                 const result:any = !initialOnEnsureCallback || (
                     initialOnEnsureCallback.apply(this, arguments))
                 // Add language toggle button functionality.
@@ -285,7 +286,7 @@ class HomePage extends $.Website.class {
         }})
         super.initialize(options)
         // Disable tab functionality to prevent inconsistent carousel states.
-        this.on(this.$domNodes.parent, 'keydown', (event:Object) => {
+        this.on(this.$domNodes.parent, 'keydown', (event:Object):void => {
             if (event.keyCode === this.keyCode.TAB)
                 event.preventDefault()
         })
@@ -389,11 +390,8 @@ class HomePage extends $.Website.class {
      * @returns Returns the current instance.
      */
     _onSwitchSection(sectionName:string):HomePage {
-        let direction:boolean = false
-        if (['next', 'prev'].includes(sectionName)) {
-            direction = sectionName
+        if (['next', 'prev'].includes(sectionName))
             sectionName = this._determineRelativeSections(sectionName)
-        }
         const hash:string = `#${sectionName}`
         if (hash === this.$domNodes.aboutThisWebsiteButton.attr('href')) {
             if (context.hasOwnProperty('location'))
@@ -406,7 +404,7 @@ class HomePage extends $.Website.class {
                 index:number, button:DomNode
             ):void => {
                 const $button:$DomNode = $(button)
-                const $sectionButton:$DomNode = $button.parent('li')
+                let $sectionButton:$DomNode = $button.parent('li')
                 if (!$sectionButton.length)
                     $sectionButton = $button
                 /*
@@ -427,9 +425,10 @@ class HomePage extends $.Website.class {
                     sectionFound = true
                     if (!$sectionButton.hasClass('active'))
                         this._performSectionSwitch(
-                            sectionName, direction, index, $sectionButton)
+                            sectionName, index, $sectionButton)
                 } else
                     $sectionButton.removeClass('active')
+            })
             // If no section could be determined initialize the first one.
             if (!sectionFound) {
                 const forceSection:string =
@@ -439,6 +438,7 @@ class HomePage extends $.Website.class {
                 this.debug(`Force section "${forceSection}".`)
                 return this._onSwitchSection(forceSection)
             }
+        }
         if (!this._initialContentHeightAdaptionDone)
             this._adaptContentHeight()
         return super._onSwitchSection.apply(this, arguments)
@@ -448,21 +448,16 @@ class HomePage extends $.Website.class {
     /**
      * Switches to given section.
      * @param sectionName - Section name to switch to.
-     * @param direction - Relative section position.
      * @param index - Index of section to switch to.
      * @param $sectionButton - The current section button.
      * @returns Returns the current instance.
      */
     _performSectionSwitch(
-        sectionName:string, direction:number, index:number,
-        $sectionButton:$DomNode
+        sectionName:string, index:number, $sectionButton:$DomNode
     ):HomePage {
         this.$domNodes.aboutThisWebsiteSection.fadeOut(
             this._options.aboutThisWebsiteSection.fadeOut)
         this.debug(`Switch to section "${sectionName}".`)
-        // Swipe in endless cycle if we get a direction.
-        if (direction)
-            index = direction
         $sectionButton.addClass('active')
         if (this._viewportIsOnTop) {
             this.$domNodes.carousel.data('Swipe').slide(index)
@@ -517,7 +512,7 @@ class HomePage extends $.Website.class {
     }
     /**
      * Highlights current menu entry.
-     * @param $sectionButton - The current section button.
+     * @param transition - Indicates weather to use configured transition.
      * @returns Returns the current instance.
      */
     _highlightMenuEntry(transition:boolean = true):HomePage {
@@ -549,6 +544,7 @@ class HomePage extends $.Website.class {
                         width: $sectionButton.width()
                     })
                 }
+        }
         return this
     }
     /**
@@ -561,7 +557,7 @@ class HomePage extends $.Website.class {
                 this.$domNodes.aboutThisWebsiteSection
             ).filter(`.${context.location.hash.substr(1)}`)
             if ($currentSection && $currentSection.length) {
-                newSectionHeightInPixel =
+                let newSectionHeightInPixel:number =
                     this._determineSectionHeightInPixelForFooterPositioning(
                         $currentSection)
                 if (
@@ -602,9 +598,10 @@ class HomePage extends $.Website.class {
                         this._adaptSectionHeight(
                             transitionMethod, newSectionHeightInPixel,
                             $currentSection)
+                }
                 if (!this._initialContentHeightAdaptionDone) {
                     this._initialContentHeightAdaptionDone = true
-                    if(this.windowLoadingCoverd)
+                    if (this.windowLoadingCoverd)
                         this._removeLoadingCover()
                 }
             }
@@ -621,7 +618,7 @@ class HomePage extends $.Website.class {
     _adaptSectionHeight(
         transitionMethodName:string, newSectionHeightInPixel:number,
         $currentSection:$DomNode
-    ) {
+    ):HomePage {
         this.$domNodes.footer.css({position: 'relative', top: 0})
         let newPseudoCarouselHeightInPixel:number = newSectionHeightInPixel
         // Make smooth transition till viewport ending.
@@ -646,11 +643,12 @@ class HomePage extends $.Website.class {
             height: newPseudoCarouselHeightInPixel,
             duration: this._options.carousel.speed
         }, {
-            always: ():$DomNode => this.$domNodes.carousel.css(
-                'height', newSectionHeightInPixel),
-            // Check if height has changed after adaption.
-            if (newSectionHeightInPixel !== $currentSection.outerHeight())
-                this._adaptContentHeight()
+            always: ():void => {
+                this.$domNodes.carousel.css('height', newSectionHeightInPixel)
+                // Check if height has changed after adaption.
+                if (newSectionHeightInPixel !== $currentSection.outerHeight())
+                    this._adaptContentHeight()
+            }
         })
         return this
     }
@@ -660,7 +658,7 @@ class HomePage extends $.Website.class {
      * @param $currentSection - The current section dom node.
      * @returns Returns the new calculated section height in pixel.
      */
-    _adaptBackgroundDependentHeight: (
+    _adaptBackgroundDependentHeight(
         newSectionHeightInPixel:number, $currentSection:$DomNode
     ):number {
         if (
@@ -719,7 +717,7 @@ class HomePage extends $.Website.class {
             )
             const footerHeightInPixel:number = this.$domNodes.window.height() -
                 newSectionHeightInPixel
-            footerHeightInPercent = (footerHeightInPixel * 100) /
+            const footerHeightInPercent = (footerHeightInPixel * 100) /
                 this.$domNodes.window.height()
             if (
                 this._options.maximumFooterHeightInPercent <
@@ -744,12 +742,12 @@ class HomePage extends $.Website.class {
     _initializeSwipe():Object {
         // Remove anchor ids to avoid conflicts with native section switching.
         $('h1').removeAttr('id').filter(function():boolean {
-            return !$.trim $(this).html()
+            return !$.trim($(this).html())
         }).remove()
         this._options.carousel.transitionEnd = (index:number):boolean => {
             this.$domNodes.navigationButton.each((
                 subIndex:number, button:DomNode
-            ):boolean => {
+            ):?boolean => {
                 if (index === subIndex) {
                     this.fireEvent(
                         'switchSection', false, this, $(button).attr(
@@ -770,7 +768,7 @@ class HomePage extends $.Website.class {
      * @returns Returns the current instance.
      */
     _addNavigationEvents():HomePage {
-        const toggleMobilMenu = (event:Object):void => {
+        const toggleMobileMenu = ():void => {
             // This handler rebuilds bootstrap mobile menu collapse feature.
             const slideOut:boolean = this.$domNodes.navigationWrapper.is('.in')
             this.$domNodes.navigationWrapper.one(
@@ -797,6 +795,7 @@ class HomePage extends $.Website.class {
                     this.$domNodes.navigationWrapper.find(
                         'ul'
                     ).outerHeight(true))
+        }
         this.on(this.$domNodes.mobileCollapseButton, 'click', toggleMobileMenu)
         if (this._options.hideMobileMenuAfterSelection)
             this.on(this.$domNodes.navigationButton, 'click', ():void => {
@@ -827,7 +826,7 @@ class HomePage extends $.Website.class {
                         because we want to ignore the about this website
                         section. And the index starts counting by zero.
                     */
-                    numberOfButtons =
+                    const numberOfButtons:number =
                         this.$domNodes.navigationButton.length - 1
                     let newIndex:number
                     if (sectionName === 'next')
@@ -840,12 +839,14 @@ class HomePage extends $.Website.class {
                         */
                         newIndex = (index + numberOfButtons - 1) %
                             numberOfButtons
+                    else
+                        return false
                     sectionName = $(
                         this.$domNodes.navigationButton[newIndex]
                     ).attr('href').substring('#'.length)
                     return false
                 }
-            }
+            })
         return sectionName
     }
     // / endregion
@@ -858,7 +859,7 @@ $.HomePage = function():any {
 $.HomePage.class = HomePage
 /** The jQuery-incrementer plugin class. */
 export default HomePage
-$.noConflict()(($):HomePage => $.HomePage({
+$.noConflict()(($:Object):HomePage => $.HomePage({
     googleTrackingCode: 'UA-40192634-1', language: {
         allowedLanguages: ['enUS', 'deDE'], sessionDescription: 'website{1}'
     }
