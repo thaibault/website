@@ -27,7 +27,7 @@
         "injection": {
             "internal": ["babel-polyfill", "index.less", "index.js"]
         },
-        "path": {"asset": {"less": "./"}}
+        "path": {"asset": {"javaScript": "./", "less": "./"}}
     },
     "scripts": {
         "build": "webOptimizer build",
