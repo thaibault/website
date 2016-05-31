@@ -49,61 +49,34 @@ if (!context.hasOwnProperty('document') && $.hasOwnProperty('context'))
  * the footer should stick to the bottom.
  * @property _options.scrollInLinearTime {boolean} - Indicates weather
  * animated scrolling should be accelerate and brake or not.
- * @property _options.backgroundImagePath {string} - TODO
-backgroundImageFileExtension: '.jpg',
-backgroundDependentHeightSections: ['about'],
-maximumBackgroundDependentHeight: 750,
-menuHighlightAnimation: {easing: 'linear'},
-hideMobileMenuAfterSelection: true,
-domNode: {
-    carousel: 'div.carousel.slide',
-    section: 'div.carousel.slide div.carousel-inner div.item',
-    logoLink:
-        'div.navbar-wrapper div.navbar.navbar-inverse ' +
-        'div.navbar-header a.navbar-brand',
-    navigationButton:
-        'div.navbar-wrapper div.navbar.navbar-inverse ' +
-        'div.navbar-collapse ul.nav.navbar-nav li a',
-    aboutThisWebsiteButton:
-        'div.footer footer a[href="#about-this-website"]'
-    aboutThisWebsiteSection: 'div.about-this-website',
-    dimensionIndicator:
-        'div.navbar-wrapper div.navbar.navbar-inverse ' +
-        'div.navbar-header a.navbar-brand ' +
-        'span.dimension-indicator',
-    footer: 'div.footer',
-    menuHighlighter:
-        'div.navbar-wrapper div.navbar.navbar-inverse ' +
-         'div.navbar-collapse div.navbar-highlighter',
-    mobileCollapseButton:
-        'div.navbar-wrapper div.navbar.navbar-inverse ' +
-        'div.navbar-header button.navbar-toggle',
-    navigationWrapper:
-        'div.navbar-wrapper div.navbar.navbar-inverse ' +
-        'div.navbar-collapse'
-},
-carousel: {
-    startSlide: 0,
-    speed: 400,
-    auto: 0,
-    continuous: false,
-    disableScroll: false,
-    stopPropagation: false
-},
-dimensionIndicator: {
-    template: '<span ' +
-              'class="glyphicon glyphicon-resize-horizontal"' +
-              '></span> <span>{1}</span>',
-    effectOptions: {
-        fadeIn: {duration: 'fast'},
-        fadeOut: {duration: 'fast'}
-    }
-},
-aboutThisWebsiteSection: {
-    fadeIn: {duraction: 'fast'},
-    fadeOut: {duration: 'fast'}
-}
-}
+ * @property _options.backgroundDependentHeightSections {Array.<string>} - A
+ * list: of section names which dimensions depend on their background image.
+ * @property _options.maximumBackgroundDependentHeight {number} - Upper range
+ * bound until a dynamic background image adjust is needed.
+ * @property _options.menuHighlightAnimation {Object} - Options for menu
+ * highlight animation.
+ * @property _options.hideMobileMenuAfterSelection {boolean} - Indicates
+ * weather the mobile menu should be hide after a menu item was selected.
+ * @property _options.domNode {Object} - Mapping if needed dom node
+ * descriptions to their corresponding selectors.
+ * @property _options.carousel {Object} - Options for the integrated section
+ * carousel.
+ * @property _options.dimensionIndicator {Object} - Options for the injectable
+ * dimension indicator.
+ * @property _options.dimensionIndicator.template {string} - Markup for
+ * injectable dimension indicator to show current media query mode.
+ * @property _options.dimensionIndicator.effectOptions {Object} - Options for
+ * showing and hiding the dimension indicator between a dimension change.
+ * @property _options.dimensionIndicator.effectOptions.fadeIn {Object} -
+ * Options for the fade in animation.
+ * @property _options.dimensionIndicator.effectOptions.fadeOut {Object} -
+ * Options for the fade out animation.
+ * @property _options.aboutThisWebsiteSection {Object} - Animation options for
+ * showing and hiding the about this website section.
+ * @property _options.aboutThisWebsiteSection.fadeIn {Object} - Fade in
+ * options.
+ * @property _options.aboutThisWebsiteSection.fadeOut {Object} - Fade out
+ * options.
  * @property _oldSectionHeightInPixel - Old section height needed for section
  * switch animations.
  * @property _sectionTopMarginInPixel - Distance to window top from the section
@@ -159,8 +132,6 @@ class HomePage extends $.Website.class {
             trackingCode: 'UA-40192634-1',
             maximumFooterHeightInPercent: 50,
             scrollInLinearTime: true,
-            backgroundImagePath: 'image/carousel/',
-            backgroundImageFileExtension: '.jpg',
             backgroundDependentHeightSections: ['about'],
             maximumBackgroundDependentHeight: 750,
             menuHighlightAnimation: {easing: 'linear'},
