@@ -118,9 +118,11 @@ class HomePage extends $.Website.class {
      * @returns Returns the current instance.
      */
     initialize(
-        options:Object = {}, oldSectionHeightInPixel=200,
-        sectionTopMarginInPixel=0, initialContentHeightAdaptionDone=false,
-        initialMenuHightlightDone=false, loadingCoverRemoved=false
+        options:Object = {}, oldSectionHeightInPixel:number = 200,
+        sectionTopMarginInPixel:number = 0,
+        initialContentHeightAdaptionDone:boolean = false,
+        initialMenuHightlightDone:boolean = false,
+        loadingCoverRemoved:boolean = false
     ):HomePage {
         this._oldSectionHeightInPixel = oldSectionHeightInPixel
         this._sectionTopMarginInPixel = sectionTopMarginInPixel
@@ -187,16 +189,27 @@ class HomePage extends $.Website.class {
             }
         }
         // Adapt menu highlighter after language switching.
-        initialOnSwitchedCallback = options.language?.onSwitched
-        initialOnEnsuredCallback = options.language?.onEnsureded
-        initialOnSwitchCallback = options.language?.onSwitch
-        initialOnEnsureCallback = options.language?.onEnsure
-        initialLanguageFadeOutAlwaysCallback =
-            options.language?.textNodeParent?.fadeOut?.always
+        let initialOnSwitchedCallback:Function
+        let initialOnEnsuredCallback:Function
+        let initialOnSwitchCallback:Function
+        let initialOnEnsureCallback:Function
+        let initialLanguageFadeOutAlwaysCallback:Function
+        if (options.language) {
+            initialOnSwitchedCallback = options.language.onSwitched
+            initialOnEnsuredCallback = options.language.onEnsureded
+            initialOnSwitchCallback = options.language.onSwitch
+            initialOnEnsureCallback = options.language.onEnsure
+            if (
+                options.language.textNodeParent &&
+                options.language.textNodeParent.fadeOut
+            )
+                initialLanguageFadeOutAlwaysCallback =
+                    options.language.textNodeParent.fadeOut.always
+        }
         const self:HomePage = this
         $.extend(true, options, {language: {
             onSwitched: function():boolean {
-                const result:boolean = !initialOnSwitchedCallback || (
+                const result:any = !initialOnSwitchedCallback || (
                     initialOnSwitchedCallback &&
                     initialOnSwitchedCallback.apply(this, arguments))
                 /*
@@ -216,7 +229,7 @@ class HomePage extends $.Website.class {
                 return result
             },
             onEnsured: function():boolean {
-                const result:boolean = !initialOnEnsuredCallback || (
+                const result:any = !initialOnEnsuredCallback || (
                     initialOnEnsuredCallback.apply(this, arguments))
                 /*
                     Only adapt menu highlighter if a section is currently
@@ -229,79 +242,93 @@ class HomePage extends $.Website.class {
             onSwitch: function(
                 oldLanguage:string, newLanguage:string
             ):boolean {
-                const result:boolean = !initialOnSwitchCallback || (
+                const result:any = !initialOnSwitchCallback || (
                     initialOnSwitchCallback.apply(this, arguments))
                 // Add language toggle button functionality.
-                // TODO stand
-                fadeOutOptions = self.languageHandler?._options
-                    .textNodeParent.fadeOut or {}
-                fadeInOptions = self.languageHandler?._options
-                    .textNodeParent.fadeIn or {}
-                self.$domNodes.menuHighlighter.fadeOut fadeOutOptions
-                fadeOutOptions = $.extend true, {}, fadeOutOptions, {
-                    always: ->
-                        result =
-                        initialLanguageFadeOutAlwaysCallback?.apply(
-                            this, arguments)
-                        $(this).attr(
-                            'href', "#lang-#{oldLanguage}"
-                        ).text(oldLanguage.substr 0, 2).fadeIn(
-                            fadeInOptions)
-                        result
+                let fadeOutOptions:Object = {}
+                let fadeInOptions:Object = {}
+                if (self.languageHandler) {
+                    fadeOutOptions = self.languageHandler._options
+                        .textNodeParent.fadeOut
+                    fadeInOptions = self.languageHandler._options
+                        .textNodeParent.fadeIn
                 }
-                $("a[href=\"#lang-#{newLanguage}\"]").fadeOut(
-                    fadeOutOptions)
-                # Adapt curriculum vitae link.
-                self._adaptCurriculumVitaeLink oldLanguage, newLanguage
-                result
-            onEnsure: (oldLanguage, newLanguage) ->
-                result = not initialOnEnsureCallback or (
-                    initialOnEnsureCallback?.apply this, arguments)
-                # Add language toggle button functionality.
-                $("a[href=\"#lang-#{newLanguage}\"]").attr(
-                    'href', "#lang-#{oldLanguage}"
-                ).text(oldLanguage.substr 0, 2)
-                self._adaptCurriculumVitaeLink oldLanguage, newLanguage
-                result
-        super options
-        # Disable tab functionality to prevent inconsistent carousel states.
-        this.on this.$domNodes.parent, 'keydown', (event) =>
-            event.preventDefault() if event.keyCode is this.keyCode.TAB
+                self.$domNodes.menuHighlighter.fadeOut(fadeOutOptions)
+                fadeOutOptions = $.extend(true, {}, fadeOutOptions, {
+                    always: function():any {
+                        let result:any
+                        if (initialLanguageFadeOutAlwaysCallback)
+                            result = initialLanguageFadeOutAlwaysCallback
+                                .apply(this, arguments)
+                        $(this).attr('href', `#lang-${oldLanguage}`).text(
+                            oldLanguage.substr(0, 2)
+                        ).fadeIn(fadeInOptions)
+                        return result
+                    }
+                })
+                $(`a[href="#lang-${newLanguage}"]`).fadeOut(fadeOutOptions)
+                // Adapt curriculum vitae link.
+                self._adaptCurriculumVitaeLink(oldLanguage, newLanguage)
+                return result
+            },
+            onEnsure: (oldLanguage, newLanguage) {
+                const result:any = !initialOnEnsureCallback || (
+                    initialOnEnsureCallback.apply(this, arguments))
+                // Add language toggle button functionality.
+                $(`a[href="#lang-${newLanguage}"]`).attr(
+                    'href', `#lang-${oldLanguage}`
+                ).text(oldLanguage.substr(0, 2))
+                self._adaptCurriculumVitaeLink(oldLanguage, newLanguage)
+                return result
+            }
+        }})
+        super.initialize(options)
+        // Disable tab functionality to prevent inconsistent carousel states.
+        this.on(this.$domNodes.parent, 'keydown', (event:Object) => {
+            if (event.keyCode === this.keyCode.TAB)
+                event.preventDefault()
+        })
         this.$domNodes.aboutThisWebsiteSection.hide().css(
             'position', 'absolute')
-        if not (
-            window.location.hash and this.$domNodes.navigationButton.parent(
+        if (!(
+            context.hasOwnProperty(location) &&
+            context.location.hash && this.$domNodes.navigationButton.parent(
                 'li'
             ).children(this.$domNodes.navigationButton).filter(
-                "[href=\"#{window.location.hash}\"]"
+                `[href="${window.location.hash}"]`
             ).length
-        )
-            window.location.hash =
-                this.$domNodes.navigationButton.parent('li').filter(
-                    '.active'
-                ).children(this.$domNodes.navigationButton).attr 'href'
+        ))
+            context.location.hash = this.$domNodes.navigationButton.parent(
+                'li'
+            ).filter('.active').children(this.$domNodes.navigationButton).attr(
+                'href')
         this._initializeSwipe()
         this.fireEvent(
-            'switchSection', false, this, window.location.hash.substring(
+            'switchSection', false, this, context.location.hash.substring(
                 '#'.length))
-        this.on this.$domNodes.window, 'resize', this.getMethod(
-            this._adaptContentHeight)
-        this
+        this.on(this.$domNodes.window, 'resize', this.getMethod(
+            this._adaptContentHeight))
+        return this
+    }
     // / endregion
     // endregion
     // region protected methods
     // / region event
-    _adaptCurriculumVitaeLink: (oldLanguage, newLanguage) ->
-        ###
-            Switches the language dependent curriculum vitae links.
-
-            **returns {$.HomePage}** - Returns the current instance.
-        ###
-        $curriculumVitaeLink = $ 'a[href*="curriculumVitae"].hidden-xs'
-        if not $curriculumVitaeLink.data(oldLanguage)?
-            $curriculumVitaeLink.data(
-                oldLanguage, $curriculumVitaeLink.attr 'href')
-        if not $curriculumVitaeLink.data(newLanguage)?
+    /**
+     * Switches the language dependent curriculum vitae links.
+     * @param oldLanguage - Old language.
+     * @param newLanguage - New language.
+     * @returns - Returns the current instance.
+     */
+    _adaptCurriculumVitaeLink(
+        oldLanguage:string, newLanguage:string
+    ):HomePage {
+        const $curriculumVitaeLink:$DomNode = $(
+            'a[href*="curriculumVitae"].hidden-xs')
+        if (!$curriculumVitaeLink.data(oldLanguage))
+            $curriculumVitaeLink.data(oldLanguage, $curriculumVitaeLink.attr(
+                'href'))
+        if (!$curriculumVitaeLink.data(newLanguage))
             $curriculumVitaeLink.data(
                 newLanguage, $curriculumVitaeLink.data(oldLanguage).substr(
                     0, $curriculumVitaeLink.data(oldLanguage).lastIndexOf(
@@ -310,58 +337,65 @@ class HomePage extends $.Website.class {
                 ) + newLanguage.substr(0, 2).toUpperCase(
                 ) + newLanguage.substr(2).toLowerCase(
                 ) + $curriculumVitaeLink.data(oldLanguage).substr(
-                    $curriculumVitaeLink.data(oldLanguage).lastIndexOf '.'
-                ))
-        $curriculumVitaeLink.attr 'href', $curriculumVitaeLink.data(
-            newLanguage)
-        this
-    _onChangeMediaQueryMode: (oldMode, newMode) ->
-        ###
-            This method triggers if the responsive design switches to
-            another resolution mode.
-
-            **returns {$.HomePage}** - Returns the current instance.
-        ###
-        # Determine top margin for background image dependent sections.
-        this.$domNodes.section.children().css 'margin-top', ''
-        this._sectionTopMarginInPixel = window.parseInt(
-            window.getComputedStyle($('h1')[1], ':before').height)
-        # Show responsive dimension indicator switching.
-        this._options.dimensionIndicator.effectOptions.fadeIn.always = =>
-            # Adapt menu highlighter after changing layout and
-            # dimension indicator.
-            this._highlightMenuEntry false
-        this._options.dimensionIndicator.effectOptions.fadeOut.always = =>
-            this.$domNodes.dimensionIndicator.html(
-                this.stringFormat(
-                    this._options.dimensionIndicator.template, newMode)
-            ).fadeIn this._options.dimensionIndicator.effectOptions.fadeIn
+                    $curriculumVitaeLink.data(oldLanguage).lastIndexOf('.')))
+        $curriculumVitaeLink.attr('href', $curriculumVitaeLink.data(
+            newLanguage))
+        return this
+    }
+    /**
+     * This method triggers if the responsive design switches to another
+     * resolution mode.
+     * @param oldMode - Old media query mode.
+     * @param newMode - New media query mode.
+     * @returns Returns the current instance.
+     */
+    _onChangeMediaQueryMode(oldMode:string, newMode:string):HomePage {
+        // Determine top margin for background image dependent sections.
+        this.$domNodes.section.children().css('margin-top', '')
+        if (context.hasOwnProperty('getComputedStyle'))
+            this._sectionTopMarginInPixel = parseInt(
+                context.getComputedStyle($('h1')[1], ':before').height, 10)
+        // Show responsive dimension indicator switching.
+        this._options.dimensionIndicator.effectOptions.fadeIn.always = (
+        ):HomePage =>
+            /*
+                Adapt menu highlighter after changing layout and dimension
+                indicator.
+            */
+            this._highlightMenuEntry(false)
+        this._options.dimensionIndicator.effectOptions.fadeOut.always = (
+        ):$DomNode =>
+            this.$domNodes.dimensionIndicator.html(this.stringFormat(
+                this._options.dimensionIndicator.template, newMode
+            )).fadeIn(this._options.dimensionIndicator.effectOptions.fadeIn)
         this.$domNodes.dimensionIndicator.stop().fadeOut(
             this._options.dimensionIndicator.effectOptions.fadeOut)
-        super
-    _onChangeToExtraSmallMode: ->
-        ###
-            This method triggers if the responsive design switches to
-            extra small mode.
-
-            **returns {$.HomePage}** - Returns the current instance.
-        ###
-        # Resets the image dependent section heights.
-        this.$domNodes.section.children().css height: 'auto'
-    _onSwitchSection: (sectionName) ->
-        ###
-            Switches to given section.
-
-            **sectionName {String}** - Location to switch to.
-
-            **returns {$.HomePage}** - Returns the current instance.
-        ###
-        direction = false
-        if $.inArray(sectionName, ['next', 'prev']) isnt -1
+        return super._onChangeMediaQueryMode.apply(this, arguments)
+    }
+    /**
+     * This method triggers if the responsive design switches to extra small
+     * mode.
+     * @returns Returns the current instance.
+     */
+    _onChangeToExtraSmallMode():HomePage {
+        // Resets the image dependent section heights.
+        this.$domNodes.section.children().css('height', 'auto')
+        return this
+    }
+    /**
+     * Switches to given section.
+     * @param sectionName - Location to switch to.
+     * @returns Returns the current instance.
+     */
+    _onSwitchSection(sectionName:string):HomePage {
+        let direction:boolean = false
+        if (['next', 'prev'].includes(sectionName)) {
             direction = sectionName
-            sectionName = this._determineRelativeSections sectionName
-        hash = "##{sectionName}"
-        if hash is this.$domNodes.aboutThisWebsiteButton.attr 'href'
+            sectionName = this._determineRelativeSections(sectionName)
+        }
+        const hash:string = `#${sectionName}`
+        // TODO
+        if (hash === this.$domNodes.aboutThisWebsiteButton.attr('href'))
             window.location.hash = hash
             this._handleSwitchToAboutThisWebsite()
             this._adaptContentHeight()
@@ -398,7 +432,8 @@ class HomePage extends $.Website.class {
                 return this._onSwitchSection forceSection
         if not this._initialContentHeightAdaptionDone
             this._adaptContentHeight()
-        super
+        return super._onSwitchSection.apply(this, arguments)
+    }
     // / endregion
     // / region helper
     _performSectionSwitch: (
