@@ -41,31 +41,120 @@ if (!context.hasOwnProperty('document') && $.hasOwnProperty('context'))
  * @extends jQuery-website:Website
  * @property static:_name - Defines this class name to allow retrieving them
  * after name mangling.
- * TODO
+ * @property _options - Options extended by the options given to the
+ * initializer method.
+ * @property _options.trackingCode {string} - Tracking code for collection
+ * users meta data.
+ * @property _options.maximumFooterHeightInPercent {number} - Indicates when
+ * the footer should stick to the bottom.
+ * @property _options.scrollInLinearTime {boolean} - Indicates weather
+ * animated scrolling should be accelerate and brake or not.
+ * @property _options.backgroundImagePath {string} - TODO
+backgroundImageFileExtension: '.jpg',
+backgroundDependentHeightSections: ['about'],
+maximumBackgroundDependentHeight: 750,
+menuHighlightAnimation: {easing: 'linear'},
+hideMobileMenuAfterSelection: true,
+domNode: {
+    carousel: 'div.carousel.slide',
+    section: 'div.carousel.slide div.carousel-inner div.item',
+    logoLink:
+        'div.navbar-wrapper div.navbar.navbar-inverse ' +
+        'div.navbar-header a.navbar-brand',
+    navigationButton:
+        'div.navbar-wrapper div.navbar.navbar-inverse ' +
+        'div.navbar-collapse ul.nav.navbar-nav li a',
+    aboutThisWebsiteButton:
+        'div.footer footer a[href="#about-this-website"]'
+    aboutThisWebsiteSection: 'div.about-this-website',
+    dimensionIndicator:
+        'div.navbar-wrapper div.navbar.navbar-inverse ' +
+        'div.navbar-header a.navbar-brand ' +
+        'span.dimension-indicator',
+    footer: 'div.footer',
+    menuHighlighter:
+        'div.navbar-wrapper div.navbar.navbar-inverse ' +
+         'div.navbar-collapse div.navbar-highlighter',
+    mobileCollapseButton:
+        'div.navbar-wrapper div.navbar.navbar-inverse ' +
+        'div.navbar-header button.navbar-toggle',
+    navigationWrapper:
+        'div.navbar-wrapper div.navbar.navbar-inverse ' +
+        'div.navbar-collapse'
+},
+carousel: {
+    startSlide: 0,
+    speed: 400,
+    auto: 0,
+    continuous: false,
+    disableScroll: false,
+    stopPropagation: false
+},
+dimensionIndicator: {
+    template: '<span ' +
+              'class="glyphicon glyphicon-resize-horizontal"' +
+              '></span> <span>{1}</span>',
+    effectOptions: {
+        fadeIn: {duration: 'fast'},
+        fadeOut: {duration: 'fast'}
+    }
+},
+aboutThisWebsiteSection: {
+    fadeIn: {duraction: 'fast'},
+    fadeOut: {duration: 'fast'}
+}
+}
+ * @property _oldSectionHeightInPixel - Old section height needed for section
+ * switch animations.
+ * @property _sectionTopMarginInPixel - Distance to window top from the section
+ * body.
+ * @property _initialContentHeightAdaptionDone - Indicates weather initial main
+ * content height has been adapted.
+ * @property _initialMenuHightlightDone - Indicates weather initial menu
+ * highlighting has been done.
+ * @property _loadingCoverRemoved - Indicates weather startup loading cover has
+ * been removed.
  */
 class HomePage extends $.Website.class {
     // region static properties
     static _name:string = 'HomePage'
     // endregion
     // region dynamic properties
-    $domNodes:{[key:string]:$DomNode};
-    // TODO
+    $domNodes:{[key:string]:$DomNode}
+    _oldSectionHeightInPixel:number
+    _sectionTopMarginInPixel:number
+    _initialContentHeightAdaptionDone:boolean
+    _initialMenuHightlightDone:boolean
+    _loadingCoverRemoved:boolean;
     // endregion
     // region public methods
     // / region special
     /**
      * Initializes the interactive web application.
      * @param options - An options object.
-     * TODO
+     * @param oldSectionHeightInPixel - Initial section height needed for
+     * section switch animations.
+     * @param sectionTopMarginInPixel - Distance to window top from the section
+     * body.
+     * @param initialContentHeightAdaptionDone - Indicates weather initial
+     * main content height has been adapted.
+     * @param initialMenuHightlightDone - Indicates weather initial menu
+     * highlighting has been done.
+     * @param loadingCoverRemoved - Indicates weather startup loading cover has
+     * been removed.
      * @returns Returns the current instance.
      */
     initialize(
-        options:Object = {}, @_sectionBackgroundColor='white'
-        @_oldSectionHeightInPixel=200, @_sectionTopMarginInPixel=0
-        @_initialContentHeightAdaptionDone=false
-        @_initialMenuHightlightDone=false, @_loadingCoverRemoved=false
-    ) ->
-        // Saves default options for manipulating the default behaviour.
+        options:Object = {}, oldSectionHeightInPixel=200,
+        sectionTopMarginInPixel=0, initialContentHeightAdaptionDone=false,
+        initialMenuHightlightDone=false, loadingCoverRemoved=false
+    ):HomePage {
+        this._oldSectionHeightInPixel = oldSectionHeightInPixel
+        this._sectionTopMarginInPixel = sectionTopMarginInPixel
+        this._initialContentHeightAdaptionDone =
+            initialContentHeightAdaptionDone
+        this._initialMenuHightlightDone = initialMenuHightlightDone
+        this._loadingCoverRemoved = loadingCoverRemoved
         this._options = {
             trackingCode: 'UA-40192634-1',
             maximumFooterHeightInPercent: 50,
@@ -112,9 +201,10 @@ class HomePage extends $.Website.class {
                 stopPropagation: false
             },
             dimensionIndicator: {
-                template: '<span ' +
-                          'class="glyphicon glyphicon-resize-horizontal"' +
-                          '></span> <span>{1}</span>',
+                template: `
+                    <span class="glyphicon glyphicon-resize-horizontal"></span>
+                    <span>{1}</span>
+                `,
                 effectOptions: {
                     fadeIn: {duration: 'fast'},
                     fadeOut: {duration: 'fast'}
