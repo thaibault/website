@@ -402,7 +402,6 @@ class HomePage extends $.Website.class {
             this._adaptContentHeight()
         } else {
             let sectionFound:boolean = false
-            // TODO STAND
             this.$domNodes.navigationButton.each((
                 index:number, button:DomNode
             ):void => {
@@ -429,7 +428,7 @@ class HomePage extends $.Website.class {
                     if (!$sectionButton.hasClass('active'))
                         this._performSectionSwitch(
                             sectionName, direction, index, $sectionButton)
-                else
+                } else
                     $sectionButton.removeClass('active')
             // If no section could be determined initialize the first one.
             if (!sectionFound) {
@@ -710,130 +709,145 @@ class HomePage extends $.Website.class {
     _determineSectionHeightInPixelForFooterPositioning(
         $currentSection:$DomNode
     ):number {
-        // TODO
-        if (this._currentMediaQueryMode === 'extraSmall' || $.inArray(
-            window.location.hash.substring '#'.length
-            this._options.backgroundDependentHeightSections
-        ) is -1
-            newSectionHeightInPixel = $currentSection.outerHeight()
-            footerHeightInPixel = this.$domNodes.window.height() -
+        if (
+            this._currentMediaQueryMode === 'extraSmall' ||
+            context.hasOwnProperty('location') &&
+            this._options.backgroundDependentHeightSections.includes(
+                context.location.hash.substring('#'.length))
+        ) {
+            const newSectionHeightInPixel:number = $currentSection.outerHeight(
+            )
+            const footerHeightInPixel:number = this.$domNodes.window.height() -
                 newSectionHeightInPixel
             footerHeightInPercent = (footerHeightInPixel * 100) /
                 this.$domNodes.window.height()
-            if(this._options.maximumFooterHeightInPercent <
-               footerHeightInPercent and newSectionHeightInPixel <
-               this.$domNodes.window.height() -
-               this.$domNodes.footer.height())
-                # If we have high screens we will let the footer stay on the
-                # bottom.
+            if (
+                this._options.maximumFooterHeightInPercent <
+                footerHeightInPercent && newSectionHeightInPixel <
+                this.$domNodes.window.height() - this.$domNodes.footer.height()
+            )
+                /*
+                    If we have high screens we will let the footer stay on the
+                    bottom.
+                */
                 return this.$domNodes.window.height(
                 ) - this.$domNodes.footer.height()
             return newSectionHeightInPixel
-        this.$domNodes.window.height()
-    _initializeSwipe: ->
-        ###
-            Attaches needed event handler to the swipe plugin and initializes
-            the slider.
-
-            **returns {$.Swipe}** - Returns the new generated swipe
-                                    instance.
-        ###
-        # Remove anchor ids to avoid conflicts with native section
-        # switching.
-        $('h1').removeAttr('id').filter(->
-            not $.trim $(this).html()
-        ).remove()
-        this._options.carousel.transitionEnd = (index, domNode) =>
-            this.$domNodes.navigationButton.each (subIndex, button) =>
-                if index is subIndex
+        }
+        return this.$domNodes.window.height()
+    }
+    /**
+     * Attaches needed event handler to the swipe plugin and initializes the
+     * slider.
+     * @returns Returns the new generated swipe instance.
+     */
+    _initializeSwipe():Object {
+        // Remove anchor ids to avoid conflicts with native section switching.
+        $('h1').removeAttr('id').filter(function():boolean {
+            return !$.trim $(this).html()
+        }).remove()
+        this._options.carousel.transitionEnd = (index:number):boolean => {
+            this.$domNodes.navigationButton.each((
+                subIndex:number, button:DomNode
+            ):boolean => {
+                if (index === subIndex) {
                     this.fireEvent(
                         'switchSection', false, this, $(button).attr(
                             'href'
-                        ).substring '#'.length)
+                        ).substring('#'.length))
                     return false
+                }
+            })
             return true
-        # NOTE: A cyclic slide effect is more intuitive on touch devices.
+        }
+        // NOTE: A cyclic slide effect is more intuitive on touch devices.
         this._options.carousel.continuous =
-            this._currentMediaQueryMode is 'extraSmall'
-        this.$domNodes.carousel.Swipe this._options.carousel
-    _addNavigationEvents: ->
-        ###
-            This method adds triggers to switch section.
-
-            **returns {$.HomePage}** - Returns the current instance.
-        ###
-        toggleMobilMenu = (event) =>
-            # This handler rebuilds bootstrap mobile menu collapse feature.
-            slideOut = this.$domNodes.navigationWrapper.is '.in'
+            this._currentMediaQueryMode === 'extraSmall'
+        return this.$domNodes.carousel.Swipe(this._options.carousel)
+    }
+    /**
+     * This method adds triggers to switch section.
+     * @returns Returns the current instance.
+     */
+    _addNavigationEvents():HomePage {
+        const toggleMobilMenu = (event:Object):void => {
+            // This handler rebuilds bootstrap mobile menu collapse feature.
+            const slideOut:boolean = this.$domNodes.navigationWrapper.is('.in')
             this.$domNodes.navigationWrapper.one(
-                this.transitionEndEventNames, =>
-                    if slideOut
+                this.transitionEndEventNames, ():void => {
+                    if (slideOut) {
                         this.$domNodes.navigationWrapper.removeClass(
                             'collapsing in')
-                        this.$domNodes.navigationWrapper.addClass(
-                            'collapse')
-                    else
+                        this.$domNodes.navigationWrapper.addClass('collapse')
+                    } else {
                         this.$domNodes.navigationWrapper.removeClass(
                             'collapsing')
                         this.$domNodes.navigationWrapper.addClass(
                             'collapse in')
+                    }
+                }
             )
-            this.$domNodes.navigationWrapper.removeClass 'collapse'
-            this.$domNodes.navigationWrapper.addClass 'collapsing'
-            if slideOut
-                this.$domNodes.navigationWrapper.height 0
-                this.$domNodes.navigationWrapper.removeClass 'in'
-            else
+            this.$domNodes.navigationWrapper.removeClass('collapse')
+            this.$domNodes.navigationWrapper.addClass('collapsing')
+            if (slideOut) {
+                this.$domNodes.navigationWrapper.height(0)
+                this.$domNodes.navigationWrapper.removeClass('in')
+            } else
                 this.$domNodes.navigationWrapper.height(
                     this.$domNodes.navigationWrapper.find(
                         'ul'
-                    ).outerHeight true)
-        this.on(
-            this.$domNodes.mobileCollapseButton, 'click', toggleMobilMenu)
-        if this._options.hideMobileMenuAfterSelection
-            this.on this.$domNodes.navigationButton, 'click', =>
-                if this._currentMediaQueryMode is 'extraSmall'
-                    toggleMobilMenu.apply this, arguments
-        this.on this.$domNodes.navigationButton.add(
+                    ).outerHeight(true))
+        this.on(this.$domNodes.mobileCollapseButton, 'click', toggleMobileMenu)
+        if (this._options.hideMobileMenuAfterSelection)
+            this.on(this.$domNodes.navigationButton, 'click', ():void => {
+                if (this._currentMediaQueryMode === 'extraSmall')
+                    toggleMobileMenu.apply(this, arguments)
+            })
+        this.on(this.$domNodes.navigationButton.add(
             this.$domNodes.aboutThisWebsiteButton
-        ), 'click', (event) =>
-            this.fireEvent(
-                'switchSection', false, this, $(event.target).attr(
-                    'href'
-                ).substring '#'.length)
-        super
-    _determineRelativeSections: (sectionName) ->
-        ###
-            Determines current section to the right or the left.
-
-            **sectionName {String}** - Relative section ("next" or "prev").
-
-            **returns {String}**     - Returns the absolute section name.
-        ###
-        this.$domNodes.navigationButton.each (index, button) =>
-            if $(button).attr('href') is window.location.hash
-                ###
-                    NOTE: We subtract 1 from navigation buttons length
-                    because we want to ignore the about this website
-                    section. And the index starts counting by zero.
-                ###
-                numberOfButtons =
-                    this.$domNodes.navigationButton.length - 1
-                if sectionName is 'next'
-                    newIndex = (index + 1) % numberOfButtons
-                else if sectionName is 'prev'
-                    ###
-                        NOTE: Subtracting 1 in the residue class ring means
-                        adding the number of numbers minus 1. This prevents
-                        us from getting negative button indexes.
-                    ###
-                    newIndex = (index + numberOfButtons - 1) %
-                        numberOfButtons
-                sectionName = $(
-                    this.$domNodes.navigationButton[newIndex]
-                ).attr('href').substring '#'.length
-                false
-        sectionName
+        ), 'click', (event:Object):boolean => this.fireEvent(
+            'switchSection', false, this, $(event.target).attr(
+                'href'
+            ).substring('#'.length)))
+        return super._addNavigationEvents.apply(this, arguments)
+    }
+    /**
+     * Determines current section to the right or the left.
+     * @param sectionName - Relative section ("next" or "prev").
+     * @returns Returns the absolute section name.
+     */
+    _determineRelativeSections(sectionName:string):string {
+        if (context.hasOwnProperty('location'))
+            this.$domNodes.navigationButton.each((
+                index:number, button:DomNode
+            ):?boolean => {
+                if ($(button).attr('href') === context.location.hash) {
+                    /*
+                        NOTE: We subtract 1 from navigation buttons length
+                        because we want to ignore the about this website
+                        section. And the index starts counting by zero.
+                    */
+                    numberOfButtons =
+                        this.$domNodes.navigationButton.length - 1
+                    let newIndex:number
+                    if (sectionName === 'next')
+                        newIndex = (index + 1) % numberOfButtons
+                    else if (sectionName === 'prev')
+                        /*
+                            NOTE: Subtracting 1 in the residue class ring means
+                            adding the number of numbers minus 1. This prevents
+                            us from getting negative button indexes.
+                        */
+                        newIndex = (index + numberOfButtons - 1) %
+                            numberOfButtons
+                    sectionName = $(
+                        this.$domNodes.navigationButton[newIndex]
+                    ).attr('href').substring('#'.length)
+                    return false
+                }
+            }
+        return sectionName
+    }
     // / endregion
     // endregion
 }
