@@ -297,7 +297,7 @@ class HomePage extends $.Website.class {
             context.location.hash && this.$domNodes.navigationButton.parent(
                 'li'
             ).children(this.$domNodes.navigationButton).filter(
-                `[href="${window.location.hash}"]`
+                `[href="${context.location.hash}"]`
             ).length
         ))
             context.location.hash = this.$domNodes.navigationButton.parent(
@@ -475,9 +475,10 @@ class HomePage extends $.Website.class {
      * @returns Returns the current instance.
      */
     _handleSwitchToAboutThisWebsite():HomePage {
-        this.debug(
-            'Switch to section "' +
-            `${window.location.hash.substring('#'.length)}".`)
+        if (context.hasOwnProperty('location'))
+            this.debug(
+                'Switch to section "' +
+                `${context.location.hash.substring('#'.length)}".`)
         this.$domNodes.menuHighlighter.fadeOut(
             this._options.aboutThisWebsiteSection.fadeOut)
         this._scrollToTop()
@@ -665,7 +666,7 @@ class HomePage extends $.Website.class {
             this._currentMediaQueryMode === 'extraSmall' ||
             context.hasOwnProperty('location') &&
             !this._options.backgroundDependentHeightSections.includes(
-                window.location.hash.substring('#'.length))
+                context.location.hash.substring('#'.length))
         ) {
             this.$domNodes.section.children().css('marginTop', 0)
             return this._determineSectionHeightInPixelForFooterPositioning(
