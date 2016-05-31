@@ -287,7 +287,7 @@ class HomePage extends $.Website.class {
         super.initialize(options)
         // Disable tab functionality to prevent inconsistent carousel states.
         this.on(this.$domNodes.parent, 'keydown', (event:Object):void => {
-            if (event.keyCode === this.keyCode.TAB)
+            if (event.keyCode === this.constructor.keyCode.TAB)
                 event.preventDefault()
         })
         this.$domNodes.aboutThisWebsiteSection.hide().css(
