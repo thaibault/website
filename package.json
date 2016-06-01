@@ -15,6 +15,9 @@
     "main": "build/index.html",
     "repository": {"type": "git", "url": "git@github.io:thaibault/.git"},
     "webOptimizer": {
+        "injection": {"internal": {
+            "__execute__": "['index.less', 'index.js'].concat(self.debug ? [] : 'babel-polyfill')"
+        }},
         "library": false,
         "module": {"aliases": {
             "bootstrap.less$": "bootstrap/less/bootstrap",
@@ -24,13 +27,11 @@
             "genericStyle.less$": "genericStyle/index.less",
             "jQuery-website.less$": "jQuery-website/index.less"
         }},
-        "injection": {
-            "internal": ["babel-polyfill", "index.less", "index.js"]
-        },
         "path": {"asset": {"javaScript": "./", "less": "./"}}
     },
     "scripts": {
         "build": "webOptimizer build",
+        "buildWithStats": "webOptimizer build --profile --json >/tmp/stat.json && echo 'Results successfully written to \"/tmp/stat.json\".'",
         "clear": "webOptimizer clear",
         "document": "webOptimizer document",
         "lint": "webOptimizer typeCheck && webOptimizer lint",

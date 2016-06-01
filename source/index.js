@@ -190,7 +190,6 @@ class HomePage extends $.Website.class {
                 fadeOut: {duration: 'fast'}
             }
         }
-        // Adapt menu highlighter after language switching.
         let initialOnSwitchedCallback:Function
         let initialOnEnsuredCallback:Function
         let initialOnSwitchCallback:Function
@@ -293,7 +292,7 @@ class HomePage extends $.Website.class {
         this.$domNodes.aboutThisWebsiteSection.hide().css(
             'position', 'absolute')
         if (!(
-            context.hasOwnProperty(location) &&
+            context.hasOwnProperty('location') &&
             context.location.hash && this.$domNodes.navigationButton.parent(
                 'li'
             ).children(this.$domNodes.navigationButton).filter(
@@ -305,9 +304,10 @@ class HomePage extends $.Website.class {
             ).filter('.active').children(this.$domNodes.navigationButton).attr(
                 'href')
         this._initializeSwipe()
-        this.fireEvent(
-            'switchSection', false, this, context.location.hash.substring(
-                '#'.length))
+        if (context.hasOwnProperty('location'))
+            this.fireEvent(
+                'switchSection', false, this, context.location.hash.substring(
+                    '#'.length))
         this.on(this.$domNodes.window, 'resize', this.getMethod(
             this._adaptContentHeight))
         return this
@@ -602,7 +602,7 @@ class HomePage extends $.Website.class {
                 }
                 if (!this._initialContentHeightAdaptionDone) {
                     this._initialContentHeightAdaptionDone = true
-                    if (this.windowLoadingCoverd)
+                    if (!this._loadingCoverRemoved)
                         this._removeLoadingCover()
                 }
             }
