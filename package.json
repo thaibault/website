@@ -29,7 +29,7 @@
                 "jQuery-website.less$": "jQuery-website/index.less"
             },
             "skipParseRegularExpression": {
-                "__execute__": "/\\/(jquery|module|swipe|spin)\\.js(\\?.+|$)/"
+                "__execute__": "/\\/(?:(?:jquery)|(?:module)|(?:spin))\\.js(?:\\?.+|$)/"
             }
         },
         "path": {"asset": {"javaScript": "./", "less": "./"}}
