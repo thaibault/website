@@ -560,8 +560,7 @@ class HomePage extends $.Website.class {
             ).filter(`.${context.location.hash.substr(1)}`)
             if ($currentSection && $currentSection.length) {
                 let newSectionHeightInPixel:number =
-                    this._determineSectionHeightInPixelForFooterPositioning(
-                        $currentSection)
+                    this._determineSectionHeightInPixel($currentSection)
                 if (
                     newSectionHeightInPixel &&
                     newSectionHeightInPixel !== this._oldSectionHeightInPixel
@@ -670,8 +669,7 @@ class HomePage extends $.Website.class {
                 context.location.hash.substring('#'.length))
         ) {
             this.$domNodes.section.children().css('marginTop', 0)
-            return this._determineSectionHeightInPixelForFooterPositioning(
-                $currentSection)
+            return this._determineSectionHeightInPixel($currentSection)
         }
         // Calculate stretched background sections.
         let additionalMarginTopInPixel:number = 0
@@ -692,9 +690,7 @@ class HomePage extends $.Website.class {
         this.$domNodes.section.children().css(
             'marginTop', additionalMarginTopInPixel)
         return Math.max(
-            this._determineSectionHeightInPixelForFooterPositioning(
-                $currentSection
-            ), parseInt(
+            this._determineSectionHeightInPixel($currentSection), parseInt(
                 this.$domNodes.section.children().outerHeight(), 10
             ) + parseInt(this.$domNodes.section.children().css(
                 'marginTop'
@@ -706,9 +702,7 @@ class HomePage extends $.Website.class {
      * @param $currentSection - The current section dom node.
      * @returns Returns the new computed section height.
      */
-    _determineSectionHeightInPixelForFooterPositioning(
-        $currentSection:$DomNode
-    ):number {
+    _determineSectionHeightInPixel($currentSection:$DomNode):number {
         if (
             this._currentMediaQueryMode === 'extraSmall' ||
             context.hasOwnProperty('location') &&
@@ -717,24 +711,25 @@ class HomePage extends $.Website.class {
         ) {
             const newSectionHeightInPixel:number = $currentSection.outerHeight(
             )
-            const footerHeightInPixel:number = this.$domNodes.window.height() -
-                newSectionHeightInPixel
-            const footerHeightInPercent = (footerHeightInPixel * 100) /
-                this.$domNodes.window.height()
+            const footerHeightInPixel:number = this.$domNodes.document.height(
+            ) - newSectionHeightInPixel
+            const footerHeightInPercent:number = (footerHeightInPixel * 100) /
+                this.$domNodes.document.height()
             if (
                 this._options.maximumFooterHeightInPercent <
-                footerHeightInPercent && newSectionHeightInPixel <
-                this.$domNodes.window.height() - this.$domNodes.footer.height()
+                    footerHeightInPercent &&
+                newSectionHeightInPixel < this.$domNodes.document.height(
+                ) - this.$domNodes.footer.height()
             )
                 /*
-                    If we have high screens we will let the footer stay on the
-                    bottom.
+                    If we have a high resolution available we will let the
+                    footer stay on the bottom.
                 */
-                return this.$domNodes.window.height(
+                return this.$domNodes.document.height(
                 ) - this.$domNodes.footer.height()
             return newSectionHeightInPixel
         }
-        return this.$domNodes.window.height()
+        return this.$domNodes.document.height()
     }
     /**
      * Attaches needed event handler to the swipe plugin and initializes the

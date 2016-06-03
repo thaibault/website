@@ -29,7 +29,7 @@
                 "jQuery-website.less$": "jQuery-website/index.less"
             },
             "skipParseRegularExpression": {
-                "__execute__": "/\\/(?:(?:jquery)|(?:module)|(?:spin)|(?:swipe))\\.js(?:\\?.+|$)/"
+                "__execute__": "/\\/(?:(?:jquery)|(?:module)|(?:spin))\\.js(?:\\?.+|$)/"
             }
         },
         "path": {"asset": {"javaScript": "./", "less": "./"}}
@@ -40,9 +40,10 @@
         "clear": "webOptimizer clear",
         "document": "webOptimizer document",
         "lint": "webOptimizer typeCheck && webOptimizer lint",
-        "preinstall": "mkdir --parents build && touch build/index.html",
         "postinstall": "npm run build",
+        "preinstall": "mkdir --parents build && touch build/index.html",
         "serve": "webOptimizer serve",
-        "start": "webOptimizer serve"
+        "start": "webOptimizer serve",
+        "watch": "webOptimizer build --watch"
     }
 }
