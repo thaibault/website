@@ -367,9 +367,10 @@ class HomePage extends $.Website.class {
             this._highlightMenuEntry(false)
         this._options.dimensionIndicator.effectOptions.fadeOut.always = (
         ):$DomNode =>
-            this.$domNodes.dimensionIndicator.html(this.stringFormat(
-                this._options.dimensionIndicator.template, newMode
-            )).fadeIn(this._options.dimensionIndicator.effectOptions.fadeIn)
+            this.$domNodes.dimensionIndicator.html(
+                this.constructor.stringFormat(
+                    this._options.dimensionIndicator.template, newMode)
+            ).fadeIn(this._options.dimensionIndicator.effectOptions.fadeIn)
         this.$domNodes.dimensionIndicator.stop().fadeOut(
             this._options.dimensionIndicator.effectOptions.fadeOut)
         return super._onChangeMediaQueryMode.apply(this, arguments)

@@ -22,14 +22,14 @@
         "module": {
             "aliases": {
                 "bootstrap.less$": "bootstrap/less/bootstrap",
+                "swipe$": "Swipe/swipe",
                 "jQuery-scrollTo$": "jquery.scrollto/jquery.scrollTo",
                 "jQuery-spin$": "spin.js/jquery.spin",
-                "swipe$": "Swipe/swipe",
                 "genericStyle.less$": "genericStyle/index.less",
                 "jQuery-website.less$": "jQuery-website/index.less"
             },
             "skipParseRegularExpression": {
-                "__execute__": "/\\/(?:(?:jquery)|(?:module)|(?:spin))\\.js(?:\\?.+|$)/"
+                "__execute__": "/\\/(?:(?:jquery)|(?:module)|(?:spin)|(?:swipe))\\.js(?:\\?.+|$)/"
             }
         },
         "path": {"asset": {"javaScript": "./", "less": "./"}}
