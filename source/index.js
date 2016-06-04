@@ -35,7 +35,7 @@ const context:Object = (():Object => {
     }
     return window
 })()
-if (!context.hasOwnProperty('document') && $.hasOwnProperty('context'))
+if (!('document' in context) && 'context' in $)
     context.document = $.context
 // region plugins/classes
 /**
@@ -292,19 +292,18 @@ class HomePage extends $.Website.class {
         this.$domNodes.aboutThisWebsiteSection.hide().css(
             'position', 'absolute')
         if (!(
-            context.hasOwnProperty('location') &&
-            context.location.hash && this.$domNodes.navigationButton.parent(
-                'li'
-            ).children(this.$domNodes.navigationButton).filter(
-                `[href="${context.location.hash}"]`
-            ).length
+            'location' in context && context.location.hash &&
+            this.$domNodes.navigationButton.parent('li').children(
+                this.$domNodes.navigationButton).filter(
+                    `[href="${context.location.hash}"]`
+                ).length
         ))
             context.location.hash = this.$domNodes.navigationButton.parent(
                 'li'
             ).filter('.active').children(this.$domNodes.navigationButton).attr(
                 'href')
         this._initializeSwipe()
-        if (context.hasOwnProperty('location'))
+        if ('location' in context)
             this.fireEvent(
                 'switchSection', false, this, context.location.hash.substring(
                     '#'.length))
@@ -354,7 +353,7 @@ class HomePage extends $.Website.class {
     _onChangeMediaQueryMode(oldMode:string, newMode:string):HomePage {
         // Determine top margin for background image dependent sections.
         this.$domNodes.section.children().css('margin-top', '')
-        if (context.hasOwnProperty('getComputedStyle'))
+        if ('getComputedStyle' in context)
             this._sectionTopMarginInPixel = parseInt(
                 context.getComputedStyle($('h1')[1], ':before').height, 10)
         // Show responsive dimension indicator switching.
@@ -395,7 +394,7 @@ class HomePage extends $.Website.class {
             sectionName = this._determineRelativeSections(sectionName)
         const hash:string = `#${sectionName}`
         if (hash === this.$domNodes.aboutThisWebsiteButton.attr('href')) {
-            if (context.hasOwnProperty('location'))
+            if ('location' in context)
                 context.location.hash = hash
             this._handleSwitchToAboutThisWebsite()
             this._adaptContentHeight()
@@ -421,7 +420,7 @@ class HomePage extends $.Website.class {
                         index === 0
                     ))
                 )) {
-                    if (context.hasOwnProperty('location'))
+                    if ('location' in context)
                         context.location.hash = $button.attr('href')
                     sectionFound = true
                     if (!$sectionButton.hasClass('active'))
@@ -476,7 +475,7 @@ class HomePage extends $.Website.class {
      * @returns Returns the current instance.
      */
     _handleSwitchToAboutThisWebsite():HomePage {
-        if (context.hasOwnProperty('location'))
+        if ('location' in context)
             this.debug(
                 'Switch to section "' +
                 `${context.location.hash.substring('#'.length)}".`)
@@ -554,7 +553,7 @@ class HomePage extends $.Website.class {
      * @returns Returns the new generated swipe instance.
      */
     _adaptContentHeight():HomePage {
-        if (context.hasOwnProperty('location') && context.location.hash) {
+        if ('location' in context && context.location.hash) {
             const $currentSection:?$DomNode = this.$domNodes.section.add(
                 this.$domNodes.aboutThisWebsiteSection
             ).filter(`.${context.location.hash.substr(1)}`)
@@ -583,7 +582,7 @@ class HomePage extends $.Website.class {
                         footer absolutely.
                     */
                     if (
-                        context.hasOwnProperty('location') &&
+                        'location' in context &&
                         context.location.hash === '#about-this-website'
                     ) {
                         // Move footer from last known position.
@@ -664,7 +663,7 @@ class HomePage extends $.Website.class {
     ):number {
         if (
             this._currentMediaQueryMode === 'extraSmall' ||
-            context.hasOwnProperty('location') &&
+            'location' in context &&
             !this._options.backgroundDependentHeightSections.includes(
                 context.location.hash.substring('#'.length))
         ) {
@@ -705,7 +704,7 @@ class HomePage extends $.Website.class {
     _determineSectionHeightInPixel($currentSection:$DomNode):number {
         if (
             this._currentMediaQueryMode === 'extraSmall' ||
-            context.hasOwnProperty('location') &&
+            'location' in context &&
             this._options.backgroundDependentHeightSections.includes(
                 context.location.hash.substring('#'.length))
         ) {
@@ -813,7 +812,7 @@ class HomePage extends $.Website.class {
      * @returns Returns the absolute section name.
      */
     _determineRelativeSections(sectionName:string):string {
-        if (context.hasOwnProperty('location'))
+        if ('location' in context)
             this.$domNodes.navigationButton.each((
                 index:number, button:DomNode
             ):?boolean => {
