@@ -858,7 +858,8 @@ $.HomePage.class = HomePage
 export default HomePage
 $.noConflict()(($:Object):HomePage => $.HomePage({
     googleTrackingCode: 'UA-40192634-1', language: {
-        allowedLanguages: ['enUS', 'deDE'], sessionDescription: 'website{1}'
+        logging: true, allowedLanguages: ['enUS', 'deDE'],
+        sessionDescription: 'website{1}'
     }
 }))
 // region vim modline
