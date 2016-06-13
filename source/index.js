@@ -37,8 +37,6 @@ const context:Object = (():Object => {
 })()
 if (!('document' in context) && 'context' in $)
     context.document = $.context
-// TODO
-// require('offline-plugin/runtime').install()
 // region plugins/classes
 /**
  * This plugin holds all needed methods to extend a whole homepage.
@@ -863,6 +861,7 @@ $.noConflict()(($:Object):HomePage => $.HomePage({
         sessionDescription: 'website{1}'
     }
 }))
+require('offline-plugin/runtime').install()
 // region vim modline
 // vim: set tabstop=4 shiftwidth=4 expandtab:
 // vim: foldmethod=marker foldmarker=region,endregion:
