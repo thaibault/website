@@ -46,6 +46,7 @@
         "preinstall": "mkdir --parents build && touch build/index.html",
         "serve": "webOptimizer serve",
         "start": "webOptimizer serve",
-        "watch": "webOptimizer build --watch"
+        "watch": "webOptimizer build --watch",
+        "watchDLL": "webOptimizer buildDLL --watch"
     }
 }
