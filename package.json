@@ -11,6 +11,7 @@
         "jQuery-website": "git+ssh://git@github.com/thaibault/jQuery-website.git",
         "legalNotes": "git+ssh://git@github.com/thaibault/legalNotes.git"
     },
+    "devDependencies": {"source-map-support": ">=0.4.0"},
     "files": ["source"],
     "main": "build/index.html",
     "repository": {"type": "git", "url": "git@github.io:thaibault/.git"},
