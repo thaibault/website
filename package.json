@@ -17,7 +17,12 @@
     "repository": {"type": "git", "url": "git@github.io:thaibault/.git"},
     "webOptimizer": {
         "injection": {"internal": {
-            "__execute__": "{vendor: self.debug ? ['jQuery-website'] : [], index: ['index.less'].concat(self.debug ? [] : 'babel-polyfill').concat(['index.js'])}"
+            "vendor": {
+                "__evaluate__": "self.debug || 2 < self.givenCommandLineArguments.length && ['buildDLL', 'watchDLL'].includes(self.givenCommandLineArguments[2]) ? ['jQuery-website'] : []"
+            },
+            "index": {
+                "__evaluate__": "['index.less'].concat(self.debug ? [] : 'babel-polyfill').concat(['index.js'])}"
+            }
         }},
         "library": false,
         "module": {
