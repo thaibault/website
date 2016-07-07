@@ -18,7 +18,7 @@
     "webOptimizer": {
         "injection": {"internal": {
             "vendor": {
-                "__evaluate__": "self.debug || 2 < self.givenCommandLineArguments.length && ['buildDLL', 'watchDLL'].includes(self.givenCommandLineArguments[2]) ? ['jQuery-website'] : []"
+                "__evaluate__": "self.debug || 2 < self.givenCommandLineArguments.length && ['buildDLL', 'watchDLL'].includes(self.givenCommandLineArguments[2]) ? ['jQuery-website', 'offline-plugin/runtime'] : []"
             },
             "index": {
                 "__evaluate__": "['index.less'].concat(self.debug ? [] : 'babel-polyfill').concat(['index.js'])}"
