@@ -5,13 +5,13 @@
     "license": "CC-BY-3.0",
     "keywords": ["website"],
     "dependencies": {
-        "bootstrap": "^3.3.6",
+        "bootstrap": "3.3.6",
         "Swipe": "https://github.com/thebird/Swipe",
         "webOptimizer": "git+ssh://git@github.com/thaibault/webOptimizer.git",
         "jQuery-website": "git+ssh://git@github.com/thaibault/jQuery-website.git",
         "legalNotes": "git+ssh://git@github.com/thaibault/legalNotes.git"
     },
-    "devDependencies": {"source-map-support": ">=0.4.0"},
+    "devDependencies": {"source-map-support": ">=0.4.2"},
     "files": ["source"],
     "main": "build/index.html",
     "repository": {"type": "git", "url": "git@github.io:thaibault/.git"},
