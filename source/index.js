@@ -70,15 +70,15 @@ if (!('document' in context) && 'context' in $)
  * injectable dimension indicator to show current media query mode.
  * @property _options.dimensionIndicator.effectOptions {Object} - Options for
  * showing and hiding the dimension indicator between a dimension change.
- * @property _options.dimensionIndicator.effectOptions.fadeIn {Object} -
- * Options for the fade in animation.
- * @property _options.dimensionIndicator.effectOptions.fadeOut {Object} -
- * Options for the fade out animation.
+ * @property _options.dimensionIndicator.effectOptions.showAnimation {Object} -
+ * Options for the show animation.
+ * @property _options.dimensionIndicator.effectOptions.hideAnimation {Object} -
+ * Options for the hide animation.
  * @property _options.aboutThisWebsiteSection {Object} - Animation options for
  * showing and hiding the about this website section.
- * @property _options.aboutThisWebsiteSection.fadeIn {Object} - Fade in
+ * @property _options.aboutThisWebsiteSection.showAnimation {Object} - Show
  * options.
- * @property _options.aboutThisWebsiteSection.fadeOut {Object} - Fade out
+ * @property _options.aboutThisWebsiteSection.hideAnimation {Object} - Hide
  * options.
  * @property _oldSectionHeightInPixel - Old section height needed for section
  * switch animations.
@@ -182,20 +182,20 @@ class HomePage extends $.Website.class {
                     <span>{1}</span>
                 `,
                 effectOptions: {
-                    fadeIn: {duration: 'fast'},
-                    fadeOut: {duration: 'fast'}
+                    showAnimation: [{opacity: 100}, 'fast'],
+                    hideAnimation: [{opacity: 0}, 'fast']
                 }
             },
             aboutThisWebsiteSection: {
-                fadeIn: {duraction: 'fast'},
-                fadeOut: {duration: 'fast'}
+                showAnimation: [{opacity: 100}, 'fast'],
+                hideAnimation: [{opacity: 0}, 'fast']
             }
         }
         let initialOnSwitchedCallback:Function
         let initialOnEnsuredCallback:Function
         let initialOnSwitchCallback:Function
         let initialOnEnsureCallback:Function
-        let initialLanguageFadeOutAlwaysCallback:Function
+        let initialLanguageHideAnimationAlwaysCallback:Function
         if (options.language) {
             initialOnSwitchedCallback = options.language.onSwitched
             initialOnEnsuredCallback = options.language.onEnsureded
@@ -203,10 +203,14 @@ class HomePage extends $.Website.class {
             initialOnEnsureCallback = options.language.onEnsure
             if (
                 options.language.textNodeParent &&
-                options.language.textNodeParent.hide
+                'hideAnimation' in options.language.textNodeParent &&
+                typeof options.language.textNodeParent[
+                    1
+                ].hideAnimation === 'object' &&
+                'always' in options.language.textNodeParent.hideAnimation[1]
             )
-                initialLanguageFadeOutAlwaysCallback =
-                    options.language.textNodeParent.hide.always
+                initialLanguageHideAnimationAlwaysCallback =
+                    options.language.textNodeParent.hideAnimation[1].always
         }
         const self:HomePage = this
         $.extend(true, options, {language: {
@@ -219,14 +223,15 @@ class HomePage extends $.Website.class {
                     selected.
                 */
                 self._highlightMenuEntry(false)
-                let fadeInOptions:Object = {}
+                let showAnimationOptions:Object = [{opacity: 100}]
                 if (self.languageHandler)
-                    fadeInOptions =
-                        self.languageHandler._options.textNodeParent.fadeIn
+                    showAnimationOptions = self.languageHandler._options
+                        .textNodeParent.showAnimation
                 if (self.$domNodes.navigationButton.parent('li').filter(
                     '.active'
                 ).length)
-                    self.$domNodes.menuHighlighter.fadeIn(fadeInOptions)
+                    self.$domNodes.menuHighlighter.animate.apply(
+                        self.$domNodes.menuHighlighter, showAnimationOptions)
                 self._adaptContentHeight()
                 return result
             },
@@ -247,28 +252,34 @@ class HomePage extends $.Website.class {
                 const result:any = !initialOnSwitchCallback || (
                     initialOnSwitchCallback.apply(this, arguments))
                 // Add language toggle button functionality.
-                let fadeOutOptions:Object = {}
-                let fadeInOptions:Object = {}
+                let hideAnimationOptions:Object = [{opacity: 0}, {}]
+                let showAnimationOptions:Object = [{opacity: 100}, {}]
                 if (self.languageHandler) {
-                    fadeOutOptions = self.languageHandler._options
-                        .textNodeParent.fadeOut
-                    fadeInOptions = self.languageHandler._options
-                        .textNodeParent.fadeIn
+                    hideAnimationOptions = self.languageHandler._options
+                        .textNodeParent.hideAnimation
+                    showAnimationOptions = self.languageHandler._options
+                        .textNodeParent.showAnimation
                 }
-                self.$domNodes.menuHighlighter.fadeOut(fadeOutOptions)
-                fadeOutOptions = $.extend(true, {}, fadeOutOptions, {
-                    always: function():any {
-                        let result:any
-                        if (initialLanguageFadeOutAlwaysCallback)
-                            result = initialLanguageFadeOutAlwaysCallback
-                                .apply(this, arguments)
-                        $(this).attr('href', `#lang-${oldLanguage}`).text(
-                            oldLanguage.substr(0, 2)
-                        ).fadeIn(fadeInOptions)
-                        return result
-                    }
-                })
-                $(`a[href="#lang-${newLanguage}"]`).fadeOut(fadeOutOptions)
+                self.$domNodes.menuHighlighter.animate.apply(
+                    self.$domNodes.menuHighlighter, hideAnimationOptions)
+                hideAnimationOptions = hideAnimationOptions.slice()
+                hideAnimationOptions[1] = $.extend(true, {
+                }, hideAnimationOptions[1], {always: function():any {
+                    let result:any
+                    if (initialLanguageHideAnimationAlwaysCallback)
+                        result = initialLanguageHideAnimationAlwaysCallback
+                            .apply(this, arguments)
+                    const $oldLanguageLinkDomNode:$DomNode = $(this)
+                    $oldLanguageLinkDomNode.attr(
+                        'href', `#lang-${oldLanguage}`
+                    ).text(oldLanguage.substr(0, 2)).animate(
+                        $oldLanguageLinkDomNode, showAnimationOptions)
+                    return result
+                }})
+                const $newLanguageLinkDomNode:$DomNode = $(
+                    `a[href="#lang-${newLanguage}"]`)
+                $newLanguageLinkDomNode.animate.apply(
+                    $newLanguageLinkDomNode, hideAnimationOptions)
                 // Adapt curriculum vitae link.
                 self._adaptCurriculumVitaeLink(oldLanguage, newLanguage)
                 return result
@@ -358,21 +369,26 @@ class HomePage extends $.Website.class {
             this._sectionTopMarginInPixel = parseInt(
                 context.getComputedStyle($('h1')[1], ':before').height, 10)
         // Show responsive dimension indicator switching.
-        this._options.dimensionIndicator.effectOptions.fadeIn.always = (
-        ):HomePage =>
+        this._options.dimensionIndicator.effectOptions.showAnimation[
+            1
+        ].always = ():HomePage =>
             /*
                 Adapt menu highlighter after changing layout and dimension
                 indicator.
             */
             this._highlightMenuEntry(false)
-        this._options.dimensionIndicator.effectOptions.fadeOut.always = (
-        ):$DomNode =>
+        this._options.dimensionIndicator.effectOptions.hideAnimation[
+            1
+        ].always = ():$DomNode =>
             this.$domNodes.dimensionIndicator.html(
                 this.constructor.stringFormat(
                     this._options.dimensionIndicator.template, newMode)
-            ).fadeIn(this._options.dimensionIndicator.effectOptions.fadeIn)
-        this.$domNodes.dimensionIndicator.stop().fadeOut(
-            this._options.dimensionIndicator.effectOptions.fadeOut)
+            ).animate.apply(
+                this.$domNodes.dimensionIndicator,
+                this._options.dimensionIndicator.effectOptions.showAnimation)
+        this.$domNodes.dimensionIndicator.stop().animate.apply(
+            this.$domNodes.dimensionIndicator,
+            this._options.dimensionIndicator.effectOptions.hideAnimation)
         return super._onChangeMediaQueryMode.apply(this, arguments)
     }
     /**
@@ -456,8 +472,9 @@ class HomePage extends $.Website.class {
     _performSectionSwitch(
         sectionName:string, index:number, $sectionButton:$DomNode
     ):HomePage {
-        this.$domNodes.aboutThisWebsiteSection.fadeOut(
-            this._options.aboutThisWebsiteSection.fadeOut)
+        this.$domNodes.aboutThisWebsiteSection.animate.apply(
+            this.$domNodes.aboutThisWebsiteSection,
+            this._options.aboutThisWebsiteSection.hideAnimation)
         this.debug(`Switch to section "${sectionName}".`)
         $sectionButton.addClass('active')
         if (this._viewportIsOnTop) {
@@ -480,11 +497,13 @@ class HomePage extends $.Website.class {
             this.debug(
                 'Switch to section "' +
                 `${context.location.hash.substring('#'.length)}".`)
-        this.$domNodes.menuHighlighter.fadeOut(
-            this._options.aboutThisWebsiteSection.fadeOut)
+        this.$domNodes.menuHighlighter.animate.apply(
+            this.$domNodes.menuHighlighter,
+            this._options.aboutThisWebsiteSection.hideAnimation)
         this._scrollToTop()
-        this.$domNodes.aboutThisWebsiteSection.fadeIn(
-            this._options.aboutThisWebsiteSection.fadeIn)
+        this.$domNodes.aboutThisWebsiteSection.animate.apply(
+            this.$domNodes.aboutThisWebsiteSection,
+            this._options.aboutThisWebsiteSection.showAnimation)
         this.$domNodes.navigationButton.parent('li').removeClass('active')
         return this
     }
@@ -534,13 +553,15 @@ class HomePage extends $.Website.class {
                         width: $sectionButton.width(),
                         duration: this._options.carousel.speed
                     })
-                    this.$domNodes.menuHighlighter.stop().fadeIn(
-                        this._options.aboutThisWebsiteSection.fadeIn
+                    this.$domNodes.menuHighlighter.stop().animate.apply(
+                        this.$domNodes.menuHighlighter,
+                        this._options.aboutThisWebsiteSection.showAnimation
                     ).animate(this._options.menuHighlightAnimation)
                 } else {
                     this._initialMenuHightlightDone = true
-                    this.$domNodes.menuHighlighter.stop().fadeIn(
-                        this._options.aboutThisWebsiteSection.fadeIn
+                    this.$domNodes.menuHighlighter.stop().animate.apply(
+                        this.$domNodes.menuHighlighter,
+                        this._options.aboutThisWebsiteSection.showAnimation
                     ).css({
                         left: $sectionButton.position().left,
                         width: $sectionButton.width()
