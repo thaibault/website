@@ -22,6 +22,7 @@ import $ from 'jquery'
 import 'jQuery-website'
 import type {DomNode} from 'webOptimizer/type'
 import type {$DomNode} from 'jQuery-tools'
+import offlineHandler from 'offline-plugin/runtime'
 /* eslint-disable max-len */
 // IgnoreTypeCheck
 import 'imports?jQuery=jquery!imports?$=jquery!imports?window=>{jQuery: jQuery}!swipe'
@@ -861,9 +862,9 @@ $.noConflict()(($:Object):HomePage => $.HomePage({
         sessionDescription: 'website{1}'
     }
 }))
-require('offline-plugin/runtime').install({
+offlineHandler.install({
     // NOTE: Tell to new SW to take control immediately.
-    onUpdateReady: ():void => runtime.applyUpdate(),
+    onUpdateReady: ():void => offlineHander.applyUpdate(),
     // NOTE: Reload the webpage to load into the new version.
     onUpdated: ():void => context.location.reload()
 })
