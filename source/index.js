@@ -203,10 +203,10 @@ class HomePage extends $.Website.class {
             initialOnEnsureCallback = options.language.onEnsure
             if (
                 options.language.textNodeParent &&
-                options.language.textNodeParent.fadeOut
+                options.language.textNodeParent.hide
             )
                 initialLanguageFadeOutAlwaysCallback =
-                    options.language.textNodeParent.fadeOut.always
+                    options.language.textNodeParent.hide.always
         }
         const self:HomePage = this
         $.extend(true, options, {language: {
