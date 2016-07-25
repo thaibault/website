@@ -760,7 +760,7 @@ class HomePage extends $.Website.class {
     _initializeSwipe():Object {
         // Remove anchor ids to avoid conflicts with native section switching.
         $('h1').removeAttr('id').filter(function():boolean {
-            return !$.trim($(this).html())
+            return !$(this).html().trim()
         }).remove()
         this._options.carousel.transitionEnd = (index:number):boolean => {
             this.$domNodes.navigationButton.each((
