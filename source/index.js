@@ -182,12 +182,12 @@ class HomePage extends $.Website.class {
                     <span>{1}</span>
                 `,
                 effectOptions: {
-                    showAnimation: [{opacity: 100}, 'fast'],
+                    showAnimation: [{opacity: 1}, 'fast'],
                     hideAnimation: [{opacity: 0}, 'fast']
                 }
             },
             aboutThisWebsiteSection: {
-                showAnimation: [{opacity: 100}, 'fast'],
+                showAnimation: [{opacity: 1}, 'fast'],
                 hideAnimation: [{opacity: 0}, 'fast']
             }
         }
@@ -223,7 +223,7 @@ class HomePage extends $.Website.class {
                     selected.
                 */
                 self._highlightMenuEntry(false)
-                let showAnimationOptions:Object = [{opacity: 100}]
+                let showAnimationOptions:Object = [{opacity: 1}]
                 if (self.languageHandler)
                     showAnimationOptions = self.languageHandler._options
                         .textNodeParent.showAnimation
@@ -253,7 +253,7 @@ class HomePage extends $.Website.class {
                     initialOnSwitchCallback.apply(this, arguments))
                 // Add language toggle button functionality.
                 let hideAnimationOptions:Object = [{opacity: 0}, {}]
-                let showAnimationOptions:Object = [{opacity: 100}, {}]
+                let showAnimationOptions:Object = [{opacity: 1}, {}]
                 if (self.languageHandler) {
                     hideAnimationOptions = self.languageHandler._options
                         .textNodeParent.hideAnimation
