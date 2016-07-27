@@ -22,7 +22,6 @@ import $ from 'jquery'
 import 'jQuery-website'
 import type {DomNode} from 'webOptimizer/type'
 import type {$DomNode} from 'jQuery-tools'
-import offlineHandler from 'offline-plugin/runtime'
 /* eslint-disable max-len */
 // IgnoreTypeCheck
 import 'imports?jQuery=jquery!imports?$=jquery!imports?window=>{jQuery: jQuery}!swipe'
@@ -883,10 +882,13 @@ $.noConflict()(($:Object):HomePage => $.HomePage({
         sessionDescription: 'website{1}'
     }
 }))
-offlineHandler.install({
-    // NOTE: Tell to new SW to take control immediately.
-    onUpdateReady: ():void => offlineHandler.applyUpdate()
-})
+if (OFFLINE) {
+    const offlineHandler:Object = require('offline-plugin/runtime')
+    offlineHandler.install({
+        // NOTE: Tell to new SW to take control immediately.
+        onUpdateReady: ():void => offlineHandler.applyUpdate()
+    })
+}
 // region vim modline
 // vim: set tabstop=4 shiftwidth=4 expandtab:
 // vim: foldmethod=marker foldmarker=region,endregion:

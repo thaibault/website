@@ -571,6 +571,8 @@ html.no-javascript(lang='en')
         a(href='#top')
             | top
             //deDE:nach oben
+    if offline
+        noscript: iframe(src='manifest.html' style='display: none')
     // endregion
 //-
     region vim modline
