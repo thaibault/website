@@ -27,6 +27,9 @@ import type {$DomNode} from 'jQuery-tools'
 import 'imports?jQuery=jquery!imports?$=jquery!imports?window=>{jQuery: jQuery}!swipe'
 /* eslint-enable max-len */
 // endregion
+// region declaration
+declare var OFFLINE:boolean
+// endregion
 const context:Object = (():Object => {
     if ($.type(window) === 'undefined') {
         if ($.type(global) === 'undefined')
@@ -222,7 +225,7 @@ class HomePage extends $.Website.class {
                     selected.
                 */
                 self._highlightMenuEntry(false)
-                let showAnimationOptions:Object = [{opacity: 1}]
+                let showAnimationOptions:Array<Object> = [{opacity: 1}]
                 if (self.languageHandler)
                     showAnimationOptions = self.languageHandler._options
                         .textNodeParent.showAnimation
@@ -251,8 +254,8 @@ class HomePage extends $.Website.class {
                 const result:any = !initialOnSwitchCallback || (
                     initialOnSwitchCallback.apply(this, arguments))
                 // Add language toggle button functionality.
-                let hideAnimationOptions:Object = [{opacity: 0}, {}]
-                let showAnimationOptions:Object = [{opacity: 1}, {}]
+                let hideAnimationOptions:Array<Object> = [{opacity: 0}, {}]
+                let showAnimationOptions:Array<Object> = [{opacity: 1}, {}]
                 if (self.languageHandler) {
                     hideAnimationOptions = self.languageHandler._options
                         .textNodeParent.hideAnimation
