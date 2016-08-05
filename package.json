@@ -35,6 +35,10 @@
                 "genericStyle.less$": "genericStyle/index.less",
                 "jQuery-website.less$": "jQuery-website/index.less"
             },
+            "optimizer": {"htmlMinifier": {"ignoreCustomComments": [
+                {"__evaluate__": "/^\\|?[a-z]{2}[A-Z]{2}:/"},
+                {"__evaluate__": "/^[a-z]{2}[A-Z]{2}$/"}
+            ]}},
             "skipParseRegularExpression": {
                 "__evaluate__": "/\\/(?:(?:jquery)|(?:module)|(?:spin)|([^/]+\\.min))\\.js(?:\\?.+|$)/"
             }
