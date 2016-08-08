@@ -877,15 +877,15 @@ $.HomePage = function():any {
     return $.Tools().controller(HomePage, arguments)
 }
 $.HomePage.class = HomePage
-/** The jQuery-incrementer plugin class. */
-export default HomePage
+/** jQuery extended with jQuery-homePage plugin. */
+export default $
 $.noConflict()(($:Object):HomePage => $.HomePage({
     googleTrackingCode: 'UA-40192634-1', language: {
         logging: true, allowedLanguages: ['enUS', 'deDE'],
         sessionDescription: 'website{1}'
     }
 }))
-if (OFFLINE) {
+if (typeof OFFLINE !== 'undefined' && OFFLINE) {
     const offlineHandler:Object = require('offline-plugin/runtime')
     offlineHandler.install({
         // NOTE: Tell to new SW to take control immediately.
