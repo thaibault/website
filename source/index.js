@@ -879,12 +879,6 @@ $.HomePage = function():any {
 $.HomePage.class = HomePage
 /** jQuery extended with jQuery-homePage plugin. */
 export default $
-$.noConflict()(($:Object):HomePage => $.HomePage({
-    googleTrackingCode: 'UA-40192634-1', language: {
-        logging: true, allowedLanguages: ['enUS', 'deDE'],
-        sessionDescription: 'website{1}'
-    }
-}))
 if (typeof OFFLINE !== 'undefined' && OFFLINE) {
     const offlineHandler:Object = require('offline-plugin/runtime')
     offlineHandler.install({
@@ -892,6 +886,12 @@ if (typeof OFFLINE !== 'undefined' && OFFLINE) {
         onUpdateReady: ():void => offlineHandler.applyUpdate()
     })
 }
+$.noConflict()(($:Object):HomePage => $.HomePage({
+    googleTrackingCode: 'UA-40192634-1', language: {
+        logging: true, allowedLanguages: ['enUS', 'deDE'],
+        sessionDescription: 'website{1}'
+    }
+}))
 // region vim modline
 // vim: set tabstop=4 shiftwidth=4 expandtab:
 // vim: foldmethod=marker foldmarker=region,endregion:
