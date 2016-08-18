@@ -42,7 +42,7 @@
                 "__evaluate__": "/\\/(?:(?:jquery)|(?:module)|(?:spin)|([^/]+\\.min))\\.js(?:\\?.+|$)/"
             }
         },
-        "path": {"asset": {"javaScript": "./", "less": "./"}}
+        "path": {"asset": {"javaScript": "./", "cascadingStyleSheet": "./"}}
     },
     "scripts": {
         "build": "webOptimizer build",
