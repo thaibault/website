@@ -28,11 +28,9 @@
         "module": {
             "aliases": {
                 "babel-polyfill$": "babel-polyfill/dist/polyfill.min",
-                "bootstrap.less$": "bootstrap/less/bootstrap",
                 "swipe$": "Swipe/swipe",
                 "jQuery-scrollTo$": "jquery.scrollto/jquery.scrollTo",
-                "jQuery-spin$": "spin.js/jquery.spin",
-                "jQuery-website.less$": "jQuery-website/index.less"
+                "jQuery-spin$": "spin.js/jquery.spin"
             },
             "optimizer": {"htmlMinifier": {"ignoreCustomComments": [
                 {"__evaluate__": "/^\\|?[a-z]{2}[A-Z]{2}:/"},
