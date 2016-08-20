@@ -27,6 +27,7 @@
         "library": false,
         "module": {
             "aliases": {
+                "bootstrap$": "bootstrap/dist/css/bootstrap.css",
                 "babel-polyfill$": "babel-polyfill/dist/polyfill.min",
                 "swipe$": "Swipe/swipe",
                 "jQuery-scrollTo$": "jquery.scrollto/jquery.scrollTo",
