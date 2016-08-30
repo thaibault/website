@@ -8,7 +8,7 @@
         "bootstrap": "3.3.6",
         "Swipe": "https://github.com/thebird/Swipe",
         "webOptimizer": "git+ssh://git@github.com/thaibault/webOptimizer.git",
-        "jQuery-website": "git+ssh://git@github.com/thaibault/jQuery-website.git",
+        "websiteUtilities": "git+ssh://git@github.com/thaibault/website.Utilitiesgit",
         "legalNotes": "git+ssh://git@github.com/thaibault/legalNotes.git"
     },
     "devDependencies": {"source-map-support": ">=0.4.2"},
@@ -18,7 +18,7 @@
     "webOptimizer": {
         "injection": {"internal": {
             "vendor": {
-                "__evaluate__": "self.debug && 2 < self.givenCommandLineArguments.length && ['buildDLL', 'serve', 'watchDLL'].includes(self.givenCommandLineArguments[2]) ? 'jQuery-website' : []"
+                "__evaluate__": "self.debug && 2 < self.givenCommandLineArguments.length && ['buildDLL', 'serve', 'watchDLL'].includes(self.givenCommandLineArguments[2]) ? 'websiteUtilities' : []"
             },
             "index": {
                 "__evaluate__": "['index.css'].concat(self.debug ? [] : 'babel-polyfill').concat(self.debug && self.dllManifestFilePaths.length && 2 < self.givenCommandLineArguments.length && self.givenCommandLineArguments[2] === 'serve' ? ['webpack/hot/dev-server', `webpack-dev-server/client?${self.development.server.protocol}://0.0.0.0:${self.development.server.port}`] : []).concat(self.offline ? ['offline-plugin/runtime'] : []).concat('index.js')"
