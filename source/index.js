@@ -52,7 +52,7 @@ if (!('document' in context) && 'context' in $)
  * users meta data.
  * @property _options.maximumFooterHeightInPercent {number} - Indicates when
  * the footer should stick to the bottom.
- * @property _options.scrollInLinearTime {boolean} - Indicates weather
+ * @property _options.scrollInLinearTime {boolean} - Indicates whether
  * animated scrolling should be accelerate and brake or not.
  * @property _options.backgroundDependentHeightSections {Array.<string>} - A
  * list: of section names which dimensions depend on their background image.
@@ -61,7 +61,7 @@ if (!('document' in context) && 'context' in $)
  * @property _options.menuHighlightAnimation {Object} - Options for menu
  * highlight animation.
  * @property _options.hideMobileMenuAfterSelection {boolean} - Indicates
- * weather the mobile menu should be hide after a menu item was selected.
+ * whether the mobile menu should be hide after a menu item was selected.
  * @property _options.domNode {Object} - Mapping if needed dom node
  * descriptions to their corresponding selectors.
  * @property _options.carousel {Object} - Options for the integrated section
@@ -86,11 +86,11 @@ if (!('document' in context) && 'context' in $)
  * switch animations.
  * @property _sectionTopMarginInPixel - Distance to window top from the section
  * body.
- * @property _initialContentHeightAdaptionDone - Indicates weather initial main
+ * @property _initialContentHeightAdaptionDone - Indicates whether initial main
  * content height has been adapted.
- * @property _initialMenuHightlightDone - Indicates weather initial menu
+ * @property _initialMenuHightlightDone - Indicates whether initial menu
  * highlighting has been done.
- * @property _loadingCoverRemoved - Indicates weather startup loading cover has
+ * @property _loadingCoverRemoved - Indicates whether startup loading cover has
  * been removed.
  */
 class HomePage extends $.Website.class {
@@ -114,11 +114,11 @@ class HomePage extends $.Website.class {
      * section switch animations.
      * @param sectionTopMarginInPixel - Distance to window top from the section
      * body.
-     * @param initialContentHeightAdaptionDone - Indicates weather initial
+     * @param initialContentHeightAdaptionDone - Indicates whether initial
      * main content height has been adapted.
-     * @param initialMenuHightlightDone - Indicates weather initial menu
+     * @param initialMenuHightlightDone - Indicates whether initial menu
      * highlighting has been done.
-     * @param loadingCoverRemoved - Indicates weather startup loading cover has
+     * @param loadingCoverRemoved - Indicates whether startup loading cover has
      * been removed.
      * @returns Returns the current instance.
      */
@@ -535,7 +535,7 @@ class HomePage extends $.Website.class {
     }
     /**
      * Highlights current menu entry.
-     * @param transition - Indicates weather to use configured transition.
+     * @param transition - Indicates whether to use configured transition.
      * @returns Returns the current instance.
      */
     _highlightMenuEntry(transition:boolean = true):HomePage {
