@@ -7,11 +7,13 @@
     "dependencies": {
         "bootstrap": "3.3.6",
         "Swipe": "https://github.com/thebird/Swipe",
-        "webOptimizer": "git+ssh://git@github.com/thaibault/webOptimizer.git",
-        "websiteUtilities": "git+ssh://git@github.com/thaibault/website.Utilitiesgit",
-        "legalNotes": "git+ssh://git@github.com/thaibault/legalNotes.git"
+        "websiteUtilities": "latest"
     },
-    "devDependencies": {"source-map-support": ">=0.4.2"},
+    "devDependencies": {
+        "legalNotes": "latest",
+        "source-map-support": "latest",
+        "webOptimizer": "latest"
+    },
     "files": ["source"],
     "main": "build/index.html",
     "repository": {"type": "git", "url": "git@github.io:thaibault/.git"},
@@ -38,7 +40,7 @@
                 {"__evaluate__": "/^[a-z]{2}[A-Z]{2}$/"}
             ]}},
             "skipParseRegularExpression": {
-                "__evaluate__": "/\\/(?:(?:jquery)|(?:module)|(?:spin)|([^/]+\\.min))\\.js(?:\\?.+|$)/"
+                "__evaluate__": "/\\/(?:(?:clientNode(?:\.compiled)?)|(?:jquery)|(?:module)|(?:spin)|([^/]+\\.min))\\.js(?:\\?.+|$)/"
             }
         },
         "path": {"asset": {"source": {
