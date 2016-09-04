@@ -14,7 +14,7 @@
         "source-map-support": "latest",
         "webOptimizer": "latest"
     },
-    "files": ["source"],
+    "files": ["build"],
     "main": "build/index.html",
     "repository": {"type": "git", "url": "git@github.io:thaibault/.git"},
     "webOptimizer": {
