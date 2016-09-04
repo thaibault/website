@@ -19,9 +19,9 @@
 */
 // region imports
 import $ from 'jquery'
-import 'jQuery-website'
+import 'websiteUtilities'
 import type {DomNode} from 'webOptimizer/type'
-import type {$DomNode} from 'jQuery-tools'
+import type {$DomNode} from 'clientNode'
 /* eslint-disable max-len */
 // IgnoreTypeCheck
 import 'imports?jQuery=jquery!imports?$=jquery!imports?window=>{jQuery: jQuery}!swipe'
@@ -273,13 +273,13 @@ class HomePage extends $.Website.class {
                             .apply(this, arguments)
                     const $oldLanguageLinkDomNode:$DomNode = $(this)
                     $oldLanguageLinkDomNode.attr(
-                        'href', `#lang-${oldLanguage}`
+                        'href', `#language-${oldLanguage}`
                     ).text(oldLanguage.substr(0, 2)).animate(
                         $oldLanguageLinkDomNode, showAnimationOptions)
                     return result
                 }})
                 const $newLanguageLinkDomNode:$DomNode = $(
-                    `a[href="#lang-${newLanguage}"]`)
+                    `a[href="#language-${newLanguage}"]`)
                 $newLanguageLinkDomNode.animate.apply(
                     $newLanguageLinkDomNode, hideAnimationOptions)
                 // Adapt curriculum vitae link.
@@ -290,8 +290,8 @@ class HomePage extends $.Website.class {
                 const result:any = !initialOnEnsureCallback || (
                     initialOnEnsureCallback.apply(this, arguments))
                 // Add language toggle button functionality.
-                $(`a[href="#lang-${newLanguage}"]`).attr(
-                    'href', `#lang-${oldLanguage}`
+                $(`a[href="#language-${newLanguage}"]`).attr(
+                    'href', `#language-${oldLanguage}`
                 ).text(oldLanguage.substr(0, 2))
                 self._adaptCurriculumVitaeLink(oldLanguage, newLanguage)
                 return result

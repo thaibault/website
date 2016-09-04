@@ -293,13 +293,11 @@ doctype html
                         ' available. Example implementations can be found in' +
                         ' the projects:',
                     [
-                        ['jQuery-storeLocator',
-                         'http://torben.website/jQuery-storeLocator'],
-                        ['jQuery-incrementer',
-                         'http://torben.website/jQuery-incrementer'],
-                        ['jQuery-lang', 'http://torben.website/jQuery-lang'],
-                        ['jQuery-website',
-                         'http://torben.website/jQuery-website'],
+                        ['storeLocator', 'http://torben.website/storeLocator'],
+                        ['incrementer', 'http://torben.website/incrementer'],
+                        ['language', 'http://torben.website/language'],
+                        ['websiteUtilities',
+                         'http://torben.website/websiteUtilities'],
                         ['My personal website', 'http://torben.website']
                     ]
                 ],
@@ -316,13 +314,11 @@ doctype html
                         'für native Datentypen. Beispiel-Implementierungen ' +
                         'findet sich in den Projekten:',
                     [
-                        ['jQuery-storeLocator',
-                        'http://torben.website/jQuery-storeLocator'],
-                        ['jQuery-incrementer',
-                        'http://torben.website/jQuery-incrementer'],
-                        ['jQuery-lang', 'http://torben.website/jQuery-lang'],
-                        ['jQuery-website',
-                        'http://torben.website/jQuery-website'],
+                        ['storeLocator', 'http://torben.website/storeLocator'],
+                        ['incrementer', 'http://torben.website/incrementer'],
+                        ['language', 'http://torben.website/language'],
+                        ['websiteUtilities',
+                        'http://torben.website/websiteUtilities'],
                         ['Meine persönliche Website', 'http://torben.website']
                     ]
                 ]
@@ -367,7 +363,7 @@ html.no-javascript(lang='en')
                         span.dimension-indicator
                     - START_UP_ANIMATION_NUMBER += 1
                     a.tools-visible-on-javascript-enabled(
-                        href=`#lang-${ALTERNATE_LANGUAGE}`
+                        href=`#language-${ALTERNATE_LANGUAGE}`
                         class=`website-start-up-animation-number-${START_UP_ANIMATION_NUMBER}`
                     ) #{ALTERNATE_LANGUAGE.substring(0, ALTERNATE_LANGUAGE.length - 2)}
                     button.navbar-toggle.tools-visible-on-javascript-enabled(
