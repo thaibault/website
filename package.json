@@ -40,7 +40,7 @@
                 {"__evaluate__": "/^[a-z]{2}[A-Z]{2}$/"}
             ]}},
             "skipParseRegularExpression": {
-                "__evaluate__": "/\\/(?:(?:clientNode(?:\.compiled)?)|(?:jquery)|(?:module)|(?:spin)|([^/]+\\.min))\\.js(?:\\?.+|$)/"
+                "__evaluate__": "/\\/(?:(?:clientNode(?:\\.compiled)?)|(?:jquery)|(?:module)|(?:spin)|([^/]+\\.min))\\.js(?:\\?.+|$)/"
             }
         },
         "path": {"asset": {"source": {
