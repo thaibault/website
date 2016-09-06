@@ -7,12 +7,12 @@
     "dependencies": {
         "bootstrap": "3.3.6",
         "Swipe": "https://github.com/thebird/Swipe",
-        "websiteUtilities": "latest"
+        "website-utilities": "latest"
     },
     "devDependencies": {
         "legalNotes": "git+ssh://git@github.com/thaibault/legalNotes.git",
         "source-map-support": "latest",
-        "webOptimizer": "latest"
+        "weboptimizer": "latest"
     },
     "files": ["build"],
     "main": "build/index.html",
@@ -20,7 +20,7 @@
     "webOptimizer": {
         "injection": {"internal": {
             "vendor": {
-                "__evaluate__": "self.debug && 2 < self.givenCommandLineArguments.length && ['buildDLL', 'serve', 'watchDLL'].includes(self.givenCommandLineArguments[2]) ? 'websiteUtilities' : []"
+                "__evaluate__": "self.debug && 2 < self.givenCommandLineArguments.length && ['buildDLL', 'serve', 'watchDLL'].includes(self.givenCommandLineArguments[2]) ? 'website-utilities' : []"
             },
             "index": {
                 "__evaluate__": "['index.css'].concat(self.debug ? [] : 'babel-polyfill').concat(self.debug && self.dllManifestFilePaths.length && 2 < self.givenCommandLineArguments.length && self.givenCommandLineArguments[2] === 'serve' ? ['webpack/hot/dev-server', `webpack-dev-server/client?${self.development.server.protocol}://0.0.0.0:${self.development.server.port}`] : []).concat(self.offline ? ['offline-plugin/runtime'] : []).concat('index.js')"
@@ -40,7 +40,7 @@
                 {"__evaluate__": "/^[a-z]{2}[A-Z]{2}$/"}
             ]}},
             "skipParseRegularExpression": {
-                "__evaluate__": "/\\/(?:(?:clientNode(?:\\.compiled)?)|(?:jquery)|(?:module)|(?:spin)|([^/]+\\.min))\\.js(?:\\?.+|$)/"
+                "__evaluate__": "/\\/(?:(?:clientnode(?:\\.compiled)?)|(?:jquery)|(?:module)|(?:spin)|([^/]+\\.min))\\.js(?:\\?.+|$)/"
             }
         },
         "path": {"source": {"asset": {

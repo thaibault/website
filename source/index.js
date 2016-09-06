@@ -19,9 +19,9 @@
 */
 // region imports
 import $ from 'jquery'
-import 'websiteUtilities'
-import type {DomNode} from 'webOptimizer/type'
-import type {$DomNode} from 'clientNode'
+import 'website-utilities'
+import type {DomNode} from 'weboptimizer/type'
+import type {$DomNode} from 'clientnode'
 /* eslint-disable max-len */
 // IgnoreTypeCheck
 import 'imports?jQuery=jquery!imports?$=jquery!imports?window=>{jQuery: jQuery}!swipe'
