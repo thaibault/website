@@ -29,16 +29,6 @@ import 'imports?jQuery=jquery!imports?$=jquery!imports?window=>{jQuery: jQuery}!
 // region declaration
 declare var OFFLINE:boolean
 // endregion
-const context:Object = (():Object => {
-    if ($.type(window) === 'undefined') {
-        if ($.type(global) === 'undefined')
-            return ($.type(module) === 'undefined') ? {} : module
-        return global
-    }
-    return window
-})()
-if (!('document' in context) && 'context' in $)
-    context.document = $.context
 // region plugins/classes
 /**
  * This plugin holds all needed methods to extend a whole homepage.
@@ -92,7 +82,7 @@ if (!('document' in context) && 'context' in $)
  * @property _loadingCoverRemoved - Indicates whether startup loading cover has
  * been removed.
  */
-class HomePage extends $.Website.class {
+export default class HomePage extends $.Website.class {
     // region static properties
     static _name:string = 'HomePage'
     // endregion
@@ -214,7 +204,7 @@ class HomePage extends $.Website.class {
                     options.language.textNodeParent.hideAnimation[1].always
         }
         const self:HomePage = this
-        $.extend(true, options, {language: {
+        this.constructor.extendObject(true, options, {language: {
             onSwitched: function():boolean {
                 const result:any = !initialOnSwitchedCallback || (
                     initialOnSwitchedCallback &&
@@ -264,7 +254,7 @@ class HomePage extends $.Website.class {
                 self.$domNodes.menuHighlighter.animate.apply(
                     self.$domNodes.menuHighlighter, hideAnimationOptions)
                 hideAnimationOptions = hideAnimationOptions.slice()
-                hideAnimationOptions[1] = $.extend(true, {
+                hideAnimationOptions[1] = this.constructor.extendObject(true, {
                 }, hideAnimationOptions[1], {always: function():any {
                     let result:any
                     if (initialLanguageHideAnimationAlwaysCallback)
@@ -305,20 +295,20 @@ class HomePage extends $.Website.class {
         this.$domNodes.aboutThisWebsiteSection.hide().css(
             'position', 'absolute')
         if (!(
-            'location' in context && context.location.hash &&
+            'location' in $.global && $.global.location.hash &&
             this.$domNodes.navigationButton.parent('li').children(
                 this.$domNodes.navigationButton).filter(
-                    `[href="${context.location.hash}"]`
+                    `[href="${$.global.location.hash}"]`
                 ).length
         ))
-            context.location.hash = this.$domNodes.navigationButton.parent(
+            $.global.location.hash = this.$domNodes.navigationButton.parent(
                 'li'
             ).filter('.active').children(this.$domNodes.navigationButton).attr(
                 'href')
         this._initializeSwipe()
-        if ('location' in context)
+        if ('location' in $.global)
             this.fireEvent(
-                'switchSection', false, this, context.location.hash.substring(
+                'switchSection', false, this, $.global.location.hash.substring(
                     '#'.length))
         this.on(this.$domNodes.window, 'resize', this.getMethod(
             this._adaptContentHeight))
@@ -366,9 +356,9 @@ class HomePage extends $.Website.class {
     _onChangeMediaQueryMode(oldMode:string, newMode:string):HomePage {
         // Determine top margin for background image dependent sections.
         this.$domNodes.section.children().css('margin-top', '')
-        if ('getComputedStyle' in context)
+        if ('getComputedStyle' in $.global)
             this._sectionTopMarginInPixel = parseInt(
-                context.getComputedStyle($('h1')[1], ':before').height, 10)
+                $.global.getComputedStyle($('h1')[1], ':before').height, 10)
         // Show responsive dimension indicator switching.
         this._options.dimensionIndicator.effectOptions.showAnimation[
             1
@@ -412,8 +402,8 @@ class HomePage extends $.Website.class {
             sectionName = this._determineRelativeSections(sectionName)
         const hash:string = `#${sectionName}`
         if (hash === this.$domNodes.aboutThisWebsiteButton.attr('href')) {
-            if ('location' in context)
-                context.location.hash = hash
+            if ('location' in $.global)
+                $.global.location.hash = hash
             this._handleSwitchToAboutThisWebsite()
             this._adaptContentHeight()
         } else {
@@ -438,8 +428,8 @@ class HomePage extends $.Website.class {
                         index === 0
                     ))
                 )) {
-                    if ('location' in context)
-                        context.location.hash = $button.attr('href')
+                    if ('location' in $.global)
+                        $.global.location.hash = $button.attr('href')
                     sectionFound = true
                     if (!$sectionButton.hasClass('active'))
                         this._performSectionSwitch(
@@ -494,10 +484,10 @@ class HomePage extends $.Website.class {
      * @returns Returns the current instance.
      */
     _handleSwitchToAboutThisWebsite():HomePage {
-        if ('location' in context)
+        if ('location' in $.global)
             this.debug(
                 'Switch to section "' +
-                `${context.location.hash.substring('#'.length)}".`)
+                `${$.global.location.hash.substring('#'.length)}".`)
         this.$domNodes.menuHighlighter.animate.apply(
             this.$domNodes.menuHighlighter,
             this._options.aboutThisWebsiteSection.hideAnimation)
@@ -549,11 +539,12 @@ class HomePage extends $.Website.class {
             } = $sectionButton.position()
             if (sectionButtonPosition && sectionButtonPosition.left)
                 if (this._initialMenuHightlightDone && transition) {
-                    $.extend(true, this._options.menuHighlightAnimation, {
-                        left: $sectionButton.position().left,
-                        width: $sectionButton.width(),
-                        duration: this._options.carousel.speed
-                    })
+                    this.constructor.extendObject(
+                        true, this._options.menuHighlightAnimation, {
+                            left: $sectionButton.position().left,
+                            width: $sectionButton.width(),
+                            duration: this._options.carousel.speed
+                        })
                     this.$domNodes.menuHighlighter.stop().animate.apply(
                         this.$domNodes.menuHighlighter,
                         this._options.aboutThisWebsiteSection.showAnimation
@@ -576,10 +567,10 @@ class HomePage extends $.Website.class {
      * @returns Returns the new generated swipe instance.
      */
     _adaptContentHeight():HomePage {
-        if ('location' in context && context.location.hash) {
+        if ('location' in $.global && $.global.location.hash) {
             const $currentSection:?$DomNode = this.$domNodes.section.add(
                 this.$domNodes.aboutThisWebsiteSection
-            ).filter(`.${context.location.hash.substr(1)}`)
+            ).filter(`.${$.global.location.hash.substr(1)}`)
             if ($currentSection && $currentSection.length) {
                 let newSectionHeightInPixel:number =
                     this._determineSectionHeightInPixel($currentSection)
@@ -605,8 +596,8 @@ class HomePage extends $.Website.class {
                         footer absolutely.
                     */
                     if (
-                        'location' in context &&
-                        context.location.hash === '#about-this-website'
+                        'location' in $.global &&
+                        $.global.location.hash === '#about-this-website'
                     ) {
                         // Move footer from last known position.
                         this.$domNodes.footer.css({
@@ -686,9 +677,9 @@ class HomePage extends $.Website.class {
     ):number {
         if (
             this._currentMediaQueryMode === 'extraSmall' ||
-            'location' in context &&
+            'location' in $.global &&
             !this._options.backgroundDependentHeightSections.includes(
-                context.location.hash.substring('#'.length))
+                $.global.location.hash.substring('#'.length))
         ) {
             this.$domNodes.section.children().css('marginTop', 0)
             return this._determineSectionHeightInPixel($currentSection)
@@ -727,9 +718,9 @@ class HomePage extends $.Website.class {
     _determineSectionHeightInPixel($currentSection:$DomNode):number {
         if (
             this._currentMediaQueryMode === 'extraSmall' ||
-            'location' in context &&
+            'location' in $.global &&
             this._options.backgroundDependentHeightSections.includes(
-                context.location.hash.substring('#'.length))
+                $.global.location.hash.substring('#'.length))
         ) {
             const newSectionHeightInPixel:number = $currentSection.outerHeight(
             )
@@ -835,11 +826,11 @@ class HomePage extends $.Website.class {
      * @returns Returns the absolute section name.
      */
     _determineRelativeSections(sectionName:string):string {
-        if ('location' in context)
+        if ('location' in $.global)
             this.$domNodes.navigationButton.each((
                 index:number, button:DomNode
             ):?boolean => {
-                if ($(button).attr('href') === context.location.hash) {
+                if ($(button).attr('href') === $.global.location.hash) {
                     /*
                         NOTE: We subtract 1 from navigation buttons length
                         because we want to ignore the about this website
@@ -876,8 +867,6 @@ $.HomePage = function():any {
     return $.Tools().controller(HomePage, arguments)
 }
 $.HomePage.class = HomePage
-/** jQuery extended with jQuery-homePage plugin. */
-export default $
 if (typeof OFFLINE !== 'undefined' && OFFLINE) {
     const offlineHandler:Object = require('offline-plugin/runtime')
     offlineHandler.install({
