@@ -1,7 +1,7 @@
 // @flow
 // #!/usr/bin/env node
 // -*- coding: utf-8 -*-
-/** @module jQuery-homePage */
+/** @module homePage */
 'use strict'
 /* !
     region header
@@ -18,8 +18,7 @@
     endregion
 */
 // region imports
-import $ from 'jquery'
-import 'website-utilities'
+import {$} from 'website-utilities'
 import type {DomNode} from 'weboptimizer/type'
 import type {$DomNode} from 'clientnode'
 /* eslint-disable max-len */
