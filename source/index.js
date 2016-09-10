@@ -876,7 +876,7 @@ if (typeof OFFLINE !== 'undefined' && OFFLINE) {
 }
 $.noConflict()(($:Object):HomePage => $.HomePage({
     googleTrackingCode: 'UA-40192634-1', language: {
-        logging: true, allowedLanguages: ['enUS', 'deDE'],
+        logging: true, selection: ['enUS', 'deDE'],
         sessionDescription: 'website{1}'
     }
 }))
