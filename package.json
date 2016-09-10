@@ -58,6 +58,7 @@
         "serve": "webOptimizer serve",
         "start": "webOptimizer serve",
         "update": "npm version patch && npm publish",
+        "updateWebsite": "websiteUtilities",
         "watch": "webOptimizer build --watch",
         "watchDLL": "webOptimizer buildDLL --watch"
     }
