@@ -11,36 +11,45 @@ This library written by Torben Sickert stand under a creative commons naming
 endregion */
 @import 'bootstrap';
 @import 'website-utilities';
-/* region cascading style sheets */
+:root {
+    /* region constants */
+    /** region color */
+    --defaultColor: #222222;
+    --fontColor: #5a5a5a;
+    --backgroundColor: #f2f2f2;
+    --linkColor: #ff8888;
+    --linkHoverColor: #ff6666;
+    --menuColor: #666;
+    --menuHoverColor: #444;
+    --shadowColor: rgba(0, 0, 0, .25);
+    /** endregion */
+    /** region space */
+    --footerMarginInPixel: 30px;
+    --minimumContentHeightInPixel: 300px;
+    --topMargin: 65px;
+    /** endregion */
+    /* endregion */
+}
+/* region style sheets */
 .home-page {
     @apply --website;
-    /* TODO STAND */
-    // region constants
-    @imagePath: 'image/';
-
-    @defaultColor: #222222;
-    @fontColor: #5a5a5a;
-    @backgroundColor: #f2f2f2;
-    @linkColor: #ff8888;
-    @linkHoverColor: #ff6666;
-    @menuColor: #666;
-    @menuHoverColor: #444;
-    @shadowColor: rgba(0, 0, 0, .25);
-
-    @footerMarginInPixel: 30px;
-    @minimumContentHeightInPixel: 300px;
-    @topMargin: 65px;
-    // endregion
     /* region global */
-    color: @fontColor;
-    background-color: @defaultColor;
+    color: var(--fontColor);
+    background-color: var(--@defaultColor);
     font-size: 16px;
     overflow-y: scroll;
     /** region headline */
-    h1, h2, h3, h4, h5, h6 { font-family: @fontFamilyCondensed; }
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6 { font-family: @fontFamilyCondensed; }
     /** endregion */
     /** region link */
-    a, a:visited, a:focus {
+    & a,
+    & a:visited,
+    & a:focus {
         color: @linkColor;
         font-size: 1.2rem;
         text-decoration: none !important;
@@ -57,33 +66,30 @@ endregion */
     }
     /** endregion */
     /** region list */
-    ul, ol { margin-top: 15px; }
+    & ul,
+    & ol { margin-top: 15px; }
     /** endregion */
     /*
         Makes space before each anchor to have enough space for a fixed
         positioned header menu.
     */
-    h1:before {
+    & h1:before {
         content: "";
         display: block;
         height: @topMargin;
     }
     /* Shows the current dimension mode. */
-    > div.navbar-wrapper > div.container > div.navbar.navbar-inverse
-    > div.container > div.navbar-header > a.navbar-brand
-    > span.dimension-indicator { font-size: 0.7em; }
-    strong { font-weight: bold; }
+    & span.dimension-indicator { font-size: 0.7em; }
+    & strong { font-weight: bold; }
     /** region bootstrap resets */
-    .navbar-inverse .navbar-collapse {
+    & .navbar-inverse .navbar-collapse {
         border: 0;
         box-shadow: none;
     }
-    p.lead { font-weight: initial; }
-    div.navbar-collapse.collapse > ul {
-        > li > a {
-            text-shadow: 0 0 0 rgba(0, 0, 0, 0);
-        }
-        > li.active > a {
+    & p.lead { font-weight: initial; }
+    & div.navbar-collapse.collapse ul li {
+        & > a { text-shadow: 0 0 0 rgba(0, 0, 0, 0); }
+        &.active > a {
             background: 0;
             box-shadow: none;
         }
@@ -92,35 +98,33 @@ endregion */
     /* endregion */
     /* region navigation bar */
     /* Normal Wrapper for the main navigation bar. Scrolls with viewport. */
-    > div.navbar-wrapper {
-        .genericStyle.opacity(0.95);
+    & div.navbar-wrapper {
+        opacity: .95;
 
         position: fixed;
         z-index: 1;
 
-        div.navbar.navbar-inverse {
+        & div.navbar.navbar-inverse {
             border: 0;
 
-            div.navbar-header > a.navbar-brand {
-                font-size: 1.2em;
-            }
+            & div.navbar-header > a.navbar-brand { font-size: 1.2em; }
         }
     }
     /* endregion */
     /* region carousel */
     /* Main section slider wrapper. */
-    > div.carousel.slide {
-        background-color: @backgroundColor;
+    & div.carousel.slide {
+        background-color: var(--backgroundColor);
         overflow: hidden;
         position: relative;
-        min-height: @minimumContentHeightInPixel;
+        min-height: var(--minimumContentHeightInPixel);
 
         /* Wraps the visible area from whole wide slider wrapper. */
-        > div.carousel-inner {
+        & div.carousel-inner {
             overflow-y: visible;
 
             /* Contains each section content. */
-            > div.item {
+            & div.item {
                 overflow-y: visible;
                 float: left;
                 width: 100%;
@@ -128,33 +132,32 @@ endregion */
                     Set a default content height. Could by vary depending on
                     currently activated section.
                 */
-                min-height: @minimumContentHeightInPixel;
+                min-height: var(--minimumContentHeightInPixel);
                 /*
                     Disable bootstraps startup effect and overwrite with swipe
                     preferred effect properties.
                 */
                 display: inline;
-                -webkit-transition: 1000ms;
-                        transition: 1000ms;
+                transition: 1000ms;
 
                 /*
                     Position section dependent background image absolute to
                     fill out the whole viewport.
                 */
-                > div[class^="carousel-image-"] {
+                & div[class^="carousel-image-"] {
                     top: 0;
                     left: 0;
                     min-width: 100%;
-                    min-height: @minimumContentHeightInPixel;
+                    min-height: var(--minimumContentHeightInPixel);
 
                     /* Contains each section text content. */
-                    > div.container {
+                    & > div.container {
                         z-index: 0;
                         text-shadow: none;
                         text-align: center;
 
-                        > dl.dl-horizontal > dd { text-align: left; }
-                        > a[href^="tel:"] {
+                        & dl.dl-horizontal > dd { text-align: left; }
+                        & a[href^="tel:"] {
                             display: block;
                             font-size: 1.5em;
                             line-height: 1.4;
@@ -169,12 +172,12 @@ endregion */
     /* region section */
     /** region contact */
     /* Show big dark social media icons. */
-    > div.carousel.slide > div.carousel-inner > div.item.contact
-    > div[class^="carousel-image-"] > div.container {
+    & div.carousel.slide div.carousel-inner div.item.contact
+    div[class^="carousel-image-"] > div.container {
         /* NOTE: Should be synchronized with the social icon font styles. */
-        a.glyphicon {
+        & a.glyphicon {
             &.glyphicon-globe {
-                color: @fontColor;
+                color: var(--fontColor);
                 letter-spacing: 10px;
                 display: inline;
                 height: 26px;
@@ -200,24 +203,24 @@ endregion */
                     webkit-font-smoothing: antialiased;
                 }
                 &:hover {
-                    color: @linkHoverColor !important;
+                    color: var(--linkHoverColor) !important;
                 }
             }
             &-social {
-                color: @fontColor;
+                color: var(--fontColor);
                 letter-spacing: 10px;
                 height: 26px;
 
-                &:hover { color: @linkHoverColor !important; }
+                &:hover { color: var(--linkHoverColor) !important; }
             }
         }
     }
     /** endregion */
     /** region about this web site */
     /* Wraps the legal notice content. */
-    div.about-this-website {
-        min-height: @minimumContentHeightInPixel;
-        background-color: @backgroundColor;
+    & div.about-this-website {
+        min-height: var(--minimumContentHeightInPixel);
+        background-color: var(--backgroundColor);
         top: 0;
         left: 0;
         width: 100%;
@@ -226,13 +229,13 @@ endregion */
     /* endregion */
     /* region footer */
     /* Centered footer */
-    > div.footer {
+    & div.footer {
         width: 100%;
 
-        > footer {
+        & footer {
             text-align: center;
 
-            > p {
+            & p {
                 padding-top: @footerMarginInPixel;
                 padding-bottom: @footerMarginInPixel;
                 margin: 0;
@@ -245,48 +248,48 @@ endregion */
     /*** region global */
     /**** region buttons */
     /* Smaller devices have usually a touch interface for scrolling. */
-    a[href="#top"] { visibility: hidden; }
+    & a[href="#top"] { visibility: hidden; }
     /**** endregion */
     /*** endregion */
     /*** region navigation bar */
     /* Normal Wrapper for the main navigation bar. Scrolls with viewport. */
-    div.navbar-wrapper {
+    & div.navbar-wrapper {
         top: 0;
         width: 100%;
 
         > div.container {
             padding: 0;
 
-            > div.navbar.navbar-inverse {
+            & div.navbar.navbar-inverse {
                 margin-bottom: 0px;
 
                 > div.container {
-                    > div.navbar-header {
+                    & div.navbar-header {
                         margin-left: -15px;
 
-                        > a.navbar-brand {
+                        & a.navbar-brand {
                             max-width: 219px;
                             height: 50px;
 
-                            > span.dimension-indicator { visibility: hidden; }
+                            & span.dimension-indicator { visibility: hidden; }
                         }
                         /* Position language link. */
-                        > a[href^="#language-"] {
+                        & a[href^="#language-"] {
                             position: absolute;
                             top: 10px;
                             right: 70px;
                         }
                     }
-                    > div.navbar-collapse {
-                        > div.navbar-highlighter { visibility: hidden; }
-                        > ul.nav.navbar-nav {
+                    & div.navbar-collapse {
+                        &> div.navbar-highlighter { visibility: hidden; }
+                        & ul.nav.navbar-nav {
                             margin-top: 10px;
                             margin-bottom: 10px;
 
-                            > li.active > a:hover,
-                            > li.active > a:focus,
-                            > li.active > a {
-                                background-color: @shadowColor;
+                            & li.active > a:hover,
+                            & li.active > a:focus,
+                            & li.active > a {
+                                background-color: var(--shadowColor);
                             }
                         }
                     }
@@ -294,14 +297,13 @@ endregion */
             }
         }
     }
-
     /*** endregion */
     /*** region carousel */
     /* Define main content size. */
-    > div.carousel.slide > div.carousel-inner > div.item {
+    & div.carousel.slide div.carousel-inner > div.item {
         /* Don't show any background image in smartphone mode. */
-        div.backstretch { display: none; }
-        > div[class^="carousel-image-"] > div.container {
+        & div.backstretch { display: none; }
+        & div[class^="carousel-image-"] > div.container {
             padding-bottom: 15px;
             max-width: 540px;
 
@@ -315,21 +317,21 @@ endregion */
     /*** endregion */
     /*** region section */
     /**** region about */
-    > div.carousel.slide > div.carousel-inner > div.item
-    > div[class^="carousel-image-about"] > div.container {
+    & div.carousel.slide div.carousel-inner > div.item
+    div[class^="carousel-image-about"] > div.container {
         padding-top: 90px;
 
-        > h1#about { margin-top: -@topMargin;}
-        > p.lead > a:first-child { margin-top: 35px; }
+        & h1#about { margin-top: -var(--topMargin);}
+        & p.lead > a:first-child { margin-top: 35px; }
     }
     /**** endregion */
     /**** region about this web site */
-    > div.about-this-website {
+    & div.about-this-website {
         padding-bottom: 15px;
 
         /* Wraps the text content, positions space around them. */
-        > div.container { margin-left: 10%; }
-        > div[class^="carousel-image-"] > div.container > h1 {
+        & > div.container { margin-left: 10%; }
+        & div[class^="carousel-image-"] > div.container h1 {
             font-size: 2.5em;
         }
     }
@@ -337,45 +339,43 @@ endregion */
     /*** endregion */
     /** endregion */
     /** region extra extra small */
-    @media (min-width: @minimumExtraExtraSmallWidthInPixel) {
+    @media (--extra-extra-small) {
         /** region navigation bar */
         /* Show current dimension mode in indicator dom node. */
-        > div.navbar-wrapper > div.container > div.navbar.navbar-inverse
-        > div.container > div.navbar-header > a.navbar-brand {
+        & div.navbar-wrapper > div.container div.navbar.navbar-inverse
+        > div.container div.navbar-header a.navbar-brand {
             max-width: 238px;
 
-            > span.dimension-indicator {
-                visibility: visible;
-            }
+            & span.dimension-indicator { visibility: visible; }
         }
         /** endregion */
         /** region carousel */
-        > div.carousel.slide > div.carousel-inner > div.item {
-            &.about > div[class^=carousel-image-] > div.container > p {
+        & div.carousel.slide div.carousel-inner > div.item {
+            &.about div[class^=carousel-image-] > div.container > p {
                 font-size: 1.6rem;
             }
-            > div[class^="carousel-image-"] > div.container {
+            & div[class^="carousel-image-"] > div.container {
                 padding-bottom: 25px;
             }
         }
         /** endregion */
         /** region section */
         /*** region about this website */
-        > div.about-this-website { padding-bottom: 25px; }
+        & div.about-this-website { padding-bottom: 25px; }
         /*** endregion */
         /*** region about */
-        > div.carousel.slide > div.carousel-inner > div.item
-        > div[class^="carousel-image-about"] > div.container > p.lead
+        & div.carousel.slide div.carousel-inner > div.item
+        div[class^="carousel-image-about"] > div.container p.lead
         > a:first-child { margin-top: 50px; }
         /*** endregion */
         /** endregion */
         /* endregion */
         /** region small */
-        @media (min-width: @minimumSmallWidthInPixel) {
+        @media (--small) {
             /* region global */
             /** region buttons */
             /* Bigger devices get a scroll top button. */
-            > a[href="#top"] { visibility: visible; }
+            & a[href="#top"] { visibility: visible; }
             /** endregion */
             /* endregion */
             /* region navigation bar */
@@ -383,16 +383,16 @@ endregion */
                 Normal Wrapper for the main navigation bar. Scrolls with
                 viewport.
             */
-            > div.navbar-wrapper > div.container {
+            & div.navbar-wrapper > div.container {
                 max-width: 550px;
 
-                > div.navbar.navbar-inverse {
-                    background: @backgroundColor;
+                & div.navbar.navbar-inverse {
+                    background: var(--backgroundColor);
 
-                    > div.container {
+                    & > div.container {
                         /* Position language link. */
-                        > div.navbar-header {
-                            > button.navbar-toggle {
+                        & div.navbar-header {
+                            & button.navbar-toggle {
                                 display: none !important;
                             }
                             > a {
@@ -402,48 +402,48 @@ endregion */
                                     right: 10px;
                                 }
                                 &.navbar-brand {
-                                    color: @menuColor;
+                                    color: var(--menuColor);
                                     padding-right: 30px;
 
                                     &:hover, &:focus {
-                                        color: @menuHoverColor;
+                                        color: var(--menuHoverColor);
                                     }
                                 }
                             }
                         }
-                        > div.navbar-collapse {
+                        & div.navbar-collapse {
                             display: inline;
 
-                            > div.navbar-highlighter {
+                            & div.navbar-highlighter {
                                 position: absolute;
                                 left: 177px;
                                 visibility: visible;
-                                border-top: 2px solid @linkColor;
+                                border-top: 2px solid var(--linkColor);
                                 height: 50px;
                                 width: 124px;
                                 background-color: #eee;
                             }
-                            > ul.nav.navbar-nav {
+                            & > ul.nav.navbar-nav {
                                 margin: 0;
                                 /*
                                     Bring menu items to same height as
                                     navigation bar branding.
                                 */
-                                > li {
-                                    > a {
+                                & > li {
+                                    & > a {
                                         line-height: 22px;
                                         color: @menuColor;
                                     }
-                                    > a:hover, a:focus {
+                                    & > a:hover, a:focus {
                                         background-color: transparent;
-                                        color: @menuHoverColor;
+                                        color: var(--menuHoverColor);
                                     }
                                 }
-                                > li.active > a:hover,
-                                > li.active > a:focus,
-                                > li.active > a {
+                                & li.active > a:hover,
+                                & li.active > a:focus,
+                                & li.active > a {
                                     background-color: transparent;
-                                    color: @menuHoverColor;
+                                    color: var(--menuHoverColor);
                                 }
                             }
                         }
@@ -452,8 +452,8 @@ endregion */
             }
             /* endregion */
             /* region carousel */
-            > div.carousel.slide > div.carousel-inner > div.item {
-                > div {
+            & div.carousel.slide & div.carousel-inner > div.item {
+                & > div {
                     /* Show any background image on higher resolutions. */
                     &.backstretch { display: block; }
                     /* Bump up size of carousel content. */
@@ -467,8 +467,8 @@ endregion */
                             padding-bottom: 50px;
                             max-width: 600px;
 
-                            > h1 { font-size: 4.5em; }
-                            > p.lead {
+                            & h1 { font-size: 4.5em; }
+                            & > p.lead {
                                 font-size: 1.5em;
                                 line-height: 1.4;
                                 margin-top: 10px;
@@ -483,28 +483,28 @@ endregion */
             }
             /* endregion */
             /* region section */
-            > div {
+            & > div {
                 &.about-this-website {
                     padding-bottom: 50px;
 
-                    > div[class^="carousel-image-"] > div.container {
+                    & div[class^="carousel-image-"] > div.container {
                         width: 608px;
 
-                        > h1 { font-size: 4.5em; }
+                        & h1 { font-size: 4.5em; }
                     }
                 }
-                &.carousel.slide > div.carousel-inner > div.item > div {
+                &.carousel.slide div.carousel-inner > div.item > div {
                     &.carousel-image-about > div.container {
                         position: relative;
-                        margin-top: @topMargin;
+                        margin-top: var(--topMargin);
 
-                        > p.lead {
+                        & > p.lead {
                             position: absolute;
                             right: -38px;
                             width: 300px;
                             text-align: right;
 
-                            > a {
+                            & a {
                                 display: block;
                                 margin-top: 30px;
                             }
@@ -518,22 +518,22 @@ endregion */
             /* endregion */
         /** endregion */
             /* region medium */
-            @media (min-width: @minimumMediumWidthInPixel) {
+            @media (--medium) {
                 /* region navigation bar */
                 /*
                     Normal Wrapper for the main navigation bar. Scrolls with
                     viewport.
                 */
-                > div.navbar-wrapper > div.container { max-width: 600px; }
+                & div.navbar-wrapper > div.container { max-width: 600px; }
                 /* endregion */
                 /* region carousel */
-                > div.carousel.slide > div.carousel-inner > div.item > div {
+                & div.carousel.slide div.carousel-inner > div.item > div {
                     &[class^="carousel-image-"] > div.container {
                         max-width: 810px;
 
-                        > dl.dl-horizontal {
-                            > dt { width: 286px; }
-                            > dd {
+                        & > dl.dl-horizontal {
+                            & > dt { width: 286px; }
+                            & > dd {
                                 margin-top: 15px;
                                 margin-left: 335px;
                             }
