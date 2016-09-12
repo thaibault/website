@@ -43,9 +43,17 @@
                 "__evaluate__": "/\\/(?:(?:clientnode(?:\\.compiled)?)|(?:jquery)|(?:module)|(?:spin)|([^/]+\\.min))\\.js(?:\\?.+|$)/"
             }
         },
-        "path": {"source": {"asset": {
+        "path": {
+          "source": {"asset": {
             "javaScript": "./", "cascadingStyleSheet": "./"
-        }}}
+          }},
+          "target": {
+            "asset": {
+              "javaScript": "./",
+              "cascadingStyleSheet": "./"
+            }
+          }
+        }
     },
     "scripts": {
         "build": "webOptimizer build",
