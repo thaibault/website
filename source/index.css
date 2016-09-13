@@ -35,7 +35,7 @@ endregion */
     @apply --website;
     /* region global */
     color: var(--fontColor);
-    background-color: var(--@defaultColor);
+    background-color: var(--defaultColor);
     font-size: 16px;
     overflow-y: scroll;
     /** region headline */
@@ -44,23 +44,23 @@ endregion */
     & h3,
     & h4,
     & h5,
-    & h6 { font-family: @fontFamilyCondensed; }
+    & h6 { font-family: var(--fontFamilyCondensed); }
     /** endregion */
     /** region link */
     & a,
     & a:visited,
     & a:focus {
-        color: @linkColor;
+        color: var(--linkColor);
         font-size: 1.2rem;
         text-decoration: none !important;
 
-        &:hover { color: @linkHoverColor; }
+        &:hover { color: var(--linkHoverColor); }
         /* Show phone links as normal text. */
         /* Scroll to top button. */
         &[href="#top"] {
             position: fixed;
             z-index: 1;
-            bottom: @footerMarginInPixel;
+            bottom: var(--footerMarginInPixel);
             right: 60px;
         }
     }
@@ -76,7 +76,7 @@ endregion */
     & h1:before {
         content: "";
         display: block;
-        height: @topMargin;
+        height: var(--topMargin);
     }
     /* Shows the current dimension mode. */
     & span.dimension-indicator { font-size: 0.7em; }
@@ -202,9 +202,7 @@ endregion */
                     top: 0;
                     webkit-font-smoothing: antialiased;
                 }
-                &:hover {
-                    color: var(--linkHoverColor) !important;
-                }
+                &:hover { color: var(--linkHoverColor) !important; }
             }
             &-social {
                 color: var(--fontColor);
@@ -236,8 +234,8 @@ endregion */
             text-align: center;
 
             & p {
-                padding-top: @footerMarginInPixel;
-                padding-bottom: @footerMarginInPixel;
+                padding-top: var(--footerMarginInPixel);
+                padding-bottom: var(--footerMarginInPixel);
                 margin: 0;
             }
         }
@@ -257,7 +255,7 @@ endregion */
         top: 0;
         width: 100%;
 
-        > div.container {
+        & > div.container {
             padding: 0;
 
             & div.navbar.navbar-inverse {
@@ -307,8 +305,8 @@ endregion */
             padding-bottom: 15px;
             max-width: 540px;
 
-            > h1 { font-size: 2.5em; }
-            > p {
+            & h1 { font-size: 2.5em; }
+            & > p {
                 font-size: 1.2rem;
                 line-height: 1.4;
             }
@@ -395,7 +393,7 @@ endregion */
                             & button.navbar-toggle {
                                 display: none !important;
                             }
-                            > a {
+                            & > a {
                                 &[href^="#language-"] {
                                     position: absolute;
                                     top: 12px;
@@ -432,7 +430,7 @@ endregion */
                                 & > li {
                                     & > a {
                                         line-height: 22px;
-                                        color: @menuColor;
+                                        color: var(--menuColor);
                                     }
                                     & > a:hover, a:focus {
                                         background-color: transparent;
@@ -462,12 +460,12 @@ endregion */
                         background-size: auto 100%;
                         background-position: center;
 
-                        > div.container {
+                        & > div.container {
                             padding-top: 0;
                             padding-bottom: 50px;
                             max-width: 600px;
 
-                            & h1 { font-size: 4.5em; }
+                            h1 { font-size: 4.5em; }
                             & > p.lead {
                                 font-size: 1.5em;
                                 line-height: 1.4;
@@ -477,7 +475,7 @@ endregion */
                     }
                     /* Show background images on bigger devices. */
                     &.carousel-image-about {
-                        background-image: url('@{imagePath}carousel/about-440x686-pixels.png');
+                        background-image: url('image/carousel/about-440x686-pixels.png');
                     }
                 }
             }
