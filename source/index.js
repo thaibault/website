@@ -473,7 +473,7 @@ export default class HomePage extends $.Website.class {
             this._adaptContentHeight()
             return this._highlightMenuEntry()
         }
-        return this._scrollToTop(():void => {
+        return this.scrollToTop(():void => {
             this.$domNodes.carousel.data('Swipe').slide(index)
             this._adaptContentHeight()
             this._highlightMenuEntry()
@@ -491,7 +491,7 @@ export default class HomePage extends $.Website.class {
         this.$domNodes.menuHighlighter.animate.apply(
             this.$domNodes.menuHighlighter,
             this._options.aboutThisWebsiteSection.hideAnimation)
-        this._scrollToTop()
+        this.scrollToTop()
         this.$domNodes.aboutThisWebsiteSection.animate.apply(
             this.$domNodes.aboutThisWebsiteSection,
             this._options.aboutThisWebsiteSection.showAnimation)
