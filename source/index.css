@@ -31,12 +31,12 @@ endregion */
     /* endregion */
 }
 /* region style sheets */
+html, body  { font-size: 16px; }
 .home-page {
-    @apply --website;
     /* region global */
+    @apply --website;
     color: var(--fontColor);
     background-color: var(--defaultColor);
-    font-size: 16px;
     overflow-y: scroll;
     /** region headline */
     & h1,
@@ -98,7 +98,7 @@ endregion */
     /* endregion */
     /* region navigation bar */
     /* Normal Wrapper for the main navigation bar. Scrolls with viewport. */
-    & div.navbar-wrapper {
+    & header.navbar-wrapper {
         opacity: .95;
 
         position: fixed;
@@ -107,13 +107,18 @@ endregion */
         & div.navbar.navbar-inverse {
             border: 0;
 
-            & div.navbar-header > a.navbar-brand { font-size: 1.2em; }
+            & div.navbar-header > a.navbar-brand {
+                color: var(--menuColor);
+                font-size: 1.2em;
+
+                &:hover, &:focus { color: var(--menuHoverColor); }
+            }
         }
     }
     /* endregion */
     /* region carousel */
     /* Main section slider wrapper. */
-    & div.carousel.slide {
+    & section.carousel.slide {
         background-color: var(--backgroundColor);
         overflow: hidden;
         position: relative;
@@ -172,7 +177,7 @@ endregion */
     /* region section */
     /** region contact */
     /* Show big dark social media icons. */
-    & div.carousel.slide div.carousel-inner div.item.contact
+    & section.carousel.slide div.carousel-inner div.item.contact
     div[class^="carousel-image-"] > div.container {
         /* NOTE: Should be synchronized with the social icon font styles. */
         & a.glyphicon {
@@ -216,7 +221,7 @@ endregion */
     /** endregion */
     /** region about this web site */
     /* Wraps the legal notice content. */
-    & div.about-this-website {
+    & section.about-this-website {
         min-height: var(--minimumContentHeightInPixel);
         background-color: var(--backgroundColor);
         top: 0;
@@ -240,7 +245,7 @@ endregion */
             }
         }
     }
-    /* endregion
+    /* endregion */
     /* region responsive */
     /** region extra extra extra small */
     /*** region global */
@@ -251,7 +256,7 @@ endregion */
     /*** endregion */
     /*** region navigation bar */
     /* Normal Wrapper for the main navigation bar. Scrolls with viewport. */
-    & div.navbar-wrapper {
+    & header.navbar-wrapper {
         top: 0;
         width: 100%;
 
@@ -261,7 +266,7 @@ endregion */
             & div.navbar.navbar-inverse {
                 margin-bottom: 0px;
 
-                > div.container {
+                & > div.container {
                     & div.navbar-header {
                         margin-left: -15px;
 
@@ -279,7 +284,7 @@ endregion */
                         }
                     }
                     & div.navbar-collapse {
-                        &> div.navbar-highlighter { visibility: hidden; }
+                        & > div.navbar-highlighter { visibility: hidden; }
                         & ul.nav.navbar-nav {
                             margin-top: 10px;
                             margin-bottom: 10px;
@@ -298,7 +303,7 @@ endregion */
     /*** endregion */
     /*** region carousel */
     /* Define main content size. */
-    & div.carousel.slide div.carousel-inner > div.item {
+    & section.carousel.slide div.carousel-inner > div.item {
         /* Don't show any background image in smartphone mode. */
         & div.backstretch { display: none; }
         & div[class^="carousel-image-"] > div.container {
@@ -315,7 +320,7 @@ endregion */
     /*** endregion */
     /*** region section */
     /**** region about */
-    & div.carousel.slide div.carousel-inner > div.item
+    & section.carousel.slide div.carousel-inner > div.item
     div[class^="carousel-image-about"] > div.container {
         padding-top: 90px;
 
@@ -324,7 +329,7 @@ endregion */
     }
     /**** endregion */
     /**** region about this web site */
-    & div.about-this-website {
+    & section.about-this-website {
         padding-bottom: 15px;
 
         /* Wraps the text content, positions space around them. */
@@ -340,7 +345,7 @@ endregion */
     @media (--extra-extra-small) {
         /** region navigation bar */
         /* Show current dimension mode in indicator dom node. */
-        & div.navbar-wrapper > div.container div.navbar.navbar-inverse
+        & header.navbar-wrapper > div.container div.navbar.navbar-inverse
         > div.container div.navbar-header a.navbar-brand {
             max-width: 238px;
 
@@ -348,7 +353,7 @@ endregion */
         }
         /** endregion */
         /** region carousel */
-        & div.carousel.slide div.carousel-inner > div.item {
+        & section.carousel.slide div.carousel-inner > div.item {
             &.about div[class^=carousel-image-] > div.container > p {
                 font-size: 1.6rem;
             }
@@ -359,10 +364,10 @@ endregion */
         /** endregion */
         /** region section */
         /*** region about this website */
-        & div.about-this-website { padding-bottom: 25px; }
+        & section.about-this-website { padding-bottom: 25px; }
         /*** endregion */
         /*** region about */
-        & div.carousel.slide div.carousel-inner > div.item
+        & section.carousel.slide div.carousel-inner > div.item
         div[class^="carousel-image-about"] > div.container p.lead
         > a:first-child { margin-top: 50px; }
         /*** endregion */
@@ -370,6 +375,7 @@ endregion */
         /* endregion */
         /** region small */
         @media (--small) {
+            border: 2px solid green;
             /* region global */
             /** region buttons */
             /* Bigger devices get a scroll top button. */
@@ -381,31 +387,25 @@ endregion */
                 Normal Wrapper for the main navigation bar. Scrolls with
                 viewport.
             */
-            & div.navbar-wrapper > div.container {
+            & header.navbar-wrapper > div.container {
                 max-width: 550px;
 
                 & div.navbar.navbar-inverse {
                     background: var(--backgroundColor);
 
                     & > div.container {
-                        /* Position language link. */
                         & div.navbar-header {
                             & button.navbar-toggle {
                                 display: none !important;
                             }
-                            & > a {
+                            & a {
                                 &[href^="#language-"] {
                                     position: absolute;
                                     top: 12px;
                                     right: 10px;
                                 }
                                 &.navbar-brand {
-                                    color: var(--menuColor);
                                     padding-right: 30px;
-
-                                    &:hover, &:focus {
-                                        color: var(--menuHoverColor);
-                                    }
                                 }
                             }
                         }
@@ -450,7 +450,7 @@ endregion */
             }
             /* endregion */
             /* region carousel */
-            & div.carousel.slide & div.carousel-inner > div.item {
+            & section.carousel.slide & div.carousel-inner > div.item {
                 & > div {
                     /* Show any background image on higher resolutions. */
                     &.backstretch { display: block; }
@@ -481,7 +481,7 @@ endregion */
             }
             /* endregion */
             /* region section */
-            & > div {
+            & > section {
                 &.about-this-website {
                     padding-bottom: 50px;
 
@@ -522,10 +522,10 @@ endregion */
                     Normal Wrapper for the main navigation bar. Scrolls with
                     viewport.
                 */
-                & div.navbar-wrapper > div.container { max-width: 600px; }
+                & header.navbar-wrapper > div.container { max-width: 600px; }
                 /* endregion */
                 /* region carousel */
-                & div.carousel.slide div.carousel-inner > div.item > div {
+                & section.carousel.slide div.carousel-inner > div.item > div {
                     &[class^="carousel-image-"] > div.container {
                         max-width: 810px;
 

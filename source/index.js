@@ -133,30 +133,30 @@ export default class HomePage extends $.Website.class {
             menuHighlightAnimation: {easing: 'linear'},
             hideMobileMenuAfterSelection: true,
             domNode: {
-                carousel: 'div.carousel.slide',
-                section: 'div.carousel.slide div.carousel-inner div.item',
+                carousel: 'section.carousel.slide',
+                section: 'section.carousel.slide div.carousel-inner div.item',
                 logoLink:
-                    'div.navbar-wrapper div.navbar.navbar-inverse ' +
+                    'header.navbar-wrapper div.navbar.navbar-inverse ' +
                     'div.navbar-header a.navbar-brand',
                 navigationButton:
-                    'div.navbar-wrapper div.navbar.navbar-inverse ' +
+                    'header.navbar-wrapper div.navbar.navbar-inverse ' +
                     'div.navbar-collapse ul.nav.navbar-nav li a',
                 aboutThisWebsiteButton:
                     'div.footer footer a[href="#about-this-website"]',
-                aboutThisWebsiteSection: 'div.about-this-website',
+                aboutThisWebsiteSection: 'section.about-this-website',
                 dimensionIndicator:
-                    'div.navbar-wrapper div.navbar.navbar-inverse ' +
+                    'header.navbar-wrapper div.navbar.navbar-inverse ' +
                     'div.navbar-header a.navbar-brand ' +
                     'span.dimension-indicator',
                 footer: 'div.footer',
                 menuHighlighter:
-                    'div.navbar-wrapper div.navbar.navbar-inverse ' +
-                     'div.navbar-collapse div.navbar-highlighter',
+                    'header.navbar-wrapper div.navbar.navbar-inverse ' +
+                    'div.navbar-collapse div.navbar-highlighter',
                 mobileCollapseButton:
-                    'div.navbar-wrapper div.navbar.navbar-inverse ' +
+                    'header.navbar-wrapper div.navbar.navbar-inverse ' +
                     'div.navbar-header button.navbar-toggle',
                 navigationWrapper:
-                    'div.navbar-wrapper div.navbar.navbar-inverse ' +
+                    'header.navbar-wrapper div.navbar.navbar-inverse ' +
                     'div.navbar-collapse'
             },
             carousel: {

@@ -351,7 +351,7 @@ html.no-javascript(lang='en')
     body.home-page.tools-hidden-on-javascript-enabled
         .website-window-loading-cover.tools-visible-on-javascript-enabled: div
         // region menu
-        .navbar-wrapper(
+        header.navbar-wrapper(
             class=`website-start-up-animation-number-${START_UP_ANIMATION_NUMBER}`
         )
             .container: .navbar.navbar-inverse.navbar-static-top: .container
@@ -385,7 +385,7 @@ html.no-javascript(lang='en')
                                         != `<!--${ALTERNATE_LANGUAGE}:${section.content[0][ALTERNATE_LANGUAGE]}-->`
         // endregion
         // region carousel
-        .carousel.slide: .carousel-inner
+        section.carousel.slide: .carousel-inner
             each section in SECTIONS
                 .item(class=section.title): div(
                     class=`carousel-image-${section.title}`
@@ -502,7 +502,7 @@ html.no-javascript(lang='en')
                                     class=`glyphicon-social-${link.title}`)
         // endregion
         // region about this website
-        .about-this-website: .carousel-image-about-this-website: .container
+        section.about-this-website: .carousel-image-about-this-website: .container
             h1(id='about-this-website')
                 | About this website
                 != `<!--${ALTERNATE_LANGUAGE}:Impressum-->`
