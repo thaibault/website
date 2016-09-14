@@ -5,7 +5,6 @@
     "license": "CC-BY-3.0",
     "keywords": ["website"],
     "dependencies": {
-        "bootstrap": "3.3.6",
         "Swipe": "https://github.com/thebird/Swipe",
         "website-utilities": "latest"
     },
