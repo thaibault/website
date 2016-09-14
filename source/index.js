@@ -173,13 +173,13 @@ export default class HomePage extends $.Website.class {
                     <span>{1}</span>
                 `,
                 effectOptions: {
-                    showAnimation: [{opacity: 1}, 'fast'],
-                    hideAnimation: [{opacity: 0}, 'fast']
+                    showAnimation: [{opacity: 1}, {duration: 'fast'}],
+                    hideAnimation: [{opacity: 0}, {duration: 'fast'}]
                 }
             },
             aboutThisWebsiteSection: {
-                showAnimation: [{opacity: 1}, 'fast'],
-                hideAnimation: [{opacity: 0}, 'fast']
+                showAnimation: [{opacity: 1}, {duration: 'fast'}],
+                hideAnimation: [{opacity: 0}, {duration: 'fast'}]
             }
         }
         let initialOnSwitchedCallback:Function
@@ -198,10 +198,10 @@ export default class HomePage extends $.Website.class {
                 typeof options.language.textNodeParent[
                     1
                 ].hideAnimation === 'object' &&
-                'always' in options.language.textNodeParent.hideAnimation[0]
+                'always' in options.language.textNodeParent.hideAnimation[1]
             )
                 initialLanguageHideAnimationAlwaysCallback =
-                    options.language.textNodeParent.hideAnimation[0].always
+                    options.language.textNodeParent.hideAnimation[1].always
         }
         const self:HomePage = this
         this.constructor.extendObject(true, options, {language: {
@@ -254,8 +254,8 @@ export default class HomePage extends $.Website.class {
                 self.$domNodes.menuHighlighter.animate.apply(
                     self.$domNodes.menuHighlighter, hideAnimationOptions)
                 hideAnimationOptions = hideAnimationOptions.slice()
-                hideAnimationOptions[0] = this.constructor.extendObject(true, {
-                }, hideAnimationOptions[0], {always: function():any {
+                hideAnimationOptions[1] = this.constructor.extendObject(true, {
+                }, hideAnimationOptions[1], {always: function():any {
                     let result:any
                     if (initialLanguageHideAnimationAlwaysCallback)
                         result = initialLanguageHideAnimationAlwaysCallback
@@ -361,7 +361,7 @@ export default class HomePage extends $.Website.class {
                 $.global.getComputedStyle($('h1')[1], ':before').height, 10)
         // Show responsive dimension indicator switching.
         this._options.dimensionIndicator.effectOptions.showAnimation[
-            0
+            1
         ].always = ():HomePage =>
             /*
                 Adapt menu highlighter after changing layout and dimension
@@ -369,7 +369,7 @@ export default class HomePage extends $.Website.class {
             */
             this._highlightMenuEntry(false)
         this._options.dimensionIndicator.effectOptions.hideAnimation[
-            0
+            1
         ].always = ():$DomNode =>
             this.$domNodes.dimensionIndicator.html(
                 this.constructor.stringFormat(
