@@ -1,5 +1,5 @@
-/*!/usr/bin/env css
--*- coding: utf-8 -*-*/
+/* !/usr/bin/env css
+-*- coding: utf-8 -*- */
 /* region header
 Copyright Torben Sickert 16.12.2012
 
@@ -11,17 +11,18 @@ This library written by Torben Sickert stand under a creative commons naming
 endregion */
 @import 'bootstrap';
 @import 'website-utilities';
+
 :root {
     /* region constants */
     /** region color */
-    --defaultColor: #222222;
+    --defaultColor: #222;
     --fontColor: #5a5a5a;
     --backgroundColor: #f2f2f2;
-    --linkColor: #ff8888;
-    --linkHoverColor: #ff6666;
+    --linkColor: #f88;
+    --linkHoverColor: #f66;
     --menuColor: #666;
     --menuHoverColor: #444;
-    --shadowColor: rgba(0, 0, 0, .25);
+    --shadowColor: rgba(0, 0, 0, 0.25);
     /** endregion */
     /** region space */
     --footerMarginInPixel: 30px;
@@ -31,10 +32,13 @@ endregion */
     /* endregion */
 }
 /* region style sheets */
-html, body  { font-size: 16px; }
+html,
+body { font-size: 16px; }
+
 .home-page {
     /* region global */
     @apply --website;
+
     color: var(--fontColor);
     background-color: var(--defaultColor);
     overflow-y: scroll;
@@ -73,22 +77,26 @@ html, body  { font-size: 16px; }
         Makes space before each anchor to have enough space for a fixed
         positioned header menu.
     */
-    & h1:before {
+    & h1::before {
         content: "";
         display: block;
         height: var(--topMargin);
     }
     /* Shows the current dimension mode. */
     & span.dimension-indicator { font-size: 0.7em; }
+
     & strong { font-weight: bold; }
     /** region bootstrap resets */
     & .navbar-inverse .navbar-collapse {
         border: 0;
         box-shadow: none;
     }
+
     & p.lead { font-weight: initial; }
+
     & div.navbar-collapse.collapse ul li {
         & > a { text-shadow: 0 0 0 rgba(0, 0, 0, 0); }
+
         &.active > a {
             background: 0;
             box-shadow: none;
@@ -99,8 +107,7 @@ html, body  { font-size: 16px; }
     /* region navigation bar */
     /* Normal Wrapper for the main navigation bar. Scrolls with viewport. */
     & header.navbar-wrapper {
-        opacity: .95;
-
+        opacity: 0.95;
         position: fixed;
         z-index: 1;
 
@@ -111,7 +118,8 @@ html, body  { font-size: 16px; }
                 color: var(--menuColor);
                 font-size: 1.2em;
 
-                &:hover, &:focus { color: var(--menuHoverColor); }
+                &:hover,
+                &:focus { color: var(--menuHoverColor); }
             }
         }
     }
@@ -123,11 +131,9 @@ html, body  { font-size: 16px; }
         overflow: hidden;
         position: relative;
         min-height: var(--minimumContentHeightInPixel);
-
         /* Wraps the visible area from whole wide slider wrapper. */
         & div.carousel-inner {
             overflow-y: visible;
-
             /* Contains each section content. */
             & div.item {
                 overflow-y: visible;
@@ -139,13 +145,6 @@ html, body  { font-size: 16px; }
                 */
                 min-height: var(--minimumContentHeightInPixel);
                 /*
-                    Disable bootstraps startup effect and overwrite with swipe
-                    preferred effect properties.
-                */
-                display: inline;
-                transition: 1000ms;
-
-                /*
                     Position section dependent background image absolute to
                     fill out the whole viewport.
                 */
@@ -154,7 +153,6 @@ html, body  { font-size: 16px; }
                     left: 0;
                     min-width: 100%;
                     min-height: var(--minimumContentHeightInPixel);
-
                     /* Contains each section text content. */
                     & > div.container {
                         z-index: 0;
@@ -162,6 +160,7 @@ html, body  { font-size: 16px; }
                         text-align: center;
 
                         & dl.dl-horizontal > dd { text-align: left; }
+
                         & a[href^="tel:"] {
                             display: block;
                             font-size: 1.5em;
@@ -184,7 +183,6 @@ html, body  { font-size: 16px; }
             &.glyphicon-globe {
                 color: var(--fontColor);
                 letter-spacing: 10px;
-                display: inline;
                 height: 26px;
                 display: inline-block;
                 padding-left: 30px;
@@ -193,8 +191,7 @@ html, body  { font-size: 16px; }
                 vertical-align: middle;
                 zoom: 1;
 
-                &:before {
-                    display: inline;
+                &::before {
                     display: inline-block;
                     font-size: 24px/1em;
                     font-style: normal;
@@ -205,10 +202,11 @@ html, body  { font-size: 16px; }
                     position: absolute;
                     text-transform: none;
                     top: 0;
-                    webkit-font-smoothing: antialiased;
                 }
+
                 &:hover { color: var(--linkHoverColor) !important; }
             }
+
             &-social {
                 color: var(--fontColor);
                 letter-spacing: 10px;
@@ -248,12 +246,8 @@ html, body  { font-size: 16px; }
     /* endregion */
     /* region responsive */
     /** region extra extra extra small */
-    /*** region global */
-    /**** region buttons */
     /* Smaller devices have usually a touch interface for scrolling. */
     & a[href="#top"] { visibility: hidden; }
-    /**** endregion */
-    /*** endregion */
     /*** region navigation bar */
     /* Normal Wrapper for the main navigation bar. Scrolls with viewport. */
     & header.navbar-wrapper {
@@ -264,7 +258,7 @@ html, body  { font-size: 16px; }
             padding: 0;
 
             & div.navbar.navbar-inverse {
-                margin-bottom: 0px;
+                margin-bottom: 0;
 
                 & > div.container {
                     & div.navbar-header {
@@ -283,8 +277,10 @@ html, body  { font-size: 16px; }
                             right: 70px;
                         }
                     }
+
                     & div.navbar-collapse {
                         & > div.navbar-highlighter { visibility: hidden; }
+
                         & ul.nav.navbar-nav {
                             margin-top: 10px;
                             margin-bottom: 10px;
@@ -306,11 +302,13 @@ html, body  { font-size: 16px; }
     & section.carousel.slide div.carousel-inner > div.item {
         /* Don't show any background image in smartphone mode. */
         & div.backstretch { display: none; }
+
         & div[class^="carousel-image-"] > div.container {
             padding-bottom: 15px;
             max-width: 540px;
 
             & h1 { font-size: 2.5em; }
+
             & > p {
                 font-size: 1.2rem;
                 line-height: 1.4;
@@ -324,16 +322,17 @@ html, body  { font-size: 16px; }
     div[class^="carousel-image-about"] > div.container {
         padding-top: 90px;
 
-        & h1#about { margin-top: -var(--topMargin);}
+        & h1#about { margin-top: -var(--topMargin); }
+
         & p.lead > a:first-child { margin-top: 35px; }
     }
     /**** endregion */
     /**** region about this web site */
     & section.about-this-website {
         padding-bottom: 15px;
-
         /* Wraps the text content, positions space around them. */
         & > div.container { margin-left: 10%; }
+
         & div[class^="carousel-image-"] > div.container h1 {
             font-size: 2.5em;
         }
@@ -357,31 +356,24 @@ html, body  { font-size: 16px; }
             &.about div[class^=carousel-image-] > div.container > p {
                 font-size: 1.6rem;
             }
+
             & div[class^="carousel-image-"] > div.container {
                 padding-bottom: 25px;
             }
         }
         /** endregion */
         /** region section */
-        /*** region about this website */
         & section.about-this-website { padding-bottom: 25px; }
-        /*** endregion */
         /*** region about */
         & section.carousel.slide div.carousel-inner > div.item
-        div[class^="carousel-image-about"] > div.container p.lead
-        > a:first-child { margin-top: 50px; }
+        div[class^="carousel-image-about"] > div.container
+        p.lead > a:first-child { margin-top: 50px; }
         /*** endregion */
         /** endregion */
-        /* endregion */
         /** region small */
         @media (--small) {
-            border: 2px solid green;
-            /* region global */
-            /** region buttons */
             /* Bigger devices get a scroll top button. */
             & a[href="#top"] { visibility: visible; }
-            /** endregion */
-            /* endregion */
             /* region navigation bar */
             /*
                 Normal Wrapper for the main navigation bar. Scrolls with
@@ -398,17 +390,20 @@ html, body  { font-size: 16px; }
                             & button.navbar-toggle {
                                 display: none !important;
                             }
+
                             & a {
                                 &[href^="#language-"] {
                                     position: absolute;
                                     top: 12px;
                                     right: 10px;
                                 }
+
                                 &.navbar-brand {
                                     padding-right: 30px;
                                 }
                             }
                         }
+
                         & div.navbar-collapse {
                             display: inline;
 
@@ -421,6 +416,7 @@ html, body  { font-size: 16px; }
                                 width: 124px;
                                 background-color: #eee;
                             }
+
                             & > ul.nav.navbar-nav {
                                 margin: 0;
                                 /*
@@ -432,11 +428,14 @@ html, body  { font-size: 16px; }
                                         line-height: 22px;
                                         color: var(--menuColor);
                                     }
-                                    & > a:hover, a:focus {
+
+                                    & > a:hover,
+                                    a:focus {
                                         background-color: transparent;
                                         color: var(--menuHoverColor);
                                     }
                                 }
+
                                 & li.active > a:hover,
                                 & li.active > a:focus,
                                 & li.active > a {
@@ -466,6 +465,7 @@ html, body  { font-size: 16px; }
                             max-width: 600px;
 
                             h1 { font-size: 4.5em; }
+
                             & > p.lead {
                                 font-size: 1.5em;
                                 line-height: 1.4;
@@ -491,6 +491,7 @@ html, body  { font-size: 16px; }
                         & h1 { font-size: 4.5em; }
                     }
                 }
+
                 &.carousel.slide div.carousel-inner > div.item > div {
                     &.carousel-image-about > div.container {
                         position: relative;
@@ -508,13 +509,13 @@ html, body  { font-size: 16px; }
                             }
                         }
                     }
+
                     &.carousel-image-work > div.container > p {
                         margin-top: 25px;
                     }
                 }
             }
             /* endregion */
-        /** endregion */
             /* region medium */
             @media (--medium) {
                 /* region navigation bar */
@@ -531,12 +532,14 @@ html, body  { font-size: 16px; }
 
                         & > dl.dl-horizontal {
                             & > dt { width: 286px; }
+
                             & > dd {
                                 margin-top: 15px;
                                 margin-left: 335px;
                             }
                         }
                     }
+
                     &.carousel-image-about > div.container > p.lead {
                         right: 0;
                     }
@@ -545,11 +548,13 @@ html, body  { font-size: 16px; }
             }
             /* endregion */
         }
+        /** endregion */
     }
+    /** endregion */
     /* endregion */
 }
 /* endregion */
-/*region vim modline
+/* region vim modline
 vim: set tabstop=4 shiftwidth=4 expandtab:
 vim: foldmethod=marker foldmarker=region,endregion:
-endregion*/
+endregion */
