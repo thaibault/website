@@ -9,7 +9,7 @@
         "website-utilities": "latest"
     },
     "devDependencies": {
-        "legalNotes": "git+ssh://git@github.com/thaibault/legalNotes.git",
+        "legal-notes": "latest",
         "source-map-support": "latest",
         "weboptimizer": "latest"
     },
