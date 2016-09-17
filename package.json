@@ -10,6 +10,8 @@
     },
     "devDependencies": {
         "legal-notes": "latest",
+        "qunitjs": "latest",
+        "qunit-cli": "latest",
         "source-map-support": "latest",
         "weboptimizer": "latest"
     },
@@ -64,6 +66,8 @@
         "prepublish": "npm run build",
         "serve": "webOptimizer serve",
         "start": "webOptimizer serve",
+        "test": "webOptimizer test",
+        "testInBrowser": "webOptimizer testInBrowser",
         "update": "npm version patch && npm publish",
         "updateWebsite": "websiteUtilities",
         "watch": "webOptimizer build --watch",
