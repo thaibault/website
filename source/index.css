@@ -136,6 +136,7 @@ body { font-size: 16px; }
             overflow-y: visible;
             /* Contains each section content. */
             & div.item {
+                display: inline;
                 overflow-y: visible;
                 float: left;
                 width: 100%;
@@ -318,8 +319,7 @@ body { font-size: 16px; }
     /*** endregion */
     /*** region section */
     /**** region about */
-    & section.carousel.slide div.carousel-inner > div.item
-    div[class^="carousel-image-about"] > div.container {
+    & section.carousel.slide div.carousel-inner > div.item div.carousel-image-about > div.container {
         padding-top: 90px;
 
         & h1#about { margin-top: -var(--topMargin); }
@@ -365,9 +365,9 @@ body { font-size: 16px; }
         /** region section */
         & section.about-this-website { padding-bottom: 25px; }
         /*** region about */
-        & section.carousel.slide div.carousel-inner > div.item
-        div[class^="carousel-image-about"] > div.container
-        p.lead > a:first-child { margin-top: 50px; }
+        & section.carousel.slide div.carousel-inner > div.item div.carousel-image-about > div.container p.lead > a:first-child {
+            margin-top: 50px;
+        }
         /*** endregion */
         /** endregion */
         /** region small */
@@ -449,7 +449,7 @@ body { font-size: 16px; }
             }
             /* endregion */
             /* region carousel */
-            & section.carousel.slide & div.carousel-inner > div.item {
+            & section.carousel.slide div.carousel-inner > div.item {
                 & > div {
                     /* Show any background image on higher resolutions. */
                     &.backstretch { display: block; }
@@ -464,7 +464,7 @@ body { font-size: 16px; }
                             padding-bottom: 50px;
                             max-width: 600px;
 
-                            h1 { font-size: 4.5em; }
+                            & h1 { font-size: 4.5em; }
 
                             & > p.lead {
                                 font-size: 1.5em;

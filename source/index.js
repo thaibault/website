@@ -263,7 +263,7 @@ export default class HomePage extends $.Website.class {
                     const $oldLanguageLinkDomNode:$DomNode = $(this)
                     $oldLanguageLinkDomNode.attr(
                         'href', `#language-${oldLanguage}`
-                    ).text(oldLanguage.substr(0, 2)).animate(
+                    ).text(oldLanguage.substr(0, 2)).animate.apply(
                         $oldLanguageLinkDomNode, showAnimationOptions)
                     return result
                 }})
@@ -370,13 +370,12 @@ export default class HomePage extends $.Website.class {
             this._highlightMenuEntry(false)
         this._options.dimensionIndicator.effectOptions.hideAnimation[
             1
-        ].always = ():$DomNode =>
-            this.$domNodes.dimensionIndicator.html(
-                this.constructor.stringFormat(
-                    this._options.dimensionIndicator.template, newMode)
-            ).animate.apply(
-                this.$domNodes.dimensionIndicator,
-                this._options.dimensionIndicator.effectOptions.showAnimation)
+        ].always = ():$DomNode => this.$domNodes.dimensionIndicator.html(
+            this.constructor.stringFormat(
+                this._options.dimensionIndicator.template, newMode)
+        ).animate.apply(
+            this.$domNodes.dimensionIndicator,
+            this._options.dimensionIndicator.effectOptions.showAnimation)
         this.$domNodes.dimensionIndicator.stop().animate.apply(
             this.$domNodes.dimensionIndicator,
             this._options.dimensionIndicator.effectOptions.hideAnimation)
