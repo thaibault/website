@@ -32,7 +32,7 @@ declare var OFFLINE:boolean
 // region plugins/classes
 /**
  * This plugin holds all needed methods to extend a whole homepage.
- * @extends jQuery-website:Website
+ * @extends website-utilities:Website
  * @property static:_name - Defines this class name to allow retrieving them
  * after name mangling.
  * @property _options - Options extended by the options given to the
@@ -297,9 +297,10 @@ export default class HomePage extends $.Website.class {
         if (!(
             'location' in $.global && $.global.location.hash &&
             this.$domNodes.navigationButton.parent('li').children(
-                this.$domNodes.navigationButton).filter(
-                    `[href="${$.global.location.hash}"]`
-                ).length
+                this.$domNodes.navigationButton
+            ).add(this.$domNodes.aboutThisWebsiteButton).filter(
+                `[href="${$.global.location.hash}"]`
+            ).length
         ))
             $.global.location.hash = this.$domNodes.navigationButton.parent(
                 'li'
@@ -487,10 +488,16 @@ export default class HomePage extends $.Website.class {
             this.debug(
                 'Switch to section "' +
                 `${$.global.location.hash.substring('#'.length)}".`)
+        this.scrollToTop()
         this.$domNodes.menuHighlighter.animate.apply(
             this.$domNodes.menuHighlighter,
             this._options.aboutThisWebsiteSection.hideAnimation)
-        this.scrollToTop()
+        this.$domNodes.section.animate.apply(
+            this.$domNodes.section,
+            this._options.aboutThisWebsiteSection.hideAnimation)
+        // TODO bei umstellung auf animate statt fadeIn und fadeOut ist display
+        // nicht mehr richtig gesetzt..
+        this.$domNodes.aboutThisWebsiteSection.css('display', 'block')
         this.$domNodes.aboutThisWebsiteSection.animate.apply(
             this.$domNodes.aboutThisWebsiteSection,
             this._options.aboutThisWebsiteSection.showAnimation)
@@ -578,9 +585,11 @@ export default class HomePage extends $.Website.class {
                     newSectionHeightInPixel !== this._oldSectionHeightInPixel
                 ) {
                     this._oldSectionHeightInPixel = newSectionHeightInPixel
+                    /* TODO
                     newSectionHeightInPixel =
                         this._adaptBackgroundDependentHeight(
                             newSectionHeightInPixel, $currentSection)
+                    */
                     // First stop currently running animations.
                     if (this.startUpAnimationIsComplete) {
                         this.$domNodes.footer.stop(true)
@@ -603,7 +612,8 @@ export default class HomePage extends $.Website.class {
                             position: 'absolute',
                             top: this.$domNodes.carousel.height()})
                         this.$domNodes.footer[transitionMethod]({
-                            top: newSectionHeightInPixel,
+                            top: newSectionHeightInPixel
+                        }, {
                             duration: this._options.carousel.speed
                         })
                         this.$domNodes.carousel.height(newSectionHeightInPixel)
@@ -648,14 +658,14 @@ export default class HomePage extends $.Website.class {
                 /*
                     If new section height height is larger than current
                     viewport make the transition till current viewport and
-                    reset after animation ist complete.
+                    reset after animation completes.
                 */
                 newPseudoCarouselHeightInPixel = this.$domNodes.window.height()
         }
         this.$domNodes.carousel[transitionMethodName]({
-            height: newPseudoCarouselHeightInPixel,
-            duration: this._options.carousel.speed
+            height: newPseudoCarouselHeightInPixel
         }, {
+            duration: this._options.carousel.speed,
             always: ():void => {
                 this.$domNodes.carousel.css('height', newSectionHeightInPixel)
                 // Check if height has changed after adaption.
