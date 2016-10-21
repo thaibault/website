@@ -205,10 +205,10 @@ export default class HomePage extends $.Website.class {
         }
         const self:HomePage = this
         this.constructor.extendObject(true, options, {language: {
-            onSwitched: function():boolean {
+            onSwitched: function(...parameter:Array<any>):boolean {
                 const result:any = !initialOnSwitchedCallback || (
                     initialOnSwitchedCallback &&
-                    initialOnSwitchedCallback.apply(this, arguments))
+                    initialOnSwitchedCallback.call(this, ...parameter))
                 /*
                     Only adapt menu highlighter if a section is currently
                     selected.
@@ -221,14 +221,14 @@ export default class HomePage extends $.Website.class {
                 if (self.$domNodes.navigationButton.parent('li').filter(
                     '.active'
                 ).length)
-                    self.$domNodes.menuHighlighter.animate.apply(
-                        self.$domNodes.menuHighlighter, showAnimationOptions)
+                    self.$domNodes.menuHighlighter.animate(
+                        ...showAnimationOptions)
                 self._adaptContentHeight()
                 return result
             },
-            onEnsured: function():boolean {
+            onEnsured: function(...parameter:Array<any>):boolean {
                 const result:any = !initialOnEnsuredCallback || (
-                    initialOnEnsuredCallback.apply(this, arguments))
+                    initialOnEnsuredCallback.call(...parameter))
                 /*
                     Only adapt menu highlighter if a section is currently
                     selected.
@@ -241,7 +241,8 @@ export default class HomePage extends $.Website.class {
                 oldLanguage:string, newLanguage:string
             ):boolean {
                 const result:any = !initialOnSwitchCallback || (
-                    initialOnSwitchCallback.apply(this, arguments))
+                    initialOnSwitchCallback.call(
+                        this, oldLanguage, newLanguage))
                 // Add language toggle button functionality.
                 let hideAnimationOptions:Array<Object> = [{opacity: 0}, {}]
                 let showAnimationOptions:Array<Object> = [{opacity: 1}, {}]
@@ -251,33 +252,32 @@ export default class HomePage extends $.Website.class {
                     showAnimationOptions = self.languageHandler._options
                         .textNodeParent.showAnimation
                 }
-                self.$domNodes.menuHighlighter.animate.apply(
-                    self.$domNodes.menuHighlighter, hideAnimationOptions)
+                self.$domNodes.menuHighlighter.animate(...hideAnimationOptions)
                 hideAnimationOptions = hideAnimationOptions.slice()
                 hideAnimationOptions[1] = this.constructor.extendObject(true, {
                 }, hideAnimationOptions[1], {always: function():any {
                     let result:any
                     if (initialLanguageHideAnimationAlwaysCallback)
                         result = initialLanguageHideAnimationAlwaysCallback
-                            .apply(this, arguments)
+                            .call(this, oldLanguage, newLanguage)
                     const $oldLanguageLinkDomNode:$DomNode = $(this)
                     $oldLanguageLinkDomNode.attr(
                         'href', `#language-${oldLanguage}`
-                    ).text(oldLanguage.substr(0, 2)).animate.apply(
-                        $oldLanguageLinkDomNode, showAnimationOptions)
+                    ).text(oldLanguage.substr(0, 2)).animate(
+                        ...showAnimationOptions)
                     return result
                 }})
                 const $newLanguageLinkDomNode:$DomNode = $(
                     `a[href="#language-${newLanguage}"]`)
-                $newLanguageLinkDomNode.animate.apply(
-                    $newLanguageLinkDomNode, hideAnimationOptions)
+                $newLanguageLinkDomNode.animate(...hideAnimationOptions)
                 // Adapt curriculum vitae link.
                 self._adaptCurriculumVitaeLink(oldLanguage, newLanguage)
                 return result
             },
             onEnsure: (oldLanguage:string, newLanguage:string):any => {
                 const result:any = !initialOnEnsureCallback || (
-                    initialOnEnsureCallback.apply(this, arguments))
+                    initialOnEnsureCallback.call(
+                        this, oldLanguage, newLanguage))
                 // Add language toggle button functionality.
                 $(`a[href="#language-${newLanguage}"]`).attr(
                     'href', `#language-${oldLanguage}`
@@ -374,13 +374,11 @@ export default class HomePage extends $.Website.class {
         ].always = ():$DomNode => this.$domNodes.dimensionIndicator.html(
             this.constructor.stringFormat(
                 this._options.dimensionIndicator.template, newMode)
-        ).animate.apply(
-            this.$domNodes.dimensionIndicator,
-            this._options.dimensionIndicator.effectOptions.showAnimation)
-        this.$domNodes.dimensionIndicator.stop().animate.apply(
-            this.$domNodes.dimensionIndicator,
-            this._options.dimensionIndicator.effectOptions.hideAnimation)
-        return super._onChangeMediaQueryMode.apply(this, arguments)
+        ).animate(
+            ...this._options.dimensionIndicator.effectOptions.showAnimation)
+        this.$domNodes.dimensionIndicator.stop().animate(
+            ...this._options.dimensionIndicator.effectOptions.hideAnimation)
+        return super._onChangeMediaQueryMode(oldMode, newMode)
     }
     /**
      * This method triggers if the responsive design switches to extra small
@@ -449,7 +447,7 @@ export default class HomePage extends $.Website.class {
         }
         if (!this._initialContentHeightAdaptionDone)
             this._adaptContentHeight()
-        return super._onSwitchSection.apply(this, arguments)
+        return super._onSwitchSection(sectionName)
     }
     // / endregion
     // / region helper
@@ -463,9 +461,8 @@ export default class HomePage extends $.Website.class {
     _performSectionSwitch(
         sectionName:string, index:number, $sectionButton:$DomNode
     ):HomePage {
-        this.$domNodes.aboutThisWebsiteSection.animate.apply(
-            this.$domNodes.aboutThisWebsiteSection,
-            this._options.aboutThisWebsiteSection.hideAnimation)
+        this.$domNodes.aboutThisWebsiteSection.animate(
+            ...this._options.aboutThisWebsiteSection.hideAnimation)
         this.debug(`Switch to section "${sectionName}".`)
         $sectionButton.addClass('active')
         if (this._viewportIsOnTop) {
@@ -489,42 +486,42 @@ export default class HomePage extends $.Website.class {
                 'Switch to section "' +
                 `${$.global.location.hash.substring('#'.length)}".`)
         this.scrollToTop()
-        this.$domNodes.menuHighlighter.animate.apply(
-            this.$domNodes.menuHighlighter,
-            this._options.aboutThisWebsiteSection.hideAnimation)
-        this.$domNodes.section.animate.apply(
-            this.$domNodes.section,
-            this._options.aboutThisWebsiteSection.hideAnimation)
+        this.$domNodes.menuHighlighter.animate(
+            ...this._options.aboutThisWebsiteSection.hideAnimation)
+        this.$domNodes.section.animate(
+            ...this._options.aboutThisWebsiteSection.hideAnimation)
         // TODO bei umstellung auf animate statt fadeIn und fadeOut ist display
         // nicht mehr richtig gesetzt..
         this.$domNodes.aboutThisWebsiteSection.css('display', 'block')
-        this.$domNodes.aboutThisWebsiteSection.animate.apply(
-            this.$domNodes.aboutThisWebsiteSection,
-            this._options.aboutThisWebsiteSection.showAnimation)
+        this.$domNodes.aboutThisWebsiteSection.animate(
+            ...this._options.aboutThisWebsiteSection.showAnimation)
         this.$domNodes.navigationButton.parent('li').removeClass('active')
         return this
     }
     /**
      * This method is complete if last startup animation was initialized.
+     * @param parameter - Forwards all given arguments to registered start
+     * up animation complete handler callback.
      * @returns Returns the current instance.
      */
-    _onStartUpAnimationComplete():HomePage {
-        super._onStartUpAnimationComplete.apply(this, arguments)
+    _onStartUpAnimationComplete(...parameter:Array<any>):HomePage {
+        super._onStartUpAnimationComplete(...parameter)
         return this._highlightMenuEntry()._adaptContentHeight()
     }
     /**
      * This method triggers after window is loaded. It overwrites the super
      * method to wait for removing the loading cover until section height is
      * adapted.
+     * @param parameter - Forwards all given arguments to registered callbacks.
      * @returns Returns the current instance.
      */
-    _removeLoadingCover():HomePage {
+    _removeLoadingCover(...parameter:Array<any>):HomePage {
         if (
             this._initialContentHeightAdaptionDone &&
             !this._loadingCoverRemoved
         ) {
             this._loadingCoverRemoved = true
-            super._removeLoadingCover.apply(this, arguments)
+            super._removeLoadingCover(...parameter)
         }
         return this
     }
@@ -551,15 +548,13 @@ export default class HomePage extends $.Website.class {
                             width: $sectionButton.width(),
                             duration: this._options.carousel.speed
                         })
-                    this.$domNodes.menuHighlighter.stop().animate.apply(
-                        this.$domNodes.menuHighlighter,
-                        this._options.aboutThisWebsiteSection.showAnimation
+                    this.$domNodes.menuHighlighter.stop().animate(
+                        ...this._options.aboutThisWebsiteSection.showAnimation
                     ).animate(this._options.menuHighlightAnimation)
                 } else {
                     this._initialMenuHightlightDone = true
-                    this.$domNodes.menuHighlighter.stop().animate.apply(
-                        this.$domNodes.menuHighlighter,
-                        this._options.aboutThisWebsiteSection.showAnimation
+                    this.$domNodes.menuHighlighter.stop().animate(
+                        ...this._options.aboutThisWebsiteSection.showAnimation
                     ).css({
                         left: $sectionButton.position().left,
                         width: $sectionButton.width()
@@ -784,9 +779,10 @@ export default class HomePage extends $.Website.class {
     }
     /**
      * This method adds triggers to switch section.
+     * @param parameter - Forwards all given arguments to registered callbacks.
      * @returns Returns the current instance.
      */
-    _addNavigationEvents():HomePage {
+    _addNavigationEvents(...parameter:Array<any>):HomePage {
         const toggleMobileMenu = ():void => {
             // This handler rebuilds bootstrap mobile menu collapse feature.
             const slideOut:boolean = this.$domNodes.navigationWrapper.is('.in')
@@ -819,7 +815,7 @@ export default class HomePage extends $.Website.class {
         if (this._options.hideMobileMenuAfterSelection)
             this.on(this.$domNodes.navigationButton, 'click', ():void => {
                 if (this._currentMediaQueryMode === 'extraSmall')
-                    toggleMobileMenu.apply(this, arguments)
+                    toggleMobileMenu(...parameter)
             })
         this.on(this.$domNodes.navigationButton.add(
             this.$domNodes.aboutThisWebsiteButton
@@ -827,7 +823,7 @@ export default class HomePage extends $.Website.class {
             'switchSection', false, this, $(event.target).attr(
                 'href'
             ).substring('#'.length)))
-        return super._addNavigationEvents.apply(this, arguments)
+        return super._addNavigationEvents(...parameter)
     }
     /**
      * Determines current section to the right or the left.
