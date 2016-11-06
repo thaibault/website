@@ -24,7 +24,7 @@
                 "__evaluate__": "self.debug && 2 < self.givenCommandLineArguments.length && ['buildDLL', 'serve', 'watchDLL'].includes(self.givenCommandLineArguments[2]) ? 'website-utilities' : []"
             },
             "index": {
-                "__evaluate__": "['index.css'].concat(self.debug ? [] : 'babel-polyfill').concat(self.debug && self.dllManifestFilePaths.length && 2 < self.givenCommandLineArguments.length && self.givenCommandLineArguments[2] === 'serve' ? ['webpack/hot/dev-server', `webpack-dev-server/client?${self.development.server.protocol}://0.0.0.0:${self.development.server.port}`] : []).concat(self.offline ? ['offline-plugin/runtime'] : []).concat('index.js')"
+                "__evaluate__": "['./index.css'].concat(self.debug ? [] : 'babel-polyfill').concat(self.debug && self.dllManifestFilePaths.length && 2 < self.givenCommandLineArguments.length && self.givenCommandLineArguments[2] === 'serve' ? ['webpack/hot/dev-server', `webpack-dev-server/client?${self.development.server.protocol}://0.0.0.0:${self.development.server.port}`] : []).concat(self.offline ? ['offline-plugin/runtime'] : []).concat('./index.js')"
             }
         }},
         "library": false,
