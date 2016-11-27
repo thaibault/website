@@ -867,9 +867,8 @@ export default class HomePage extends $.Website.class {
     // endregion
 }
 // endregion
-$.HomePage = function():any {
-    return $.Tools().controller(HomePage, arguments)
-}
+$.HomePage = (...parameter:Array<any>):any => $.Tools().controller(
+    HomePage, parameter)
 $.HomePage.class = HomePage
 if (typeof OFFLINE !== 'undefined' && OFFLINE) {
     const offlineHandler:Object = require('offline-plugin/runtime')

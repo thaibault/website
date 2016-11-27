@@ -177,8 +177,7 @@ body { font-size: 16px; }
     /* region section */
     /** region contact */
     /* Show big dark social media icons. */
-    & section.carousel.slide div.carousel-inner div.item.contact
-    div[class^="carousel-image-"] > div.container {
+    & section.carousel.slide div.carousel-inner div.item.contact div[class^="carousel-image-"] > div.container {
         /* NOTE: Should be synchronized with the social icon font styles. */
         & a.glyphicon {
             &.glyphicon-globe {
@@ -344,8 +343,7 @@ body { font-size: 16px; }
     @media (--extra-extra-small) {
         /** region navigation bar */
         /* Show current dimension mode in indicator dom node. */
-        & header.navbar-wrapper > div.container div.navbar.navbar-inverse
-        > div.container div.navbar-header a.navbar-brand {
+        & header.navbar-wrapper > div.container div.navbar.navbar-inverse > div.container div.navbar-header a.navbar-brand {
             max-width: 238px;
 
             & span.dimension-indicator { visibility: visible; }
