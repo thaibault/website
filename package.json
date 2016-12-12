@@ -1,11 +1,36 @@
 {
   "name": "website",
-  "description": "Here's my website development hosted (no security by obscurity).",
   "version": "1.0.1",
   "license": "CC-BY-3.0",
+  "description": "Here's my website development hosted (no security by obscurity).",
   "keywords": [
     "website"
   ],
+  "files": [
+    "build"
+  ],
+  "main": "build/index.html",
+  "repository": {
+    "type": "git",
+    "url": "git@github.io:thaibault/.git"
+  },
+  "scripts": {
+    "build": "webOptimizer build",
+    "buildDLL": "webOptimizer buildDLL",
+    "buildWithStats": "webOptimizer build --profile --json >/tmp/stat.json && echo 'Results successfully written to \"/tmp/stat.json\".'",
+    "clear": "webOptimizer clear",
+    "document": "webOptimizer document",
+    "lint": "webOptimizer typeCheck && webOptimizer lint",
+    "prepublish": "npm run build",
+    "serve": "webOptimizer serve",
+    "start": "webOptimizer serve",
+    "test": "webOptimizer test",
+    "testInBrowser": "webOptimizer testInBrowser",
+    "update": "npm version patch && npm publish",
+    "updateWebsite": "websiteUtilities",
+    "watch": "webOptimizer build --watch",
+    "watchDLL": "webOptimizer buildDLL --watch"
+  },
   "dependencies": {
     "Swipe": "https://github.com/thebird/Swipe",
     "website-utilities": "latest"
@@ -16,14 +41,6 @@
     "qunit-cli": "latest",
     "source-map-support": "latest",
     "weboptimizer": "latest"
-  },
-  "files": [
-    "build"
-  ],
-  "main": "build/index.html",
-  "repository": {
-    "type": "git",
-    "url": "git@github.io:thaibault/.git"
   },
   "webOptimizer": {
     "injection": {
@@ -76,22 +93,5 @@
         }
       }
     }
-  },
-  "scripts": {
-    "build": "webOptimizer build",
-    "buildDLL": "webOptimizer buildDLL",
-    "buildWithStats": "webOptimizer build --profile --json >/tmp/stat.json && echo 'Results successfully written to \"/tmp/stat.json\".'",
-    "clear": "webOptimizer clear",
-    "document": "webOptimizer document",
-    "lint": "webOptimizer typeCheck && webOptimizer lint",
-    "prepublish": "npm run build",
-    "serve": "webOptimizer serve",
-    "start": "webOptimizer serve",
-    "test": "webOptimizer test",
-    "testInBrowser": "webOptimizer testInBrowser",
-    "update": "npm version patch && npm publish",
-    "updateWebsite": "websiteUtilities",
-    "watch": "webOptimizer build --watch",
-    "watchDLL": "webOptimizer buildDLL --watch"
   }
 }
