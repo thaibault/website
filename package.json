@@ -37,8 +37,6 @@
   },
   "devDependencies": {
     "legal-notes": "latest",
-    "qunitjs": "latest",
-    "qunit-cli": "latest",
     "source-map-support": "latest",
     "weboptimizer": "latest"
   },
@@ -56,6 +54,7 @@
     "library": false,
     "module": {
       "aliases": {
+        "clientnode/test$": "clientnode/test.compiled",
         "bootstrap$": "bootstrap/dist/css/bootstrap.min.css"
       },
       "optimizer": {
