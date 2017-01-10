@@ -11,6 +11,8 @@
 .+/systemjs-builder/test/fixtures/sourcemaps-expectations/.+\.json
 
 [options]
+unsafe.enable_getters_and_setters=true
+
 module.name_mapper='^jQuery-scrollTo$' -> 'jquery.scrollto/jquery.scrollTo'
 module.name_mapper='^jQuery-spin$' -> 'spin.js/jquery.spin'
 module.name_mapper='^script!qunitjs$' -> 'qunitjs'
