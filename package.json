@@ -75,6 +75,7 @@
           "^jquery$": "jquery/dist/jquery.min.js",
           "^jQuery-scrollTo$": "jquery.scrollto/jquery.scrollTo.js",
           "^jQuery-spin$": "spin.js/jquery.spin.js",
+          "^spin\\.js$": "spin.js/spin.min.js",
           "^swipe$": "Swipe/swipe.js"
         }
       },
