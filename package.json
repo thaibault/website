@@ -36,6 +36,7 @@
     "website-utilities": "latest"
   },
   "devDependencies": {
+    "errorreporter": "latest",
     "legal-notes": "latest",
     "source-map-support": "latest",
     "weboptimizer": "latest"
