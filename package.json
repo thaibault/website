@@ -39,16 +39,18 @@
     "errorreporter": "latest",
     "legal-notes": "latest",
     "source-map-support": "latest",
+    "ua-parser-js": "latest",
     "weboptimizer": "latest"
   },
   "webOptimizer": {
     "injection": {
       "internal": {
+        "errorreporter": "errorreporter",
         "vendor": {
-          "__evaluate__": "self.debug && 2 < self.givenCommandLineArguments.length && ['buildDLL', 'serve', 'watchDLL'].includes(self.givenCommandLineArguments[2]) ? 'website-utilities' : []"
+          "__evaluate__": "['ua-parser-js'].concat(self.debug && 2 < self.givenCommandLineArguments.length && ['buildDLL', 'serve', 'watchDLL'].includes(self.givenCommandLineArguments[2]) ? 'website-utilities' : [])"
         },
         "index": {
-          "__evaluate__": "['./index.css', 'babel-polyfill'].concat(self.debug && self.dllManifestFilePaths.length && 2 < self.givenCommandLineArguments.length && self.givenCommandLineArguments[2] === 'serve' ? ['webpack/hot/dev-server', `webpack-dev-server/client?http${self.development.server.cert ? 's' : ''}://0.0.0.0:${self.development.server.port}`] : []).concat(self.offline ? ['offline-plugin/runtime'] : []).concat('./index.js')"
+          "__evaluate__": "['./index.css', 'babel-polyfill', 'ua-parser-js'].concat(self.debug && self.dllManifestFilePaths.length && 2 < self.givenCommandLineArguments.length && self.givenCommandLineArguments[2] === 'serve' ? ['webpack/hot/dev-server', `webpack-dev-server/client?http${self.development.server.cert ? 's' : ''}://0.0.0.0:${self.development.server.port}`] : []).concat(self.offline ? ['offline-plugin/runtime'] : []).concat('./index.js')"
         }
       }
     },
