@@ -325,7 +325,7 @@ doctype html
         }
     ]
     // endregion
-html.no-javascript(lang='en')
+html.no-javascript(lang=en)
     // region head
     head
         // region meta informations
@@ -338,6 +338,7 @@ html.no-javascript(lang='en')
         meta(
             name='google-site-verification'
             content='1_qh0NqpYkHYZeDLXPujeE6dzcpozXmOLItTv7hbbXU')
+        base(href='/')
         // endregion
         title Torben Sickert development
         // region pre load resources
@@ -348,7 +349,11 @@ html.no-javascript(lang='en')
         // endregion
     // endregion
     // region body
-    body.home-page.tools-hidden-on-javascript-enabled
+    body.no-javascript.home-page.tools-hidden-on-javascript-enabled
+        script(type="text/javascript").
+            window.document.body.className =
+                window.document.body.className.replace(
+                    /(^|\s)no-javascript(\s|$)/, '$1javascript$2');
         .website-window-loading-cover.tools-visible-on-javascript-enabled: div
         // region menu
         header.navbar-wrapper(
