@@ -47,7 +47,7 @@
       "internal": {
         "errorreporter": "errorreporter",
         "index": {
-          "__evaluate__": "['./index.css', 'babel-polyfill'].concat(self.offline ? ['offline-plugin/runtime'] : []).concat('./index.js')"
+          "__evaluate__": "['./index.css', 'babel-polyfill'].concat(self.offline ? ['offline-plugin/runtime'] : []).concat('./index')"
         },
         "vendor": {
           "__evaluate__": "self.debug ? ['babel-polyfill', 'ua-parser-js'].concat(self.debug && 2 < self.givenCommandLineArguments.length && ['buildDLL', 'serve', 'watchDLL'].includes(self.givenCommandLineArguments[2]) ? 'website-utilities' : []) : []"
