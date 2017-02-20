@@ -36,18 +36,21 @@
     "website-utilities": "latest"
   },
   "devDependencies": {
+    "errorreporter": "latest",
     "legal-notes": "latest",
     "source-map-support": "latest",
+    "ua-parser-js": "latest",
     "weboptimizer": "latest"
   },
   "webOptimizer": {
     "injection": {
       "internal": {
-        "vendor": {
-          "__evaluate__": "self.debug && 2 < self.givenCommandLineArguments.length && ['buildDLL', 'serve', 'watchDLL'].includes(self.givenCommandLineArguments[2]) ? 'website-utilities' : []"
-        },
+        "errorreporter": "errorreporter",
         "index": {
-          "__evaluate__": "['./index.css'].concat(self.debug ? [] : 'babel-polyfill').concat(self.debug && self.dllManifestFilePaths.length && 2 < self.givenCommandLineArguments.length && self.givenCommandLineArguments[2] === 'serve' ? ['webpack/hot/dev-server', `webpack-dev-server/client?http${self.development.server.cert ? 's' : ''}://0.0.0.0:${self.development.server.port}`] : []).concat(self.offline ? ['offline-plugin/runtime'] : []).concat('./index.js')"
+          "__evaluate__": "['./index.css', 'babel-polyfill'].concat(self.offline ? ['offline-plugin/runtime'] : []).concat('./index')"
+        },
+        "vendor": {
+          "__evaluate__": "self.debug ? ['babel-polyfill', 'ua-parser-js'].concat(self.debug && 2 < self.givenCommandLineArguments.length && ['buildDLL', 'serve', 'watchDLL'].includes(self.givenCommandLineArguments[2]) ? 'website-utilities' : []) : []"
         }
       }
     },
@@ -75,11 +78,12 @@
           "^jquery$": "jquery/dist/jquery.min.js",
           "^jQuery-scrollTo$": "jquery.scrollto/jquery.scrollTo.js",
           "^jQuery-spin$": "spin.js/jquery.spin.js",
+          "^spin\\.js$": "spin.js/spin.min.js",
           "^swipe$": "Swipe/swipe.js"
         }
       },
       "skipParseRegularExpressions": {
-        "__evaluate__": "/\\/(?:(?:clientnode(?:\\.compiled)?)|(?:jquery)|(?:module)|(?:spin)|([^/]+\\.min))\\.js(?:\\?.+|$)/"
+        "__evaluate__": "/\\/(?:(?:global)|(?:jquery\\/dist\\/jquery)|(?:module))(?:\\.min)?\\.js(?:\\?.+|$)/"
       }
     },
     "path": {
