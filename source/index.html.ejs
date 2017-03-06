@@ -1,5 +1,5 @@
-doctype html
-//-
+<!doctype html>
+<% /*
     sync with
     skillKeywordsEnglish.txt
     skillKeywordsGerman.txt
@@ -21,22 +21,22 @@ doctype html
     3.0 unported license. see http://creativecommons.org/licenses/by/3.0/deed.de
 
     endregion
--
-    // region helper functions
-    swapCase = (letters) => {
-        var newLetters = ''
-        for (var index = 0; index < letters.length; index++)
-            if (letters[index] === letters[index].toLowerCase())
-                newLetters += letters[index].toUpperCase()
-            else
-                newLetters += letters[index].toLowerCase()
-        return newLetters
-    }
-    // endregion
-    // region language
-    DEFAULT_LANGUAGE = 'enUS'
-    ALTERNATE_LANGUAGE = 'deDE'
-    // endregion
+*/
+// region helper functions
+const swapCase = (letters) => {
+    let newLetters = ''
+    for (let index = 0; index < letters.length; index++)
+        if (letters[index] === letters[index].toLowerCase())
+            newLetters += letters[index].toUpperCase()
+        else
+            newLetters += letters[index].toLowerCase()
+    return newLetters
+}
+// endregion
+// region language
+DEFAULT_LANGUAGE = 'enUS'
+ALTERNATE_LANGUAGE = 'deDE'
+// endregion
     // region location
     IMAGE_PATH = 'image/'
     DATA_PATH = 'data/'
