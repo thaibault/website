@@ -423,10 +423,13 @@ PROJECTS = [
                     <%_ }
                     if (section.title === 'work') {
                     _%>
-                        h2
-                            | #{section.content[2][DEFAULT_LANGUAGE]}
-                            != `<!--${ALTERNATE_LANGUAGE}:${section.content[2][ALTERNATE_LANGUAGE]}-->`
-                        p
+                        <h2>
+                            <%- section.content[2][DEFAULT_LANGUAGE] %>
+                            <!--<%- ALTERNATE_LANGUAGE %>:
+                                <%- section.content[2][ALTERNATE_LANGUAGE] %>
+                            -->
+                        </h2>
+                        <p>
                             langReplace
                                 each keywords in section.content[3][DEFAULT_LANGUAGE]
                                     if (keywords[0] !== section.content[3][DEFAULT_LANGUAGE][0][0])
@@ -440,12 +443,14 @@ PROJECTS = [
                                     strong #{keywords[0]}
                                 | #{keywords[1].join(', ')}
                             != '-->'
-                        h2
+                        </p>
+                        <h2>
                             | #{section.content[4][DEFAULT_LANGUAGE]}
                             != `<!--${ALTERNATE_LANGUAGE}:`
                             | #{section.content[4][ALTERNATE_LANGUAGE]}
                             != '-->'
-                        dl.dl-horizontal
+                        </h2>
+                        <dl class="dl-horizontal">
                             each project in PROJECTS
                                 dt: a(href=project.url, target='_blank').
                                     #{project.title}
@@ -474,57 +479,73 @@ PROJECTS = [
                                                         | #{project.content[ALTERNATE_LANGUAGE][1][index]}
                                                         != '-->'
                                                 - index += 1
+                        </dl>
                     } else {
-                        p.lead
-                            | #{section.content[2][DEFAULT_LANGUAGE]}
-                            != `<!--${ALTERNATE_LANGUAGE}:`
-                            | #{section.content[2][ALTERNATE_LANGUAGE]}
-                            != '-->'
-                            if (section.title === 'about')
-                                a.visible-xs(
-                                    href=LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE_PATH
-                                    target='_blank'
-                                )
-                                    | Curriculum Vitae (German)
-                                    != `<!--${ALTERNATE_LANGUAGE}:`
-                                    | Lebenslauf (Deutsch)
-                                    != '-->'
+                        <p class="lead">
+                            <%- section.content[2][DEFAULT_LANGUAGE] %>
+                            <!--<%- ALTERNATE_LANGUAGE %>:
+                                <%- section.content[2][ALTERNATE_LANGUAGE] %>
+                            -->
+                            <%_ if (section.title === 'about') { _%>
+                                <a
+                                    class="visible-xs"
+                                    href="<%- LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE_PATH %>"
+                                    target="_blank"
+                                >
+                                    Curriculum Vitae (German)
+                                    <!--<%- ALTERNATE_LANGUAGE %>:
+                                        Lebenslauf (Deutsch)
+                                    -->
+                                </a>
                                 a.visible-xs(
                                     href=LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE_PATH
                                     target='_blank'
                                 )
-                                    | Curriculum Vitae (English)
-                                    != `<!--${ALTERNATE_LANGUAGE}:`
-                                    | Lebenslauf (Englisch)
-                                    != '-->'
-                                a.hidden-xs(
-                                    href=LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE_PATH
-                                    target='_blank'
-                                )
-                                    | Curriculum Vitae
-                                    != `<!--${ALTERNATE_LANGUAGE}:`
-                                    | Lebenslauf
-                                    != '-->'
-                                a(href=LINK_V_CARD_PATH, target='_blank') vCard
-                    if (section.title === 'contact')
-                        a(href='tel:004917610248185')
-                            | Phone
-                            != `<!--${ALTERNATE_LANGUAGE}:Tel.-->`
-                            | +49 (0) 176
-                            = ' '
-                            span /
-                            = ' '
-                            | 10 248 185
-                        each link in SOCIAL_MEDIA
+                                    Curriculum Vitae (English)
+                                    <!--<%- ALTERNATE_LANGUAGE %>:
+                                        Lebenslauf (Englisch)
+                                    -->
+                                </a>
+                                <a
+                                    class="hidden-xs"
+                                    href="<%- LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE_PATH %>"
+                                    target="_blank"
+                                >
+                                    Curriculum Vitae
+                                    <!--<%- ALTERNATE_LANGUAGE %>:
+                                        Lebenslauf
+                                    -->
+                                </a>
+                                <a
+                                    href="<%- LINK_V_CARD_PATH %>"
+                                    target="_blank"
+                                >vCard</a>
+                            <%_ } _%>
+                        </p>
+                    <%_ }
+                    if (section.title === 'contact') {
+                    _%>
+                        <a href="tel:004917610248185">
+                            Phone<!--<%- ALTERNATE_LANGUAGE %>:Tel.-->
+                            +49 (0) 176 <span>/</span> 10 248 185
+                        </a>
+                        <%_ for (const link of SOCIAL_MEDIA) {
                             if (link.url.indexOf('@') !== -1)
-                                - link.url = `mailto:${link.url}`
-                            if ('website' === link.title)
-                                a.glyphicon.glyphicon-globe(
-                                    href=link.url target='_blank')
-                            else
-                                a.glyphicon-social(
-                                    href=link.url target='_blank'
-                                    class=`glyphicon-social-${link.title}`)
+                                link.url = `mailto:${link.url}`
+                            if ('website' === link.title) {
+                            %>
+                                <a
+                                    class="glyphicon.glyphicon-globe"
+                                    href="<%- link.url %>" target="_blank"
+                                ></a>
+                            <%_ } else { _%>
+                                <a
+                                    class="glyphicon-social glyphicon-social-<%- link.title %>"
+                                    href="<%- link.url %>" target="_blank"
+                                ></a>
+                            <%_ } _%>
+                        <%_ } _%>
+                    <%_ } _%>
                 </div></div>
             <%_ } _%>
         </div></section>
