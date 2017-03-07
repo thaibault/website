@@ -313,83 +313,116 @@ PROJECTS = [
 ]
 // endregion
 <html class="no-javascript" lang="en">
-    // region head
-    head
-        // region meta informations
-        meta(charset='utf-8')
-        meta(
-            name='description'
-            content='development responsive python javascript coffeescript bash design')
-        meta(name='author' content='Torben Sickert')
-        meta(name='viewport' content='width=device-width, initial-scale=1.0')
-        meta(
-            name='google-site-verification'
-            content='1_qh0NqpYkHYZeDLXPujeE6dzcpozXmOLItTv7hbbXU')
-        base(href='/')
-        // endregion
-        title Torben Sickert development
-        // region pre load resources
-        script(type="text/javascript").
+    <!--region head-->
+    <head>
+        <meta charset="utf-8">
+        <meta
+            name="description"
+            content="bash design development responsive javascript"
+        >
+        <meta name="author" content="Torben Sickert">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta
+            name="google-site-verification"
+            content="1_qh0NqpYkHYZeDLXPujeE6dzcpozXmOLItTv7hbbXU"
+        >
+        <base href="/">
+        <title>Torben Sickert development</title>
+        <script>
             window.document.documentElement.className =
                 window.document.documentElement.className.replace(
                     /(^|\s)no-javascript(\s|$)/, '$1javascript$2');
-        // endregion
-    // endregion
+        </script>
+    </head>
+    <!--endregion-->
     // region body
-    body.no-javascript.home-page.tools-hidden-on-javascript-enabled
-        script(type="text/javascript").
+    <body class="no-javascript home-page tools-hidden-on-javascript-enabled">
+        <script>
             window.document.body.className =
                 window.document.body.className.replace(
                     /(^|\s)no-javascript(\s|$)/, '$1javascript$2');
-        .website-window-loading-cover.tools-visible-on-javascript-enabled: div
-        // region menu
-        header.navbar-wrapper(
-            class=`website-start-up-animation-number-${START_UP_ANIMATION_NUMBER}`
-        )
-            .container: .navbar.navbar-inverse.navbar-static-top: .container
-                .navbar-header
-                    a.navbar-brand(href='#')
-                        | thaibault
-                        = ' '
-                        span.dimension-indicator
-                    - START_UP_ANIMATION_NUMBER += 1
-                    a.tools-visible-on-javascript-enabled(
-                        href=`#language-${ALTERNATE_LANGUAGE}`
-                        class=`website-start-up-animation-number-${START_UP_ANIMATION_NUMBER}`
-                    ) #{ALTERNATE_LANGUAGE.substring(0, ALTERNATE_LANGUAGE.length - 2)}
-                    button.navbar-toggle.tools-visible-on-javascript-enabled(
-                        type='button' data-toggle='collapse'
-                        data-target='.navbar-collapse'
-                    )
-                        each section in [1, 2, 3]
-                            span.icon-bar
-                .navbar-collapse.collapse
-                    .navbar-highlighter.tools-visible-on-javascript-enabled
-                    ul.nav.navbar-nav
-                        each section in SECTIONS
-                            if (section.content[0])
-                                - START_UP_ANIMATION_NUMBER += 1
-                                li(
-                                    class=`website-start-up-animation-number-${START_UP_ANIMATION_NUMBER}${(section.title === SECTIONS[0].title ? ' active' : '')}`
-                                )
-                                    a(href=`#${section.title}`)
-                                        | #{section.content[0][DEFAULT_LANGUAGE]}
-                                        != `<!--${ALTERNATE_LANGUAGE}:${section.content[0][ALTERNATE_LANGUAGE]}-->`
-        // endregion
-        // region carousel
-        section.carousel.slide: .carousel-inner
-            each section in SECTIONS
-                .item(class=section.title): div(
-                    class=`carousel-image-${section.title}`
-                ): .container
-                    if (section.content[1][DEFAULT_LANGUAGE])
-                        h1(id=section.title)
-                            | #{section.content[1][DEFAULT_LANGUAGE]}
-                            != `<!--${ALTERNATE_LANGUAGE}:${section.content[1][ALTERNATE_LANGUAGE]}-->`
-                    else
-                        // Serves as anchor point if javaScript isn't supported.
-                        h1(id=section.title)
-                    if (section.title === 'work')
+        </script>
+        <div
+            class"website-window-loading-cover tools-visible-on-javascript-enabled"
+        ><div></div></div>
+        <!--region menu-->
+        <header
+            class="navbar-wrapper website-start-up-animation-number-<%- START_UP_ANIMATION_NUMBER %>"
+        >
+            <div class="container">
+                <div class="navbar navbar-inverse navbar-static-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="#">
+                                thaibault
+                                <span class="dimension-indicator"></span>
+                            </a>
+                            <%_ START_UP_ANIMATION_NUMBER += 1 _%>
+                            <a
+                                class="tools-visible-on-javascript-enabled website-start-up-animation-number-<%- START_UP_ANIMATION_NUMBER %>"
+                                href="#language-<%- ALTERNATE_LANGUAGE %>"
+                            >
+                                <%- ALTERNATE_LANGUAGE.substring(0, ALTERNATE_LANGUAGE.length - 2) %>
+                            </a>
+                            <button
+                                class="navbar-toggle tools-visible-on-javascript-enabled"
+                                data-target=".navbar-collapse"
+                                type="button" data-toggle="collapse"
+                            >
+                                <%_ for (const section of [1, 2, 3]) { _%>
+                                    <span class="icon-bar"></span>
+                                <%_ } _%>
+                            </button>
+                        </div>
+                        <div class="navbar-collapse.collapse">
+                            <div
+                                class="navbar-highlighter tools-visible-on-javascript-enabled"
+                            >
+                            <ul class="nav navbar-nav">
+                                <%_ for (const section of SECTIONS)
+                                    if (section.content[0])
+                                        START_UP_ANIMATION_NUMBER += 1
+                                        %>
+                                        <li
+                                            class="website-start-up-animation-number-<%- START_UP_ANIMATION_NUMBER %><%- section.title === SECTIONS[0].title ? ' active' : '' %>"
+                                        >
+                                            <a href="#<%- section.title %>">
+                                                <%- section.content[0][DEFAULT_LANGUAGE] %>
+                                                <!--<%- ALTERNATE_LANGUAGE %>:
+                                                    <%- section.content[0][ALTERNATE_LANGUAGE] %>
+                                                -->
+                                            </a>
+                                        </li>
+                                <%_ } _%>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!--endregion-->
+        <!--region carousel-->
+        <section class="carousel.slide"><div class="carousel-inner">
+            <%_ for (const section of SECTIONS) { _%>
+                <div class="item <%- section.title %>">
+                    <div class="carousel-image-<%- section.title %>"
+                ><div class="container">
+                    <%_ if (section.content[1][DEFAULT_LANGUAGE]) { _%>
+                        <h1 id="<%- section.title %>">
+                            <%- section.content[1][DEFAULT_LANGUAGE] %>
+                            <!--<%- ALTERNATE_LANGUAGE %>:
+                                <%- section.content[1][ALTERNATE_LANGUAGE] %>
+                            -->
+                        </h1>
+                    <%_ } else { _%>
+                        <!--
+                            Serves as anchor point if javaScript isn't
+                            supported.
+                        -->
+                        <h1 id="<%- section.title %>"></h1>
+                    <%_ }
+                    if (section.title === 'work') {
+                    _%>
                         h2
                             | #{section.content[2][DEFAULT_LANGUAGE]}
                             != `<!--${ALTERNATE_LANGUAGE}:${section.content[2][ALTERNATE_LANGUAGE]}-->`
@@ -441,7 +474,7 @@ PROJECTS = [
                                                         | #{project.content[ALTERNATE_LANGUAGE][1][index]}
                                                         != '-->'
                                                 - index += 1
-                    else
+                    } else {
                         p.lead
                             | #{section.content[2][DEFAULT_LANGUAGE]}
                             != `<!--${ALTERNATE_LANGUAGE}:`
@@ -492,75 +525,89 @@ PROJECTS = [
                                 a.glyphicon-social(
                                     href=link.url target='_blank'
                                     class=`glyphicon-social-${link.title}`)
-        // endregion
-        // region about this website
-        section.about-this-website: .carousel-image-about-this-website: .container
-            h1(id='about-this-website')
-                | About this website
-                != `<!--${ALTERNATE_LANGUAGE}:Impressum-->`
-            h2
-                | Contact
-                != `<!--${ALTERNATE_LANGUAGE}:Kontakt-->`
-            div
-                | Provider of
-                != `<!--${ALTERNATE_LANGUAGE}:Anbieter von-->`
-                =' '
-                a(href=SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url).
-                    #{SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url}
-                | :
-                br
-                | Torben Sickert
-                br
-                | Christoph-Mang-Str. 14
-                br
-                | 79100 Freiburg
-                br
-                a(href='tel:004917610248185')
-                    | Phone
-                    != `<!--${ALTERNATE_LANGUAGE}:Tel.-->`
-                    | : +49 (0) 176
-                    span /
-                    | 10 248 185
-                    br
-                | Email:
-                != `<!--${ALTERNATE_LANGUAGE}:E-Mail-->`
-                =' '
-                a(href='mailto:#') #{SOCIAL_MEDIA[0].url}
-                br
-                | Website
-                != `<!--${ALTERNATE_LANGUAGE}:Webseite-->`
-                =' '
-                | :
-                a(href=SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url).
-                    #{SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url}
-                br
-                br
-                a(href=LINK_PUBLIC_SSH_KEY_PATH target='_blank')
-                    | public ssh key
-                    != `<!--${ALTERNATE_LANGUAGE}:öffentlicher SSH-Schlüssel-->`
-            != require('legal-notes').replace(/\n/g, '\n            ')
-        // endregion
-        // region footer
-        //
+                </div></div>
+            <%_ } _%>
+        </div></section>
+        <!--endregion-->
+        <!--region about this website-->
+        <section class="about-this-website">
+            <div class="carousel-image-about-this-website">
+                <div class="container">
+                    <h1 id="about-this-website">
+                        About this website
+                        <!--<%- ALTERNATE_LANGUAGE %>:Impressum-->
+                    </h1>
+                    <h2>
+                        Contact
+                        <!--<%- ALTERNATE_LANGUAGE %>:Kontakt-->
+                    </h2>
+                    <div>
+                        Provider of
+                        <!--<%- ALTERNATE_LANGUAGE %>:Anbieter von-->
+                        <a
+                            class="<%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url %>"
+                            href="<%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url %>"
+                        >:
+                        <br>
+                        Torben Sickert
+                        <br>
+                        Christoph-Mang-Str. 14
+                        <br>
+                        79100 Freiburg
+                        <br>
+                        <a href="tel:004917610248185">
+                            Phone<!--<%- ALTERNATE_LANGUAGE %>:Tel.-->:
+                            +49 (0) 176<span>/</span>10 248 185
+                            <br>
+                        </a>
+                        Email:<!--<%- ALTERNATE_LANGUAGE %>:E-Mail-->
+                        <a href="mailto:#"><%- SOCIAL_MEDIA[0].url %></a>
+                        <br>
+                        Website<!--<%- ALTERNATE_LANGUAGE %>:Webseite-->:
+                        <a
+                            class="<%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url %>"
+                            href="<%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url %>"
+                        </a>
+                        <br>
+                        <br>
+                        <a
+                            href="<%- LINK_PUBLIC_SSH_KEY_PATH %>"
+                            target="_blank"
+                        >
+                            public ssh key
+                            <!--<%- ALTERNATE_LANGUAGE %>:
+                                öffentlicher SSH-Schlüssel
+                            -->
+                    </div>
+                    <%- include('legal-notes') %>
+                </div>
+            </div>
+        </section>
+        <!--
+            endregion
+            region footer
             Wrap the footer of the page in another container to center the
             content.
-        - START_UP_ANIMATION_NUMBER += 1
-        .footer(
-            class=`website-start-up-animation-number-${START_UP_ANIMATION_NUMBER}`
-        )
-            footer: p
-                | &copy; 2013 Torben Sickert &middot;
-                = ' '
-                a(href='#about-this-website')
-                    | about this website
-                    != `<!--${ALTERNATE_LANGUAGE}:Impressum-->`
-        // endregion
-        a(href='#top')
-            | top
-            //deDE:nach oben
-    if configuration.offline
-        noscript: iframe(src='manifest.html' style='display: none')
-    // endregion
+        -->
+        <%_ START_UP_ANIMATION_NUMBER += 1 _%>
+        <div
+            class="footer website-start-up-animation-number-<%- START_UP_ANIMATION_NUMBER %>"
+        >
+            <footer><p>
+                &copy; 2013 Torben Sickert &middot;
+                <a href="#about-this-website">
+                    about this website
+                    <!--<%- ALTERNATE_LANGUAGE %>:Impressum-->
+            </p></footer>
+        </div>
+        <!--endregion-->
+        <a href="#top">top<!--deDE:nach oben--></a>
+    <%_ if (configuration.offline) { _%>
+        <noscript>
+            <iframe src="manifest.html" style="display: none"></iframe>
+        </noscript>
+    <%_ } _%>
+    <!--endregion-->
 </html>
 <% /*
     region vim modline
