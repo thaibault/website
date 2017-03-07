@@ -430,20 +430,26 @@ PROJECTS = [
                             -->
                         </h2>
                         <p>
-                            langReplace
-                                each keywords in section.content[3][DEFAULT_LANGUAGE]
-                                    if (keywords[0] !== section.content[3][DEFAULT_LANGUAGE][0][0])
-                                        = ' '
-                                        strong #{keywords[0]}
-                                        = ' '
-                                    | #{keywords[1].join(', ')}
-                            != `<!--${ALTERNATE_LANGUAGE}:`
-                            each keywords in section.content[3][ALTERNATE_LANGUAGE]
-                                if (keywords[0] !== section.content[3][ALTERNATE_LANGUAGE][0][0])
-                                    strong #{keywords[0]}
-                                | #{keywords[1].join(', ')}
-                            != '-->'
+                            <langReplace>
+                                <%_ for (const keywords of section.content[3][DEFAULT_LANGUAGE]) {
+                                    if (keywords[0] !== section.content[3][DEFAULT_LANGUAGE][0][0]) {
+                                        _%>
+                                        <strong><%- keywords[0] %></strong>
+                                    <%_ } _%>
+                                    <%- keywords[1].join(', ') %>
+                                <%_ } _%>
+                            </langReplace>
+                            <!--<%- ALTERNATE_LANGUAGE %>:
+                                <%_ for (const keywords of section.content[3][ALTERNATE_LANGUAGE]) {
+                                    if (keywords[0] !== section.content[3][ALTERNATE_LANGUAGE][0][0]) {
+                                        _%>
+                                        <strong><%- keywords[0] %></strong>
+                                    <%_ } _%>
+                                    <%- keywords[1].join(', ') %>
+                                <%_ } _%>
+                            -->
                         </p>
+                        !!! TODO STAND !!!
                         <h2>
                             | #{section.content[4][DEFAULT_LANGUAGE]}
                             != `<!--${ALTERNATE_LANGUAGE}:`
