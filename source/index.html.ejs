@@ -449,44 +449,64 @@ PROJECTS = [
                                 <%_ } _%>
                             -->
                         </p>
-                        !!! TODO STAND !!!
                         <h2>
-                            | #{section.content[4][DEFAULT_LANGUAGE]}
-                            != `<!--${ALTERNATE_LANGUAGE}:`
-                            | #{section.content[4][ALTERNATE_LANGUAGE]}
-                            != '-->'
+                            <%- section.content[4][DEFAULT_LANGUAGE] %>
+                            <!--<%- ALTERNATE_LANGUAGE %>:
+                                <%- section.content[4][ALTERNATE_LANGUAGE] %>
+                            -->
                         </h2>
                         <dl class="dl-horizontal">
-                            each project in PROJECTS
-                                dt: a(href=project.url, target='_blank').
-                                    #{project.title}
-                                dd
-                                    | #{project.content[DEFAULT_LANGUAGE][0]}
-                                    != `<!--${ALTERNATE_LANGUAGE}:`
-                                    | #{project.content[ALTERNATE_LANGUAGE][0]}
-                                    != '-->'
-                                    if (project.content[DEFAULT_LANGUAGE].length > 1)
-                                        ul
-                                            - index = 0
-                                            each element in project.content[DEFAULT_LANGUAGE][1]
-                                                li
-                                                    if (Array.isArray(element))
-                                                        langreplace: a(
-                                                            href=element[1]
-                                                        ) #{element[0]}
-                                                        langreplacement
-                                                            | #{ALTERNATE_LANGUAGE}:
-                                                            a(
-                                                                href=project.content[ALTERNATE_LANGUAGE][1][index][1]
-                                                            ) #{project.content[ALTERNATE_LANGUAGE][1][index][0]}
-                                                    else
-                                                        | #{element}
-                                                        != `<!--${ALTERNATE_LANGUAGE}:`
-                                                        | #{project.content[ALTERNATE_LANGUAGE][1][index]}
-                                                        != '-->'
-                                                - index += 1
+                            <%_ for (const project of PROJECTS) { _%>
+                                <dt>
+                                    <a
+                                        href="<%- project.url %>"
+                                        target="_blank"
+                                    ><%- project.title %></a>
+                                </dt>
+                                <dd>
+                                    <%- project.content[DEFAULT_LANGUAGE][0] %>
+                                    <!--<%- ALTERNATE_LANGUAGE %>:
+                                        <%- project.content[ALTERNATE_LANGUAGE][0] %>
+                                    -->
+                                    <%_ if (project.content[DEFAULT_LANGUAGE].length > 1) {_%>
+                                        <ul>
+                                            <%_
+                                            let index = 0
+                                            for (const element of project.content[DEFAULT_LANGUAGE][1]) {
+                                            _%>
+                                                <li>
+                                                    <%_ if (Array.isArray(element)) { _%>
+                                                        <langreplace>
+                                                            <a
+                                                                href="<%- element[1] %>"
+                                                            >
+                                                                <%- element[0] %>
+                                                            </a>
+                                                        </langrelace>
+                                                        <langreplacement>
+                                                            <%- ALTERNATE_LANGUAGE %>:
+                                                            <a
+                                                                href="<%- project.content[ALTERNATE_LANGUAGE][1][index][1] %>"
+                                                            >
+                                                                <%- project.content[ALTERNATE_LANGUAGE][1][index][0] %>
+                                                            </a>
+                                                        </langreplacement>
+                                                    <%_ } else { _%>
+                                                        <%- element %>
+                                                        <!--<%- ALTERNATE_LANGUAGE %>:
+                                                            <%- project.content[ALTERNATE_LANGUAGE][1][index] %>
+                                                        -->
+                                                    <%_ }
+                                                index += 1
+                                                _%>
+                                                </li>
+                                            <%_ } _%>
+                                        </ul>
+                                    <%_ } _%>
+                                </dd>
+                            <%_ } _%>
                         </dl>
-                    } else {
+                    <%_ } else { _%>
                         <p class="lead">
                             <%- section.content[2][DEFAULT_LANGUAGE] %>
                             <!--<%- ALTERNATE_LANGUAGE %>:
