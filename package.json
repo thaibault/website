@@ -20,7 +20,7 @@
     "buildWithStats": "webOptimizer build --profile --json >/tmp/stat.json && echo 'Results successfully written to \"/tmp/stat.json\".'",
     "clear": "webOptimizer clear",
     "document": "webOptimizer document",
-    "lint": "webOptimizer typeCheck && webOptimizer lint",
+    "lint": "webOptimizer typeCheck; webOptimizer lint",
     "prepublish": "npm run build",
     "serve": "webOptimizer serve",
     "start": "webOptimizer serve",
