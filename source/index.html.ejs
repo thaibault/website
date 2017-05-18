@@ -608,7 +608,9 @@ PROJECTS = [
                         </a>
                         <br>
                         Email:<!--<%- ALTERNATE_LANGUAGE %>:E-Mail-->
-                        <a href="mailto:#"><%- SOCIAL_MEDIA[0].url %></a>
+                        <a href="mailto:<%- SOCIAL_MEDIA[0].url %>">
+                            <%- SOCIAL_MEDIA[0].url %>
+                        </a>
                         <br>
                         Website<!--<%- ALTERNATE_LANGUAGE %>:Webseite-->:
                         <a
