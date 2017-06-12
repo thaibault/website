@@ -227,6 +227,7 @@ export default class HomePage extends $.Website.class {
             },
             onEnsured: function(...parameter:Array<any>):boolean {
                 const result:any = !initialOnEnsuredCallback || (
+                    // IgnoreTypeCheck
                     initialOnEnsuredCallback.call(...parameter))
                 /*
                     Only adapt menu highlighter if a section is currently
@@ -405,6 +406,7 @@ export default class HomePage extends $.Website.class {
             this._adaptContentHeight()
         } else {
             let sectionFound:boolean = false
+            // IgnoreTypeCheck
             this.$domNodes.navigationButton.each((
                 index:number, button:DomNode
             ):void => {
@@ -610,6 +612,7 @@ export default class HomePage extends $.Website.class {
                         }, {
                             duration: this._options.carousel.speed
                         })
+                        // IgnoreTypeCheck
                         this.$domNodes.carousel.height(newSectionHeightInPixel)
                     } else
                         this._adaptSectionHeight(
@@ -758,6 +761,7 @@ export default class HomePage extends $.Website.class {
             return !$(this).html().trim()
         }).remove()
         this._options.carousel.transitionEnd = (index:number):boolean => {
+            // IgnoreTypeCheck
             this.$domNodes.navigationButton.each((
                 subIndex:number, button:DomNode
             ):?boolean => {
@@ -802,10 +806,12 @@ export default class HomePage extends $.Website.class {
             this.$domNodes.navigationWrapper.removeClass('collapse')
             this.$domNodes.navigationWrapper.addClass('collapsing')
             if (slideOut) {
+                // IgnoreTypeCheck
                 this.$domNodes.navigationWrapper.height(0)
                 this.$domNodes.navigationWrapper.removeClass('in')
             } else
                 this.$domNodes.navigationWrapper.height(
+                    // IgnoreTypeCheck
                     this.$domNodes.navigationWrapper.find(
                         'ul'
                     ).outerHeight(true))
@@ -831,6 +837,7 @@ export default class HomePage extends $.Website.class {
      */
     _determineRelativeSections(sectionName:string):string {
         if ('location' in $.global)
+            // IgnoreTypeCheck
             this.$domNodes.navigationButton.each((
                 index:number, button:DomNode
             ):?boolean => {
