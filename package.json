@@ -16,20 +16,20 @@
   },
   "scripts": {
     "build": "webOptimizer build",
-    "buildDLL": "webOptimizer buildDLL",
-    "buildWithStats": "webOptimizer build --profile --json >/tmp/stat.json && echo 'Results successfully written to \"/tmp/stat.json\".'",
+    "build:dll": "webOptimizer build:dll",
+    "build:stats": "webOptimizer build --profile --json >/tmp/stat.json && echo 'Results successfully written to \"/tmp/stat.json\".'",
     "clear": "webOptimizer clear",
     "document": "webOptimizer document",
-    "lint": "webOptimizer typeCheck; webOptimizer lint",
+    "lint": "webOptimizer check:type; webOptimizer lint",
     "prepublish": "npm run build",
     "serve": "webOptimizer serve",
     "start": "webOptimizer serve",
     "test": "webOptimizer test",
-    "testInBrowser": "webOptimizer testInBrowser",
+    "test:browser": "webOptimizer test:browser",
     "update": "npm version patch && npm publish",
-    "updateWebsite": "websiteUtilities",
+    "update:website": "websiteUtilities",
     "watch": "webOptimizer build --watch",
-    "watchDLL": "webOptimizer buildDLL --watch"
+    "watch:dll": "webOptimizer build:dll --watch"
   },
   "dependencies": {
     "Swipe": "https://github.com/thebird/Swipe",
