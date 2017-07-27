@@ -88,7 +88,7 @@ export default class HomePage extends $.Website.class {
     _initialMenuHightlightDone:boolean
     _loadingCoverRemoved:boolean
     _oldSectionHeightInPixel:number
-    _sectionTopMarginInPixel:number;
+    _sectionTopMarginInPixel:number
     // region public methods
     // / region special
     /**
