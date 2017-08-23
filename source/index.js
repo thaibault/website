@@ -307,8 +307,9 @@ export default class HomePage extends $.Website.class {
             this.fireEvent(
                 'switchSection', false, this, $.global.location.hash.substring(
                     '#'.length))
-        this.on(this.$domNodes.window, 'resize', this.getMethod(
-            this._adaptContentHeight))
+        this.on(
+            this.$domNodes.window, 'resize',
+            this._adaptContentHeight.bind(this))
         return this
     }
     // / endregion
