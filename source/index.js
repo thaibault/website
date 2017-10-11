@@ -31,9 +31,19 @@ declare var OFFLINE:boolean
 // region plugins/classes
 /**
  * This plugin holds all needed methods to extend a whole homepage.
- * @extends website-utilities:Website
  * @property static:_name - Defines this class name to allow retrieving them
  * after name mangling.
+ *
+ * @property _initialContentHeightAdaptionDone - Indicates whether initial main
+ * content height has been adapted.
+ * @property _initialMenuHightlightDone - Indicates whether initial menu
+ * highlighting has been done.
+ * @property _loadingCoverRemoved - Indicates whether startup loading cover has
+ * been removed.
+ * @property _oldSectionHeightInPixel - Old section height needed for section
+ * switch animations.
+ * @property _sectionTopMarginInPixel - Distance to window top from the section
+ * body.
  * @property _options - Options extended by the options given to the
  * initializer method.
  * @property _options.trackingCode {string} - Tracking code for collection
@@ -70,29 +80,15 @@ declare var OFFLINE:boolean
  * options.
  * @property _options.aboutThisWebsiteSection.hideAnimation {Object} - Hide
  * options.
- * @property _oldSectionHeightInPixel - Old section height needed for section
- * switch animations.
- * @property _sectionTopMarginInPixel - Distance to window top from the section
- * body.
- * @property _initialContentHeightAdaptionDone - Indicates whether initial main
- * content height has been adapted.
- * @property _initialMenuHightlightDone - Indicates whether initial menu
- * highlighting has been done.
- * @property _loadingCoverRemoved - Indicates whether startup loading cover has
- * been removed.
  */
 export default class HomePage extends $.Website.class {
-    // region static properties
     static _name:string = 'HomePage'
-    // endregion
-    // region dynamic properties
-    $domNodes:{[key:string]:$DomNode}
-    _oldSectionHeightInPixel:number
-    _sectionTopMarginInPixel:number
+
     _initialContentHeightAdaptionDone:boolean
     _initialMenuHightlightDone:boolean
-    _loadingCoverRemoved:boolean;
-    // endregion
+    _loadingCoverRemoved:boolean
+    _oldSectionHeightInPixel:number
+    _sectionTopMarginInPixel:number
     // region public methods
     // / region special
     /**
@@ -227,6 +223,7 @@ export default class HomePage extends $.Website.class {
             },
             onEnsured: function(...parameter:Array<any>):boolean {
                 const result:any = !initialOnEnsuredCallback || (
+                    // IgnoreTypeCheck
                     initialOnEnsuredCallback.call(...parameter))
                 /*
                     Only adapt menu highlighter if a section is currently
@@ -310,8 +307,9 @@ export default class HomePage extends $.Website.class {
             this.fireEvent(
                 'switchSection', false, this, $.global.location.hash.substring(
                     '#'.length))
-        this.on(this.$domNodes.window, 'resize', this.getMethod(
-            this._adaptContentHeight))
+        this.on(
+            this.$domNodes.window, 'resize',
+            this._adaptContentHeight.bind(this))
         return this
     }
     // / endregion
@@ -416,15 +414,14 @@ export default class HomePage extends $.Website.class {
                     NOTE: We need both brackets to follow the right logical
                     execution order.
                 */
-                if ($button.attr('href') === hash || (
-                    hash === '#' && ((
-                        this._currentMediaQueryMode === 'extraSmall' &&
-                        $button.attr('href') === '#contact'
-                    ) || (
-                        this._currentMediaQueryMode !== 'extraSmall' &&
-                        index === 0
-                    ))
-                )) {
+                if (
+                    $button.attr('href') === hash || (
+                        hash === '#' && (
+                            this._currentMediaQueryMode === 'extraSmall' &&
+                            $button.attr('href') === '#contact' ||
+                            this._currentMediaQueryMode !== 'extraSmall' &&
+                            index === 0))
+                ) {
                     if ('location' in $.global)
                         $.global.location.hash = $button.attr('href')
                     sectionFound = true
