@@ -24,8 +24,7 @@
     "prepare": "npm run build",
     "serve": "webOptimizer serve",
     "start": "webOptimizer serve",
-    "test": "webOptimizer test",
-    "test:browser": "webOptimizer test:browser",
+    "test": "npm run build",
     "update": "npm version patch && npm publish",
     "update:website": "websiteUtilities",
     "watch": "webOptimizer build --watch",
@@ -90,7 +89,7 @@
           "^jQuery-scrollTo$": "jquery.scrollto/jquery.scrollTo.js",
           "^jQuery-spin$": "spin.js/jquery.spin.js",
           "^spin\\.js$": "spin.js/spin.min.js",
-          "^swipe$": "Swipe/swipe.js"
+          "swipe$": "Swipe/swipe.js"
         }
       },
       "skipParseRegularExpressions": {
