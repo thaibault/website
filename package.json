@@ -71,6 +71,7 @@
         "bootstrap$": "bootstrap/dist/css/bootstrap.min.css"
       },
       "optimizer": {
+        "babelMinify": null,
         "htmlMinifier": {
           "ignoreCustomComments": [
             {
@@ -80,6 +81,15 @@
               "__evaluate__": "/^[a-z]{2}[A-Z]{2}$/"
             }
           ]
+        }
+      },
+      "preprocessor": {
+        "javaScript": {
+          "options": {
+            "presets": {
+              "__evaluate__": "(self.targetTechnology === 'node' ? ['es2017-node7'] : [['modern-browsers', {loose: true}], 'es2017']).concat('stage-0')"
+            }
+          }
         }
       },
       "replacements": {
