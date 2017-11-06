@@ -1,5 +1,6 @@
 <!doctype html>
-<% /*
+<%_
+/*
     sync with
     skillKeywordsEnglish.txt
     skillKeywordsGerman.txt
@@ -48,7 +49,7 @@ const LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE_PATH =
     `${DATA_PATH}curriculumVitae${swapCase(ALTERNATE_LANGUAGE)}.pdf`
 // endregion
 // region runtime
-const START_UP_ANIMATION_NUMBER = 1
+let START_UP_ANIMATION_NUMBER = 1
 // endregion
 // region content
 const SOCIAL_MEDIA = [
@@ -310,6 +311,7 @@ PROJECTS = [
     }
 ]
 // endregion
+_%>
 <html class="no-javascript" lang="en">
     <!--region head-->
     <head>
@@ -333,7 +335,7 @@ PROJECTS = [
         </script>
     </head>
     <!--endregion-->
-    // region body
+    <!--region body-->
     <body class="no-javascript home-page tools-hidden-on-javascript-enabled">
         <script>
             window.document.body.className =
@@ -341,7 +343,7 @@ PROJECTS = [
                     /(^|\s)no-javascript(\s|$)/, '$1javascript$2');
         </script>
         <div
-            class"website-window-loading-cover tools-visible-on-javascript-enabled"
+            class="website-window-loading-cover tools-visible-on-javascript-enabled"
         ><div></div></div>
         <!--region menu-->
         <header
@@ -365,7 +367,8 @@ PROJECTS = [
                             <button
                                 class="navbar-toggle tools-visible-on-javascript-enabled"
                                 data-target=".navbar-collapse"
-                                type="button" data-toggle="collapse"
+                                data-toggle="collapse"
+                                type="button"
                             >
                                 <%_ for (const section of [1, 2, 3]) { _%>
                                     <span class="icon-bar"></span>
@@ -375,12 +378,12 @@ PROJECTS = [
                         <div class="navbar-collapse.collapse">
                             <div
                                 class="navbar-highlighter tools-visible-on-javascript-enabled"
-                            >
+                            ></div>
                             <ul class="nav navbar-nav">
                                 <%_ for (const section of SECTIONS)
-                                    if (section.content[0])
+                                    if (section.content[0]) {
                                         START_UP_ANIMATION_NUMBER += 1
-                                        %>
+                                _%>
                                         <li
                                             class="website-start-up-animation-number-<%- START_UP_ANIMATION_NUMBER %><%- section.title === SECTIONS[0].title ? ' active' : '' %>"
                                         >
@@ -553,22 +556,23 @@ PROJECTS = [
                             Phone<!--<%- ALTERNATE_LANGUAGE %>:Tel.-->
                             +49 (0) 176 <span>/</span> 10 248 185
                         </a>
-                        <%_ for (const link of SOCIAL_MEDIA) {
-                            if (link.url.indexOf('@') !== -1)
-                                link.url = `mailto:${link.url}`
-                            if ('website' === link.title) {
-                            %>
-                                <a
-                                    class="glyphicon.glyphicon-globe"
-                                    href="<%- link.url %>" target="_blank"
-                                ></a>
-                            <%_ } else { _%>
-                                <a
-                                    class="glyphicon-social glyphicon-social-<%- link.title %>"
-                                    href="<%- link.url %>" target="_blank"
-                                ></a>
+                        <%_
+                            for (const link of SOCIAL_MEDIA) {
+                                if (link.url.indexOf('@') !== -1)
+                                    link.url = `mailto:${link.url}`
+                                if ('website' === link.title) {
+                        _%>
+                            <a
+                                class="glyphicon.glyphicon-globe"
+                                href="<%- link.url %>" target="_blank"
+                            ></a>
+                                <%_ } else { _%>
+                            <a
+                                class="glyphicon-social glyphicon-social-<%- link.title %>"
+                                href="<%- link.url %>" target="_blank"
+                            ></a>
+                                <%_ } _%>
                             <%_ } _%>
-                        <%_ } _%>
                     <%_ } _%>
                 </div></div>
             <%_ } _%>
@@ -649,16 +653,17 @@ PROJECTS = [
         </div>
         <!--endregion-->
         <a href="#top">top<!--deDE:nach oben--></a>
-    <%_ if (configuration.offline) { _%>
-        <noscript>
-            <iframe src="manifest.html" style="display: none"></iframe>
-        </noscript>
-    <%_ } _%>
+        <%_ if (configuration.offline) { _%>
+            <noscript>
+                <iframe src="manifest.html" style="display: none"></iframe>
+            </noscript>
+        <%_ } _%>
+    </body>
     <!--endregion-->
 </html>
-<% /*
+<%_ /*
     region vim modline
     vim: set tabstop=4 shiftwidth=4 expandtab:
     vim: foldmethod=marker foldmarker=region,endregion:
     endregion
-*/ %>
+*/ _%>
