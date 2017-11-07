@@ -48,7 +48,7 @@
     "source-map-support": "^0.5.0",
     "stylelint": "^8.2.0",
     "ua-parser-js": "^0.7.17",
-    "weboptimizer": "^1.0.397",
+    "weboptimizer": "^1.0.406",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.3",
     "website-utilities": "^1.0.50"
@@ -100,7 +100,7 @@
           "^jQuery-scrollTo$": "jquery.scrollto/jquery.scrollTo.js",
           "^jQuery-spin$": "spin.js/jquery.spin.js",
           "^spin\\.js$": "spin.js/spin.min.js",
-          "swipe$": "Swipe/swipe.js"
+          "(.*)swipe$": "$1Swipe/swipe.js"
         }
       },
       "skipParseRegularExpressions": {
