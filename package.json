@@ -32,11 +32,11 @@
   },
   "devDependencies": {
     "Swipe": "git+https://github.com/thebird/Swipe.git",
-    "babel-eslint": "^8.0.1",
+    "babel-eslint": "^8.0.2",
     "babel-plugin-transform-proto-to-assign": "^6.23.0",
     "babel-polyfill": "^6.23.0",
     "babel-preset-env": "^1.6.1",
-    "clientnode": "^1.0.276",
+    "clientnode": "^1.0.277",
     "errorreporter": "^1.0.31",
     "eslint": "^4.9.0",
     "eslint-config-google": "^0.9.1",
