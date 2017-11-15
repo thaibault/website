@@ -81,7 +81,7 @@ declare var OFFLINE:boolean
  * @property _options.aboutThisWebsiteSection.hideAnimation {Object} - Hide
  * options.
  */
-export default class HomePage extends $.Website.class {
+export class HomePage extends $.Website.class {
     static _name:string = 'HomePage'
 
     _initialContentHeightAdaptionDone:boolean
@@ -433,6 +433,7 @@ export default class HomePage extends $.Website.class {
             })
             // If no section could be determined initialize the first one.
             if (!sectionFound) {
+                console.log('A', this.$domNodes.navigationButton)
                 const forceSection:string =
                     this.$domNodes.navigationButton.first().attr(
                         'href'
@@ -863,6 +864,7 @@ export default class HomePage extends $.Website.class {
     // / endregion
     // endregion
 }
+export default HomePage
 // endregion
 $.HomePage = (...parameter:Array<any>):any => $.Tools().controller(
     HomePage, parameter)
