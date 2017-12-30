@@ -10,10 +10,13 @@ This library written by Torben Sickert stand under a creative commons naming
 3.0 unported license. see http://creativecommons.org/licenses/by/3.0/deed.de
 endregion -->
 
+Project status
+--------------
+
 [![build status](https://travis-ci.org/thaibault/website.svg?branch=master)](https://travis-ci.org/thaibault/website)
 [![dependencies](https://img.shields.io/david/thaibault/website.svg)](https://david-dm.org/thaibault/website)
-[![devDependencies](https://img.shields.io/david/dev/thaibault/website.svg)](https://david-dm.org/thaibault/website?type=dev)
-[![peerDependencies](https://img.shields.io/david/peer/thaibault/website.svg)](https://david-dm.org/thaibault/website?type=peer)
+[![development dependencies](https://img.shields.io/david/dev/thaibault/website.svg)](https://david-dm.org/thaibault/website?type=dev)
+[![peer dependencies](https://img.shields.io/david/peer/thaibault/website.svg)](https://david-dm.org/thaibault/website?type=peer)
 [![website](https://img.shields.io/website-up-down-green-red/http/torben.website.svg?label=website)](http://torben.website)
 
 Use case
