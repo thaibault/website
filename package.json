@@ -36,22 +36,22 @@
     "babel-plugin-transform-proto-to-assign": "^6.23.0",
     "babel-polyfill": "^6.23.0",
     "babel-preset-env": "^1.6.1",
-    "clientnode": "^1.0.315",
+    "clientnode": "^1.0.316",
     "errorreporter": "^1.0.39",
     "eslint": "^4.14.0",
     "eslint-config-google": "^0.9.1",
     "eslint-plugin-flowtype": "^2.40.1",
     "eslint-plugin-jsdoc": "^3.3.0",
-    "flow-bin": "^0.61.0",
+    "flow-bin": "^0.62.0",
     "jsdoc": "^3.5.3",
     "legal-notes": "^1.0.9",
     "source-map-support": "^0.5.0",
     "stylelint": "^8.3.1",
     "ua-parser-js": "^0.7.17",
-    "weboptimizer": "^1.0.458",
+    "weboptimizer": "^1.0.460",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.9.5",
-    "website-utilities": "^1.0.61"
+    "website-utilities": "^1.0.64"
   },
   "webOptimizer": {
     "injection": {
@@ -94,8 +94,6 @@
           "^babel-polyfill$": "babel-polyfill/dist/polyfill.min.js",
           "^jquery$": "jquery/dist/jquery.min.js",
           "^jQuery-scrollTo$": "jquery.scrollto/jquery.scrollTo.js",
-          "^jQuery-spin$": "spin.js/jquery.spin.js",
-          "^spin\\.js$": "spin.js/spin.min.js",
           "(.*)swipe$": "$1Swipe/swipe.js"
         }
       },
