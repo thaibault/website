@@ -1,98 +1,116 @@
 # -*- coding: utf-8 -*-
 
 # Generated documentations
-documentation/build
-apiDocumentation/
+apiDocumentation
 
 # Generated runtime bytecode files.
-***/__pycache__
-***/*.py[cod]
-***/*.ngfactory.ts
+__pycache__
+*.py[cod]
+*.ngfactory.ts
 
 # Runtime data
+backup
+cache/*
+!cache/.gitkeep
+.cache
+certificate
+!certificate/localhost/*
+!certificate/letsEncrypt/configuration/.gitkeep
+!certificate/letsEncrypt/log/.gitkeep
+.config
 database
+log
+!log/.gitkeep
+logs
+!logs/.gitkeep
 log.txt
-***/.local
+.local
+.node-xmlhttprequest-sync*
 .nyc_output
+renderedData
+!renderedData/.gitkeep
 source/image/sprite.png
+.ssh
 
 # Temporary compile files
-***/*.compiled.*
-***/*.compiled
-!/api/**/*
+build
+dist
+target
+*.compiled.*
+*.compiled
 *Bundle.*
 !/data/**/*
-***/.dynamicConfiguration-*.json
-***/*.dll-manifest.json
+.dynamicConfiguration-*.json
+*.dll-manifest.json
 
 # Profiling data.
-***/*.profile
+*.profile
 
 # Packages
-***/.SRCINFO
-***/*.egg
-***/*.egg-info
-dist
-build
+.SRCINFO
+*.egg
+*.egg-info
 eggs
 parts
 bin
 var
 sdist
 develop-eggs
-***/.installed.cfg
+.installed.cfg
 lib
 lib64
-***/.sass-cache
+.sass-cache
 
 # Ignore docker nested bash generated files.
-***/.bash_history
+.bash_history
 
 # Unit test / coverage reports
-***/.coverage
-***/.tox
-***/nosetests.xml
+.coverage
+.tox
+nosetests.xml
 
 # Translations
-***/*.mo
+*.mo
 
 # Mr Developer
-***/.mr.developer.cfg
-***/.project
-***/.pydevproject
+.mr.developer.cfg
+.project
+.pydevproject
 
 # Vim temporary file
-***/*.swp
-***/.ropeproject
-***/.viminfo
+*.swp
+.ropeproject
+.viminfo
 
 # PHPStorm and other IDE Files
-***/*.idea
-***/*.project
-***/*.pydevproject
-***/*.settings
-***/*.externalToolBuilders
+*.idea
+*.project
+*.pydevproject
+*.settings
+*.externalToolBuilders
 
 # Gedit autosave backups.
-***/*~
+*~
 
 # Temporary fuse files
-***/.fuse_hidden*
+.fuse_hidden*
 
 # Temporary windows files
-***/*Thumbs.db
+*Thumbs.db
+
+# Temporary git files
+.git-rewrite
 
 # NPM/yarn's runtime files
-***/yarn-error.log
-***/yarn.lock
-***/node_modules/
-***/.npm/
-***/.v8flags.*
-***/.cache
-***/.config
-***/.npm-debug.log
-***/npm-debug.log
-
+yarn-error.log
+yarn.lock
+node_modules/
+.npm/
+.v8flags.*
+.cache
+.config
+.npm-debug.log
+npm-debug.log
 # region vim modline
 # vim: set tabstop=4 shiftwidth=4 expandtab:
 # vim: foldmethod=marker foldmarker=region,endregion:
