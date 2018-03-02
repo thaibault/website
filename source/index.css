@@ -15,19 +15,19 @@ endregion */
 :root {
     /* region constants */
     /** region color */
-    --defaultColor: #222;
-    --fontColor: #5a5a5a;
-    --backgroundColor: #f2f2f2;
-    --linkColor: #f88;
-    --linkHoverColor: #f66;
-    --menuColor: #666;
-    --menuHoverColor: #444;
-    --shadowColor: rgba(0, 0, 0, 0.25);
+    --default-color: #222;
+    --font-color: #5a5a5a;
+    --background-color: #f2f2f2;
+    --link-color: #f88;
+    --link-hover-color: #f66;
+    --menu-color: #666;
+    --menu-hover-color: #444;
+    --shadow-color: rgba(0, 0, 0, 0.25);
     /** endregion */
     /** region space */
-    --footerMarginInPixel: 30px;
-    --minimumContentHeightInPixel: 300px;
-    --topMargin: 65px;
+    --footer-margin-in-pixel: 30px;
+    --minimum-content-height-in-pixel: 300px;
+    --top-margin: 65px;
     /** endregion */
     /* endregion */
 }
@@ -39,8 +39,8 @@ body { font-size: 16px; }
     /* region global */
     @apply --website;
 
-    color: var(--fontColor);
-    background-color: var(--defaultColor);
+    color: var(--font-color);
+    background-color: var(--default-color);
     overflow-y: scroll;
     /** region headline */
     & h1,
@@ -48,23 +48,23 @@ body { font-size: 16px; }
     & h3,
     & h4,
     & h5,
-    & h6 { font-family: var(--fontFamilyCondensed); }
+    & h6 { font-family: var(--font-family-condensed); }
     /** endregion */
     /** region link */
     & a,
     & a:visited,
     & a:focus {
-        color: var(--linkColor);
+        color: var(--link-color);
         font-size: 1.2rem;
         text-decoration: none !important;
 
-        &:hover { color: var(--linkHoverColor); }
+        &:hover { color: var(--link-hover-color); }
         /* Show phone links as normal text. */
         /* Scroll to top button. */
         &[href="#top"] {
             position: fixed;
             z-index: 1;
-            bottom: var(--footerMarginInPixel);
+            bottom: var(--footer-margin-in-pixel);
             right: 60px;
         }
     }
@@ -80,7 +80,7 @@ body { font-size: 16px; }
     & h1::before {
         content: "";
         display: block;
-        height: var(--topMargin);
+        height: var(--top-margin);
     }
     /* Shows the current dimension mode. */
     & span.dimension-indicator { font-size: 0.7em; }
@@ -115,11 +115,11 @@ body { font-size: 16px; }
             border: 0;
 
             & div.navbar-header > a.navbar-brand {
-                color: var(--menuColor);
+                color: var(--menu-color);
                 font-size: 1.2em;
 
                 &:hover,
-                &:focus { color: var(--menuHoverColor); }
+                &:focus { color: var(--menu-hover-color); }
             }
         }
     }
@@ -127,10 +127,10 @@ body { font-size: 16px; }
     /* region carousel */
     /* Main section slider wrapper. */
     & section.carousel.slide {
-        background-color: var(--backgroundColor);
+        background-color: var(--background-color);
         overflow: hidden;
         position: relative;
-        min-height: var(--minimumContentHeightInPixel);
+        min-height: var(--minimum-content-height-in-pixel);
         /* Wraps the visible area from whole wide slider wrapper. */
         & div.carousel-inner {
             overflow-y: visible;
@@ -144,7 +144,7 @@ body { font-size: 16px; }
                     Set a default content height. Could by vary depending on
                     currently activated section.
                 */
-                min-height: var(--minimumContentHeightInPixel);
+                min-height: var(--minimum-content-height-in-pixel);
                 /*
                     Position section dependent background image absolute to
                     fill out the whole viewport.
@@ -153,7 +153,7 @@ body { font-size: 16px; }
                     top: 0;
                     left: 0;
                     min-width: 100%;
-                    min-height: var(--minimumContentHeightInPixel);
+                    min-height: var(--minimum-content-height-in-pixel);
                     /* Contains each section text content. */
                     & > div.container {
                         z-index: 0;
@@ -181,7 +181,7 @@ body { font-size: 16px; }
         /* NOTE: Should be synchronized with the social icon font styles. */
         & a.glyphicon {
             &.glyphicon-globe {
-                color: var(--fontColor);
+                color: var(--font-color);
                 letter-spacing: 10px;
                 height: 26px;
                 display: inline-block;
@@ -204,15 +204,15 @@ body { font-size: 16px; }
                     top: 0;
                 }
 
-                &:hover { color: var(--linkHoverColor) !important; }
+                &:hover { color: var(--link-hover-color) !important; }
             }
 
             &-social {
-                color: var(--fontColor);
+                color: var(--font-color);
                 letter-spacing: 10px;
                 height: 26px;
 
-                &:hover { color: var(--linkHoverColor) !important; }
+                &:hover { color: var(--link-hover-color) !important; }
             }
         }
     }
@@ -220,8 +220,8 @@ body { font-size: 16px; }
     /** region about this web site */
     /* Wraps the legal notice content. */
     & section.about-this-website {
-        min-height: var(--minimumContentHeightInPixel);
-        background-color: var(--backgroundColor);
+        min-height: var(--minimum-content-height-in-pixel);
+        background-color: var(--background-color);
         top: 0;
         left: 0;
         width: 100%;
@@ -237,8 +237,8 @@ body { font-size: 16px; }
             text-align: center;
 
             & p {
-                padding-top: var(--footerMarginInPixel);
-                padding-bottom: var(--footerMarginInPixel);
+                padding-top: var(--footer-margin-in-pixel);
+                padding-bottom: var(--footer-margin-in-pixel);
                 margin: 0;
             }
         }
@@ -288,7 +288,7 @@ body { font-size: 16px; }
                             & li.active > a:hover,
                             & li.active > a:focus,
                             & li.active > a {
-                                background-color: var(--shadowColor);
+                                background-color: var(--shadow-color);
                             }
                         }
                     }
@@ -321,7 +321,7 @@ body { font-size: 16px; }
     & section.carousel.slide div.carousel-inner > div.item div.carousel-image-about > div.container {
         padding-top: 90px;
 
-        & h1#about { margin-top: -var(--topMargin); }
+        & h1#about { margin-top: -var(--top-margin); }
 
         & p.lead > a:first-child { margin-top: 35px; }
     }
@@ -381,7 +381,7 @@ body { font-size: 16px; }
                 max-width: 550px;
 
                 & div.navbar.navbar-inverse {
-                    background: var(--backgroundColor);
+                    background: var(--background-color);
 
                     & > div.container {
                         & div.navbar-header {
@@ -409,7 +409,7 @@ body { font-size: 16px; }
                                 position: absolute;
                                 left: 177px;
                                 visibility: visible;
-                                border-top: 2px solid var(--linkColor);
+                                border-top: 2px solid var(--link-color);
                                 height: 50px;
                                 width: 124px;
                                 background-color: #eee;
@@ -424,13 +424,13 @@ body { font-size: 16px; }
                                 & > li {
                                     & > a {
                                         line-height: 22px;
-                                        color: var(--menuColor);
+                                        color: var(--menu-color);
                                     }
 
                                     & > a:hover,
                                     a:focus {
                                         background-color: transparent;
-                                        color: var(--menuHoverColor);
+                                        color: var(--menu-hover-color);
                                     }
                                 }
 
@@ -438,7 +438,7 @@ body { font-size: 16px; }
                                 & li.active > a:focus,
                                 & li.active > a {
                                     background-color: transparent;
-                                    color: var(--menuHoverColor);
+                                    color: var(--menu-hover-color);
                                 }
                             }
                         }
@@ -493,7 +493,7 @@ body { font-size: 16px; }
                 &.carousel.slide div.carousel-inner > div.item > div {
                     &.carousel-image-about > div.container {
                         position: relative;
-                        margin-top: var(--topMargin);
+                        margin-top: var(--top-margin);
 
                         & > p.lead {
                             position: absolute;
