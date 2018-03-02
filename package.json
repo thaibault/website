@@ -51,7 +51,7 @@
     "weboptimizer": "^1.0.533",
     "webpack": "^3.11.0",
     "webpack-dev-server": "^2.11.2",
-    "website-utilities": "^1.0.86"
+    "website-utilities": "^1.0.87"
   },
   "webOptimizer": {
     "injection": {
