@@ -36,8 +36,8 @@
     "babel-plugin-transform-proto-to-assign": "^6.23.0",
     "babel-polyfill": "^6.23.0",
     "babel-preset-env": "^1.6.1",
-    "clientnode": "^3.0.1",
-    "errorreporter": "^1.0.56",
+    "clientnode": "^3.0.3",
+    "errorreporter": "^1.0.57",
     "eslint": "^4.18.2",
     "eslint-config-google": "^0.9.1",
     "eslint-plugin-flowtype": "^2.46.1",
@@ -51,7 +51,7 @@
     "weboptimizer": "^1.0.533",
     "webpack": "^3.11.0",
     "webpack-dev-server": "^2.11.2",
-    "website-utilities": "^1.0.89"
+    "website-utilities": "^1.0.91"
   },
   "webOptimizer": {
     "injection": {
