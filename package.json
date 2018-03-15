@@ -36,8 +36,8 @@
     "babel-plugin-transform-proto-to-assign": "^6.23.0",
     "babel-polyfill": "^6.23.0",
     "babel-preset-env": "^1.6.1",
-    "clientnode": "^3.0.5",
-    "errorreporter": "^1.0.59",
+    "clientnode": "^3.0.8",
+    "errorreporter": "^1.0.60",
     "eslint": "^4.18.2",
     "eslint-config-google": "^0.9.1",
     "eslint-plugin-flowtype": "^2.46.1",
@@ -46,12 +46,12 @@
     "jsdoc": "^3.5.3",
     "legal-notes": "^1.0.12",
     "source-map-support": "^0.5.3",
-    "stylelint": "^9.1.1",
+    "stylelint": "^9.1.3",
     "ua-parser-js": "^0.7.17",
     "weboptimizer": "^1.0.533",
     "webpack": "^3.11.0",
     "webpack-dev-server": "^2.11.2",
-    "website-utilities": "^1.0.93"
+    "website-utilities": "^1.0.94"
   },
   "webOptimizer": {
     "injection": {
