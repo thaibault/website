@@ -35,14 +35,14 @@
     "babel-polyfill": "^6.23.0",
     "babel-preset-env": "^1.6.1",
     "bootstrap": "^3.3.7",
-    "clientnode": "^3.0.80",
+    "clientnode": "^3.0.83",
     "cssnano": "^4.0.5",
-    "errorreporter": "^1.0.92",
-    "eslint": "^5.3.0",
+    "errorreporter": "^1.0.94",
+    "eslint": "^5.4.0",
     "eslint-config-google": "^0.9.1",
     "eslint-plugin-flowtype": "^2.50.0",
     "eslint-plugin-jsdoc": "^3.7.1",
-    "flow-bin": "^0.78.0",
+    "flow-bin": "^0.79.1",
     "jsdoc": "^3.5.3",
     "legal-notes": "^1.0.13",
     "postcss-fontpath": "^1.0.0",
@@ -53,11 +53,11 @@
     "postcss-url": "^8.0.0",
     "stylelint": "^9.4.0",
     "ua-parser-js": "^0.7.18",
-    "weboptimizer": "^2.0.183",
+    "weboptimizer": "^2.0.186",
     "webpack": "^4.16.5",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.5",
-    "website-utilities": "^1.0.119"
+    "website-utilities": "^1.0.120"
   },
   "webOptimizer": {
     "injection": {
