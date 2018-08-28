@@ -1,6 +1,6 @@
 {
   "name": "website",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "license": "CC-BY-3.0",
   "description": "Here's my website development hosted (no security by obscurity).",
   "homepage": "https://torben.website",
@@ -30,11 +30,11 @@
     "watch": "webOptimizer build --watch"
   },
   "devDependencies": {
-    "Swipe": "git+https://github.com/thebird/Swipe.git",
-    "babel-eslint": "*",
     "@babel/plugin-transform-proto-to-assign": "*",
     "@babel/polyfill": "*",
     "@babel/preset-env": "*",
+    "Swipe": "git+https://github.com/thebird/Swipe.git",
+    "babel-eslint": "*",
     "bootstrap": "^3.3.7",
     "clientnode": "*",
     "css-loader": "*",
@@ -56,8 +56,8 @@
     "postcss-preset-env": "*",
     "postcss-sprites": "*",
     "postcss-url": "*",
-    "stylelint": "*",
     "style-loader": "*",
+    "stylelint": "*",
     "stylelint-config-standard": "*",
     "ua-parser-js": "*",
     "weboptimizer": "*",
