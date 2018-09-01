@@ -67,6 +67,15 @@
     "website-utilities": "*"
   },
   "webOptimizer": {
+    "debug": {
+      "module": {
+        "optimizer": {
+          "babelMinify": {
+            "module": null
+          }
+        }
+      }
+    },
     "injection": {
       "internal": {
         "errorreporter": "errorreporter",
