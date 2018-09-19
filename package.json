@@ -53,6 +53,7 @@
     "postcss-fontpath": "*",
     "postcss-import": "*",
     "postcss-loader": "*",
+    "postcss-mixins": "*",
     "postcss-preset-env": "*",
     "postcss-sprites": "*",
     "postcss-url": "*",
@@ -108,6 +109,17 @@
               "__evaluate__": "/^[a-z]{2}[A-Z]{2}$/"
             }
           ]
+        }
+      },
+      "preprocessor": {
+        "cascadingStyleSheet": {
+          "additional": {
+            "plugins": {
+              "pre": [
+                "require('postcss-mixins')"
+              ]
+            }
+          }
         }
       },
       "replacements": {
