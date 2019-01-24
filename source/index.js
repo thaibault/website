@@ -199,7 +199,7 @@ export default class HomePage extends $.Website.class {
                     options.language.textNodeParent.hideAnimation[1].always
         }
         const self:HomePage = this
-        this.constructor.extendObject(true, options, {language: {
+        this.constructor.extend(true, options, {language: {
             onSwitched: function(...parameter:Array<any>):boolean {
                 const result:any = !initialOnSwitchedCallback || (
                     initialOnSwitchedCallback &&
@@ -250,19 +250,25 @@ export default class HomePage extends $.Website.class {
                 }
                 self.$domNodes.menuHighlighter.animate(...hideAnimationOptions)
                 hideAnimationOptions = hideAnimationOptions.slice()
-                hideAnimationOptions[1] = this.constructor.extendObject(true, {
-                }, hideAnimationOptions[1], {always: function():any {
-                    let result:any
-                    if (initialLanguageHideAnimationAlwaysCallback)
-                        result = initialLanguageHideAnimationAlwaysCallback
-                            .call(this, oldLanguage, newLanguage)
-                    const $oldLanguageLinkDomNode:$DomNode = $(this)
-                    $oldLanguageLinkDomNode.attr(
-                        'href', `#language-${oldLanguage}`
-                    ).text(oldLanguage.substr(0, 2)).animate(
-                        ...showAnimationOptions)
-                    return result
-                }})
+                hideAnimationOptions[1] = this.constructor.extend(
+                    true,
+                    {},
+                    hideAnimationOptions[1],
+                    {
+                        always: function():any {
+                            let result:any
+                            if (initialLanguageHideAnimationAlwaysCallback)
+                                result = initialLanguageHideAnimationAlwaysCallback
+                                    .call(this, oldLanguage, newLanguage)
+                            const $oldLanguageLinkDomNode:$DomNode = $(this)
+                            $oldLanguageLinkDomNode.attr(
+                                'href', `#language-${oldLanguage}`
+                            ).text(oldLanguage.substr(0, 2)).animate(
+                                ...showAnimationOptions)
+                            return result
+                        }
+                    }
+                )
                 const $newLanguageLinkDomNode:$DomNode = $(
                     `a[href="#language-${newLanguage}"]`)
                 $newLanguageLinkDomNode.animate(...hideAnimationOptions)
@@ -539,12 +545,15 @@ export default class HomePage extends $.Website.class {
             } = $sectionButton.position()
             if (sectionButtonPosition && sectionButtonPosition.left)
                 if (this._initialMenuHightlightDone && transition) {
-                    this.constructor.extendObject(
-                        true, this._options.menuHighlightAnimation, {
+                    this.constructor.extend(
+                        true,
+                        this._options.menuHighlightAnimation,
+                        {
                             left: $sectionButton.position().left,
                             width: $sectionButton.width(),
                             duration: this._options.carousel.speed
-                        })
+                        }
+                    )
                     this.$domNodes.menuHighlighter.stop().animate(
                         ...this._options.aboutThisWebsiteSection.showAnimation
                     ).animate(this._options.menuHighlightAnimation)
