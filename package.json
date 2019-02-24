@@ -78,7 +78,7 @@
       }
     },
     "injection": {
-      "internal": {
+      "entry": {
         "errorreporter": "errorreporter",
         "index": {
           "__evaluate__": "['./index.css', '@babel/polyfill', 'ua-parser-js'].concat(self.offline ? ['offline-plugin/runtime'] : []).concat('./index')"
