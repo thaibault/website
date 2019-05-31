@@ -439,7 +439,6 @@ export default class HomePage extends $.Website.class {
             })
             // If no section could be determined initialize the first one.
             if (!sectionFound) {
-                console.log('A', this.$domNodes.navigationButton)
                 const forceSection:string =
                     this.$domNodes.navigationButton.first().attr(
                         'href'
