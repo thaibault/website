@@ -31,7 +31,6 @@
   },
   "devDependencies": {
     "@babel/plugin-transform-proto-to-assign": "*",
-    "@babel/polyfill": "*",
     "@babel/preset-env": "*",
     "Swipe": "git+https://github.com/thebird/Swipe.git",
     "babel-eslint": "*",
@@ -81,7 +80,7 @@
       "entry": {
         "errorreporter": "errorreporter",
         "index": {
-          "__evaluate__": "['./index.css', '@babel/polyfill', 'ua-parser-js'].concat(self.offline ? ['offline-plugin/runtime'] : []).concat('./index')"
+          "__evaluate__": "['./index.css', 'ua-parser-js'].concat(self.offline ? ['offline-plugin/runtime'] : []).concat('./index')"
         }
       }
     },
@@ -124,14 +123,13 @@
       },
       "replacements": {
         "normal": {
-          "^@babel/polyfill$": "@babel/polyfill/dist/polyfill.min.js",
           "^jquery$": "jquery/dist/jquery.min.js",
           "^jQuery-scrollTo$": "jquery.scrollto/jquery.scrollTo.js",
           "(.*)swipe$": "$1Swipe/swipe.js"
         }
       },
       "skipParseRegularExpressions": {
-        "__evaluate__": "/(?:^|\\/)(?:(?:@babel\\/polyfill\\/dist\\/polyfill)|(?:jquery\\/dist\\/jquery)|(?:webpack\\/buildin\\/global)|(?:webpack\\/buildin\\/module))(?:\\.min)?\\.js(?:\\?.+|$)/"
+        "__evaluate__": "/(?:^|\\/)(?:(?:jquery\\/dist\\/jquery)|(?:webpack\\/buildin\\/global)|(?:webpack\\/buildin\\/module))(?:\\.min)?\\.js(?:\\?.+|$)/"
       }
     },
     "path": {
