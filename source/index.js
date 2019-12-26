@@ -712,11 +712,15 @@ export default class HomePage extends $.Website.class {
         this.$domNodes.section.children().css(
             'marginTop', additionalMarginTopInPixel)
         return Math.max(
-            this._determineSectionHeightInPixel($currentSection), parseInt(
+            this._determineSectionHeightInPixel($currentSection),
+            parseInt(
                 this.$domNodes.section.children().outerHeight(), 10
-            ) + parseInt(this.$domNodes.section.children().css(
-                'marginTop'
-            ), 10) + this._sectionTopMarginInPixel)
+            ) +
+            parseInt(
+                this.$domNodes.section.children().css('marginTop'), 10
+            ) +
+            this._sectionTopMarginInPixel
+        )
     }
     /**
      * Determines the new section height in pixel after webview size or section
