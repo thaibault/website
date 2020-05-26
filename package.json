@@ -66,6 +66,7 @@
     "webpack-dev-server": "*",
     "website-utilities": "*"
   },
+  "sideEffects": true,
   "webOptimizer": {
     "debug": {
       "module": {
