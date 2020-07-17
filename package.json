@@ -26,7 +26,7 @@
     "start": "weboptimizer serve",
     "test": "yarn build",
     "update": "yarn version --patch && yarn publish",
-    "update:website": "websiteUtilities",
+    "update:website": "website-utilities",
     "watch": "weboptimizer build --watch"
   },
   "devDependencies": {
