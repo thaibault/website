@@ -31,7 +31,6 @@
   },
   "devDependencies": {
     "@babel/plugin-transform-proto-to-assign": "*",
-    "@babel/preset-env": "*",
     "Swipe": "git+https://github.com/thebird/Swipe.git",
     "babel-eslint": "*",
     "bootstrap": "^3.3.7",
