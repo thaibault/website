@@ -30,6 +30,7 @@
     "watch": "weboptimizer build --watch"
   },
   "devDependencies": {
+    "@types/workbox-webpack-plugin": "*",
     "@babel/plugin-transform-proto-to-assign": "*",
     "Swipe": "git+https://github.com/thebird/Swipe.git",
     "babel-eslint": "*",
