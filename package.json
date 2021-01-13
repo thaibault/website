@@ -89,6 +89,7 @@
         "clientnode/test$": "clientnode/test.compiled",
         "bootstrap$": "bootstrap/dist/css/bootstrap.min.css"
       },
+      "enforceDeduplication": true,
       "optimizer": {
         "babelMinify": {
           "module": {
