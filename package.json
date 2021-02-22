@@ -43,6 +43,8 @@
     "eslint-config-google": "*",
     "eslint-plugin-flowtype": "*",
     "eslint-plugin-jsdoc": "*",
+    "favicons": "*",
+    "favicons-webpack-plugin": "*",
     "favicons-webpack-plugin": "*",
     "flow-bin": "*",
     "jsdoc": "*",
