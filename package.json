@@ -45,7 +45,6 @@
     "eslint-plugin-jsdoc": "*",
     "favicons": "*",
     "favicons-webpack-plugin": "*",
-    "favicons-webpack-plugin": "*",
     "flow-bin": "*",
     "jsdoc": "*",
     "legal-notes": "*",
