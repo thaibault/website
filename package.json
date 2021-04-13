@@ -37,7 +37,7 @@
     "bootstrap": "^3.3.7",
     "clientnode": "*",
     "css-loader": "*",
-    "cssnano": "*",
+    "cssnano": "<=4",
     "errorreporter": "*",
     "eslint": "*",
     "eslint-config-google": "*",
