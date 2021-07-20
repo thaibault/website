@@ -31,17 +31,19 @@
   },
   "devDependencies": {
     "@babel/plugin-transform-proto-to-assign": "*",
+    "@types/workbox-webpack-plugin": "*",
     "Swipe": "git+https://github.com/thebird/Swipe.git",
     "babel-eslint": "*",
     "bootstrap": "^3.3.7",
     "clientnode": "*",
     "css-loader": "*",
-    "cssnano": "*",
+    "cssnano": "<=4",
     "errorreporter": "*",
     "eslint": "*",
     "eslint-config-google": "*",
     "eslint-plugin-flowtype": "*",
     "eslint-plugin-jsdoc": "*",
+    "favicons": "*",
     "favicons-webpack-plugin": "*",
     "flow-bin": "*",
     "jsdoc": "*",
@@ -51,10 +53,10 @@
     "postcss-fontpath": "*",
     "postcss-import": "<=12",
     "postcss-loader": "*",
-    "postcss-mixins": "*",
+    "postcss-mixins": "<=6",
     "postcss-preset-env": "*",
     "postcss-sprites": "*",
-    "postcss-url": "*",
+    "postcss-url": "<=9",
     "style-loader": "*",
     "stylelint": "*",
     "stylelint-config-standard": "*",
@@ -62,6 +64,9 @@
     "weboptimizer": "*",
     "webpack-dev-server": "*",
     "website-utilities": "*"
+  },
+  "resolutions": {
+    "@types/webpack": "https://registry.yarnpkg.com/@favware/skip-dependency/-/skip-dependency-1.1.0.tgz"
   },
   "sideEffects": true,
   "webOptimizer": {
@@ -88,6 +93,7 @@
         "clientnode/test$": "clientnode/test.compiled",
         "bootstrap$": "bootstrap/dist/css/bootstrap.min.css"
       },
+      "enforceDeduplication": true,
       "optimizer": {
         "babelMinify": {
           "module": {
