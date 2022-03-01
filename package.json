@@ -33,7 +33,6 @@
     "@babel/eslint-parser": "*",
     "@babel/plugin-transform-proto-to-assign": "*",
     "@babel/runtime": "*",
-    "@types/workbox-webpack-plugin": "*",
     "Swipe": "git+https://github.com/thebird/Swipe.git",
     "bootstrap": "^3.3.7",
     "clientnode": "*",
