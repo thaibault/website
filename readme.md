@@ -259,10 +259,6 @@ Project status
 
 [![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/weboptimizer.svg?label=documentation-website)](https://torben.website/weboptimizer)
 
-### website
-
-TODO
-
 ### website-utilities
 
 [![npm](https://img.shields.io/npm/v/website-utilities?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d)](https://www.npmjs.com/package/website-utilities)
