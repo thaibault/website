@@ -879,13 +879,6 @@ export default class HomePage extends $.Website.class {
 $.HomePage = (...parameter:Array<any>):any => $.Tools().controller(
     HomePage, parameter)
 $.HomePage.class = HomePage
-if (typeof OFFLINE !== 'undefined' && OFFLINE) {
-    const offlineHandler:Object = require('offline-plugin/runtime')
-    offlineHandler.install({
-        // NOTE: Tell the new service worker to take control immediately.
-        onUpdateReady: ():void => offlineHandler.applyUpdate()
-    })
-}
 $.noConflict()(($:Object):HomePage => $.HomePage({
     googleTrackingCode: 'UA-40192634-1', language: {
         logging: true, selection: ['enUS', 'deDE'],
