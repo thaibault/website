@@ -95,8 +95,6 @@ Project status
 
 [![code coverage](https://coveralls.io/repos/github/thaibault/documentation-website/badge.svg)](https://coveralls.io/github/thaibault/documentation-website)
 
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/documentation-website.svg?label=documentation-website)](https://torben.website/documentation-website)
-
 ### ejs-web-node-plugin
 
 [![npm](https://img.shields.io/npm/v/ejs-web-node-plugin?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d)](https://www.npmjs.com/package/ejs-web-node-plugin)
