@@ -17,12 +17,12 @@
     endregion
 */
 // region imports
-import {$} from 'website-utilities'
-import type {DomNode, $DomNode} from 'clientnode'
-/* eslint-disable max-len */
-// IgnoreTypeCheck
+import Tools, {DomNode, $, $T} from 'clientnode'
+// eslint-disable-next-line max-len
 import 'imports?jQuery=jquery!imports?$=jquery!imports?window=>{jQuery: jQuery}!swipe'
-/* eslint-enable max-len */
+import WebsiteUtilities from 'website-utilities'
+
+import {DomNodes, DefaultOptions, Options, WebsiteFunction} from './type'
 // endregion
 // region declaration
 declare var OFFLINE:boolean
@@ -89,7 +89,7 @@ export default class HomePage extends $.Website.class {
     _oldSectionHeightInPixel:number
     _sectionTopMarginInPixel:number
     // region public methods
-    // / region special
+    /// region special
     /**
      * Initializes the interactive web application.
      * @param options - An options object.
@@ -317,10 +317,10 @@ export default class HomePage extends $.Website.class {
             this._adaptContentHeight.bind(this))
         return this
     }
-    // / endregion
+    /// endregion
     // endregion
     // region protected methods
-    // / region event
+    /// region event
     /**
      * Switches the language dependent curriculum vitae links.
      * @param oldLanguage - Old language.
@@ -450,8 +450,8 @@ export default class HomePage extends $.Website.class {
             this._adaptContentHeight()
         return super._onSwitchSection(sectionName)
     }
-    // / endregion
-    // / region helper
+    /// endregion
+    /// region helper
     /**
      * Switches to given section.
      * @param sectionName - Section name to switch to.
@@ -872,7 +872,7 @@ export default class HomePage extends $.Website.class {
             })
         return sectionName
     }
-    // / endregion
+    /// endregion
     // endregion
 }
 // endregion
