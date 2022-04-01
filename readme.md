@@ -14,10 +14,13 @@ Project status
 --------------
 
 [![build status](https://travis-ci.org/thaibault/website.svg?branch=master)](https://travis-ci.org/thaibault/website)
+[![website](https://img.shields.io/website-up-down-green-red/https/torben.website.svg?label=website)](https://torben.website)
+
+<!-- Too unstable yet
 [![dependencies](https://img.shields.io/david/thaibault/website.svg)](https://david-dm.org/thaibault/website)
 [![development dependencies](https://img.shields.io/david/dev/thaibault/website.svg)](https://david-dm.org/thaibault/website?type=dev)
 [![peer dependencies](https://img.shields.io/david/peer/thaibault/website.svg)](https://david-dm.org/thaibault/website?type=peer)
-[![website](https://img.shields.io/website-up-down-green-red/https/torben.website.svg?label=website)](https://torben.website)
+-->
 
 ### agile-form
 
