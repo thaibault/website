@@ -1,12 +1,21 @@
 {
   "name": "website",
   "version": "1.0.60",
-  "license": "CC-BY-3.0",
   "description": "Here's my website development hosted (no security by obscurity).",
-  "homepage": "https://torben.website",
   "keywords": [
     "website"
   ],
+  "homepage": "https://torben.website",
+  "bugs": {
+    "email": "info@torben.website",
+    "url": "https://github.com/thaibault/website/issues"
+  },
+  "license": "CC-BY-3.0",
+  "author": {
+    "name": "Torben Sickert",
+    "email": "info@torben.website",
+    "url": "https://torben.website"
+  },
   "files": [
     "build"
   ],
@@ -17,22 +26,38 @@
   },
   "scripts": {
     "build": "weboptimizer build",
-    "build:stats": "weboptimizer build --profile --json >/tmp/stat.json && echo 'Results successfully written to \"/tmp/stat.json\".'",
+    "build:stats": "weboptimizer build --profile --json /tmp/stats.json | sed --regexp-extended 's/^Running \".+$//' | sed --regexp-extended 's/^Consolidate module request \".+$//' >/tmp/stats.json && echo 'Results successfully written to \"/tmp/stats.json\".'",
+    "check": "yarn check:types; yarn lint",
+    "check:types": "weboptimizer check:types",
     "clear": "weboptimizer clear",
     "document": "weboptimizer document",
-    "lint": "weboptimizer check:type; weboptimizer lint",
+    "lint": "weboptimizer lint",
     "prepare": "yarn build",
     "serve": "weboptimizer serve",
-    "start": "weboptimizer serve",
-    "test": "yarn build",
+    "start": "yarn serve",
+    "test": "yarn clear && weboptimizer test",
+    "test:browser": "yarn clear && weboptimizer test:browser",
+    "test:coverage": "yarn clear && weboptimizer test:coverage",
+    "test:coverage:report": "yarn clear && weboptimizer test:coverage:report",
     "update": "yarn version --patch && yarn publish",
     "update:website": "website-utilities",
     "watch": "weboptimizer build --watch"
+  },
+  "dependencies": {
+    "@types/webpack": "https://registry.yarnpkg.com/@favware/skip-dependency/-/skip-dependency-1.1.1.tgz"
   },
   "devDependencies": {
     "@babel/eslint-parser": "*",
     "@babel/plugin-transform-proto-to-assign": "*",
     "@babel/runtime": "*",
+    "@types/ejs": "*",
+    "@types/html-minifier": "*",
+    "@types/jest": "*",
+    "@types/jquery": "*",
+    "@types/jsdom": "*",
+    "@types/node": "*",
+    "@typescript-eslint/eslint-plugin": "*",
+    "@typescript-eslint/parser": "*",
     "Swipe": "git+https://github.com/thebird/Swipe.git",
     "bootstrap": "^3.3.7",
     "clientnode": "*",
@@ -41,15 +66,14 @@
     "errorreporter": "*",
     "eslint": "*",
     "eslint-config-google": "*",
-    "eslint-plugin-flowtype": "*",
     "eslint-plugin-jsdoc": "*",
     "favicons": "*",
     "favicons-webpack-plugin": "*",
-    "flow-bin": "*",
+    "jest": "*",
+    "jquery": "*",
     "jsdoc": "*",
     "legal-notes": "*",
     "mini-css-extract-plugin": "*",
-    "offline-plugin": "*",
     "postcss-fontpath": "*",
     "postcss-import": "<=12",
     "postcss-loader": "*",
@@ -57,6 +81,7 @@
     "postcss-preset-env": "*",
     "postcss-sprites": "*",
     "postcss-url": "<=9",
+    "spin.js": "*",
     "style-loader": "*",
     "stylelint": "*",
     "stylelint-config-standard": "*",
@@ -65,34 +90,35 @@
     "webpack-dev-server": "*",
     "website-utilities": "*"
   },
+  "engines": {
+    "node": ">=17",
+    "npm": ">=7"
+  },
   "resolutions": {
     "@types/webpack": "https://registry.yarnpkg.com/@favware/skip-dependency/-/skip-dependency-1.1.1.tgz",
     "colors": "1.4.0"
   },
   "sideEffects": true,
   "webOptimizer": {
-    "debug": {
-      "module": {
-        "optimizer": {
-          "babelMinify": {
-            "module": null
-          }
-        }
+    "commandLine": {
+      "test": {
+        "environments": [
+          "jsdom"
+        ]
       }
     },
     "injection": {
+      "chunks": false,
       "entry": {
-        "errorreporter": "errorreporter",
-        "index": {
-          "__evaluate__": "['./index.css', 'ua-parser-js'].concat(self.offline ? ['offline-plugin/runtime'] : []).concat('./index')"
-        }
+        "#": "errorreporter\": \"errorreporter",
+        "__evaluate__": "2 < self.givenCommandLineArguments.length && self.givenCommandLineArguments[2].startsWith('test') ? {testBundle: './test.ts'} : {index: ['./index.css', 'ua-parser-js', './index']}"
       }
     },
     "library": false,
     "module": {
       "aliases": {
-        "clientnode/test$": "clientnode/test.compiled",
-        "bootstrap$": "bootstrap/dist/css/bootstrap.min.css"
+        "^jquery$": "jquery/dist/jquery.min.js",
+        "website-utilities/index.css$": "website-utilities/index.compiled.css"
       },
       "enforceDeduplication": true,
       "optimizer": {
@@ -129,12 +155,11 @@
       "replacements": {
         "normal": {
           "^jquery$": "jquery/dist/jquery.min.js",
-          "^jQuery-scrollTo$": "jquery.scrollto/jquery.scrollTo.js",
           "(.*)swipe$": "$1Swipe/swipe.js"
         }
       },
       "skipParseRegularExpressions": {
-        "__evaluate__": "/(?:^|\\/)(?:(?:jquery\\/dist\\/jquery)|(?:webpack\\/buildin\\/global)|(?:webpack\\/buildin\\/module))(?:\\.min)?\\.js(?:\\?.+|$)/"
+        "__evaluate__": "/(?:^|\\/)(?:(?:jquery\\/dist\\/jquery))(?:\\.min)?\\.js(?:\\?.+|$)/"
       }
     },
     "path": {
@@ -151,8 +176,5 @@
         }
       }
     }
-  },
-  "dependencies": {
-    "@types/webpack": "https://registry.yarnpkg.com/@favware/skip-dependency/-/skip-dependency-1.1.1.tgz"
   }
 }
