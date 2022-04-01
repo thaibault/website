@@ -16,6 +16,12 @@ Project status
 [![build status](https://travis-ci.org/thaibault/website.svg?branch=master)](https://travis-ci.org/thaibault/website)
 [![website](https://img.shields.io/website-up-down-green-red/https/torben.website.svg?label=website)](https://torben.website)
 
+[![<LABEL>](https://github.com/thaibault/website/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/website/actions/workflows/build.yaml)
+[![<LABEL>](https://github.com/thaibault/website/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/website/actions/workflows/test.yaml)
+[![<LABEL>](https://github.com/thaibault/website/actions/workflows/test:coverage:report.yaml/badge.svg)](https://github.com/thaibault/website/actions/workflows/test:coverage:report.yaml)
+[![<LABEL>](https://github.com/thaibault/website/actions/workflows/check:types.yaml/badge.svg)](https://github.com/thaibault/website/actions/workflows/check:types.yaml)
+[![<LABEL>](https://github.com/thaibault/website/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/website/actions/workflows/lint.yaml)
+
 <!-- Too unstable yet
 [![dependencies](https://img.shields.io/david/thaibault/website.svg)](https://david-dm.org/thaibault/website)
 [![development dependencies](https://img.shields.io/david/dev/thaibault/website.svg)](https://david-dm.org/thaibault/website?type=dev)
