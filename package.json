@@ -52,7 +52,6 @@
     "@babel/runtime": "*",
     "@types/ejs": "*",
     "@types/html-minifier": "*",
-    "@types/jest": "*",
     "@types/jquery": "*",
     "@types/jsdom": "*",
     "@types/node": "*",
