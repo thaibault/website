@@ -36,6 +36,7 @@ source/image/sprite.png
 .Trash-*
 .cache
 .config
+.gnupg
 .goutputstream-*
 .local
 .node-gyp
@@ -156,6 +157,8 @@ __pycache__
 
 # Project specific
 *.js
+# ...
+
 # region vim modline
 # vim: set tabstop=4 shiftwidth=4 expandtab:
 # vim: foldmethod=marker foldmarker=region,endregion:
