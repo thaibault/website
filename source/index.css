@@ -10,10 +10,10 @@ This library written by Torben Sickert stand under a creative commons naming
 3.0 unported license. See https://creativecommons.org/licenses/by/3.0/deed.de
 endregion */
 @import 'bootstrap';
-@import 'website-utilities/index.css';
+@import 'website-utilities/index.compiled.css';
 
 :root {
-    /* region constants */
+    /* region custom-properties */
     /** region color */
     --default-color: #222;
     --font-color: #5a5a5a;
@@ -48,7 +48,7 @@ body { font-size: 16px; }
     & h3,
     & h4,
     & h5,
-    & h6 { font-family: var(--font-family-condensed); }
+    & h6 { font-family: var(--w-typography-font-family-headline); }
     /** endregion */
     /** region link */
     & a,

@@ -117,8 +117,7 @@
     "library": false,
     "module": {
       "aliases": {
-        "^jquery$": "jquery/dist/jquery.min.js",
-        "website-utilities/index.css$": "website-utilities/index.compiled.css"
+        "^jquery$": "jquery/dist/jquery.min.js"
       },
       "enforceDeduplication": true,
       "optimizer": {
