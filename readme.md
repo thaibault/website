@@ -15,15 +15,9 @@ Project status
 
 [![<LABEL>](https://github.com/thaibault/website/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/website/actions/workflows/build.yaml)
 [![<LABEL>](https://github.com/thaibault/website/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/website/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/website/actions/workflows/test:coverage:report.yaml/badge.svg)](https://github.com/thaibault/website/actions/workflows/test:coverage:report.yaml)
-[![<LABEL>](https://github.com/thaibault/website/actions/workflows/check:types.yaml/badge.svg)](https://github.com/thaibault/website/actions/workflows/check:types.yaml)
+[![<LABEL>](https://github.com/thaibault/website/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/website/actions/workflows/test-coverage-report.yaml)
+[![<LABEL>](https://github.com/thaibault/website/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/website/actions/workflows/check-types.yaml)
 [![<LABEL>](https://github.com/thaibault/website/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/website/actions/workflows/lint.yaml)
-
-<!-- Too unstable yet
-[![dependencies](https://img.shields.io/david/thaibault/website.svg)](https://david-dm.org/thaibault/website)
-[![development dependencies](https://img.shields.io/david/dev/thaibault/website.svg)](https://david-dm.org/thaibault/website?type=dev)
-[![peer dependencies](https://img.shields.io/david/peer/thaibault/website.svg)](https://david-dm.org/thaibault/website?type=peer)
--->
 
 [![website](https://img.shields.io/website-up-down-green-red/https/torben.website.svg?label=website)](https://torben.website)
 
@@ -34,8 +28,8 @@ Project status
 
 [![<LABEL>](https://github.com/thaibault/agile-form/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/agile-form/actions/workflows/build.yaml)
 [![<LABEL>](https://github.com/thaibault/agile-form/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/agile-form/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/agile-form/actions/workflows/test:coverage:report.yaml/badge.svg)](https://github.com/thaibault/agile-form/actions/workflows/test:coverage:report.yaml)
-[![<LABEL>](https://github.com/thaibault/agile-form/actions/workflows/check:types.yaml/badge.svg)](https://github.com/thaibault/agile-form/actions/workflows/check:types.yaml)
+[![<LABEL>](https://github.com/thaibault/agile-form/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/agile-form/actions/workflows/test-coverage-report.yaml)
+[![<LABEL>](https://github.com/thaibault/agile-form/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/agile-form/actions/workflows/check-types.yaml)
 [![<LABEL>](https://github.com/thaibault/agile-form/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/agile-form/actions/workflows/lint.yaml)
 
 [![code coverage](https://coveralls.io/repos/github/thaibault/agile-form/badge.svg)](https://coveralls.io/github/thaibault/agile-form)
@@ -49,8 +43,8 @@ Project status
 
 [![<LABEL>](https://github.com/thaibault/application-server-web-node-plugin/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/application-server-web-node-plugin/actions/workflows/build.yaml)
 [![<LABEL>](https://github.com/thaibault/application-server-web-node-plugin/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/application-server-web-node-plugin/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/application-server-web-node-plugin/actions/workflows/test:coverage:report.yaml/badge.svg)](https://github.com/thaibault/application-server-web-node-plugin/actions/workflows/test:coverage:report.yaml)
-[![<LABEL>](https://github.com/thaibault/application-server-web-node-plugin/actions/workflows/check:types.yaml/badge.svg)](https://github.com/thaibault/application-server-web-node-plugin/actions/workflows/check:types.yaml)
+[![<LABEL>](https://github.com/thaibault/application-server-web-node-plugin/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/application-server-web-node-plugin/actions/workflows/test-coverage-report.yaml)
+[![<LABEL>](https://github.com/thaibault/application-server-web-node-plugin/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/application-server-web-node-plugin/actions/workflows/check-types.yaml)
 [![<LABEL>](https://github.com/thaibault/application-server-web-node-plugin/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/application-server-web-node-plugin/actions/workflows/lint.yaml)
 
 [![code coverage](https://coveralls.io/repos/github/thaibault/application-server-web-node-plugin/badge.svg)](https://coveralls.io/github/thaibault/application-server-web-node-plugin)
@@ -64,8 +58,8 @@ Project status
 
 [![<LABEL>](https://github.com/thaibault/clientnode/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/clientnode/actions/workflows/build.yaml)
 [![<LABEL>](https://github.com/thaibault/clientnode/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/clientnode/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/clientnode/actions/workflows/test:coverage:report.yaml/badge.svg)](https://github.com/thaibault/clientnode/actions/workflows/test:coverage:report.yaml)
-[![<LABEL>](https://github.com/thaibault/clientnode/actions/workflows/check:types.yaml/badge.svg)](https://github.com/thaibault/clientnode/actions/workflows/check:types.yaml)
+[![<LABEL>](https://github.com/thaibault/clientnode/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/clientnode/actions/workflows/test-coverage-report.yaml)
+[![<LABEL>](https://github.com/thaibault/clientnode/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/clientnode/actions/workflows/check-types.yaml)
 [![<LABEL>](https://github.com/thaibault/clientnode/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/clientnode/actions/workflows/lint.yaml)
 
 [![code coverage](https://coveralls.io/repos/github/thaibault/clientnode/badge.svg)](https://coveralls.io/github/thaibault/clientnode)
@@ -79,8 +73,8 @@ Project status
 
 [![<LABEL>](https://github.com/thaibault/couchdb-web-node-plugin/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/couchdb-web-node-plugin/actions/workflows/build.yaml)
 [![<LABEL>](https://github.com/thaibault/couchdb-web-node-plugin/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/couchdb-web-node-plugin/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/couchdb-web-node-plugin/actions/workflows/test:coverage:report.yaml/badge.svg)](https://github.com/thaibault/couchdb-web-node-plugin/actions/workflows/test:coverage:report.yaml)
-[![<LABEL>](https://github.com/thaibault/couchdb-web-node-plugin/actions/workflows/check:types.yaml/badge.svg)](https://github.com/thaibault/couchdb-web-node-plugin/actions/workflows/check:types.yaml)
+[![<LABEL>](https://github.com/thaibault/couchdb-web-node-plugin/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/couchdb-web-node-plugin/actions/workflows/test-coverage-report.yaml)
+[![<LABEL>](https://github.com/thaibault/couchdb-web-node-plugin/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/couchdb-web-node-plugin/actions/workflows/check-types.yaml)
 [![<LABEL>](https://github.com/thaibault/couchdb-web-node-plugin/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/couchdb-web-node-plugin/actions/workflows/lint.yaml)
 
 [![code coverage](https://coveralls.io/repos/github/thaibault/couchdb-web-node-plugin/badge.svg)](https://coveralls.io/github/thaibault/couchdb-web-node-plugin)
@@ -94,8 +88,8 @@ Project status
 
 [![<LABEL>](https://github.com/thaibault/documentation-website/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/documentation-website/actions/workflows/build.yaml)
 [![<LABEL>](https://github.com/thaibault/documentation-website/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/documentation-website/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/documentation-website/actions/workflows/test:coverage:report.yaml/badge.svg)](https://github.com/thaibault/documentation-website/actions/workflows/test:coverage:report.yaml)
-[![<LABEL>](https://github.com/thaibault/documentation-website/actions/workflows/check:types.yaml/badge.svg)](https://github.com/thaibault/documentation-website/actions/workflows/check:types.yaml)
+[![<LABEL>](https://github.com/thaibault/documentation-website/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/documentation-website/actions/workflows/test-coverage-report.yaml)
+[![<LABEL>](https://github.com/thaibault/documentation-website/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/documentation-website/actions/workflows/check-types.yaml)
 [![<LABEL>](https://github.com/thaibault/documentation-website/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/documentation-website/actions/workflows/lint.yaml)
 
 [![code coverage](https://coveralls.io/repos/github/thaibault/documentation-website/badge.svg)](https://coveralls.io/github/thaibault/documentation-website)
@@ -107,8 +101,8 @@ Project status
 
 [![<LABEL>](https://github.com/thaibault/ejs-web-node-plugin/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/ejs-web-node-plugin/actions/workflows/build.yaml)
 [![<LABEL>](https://github.com/thaibault/ejs-web-node-plugin/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/ejs-web-node-plugin/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/ejs-web-node-plugin/actions/workflows/test:coverage:report.yaml/badge.svg)](https://github.com/thaibault/ejs-web-node-plugin/actions/workflows/test:coverage:report.yaml)
-[![<LABEL>](https://github.com/thaibault/ejs-web-node-plugin/actions/workflows/check:types.yaml/badge.svg)](https://github.com/thaibault/ejs-web-node-plugin/actions/workflows/check:types.yaml)
+[![<LABEL>](https://github.com/thaibault/ejs-web-node-plugin/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/ejs-web-node-plugin/actions/workflows/test-coverage-report.yaml)
+[![<LABEL>](https://github.com/thaibault/ejs-web-node-plugin/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/ejs-web-node-plugin/actions/workflows/check-types.yaml)
 [![<LABEL>](https://github.com/thaibault/ejs-web-node-plugin/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/ejs-web-node-plugin/actions/workflows/lint.yaml)
 
 [![code coverage](https://coveralls.io/repos/github/thaibault/ejs-web-node-plugin/badge.svg)](https://coveralls.io/github/thaibault/ejs-web-node-plugin)
@@ -122,8 +116,8 @@ Project status
 
 [![<LABEL>](https://github.com/thaibault/errorreporter/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/errorreporter/actions/workflows/build.yaml)
 [![<LABEL>](https://github.com/thaibault/errorreporter/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/errorreporter/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/errorreporter/actions/workflows/test:coverage:report.yaml/badge.svg)](https://github.com/thaibault/errorreporter/actions/workflows/test:coverage:report.yaml)
-[![<LABEL>](https://github.com/thaibault/errorreporter/actions/workflows/check:types.yaml/badge.svg)](https://github.com/thaibault/errorreporter/actions/workflows/check:types.yaml)
+[![<LABEL>](https://github.com/thaibault/errorreporter/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/errorreporter/actions/workflows/test-coverage-report.yaml)
+[![<LABEL>](https://github.com/thaibault/errorreporter/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/errorreporter/actions/workflows/check-types.yaml)
 [![<LABEL>](https://github.com/thaibault/errorreporter/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/errorreporter/actions/workflows/lint.yaml)
 
 [![code coverage](https://coveralls.io/repos/github/thaibault/errorreporter/badge.svg)](https://coveralls.io/github/thaibault/errorreporter)
@@ -137,8 +131,8 @@ Project status
 
 [![<LABEL>](https://github.com/thaibault/internationalisation/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/internationalisation/actions/workflows/build.yaml)
 [![<LABEL>](https://github.com/thaibault/internationalisation/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/internationalisation/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/internationalisation/actions/workflows/test:coverage:report.yaml/badge.svg)](https://github.com/thaibault/internationalisation/actions/workflows/test:coverage:report.yaml)
-[![<LABEL>](https://github.com/thaibault/internationalisation/actions/workflows/check:types.yaml/badge.svg)](https://github.com/thaibault/internationalisation/actions/workflows/check:types.yaml)
+[![<LABEL>](https://github.com/thaibault/internationalisation/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/internationalisation/actions/workflows/test-coverage-report.yaml)
+[![<LABEL>](https://github.com/thaibault/internationalisation/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/internationalisation/actions/workflows/check-types.yaml)
 [![<LABEL>](https://github.com/thaibault/internationalisation/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/internationalisation/actions/workflows/lint.yaml)
 
 [![code coverage](https://coveralls.io/repos/github/thaibault/internationalisation/badge.svg)](https://coveralls.io/github/thaibault/internationalisation)
@@ -152,8 +146,8 @@ Project status
 
 [![<LABEL>](https://github.com/thaibault/nginx-web-node-plugin/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/nginx-web-node-plugin/actions/workflows/build.yaml)
 [![<LABEL>](https://github.com/thaibault/nginx-web-node-plugin/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/nginx-web-node-plugin/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/nginx-web-node-plugin/actions/workflows/test:coverage:report.yaml/badge.svg)](https://github.com/thaibault/nginx-web-node-plugin/actions/workflows/test:coverage:report.yaml)
-[![<LABEL>](https://github.com/thaibault/nginx-web-node-plugin/actions/workflows/check:types.yaml/badge.svg)](https://github.com/thaibault/nginx-web-node-plugin/actions/workflows/check:types.yaml)
+[![<LABEL>](https://github.com/thaibault/nginx-web-node-plugin/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/nginx-web-node-plugin/actions/workflows/test-coverage-report.yaml)
+[![<LABEL>](https://github.com/thaibault/nginx-web-node-plugin/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/nginx-web-node-plugin/actions/workflows/check-types.yaml)
 [![<LABEL>](https://github.com/thaibault/nginx-web-node-plugin/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/nginx-web-node-plugin/actions/workflows/lint.yaml)
 
 [![code coverage](https://coveralls.io/repos/github/thaibault/nginx-web-node-plugin/badge.svg)](https://coveralls.io/github/thaibault/nginx-web-node-plugin)
@@ -167,8 +161,8 @@ Project status
 
 [![<LABEL>](https://github.com/thaibault/pre-render-web-node-plugin/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/pre-render-web-node-plugin/actions/workflows/build.yaml)
 [![<LABEL>](https://github.com/thaibault/pre-render-web-node-plugin/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/pre-render-web-node-plugin/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/pre-render-web-node-plugin/actions/workflows/test:coverage:report.yaml/badge.svg)](https://github.com/thaibault/pre-render-web-node-plugin/actions/workflows/test:coverage:report.yaml)
-[![<LABEL>](https://github.com/thaibault/pre-render-web-node-plugin/actions/workflows/check:types.yaml/badge.svg)](https://github.com/thaibault/pre-render-web-node-plugin/actions/workflows/check:types.yaml)
+[![<LABEL>](https://github.com/thaibault/pre-render-web-node-plugin/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/pre-render-web-node-plugin/actions/workflows/test-coverage-report.yaml)
+[![<LABEL>](https://github.com/thaibault/pre-render-web-node-plugin/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/pre-render-web-node-plugin/actions/workflows/check-types.yaml)
 [![<LABEL>](https://github.com/thaibault/pre-render-web-node-plugin/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/pre-render-web-node-plugin/actions/workflows/lint.yaml)
 
 [![code coverage](https://coveralls.io/repos/github/thaibault/pre-render-web-node-plugin/badge.svg)](https://coveralls.io/github/thaibault/pre-render-web-node-plugin)
@@ -182,8 +176,8 @@ Project status
 
 [![<LABEL>](https://github.com/thaibault/react-input-material/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/react-input-material/actions/workflows/build.yaml)
 [![<LABEL>](https://github.com/thaibault/react-input-material/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/react-input-material/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/react-input-material/actions/workflows/test:coverage:report.yaml/badge.svg)](https://github.com/thaibault/react-input-material/actions/workflows/test:coverage:report.yaml)
-[![<LABEL>](https://github.com/thaibault/react-input-material/actions/workflows/check:types.yaml/badge.svg)](https://github.com/thaibault/react-input-material/actions/workflows/check:types.yaml)
+[![<LABEL>](https://github.com/thaibault/react-input-material/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/react-input-material/actions/workflows/test-coverage-report.yaml)
+[![<LABEL>](https://github.com/thaibault/react-input-material/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/react-input-material/actions/workflows/check-types.yaml)
 [![<LABEL>](https://github.com/thaibault/react-input-material/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/react-input-material/actions/workflows/lint.yaml)
 
 [![code coverage](https://coveralls.io/repos/github/thaibault/react-input-material/badge.svg)](https://coveralls.io/github/thaibault/react-input-material)
@@ -197,8 +191,8 @@ Project status
 
 [![<LABEL>](https://github.com/thaibault/storelocator/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/storelocator/actions/workflows/build.yaml)
 [![<LABEL>](https://github.com/thaibault/storelocator/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/storelocator/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/storelocator/actions/workflows/test:coverage:report.yaml/badge.svg)](https://github.com/thaibault/storelocator/actions/workflows/test:coverage:report.yaml)
-[![<LABEL>](https://github.com/thaibault/storelocator/actions/workflows/check:types.yaml/badge.svg)](https://github.com/thaibault/storelocator/actions/workflows/check:types.yaml)
+[![<LABEL>](https://github.com/thaibault/storelocator/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/storelocator/actions/workflows/test-coverage-report.yaml)
+[![<LABEL>](https://github.com/thaibault/storelocator/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/storelocator/actions/workflows/check-types.yaml)
 [![<LABEL>](https://github.com/thaibault/storelocator/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/storelocator/actions/workflows/lint.yaml)
 
 [![code coverage](https://coveralls.io/repos/github/thaibault/storelocator/badge.svg)](https://coveralls.io/github/thaibault/storelocator)
@@ -212,8 +206,8 @@ Project status
 
 [![<LABEL>](https://github.com/thaibault/web-component-wrapper/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/web-component-wrapper/actions/workflows/build.yaml)
 [![<LABEL>](https://github.com/thaibault/web-component-wrapper/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/web-component-wrapper/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/web-component-wrapper/actions/workflows/test:coverage:report.yaml/badge.svg)](https://github.com/thaibault/web-component-wrapper/actions/workflows/test:coverage:report.yaml)
-[![<LABEL>](https://github.com/thaibault/web-component-wrapper/actions/workflows/check:types.yaml/badge.svg)](https://github.com/thaibault/web-component-wrapper/actions/workflows/check:types.yaml)
+[![<LABEL>](https://github.com/thaibault/web-component-wrapper/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/web-component-wrapper/actions/workflows/test-coverage-report.yaml)
+[![<LABEL>](https://github.com/thaibault/web-component-wrapper/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/web-component-wrapper/actions/workflows/check-types.yaml)
 [![<LABEL>](https://github.com/thaibault/web-component-wrapper/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/web-component-wrapper/actions/workflows/lint.yaml)
 
 [![code coverage](https://coveralls.io/repos/github/thaibault/web-component-wrapper/badge.svg)](https://coveralls.io/github/thaibault/web-component-wrapper)
@@ -227,8 +221,8 @@ Project status
 
 [![<LABEL>](https://github.com/thaibault/web-input-material/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/web-input-material/actions/workflows/build.yaml)
 [![<LABEL>](https://github.com/thaibault/web-input-material/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/web-input-material/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/web-input-material/actions/workflows/test:coverage:report.yaml/badge.svg)](https://github.com/thaibault/web-input-material/actions/workflows/test:coverage:report.yaml)
-[![<LABEL>](https://github.com/thaibault/web-input-material/actions/workflows/check:types.yaml/badge.svg)](https://github.com/thaibault/web-input-material/actions/workflows/check:types.yaml)
+[![<LABEL>](https://github.com/thaibault/web-input-material/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/web-input-material/actions/workflows/test-coverage-report.yaml)
+[![<LABEL>](https://github.com/thaibault/web-input-material/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/web-input-material/actions/workflows/check-types.yaml)
 [![<LABEL>](https://github.com/thaibault/web-input-material/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/web-input-material/actions/workflows/lint.yaml)
 
 [![code coverage](https://coveralls.io/repos/github/thaibault/web-input-material/badge.svg)](https://coveralls.io/github/thaibault/web-input-material)
@@ -242,8 +236,8 @@ Project status
 
 [![<LABEL>](https://github.com/thaibault/web-node/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/web-node/actions/workflows/build.yaml)
 [![<LABEL>](https://github.com/thaibault/web-node/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/web-node/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/web-node/actions/workflows/test:coverage:report.yaml/badge.svg)](https://github.com/thaibault/web-node/actions/workflows/test:coverage:report.yaml)
-[![<LABEL>](https://github.com/thaibault/web-node/actions/workflows/check:types.yaml/badge.svg)](https://github.com/thaibault/web-node/actions/workflows/check:types.yaml)
+[![<LABEL>](https://github.com/thaibault/web-node/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/web-node/actions/workflows/test-coverage-report.yaml)
+[![<LABEL>](https://github.com/thaibault/web-node/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/web-node/actions/workflows/check-types.yaml)
 [![<LABEL>](https://github.com/thaibault/web-node/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/web-node/actions/workflows/lint.yaml)
 
 [![code coverage](https://coveralls.io/repos/github/thaibault/web-node/badge.svg)](https://coveralls.io/github/thaibault/web-node)
@@ -257,8 +251,8 @@ Project status
 
 [![<LABEL>](https://github.com/thaibault/weboptimizer/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/weboptimizer/actions/workflows/build.yaml)
 [![<LABEL>](https://github.com/thaibault/weboptimizer/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/weboptimizer/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/weboptimizer/actions/workflows/test:coverage:report.yaml/badge.svg)](https://github.com/thaibault/weboptimizer/actions/workflows/test:coverage:report.yaml)
-[![<LABEL>](https://github.com/thaibault/weboptimizer/actions/workflows/check:types.yaml/badge.svg)](https://github.com/thaibault/weboptimizer/actions/workflows/check:types.yaml)
+[![<LABEL>](https://github.com/thaibault/weboptimizer/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/weboptimizer/actions/workflows/test-coverage-report.yaml)
+[![<LABEL>](https://github.com/thaibault/weboptimizer/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/weboptimizer/actions/workflows/check-types.yaml)
 [![<LABEL>](https://github.com/thaibault/weboptimizer/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/weboptimizer/actions/workflows/lint.yaml)
 
 [![code coverage](https://coveralls.io/repos/github/thaibault/weboptimizer/badge.svg)](https://coveralls.io/github/thaibault/weboptimizer)
@@ -272,8 +266,8 @@ Project status
 
 [![<LABEL>](https://github.com/thaibault/website-utilities/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/website-utilities/actions/workflows/build.yaml)
 [![<LABEL>](https://github.com/thaibault/website-utilities/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/website-utilities/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/website-utilities/actions/workflows/test:coverage:report.yaml/badge.svg)](https://github.com/thaibault/website-utilities/actions/workflows/test:coverage:report.yaml)
-[![<LABEL>](https://github.com/thaibault/website-utilities/actions/workflows/check:types.yaml/badge.svg)](https://github.com/thaibault/website-utilities/actions/workflows/check:types.yaml)
+[![<LABEL>](https://github.com/thaibault/website-utilities/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/website-utilities/actions/workflows/test-coverage-report.yaml)
+[![<LABEL>](https://github.com/thaibault/website-utilities/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/website-utilities/actions/workflows/check-types.yaml)
 [![<LABEL>](https://github.com/thaibault/website-utilities/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/website-utilities/actions/workflows/lint.yaml)
 
 [![code coverage](https://coveralls.io/repos/github/thaibault/website-utilities/badge.svg)](https://coveralls.io/github/thaibault/website-utilities)
