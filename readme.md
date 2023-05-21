@@ -196,16 +196,38 @@ Project status
 
 [![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/proxy.svg?label=documentation-website)](https://torben.website/proxy)
 
+### react-generic-tools
+
+[![npm](https://img.shields.io/npm/v/react-generic-tools?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d)](https://www.npmjs.com/package/react-generic-tools)
+[![npm downloads](https://img.shields.io/npm/dy/react-generic-tools.svg)](https://www.npmjs.com/package/react-generic-tools)
+
+[![<LABEL>](https://github.com/thaibault/react-generic-tools/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/react-generic-tools/actions/workflows/build.yaml)
+[![<LABEL>](https://github.com/thaibault/react-generic-tools/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/react-generic-tools/actions/workflows/check-types.yaml)
+[![<LABEL>](https://github.com/thaibault/react-generic-tools/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/react-generic-tools/actions/workflows/lint.yaml)
+
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/react-generic-tools.svg?label=documentation-website)](https://torben.website/react-generic-tools)
+
+### react-generic-animate
+
+[![npm](https://img.shields.io/npm/v/react-generic-animate?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d)](https://www.npmjs.com/package/react-generic-animate)
+[![npm downloads](https://img.shields.io/npm/dy/react-generic-animate.svg)](https://www.npmjs.com/package/react-generic-animate)
+
+[![<LABEL>](https://github.com/thaibault/react-generic-animate/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/react-generic-animate/actions/workflows/build.yaml)
+[![<LABEL>](https://github.com/thaibault/react-generic-animate/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/react-generic-animate/actions/workflows/check-types.yaml)
+[![<LABEL>](https://github.com/thaibault/react-generic-animate/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/react-generic-animate/actions/workflows/lint.yaml)
+
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/react-generic-animate.svg?label=documentation-website)](https://torben.website/react-generic-animate)
+
 ### react-generic-dummy
 
-[![npm](https://img.shields.io/npm/v/react-dummy?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d)](https://www.npmjs.com/package/react-dummy)
-[![npm downloads](https://img.shields.io/npm/dy/react-dummy.svg)](https://www.npmjs.com/package/react-dummy)
+[![npm](https://img.shields.io/npm/v/react-generic-dummy?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d)](https://www.npmjs.com/package/react-generic-dummy)
+[![npm downloads](https://img.shields.io/npm/dy/react-generic-dummy.svg)](https://www.npmjs.com/package/react-generic-dummy)
 
-[![<LABEL>](https://github.com/thaibault/react-dummy/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/react-dummy/actions/workflows/build.yaml)
-[![<LABEL>](https://github.com/thaibault/react-dummy/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/react-dummy/actions/workflows/check-types.yaml)
-[![<LABEL>](https://github.com/thaibault/react-dummy/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/react-dummy/actions/workflows/lint.yaml)
+[![<LABEL>](https://github.com/thaibault/react-generic-dummy/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/react-generic-dummy/actions/workflows/build.yaml)
+[![<LABEL>](https://github.com/thaibault/react-generic-dummy/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/react-generic-dummy/actions/workflows/check-types.yaml)
+[![<LABEL>](https://github.com/thaibault/react-generic-dummy/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/react-generic-dummy/actions/workflows/lint.yaml)
 
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/react-dummy.svg?label=documentation-website)](https://torben.website/react-dummy)
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/react-generic-dummy.svg?label=documentation-website)](https://torben.website/react-generic-dummy)
 
 ### react-input-material
 
