@@ -13,58 +13,90 @@ endregion -->
 Project status
 --------------
 
-[![<LABEL>](https://github.com/thaibault/website/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/website/actions/workflows/build.yaml)
-[![<LABEL>](https://github.com/thaibault/website/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/website/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/website/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/website/actions/workflows/test-coverage-report.yaml)
-[![<LABEL>](https://github.com/thaibault/website/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/website/actions/workflows/check-types.yaml)
-[![<LABEL>](https://github.com/thaibault/website/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/website/actions/workflows/lint.yaml)
+[![build](https://img.shields.io/github/actions/workflow/status/thaibault/website/build.yaml?style=for-the-badge)](https://github.com/thaibault/website/actions/workflows/build.yaml)
 
-[![website](https://img.shields.io/website-up-down-green-red/https/torben.website.svg?label=website)](https://torben.website)
+[![check types](https://img.shields.io/github/actions/workflow/status/thaibault/website/check-types.yaml?label=check%20types&style=for-the-badge)](https://github.com/thaibault/website/actions/workflows/check-types.yaml)
+[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/website/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/website/actions/workflows/lint.yaml)
+[![test](https://img.shields.io/github/actions/workflow/status/thaibault/website/test-coverage-report.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/website/actions/workflows/test-coverage-report.yaml)
+
+[![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/website?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/website)
+
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/website.svg?label=documentation-website&style=for-the-badge)](https://torben.website/website)
 
 ### agile-form
 
-[![npm](https://img.shields.io/npm/v/agile-form?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d)](https://www.npmjs.com/package/agile-form)
-[![npm downloads](https://img.shields.io/npm/dy/agile-form.svg)](https://www.npmjs.com/package/agile-form)
+[![npm](https://img.shields.io/npm/v/agile-form?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/agile-form)
+[![npm downloads](https://img.shields.io/npm/dy/agile-form.svg?style=for-the-badge)](https://www.npmjs.com/package/agile-form)
 
-[![<LABEL>](https://github.com/thaibault/agile-form/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/agile-form/actions/workflows/build.yaml)
-[![<LABEL>](https://github.com/thaibault/agile-form/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/agile-form/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/agile-form/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/agile-form/actions/workflows/test-coverage-report.yaml)
-[![<LABEL>](https://github.com/thaibault/agile-form/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/agile-form/actions/workflows/check-types.yaml)
-[![<LABEL>](https://github.com/thaibault/agile-form/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/agile-form/actions/workflows/lint.yaml)
+[![build](https://img.shields.io/github/actions/workflow/status/thaibault/agile-form/build.yaml?style=for-the-badge)](https://github.com/thaibault/agile-form/actions/workflows/build.yaml)
 
-[![code coverage](https://coveralls.io/repos/github/thaibault/agile-form/badge.svg)](https://coveralls.io/github/thaibault/agile-form)
+[![check types](https://img.shields.io/github/actions/workflow/status/thaibault/agile-form/check-types.yaml?label=check%20types&style=for-the-badge)](https://github.com/thaibault/agile-form/actions/workflows/check-types.yaml)
+[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/agile-form/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/agile-form/actions/workflows/lint.yaml)
+[![test](https://img.shields.io/github/actions/workflow/status/thaibault/agile-form/test-coverage-report.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/agile-form/actions/workflows/test-coverage-report.yaml)
 
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/agile-form.svg?label=documentation-website)](https://torben.website/agile-form)
+[![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/agile-form?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/agile-form)
+
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/agile-form.svg?label=documentation-website&style=for-the-badge)](https://torben.website/agile-form)
+
+[![Try out](https://img.shields.io/badge/Try%20it%20on%20runkit-%2345cc11?style=for-the-badge)](https://npm.runkit.com/agile-form)
 
 ### application-server-web-node-plugin
 
-[![npm](https://img.shields.io/npm/v/application-server-web-node-plugin?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d)](https://www.npmjs.com/package/application-server-web-node-plugin)
-[![npm downloads](https://img.shields.io/npm/dy/application-server-web-node-plugin.svg)](https://www.npmjs.com/package/application-server-web-node-plugin)
+[![npm](https://img.shields.io/npm/v/application-server-web-node-plugin?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/application-server-web-node-plugin)
+[![npm downloads](https://img.shields.io/npm/dy/application-server-web-node-plugin.svg?style=for-the-badge)](https://www.npmjs.com/package/application-server-web-node-plugin)
 
-[![<LABEL>](https://github.com/thaibault/application-server-web-node-plugin/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/application-server-web-node-plugin/actions/workflows/build.yaml)
-[![<LABEL>](https://github.com/thaibault/application-server-web-node-plugin/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/application-server-web-node-plugin/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/application-server-web-node-plugin/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/application-server-web-node-plugin/actions/workflows/test-coverage-report.yaml)
-[![<LABEL>](https://github.com/thaibault/application-server-web-node-plugin/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/application-server-web-node-plugin/actions/workflows/check-types.yaml)
-[![<LABEL>](https://github.com/thaibault/application-server-web-node-plugin/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/application-server-web-node-plugin/actions/workflows/lint.yaml)
+[![build](https://img.shields.io/github/actions/workflow/status/thaibault/application-server-web-node-plugin/build.yaml?style=for-the-badge)](https://github.com/thaibault/application-server-web-node-plugin/actions/workflows/build.yaml)
 
-[![code coverage](https://coveralls.io/repos/github/thaibault/application-server-web-node-plugin/badge.svg)](https://coveralls.io/github/thaibault/application-server-web-node-plugin)
+[![check types](https://img.shields.io/github/actions/workflow/status/thaibault/application-server-web-node-plugin/check-types.yaml?label=check%20types&style=for-the-badge)](https://github.com/thaibault/application-server-web-node-plugin/actions/workflows/check-types.yaml)
+[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/application-server-web-node-plugin/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/application-server-web-node-plugin/actions/workflows/lint.yaml)
+[![test](https://img.shields.io/github/actions/workflow/status/thaibault/application-server-web-node-plugin/test-coverage-report.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/application-server-web-node-plugin/actions/workflows/test-coverage-report.yaml)
 
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/application-server-web-node-plugin.svg?label=documentation-website)](https://torben.website/application-server-web-node-plugin)
+[![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/application-server-web-node-plugin?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/application-server-web-node-plugin)
+
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/application-server-web-node-plugin.svg?label=documentation-website&style=for-the-badge)](https://torben.website/application-server-web-node-plugin)
+
+[![Try out](https://img.shields.io/badge/Try%20it%20on%20runkit-%2345cc11?style=for-the-badge)](https://npm.runkit.com/application-server-web-node-plugin)
+
+### archinstall
+
+[![npm](https://img.shields.io/npm/v/archinstall?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/archinstall)
+[![npm downloads](https://img.shields.io/npm/dy/archinstall.svg?style=for-the-badge)](https://www.npmjs.com/package/archinstall)
+
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/archinstall.svg?label=documentation-website&style=for-the-badge)](https://torben.website/archinstall)
+
+### backup-rotation
+
+[![npm](https://img.shields.io/npm/v/backup-rotation?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/backup-rotation)
+[![npm downloads](https://img.shields.io/npm/dy/backup-rotation.svg?style=for-the-badge)](https://www.npmjs.com/package/backup-rotation)
+
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/backup-rotation.svg?label=documentation-website&style=for-the-badge)](https://torben.website/backup-rotation)
+
+### bashlink
+
+[![npm](https://img.shields.io/npm/v/bashlink?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/bashlink)
+[![npm downloads](https://img.shields.io/npm/dy/bashlink.svg?style=for-the-badge)](https://www.npmjs.com/package/bashlink)
+
+[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/bashlink/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/bashlink/actions/workflows/lint.yaml)
+[![test](https://img.shields.io/github/actions/workflow/status/thaibault/bashlink/test-coverage-report.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/bashlink/actions/workflows/test-coverage-report.yaml)
+
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/bashlink.svg?label=documentation-website&style=for-the-badge)](https://torben.website/bashlink)
 
 ### clientnode
 
-[![npm](https://img.shields.io/npm/v/clientnode?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d)](https://www.npmjs.com/package/clientnode)
-[![npm downloads](https://img.shields.io/npm/dy/clientnode.svg)](https://www.npmjs.com/package/clientnode)
+[![npm](https://img.shields.io/npm/v/clientnode?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/clientnode)
+[![npm downloads](https://img.shields.io/npm/dy/clientnode.svg?style=for-the-badge)](https://www.npmjs.com/package/clientnode)
 
-[![<LABEL>](https://github.com/thaibault/clientnode/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/clientnode/actions/workflows/build.yaml)
-[![<LABEL>](https://github.com/thaibault/clientnode/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/clientnode/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/clientnode/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/clientnode/actions/workflows/test-coverage-report.yaml)
-[![<LABEL>](https://github.com/thaibault/clientnode/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/clientnode/actions/workflows/check-types.yaml)
-[![<LABEL>](https://github.com/thaibault/clientnode/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/clientnode/actions/workflows/lint.yaml)
+[![build](https://img.shields.io/github/actions/workflow/status/thaibault/clientnode/build.yaml?style=for-the-badge)](https://github.com/thaibault/clientnode/actions/workflows/build.yaml)
 
-[![code coverage](https://coveralls.io/repos/github/thaibault/clientnode/badge.svg)](https://coveralls.io/github/thaibault/clientnode)
+[![check types](https://img.shields.io/github/actions/workflow/status/thaibault/clientnode/check-types.yaml?label=Check%20types&style=for-the-badge)](https://github.com/thaibault/clientnode/actions/workflows/check-types.yaml)
+[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/clientnode/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/clientnode/actions/workflows/lint.yaml)
+[![test](https://img.shields.io/github/actions/workflow/status/thaibault/clientnode/test-coverage-report.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/clientnode/actions/workflows/test-coverage-report.yaml)
 
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/clientnode.svg?label=documentation-website)](https://torben.website/clientnode)
+[![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/clientnode?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/clientnode)
+
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/clientnode.svg?label=documentation-website&style=for-the-badge)](https://torben.website/clientnode)
+
+[![Try out](https://img.shields.io/badge/Try%20it%20on%20runkit-%2345cc11?style=for-the-badge)](https://npm.runkit.com/clientnode)
 
 ### containerbase
 
@@ -78,285 +110,294 @@ Project status
 
 ### couchdb-web-node-plugin
 
-[![npm](https://img.shields.io/npm/v/couchdb-web-node-plugin?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d)](https://www.npmjs.com/package/couchdb-web-node-plugin)
-[![npm downloads](https://img.shields.io/npm/dy/couchdb-web-node-plugin.svg)](https://www.npmjs.com/package/couchdb-web-node-plugin)
+[![npm](https://img.shields.io/npm/v/couchdb-web-node-plugin?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/couchdb-web-node-plugin)
+[![npm downloads](https://img.shields.io/npm/dy/couchdb-web-node-plugin.svg?style=for-the-badge)](https://www.npmjs.com/package/couchdb-web-node-plugin)
 
-[![<LABEL>](https://github.com/thaibault/couchdb-web-node-plugin/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/couchdb-web-node-plugin/actions/workflows/build.yaml)
-[![<LABEL>](https://github.com/thaibault/couchdb-web-node-plugin/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/couchdb-web-node-plugin/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/couchdb-web-node-plugin/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/couchdb-web-node-plugin/actions/workflows/test-coverage-report.yaml)
-[![<LABEL>](https://github.com/thaibault/couchdb-web-node-plugin/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/couchdb-web-node-plugin/actions/workflows/check-types.yaml)
-[![<LABEL>](https://github.com/thaibault/couchdb-web-node-plugin/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/couchdb-web-node-plugin/actions/workflows/lint.yaml)
+[![build](https://img.shields.io/github/actions/workflow/status/thaibault/couchdb-web-node-plugin/build.yaml?style=for-the-badge)](https://github.com/thaibault/couchdb-web-node-plugin/actions/workflows/build.yaml)
 
-[![code coverage](https://coveralls.io/repos/github/thaibault/couchdb-web-node-plugin/badge.svg)](https://coveralls.io/github/thaibault/couchdb-web-node-plugin)
+[![check types](https://img.shields.io/github/actions/workflow/status/thaibault/couchdb-web-node-plugin/check-types.yaml?label=check%20types&style=for-the-badge)](https://github.com/thaibault/couchdb-web-node-plugin/actions/workflows/check-types.yaml)
+[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/couchdb-web-node-plugin/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/couchdb-web-node-plugin/actions/workflows/lint.yaml)
+[![test](https://img.shields.io/github/actions/workflow/status/thaibault/couchdb-web-node-plugin/test-coverage-report.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/couchdb-web-node-plugin/actions/workflows/test-coverage-report.yaml)
 
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/couchdb-web-node-plugin.svg?label=documentation-website)](https://torben.website/couchdb-web-node-plugin)
+[![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/couchdb-web-node-plugin?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/couchdb-web-node-plugin)
+
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/couchdb-web-node-plugin.svg?label=documentation-website&style=for-the-badge)](https://torben.website/couchdb-web-node-plugin)
 
 ### documentation-website
 
-[![npm](https://img.shields.io/npm/v/documentation-website?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d)](https://www.npmjs.com/package/documentation-website)
-[![npm downloads](https://img.shields.io/npm/dy/documentation-website.svg)](https://www.npmjs.com/package/documentation-website)
+[![npm](https://img.shields.io/npm/v/documentation-website?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/documentation-website)
+[![npm downloads](https://img.shields.io/npm/dy/documentation-website.svg?style=for-the-badge)](https://www.npmjs.com/package/documentation-website)
 
-[![<LABEL>](https://github.com/thaibault/documentation-website/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/documentation-website/actions/workflows/build.yaml)
-[![<LABEL>](https://github.com/thaibault/documentation-website/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/documentation-website/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/documentation-website/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/documentation-website/actions/workflows/test-coverage-report.yaml)
-[![<LABEL>](https://github.com/thaibault/documentation-website/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/documentation-website/actions/workflows/check-types.yaml)
-[![<LABEL>](https://github.com/thaibault/documentation-website/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/documentation-website/actions/workflows/lint.yaml)
+[![build](https://img.shields.io/github/actions/workflow/status/thaibault/documentation-website/build.yaml?style=for-the-badge)](https://github.com/thaibault/documentation-website/actions/workflows/build.yaml)
 
-[![code coverage](https://coveralls.io/repos/github/thaibault/documentation-website/badge.svg)](https://coveralls.io/github/thaibault/documentation-website)
+[![check types](https://img.shields.io/github/actions/workflow/status/thaibault/documentation-website/check-types.yaml?label=check%20types&style=for-the-badge)](https://github.com/thaibault/documentation-website/actions/workflows/check-types.yaml)
+[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/documentation-website/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/documentation-website/actions/workflows/lint.yaml)
+[![test](https://img.shields.io/github/actions/workflow/status/thaibault/documentation-website/test-coverage-report.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/documentation-website/actions/workflows/test-coverage-report.yaml)
+
+[![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/documentation-website?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/documentation-website)
 
 ### ejs-web-node-plugin
 
-[![npm](https://img.shields.io/npm/v/ejs-web-node-plugin?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d)](https://www.npmjs.com/package/ejs-web-node-plugin)
-[![npm downloads](https://img.shields.io/npm/dy/ejs-web-node-plugin.svg)](https://www.npmjs.com/package/ejs-web-node-plugin)
+[![npm](https://img.shields.io/npm/v/ejs-web-node-plugin?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/ejs-web-node-plugin)
+[![npm downloads](https://img.shields.io/npm/dy/ejs-web-node-plugin.svg?style=for-the-badge)](https://www.npmjs.com/package/ejs-web-node-plugin)
 
-[![<LABEL>](https://github.com/thaibault/ejs-web-node-plugin/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/ejs-web-node-plugin/actions/workflows/build.yaml)
-[![<LABEL>](https://github.com/thaibault/ejs-web-node-plugin/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/ejs-web-node-plugin/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/ejs-web-node-plugin/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/ejs-web-node-plugin/actions/workflows/test-coverage-report.yaml)
-[![<LABEL>](https://github.com/thaibault/ejs-web-node-plugin/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/ejs-web-node-plugin/actions/workflows/check-types.yaml)
-[![<LABEL>](https://github.com/thaibault/ejs-web-node-plugin/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/ejs-web-node-plugin/actions/workflows/lint.yaml)
+[![build](https://img.shields.io/github/actions/workflow/status/thaibault/ejs-web-node-plugin/build.yaml?style=for-the-badge)](https://github.com/thaibault/ejs-web-node-plugin/actions/workflows/build.yaml)
 
-[![code coverage](https://coveralls.io/repos/github/thaibault/ejs-web-node-plugin/badge.svg)](https://coveralls.io/github/thaibault/ejs-web-node-plugin)
+[![check types](https://img.shields.io/github/actions/workflow/status/thaibault/ejs-web-node-plugin/check-types.yaml?label=check%20types&style=for-the-badge)](https://github.com/thaibault/ejs-web-node-plugin/actions/workflows/check-types.yaml)
+[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/ejs-web-node-plugin/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/ejs-web-node-plugin/actions/workflows/lint.yaml)
+[![test](https://img.shields.io/github/actions/workflow/status/thaibault/ejs-web-node-plugin/test-coverage-report.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/ejs-web-node-plugin/actions/workflows/test-coverage-report.yaml)
 
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/ejs-web-node-plugin.svg?label=documentation-website)](https://torben.website/ejs-web-node-plugin)
+[![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/ejs-web-node-plugin?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/ejs-web-node-plugin)
+
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/ejs-web-node-plugin.svg?label=documentation-website&style=for-the-badge)](https://torben.website/ejs-web-node-plugin)
 
 ### errorreporter
 
-[![npm](https://img.shields.io/npm/v/errorreporter?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d)](https://www.npmjs.com/package/errorreporter)
-[![npm downloads](https://img.shields.io/npm/dy/errorreporter.svg)](https://www.npmjs.com/package/errorreporter)
+[![npm](https://img.shields.io/npm/v/errorreporter?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/errorreporter)
+[![npm downloads](https://img.shields.io/npm/dy/errorreporter.svg?style=for-the-badge)](https://www.npmjs.com/package/errorreporter)
 
-[![<LABEL>](https://github.com/thaibault/errorreporter/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/errorreporter/actions/workflows/build.yaml)
-[![<LABEL>](https://github.com/thaibault/errorreporter/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/errorreporter/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/errorreporter/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/errorreporter/actions/workflows/test-coverage-report.yaml)
-[![<LABEL>](https://github.com/thaibault/errorreporter/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/errorreporter/actions/workflows/check-types.yaml)
-[![<LABEL>](https://github.com/thaibault/errorreporter/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/errorreporter/actions/workflows/lint.yaml)
+[![build](https://img.shields.io/github/actions/workflow/status/thaibault/errorreporter/build.yaml?style=for-the-badge)](https://github.com/thaibault/errorreporter/actions/workflows/build.yaml)
 
-[![code coverage](https://coveralls.io/repos/github/thaibault/errorreporter/badge.svg)](https://coveralls.io/github/thaibault/errorreporter)
+[![check types](https://img.shields.io/github/actions/workflow/status/thaibault/errorreporter/check-types.yaml?label=check%20types&style=for-the-badge)](https://github.com/thaibault/errorreporter/actions/workflows/check-types.yaml)
+[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/errorreporter/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/errorreporter/actions/workflows/lint.yaml)
+[![test](https://img.shields.io/github/actions/workflow/status/thaibault/errorreporter/test-coverage-report.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/errorreporter/actions/workflows/test-coverage-report.yaml)
 
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/errorreporter.svg?label=documentation-website)](https://torben.website/errorreporter)
+[![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/errorreporter?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/errorreporter)
+
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/errorreporter.svg?label=documentation-website&style=for-the-badge)](https://torben.website/errorreporter)
 
 ### internationalisation
 
-[![npm](https://img.shields.io/npm/v/internationalisation?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d)](https://www.npmjs.com/package/internationalisation)
-[![npm downloads](https://img.shields.io/npm/dy/internationalisation.svg)](https://www.npmjs.com/package/internationalisation)
+[![npm](https://img.shields.io/npm/v/internationalisation?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/internationalisation)
+[![npm downloads](https://img.shields.io/npm/dy/internationalisation.svg?style=for-the-badge)](https://www.npmjs.com/package/internationalisation)
 
-[![<LABEL>](https://github.com/thaibault/internationalisation/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/internationalisation/actions/workflows/build.yaml)
-[![<LABEL>](https://github.com/thaibault/internationalisation/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/internationalisation/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/internationalisation/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/internationalisation/actions/workflows/test-coverage-report.yaml)
-[![<LABEL>](https://github.com/thaibault/internationalisation/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/internationalisation/actions/workflows/check-types.yaml)
-[![<LABEL>](https://github.com/thaibault/internationalisation/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/internationalisation/actions/workflows/lint.yaml)
+[![build](https://img.shields.io/github/actions/workflow/status/thaibault/internationalisation/build.yaml?style=for-the-badge)](https://github.com/thaibault/internationalisation/actions/workflows/build.yaml)
 
-[![code coverage](https://coveralls.io/repos/github/thaibault/internationalisation/badge.svg)](https://coveralls.io/github/thaibault/internationalisation)
+[![check types](https://img.shields.io/github/actions/workflow/status/thaibault/internationalisation/check-types.yaml?label=check%20types&style=for-the-badge)](https://github.com/thaibault/internationalisation/actions/workflows/check-types.yaml)
+[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/internationalisation/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/internationalisation/actions/workflows/lint.yaml)
+[![test](https://img.shields.io/github/actions/workflow/status/thaibault/internationalisation/test-coverage-report.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/internationalisation/actions/workflows/test-coverage-report.yaml)
 
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/internationalisation.svg?label=documentation-website)](https://torben.website/internationalisation)
+[![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/internationalisation?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/internationalisation)
+
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/internationalisation.svg?label=documentation-website&style=for-the-badge)](https://torben.website/internationalisation)
+
+### legal-notes
+
+[![npm](https://img.shields.io/npm/v/legal-notes?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/legal-notes)
+[![npm downloads](https://img.shields.io/npm/dy/legal-notes.svg?style=for-the-badge)](https://www.npmjs.com/package/legal-notes)
 
 ### nginx-web-node-plugin
 
-[![npm](https://img.shields.io/npm/v/nginxwebnodeplugin?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d)](https://www.npmjs.com/package/nginxwebnodeplugin)
-[![npm downloads](https://img.shields.io/npm/dy/nginxwebnodeplugin.svg)](https://www.npmjs.com/package/nginxwebnodeplugin)
+[![npm](https://img.shields.io/npm/v/nginxwebnodeplugin?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/nginx-web-node-plugin)
+[![npm downloads](https://img.shields.io/npm/dy/nginxwebnodeplugin.svg?style=for-the-badge)](https://www.npmjs.com/package/nginx-web-node-plugin)
 
-[![<LABEL>](https://github.com/thaibault/nginx-web-node-plugin/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/nginx-web-node-plugin/actions/workflows/build.yaml)
-[![<LABEL>](https://github.com/thaibault/nginx-web-node-plugin/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/nginx-web-node-plugin/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/nginx-web-node-plugin/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/nginx-web-node-plugin/actions/workflows/test-coverage-report.yaml)
-[![<LABEL>](https://github.com/thaibault/nginx-web-node-plugin/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/nginx-web-node-plugin/actions/workflows/check-types.yaml)
-[![<LABEL>](https://github.com/thaibault/nginx-web-node-plugin/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/nginx-web-node-plugin/actions/workflows/lint.yaml)
+[![build](https://img.shields.io/github/actions/workflow/status/thaibault/nginx-web-node-plugin/build.yaml?style=for-the-badge)](https://github.com/thaibault/nginx-web-node-plugin/actions/workflows/build.yaml)
 
-[![code coverage](https://coveralls.io/repos/github/thaibault/nginx-web-node-plugin/badge.svg)](https://coveralls.io/github/thaibault/nginx-web-node-plugin)
+[![check types](https://img.shields.io/github/actions/workflow/status/thaibault/nginx-web-node-plugin/check-types.yaml?label=check%20types&style=for-the-badge)](https://github.com/thaibault/nginx-web-node-plugin/actions/workflows/check-types.yaml)
+[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/nginx-web-node-plugin/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/nginx-web-node-plugin/actions/workflows/lint.yaml)
+[![test](https://img.shields.io/github/actions/workflow/status/thaibault/nginx-web-node-plugin/test-coverage-report.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/nginx-web-node-plugin/actions/workflows/test-coverage-report.yaml)
 
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/nginx-web-node-plugin.svg?label=documentation-website)](https://torben.website/nginx-web-node-plugin)
+[![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/nginx-web-node-plugin?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/nginx-web-node-plugin)
+
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/nginx-web-node-plugin.svg?label=documentation-website&style=for-the-badge)](https://torben.website/nginx-web-node-plugin)
 
 ### polyfill-bundler
 
-[![npm](https://img.shields.io/npm/v/polyfill-bundler?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d)](https://www.npmjs.com/package/polyfill-bundler)
-[![npm downloads](https://img.shields.io/npm/dy/polyfill-bundler.svg)](https://www.npmjs.com/package/polyfill-bundler)
+[![npm](https://img.shields.io/npm/v/polyfill-bundler?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/polyfill-bundler)
+[![npm downloads](https://img.shields.io/npm/dy/polyfill-bundler.svg?style=for-the-badge)](https://www.npmjs.com/package/polyfill-bundler)
 
-[![<LABEL>](https://github.com/thaibault/polyfill-bundler/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/polyfill-bundler/actions/workflows/build.yaml)
-[![<LABEL>](https://github.com/thaibault/polyfill-bundler/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/polyfill-bundler/actions/workflows/check-types.yaml)
-[![<LABEL>](https://github.com/thaibault/polyfill-bundler/actions/workflows/build-image-periodically-2-branches.yaml/badge.svg)](https://github.com/thaibault/polyfill-bundler/actions/workflows/build-image-periodically-2-branches.yaml)
+[![build](https://img.shields.io/github/actions/workflow/status/thaibault/polyfill-bundler/build.yaml?style=for-the-badge)](https://github.com/thaibault/polyfill-bundler/actions/workflows/build.yaml)
 
-[![documentation website](https://img.shields.io/website-up-down-green-red/http/torben.website/polyfill-bundler.svg?label=documentation-website)](http://torben.website/polyfill-bundler)
+[![check types](https://img.shields.io/github/actions/workflow/status/thaibault/polyfill-bundler/check-types.yaml?label=check%20types&style=for-the-badge)](https://github.com/thaibault/polyfill-bundler/actions/workflows/check-types.yaml)
+
+[![build push image](https://img.shields.io/github/actions/workflow/status/thaibault/polyfill-bundler/build-image-periodically-2-branches.yaml?label=build%20push%20image&style=for-the-badge)](https://github.com/thaibault/polyfill-bundler/actions/workflows/build-image-periodically-2-branches.yaml)
+
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/polyfill-bundler.svg?label=documentation-website&style=for-the-badge)](https://torben.website/polyfill-bundler)
 
 ### pre-render-web-node-plugin
 
-[![npm](https://img.shields.io/npm/v/prerenderwebnodeplugin?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d)](https://www.npmjs.com/package/prerenderwebnodeplugin)
-[![npm downloads](https://img.shields.io/npm/dy/prerenderwebnodeplugin.svg)](https://www.npmjs.com/package/prerenderwebnodeplugin)
+[![npm](https://img.shields.io/npm/v/prerenderwebnodeplugin?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/prerenderwebnodeplugin)
+[![npm downloads](https://img.shields.io/npm/dy/prerenderwebnodeplugin.svg?style=for-the-badge)](https://www.npmjs.com/package/prerenderwebnodeplugin)
 
-[![<LABEL>](https://github.com/thaibault/pre-render-web-node-plugin/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/pre-render-web-node-plugin/actions/workflows/build.yaml)
-[![<LABEL>](https://github.com/thaibault/pre-render-web-node-plugin/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/pre-render-web-node-plugin/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/pre-render-web-node-plugin/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/pre-render-web-node-plugin/actions/workflows/test-coverage-report.yaml)
-[![<LABEL>](https://github.com/thaibault/pre-render-web-node-plugin/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/pre-render-web-node-plugin/actions/workflows/check-types.yaml)
-[![<LABEL>](https://github.com/thaibault/pre-render-web-node-plugin/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/pre-render-web-node-plugin/actions/workflows/lint.yaml)
+[![build](https://img.shields.io/github/actions/workflow/status/thaibault/pre-render-web-node-plugin/build.yaml?style=for-the-badge)](https://github.com/thaibault/pre-render-web-node-plugin/actions/workflows/build.yaml)
 
-[![code coverage](https://coveralls.io/repos/github/thaibault/pre-render-web-node-plugin/badge.svg)](https://coveralls.io/github/thaibault/pre-render-web-node-plugin)
+[![check types](https://img.shields.io/github/actions/workflow/status/thaibault/pre-render-web-node-plugin/check-types.yaml?label=check%20types&style=for-the-badge)](https://github.com/thaibault/pre-render-web-node-plugin/actions/workflows/check-types.yaml)
+[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/pre-render-web-node-plugin/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/pre-render-web-node-plugin/actions/workflows/lint.yaml)
+[![test](https://img.shields.io/github/actions/workflow/status/thaibault/pre-render-web-node-plugin/test-coverage-report.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/pre-render-web-node-plugin/actions/workflows/test-coverage-report.yaml)
 
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/pre-render-web-node-plugin.svg?label=documentation-website)](https://torben.website/pre-render-web-node-plugin)
+[![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/pre-render-web-node-plugin?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/pre-render-web-node-plugin)
+
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/pre-render-web-node-plugin.svg?label=documentation-website&style=for-the-badge)](https://torben.website/pre-render-web-node-plugin)
 
 ### proxy
 
-[![<LABEL>](https://github.com/thaibault/proxy/actions/workflows/build-image-periodically-2-branches.yaml/badge.svg)](https://github.com/thaibault/proxy/actions/workflows/build-image-periodically-2-branches.yaml)
+[![build push image](https://img.shields.io/github/actions/workflow/status/thaibault/proxy/build-image-periodically-2-branches.yaml?label=build%20push%20image&style=for-the-badge)](https://github.com/thaibault/proxy/actions/workflows/build-image-periodically-2-branches.yaml)
 
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/proxy.svg?label=documentation-website)](https://torben.website/proxy)
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/proxy.svg?label=documentation-website&style=for-the-badge)](https://torben.website/proxy)
 
 ### react-generic-tools
 
-[![npm](https://img.shields.io/npm/v/react-generic-tools?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d)](https://www.npmjs.com/package/react-generic-tools)
-[![npm downloads](https://img.shields.io/npm/dy/react-generic-tools.svg)](https://www.npmjs.com/package/react-generic-tools)
+[![npm](https://img.shields.io/npm/v/react-generic-tools?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/react-generic-tools)
+[![npm downloads](https://img.shields.io/npm/dy/react-generic-tools.svg?style=for-the-badge)](https://www.npmjs.com/package/react-generic-tools)
 
-[![<LABEL>](https://github.com/thaibault/react-generic-tools/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/react-generic-tools/actions/workflows/build.yaml)
-[![<LABEL>](https://github.com/thaibault/react-generic-tools/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/react-generic-tools/actions/workflows/check-types.yaml)
-[![<LABEL>](https://github.com/thaibault/react-generic-tools/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/react-generic-tools/actions/workflows/lint.yaml)
+[![build](https://img.shields.io/github/actions/workflow/status/thaibault/react-generic-tools/build.yaml?style=for-the-badge)](https://github.com/thaibault/react-generic-tools/actions/workflows/build.yaml)
 
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/react-generic-tools.svg?label=documentation-website)](https://torben.website/react-generic-tools)
+[![check types](https://img.shields.io/github/actions/workflow/status/thaibault/react-generic-tools/check-types.yaml?label=check%20types&style=for-the-badge)](https://github.com/thaibault/react-generic-tools/actions/workflows/check-types.yaml)
+[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/react-generic-tools/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/react-generic-tools/actions/workflows/lint.yaml)
+
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/react-generic-tools.svg?label=documentation-website&style=for-the-badge)](https://torben.website/react-generic-tools)
 
 ### react-generic-animate
 
-[![npm](https://img.shields.io/npm/v/react-generic-animate?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d)](https://www.npmjs.com/package/react-generic-animate)
-[![npm downloads](https://img.shields.io/npm/dy/react-generic-animate.svg)](https://www.npmjs.com/package/react-generic-animate)
+[![npm](https://img.shields.io/npm/v/react-generic-animate?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/react-generic-animate)
+[![npm downloads](https://img.shields.io/npm/dy/react-generic-animate.svg?style=for-the-badge)](https://www.npmjs.com/package/react-generic-animate)
 
-[![<LABEL>](https://github.com/thaibault/react-generic-animate/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/react-generic-animate/actions/workflows/build.yaml)
-[![<LABEL>](https://github.com/thaibault/react-generic-animate/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/react-generic-animate/actions/workflows/check-types.yaml)
-[![<LABEL>](https://github.com/thaibault/react-generic-animate/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/react-generic-animate/actions/workflows/lint.yaml)
+[![build](https://img.shields.io/github/actions/workflow/status/thaibault/react-generic-animate/build.yaml?style=for-the-badge)](https://github.com/thaibault/react-generic-animate/actions/workflows/build.yaml)
 
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/react-generic-animate.svg?label=documentation-website)](https://torben.website/react-generic-animate)
+[![check types](https://img.shields.io/github/actions/workflow/status/thaibault/react-generic-animate/check-types.yaml?label=check%20types&style=for-the-badge)](https://github.com/thaibault/react-generic-animate/actions/workflows/check-types.yaml)
+[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/react-generic-animate/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/react-generic-animate/actions/workflows/lint.yaml)
+
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/react-generic-animate.svg?label=documentation-website&style=for-the-badge)](https://torben.website/react-generic-animate)
 
 ### react-generic-dummy
 
-[![npm](https://img.shields.io/npm/v/react-generic-dummy?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d)](https://www.npmjs.com/package/react-generic-dummy)
-[![npm downloads](https://img.shields.io/npm/dy/react-generic-dummy.svg)](https://www.npmjs.com/package/react-generic-dummy)
+[![npm](https://img.shields.io/npm/v/react-generic-dummy?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/react-generic-dummy)
+[![npm downloads](https://img.shields.io/npm/dy/react-generic-dummy.svg?style=for-the-badge)](https://www.npmjs.com/package/react-generic-dummy)
 
-[![<LABEL>](https://github.com/thaibault/react-generic-dummy/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/react-generic-dummy/actions/workflows/build.yaml)
-[![<LABEL>](https://github.com/thaibault/react-generic-dummy/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/react-generic-dummy/actions/workflows/check-types.yaml)
-[![<LABEL>](https://github.com/thaibault/react-generic-dummy/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/react-generic-dummy/actions/workflows/lint.yaml)
+[![build](https://img.shields.io/github/actions/workflow/status/thaibault/react-generic-dummy/build.yaml?style=for-the-badge)](https://github.com/thaibault/react-generic-dummy/actions/workflows/build.yaml)
 
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/react-generic-dummy.svg?label=documentation-website)](https://torben.website/react-generic-dummy)
+[![check types](https://img.shields.io/github/actions/workflow/status/thaibault/react-generic-dummy/check-types.yaml?label=check%20types&style=for-the-badge)](https://github.com/thaibault/react-generic-dummy/actions/workflows/check-types.yaml)
+[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/react-generic-dummy/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/react-generic-dummy/actions/workflows/lint.yaml)
+
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/react-generic-dummy.svg?label=documentation-website&style=for-the-badge)](https://torben.website/react-generic-dummy)
 
 ### react-input-material
 
-[![npm](https://img.shields.io/npm/v/react-input-material?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d)](https://www.npmjs.com/package/react-input-material)
-[![npm downloads](https://img.shields.io/npm/dy/react-input-material.svg)](https://www.npmjs.com/package/react-input-material)
+[![npm](https://img.shields.io/npm/v/react-input-material?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/react-input-material)
+[![npm downloads](https://img.shields.io/npm/dy/react-input-material.svg?style=for-the-badge)](https://www.npmjs.com/package/react-input-material)
 
-[![<LABEL>](https://github.com/thaibault/react-input-material/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/react-input-material/actions/workflows/build.yaml)
-[![<LABEL>](https://github.com/thaibault/react-input-material/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/react-input-material/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/react-input-material/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/react-input-material/actions/workflows/test-coverage-report.yaml)
-[![<LABEL>](https://github.com/thaibault/react-input-material/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/react-input-material/actions/workflows/check-types.yaml)
-[![<LABEL>](https://github.com/thaibault/react-input-material/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/react-input-material/actions/workflows/lint.yaml)
+[![build](https://img.shields.io/github/actions/workflow/status/thaibault/react-input-material/build.yaml?style=for-the-badge)](https://github.com/thaibault/react-input-material/actions/workflows/build.yaml)
 
-[![code coverage](https://coveralls.io/repos/github/thaibault/react-input-material/badge.svg)](https://coveralls.io/github/thaibault/react-input-material)
+[![check types](https://img.shields.io/github/actions/workflow/status/thaibault/react-input-material/check-types.yaml?label=check%20types&style=for-the-badge)](https://github.com/thaibault/react-input-material/actions/workflows/check-types.yaml)
+[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/react-input-material/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/react-input-material/actions/workflows/lint.yaml)
+[![test](https://img.shields.io/github/actions/workflow/status/thaibault/react-input-material/test-coverage-report.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/react-input-material/actions/workflows/test-coverage-report.yaml)
 
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/react-input-material.svg?label=documentation-website)](https://torben.website/react-input-material)
+[![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/react-input-material?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/react-input-material)
+
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/react-input-material.svg?label=documentation-website&style=for-the-badge)](https://torben.website/react-input-material)
 
 ### reverse-proxy-middleware
 
-[![npm](https://img.shields.io/npm/v/reverse-proxy-middleware?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d)](https://www.npmjs.com/package/reverse-proxy-middleware)
-[![npm downloads](https://img.shields.io/npm/dy/reverse-proxy-middleware.svg)](https://www.npmjs.com/package/reverse-proxy-middleware)
+[![npm](https://img.shields.io/npm/v/reverse-proxy-middleware?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/reverse-proxy-middleware)
+[![npm downloads](https://img.shields.io/npm/dy/reverse-proxy-middleware.svg?style=for-the-badge)](https://www.npmjs.com/package/reverse-proxy-middleware)
 
-[![<LABEL>](https://github.com/thaibault/reverse-proxy-middleware/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/reverse-proxy-middleware/actions/workflows/build.yaml)
-[![<LABEL>](https://github.com/thaibault/reverse-proxy-middleware/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/reverse-proxy-middleware/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/reverse-proxy-middleware/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/reverse-proxy-middleware/actions/workflows/test-coverage-report.yaml)
-[![<LABEL>](https://github.com/thaibault/reverse-proxy-middleware/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/reverse-proxy-middleware/actions/workflows/check-types.yaml)
-[![<LABEL>](https://github.com/thaibault/reverse-proxy-middleware/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/reverse-proxy-middleware/actions/workflows/lint.yaml)
-[![<LABEL>](https://github.com/thaibault/reverse-proxy-middleware/actions/workflows/build-image-periodically-2-branches.yaml/badge.svg)](https://github.com/thaibault/reverse-proxy-middleware/actions/workflows/build-image-periodically-2-branches.yaml)
+[![build](https://img.shields.io/github/actions/workflow/status/thaibault/reverse-proxy-middleware/build.yaml?style=for-the-badge)](https://github.com/thaibault/reverse-proxy-middleware/actions/workflows/build.yaml)
 
-[![code coverage](https://coveralls.io/repos/github/thaibault/reverse-proxy-middleware/badge.svg)](https://coveralls.io/github/thaibault/reverse-proxy-middleware)
+[![check types](https://img.shields.io/github/actions/workflow/status/thaibault/reverse-proxy-middleware/check-types.yaml?label=check%20types&style=for-the-badge)](https://github.com/thaibault/reverse-proxy-middleware/actions/workflows/check-types.yaml)
+[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/reverse-proxy-middleware/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/reverse-proxy-middleware/actions/workflows/lint.yaml)
+[![test](https://img.shields.io/github/actions/workflow/status/thaibault/reverse-proxy-middleware/test-coverage-report.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/reverse-proxy-middleware/actions/workflows/test-coverage-report.yaml)
 
-[![documentation website](https://img.shields.io/website-up-down-green-red/http/torben.website/reverse-proxy-middleware.svg?label=documentation-website)](http://torben.website/reverse-proxy-middleware)
+[![build push image](https://img.shields.io/github/actions/workflow/status/thaibault/reverse-proxy-middleware/build-image-periodically-2-branches.yaml?label=build%20push%20image&style=for-the-badge)](https://github.com/thaibault/reverse-proxy-middleware/actions/workflows/build-image-periodically-2-branches.yaml)
+
+[![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/reverse-proxy-middleware?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/reverse-proxy-middleware)
+
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/reverse-proxy-middleware.svg?label=documentation-website&style=for-the-badge)](https://torben.website/reverse-proxy-middleware)
 
 ### storelocator
 
-[![npm](https://img.shields.io/npm/v/storelocator?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d)](https://www.npmjs.com/package/storelocator)
-[![npm downloads](https://img.shields.io/npm/dy/storelocator.svg)](https://www.npmjs.com/package/storelocator)
+[![npm](https://img.shields.io/npm/v/storelocator?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/storelocator)
+[![npm downloads](https://img.shields.io/npm/dy/storelocator.svg?style=for-the-badge)](https://www.npmjs.com/package/storelocator)
 
-[![<LABEL>](https://github.com/thaibault/storelocator/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/storelocator/actions/workflows/build.yaml)
-[![<LABEL>](https://github.com/thaibault/storelocator/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/storelocator/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/storelocator/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/storelocator/actions/workflows/test-coverage-report.yaml)
-[![<LABEL>](https://github.com/thaibault/storelocator/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/storelocator/actions/workflows/check-types.yaml)
-[![<LABEL>](https://github.com/thaibault/storelocator/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/storelocator/actions/workflows/lint.yaml)
+[![build](https://img.shields.io/github/actions/workflow/status/thaibault/storelocator/build.yaml?style=for-the-badge)](https://github.com/thaibault/storelocator/actions/workflows/build.yaml)
 
-[![code coverage](https://coveralls.io/repos/github/thaibault/storelocator/badge.svg)](https://coveralls.io/github/thaibault/storelocator)
+[![check types](https://img.shields.io/github/actions/workflow/status/thaibault/storelocator/check-types.yaml?label=check%20types&style=for-the-badge)](https://github.com/thaibault/storelocator/actions/workflows/check-types.yaml)
+[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/storelocator/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/storelocator/actions/workflows/lint.yaml)
+[![test](https://img.shields.io/github/actions/workflow/status/thaibault/storelocator/test-coverage-report.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/storelocator/actions/workflows/test-coverage-report.yaml)
 
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/storelocator.svg?label=documentation-website)](https://torben.website/storelocator)
+[![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/storelocator?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/storelocator)
+
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/storelocator.svg?label=documentation-website&style=for-the-badge)](https://torben.website/storelocator)
 
 ### web-component-wrapper
 
-[![npm](https://img.shields.io/npm/v/web-component-wrapper?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d)](https://www.npmjs.com/package/web-component-wrapper)
-[![npm downloads](https://img.shields.io/npm/dy/web-component-wrapper.svg)](https://www.npmjs.com/package/web-component-wrapper)
+[![npm](https://img.shields.io/npm/v/web-component-wrapper?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/web-component-wrapper)
+[![npm downloads](https://img.shields.io/npm/dy/web-component-wrapper.svg?style=for-the-badge)](https://www.npmjs.com/package/web-component-wrapper)
 
-[![<LABEL>](https://github.com/thaibault/web-component-wrapper/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/web-component-wrapper/actions/workflows/build.yaml)
-[![<LABEL>](https://github.com/thaibault/web-component-wrapper/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/web-component-wrapper/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/web-component-wrapper/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/web-component-wrapper/actions/workflows/test-coverage-report.yaml)
-[![<LABEL>](https://github.com/thaibault/web-component-wrapper/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/web-component-wrapper/actions/workflows/check-types.yaml)
-[![<LABEL>](https://github.com/thaibault/web-component-wrapper/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/web-component-wrapper/actions/workflows/lint.yaml)
+[![build](https://img.shields.io/github/actions/workflow/status/thaibault/web-component-wrapper/build.yaml?style=for-the-badge)](https://github.com/thaibault/web-component-wrapper/actions/workflows/build.yaml)
 
-[![code coverage](https://coveralls.io/repos/github/thaibault/web-component-wrapper/badge.svg)](https://coveralls.io/github/thaibault/web-component-wrapper)
+[![check types](https://img.shields.io/github/actions/workflow/status/thaibault/web-component-wrapper/check-types.yaml?label=check%20types&style=for-the-badge)](https://github.com/thaibault/web-component-wrapper/actions/workflows/check-types.yaml)
+[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/web-component-wrapper/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/web-component-wrapper/actions/workflows/lint.yaml)
+[![test](https://img.shields.io/github/actions/workflow/status/thaibault/web-component-wrapper/test-coverage-report.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/web-component-wrapper/actions/workflows/test-coverage-report.yaml)
 
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/web-component-wrapper.svg?label=documentation-website)](https://torben.website/web-component-wrapper)
+[![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/web-component-wrapper?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/web-component-wrapper)
+
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/web-component-wrapper.svg?label=documentation-website&style=for-the-badge)](https://torben.website/web-component-wrapper)
 
 ### web-input-material
 
-[![npm](https://img.shields.io/npm/v/web-input-material?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d)](https://www.npmjs.com/package/web-input-material)
-[![npm downloads](https://img.shields.io/npm/dy/web-input-material.svg)](https://www.npmjs.com/package/web-input-material)
+[![npm](https://img.shields.io/npm/v/web-input-material?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/web-input-material)
+[![npm downloads](https://img.shields.io/npm/dy/web-input-material.svg?style=for-the-badge)](https://www.npmjs.com/package/web-input-material)
 
-[![<LABEL>](https://github.com/thaibault/web-input-material/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/web-input-material/actions/workflows/build.yaml)
-[![<LABEL>](https://github.com/thaibault/web-input-material/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/web-input-material/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/web-input-material/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/web-input-material/actions/workflows/test-coverage-report.yaml)
-[![<LABEL>](https://github.com/thaibault/web-input-material/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/web-input-material/actions/workflows/check-types.yaml)
-[![<LABEL>](https://github.com/thaibault/web-input-material/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/web-input-material/actions/workflows/lint.yaml)
+[![build](https://img.shields.io/github/actions/workflow/status/thaibault/web-input-material/build.yaml?style=for-the-badge)](https://github.com/thaibault/web-input-material/actions/workflows/build.yaml)
 
-[![code coverage](https://coveralls.io/repos/github/thaibault/web-input-material/badge.svg)](https://coveralls.io/github/thaibault/web-input-material)
+[![check types](https://img.shields.io/github/actions/workflow/status/thaibault/web-input-material/check-types.yaml?label=check%20types&style=for-the-badge)](https://github.com/thaibault/web-input-material/actions/workflows/check-types.yaml)
+[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/web-input-material/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/web-input-material/actions/workflows/lint.yaml)
+[![test](https://img.shields.io/github/actions/workflow/status/thaibault/web-input-material/test-coverage-report.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/web-input-material/actions/workflows/test-coverage-report.yaml)
 
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/web-input-material.svg?label=documentation-website)](https://torben.website/web-input-material)
+[![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/web-input-material?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/web-input-material)
+
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/web-input-material.svg?label=documentation-website&style=for-the-badge)](https://torben.website/web-input-material)
 
 ### web-node
 
-[![npm](https://img.shields.io/npm/v/web-node?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d)](https://www.npmjs.com/package/web-node)
-[![npm downloads](https://img.shields.io/npm/dy/web-node.svg)](https://www.npmjs.com/package/web-node)
+[![npm](https://img.shields.io/npm/v/web-node?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/web-node)
+[![npm downloads](https://img.shields.io/npm/dy/web-node.svg?style=for-the-badge)](https://www.npmjs.com/package/web-node)
 
-[![<LABEL>](https://github.com/thaibault/web-node/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/web-node/actions/workflows/build.yaml)
-[![<LABEL>](https://github.com/thaibault/web-node/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/web-node/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/web-node/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/web-node/actions/workflows/test-coverage-report.yaml)
-[![<LABEL>](https://github.com/thaibault/web-node/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/web-node/actions/workflows/check-types.yaml)
-[![<LABEL>](https://github.com/thaibault/web-node/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/web-node/actions/workflows/lint.yaml)
+[![build](https://img.shields.io/github/actions/workflow/status/thaibault/web-node/build.yaml?style=for-the-badge)](https://github.com/thaibault/web-node/actions/workflows/build.yaml)
 
-[![code coverage](https://coveralls.io/repos/github/thaibault/web-node/badge.svg)](https://coveralls.io/github/thaibault/web-node)
+[![check types](https://img.shields.io/github/actions/workflow/status/thaibault/web-node/check-types.yaml?label=check%20types&style=for-the-badge)](https://github.com/thaibault/web-node/actions/workflows/check-types.yaml)
+[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/web-node/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/web-node/actions/workflows/lint.yaml)
+[![test](https://img.shields.io/github/actions/workflow/status/thaibault/web-node/test-coverage-report.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/web-node/actions/workflows/test-coverage-report.yaml)
 
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/web-node.svg?label=documentation-website)](https://torben.website/web-node)
+[![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/web-node?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/web-node)
+
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/web-node.svg?label=documentation-website&style=for-the-badge)](https://torben.website/web-node)
+
+[![Try out](https://img.shields.io/badge/Try%20it%20on%20runkit-%2345cc11?style=for-the-badge)](https://npm.runkit.com/web-node)
 
 ### weboptimizer
 
-[![npm](https://img.shields.io/npm/v/weboptimizer?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d)](https://www.npmjs.com/package/weboptimizer)
-[![npm downloads](https://img.shields.io/npm/dy/weboptimizer.svg)](https://www.npmjs.com/package/weboptimizer)
+[![npm](https://img.shields.io/npm/v/weboptimizer?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/weboptimizer)
+[![npm downloads](https://img.shields.io/npm/dy/weboptimizer.svg?style=for-the-badge)](https://www.npmjs.com/package/weboptimizer)
 
-[![<LABEL>](https://github.com/thaibault/weboptimizer/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/weboptimizer/actions/workflows/build.yaml)
-[![<LABEL>](https://github.com/thaibault/weboptimizer/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/weboptimizer/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/weboptimizer/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/weboptimizer/actions/workflows/test-coverage-report.yaml)
-[![<LABEL>](https://github.com/thaibault/weboptimizer/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/weboptimizer/actions/workflows/check-types.yaml)
-[![<LABEL>](https://github.com/thaibault/weboptimizer/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/weboptimizer/actions/workflows/lint.yaml)
+[![build](https://img.shields.io/github/actions/workflow/status/thaibault/weboptimizer/build.yaml?style=for-the-badge)](https://github.com/thaibault/weboptimizer/actions/workflows/build.yaml)
 
-[![code coverage](https://coveralls.io/repos/github/thaibault/weboptimizer/badge.svg)](https://coveralls.io/github/thaibault/weboptimizer)
+[![check types](https://img.shields.io/github/actions/workflow/status/thaibault/weboptimizer/check-types.yaml?label=check%20types&style=for-the-badge)](https://github.com/thaibault/weboptimizer/actions/workflows/check-types.yaml)
+[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/weboptimizer/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/weboptimizer/actions/workflows/lint.yaml)
+[![test](https://img.shields.io/github/actions/workflow/status/thaibault/weboptimizer/test-coverage-report.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/weboptimizer/actions/workflows/test-coverage-report.yaml)
 
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/weboptimizer.svg?label=documentation-website)](https://torben.website/weboptimizer)
+[![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/weboptimizer?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/weboptimizer)
+
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/weboptimizer.svg?label=documentation-website&style=for-the-badge)](https://torben.website/weboptimizer)
+
+[![Try out](https://img.shields.io/badge/Try%20it%20on%20runkit-%2345cc11?style=for-the-badge)](https://npm.runkit.com/weboptimizer)
 
 ### website-utilities
 
-[![npm](https://img.shields.io/npm/v/website-utilities?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d)](https://www.npmjs.com/package/website-utilities)
-[![npm downloads](https://img.shields.io/npm/dy/website-utilities.svg)](https://www.npmjs.com/package/website-utilities)
+[![npm](https://img.shields.io/npm/v/website-utilities?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/website-utilities)
+[![npm downloads](https://img.shields.io/npm/dy/website-utilities.svg?style=for-the-badge)](https://www.npmjs.com/package/website-utilities)
 
-[![<LABEL>](https://github.com/thaibault/website-utilities/actions/workflows/build.yaml/badge.svg)](https://github.com/thaibault/website-utilities/actions/workflows/build.yaml)
-[![<LABEL>](https://github.com/thaibault/website-utilities/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/website-utilities/actions/workflows/test.yaml)
-[![<LABEL>](https://github.com/thaibault/website-utilities/actions/workflows/test-coverage-report.yaml/badge.svg)](https://github.com/thaibault/website-utilities/actions/workflows/test-coverage-report.yaml)
-[![<LABEL>](https://github.com/thaibault/website-utilities/actions/workflows/check-types.yaml/badge.svg)](https://github.com/thaibault/website-utilities/actions/workflows/check-types.yaml)
-[![<LABEL>](https://github.com/thaibault/website-utilities/actions/workflows/lint.yaml/badge.svg)](https://github.com/thaibault/website-utilities/actions/workflows/lint.yaml)
+[![build](https://img.shields.io/github/actions/workflow/status/thaibault/website-utilities/build.yaml?style=for-the-badge)](https://github.com/thaibault/website-utilities/actions/workflows/build.yaml)
 
-[![code coverage](https://coveralls.io/repos/github/thaibault/website-utilities/badge.svg)](https://coveralls.io/github/thaibault/website-utilities)
+[![check types](https://img.shields.io/github/actions/workflow/status/thaibault/website-utilities/check-types.yaml?label=check%20types&style=for-the-badge)](https://github.com/thaibault/website-utilities/actions/workflows/check-types.yaml)
+[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/website-utilities/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/website-utilities/actions/workflows/lint.yaml)
+[![test](https://img.shields.io/github/actions/workflow/status/thaibault/website-utilities/test-coverage-report.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/website-utilities/actions/workflows/test-coverage-report.yaml)
 
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/website-utilities.svg?label=documentation-website)](https://torben.website/website-utilities)
+[![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/website-utilities?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/website-utilities)
 
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/website-utilities.svg?label=documentation-website&style=for-the-badge)](https://torben.website/website-utilities)
 
 Use case
 --------
 
 Here's my website development hosted (no security by obscurity :-)).
-
-<!-- region vim modline
-vim: set tabstop=4 shiftwidth=4 expandtab:
-vim: foldmethod=marker foldmarker=region,endregion:
-endregion -->
