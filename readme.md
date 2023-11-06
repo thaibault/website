@@ -100,13 +100,13 @@ Project status
 
 ### containerbase
 
-[![npm](https://img.shields.io/npm/v/containerbase?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d)](https://www.npmjs.com/package/containerbase)
-[![npm downloads](https://img.shields.io/npm/dy/containerbase.svg)](https://www.npmjs.com/package/containerbase)
+[![npm](https://img.shields.io/npm/v/containerbase?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/containerbase)
+[![npm downloads](https://img.shields.io/npm/dy/containerbase.svg?style=for-the-badge)](https://www.npmjs.com/package/containerbase)
 
-[![<LABEL>](https://github.com/thaibault/containerbase/actions/workflows/build-image-periodically-1-branches.yaml/badge.svg)](https://github.com/thaibault/containerbase/actions/workflows/build-image-periodically-1-branches.yaml)
-[![<LABEL>](https://github.com/thaibault/containerbase/actions/workflows/test.yaml/badge.svg)](https://github.com/thaibault/containerbase/actions/workflows/test.yaml)
+[![build push image](https://img.shields.io/github/actions/workflow/status/thaibault/containerbase/build-image-periodically-1-branches.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/containerbase/actions/workflows/build-image-periodically-1-branches.yaml)
+[![test](https://img.shields.io/github/actions/workflow/status/thaibault/containerbase/test.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/containerbase/actions/workflows/test.yaml)
 
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/containerbase.svg?label=documentation-website)](https://torben.website/containerbase)
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/containerbase.svg?label=documentation-website&style=for-the-badge)](https://torben.website/containerbase)
 
 ### couchdb-web-node-plugin
 
