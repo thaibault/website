@@ -103,7 +103,7 @@ Project status
 [![npm](https://img.shields.io/npm/v/containerbase?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/containerbase)
 [![npm downloads](https://img.shields.io/npm/dy/containerbase.svg?style=for-the-badge)](https://www.npmjs.com/package/containerbase)
 
-[![build push image](https://img.shields.io/github/actions/workflow/status/thaibault/containerbase/build-image-periodically-1-branches.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/containerbase/actions/workflows/build-image-periodically-1-branches.yaml)
+[![build push image](https://img.shields.io/github/actions/workflow/status/thaibault/containerbase/build-image-periodically-1-branches.yaml?label=build%20push%20image&style=for-the-badge)](https://github.com/thaibault/containerbase/actions/workflows/build-image-periodically-1-branches.yaml)
 [![test](https://img.shields.io/github/actions/workflow/status/thaibault/containerbase/test.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/containerbase/actions/workflows/test.yaml)
 
 [![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/containerbase.svg?label=documentation-website&style=for-the-badge)](https://torben.website/containerbase)
