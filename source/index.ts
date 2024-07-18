@@ -17,7 +17,7 @@
     endregion
 */
 // region imports
-import Tools, {DomNode, $, $T} from 'clientnode'
+import Tools, {DomNode, $, $T, KEYBOARD_CODES} from 'clientnode'
 // eslint-disable-next-line max-len
 import 'imports?jQuery=jquery!imports?$=jquery!imports?window=>{jQuery: jQuery}!swipe'
 import WebsiteUtilities from 'website-utilities'
@@ -290,7 +290,7 @@ export default class HomePage extends $.Website.class {
         super.initialize(options)
         // Disable tab functionality to prevent inconsistent carousel states.
         this.on(this.$domNodes.parent, 'keydown', (event:Object):void => {
-            if (event.keyCode === this.constructor.keyCode.TAB)
+            if (event.code === KEYBOARD_CODES.TAB)
                 event.preventDefault()
         })
         this.$domNodes.aboutThisWebsiteSection.hide().css(
