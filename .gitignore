@@ -47,8 +47,11 @@ source/image/sprite.png
 *.cache
 *.log
 
-# Certification
+# Certificates
 .pki
+*.crt
+*.cer
+*.pem
 
 # Temporary compile files
 .dynamicConfiguration-*.json
@@ -106,12 +109,15 @@ nosetests.xml
 
 # JetBrain's idea, PHPStorm and other IDE Files
 .externalToolBuilders
-.idea
+
+.idea/tasks.xml
+.idea/workspace.xml
+.idea/**/*.iws
+
 .project
 .pydevproject
 .settings
 *.iml
-**/.idea
 
 # Gedit autosave backups.
 *~
@@ -125,14 +131,22 @@ nosetests.xml
 # Temporary git files
 .git-rewrite
 
-# NPM/yarn's runtime files
+# NPM's runtime files
 node_modules/
 npm-debug.log
-yarn-error.log
 .npm/
 .npm-debug.log
 .v8flags.*
-.yarnrc
+
+# yarn's runtime files
+yarn-error.log
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
 
 # Java
 .java/
@@ -148,6 +162,9 @@ types/*.d.ts
 typings/*.d.ts
 !declarations.d.ts
 
+# MAC OS
+.DS_Store
+
 # Python
 __pycache__
 *.py[cod]
@@ -157,6 +174,7 @@ __pycache__
 
 # Project specific
 *.js
+*.mjs
 # ...
 
 # region vim modline
