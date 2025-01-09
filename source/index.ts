@@ -17,7 +17,7 @@
     endregion
 */
 // region imports
-import Tools, {DomNode, $, $T, KEYBOARD_CODES} from 'clientnode'
+import {DomNode, $, $T, KEYBOARD_CODES} from 'clientnode'
 // eslint-disable-next-line max-len
 import 'imports?jQuery=jquery!imports?$=jquery!imports?window=>{jQuery: jQuery}!swipe'
 import WebsiteUtilities from 'website-utilities'
@@ -25,7 +25,7 @@ import WebsiteUtilities from 'website-utilities'
 import {DomNodes, DefaultOptions, Options, WebsiteFunction} from './type'
 // endregion
 // region declaration
-declare var OFFLINE:boolean
+declare var OFFLINE: boolean
 // endregion
 // region plugins/classes
 /**
@@ -46,7 +46,7 @@ declare var OFFLINE:boolean
  * @property _options - Options extended by the options given to the
  * initializer method.
  * @property _options.trackingCode {string} - Tracking code for collection
- * users meta data.
+ * users metadata.
  * @property _options.maximumFooterHeightInPercent {number} - Indicates when
  * the footer should stick to the bottom.
  * @property _options.scrollInLinearTime {boolean} - Indicates whether
@@ -81,13 +81,13 @@ declare var OFFLINE:boolean
  * options.
  */
 export default class HomePage extends $.Website.class {
-    static _name:string = 'HomePage'
+    static _name: string = 'HomePage'
 
-    _initialContentHeightAdaptionDone:boolean
-    _initialMenuHightlightDone:boolean
-    _loadingCoverRemoved:boolean
-    _oldSectionHeightInPixel:number
-    _sectionTopMarginInPixel:number
+    _initialContentHeightAdaptionDone: boolean
+    _initialMenuHightlightDone: boolean
+    _loadingCoverRemoved: boolean
+    _oldSectionHeightInPixel: number
+    _sectionTopMarginInPixel: number
     // region public methods
     /// region special
     /**
@@ -106,11 +106,11 @@ export default class HomePage extends $.Website.class {
      * @returns Returns the current instance.
      */
     initialize(
-        options:Object = {}, oldSectionHeightInPixel:number = 200,
-        sectionTopMarginInPixel:number = 0,
-        initialContentHeightAdaptionDone:boolean = false,
-        initialMenuHightlightDone:boolean = false,
-        loadingCoverRemoved:boolean = false
+        options: Object = {}, oldSectionHeightInPixel = 200,
+        sectionTopMarginInPixel = 0,
+        initialContentHeightAdaptionDone = false,
+        initialMenuHightlightDone = false,
+        loadingCoverRemoved = false
     ):HomePage {
         this._oldSectionHeightInPixel = oldSectionHeightInPixel
         this._sectionTopMarginInPixel = sectionTopMarginInPixel
@@ -176,11 +176,11 @@ export default class HomePage extends $.Website.class {
                 hideAnimation: [{opacity: 0}, {duration: 'fast'}]
             }
         }
-        let initialOnSwitchedCallback:Function
-        let initialOnEnsuredCallback:Function
-        let initialOnSwitchCallback:Function
-        let initialOnEnsureCallback:Function
-        let initialLanguageHideAnimationAlwaysCallback:Function
+        let initialOnSwitchedCallback: Function
+        let initialOnEnsuredCallback: Function
+        let initialOnSwitchCallback: Function
+        let initialOnEnsureCallback: Function
+        let initialLanguageHideAnimationAlwaysCallback: Function
         if (options.language) {
             initialOnSwitchedCallback = options.language.onSwitched
             initialOnEnsuredCallback = options.language.onEnsureded
@@ -197,10 +197,10 @@ export default class HomePage extends $.Website.class {
                 initialLanguageHideAnimationAlwaysCallback =
                     options.language.textNodeParent.hideAnimation[1].always
         }
-        const self:HomePage = this
+        const self: HomePage = this
         this.constructor.extend(true, options, {language: {
-            onSwitched: function(...parameter:Array<any>):boolean {
-                const result:any = !initialOnSwitchedCallback || (
+            onSwitched: function(...parameter: Array<any>): boolean {
+                const result: any = !initialOnSwitchedCallback || (
                     initialOnSwitchedCallback &&
                     initialOnSwitchedCallback.call(this, ...parameter))
                 /*
@@ -208,7 +208,7 @@ export default class HomePage extends $.Website.class {
                     selected.
                 */
                 self._highlightMenuEntry(false)
-                let showAnimationOptions:Array<Object> = [{opacity: 1}]
+                let showAnimationOptions: Array<Object> = [{opacity: 1}]
                 if (self.languageHandler)
                     showAnimationOptions = self.languageHandler._options
                         .textNodeParent.showAnimation
@@ -220,8 +220,8 @@ export default class HomePage extends $.Website.class {
                 self._adaptContentHeight()
                 return result
             },
-            onEnsured: function(...parameter:Array<any>):boolean {
-                const result:any = !initialOnEnsuredCallback || (
+            onEnsured: function(...parameter: Array<any>): boolean {
+                const result: any = !initialOnEnsuredCallback || (
                     // IgnoreTypeCheck
                     initialOnEnsuredCallback.call(...parameter))
                 /*
@@ -233,14 +233,14 @@ export default class HomePage extends $.Website.class {
                 return result
             },
             onSwitch: function(
-                oldLanguage:string, newLanguage:string
-            ):boolean {
-                const result:any = !initialOnSwitchCallback || (
+                oldLanguage: string, newLanguage: string
+            ): boolean {
+                const result: any = !initialOnSwitchCallback || (
                     initialOnSwitchCallback.call(
                         this, oldLanguage, newLanguage))
                 // Add language toggle button functionality.
-                let hideAnimationOptions:Array<Object> = [{opacity: 0}, {}]
-                let showAnimationOptions:Array<Object> = [{opacity: 1}, {}]
+                let hideAnimationOptions: Array<Object> = [{opacity: 0}, {}]
+                let showAnimationOptions: Array<Object> = [{opacity: 1}, {}]
                 if (self.languageHandler) {
                     hideAnimationOptions = self.languageHandler._options
                         .textNodeParent.hideAnimation
@@ -254,12 +254,12 @@ export default class HomePage extends $.Website.class {
                     {},
                     hideAnimationOptions[1],
                     {
-                        always: function():any {
-                            let result:any
+                        always: function(): any {
+                            let result: any
                             if (initialLanguageHideAnimationAlwaysCallback)
                                 result = initialLanguageHideAnimationAlwaysCallback
                                     .call(this, oldLanguage, newLanguage)
-                            const $oldLanguageLinkDomNode:$DomNode = $(this)
+                            const $oldLanguageLinkDomNode: $DomNode = $(this)
                             $oldLanguageLinkDomNode.attr(
                                 'href', `#language-${oldLanguage}`
                             ).text(oldLanguage.substr(0, 2)).animate(
@@ -268,15 +268,15 @@ export default class HomePage extends $.Website.class {
                         }
                     }
                 )
-                const $newLanguageLinkDomNode:$DomNode = $(
+                const $newLanguageLinkDomNode: $DomNode = $(
                     `a[href="#language-${newLanguage}"]`)
                 $newLanguageLinkDomNode.animate(...hideAnimationOptions)
                 // Adapt curriculum vitae link.
                 self._adaptCurriculumVitaeLink(oldLanguage, newLanguage)
                 return result
             },
-            onEnsure: (oldLanguage:string, newLanguage:string):any => {
-                const result:any = !initialOnEnsureCallback || (
+            onEnsure: (oldLanguage: string, newLanguage: string): any => {
+                const result: any = !initialOnEnsureCallback || (
                     initialOnEnsureCallback.call(
                         this, oldLanguage, newLanguage))
                 // Add language toggle button functionality.
@@ -289,7 +289,7 @@ export default class HomePage extends $.Website.class {
         }})
         super.initialize(options)
         // Disable tab functionality to prevent inconsistent carousel states.
-        this.on(this.$domNodes.parent, 'keydown', (event:Object):void => {
+        this.on(this.$domNodes.parent, 'keydown', (event: Object) => {
             if (event.code === KEYBOARD_CODES.TAB)
                 event.preventDefault()
         })
@@ -328,9 +328,9 @@ export default class HomePage extends $.Website.class {
      * @returns - Returns the current instance.
      */
     _adaptCurriculumVitaeLink(
-        oldLanguage:string, newLanguage:string
-    ):HomePage {
-        const $curriculumVitaeLink:$DomNode = $(
+        oldLanguage: string, newLanguage: string
+    ): HomePage {
+        const $curriculumVitaeLink: $DomNode = $(
             'a[href*="curriculumVitae"].hidden-xs')
         if (!$curriculumVitaeLink.data(oldLanguage))
             $curriculumVitaeLink.data(oldLanguage, $curriculumVitaeLink.attr(
@@ -356,7 +356,7 @@ export default class HomePage extends $.Website.class {
      * @param newMode - New media query mode.
      * @returns Returns the current instance.
      */
-    _onChangeMediaQueryMode(oldMode:string, newMode:string):HomePage {
+    _onChangeMediaQueryMode(oldMode: string, newMode: string): HomePage {
         // Determine top margin for background image dependent sections.
         this.$domNodes.section.children().css('margin-top', '')
         if ('getComputedStyle' in $.global)
@@ -365,7 +365,7 @@ export default class HomePage extends $.Website.class {
         // Show responsive dimension indicator switching.
         this._options.dimensionIndicator.effectOptions.showAnimation[
             1
-        ].always = ():HomePage =>
+        ].always = (): HomePage =>
             /*
                 Adapt menu highlighter after changing layout and dimension
                 indicator.
@@ -373,7 +373,7 @@ export default class HomePage extends $.Website.class {
             this._highlightMenuEntry(false)
         this._options.dimensionIndicator.effectOptions.hideAnimation[
             1
-        ].always = ():$DomNode => this.$domNodes.dimensionIndicator.html(
+        ].always = (): $DomNode => this.$domNodes.dimensionIndicator.html(
             this.constructor.stringFormat(
                 this._options.dimensionIndicator.template, newMode)
         ).animate(
@@ -387,7 +387,7 @@ export default class HomePage extends $.Website.class {
      * mode.
      * @returns Returns the current instance.
      */
-    _onChangeToExtraSmallMode():HomePage {
+    _onChangeToExtraSmallMode(): HomePage {
         // Resets the image dependent section heights.
         this.$domNodes.section.children().css('height', 'auto')
         return this
@@ -397,22 +397,22 @@ export default class HomePage extends $.Website.class {
      * @param sectionName - Location to switch to.
      * @returns Returns the current instance.
      */
-    _onSwitchSection(sectionName:string):HomePage {
+    _onSwitchSection(sectionName: string): HomePage {
         if (['next', 'prev'].includes(sectionName))
             sectionName = this._determineRelativeSections(sectionName)
-        const hash:string = `#${sectionName}`
+        const hash: string = `#${sectionName}`
         if (hash === this.$domNodes.aboutThisWebsiteButton.attr('href')) {
             if ('location' in $.global)
                 $.global.location.hash = hash
             this._handleSwitchToAboutThisWebsite()
             this._adaptContentHeight()
         } else {
-            let sectionFound:boolean = false
+            let sectionFound: boolean = false
             this.$domNodes.navigationButton.each((
-                index:number, button:DomNode
-            ):void => {
-                const $button:$DomNode = $(button)
-                let $sectionButton:$DomNode = $button.parent('li')
+                index: number, button: DomNode
+            ): void => {
+                const $button: $DomNode = $(button)
+                let $sectionButton: $DomNode = $button.parent('li')
                 if (!$sectionButton.length)
                     $sectionButton = $button
                 /*
@@ -438,7 +438,7 @@ export default class HomePage extends $.Website.class {
             })
             // If no section could be determined initialize the first one.
             if (!sectionFound) {
-                const forceSection:string =
+                const forceSection: string =
                     this.$domNodes.navigationButton.first().attr(
                         'href'
                     ).substring('#'.length)
@@ -460,8 +460,8 @@ export default class HomePage extends $.Website.class {
      * @returns Returns the current instance.
      */
     _performSectionSwitch(
-        sectionName:string, index:number, $sectionButton:$DomNode
-    ):HomePage {
+        sectionName: string, index: number, $sectionButton: $DomNode
+    ): HomePage {
         this.$domNodes.aboutThisWebsiteSection.animate(
             ...this._options.aboutThisWebsiteSection.hideAnimation)
         this.debug(`Switch to section "${sectionName}".`)
@@ -471,7 +471,7 @@ export default class HomePage extends $.Website.class {
             this._adaptContentHeight()
             return this._highlightMenuEntry()
         }
-        return this.scrollToTop(():void => {
+        return this.scrollToTop(() => {
             this.$domNodes.carousel.data('Swipe').slide(index)
             this._adaptContentHeight()
             this._highlightMenuEntry()
@@ -481,7 +481,7 @@ export default class HomePage extends $.Website.class {
      * Switches to about this website section.
      * @returns Returns the current instance.
      */
-    _handleSwitchToAboutThisWebsite():HomePage {
+    _handleSwitchToAboutThisWebsite(): HomePage {
         if ('location' in $.global)
             this.debug(
                 'Switch to section "' +
@@ -505,7 +505,7 @@ export default class HomePage extends $.Website.class {
      * up animation complete handler callback.
      * @returns Returns the current instance.
      */
-    _onStartUpAnimationComplete(...parameter:Array<any>):HomePage {
+    _onStartUpAnimationComplete(...parameter: Array<any>): HomePage {
         super._onStartUpAnimationComplete(...parameter)
         return this._highlightMenuEntry()._adaptContentHeight()
     }
@@ -516,7 +516,7 @@ export default class HomePage extends $.Website.class {
      * @param parameter - Forwards all given arguments to registered callbacks.
      * @returns Returns the current instance.
      */
-    _removeLoadingCover(...parameter:Array<any>):HomePage {
+    _removeLoadingCover(...parameter: Array<any>): HomePage {
         if (
             this._initialContentHeightAdaptionDone &&
             !this._loadingCoverRemoved
@@ -531,15 +531,15 @@ export default class HomePage extends $.Website.class {
      * @param transition - Indicates whether to use configured transition.
      * @returns Returns the current instance.
      */
-    _highlightMenuEntry(transition:boolean = true):HomePage {
+    _highlightMenuEntry(transition = true): HomePage {
         if (
             this._currentMediaQueryMode !== 'extraSmall' && this.windowLoaded
         ) {
-            const $sectionButton:$DomNode =
+            const $sectionButton: $DomNode =
                 this.$domNodes.navigationButton.parent('li').filter('.active')
-            const sectionButtonPosition:?{
-                left:number;
-                top:number;
+            const sectionButtonPosition?: {
+                left: number;
+                top: number;
             } = $sectionButton.position()
             if (sectionButtonPosition && sectionButtonPosition.left)
                 if (this._initialMenuHightlightDone && transition) {
@@ -571,13 +571,13 @@ export default class HomePage extends $.Website.class {
      * Adapt the carousel height to current main section height.
      * @returns Returns the new generated swipe instance.
      */
-    _adaptContentHeight():HomePage {
+    _adaptContentHeight(): HomePage {
         if ('location' in $.global && $.global.location.hash) {
-            const $currentSection:?$DomNode = this.$domNodes.section.add(
-                this.$domNodes.aboutThisWebsiteSection
-            ).filter(`.${$.global.location.hash.substr(1)}`)
+            const $currentSection: $DomNode = this.$domNodes.section
+                .add(this.$domNodes.aboutThisWebsiteSection)
+                .filter(`.${$.global.location.hash.substring(1)}`)
             if ($currentSection && $currentSection.length) {
-                let newSectionHeightInPixel:number =
+                let newSectionHeightInPixel: number =
                     this._determineSectionHeightInPixel($currentSection)
                 if (
                     newSectionHeightInPixel &&
@@ -594,7 +594,7 @@ export default class HomePage extends $.Website.class {
                         this.$domNodes.footer.stop(true)
                         this.$domNodes.carousel.stop(true)
                     }
-                    let transitionMethod:string = 'css'
+                    let transitionMethod: string = 'css'
                     if (this._initialContentHeightAdaptionDone)
                         transitionMethod = 'animate'
                     /*
@@ -638,11 +638,12 @@ export default class HomePage extends $.Website.class {
      * @returns Returns the current instance.
      */
     _adaptSectionHeight(
-        transitionMethodName:string, newSectionHeightInPixel:number,
-        $currentSection:$DomNode
-    ):HomePage {
+        transitionMethodName: string,
+        newSectionHeightInPixel: number,
+        $currentSection: $DomNode
+    ): HomePage {
         this.$domNodes.footer.css({position: 'relative', top: 0})
-        let newPseudoCarouselHeightInPixel:number = newSectionHeightInPixel
+        let newPseudoCarouselHeightInPixel: number = newSectionHeightInPixel
         // Make smooth transition till viewport ending.
         if (transitionMethodName === 'animate') {
             if (this.$domNodes.carousel.height(
@@ -665,7 +666,7 @@ export default class HomePage extends $.Website.class {
             height: newPseudoCarouselHeightInPixel
         }, {
             duration: this._options.carousel.speed,
-            always: ():void => {
+            always: () => {
                 this.$domNodes.carousel.css('height', newSectionHeightInPixel)
                 // Check if height has changed after adaption.
                 if (newSectionHeightInPixel !== $currentSection.outerHeight())
@@ -681,8 +682,8 @@ export default class HomePage extends $.Website.class {
      * @returns Returns the new calculated section height in pixel.
      */
     _adaptBackgroundDependentHeight(
-        newSectionHeightInPixel:number, $currentSection:$DomNode
-    ):number {
+        newSectionHeightInPixel: number, $currentSection: $DomNode
+    ): number {
         if (
             this._currentMediaQueryMode === 'extraSmall' ||
             'location' in $.global &&
@@ -693,7 +694,7 @@ export default class HomePage extends $.Website.class {
             return this._determineSectionHeightInPixel($currentSection)
         }
         // Calculate stretched background sections.
-        let additionalMarginTopInPixel:number = 0
+        let additionalMarginTopInPixel = 0
         if (
             newSectionHeightInPixel >
             this._options.maximumBackgroundDependentHeight
@@ -727,18 +728,18 @@ export default class HomePage extends $.Website.class {
      * @param $currentSection - The current section dom node.
      * @returns Returns the new computed section height.
      */
-    _determineSectionHeightInPixel($currentSection:$DomNode):number {
+    _determineSectionHeightInPixel($currentSection: $DomNode):number {
         if (
             this._currentMediaQueryMode === 'extraSmall' ||
             'location' in $.global &&
             this._options.backgroundDependentHeightSections.includes(
                 $.global.location.hash.substring('#'.length))
         ) {
-            const newSectionHeightInPixel:number = $currentSection.outerHeight(
+            const newSectionHeightInPixel: number = $currentSection.outerHeight(
             )
-            const footerHeightInPixel:number = this.$domNodes.document.height(
+            const footerHeightInPixel: number = this.$domNodes.document.height(
             ) - newSectionHeightInPixel
-            const footerHeightInPercent:number = (footerHeightInPixel * 100) /
+            const footerHeightInPercent: number = (footerHeightInPixel * 100) /
                 this.$domNodes.document.height()
             if (
                 this._options.maximumFooterHeightInPercent <
@@ -761,15 +762,15 @@ export default class HomePage extends $.Website.class {
      * slider.
      * @returns Returns the new generated swipe instance.
      */
-    _initializeSwipe():Object {
+    _initializeSwipe(): Object {
         // Remove anchor ids to avoid conflicts with native section switching.
-        $('h1').removeAttr('id').filter(function():boolean {
+        $('h1').removeAttr('id').filter(function(): boolean {
             return !$(this).html().trim()
         }).remove()
-        this._options.carousel.transitionEnd = (index:number):boolean => {
+        this._options.carousel.transitionEnd = (index: number): boolean => {
             this.$domNodes.navigationButton.each((
-                subIndex:number, button:DomNode
-            ):?boolean => {
+                subIndex: number, button: DomNode
+            ): boolean|undefined => {
                 if (index === subIndex) {
                     this.fireEvent(
                         'switchSection', false, this, $(button).attr(
@@ -790,12 +791,12 @@ export default class HomePage extends $.Website.class {
      * @param parameter - Forwards all given arguments to registered callbacks.
      * @returns Returns the current instance.
      */
-    _addNavigationEvents(...parameter:Array<any>):HomePage {
-        const toggleMobileMenu = ():void => {
+    _addNavigationEvents(...parameter: Array<any>): HomePage {
+        const toggleMobileMenu = () => {
             // This handler rebuilds bootstrap mobile menu collapse feature.
-            const slideOut:boolean = this.$domNodes.navigationWrapper.is('.in')
+            const slideOut: boolean = this.$domNodes.navigationWrapper.is('.in')
             this.$domNodes.navigationWrapper.one(
-                this.transitionEndEventNames, ():void => {
+                this.transitionEndEventNames, () => {
                     if (slideOut) {
                         this.$domNodes.navigationWrapper.removeClass(
                             'collapsing in')
@@ -821,16 +822,27 @@ export default class HomePage extends $.Website.class {
         }
         this.on(this.$domNodes.mobileCollapseButton, 'click', toggleMobileMenu)
         if (this._options.hideMobileMenuAfterSelection)
-            this.on(this.$domNodes.navigationButton, 'click', ():void => {
-                if (this._currentMediaQueryMode === 'extraSmall')
-                    toggleMobileMenu(...parameter)
-            })
-        this.on(this.$domNodes.navigationButton.add(
-            this.$domNodes.aboutThisWebsiteButton
-        ), 'click', (event:Object):boolean => this.fireEvent(
-            'switchSection', false, this, $(event.target).attr(
-                'href'
-            ).substring('#'.length)))
+            this.on(
+                this.$domNodes.navigationButton,
+                'click',
+                () => {
+                    if (this._currentMediaQueryMode === 'extraSmall')
+                        toggleMobileMenu(...parameter)
+                }
+            )
+        this.on(
+            this.$domNodes.navigationButton.add(
+                this.$domNodes.aboutThisWebsiteButton
+            ),
+            'click',
+            (event:Object): boolean =>
+            this.fireEvent(
+                'switchSection',
+                false,
+                this,
+                $(event.target).attr('href').substring('#'.length)
+            )
+        )
         return super._addNavigationEvents(...parameter)
     }
     /**
@@ -838,20 +850,20 @@ export default class HomePage extends $.Website.class {
      * @param sectionName - Relative section ("next" or "prev").
      * @returns Returns the absolute section name.
      */
-    _determineRelativeSections(sectionName:string):string {
+    _determineRelativeSections(sectionName: string): string {
         if ('location' in $.global)
             this.$domNodes.navigationButton.each((
-                index:number, button:DomNode
-            ):?boolean => {
+                index: number, button: DomNode
+            ): boolean|undefined => {
                 if ($(button).attr('href') === $.global.location.hash) {
                     /*
                         NOTE: We subtract 1 from navigation buttons length
                         because we want to ignore the about this website
                         section. And the index starts counting by zero.
                     */
-                    const numberOfButtons:number =
+                    const numberOfButtons: number =
                         this.$domNodes.navigationButton.length - 1
-                    let newIndex:number
+                    let newIndex: number
                     if (sectionName === 'next')
                         newIndex = (index + 1) % numberOfButtons
                     else if (sectionName === 'prev')
@@ -876,10 +888,10 @@ export default class HomePage extends $.Website.class {
     // endregion
 }
 // endregion
-$.HomePage = (...parameter:Array<any>):any => $.Tools().controller(
+$.HomePage = (...parameter: Array<any>): any => $.Tools().controller(
     HomePage, parameter)
 $.HomePage.class = HomePage
-$.noConflict()(($:Object):HomePage => $.HomePage({
+$.noConflict()(($: Object): HomePage => $.HomePage({
     googleTrackingCode: 'UA-40192634-1', language: {
         logging: true, selection: ['enUS', 'deDE'],
         sessionDescription: 'website{1}'

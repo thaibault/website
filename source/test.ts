@@ -14,12 +14,13 @@
     endregion
 */
 // region imports
+import {beforeAll, describe, expect, test} from '@jest/globals'
 import {$} from 'clientnode'
 
 import Website from './index'
 // endregion
-describe('Documentation', ():void => {
-    let website:Website
+describe('Documentation', (): void => {
+    let website: Website
     /*
         NOTE: Import plugins with side effects (augmenting "$" scope /
         registering plugin) when other imports are only used as type.
@@ -27,13 +28,18 @@ describe('Documentation', ():void => {
     require('internationalisation')
     require('website-utilities')
     require('./index')
-    beforeAll(async ():Promise<void> => {
+    beforeAll(async (): Promise<void> => {
         website = (await $.Website()) as Website
     })
     // region tests
     /// region public methods
     //// region special
-    test('initialize', ():void => expect(website).toBeDefined())
+    test(
+        'initialize',
+        () => {
+            expect(website).toBeDefined()
+        }
+    )
     //// endregion
     /// endregion
     // endregion
