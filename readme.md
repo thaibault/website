@@ -21,8 +21,6 @@ Project status
 
 [![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/website?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/website)
 
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/website.svg?label=documentation-website&style=for-the-badge)](https://torben.website/website)
-
 ### agile-form
 
 [![npm](https://img.shields.io/npm/v/agile-form?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/agile-form)
