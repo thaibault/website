@@ -6110,21 +6110,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"baseline-browser-mapping@npm:^2.8.19":
-  version: 2.8.20
-  resolution: "baseline-browser-mapping@npm:2.8.20"
+"baseline-browser-mapping@npm:^2.8.19, baseline-browser-mapping@npm:^2.8.25":
+  version: 2.9.0
+  resolution: "baseline-browser-mapping@npm:2.9.0"
   bin:
     baseline-browser-mapping: dist/cli.js
-  checksum: 10c0/6e2a5141e4a95e24bdf8539a9cb92ed4f6fb3974713ef8d8d1a7de9ec571ad1d38d7f90cd061496ad7790bdbf50cc21d9398e19647c065af4065540becd0a277
-  languageName: node
-  linkType: hard
-
-"baseline-browser-mapping@npm:^2.8.25":
-  version: 2.8.30
-  resolution: "baseline-browser-mapping@npm:2.8.30"
-  bin:
-    baseline-browser-mapping: dist/cli.js
-  checksum: 10c0/724e2a71dc18af1555953278544d60d3677ad1413d19b4c68f0b1d16cb075186035125cad38d93c1ccc2df8dc8520e6d47452b76b265898ad7ac480630f12cae
+  checksum: 10c0/cc2c4beaaa6310e57d55c0b38767b7d833cad17779a51bd2f1db7c8fb50d86629fa065cf65b9333bbe1d909270a084bd2177f0fbc832633b273504a8c805ab9c
   languageName: node
   linkType: hard
 
@@ -6547,9 +6538,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.0, caniuse-lite@npm:^1.0.30000844, caniuse-lite@npm:^1.0.30001565, caniuse-lite@npm:^1.0.30001663, caniuse-lite@npm:^1.0.30001688, caniuse-lite@npm:^1.0.30001702, caniuse-lite@npm:^1.0.30001718, caniuse-lite@npm:^1.0.30001726, caniuse-lite@npm:^1.0.30001751, caniuse-lite@npm:^1.0.30001754":
-  version: 1.0.30001756
-  resolution: "caniuse-lite@npm:1.0.30001756"
-  checksum: 10c0/863df07bd8d5139371ce7d4e582f03fef38141726282dcd532421bbd95ea298c7f953a8e1a9790db89ca1816bd8ce3cce638a66361b769dd1f2dc8d4c721d546
+  version: 1.0.30001759
+  resolution: "caniuse-lite@npm:1.0.30001759"
+  checksum: 10c0/b0f415960ba34995cda18e0d25c4e602f6917b9179290a76bdd0311423505b78cc93e558a90c98a22a1cc6b1781ab720ef6beea24ec7e29a1c1164ca72eac3a2
   languageName: node
   linkType: hard
 
@@ -6696,7 +6687,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"clientnode@npm:3.0.1332, clientnode@npm:^3.0.1332":
+"clientnode@npm:3.0.1332":
   version: 3.0.1332
   resolution: "clientnode@npm:3.0.1332"
   peerDependencies:
@@ -6717,6 +6708,30 @@ __metadata:
     prop-types:
       optional: true
   checksum: 10c0/264e41a15919ebd978d62eaa5c52e4e48128c8efd252628daa370cbc99d88a9b3e073dcc369e651c2182da8789c32bc7a51f3f5f6733373dc3f0a2342d98c78d
+  languageName: node
+  linkType: hard
+
+"clientnode@npm:^3.0.1335":
+  version: 3.0.1335
+  resolution: "clientnode@npm:3.0.1335"
+  peerDependencies:
+    "@babel/runtime": "*"
+    "@types/prop-types": "*"
+    jquery: "*"
+    node-fetch: "*"
+    prop-types: "*"
+  peerDependenciesMeta:
+    "@babel/runtime":
+      optional: true
+    "@types/prop-types":
+      optional: true
+    jquery:
+      optional: true
+    node-fetch:
+      optional: true
+    prop-types:
+      optional: true
+  checksum: 10c0/f2ddd5924404b9b5d4f89dc0e75170b32eddaf05fd05ec6a1f7e372b4a73b092d9ece9bbdb0e142bd9605c163272b3e1af44b58453bf3b31acf06e3523c3903d
   languageName: node
   linkType: hard
 
@@ -8067,9 +8082,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"errorreporter@npm:^1.0.331":
-  version: 1.0.331
-  resolution: "errorreporter@npm:1.0.331"
+"errorreporter@npm:^1.0.333":
+  version: 1.0.333
+  resolution: "errorreporter@npm:1.0.333"
   peerDependencies:
     "@babel/runtime": "*"
     ua-parser-js: "*"
@@ -8078,7 +8093,7 @@ __metadata:
       optional: true
     ua-parser-js:
       optional: true
-  checksum: 10c0/4f81980a4c1b0327f21a6de01f37ada5886ab5791cb4d8ed6dd5b601820389b2d7da8b649d615d98c9f353417bbc30173a052c101e16c689938bc827ae08e570
+  checksum: 10c0/0408e80d417b2a1a0fca969f2b2b6be4ee5dd6b9b35fd97b3a16ed976ac8c3b0a3afcd26469ca259e06012f3c1b27a80fce6a48564d0d098fb00105b91a4c17e
   languageName: node
   linkType: hard
 
@@ -16696,9 +16711,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"weboptimizer@npm:^2.0.1627":
-  version: 2.0.1627
-  resolution: "weboptimizer@npm:2.0.1627"
+"weboptimizer@npm:^2.0.1630":
+  version: 2.0.1630
+  resolution: "weboptimizer@npm:2.0.1630"
   dependencies:
     "@babel/core": "npm:^7.28.5"
     "@babel/plugin-proposal-class-properties": "npm:^7.18.6"
@@ -16842,7 +16857,7 @@ __metadata:
       optional: true
   bin:
     weboptimizer: index.js
-  checksum: 10c0/9aa1a8014672bc45bf0006c1e0fef881b31732b3d2fbd04a1585c998306d48cff048aaff3be5a7e1e8aa8a62fbda382f27fe8b239d206411eac21de98c92f232
+  checksum: 10c0/7d6fa76ba350ff5bcdcd7d1f5d22c1ea7129d408fd8e51d80debeeaac22362b42b3c03ce866d93eb6f7b06c36a4e076fe95b1df604872b3d7d6458a65519a44c
   languageName: node
   linkType: hard
 
@@ -16996,9 +17011,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"website-utilities@npm:^1.0.372":
-  version: 1.0.372
-  resolution: "website-utilities@npm:1.0.372"
+"website-utilities@npm:^1.0.373":
+  version: 1.0.373
+  resolution: "website-utilities@npm:1.0.373"
   peerDependencies:
     "@babel/runtime": "*"
     clientnode: "*"
@@ -17016,7 +17031,7 @@ __metadata:
       optional: true
   bin:
     website-utilities: deploy.js
-  checksum: 10c0/9cbb6628d96b2022ee0a35be0e3d339f0a137b6e6116a6f9a50718e7c73790d0715a2ae26a94c160023c6bf42e83d99aff0561d21f780d97977c37fc87d6e5ec
+  checksum: 10c0/f4df7ec9c627541ac9064cb968687e641b9935f449a8046c65a8ee34a4a32edb3260960d3e94c36a05073ebbd45c6e430b54a4ffad94a97f6710c67bd694bdfc
   languageName: node
   linkType: hard
 
@@ -17037,10 +17052,10 @@ __metadata:
     "@typescript-eslint/parser": "npm:^8.48.1"
     Swipe: "https://github.com/thebird/Swipe.git#commit=da6cc72f6ee72d53d9d0bd457025d42a87c227ee"
     bootstrap: "npm:^5.3.8"
-    clientnode: "npm:^3.0.1332"
+    clientnode: "npm:^3.0.1335"
     css-loader: "npm:^7.1.2"
     cssnano: "npm:^7.1.2"
-    errorreporter: "npm:^1.0.331"
+    errorreporter: "npm:^1.0.333"
     eslint: "npm:^9.39.1"
     eslint-config-google: "npm:^0.14.0"
     eslint-plugin-jsdoc: "npm:^61.4.1"
@@ -17064,9 +17079,9 @@ __metadata:
     stylelint-config-standard: "npm:^39.0.1"
     typescript-eslint: "npm:^8.48.1"
     ua-parser-js: "npm:^2.0.6"
-    weboptimizer: "npm:^2.0.1627"
+    weboptimizer: "npm:^2.0.1630"
     webpack-dev-server: "npm:^5.2.2"
-    website-utilities: "npm:^1.0.372"
+    website-utilities: "npm:^1.0.373"
   languageName: unknown
   linkType: soft
 
