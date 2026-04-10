@@ -19,7 +19,6 @@
 // region imports
 import {DomNode, $, $T, KEYBOARD_CODES} from 'clientnode'
 // eslint-disable-next-line max-len
-import 'imports?jQuery=jquery!imports?$=jquery!imports?window=>{jQuery: jQuery}!swipe'
 import WebsiteUtilities from 'website-utilities'
 
 import {DomNodes, DefaultOptions, Options, WebsiteFunction} from './type'
