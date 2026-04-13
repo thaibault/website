@@ -81,6 +81,7 @@
     "stylelint-config-standard": "^40.0.0",
     "typescript-eslint": "^8.56.1",
     "ua-parser-js": "^2.0.9",
+    "web-internationalization": "^2.0.1"
     "weboptimizer": "^2.0.1649",
     "webpack-dev-server": "^5.2.3",
     "website-utilities": "^1.0.374"
