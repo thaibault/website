@@ -30,6 +30,7 @@ const swapCase = (letters) => {
             newLetters += letters[index].toUpperCase()
         else
             newLetters += letters[index].toLowerCase()
+
     return newLetters
 }
 // endregion
@@ -311,7 +312,7 @@ PROJECTS = [
 ]
 // endregion
 _%>
-<html class="no-javascript" lang="en">
+<html class="wu-no-javascript" lang="en">
     <!--region head-->
     <head>
         <meta charset="utf-8">
@@ -327,338 +328,375 @@ _%>
         >
         <base href="/">
         <title>Torben Sickert development</title>
+        <%- _.include(
+            'web-component-wrapper/polyfill.html', {webComponents: false}
+        ) %>
         <script>
-            window.document.documentElement.className =
-                window.document.documentElement.className.replace(
-                    /(^|\s)no-javascript(\s|$)/, '$1javascript$2');
+            AUTO_DEFINE_HOME_PAGE = true
+
+            window.document.documentElement.classList.remove('wu-no-javascript')
+            window.document.documentElement.classList.add('wu-javascript')
         </script>
     </head>
     <!--endregion-->
     <!--region body-->
-    <body class="no-javascript home-page tools-hidden-on-javascript-enabled">
+    <body class="wu-no-javascript">
         <script>
-            window.document.body.className =
-                window.document.body.className.replace(
-                    /(^|\s)no-javascript(\s|$)/, '$1javascript$2');
+            window.document.body.classList.remove('wu-no-javascript')
+            window.document.body.classList.add('wu-javascript')
         </script>
-        <div
-            class="website-utilities-window-loading-cover tools-visible-on-javascript-enabled"
-        ><div></div></div>
-        <!--region menu-->
-        <header
-            class="navbar-wrapper website-start-up-animation-number-<%- START_UP_ANIMATION_NUMBER %>"
-        >
-            <div class="container">
-                <div class="navbar navbar-inverse navbar-static-top">
-                    <div class="container">
-                        <div class="navbar-header">
-                            <a class="navbar-brand" href="#">
-                                thaibault
-                                <span class="dimension-indicator"></span>
-                            </a>
-                            <%_ START_UP_ANIMATION_NUMBER += 1 _%>
-                            <a
-                                class="tools-visible-on-javascript-enabled website-start-up-animation-number-<%- START_UP_ANIMATION_NUMBER %>"
-                                href="#language-<%- ALTERNATE_LANGUAGE %>"
-                            >
-                                <%- ALTERNATE_LANGUAGE.substring(0, ALTERNATE_LANGUAGE.length - 2) %>
-                            </a>
-                            <button
-                                class="navbar-toggle tools-visible-on-javascript-enabled"
-                                data-target=".navbar-collapse"
-                                data-toggle="collapse"
-                                type="button"
-                            >
-                                <%_ for (const section of [1, 2, 3]) { _%>
-                                    <span class="icon-bar"></span>
-                                <%_ } _%>
-                            </button>
+
+        <home-page>
+            <div class="wu-window-loading-cover">
+                <div class="loading-text">
+                    <lang-replace>
+                        <span>L</span>
+                        <span>O</span>
+                        <span>A</span>
+                        <span>D</span>
+                        <span>I</span>
+                        <span>N</span>
+                        <span>G</span>
+                    </lang-replace>
+                    <!--deDE:
+                        <span>L</span>
+                        <span>A</span>
+                        <span>D</span>
+                        <span>E</span>
+                    -->
+                    <!--frFR:
+                        <span>C</span>
+                        <span>H</span>
+                        <span>A</span>
+                        <span>r</span>
+                        <span>g</span>
+                        <span>e</span>
+                        <span>m</span>
+                        <span>e</span>
+                        <span>n</span>
+                        <span>t</span>
+                    -->
+                </div>
+            </div>
+
+            <!--region menu-->
+            <header
+                class="navbar-wrapper website-start-up-animation-number-<%- START_UP_ANIMATION_NUMBER %>"
+            >
+                <div class="container">
+                    <div class="navbar navbar-inverse navbar-static-top">
+                        <div class="container">
+                            <div class="navbar-header">
+                                <a class="navbar-brand" href="#">
+                                    thaibault
+                                    <span class="dimension-indicator"></span>
+                                </a>
+                                <%_ START_UP_ANIMATION_NUMBER += 1 _%>
+                                <a
+                                    class="tools-visible-on-javascript-enabled website-start-up-animation-number-<%- START_UP_ANIMATION_NUMBER %>"
+                                    href="#language-<%- ALTERNATE_LANGUAGE %>"
+                                >
+                                    <%- ALTERNATE_LANGUAGE.substring(0, ALTERNATE_LANGUAGE.length - 2) %>
+                                </a>
+                                <button
+                                    class="navbar-toggle tools-visible-on-javascript-enabled"
+                                    data-target=".navbar-collapse"
+                                    data-toggle="collapse"
+                                    type="button"
+                                >
+                                    <%_ for (const section of [1, 2, 3]) { _%>
+                                        <span class="icon-bar"></span>
+                                    <%_ } _%>
+                                </button>
+                            </div>
+                            <div class="navbar-collapse collapse">
+                                <div
+                                    class="navbar-highlighter tools-visible-on-javascript-enabled"
+                                ></div>
+                                <ul class="nav navbar-nav">
+                                    <%_ for (const section of SECTIONS) {
+                                        if (section.content[0]) {
+                                            START_UP_ANIMATION_NUMBER += 1
+                                    _%>
+                                            <li
+                                                class="website-start-up-animation-number-<%- START_UP_ANIMATION_NUMBER %><%- section.title === SECTIONS[0].title ? ' active' : '' %>"
+                                            >
+                                                <a href="#<%- section.title %>">
+                                                    <%- section.content[0][DEFAULT_LANGUAGE] %>
+                                                    <!--<%- ALTERNATE_LANGUAGE %>:
+                                                        <%- section.content[0][ALTERNATE_LANGUAGE] %>
+                                                    -->
+                                                </a>
+                                            </li>
+                                        <%_ } _%>
+                                    <%_ } _%>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="navbar-collapse collapse">
-                            <div
-                                class="navbar-highlighter tools-visible-on-javascript-enabled"
-                            ></div>
-                            <ul class="nav navbar-nav">
-                                <%_ for (const section of SECTIONS) {
-                                    if (section.content[0]) {
-                                        START_UP_ANIMATION_NUMBER += 1
+                    </div>
+                </div>
+            </header>
+            <!--endregion-->
+            <!--region carousel-->
+            <section class="carousel slide"><div class="carousel-inner">
+                <%_ for (const section of SECTIONS) { _%>
+                    <div class="item <%- section.title %>">
+                        <div class="carousel-image-<%- section.title %>">
+                            <div class="container">
+                                <%_ if (section.content[1][DEFAULT_LANGUAGE]) { _%>
+                                    <h1 id="<%- section.title %>">
+                                        <%- section.content[1][DEFAULT_LANGUAGE] %>
+                                        <!--<%- ALTERNATE_LANGUAGE %>:
+                                            <%- section.content[1][ALTERNATE_LANGUAGE] %>
+                                        -->
+                                    </h1>
+                                <%_ } else { _%>
+                                    <!--
+                                        Serves as anchor point if javaScript isn't
+                                        supported.
+                                    -->
+                                    <h1 id="<%- section.title %>"></h1>
+                                <%_ }
+                                if (section.title === 'work') {
                                 _%>
-                                        <li
-                                            class="website-start-up-animation-number-<%- START_UP_ANIMATION_NUMBER %><%- section.title === SECTIONS[0].title ? ' active' : '' %>"
-                                        >
-                                            <a href="#<%- section.title %>">
-                                                <%- section.content[0][DEFAULT_LANGUAGE] %>
+                                    <h2>
+                                        <%- section.content[2][DEFAULT_LANGUAGE] %>
+                                        <!--<%- ALTERNATE_LANGUAGE %>:
+                                            <%- section.content[2][ALTERNATE_LANGUAGE] %>
+                                        -->
+                                    </h2>
+                                    <p>
+                                        <langReplace>
+                                            <%_ for (const keywords of section.content[3][DEFAULT_LANGUAGE]) {
+                                                if (keywords[0] !== section.content[3][DEFAULT_LANGUAGE][0][0]) {
+                                                    _%>
+                                                    <strong><%- keywords[0] %></strong>
+                                                <%_ } _%>
+                                                <%- keywords[1].join(', ') %>
+                                            <%_ } _%>
+                                        </langReplace>
+                                        <!--<%- ALTERNATE_LANGUAGE %>:
+                                            <%_ for (const keywords of section.content[3][ALTERNATE_LANGUAGE]) {
+                                                if (keywords[0] !== section.content[3][ALTERNATE_LANGUAGE][0][0]) {
+                                                    _%>
+                                                    <strong><%- keywords[0] %></strong>
+                                                <%_ } _%>
+                                                <%- keywords[1].join(', ') %>
+                                            <%_ } _%>
+                                        -->
+                                    </p>
+                                    <h2>
+                                        <%- section.content[4][DEFAULT_LANGUAGE] %>
+                                        <!--<%- ALTERNATE_LANGUAGE %>:
+                                            <%- section.content[4][ALTERNATE_LANGUAGE] %>
+                                        -->
+                                    </h2>
+                                    <dl class="dl-horizontal">
+                                        <%_ for (const project of PROJECTS) { _%>
+                                            <dt>
+                                                <a
+                                                    href="<%- project.url %>"
+                                                    target="_blank"
+                                                ><%- project.title %></a>
+                                            </dt>
+                                            <dd>
+                                                <%- project.content[DEFAULT_LANGUAGE][0] %>
                                                 <!--<%- ALTERNATE_LANGUAGE %>:
-                                                    <%- section.content[0][ALTERNATE_LANGUAGE] %>
+                                                    <%- project.content[ALTERNATE_LANGUAGE][0] %>
+                                                -->
+                                                <%_ if (project.content[DEFAULT_LANGUAGE].length > 1) {_%>
+                                                    <ul>
+                                                        <%_
+                                                        let index = 0
+                                                        for (const element of project.content[DEFAULT_LANGUAGE][1]) {
+                                                        _%>
+                                                            <li>
+                                                                <%_ if (Array.isArray(element)) { _%>
+                                                                    <langreplace>
+                                                                        <a
+                                                                            href="<%- element[1] %>"
+                                                                        >
+                                                                            <%- element[0] %>
+                                                                        </a>
+                                                                    </langrelace>
+                                                                    <langreplacement>
+                                                                        <%- ALTERNATE_LANGUAGE %>:
+                                                                        <a
+                                                                            href="<%- project.content[ALTERNATE_LANGUAGE][1][index][1] %>"
+                                                                        >
+                                                                            <%- project.content[ALTERNATE_LANGUAGE][1][index][0] %>
+                                                                        </a>
+                                                                    </langreplacement>
+                                                                <%_ } else { _%>
+                                                                    <%- element %>
+                                                                    <!--<%- ALTERNATE_LANGUAGE %>:
+                                                                        <%- project.content[ALTERNATE_LANGUAGE][1][index] %>
+                                                                    -->
+                                                                <%_ } _%>
+                                                            </li>
+                                                            <%_
+                                                            index += 1
+                                                        }
+                                                        _%>
+                                                    </ul>
+                                                <%_ } _%>
+                                            </dd>
+                                        <%_ } _%>
+                                    </dl>
+                                <%_ } else { _%>
+                                    <p class="lead">
+                                        <%- section.content[2][DEFAULT_LANGUAGE] %>
+                                        <!--<%- ALTERNATE_LANGUAGE %>:
+                                            <%- section.content[2][ALTERNATE_LANGUAGE] %>
+                                        -->
+                                        <%_ if (section.title === 'about') { _%>
+                                            <a
+                                                class="visible-xs"
+                                                href="<%- LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE_PATH %>"
+                                                target="_blank"
+                                            >
+                                                Curriculum Vitae (German)
+                                                <!--<%- ALTERNATE_LANGUAGE %>:
+                                                    Lebenslauf (Deutsch)
                                                 -->
                                             </a>
-                                        </li>
-                                    <%_ } _%>
-                                <%_ } _%>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <!--endregion-->
-        <!--region carousel-->
-        <section class="carousel slide"><div class="carousel-inner">
-            <%_ for (const section of SECTIONS) { _%>
-                <div class="item <%- section.title %>">
-                    <div class="carousel-image-<%- section.title %>">
-                        <div class="container">
-                            <%_ if (section.content[1][DEFAULT_LANGUAGE]) { _%>
-                                <h1 id="<%- section.title %>">
-                                    <%- section.content[1][DEFAULT_LANGUAGE] %>
-                                    <!--<%- ALTERNATE_LANGUAGE %>:
-                                        <%- section.content[1][ALTERNATE_LANGUAGE] %>
-                                    -->
-                                </h1>
-                            <%_ } else { _%>
-                                <!--
-                                    Serves as anchor point if javaScript isn't
-                                    supported.
-                                -->
-                                <h1 id="<%- section.title %>"></h1>
-                            <%_ }
-                            if (section.title === 'work') {
-                            _%>
-                                <h2>
-                                    <%- section.content[2][DEFAULT_LANGUAGE] %>
-                                    <!--<%- ALTERNATE_LANGUAGE %>:
-                                        <%- section.content[2][ALTERNATE_LANGUAGE] %>
-                                    -->
-                                </h2>
-                                <p>
-                                    <langReplace>
-                                        <%_ for (const keywords of section.content[3][DEFAULT_LANGUAGE]) {
-                                            if (keywords[0] !== section.content[3][DEFAULT_LANGUAGE][0][0]) {
-                                                _%>
-                                                <strong><%- keywords[0] %></strong>
-                                            <%_ } _%>
-                                            <%- keywords[1].join(', ') %>
-                                        <%_ } _%>
-                                    </langReplace>
-                                    <!--<%- ALTERNATE_LANGUAGE %>:
-                                        <%_ for (const keywords of section.content[3][ALTERNATE_LANGUAGE]) {
-                                            if (keywords[0] !== section.content[3][ALTERNATE_LANGUAGE][0][0]) {
-                                                _%>
-                                                <strong><%- keywords[0] %></strong>
-                                            <%_ } _%>
-                                            <%- keywords[1].join(', ') %>
-                                        <%_ } _%>
-                                    -->
-                                </p>
-                                <h2>
-                                    <%- section.content[4][DEFAULT_LANGUAGE] %>
-                                    <!--<%- ALTERNATE_LANGUAGE %>:
-                                        <%- section.content[4][ALTERNATE_LANGUAGE] %>
-                                    -->
-                                </h2>
-                                <dl class="dl-horizontal">
-                                    <%_ for (const project of PROJECTS) { _%>
-                                        <dt>
                                             <a
-                                                href="<%- project.url %>"
+                                                class="visible-xs"
+                                                href="<%- LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE_PATH %>"
                                                 target="_blank"
-                                            ><%- project.title %></a>
-                                        </dt>
-                                        <dd>
-                                            <%- project.content[DEFAULT_LANGUAGE][0] %>
-                                            <!--<%- ALTERNATE_LANGUAGE %>:
-                                                <%- project.content[ALTERNATE_LANGUAGE][0] %>
-                                            -->
-                                            <%_ if (project.content[DEFAULT_LANGUAGE].length > 1) {_%>
-                                                <ul>
-                                                    <%_
-                                                    let index = 0
-                                                    for (const element of project.content[DEFAULT_LANGUAGE][1]) {
-                                                    _%>
-                                                        <li>
-                                                            <%_ if (Array.isArray(element)) { _%>
-                                                                <langreplace>
-                                                                    <a
-                                                                        href="<%- element[1] %>"
-                                                                    >
-                                                                        <%- element[0] %>
-                                                                    </a>
-                                                                </langrelace>
-                                                                <langreplacement>
-                                                                    <%- ALTERNATE_LANGUAGE %>:
-                                                                    <a
-                                                                        href="<%- project.content[ALTERNATE_LANGUAGE][1][index][1] %>"
-                                                                    >
-                                                                        <%- project.content[ALTERNATE_LANGUAGE][1][index][0] %>
-                                                                    </a>
-                                                                </langreplacement>
-                                                            <%_ } else { _%>
-                                                                <%- element %>
-                                                                <!--<%- ALTERNATE_LANGUAGE %>:
-                                                                    <%- project.content[ALTERNATE_LANGUAGE][1][index] %>
-                                                                -->
-                                                            <%_ } _%>
-                                                        </li>
-                                                        <%_
-                                                        index += 1
-                                                    }
-                                                    _%>
-                                                </ul>
-                                            <%_ } _%>
-                                        </dd>
-                                    <%_ } _%>
-                                </dl>
-                            <%_ } else { _%>
-                                <p class="lead">
-                                    <%- section.content[2][DEFAULT_LANGUAGE] %>
-                                    <!--<%- ALTERNATE_LANGUAGE %>:
-                                        <%- section.content[2][ALTERNATE_LANGUAGE] %>
-                                    -->
-                                    <%_ if (section.title === 'about') { _%>
-                                        <a
-                                            class="visible-xs"
-                                            href="<%- LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE_PATH %>"
-                                            target="_blank"
-                                        >
-                                            Curriculum Vitae (German)
-                                            <!--<%- ALTERNATE_LANGUAGE %>:
-                                                Lebenslauf (Deutsch)
-                                            -->
-                                        </a>
-                                        <a
-                                            class="visible-xs"
-                                            href="<%- LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE_PATH %>"
-                                            target="_blank"
-                                        >
-                                            Curriculum Vitae (English)
-                                            <!--<%- ALTERNATE_LANGUAGE %>:
-                                                Lebenslauf (Englisch)
-                                            -->
-                                        </a>
-                                        <a
-                                            class="hidden-xs"
-                                            href="<%- LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE_PATH %>"
-                                            target="_blank"
-                                        >
-                                            Curriculum Vitae
-                                            <!--<%- ALTERNATE_LANGUAGE %>:
-                                                Lebenslauf
-                                            -->
-                                        </a>
-                                        <a
-                                            href="<%- LINK_V_CARD_PATH %>"
-                                            target="_blank"
-                                        >vCard</a>
-                                    <%_ } _%>
-                                </p>
-                            <%_ }
-                            if (section.title === 'contact') {
-                            _%>
-                                <a href="tel:004917610248185">
-                                    Phone<!--<%- ALTERNATE_LANGUAGE %>:Tel.-->
-                                    +49 (0) 176 <span>/</span> 10 248 185
-                                </a>
-                                <%_
-                                    for (const link of SOCIAL_MEDIA) {
-                                        if (link.url.indexOf('@') !== -1)
-                                            link.url = `mailto:${link.url}`
-                                        if ('website' === link.title) {
-                                _%>
-                                    <a
-                                        class="glyphicon glyphicon-globe"
-                                        href="<%- link.url %>"
-                                        target="_blank"
-                                    ></a>
-                                        <%_ } else { _%>
-                                    <a
-                                        class="glyphicon-social glyphicon-social-<%- link.title %>"
-                                        href="<%- link.url %>"
-                                        target="_blank"
-                                    ></a>
+                                            >
+                                                Curriculum Vitae (English)
+                                                <!--<%- ALTERNATE_LANGUAGE %>:
+                                                    Lebenslauf (Englisch)
+                                                -->
+                                            </a>
+                                            <a
+                                                class="hidden-xs"
+                                                href="<%- LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE_PATH %>"
+                                                target="_blank"
+                                            >
+                                                Curriculum Vitae
+                                                <!--<%- ALTERNATE_LANGUAGE %>:
+                                                    Lebenslauf
+                                                -->
+                                            </a>
+                                            <a
+                                                href="<%- LINK_V_CARD_PATH %>"
+                                                target="_blank"
+                                            >vCard</a>
                                         <%_ } _%>
-                                    <%_ } _%>
-                            <%_ } _%>
+                                    </p>
+                                <%_ }
+                                if (section.title === 'contact') {
+                                _%>
+                                    <a href="tel:004917610248185">
+                                        Phone<!--<%- ALTERNATE_LANGUAGE %>:Tel.-->
+                                        +49 (0) 176 <span>/</span> 10 248 185
+                                    </a>
+                                    <%_
+                                        for (const link of SOCIAL_MEDIA) {
+                                            if (link.url.indexOf('@') !== -1)
+                                                link.url = `mailto:${link.url}`
+                                            if ('website' === link.title) {
+                                    _%>
+                                        <a
+                                            class="glyphicon glyphicon-globe"
+                                            href="<%- link.url %>"
+                                            target="_blank"
+                                        ></a>
+                                            <%_ } else { _%>
+                                        <a
+                                            class="glyphicon-social glyphicon-social-<%- link.title %>"
+                                            href="<%- link.url %>"
+                                            target="_blank"
+                                        ></a>
+                                            <%_ } _%>
+                                        <%_ } _%>
+                                <%_ } _%>
+                            </div>
                         </div>
                     </div>
-                </div>
-            <%_ } _%>
-        </div></section>
-        <!--endregion-->
-        <!--region about this website-->
-        <section class="about-this-website">
-            <div class="carousel-image-about-this-website">
-                <div class="container">
-                    <h1 id="about-this-website">
-                        About this website
-                        <!--<%- ALTERNATE_LANGUAGE %>:Impressum-->
-                    </h1>
-                    <h2>
-                        Contact
-                        <!--<%- ALTERNATE_LANGUAGE %>:Kontakt-->
-                    </h2>
-                    <div>
-                        Provider of<!--<%- ALTERNATE_LANGUAGE %>:Anbieter von-->:
-                        <a
-                            class="<%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].title %>"
-                            href="<%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url %>"
-                        ><%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url %></a>
-                        <br />
-                        Torben Sickert
-                        <br />
-                        Waldstraße 29
-                        <br />
-                        79194 Gundelfingen i.Br.
-                        <br />
-                        Phone<!--<%- ALTERNATE_LANGUAGE %>:Tel.-->:
-                        <a href="tel:004917610248185">
-                            +49 (0) 176<span>/</span>10 248 185
-                        </a>
-                        <br />
-                        Email:<!--<%- ALTERNATE_LANGUAGE %>:E-Mail-->
-                        <a href="mailto:<%- SOCIAL_MEDIA[0].url %>">
-                            <%- SOCIAL_MEDIA[0].url %>
-                        </a>
-                        <br />
-                        Website<!--<%- ALTERNATE_LANGUAGE %>:Webseite-->:
-                        <a
-                            class="<%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].title %>"
-                            href="<%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url %>"
-                        ><%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url %></a>
-                        <br />
-                        <br />
-                        <a
-                            href="<%- LINK_PUBLIC_SSH_KEY_PATH %>"
-                            target="_blank"
-                        >
-                            public ssh key
-                            <!--<%- ALTERNATE_LANGUAGE %>:
-                                öffentlicher SSH-Schlüssel
-                            -->
-                        </a>
+                <%_ } _%>
+            </div></section>
+            <!--endregion-->
+            <!--region about this website-->
+            <section class="about-this-website">
+                <div class="carousel-image-about-this-website">
+                    <div class="container">
+                        <h1 id="about-this-website">
+                            About this website
+                            <!--<%- ALTERNATE_LANGUAGE %>:Impressum-->
+                        </h1>
+                        <h2>
+                            Contact
+                            <!--<%- ALTERNATE_LANGUAGE %>:Kontakt-->
+                        </h2>
+                        <div>
+                            Provider of<!--<%- ALTERNATE_LANGUAGE %>:Anbieter von-->:
+                            <a
+                                class="<%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].title %>"
+                                href="<%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url %>"
+                            ><%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url %></a>
+                            <br />
+                            Torben Sickert
+                            <br />
+                            Waldstraße 29
+                            <br />
+                            79194 Gundelfingen i.Br.
+                            <br />
+                            Phone<!--<%- ALTERNATE_LANGUAGE %>:Tel.-->:
+                            <a href="tel:004917610248185">
+                                +49 (0) 176<span>/</span>10 248 185
+                            </a>
+                            <br />
+                            Email:<!--<%- ALTERNATE_LANGUAGE %>:E-Mail-->
+                            <a href="mailto:<%- SOCIAL_MEDIA[0].url %>">
+                                <%- SOCIAL_MEDIA[0].url %>
+                            </a>
+                            <br />
+                            Website<!--<%- ALTERNATE_LANGUAGE %>:Webseite-->:
+                            <a
+                                class="<%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].title %>"
+                                href="<%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url %>"
+                            ><%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url %></a>
+                            <br />
+                            <br />
+                            <a
+                                href="<%- LINK_PUBLIC_SSH_KEY_PATH %>"
+                                target="_blank"
+                            >
+                                public ssh key
+                                <!--<%- ALTERNATE_LANGUAGE %>:
+                                    öffentlicher SSH-Schlüssel
+                                -->
+                            </a>
+                        </div>
+                        <%- include('legal-notes') %>
                     </div>
-                    <%- include('legal-notes') %>
                 </div>
+            </section>
+            <!--
+                endregion
+                region footer
+                Wrap the footer of the page in another container to center the
+                content.
+            -->
+            <%_ START_UP_ANIMATION_NUMBER += 1 _%>
+            <div
+                class="footer website-start-up-animation-number-<%- START_UP_ANIMATION_NUMBER %>"
+            >
+                <footer><p>
+                    &copy; 2013 Torben Sickert &middot;
+                    <a href="#about-this-website">
+                        about this website
+                        <!--<%- ALTERNATE_LANGUAGE %>:Impressum-->
+                </p></footer>
             </div>
-        </section>
-        <!--
-            endregion
-            region footer
-            Wrap the footer of the page in another container to center the
-            content.
-        -->
-        <%_ START_UP_ANIMATION_NUMBER += 1 _%>
-        <div
-            class="footer website-start-up-animation-number-<%- START_UP_ANIMATION_NUMBER %>"
-        >
-            <footer><p>
-                &copy; 2013 Torben Sickert &middot;
-                <a href="#about-this-website">
-                    about this website
-                    <!--<%- ALTERNATE_LANGUAGE %>:Impressum-->
-            </p></footer>
-        </div>
-        <!--endregion-->
-        <a href="#top">top<!--deDE:nach oben--></a>
+            <!--endregion-->
+            <a class="wu-scroll-to-top" href="#top">
+                top<!--deDE:nach oben--></a>
+            </a>
+        </home-page>
         <%_ if (configuration.offline) { _%>
             <noscript>
                 <iframe src="manifest.html" style="display: none"></iframe>

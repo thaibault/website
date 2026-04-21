@@ -17,12 +17,31 @@
     endregion
 */
 // region imports
-import {DomNode, $, $T, KEYBOARD_CODES} from 'clientnode'
-// eslint-disable-next-line max-len
-import WebsiteUtilities from 'website-utilities'
+//import {
+    camelCaseToDelimited,
+    createDomNodes,
+    extend,
+    format,
+    getAll,
+    getParents,
+    getText,
+    globalContext,
+    Logger,
+    Mapping,
+    KEYBOARD_CODES,
+    NOOP,
+    wrap
+} from 'clientnode'
+import {func, object} from 'clientnode/property-types'
+import {property} from 'web-component-wrapper/decorator'
+import {WebComponentAPI} from 'web-component-wrapper/type'
+import {Web} from 'web-component-wrapper/Web'
+import {api as websiteUtilitiesAPI} from 'website-utilities'
+import {api as webInternationalizationAPI} from 'web-internationalization'
 
-import {DomNodes, DefaultOptions, Options, WebsiteFunction} from './type'
+import {DefaultOptions, Options} from './type'
 // endregion
+export const log = new Logger({name: 'website'})
 // region declaration
 declare var OFFLINE: boolean
 // endregion
@@ -79,12 +98,102 @@ declare var OFFLINE: boolean
  * @property _options.aboutThisWebsiteSection.hideAnimation {Object} - Hide
  * options.
  */
-export default class HomePage extends $.Website.class {
-    static _name: string = 'HomePage'
+export class HomePage<
+    TElement = HTMLElement,
+    ExternalProperties extends Mapping<unknown> = Mapping<unknown>,
+    InternalProperties extends Mapping<unknown> = Mapping<unknown>
+> extends Web<TElement, ExternalProperties, InternalProperties> {
+    static content = `
+        <website-utilities
+            options="{sectionNames: ['home', 'about-this-website']}"
+        >
+            <web-internationalization>
+                <slot>Please provide a template to transclude.</slot>
+            </web-internationalization>
+        </website-utilities>
+    `
+
+    static _name = 'HomePage'
+
+    static _defaultOptions: DefaultOptions = {
+        trackingCode: 'UA-40192634-1',
+        maximumFooterHeightInPercent: 50,
+        backgroundDependentHeightSections: ['about'],
+        maximumBackgroundDependentHeight: 750,
+        hideMobileMenuAfterSelection: true,
+
+        selectors: {
+            carousel: 'section.carousel.slide',
+            section: 'section.carousel.slide div.carousel-inner div.item',
+            logoLink:
+                'header.navbar-wrapper div.navbar.navbar-inverse ' +
+                'div.navbar-header a.navbar-brand',
+            navigationButton:
+                'header.navbar-wrapper div.navbar.navbar-inverse ' +
+                'div.navbar-collapse ul.nav.navbar-nav li a',
+            aboutThisWebsiteButton:
+                'div.footer footer a[href="#about-this-website"]',
+            aboutThisWebsiteSection: 'section.about-this-website',
+            dimensionIndicator:
+                'header.navbar-wrapper div.navbar.navbar-inverse ' +
+                'div.navbar-header a.navbar-brand ' +
+                'span.dimension-indicator',
+            footer: 'div.footer',
+            menuHighlighter:
+                'header.navbar-wrapper div.navbar.navbar-inverse ' +
+                'div.navbar-collapse div.navbar-highlighter',
+            mobileCollapseButton:
+                'header.navbar-wrapper div.navbar.navbar-inverse ' +
+                'div.navbar-header button.navbar-toggle',
+            navigationWrapper:
+                'header.navbar-wrapper div.navbar.navbar-inverse ' +
+                'div.navbar-collapse'
+        },
+
+        carousel: {
+            startSlide: 0,
+            speed: 400,
+            auto: 0,
+            continuous: false,
+            disableScroll: false,
+            stopPropagation: false
+        }
+    }
+
+    readonly self = HomePage
+
+    // region domNodes
+    carousel: 'section.carousel.slide',
+    section: 'section.carousel.slide div.carousel-inner div.item',
+    logoLink:
+        'header.navbar-wrapper div.navbar.navbar-inverse ' +
+        'div.navbar-header a.navbar-brand',
+    navigationButton:
+        'header.navbar-wrapper div.navbar.navbar-inverse ' +
+        'div.navbar-collapse ul.nav.navbar-nav li a',
+    aboutThisWebsiteButton:
+        'div.footer footer a[href="#about-this-website"]',
+    aboutThisWebsiteSection: 'section.about-this-website',
+    dimensionIndicator:
+        'header.navbar-wrapper div.navbar.navbar-inverse ' +
+        'div.navbar-header a.navbar-brand ' +
+        'span.dimension-indicator',
+    footer: 'div.footer',
+    menuHighlighter:
+        'header.navbar-wrapper div.navbar.navbar-inverse ' +
+        'div.navbar-collapse div.navbar-highlighter',
+    mobileCollapseButton:
+        'header.navbar-wrapper div.navbar.navbar-inverse ' +
+        'div.navbar-header button.navbar-toggle',
+    navigationWrapper:
+        'header.navbar-wrapper div.navbar.navbar-inverse ' +
+        'div.navbar-collapse'
+    // endregion
 
     _initialContentHeightAdaptionDone: boolean
     _initialMenuHightlightDone: boolean
     _loadingCoverRemoved: boolean
+
     _oldSectionHeightInPixel: number
     _sectionTopMarginInPixel: number
     // region public methods
@@ -118,62 +227,7 @@ export default class HomePage extends $.Website.class {
         this._initialMenuHightlightDone = initialMenuHightlightDone
         this._loadingCoverRemoved = loadingCoverRemoved
         this._options = {
-            trackingCode: 'UA-40192634-1',
-            maximumFooterHeightInPercent: 50,
-            scrollInLinearTime: true,
-            backgroundDependentHeightSections: ['about'],
-            maximumBackgroundDependentHeight: 750,
-            menuHighlightAnimation: {easing: 'linear'},
-            hideMobileMenuAfterSelection: true,
-            domNode: {
-                carousel: 'section.carousel.slide',
-                section: 'section.carousel.slide div.carousel-inner div.item',
-                logoLink:
-                    'header.navbar-wrapper div.navbar.navbar-inverse ' +
-                    'div.navbar-header a.navbar-brand',
-                navigationButton:
-                    'header.navbar-wrapper div.navbar.navbar-inverse ' +
-                    'div.navbar-collapse ul.nav.navbar-nav li a',
-                aboutThisWebsiteButton:
-                    'div.footer footer a[href="#about-this-website"]',
-                aboutThisWebsiteSection: 'section.about-this-website',
-                dimensionIndicator:
-                    'header.navbar-wrapper div.navbar.navbar-inverse ' +
-                    'div.navbar-header a.navbar-brand ' +
-                    'span.dimension-indicator',
-                footer: 'div.footer',
-                menuHighlighter:
-                    'header.navbar-wrapper div.navbar.navbar-inverse ' +
-                    'div.navbar-collapse div.navbar-highlighter',
-                mobileCollapseButton:
-                    'header.navbar-wrapper div.navbar.navbar-inverse ' +
-                    'div.navbar-header button.navbar-toggle',
-                navigationWrapper:
-                    'header.navbar-wrapper div.navbar.navbar-inverse ' +
-                    'div.navbar-collapse'
-            },
-            carousel: {
-                startSlide: 0,
-                speed: 400,
-                auto: 0,
-                continuous: false,
-                disableScroll: false,
-                stopPropagation: false
-            },
-            dimensionIndicator: {
-                template: `
-                    <span class="glyphicon glyphicon-resize-horizontal"></span>
-                    <span>{1}</span>
-                `,
-                effectOptions: {
-                    showAnimation: [{opacity: 1}, {duration: 'fast'}],
-                    hideAnimation: [{opacity: 0}, {duration: 'fast'}]
-                }
-            },
-            aboutThisWebsiteSection: {
-                showAnimation: [{opacity: 1}, {duration: 'fast'}],
-                hideAnimation: [{opacity: 0}, {duration: 'fast'}]
-            }
+
         }
         let initialOnSwitchedCallback: Function
         let initialOnEnsuredCallback: Function
@@ -887,12 +941,21 @@ export default class HomePage extends $.Website.class {
     // endregion
 }
 // endregion
-$.HomePage = (...parameter: Array<any>): any => $.Tools().controller(
-    HomePage, parameter)
-$.HomePage.class = HomePage
-$.noConflict()(($: Object): HomePage => $.HomePage({
-    googleTrackingCode: 'UA-40192634-1', language: {
-        logging: true, selection: ['enUS', 'deDE'],
-        sessionDescription: 'website{1}'
+export const api: WebComponentAPI<
+    HTMLElement, Mapping<unknown>, Mapping<unknown>, typeof Web
+> = {
+    component: HomePage,
+    register: (
+        tagName: string = camelCaseToDelimited(HomePage._name)
+    ) => {
+        websiteUtilitiesAPI.register()
+        webInternationalizationAPI.register()
+
+        customElements.define(tagName, WebDocumentation)
     }
-}))
+}
+export default HomePage
+
+if ((globalContext as Mapping<boolean>).AUTO_DEFINE_HOME_PAGE)
+    api.register()
+// endregion

@@ -1,7 +1,7 @@
 {
   "name": "website",
   "version": "1.0.62",
-  "description": "Here's my website development hosted (no security by obscurity).",
+  "description": "Here's my website development hosted.",
   "keywords": [
     "website"
   ],
@@ -44,47 +44,49 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.28.6",
-    "@babel/plugin-transform-proto-to-assign": "^7.27.1",
-    "@babel/runtime": "^7.28.6",
-    "@stylistic/eslint-plugin": "^5.9.0",
+    "@babel/runtime": "^7.29.2",
+    "@eslint/js": "^10.0.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
     "@types/ejs": "^3.1.5",
     "@types/html-minifier": "^4.0.6",
-    "@types/jsdom": "^28.0.0",
-    "@types/node": "^25.3.0",
-    "@typescript-eslint/eslint-plugin": "^8.56.1",
-    "@typescript-eslint/parser": "^8.56.1",
-    "Swipe": "https://github.com/thebird/Swipe.git#commit=da6cc72f6ee72d53d9d0bd457025d42a87c227ee",
-    "bootstrap": "^5.3.8",
-    "clientnode": "^3.0.1348",
+    "@types/jsdom": "^28.0.1",
+    "@types/node": "^25.6.0",
+    "@types/webpack-env": "^1.18.8",
+    "@typescript-eslint/eslint-plugin": "^8.59.0",
+    "@typescript-eslint/parser": "^8.59.0",
+    "@webcomponents/webcomponentsjs": "^2.8.0",
+    "clientnode": "^4.0.1387",
     "css-loader": "^7.1.4",
-    "cssnano": "^7.1.2",
-    "errorreporter": "^1.0.335",
-    "eslint": "^10.0.2",
+    "cssnano": "^7.1.7",
+    "errorreporter": "^1.0.338",
+    "eslint": "^10.2.1",
     "eslint-config-google": "^0.14.0",
-    "eslint-plugin-jsdoc": "^62.7.1",
+    "eslint-plugin-jsdoc": "^62.9.0",
     "favicons": "^7.2.0",
     "favicons-webpack-plugin": "^6.0.1",
-    "jest": "^30.2.0",
+    "jest": "^30.3.0",
     "jsdoc": "^4.0.5",
-    "legal-notes": "^1.0.27",
-    "mini-css-extract-plugin": "^2.10.0",
+    "legal-notes": "^1.0.28",
+    "mini-css-extract-plugin": "^2.10.2",
+    "postcss": "^8.5.10",
     "postcss-fontpath": "^1.0.0",
     "postcss-import": "^16.1.1",
     "postcss-loader": "^8.2.1",
     "postcss-mixins": "^12.1.2",
-    "postcss-preset-env": "^11.2.0",
+    "postcss-preset-env": "^11.2.1",
     "postcss-sprites": "^4.2.1",
     "postcss-url": "^10.1.3",
-    "spin.js": "^4.1.2",
+    "prop-types": "^15.8.1",
     "style-loader": "^4.0.0",
-    "stylelint": "^17.3.0",
+    "stylelint": "^17.8.0",
     "stylelint-config-standard": "^40.0.0",
-    "typescript-eslint": "^8.56.1",
+    "typescript-eslint": "^8.59.0",
     "ua-parser-js": "^2.0.9",
-    "web-internationalization": "^2.0.1"
-    "weboptimizer": "^2.0.1649",
+    "web-component-wrapper": "^0.0.561",
+    "web-internationalization": "^2.0.7",
+    "weboptimizer": "^3.0.21",
     "webpack-dev-server": "^5.2.3",
-    "website-utilities": "^1.0.374"
+    "website-utilities": "^1.0.385"
   },
   "engines": {
     "node": ">=24",
@@ -109,15 +111,30 @@
     "injection": {
       "chunks": false,
       "entry": {
-        "#": "errorreporter\": \"errorreporter",
-        "__evaluate__": "2 < self.givenCommandLineArguments.length && self.givenCommandLineArguments[2].startsWith('test') ? {testBundle: './test.ts'} : {index: ['./index.css', 'ua-parser-js', './index']}"
+        "#": "errorreporter\": [\"ua-parser-js\", \"errorreporter\"]",
+        "__evaluate__": "2 < self.givenCommandLineArguments.length && self.givenCommandLineArguments[2].startsWith('test') ? {testBundle: './test.ts'} : {index: ['./index.css', '@webcomponents/webcomponentsjs/webcomponents-bundle.js', '@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js', './index']}"
       }
     },
     "library": false,
     "module": {
       "enforceDeduplication": true,
+      "html": {
+        "options": {
+          "sources": {
+            "urlFilter": {
+              "__evaluate__": "() => false"
+            }
+          }
+        }
+      },
       "optimizer": {
         "babelMinify": {
+          "#": "To provide a logging output we need to exclude this feature.",
+          "bundle": {
+            "transform": {
+              "removeConsole": false
+            }
+          },
           "module": {
             "#": "Using this module would result in this error for task \"build\": \"ERROR in ./source/index.js Module build failed (from ./node_modules/babel-loader/lib/index.js): TypeError: website/source/index.js: Cannot read property 'end' of null\".",
             "evaluate": false,
@@ -140,30 +157,49 @@
         "cascadingStyleSheet": {
           "additional": {
             "plugins": {
-              "pre": [
-                "require('postcss-mixins')"
-              ]
+              "pre": {
+                "__append__": [
+                  "require('postcss-mixins')",
+                  "require('postcss-nested')"
+                ]
             }
           }
-        }
-      },
-      "replacements": {
-        "normal": {
-          "(.*)swipe$": "$1Swipe/swipe.js"
         }
       }
     },
     "path": {
       "source": {
         "asset": {
-          "javaScript": "./",
-          "cascadingStyleSheet": "./"
+          "cascadingStyleSheet": "./",
+          "javaScript": "./"
         }
       },
       "target": {
         "asset": {
           "javaScript": "./",
           "cascadingStyleSheet": "./"
+        }
+      },
+    "webpack": {
+      "snapshot": {
+        "unmanagedPaths": [
+          {
+            "__evaluate__": "/^.+?[\\/]node_modules[\\/]clientnode[\\/]/"
+          },
+          {
+            "__evaluate__": "/^.+?[\\/]node_modules[\\/]web-component-wrapper[\\/]/"
+          },
+          {
+            "__evaluate__": "/^.+?[\\/]node_modules[\\/]web-internationalization[\\/]/"
+          },
+          {
+            "__evaluate__": "/^.+?[\\/]node_modules[\\/]website-utilities[\\/]/"
+          }
+        ]
+      },
+      "watchOptions": {
+        "ignored": {
+          "__remove__": "**/node_modules"
         }
       }
     }
