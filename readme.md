@@ -36,7 +36,7 @@ Project status
 [![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/agile-form?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/agile-form)
 
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/agile-form/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/agile-form/actions/workflows/deploy-web-documentation.yaml)
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/agile-form.svg?label=documentation-website&style=for-the-badge)](https://torben.website/agile-form)
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/agile-form.svg?label=web-documentation&style=for-the-badge)](https://torben.website/agile-form)
 
 [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=for-the-badge&logo=codesandbox)](https://githubbox.com/thaibault/agile-form)
 
@@ -55,7 +55,7 @@ Project status
 [![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/application-server-web-node-plugin?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/application-server-web-node-plugin)
 
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/application-server-web-node-plugin/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/application-server-web-node-plugin/actions/workflows/deploy-web-documentation.yaml)
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/application-server-web-node-plugin.svg?label=documentation-website&style=for-the-badge)](https://torben.website/application-server-web-node-plugin)
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/application-server-web-node-plugin.svg?label=web-documentation&style=for-the-badge)](https://torben.website/application-server-web-node-plugin)
 
 [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=for-the-badge&logo=codesandbox)](https://githubbox.com/thaibault/application-server-web-node-plugin)
 
@@ -67,7 +67,7 @@ Project status
 [![build push package](https://img.shields.io/github/actions/workflow/status/thaibault/archinstall/build-package-and-push.yaml?label=build%20push%20package&style=for-the-badge)](https://github.com/thaibault/archinstall/actions/workflows/build-package-and-push.yaml)
 
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/archinstall/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/archinstall/actions/workflows/deploy-web-documentation.yaml)
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/archinstall.svg?label=documentation-website&style=for-the-badge)](https://torben.website/archinstall)
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/archinstall.svg?label=web-documentation&style=for-the-badge)](https://torben.website/archinstall)
 
 ### backup-rotation
 
@@ -77,7 +77,7 @@ Project status
 [![build push package](https://img.shields.io/github/actions/workflow/status/thaibault/backup-rotation/build-package-and-push.yaml?label=build%20push%20package&style=for-the-badge)](https://github.com/thaibault/backup-rotation/actions/workflows/build-package-and-push.yaml)
 
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/backup-rotation/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/backup-rotation/actions/workflows/deploy-web-documentation.yaml)
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/backup-rotation.svg?label=documentation-website&style=for-the-badge)](https://torben.website/backup-rotation)
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/backup-rotation.svg?label=web-documentation&style=for-the-badge)](https://torben.website/backup-rotation)
 
 ### bashlink
 
@@ -90,7 +90,7 @@ Project status
 [![test](https://img.shields.io/github/actions/workflow/status/thaibault/bashlink/test.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/bashlink/actions/workflows/test.yaml)
 
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/bashlink/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/bashlink/actions/workflows/deploy-web-documentation.yaml)
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/bashlink.svg?label=documentation-website&style=for-the-badge)](https://torben.website/bashlink)
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/bashlink.svg?label=web-documentation&style=for-the-badge)](https://torben.website/bashlink)
 
 ### clientnode
 
@@ -107,7 +107,7 @@ Project status
 [![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/clientnode?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/clientnode)
 
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/clientnode/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/clientnode/actions/workflows/deploy-web-documentation.yaml)
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/clientnode.svg?label=documentation-website&style=for-the-badge)](https://torben.website/clientnode)
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/clientnode.svg?label=web-documentation&style=for-the-badge)](https://torben.website/clientnode)
 
 [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=for-the-badge&logo=codesandbox)](https://githubbox.com/thaibault/clientnode)
 
@@ -122,7 +122,7 @@ Project status
 [![test](https://img.shields.io/github/actions/workflow/status/thaibault/containerbase/test.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/containerbase/actions/workflows/test.yaml)
 
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/containerbase/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/containerbase/actions/workflows/deploy-web-documentation.yaml)
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/containerbase.svg?label=documentation-website&style=for-the-badge)](https://torben.website/containerbase)
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/containerbase.svg?label=web-documentation&style=for-the-badge)](https://torben.website/containerbase)
 
 ### couchdb-web-node-plugin
 
@@ -139,21 +139,21 @@ Project status
 [![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/couchdb-web-node-plugin?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/couchdb-web-node-plugin)
 
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/couchdb-web-node-plugin/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/couchdb-web-node-plugin/actions/workflows/deploy-web-documentation.yaml)
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/couchdb-web-node-plugin.svg?label=documentation-website&style=for-the-badge)](https://torben.website/couchdb-web-node-plugin)
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/couchdb-web-node-plugin.svg?label=web-documentation&style=for-the-badge)](https://torben.website/couchdb-web-node-plugin)
 
-### documentation-website
+### web-documentation
 
-[![npm](https://img.shields.io/npm/v/documentation-website?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/documentation-website)
-[![npm downloads](https://img.shields.io/npm/dy/documentation-website.svg?style=for-the-badge)](https://www.npmjs.com/package/documentation-website)
+[![npm](https://img.shields.io/npm/v/web-documentation?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/web-documentation)
+[![npm downloads](https://img.shields.io/npm/dy/web-documentation.svg?style=for-the-badge)](https://www.npmjs.com/package/web-documentation)
 
-[![build](https://img.shields.io/github/actions/workflow/status/thaibault/documentation-website/build.yaml?style=for-the-badge)](https://github.com/thaibault/documentation-website/actions/workflows/build.yaml)
-[![build push package](https://img.shields.io/github/actions/workflow/status/thaibault/documentation-website/build-package-and-push.yaml?label=build%20push%20package&style=for-the-badge)](https://github.com/thaibault/documentation-website/actions/workflows/build-package-and-push.yaml)
+[![build](https://img.shields.io/github/actions/workflow/status/thaibault/web-documentation/build.yaml?style=for-the-badge)](https://github.com/thaibault/web-documentation/actions/workflows/build.yaml)
+[![build push package](https://img.shields.io/github/actions/workflow/status/thaibault/web-documentation/build-package-and-push.yaml?label=build%20push%20package&style=for-the-badge)](https://github.com/thaibault/web-documentation/actions/workflows/build-package-and-push.yaml)
 
-[![check types](https://img.shields.io/github/actions/workflow/status/thaibault/documentation-website/check-types.yaml?label=check%20types&style=for-the-badge)](https://github.com/thaibault/documentation-website/actions/workflows/check-types.yaml)
-[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/documentation-website/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/documentation-website/actions/workflows/lint.yaml)
-[![test](https://img.shields.io/github/actions/workflow/status/thaibault/documentation-website/test-coverage-report.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/documentation-website/actions/workflows/test-coverage-report.yaml)
+[![check types](https://img.shields.io/github/actions/workflow/status/thaibault/web-documentation/check-types.yaml?label=check%20types&style=for-the-badge)](https://github.com/thaibault/web-documentation/actions/workflows/check-types.yaml)
+[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/web-documentation/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/web-documentation/actions/workflows/lint.yaml)
+[![test](https://img.shields.io/github/actions/workflow/status/thaibault/web-documentation/test-coverage-report.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/web-documentation/actions/workflows/test-coverage-report.yaml)
 
-[![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/documentation-website?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/documentation-website)
+[![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/web-documentation?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/web-documentation)
 
 ### ejs-web-node-plugin
 
@@ -170,7 +170,7 @@ Project status
 [![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/ejs-web-node-plugin?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/ejs-web-node-plugin)
 
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/ejs-web-node-plugin/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/ejs-web-node-plugin/actions/workflows/deploy-web-documentation.yaml)
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/ejs-web-node-plugin.svg?label=documentation-website&style=for-the-badge)](https://torben.website/ejs-web-node-plugin)
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/ejs-web-node-plugin.svg?label=web-documentation&style=for-the-badge)](https://torben.website/ejs-web-node-plugin)
 
 ### errorreporter
 
@@ -187,7 +187,7 @@ Project status
 [![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/errorreporter?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/errorreporter)
 
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/errorreporter/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/errorreporter/actions/workflows/deploy-web-documentation.yaml)
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/errorreporter.svg?label=documentation-website&style=for-the-badge)](https://torben.website/errorreporter)
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/errorreporter.svg?label=web-documentation&style=for-the-badge)](https://torben.website/errorreporter)
 
 ### web-internationalization
 
@@ -204,7 +204,7 @@ Project status
 [![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/web-internationalization?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/web-internationalization)
 
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/web-internationalization/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/web-internationalization/actions/workflows/deploy-web-documentation.yaml)
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/web-internationalization.svg?label=documentation-website&style=for-the-badge)](https://torben.website/web-internationalization)
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/web-internationalization.svg?label=web-documentation&style=for-the-badge)](https://torben.website/web-internationalization)
 
 ### legal-notes
 
@@ -228,7 +228,7 @@ Project status
 [![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/nginx-web-node-plugin?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/nginx-web-node-plugin)
 
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/nginx-web-node-plugin/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/nginx-web-node-plugin/actions/workflows/deploy-web-documentation.yaml)
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/nginx-web-node-plugin.svg?label=documentation-website&style=for-the-badge)](https://torben.website/nginx-web-node-plugin)
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/nginx-web-node-plugin.svg?label=web-documentation&style=for-the-badge)](https://torben.website/nginx-web-node-plugin)
 
 ### polyfill-bundler
 
@@ -243,7 +243,7 @@ Project status
 [![build push image](https://img.shields.io/github/actions/workflow/status/thaibault/polyfill-bundler/build-image-and-push-periodically-2.yaml?label=build%20push%20image&style=for-the-badge)](https://github.com/thaibault/polyfill-bundler/actions/workflows/build-image-and-push-periodically-2.yaml)
 
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/polyfill-bundler/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/polyfill-bundler/actions/workflows/deploy-web-documentation.yaml)
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/polyfill-bundler.svg?label=documentation-website&style=for-the-badge)](https://torben.website/polyfill-bundler)
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/polyfill-bundler.svg?label=web-documentation&style=for-the-badge)](https://torben.website/polyfill-bundler)
 
 ### pre-render-web-node-plugin
 
@@ -260,14 +260,14 @@ Project status
 [![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/pre-render-web-node-plugin?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/pre-render-web-node-plugin)
 
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/pre-render-web-node-plugin/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/pre-render-web-node-plugin/actions/workflows/deploy-web-documentation.yaml)
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/pre-render-web-node-plugin.svg?label=documentation-website&style=for-the-badge)](https://torben.website/pre-render-web-node-plugin)
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/pre-render-web-node-plugin.svg?label=web-documentation&style=for-the-badge)](https://torben.website/pre-render-web-node-plugin)
 
 ### proxy
 
 [![build push image](https://img.shields.io/github/actions/workflow/status/thaibault/proxy/build-image-and-push-periodically-2.yaml?label=build%20push%20image&style=for-the-badge)](https://github.com/thaibault/proxy/actions/workflows/build-image-and-push-periodically-2.yaml)
 
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/proxy/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/proxy/actions/workflows/deploy-web-documentation.yaml)
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/proxy.svg?label=documentation-website&style=for-the-badge)](https://torben.website/proxy)
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/proxy.svg?label=web-documentation&style=for-the-badge)](https://torben.website/proxy)
 
 ### react-generic-animate
 
@@ -281,7 +281,7 @@ Project status
 [![lint](https://img.shields.io/github/actions/workflow/status/thaibault/react-generic-animate/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/react-generic-animate/actions/workflows/lint.yaml)
 
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/react-generic-animate/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/react-generic-animate/actions/workflows/deploy-web-documentation.yaml)
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/react-generic-animate.svg?label=documentation-website&style=for-the-badge)](https://torben.website/react-generic-animate)
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/react-generic-animate.svg?label=web-documentation&style=for-the-badge)](https://torben.website/react-generic-animate)
 
 ### react-generic-dummy
 
@@ -295,7 +295,7 @@ Project status
 [![lint](https://img.shields.io/github/actions/workflow/status/thaibault/react-generic-dummy/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/react-generic-dummy/actions/workflows/lint.yaml)
 
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/react-generic-dummy/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/react-generic-dummy/actions/workflows/deploy-web-documentation.yaml)
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/react-generic-dummy.svg?label=documentation-website&style=for-the-badge)](https://torben.website/react-generic-dummy)
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/react-generic-dummy.svg?label=web-documentation&style=for-the-badge)](https://torben.website/react-generic-dummy)
 
 ### react-generic-tools
 
@@ -309,7 +309,7 @@ Project status
 [![lint](https://img.shields.io/github/actions/workflow/status/thaibault/react-generic-tools/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/react-generic-tools/actions/workflows/lint.yaml)
 
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/react-generic-tools/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/react-generic-tools/actions/workflows/deploy-web-documentation.yaml)
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/react-generic-tools.svg?label=documentation-website&style=for-the-badge)](https://torben.website/react-generic-tools)
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/react-generic-tools.svg?label=web-documentation&style=for-the-badge)](https://torben.website/react-generic-tools)
 
 ### react-input-material
 
@@ -326,7 +326,7 @@ Project status
 [![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/react-input-material?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/react-input-material)
 
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/react-input-material/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/react-input-material/actions/workflows/deploy-web-documentation.yaml)
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/react-input-material.svg?label=documentation-website&style=for-the-badge)](https://torben.website/react-input-material)
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/react-input-material.svg?label=web-documentation&style=for-the-badge)](https://torben.website/react-input-material)
 
 ### reverse-proxy-middleware
 
@@ -345,7 +345,7 @@ Project status
 [![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/reverse-proxy-middleware?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/reverse-proxy-middleware)
 
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/reverse-proxy-middleware/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/reverse-proxy-middleware/actions/workflows/deploy-web-documentation.yaml)
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/reverse-proxy-middleware.svg?label=documentation-website&style=for-the-badge)](https://torben.website/reverse-proxy-middleware)
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/reverse-proxy-middleware.svg?label=web-documentation&style=for-the-badge)](https://torben.website/reverse-proxy-middleware)
 
 ### web-component-wrapper
 
@@ -362,7 +362,7 @@ Project status
 [![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/web-component-wrapper?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/web-component-wrapper)
 
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/web-component-wrapper/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/web-component-wrapper/actions/workflows/deploy-web-documentation.yaml)
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/web-component-wrapper.svg?label=documentation-website&style=for-the-badge)](https://torben.website/web-component-wrapper)
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/web-component-wrapper.svg?label=web-documentation&style=for-the-badge)](https://torben.website/web-component-wrapper)
 
 ### web-input-material
 
@@ -379,7 +379,7 @@ Project status
 [![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/web-input-material?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/web-input-material)
 
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/web-input-material/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/web-input-material/actions/workflows/deploy-web-documentation.yaml)
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/web-input-material.svg?label=documentation-website&style=for-the-badge)](https://torben.website/web-input-material)
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/web-input-material.svg?label=web-documentation&style=for-the-badge)](https://torben.website/web-input-material)
 
 ### web-node
 
@@ -396,7 +396,7 @@ Project status
 [![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/web-node?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/web-node)
 
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/web-node/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/web-node/actions/workflows/deploy-web-documentation.yaml)
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/web-node.svg?label=documentation-website&style=for-the-badge)](https://torben.website/web-node)
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/web-node.svg?label=web-documentation&style=for-the-badge)](https://torben.website/web-node)
 
 [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=for-the-badge&logo=codesandbox)](https://githubbox.com/thaibault/web-node)
 
@@ -415,7 +415,7 @@ Project status
 [![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/weboptimizer?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/weboptimizer)
 
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/weboptimizer/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/weboptimizer/actions/workflows/deploy-web-documentation.yaml)
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/weboptimizer.svg?label=documentation-website&style=for-the-badge)](https://torben.website/weboptimizer)
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/weboptimizer.svg?label=web-documentation&style=for-the-badge)](https://torben.website/weboptimizer)
 
 [![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=for-the-badge&logo=codesandbox)](https://githubbox.com/thaibault/weboptimizer)
 
@@ -434,7 +434,7 @@ Project status
 [![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/website-utilities?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/website-utilities)
 
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/website-utilities/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/website-utilities/actions/workflows/deploy-web-documentation.yaml)
-[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/website-utilities.svg?label=documentation-website&style=for-the-badge)](https://torben.website/website-utilities)
+[![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/website-utilities.svg?label=web-documentation&style=for-the-badge)](https://torben.website/website-utilities)
 
 Use case
 --------
