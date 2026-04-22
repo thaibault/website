@@ -105,7 +105,9 @@ export class HomePage<
 > extends Web<TElement, ExternalProperties, InternalProperties> {
     static content = `
         <website-utilities
-            options="{sectionNames: ['home', 'about-this-website']}"
+            options="{sectionNames: [
+                'home', 'contact', 'work', 'about-this-website'
+            ]}"
         >
             <web-internationalization>
                 <slot>Please provide a template to transclude.</slot>
@@ -124,21 +126,20 @@ export class HomePage<
 
         selectors: {
             carousel: 'section.carousel.slide',
+
             section: 'section.carousel.slide div.carousel-inner div.item',
+
             logoLink:
                 'header.navbar-wrapper div.navbar.navbar-inverse ' +
                 'div.navbar-header a.navbar-brand',
             navigationButton:
                 'header.navbar-wrapper div.navbar.navbar-inverse ' +
                 'div.navbar-collapse ul.nav.navbar-nav li a',
+
             aboutThisWebsiteButton:
                 'div.footer footer a[href="#about-this-website"]',
             aboutThisWebsiteSection: 'section.about-this-website',
-            dimensionIndicator:
-                'header.navbar-wrapper div.navbar.navbar-inverse ' +
-                'div.navbar-header a.navbar-brand ' +
-                'span.dimension-indicator',
-            footer: 'div.footer',
+
             menuHighlighter:
                 'header.navbar-wrapper div.navbar.navbar-inverse ' +
                 'div.navbar-collapse div.navbar-highlighter',
@@ -147,7 +148,9 @@ export class HomePage<
                 'div.navbar-header button.navbar-toggle',
             navigationWrapper:
                 'header.navbar-wrapper div.navbar.navbar-inverse ' +
-                'div.navbar-collapse'
+                'div.navbar-collapse',
+
+            footer: 'div.footer'
         },
 
         carousel: {
@@ -161,7 +164,10 @@ export class HomePage<
     }
 
     readonly self = HomePage
-
+    // region api properties
+    @property({type: object})
+        options = {} as Options
+    // endregion
     // region domNodes
     carousel: 'section.carousel.slide',
     section: 'section.carousel.slide div.carousel-inner div.item',
@@ -189,68 +195,51 @@ export class HomePage<
         'header.navbar-wrapper div.navbar.navbar-inverse ' +
         'div.navbar-collapse'
     // endregion
+    _initialContentHeightAdaptionDone = false
+    _initialMenuHightlightDone = false
 
-    _initialContentHeightAdaptionDone: boolean
-    _initialMenuHightlightDone: boolean
-    _loadingCoverRemoved: boolean
-
-    _oldSectionHeightInPixel: number
-    _sectionTopMarginInPixel: number
+    _oldSectionHeightInPixel = 200
+    _sectionTopMarginInPixel = 0
     // region public methods
-    /// region special
+    /// region live-cycle
     /**
-     * Initializes the interactive web application.
-     * @param options - An options object.
-     * @param oldSectionHeightInPixel - Initial section height needed for
-     * section switch animations.
-     * @param sectionTopMarginInPixel - Distance to window top from the section
-     * body.
-     * @param initialContentHeightAdaptionDone - Indicates whether initial
-     * main content height has been adapted.
-     * @param initialMenuHightlightDone - Indicates whether initial menu
-     * highlighting has been done.
-     * @param loadingCoverRemoved - Indicates whether startup loading cover has
-     * been removed.
-     * @returns Returns the current instance.
+     * Defines dynamic getter and setter interface and resolves configuration
+     * object. Initializes the map implementation.
      */
-    initialize(
-        options: Object = {}, oldSectionHeightInPixel = 200,
-        sectionTopMarginInPixel = 0,
-        initialContentHeightAdaptionDone = false,
-        initialMenuHightlightDone = false,
-        loadingCoverRemoved = false
-    ):HomePage {
-        this._oldSectionHeightInPixel = oldSectionHeightInPixel
-        this._sectionTopMarginInPixel = sectionTopMarginInPixel
-        this._initialContentHeightAdaptionDone =
-            initialContentHeightAdaptionDone
-        this._initialMenuHightlightDone = initialMenuHightlightDone
-        this._loadingCoverRemoved = loadingCoverRemoved
-        this._options = {
+    constructor() {
+        super()
+        /*
+            Babels property declaration transformation overwrites defined
+            properties at the end of an implicit constructor. So we have to
+            redefined them as long as we want to declare expected component
+            interface properties to enable static type checks.
+        */
+        this.defineGetterAndSetterInterface()
+    }
+    /**
+     * Triggered when ever a given attribute has changed and triggers to update
+     * configured dom content.
+     * @param name - Attribute name which was updates.
+     * @param newValue - New updated value.
+     */
+    onUpdateAttribute(name: string, newValue: string) {
+        super.onUpdateAttribute(name, newValue)
 
-        }
-        let initialOnSwitchedCallback: Function
-        let initialOnEnsuredCallback: Function
-        let initialOnSwitchCallback: Function
-        let initialOnEnsureCallback: Function
-        let initialLanguageHideAnimationAlwaysCallback: Function
-        if (options.language) {
-            initialOnSwitchedCallback = options.language.onSwitched
-            initialOnEnsuredCallback = options.language.onEnsureded
-            initialOnSwitchCallback = options.language.onSwitch
-            initialOnEnsureCallback = options.language.onEnsure
-            if (
-                options.language.textNodeParent &&
-                'hideAnimation' in options.language.textNodeParent &&
-                typeof options.language.textNodeParent[
-                    1
-                ].hideAnimation === 'object' &&
-                'always' in options.language.textNodeParent.hideAnimation[1]
+        if (name === 'options')
+            this.options = extend<Options>(
+                true,
+                {},
+                this.self._defaultOptions,
+                this.options
             )
-                initialLanguageHideAnimationAlwaysCallback =
-                    options.language.textNodeParent.hideAnimation[1].always
-        }
-        const self: HomePage = this
+    }
+    /**
+     * Updates controlled dom elements.
+     * @param reason - Why an update has been triggered.
+     */
+    async render(reason?: string): Promise<void> {
+        await super.render(reason)
+
         this.constructor.extend(true, options, {language: {
             onSwitched: function(...parameter: Array<any>): boolean {
                 const result: any = !initialOnSwitchedCallback || (

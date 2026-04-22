@@ -1671,17 +1671,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-transform-proto-to-assign@npm:^7.27.1":
-  version: 7.27.1
-  resolution: "@babel/plugin-transform-proto-to-assign@npm:7.27.1"
-  dependencies:
-    "@babel/helper-plugin-utils": "npm:^7.27.1"
-  peerDependencies:
-    "@babel/core": ^7.0.0-0
-  checksum: 10c0/205bb5054f9754755dc80902491d0b113b09033bbb11e64f6526af5601ef56674837efdd717ee40156ceb062db95f088340764fcb5ab43c23c50653c67c6f388
-  languageName: node
-  linkType: hard
-
 "@babel/plugin-transform-regenerator@npm:^7.29.0":
   version: 7.29.0
   resolution: "@babel/plugin-transform-regenerator@npm:7.29.0"
@@ -3003,6 +2992,18 @@ __metadata:
   dependencies:
     "@types/json-schema": "npm:^7.0.15"
   checksum: 10c0/10979b40588ecfef771fcb5013a542a35fb30692cc95a65f3481b0b36fbd89f5679efeb30d57f4eed35203d859aabace2a620177d6c536f71b299a1af2f3398f
+  languageName: node
+  linkType: hard
+
+"@eslint/js@npm:^10.0.1":
+  version: 10.0.1
+  resolution: "@eslint/js@npm:10.0.1"
+  peerDependencies:
+    eslint: ^10.0.0
+  peerDependenciesMeta:
+    eslint:
+      optional: true
+  checksum: 10c0/9f3fcaf71ba7fdf65d82e8faad6ecfe97e11801cc3c362b306a88ea1ed1344ae0d35330dddb0e8ad18f010f6687a70b75491b9e01c8af57acd7987cee6b3ec6c
   languageName: node
   linkType: hard
 
@@ -4471,6 +4472,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/webpack-env@npm:^1.18.8":
+  version: 1.18.8
+  resolution: "@types/webpack-env@npm:1.18.8"
+  checksum: 10c0/527a5d1eb75c5243e4f3665d956c7c340f899955dd25d16c9fd9750406f32e95a3a17d207640295038e8235c0c2a2daf084f420e088e58b965d82fc74f6012d7
+  languageName: node
+  linkType: hard
+
 "@types/ws@npm:^8.5.10":
   version: 8.5.10
   resolution: "@types/ws@npm:8.5.10"
@@ -4931,6 +4939,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@webcomponents/webcomponentsjs@npm:^2.8.0":
+  version: 2.8.0
+  resolution: "@webcomponents/webcomponentsjs@npm:2.8.0"
+  checksum: 10c0/f3634dea123572ce86d22e86a863771f805edc535b9656256d855412d4800dd2d219eeee3e40f003885e008f8fc80a4a8dcc15e0bade3246ac25639e48c34294
+  languageName: node
+  linkType: hard
+
 "@xmldom/xmldom@npm:^0.7.5":
   version: 0.7.13
   resolution: "@xmldom/xmldom@npm:0.7.13"
@@ -4949,13 +4964,6 @@ __metadata:
   version: 4.2.2
   resolution: "@xtuc/long@npm:4.2.2"
   checksum: 10c0/8582cbc69c79ad2d31568c412129bf23d2b1210a1dfb60c82d5a1df93334da4ee51f3057051658569e2c196d8dc33bc05ae6b974a711d0d16e801e1d0647ccd1
-  languageName: node
-  linkType: hard
-
-"Swipe@https://github.com/thebird/Swipe.git#commit=da6cc72f6ee72d53d9d0bd457025d42a87c227ee":
-  version: 2.0.0
-  resolution: "Swipe@https://github.com/thebird/Swipe.git#commit=da6cc72f6ee72d53d9d0bd457025d42a87c227ee"
-  checksum: 10c0/a21bd20b498fdb7fe9b510823568640960fe37e7971bae82d7f3a005405e4cf9f4f1166c28740d0c88c3c08e591e13345e149fc0498bc349606cd3e702d26e44
   languageName: node
   linkType: hard
 
@@ -6548,15 +6556,6 @@ __metadata:
   version: 1.0.0
   resolution: "boolbase@npm:1.0.0"
   checksum: 10c0/e4b53deb4f2b85c52be0e21a273f2045c7b6a6ea002b0e139c744cb6f95e9ec044439a52883b0d74dedd1ff3da55ed140cfdddfed7fb0cccbed373de5dce1bcf
-  languageName: node
-  linkType: hard
-
-"bootstrap@npm:^5.3.8":
-  version: 5.3.8
-  resolution: "bootstrap@npm:5.3.8"
-  peerDependencies:
-    "@popperjs/core": ^2.11.8
-  checksum: 10c0/0039a9df2c3e7bfa04f1abca199c299ff3b75869d578c0cb1721c6f1f203c91531788a5631ecbee01513481979314d0e4ba0d90c2011e6ce18fc2e0bc93e18d9
   languageName: node
   linkType: hard
 
@@ -11920,7 +11919,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"loose-envify@npm:^1.0.0":
+"loose-envify@npm:^1.0.0, loose-envify@npm:^1.4.0":
   version: 1.4.0
   resolution: "loose-envify@npm:1.4.0"
   dependencies:
@@ -12760,7 +12759,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"object-assign@npm:^4.1.0":
+"object-assign@npm:^4.1.0, object-assign@npm:^4.1.1":
   version: 4.1.1
   resolution: "object-assign@npm:4.1.1"
   checksum: 10c0/1f4df9945120325d041ccf7b86f31e8bcc14e73d29171e37a7903050e96b81323784ec59f93f102ec635bcf6fa8034ba3ea0a8c7e69fa202b87ae3b6cec5a414
@@ -14298,7 +14297,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.5.9":
+"postcss@npm:^8.5.10, postcss@npm:^8.5.9":
   version: 8.5.10
   resolution: "postcss@npm:8.5.10"
   dependencies:
@@ -14386,6 +14385,17 @@ __metadata:
     err-code: "npm:^2.0.2"
     retry: "npm:^0.12.0"
   checksum: 10c0/9c7045a1a2928094b5b9b15336dcd2a7b1c052f674550df63cc3f36cd44028e5080448175b6f6ca32b642de81150f5e7b1a98b728f15cb069f2dd60ac2616b96
+  languageName: node
+  linkType: hard
+
+"prop-types@npm:^15.8.1":
+  version: 15.8.1
+  resolution: "prop-types@npm:15.8.1"
+  dependencies:
+    loose-envify: "npm:^1.4.0"
+    object-assign: "npm:^4.1.1"
+    react-is: "npm:^16.13.1"
+  checksum: 10c0/59ece7ca2fb9838031d73a48d4becb9a7cc1ed10e610517c7d8f19a1e02fa47f7c27d557d8a5702bec3cfeccddc853579832b43f449e54635803f277b1c78077
   languageName: node
   linkType: hard
 
@@ -14512,6 +14522,13 @@ __metadata:
   version: 0.5.1
   resolution: "raw-loader@npm:0.5.1"
   checksum: 10c0/0961d64c0c21c25f8a1ecddd5bf17a4308e5d82addff11044a42c28dde35f14b34c6dbf4665adda7ce3a64922a3132785276c25e1f33c0c62689ff366ab8fb6e
+  languageName: node
+  linkType: hard
+
+"react-is@npm:^16.13.1":
+  version: 16.13.1
+  resolution: "react-is@npm:16.13.1"
+  checksum: 10c0/33977da7a5f1a287936a0c85639fec6ca74f4f15ef1e59a6bc20338fc73dc69555381e211f7a3529b8150a1f71e4225525b41b60b52965bda53ce7d47377ada1
   languageName: node
   linkType: hard
 
@@ -15829,13 +15846,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"spin.js@npm:^4.1.2":
-  version: 4.1.2
-  resolution: "spin.js@npm:4.1.2"
-  checksum: 10c0/8d6f5ac99264b0197a69233bd5f7c9f5c5e7f3da8412fa41d7a36770ee7fea035673870fb9200ab0a8b0a77d72f95812355fe68e3416b4b6801d7d0a70b59fd3
-  languageName: node
-  linkType: hard
-
 "sprintf-js@npm:^1.1.3":
   version: 1.1.3
   resolution: "sprintf-js@npm:1.1.3"
@@ -16384,6 +16394,13 @@ __metadata:
   bin:
     svgo: ./bin/svgo.js
   checksum: 10c0/f61f9957b42e0c97593b49a01f3b93cb239b2e818efccb056fcc866d622704d9021c4ef8bd0287264c3e4f33da60e4af14d841b4a624b87ff8888e3b896d13d5
+  languageName: node
+  linkType: hard
+
+"swiper@npm:^12.1.3":
+  version: 12.1.3
+  resolution: "swiper@npm:12.1.3"
+  checksum: 10c0/c09dc55ebfda6cd9b990108cf1b94c603ed617f9a88ac312c044cf30f1d25c960b68d35ad8f5a2983e4dfecf2ddb480ddefb5bd3d8fa879a713e6df3beafb0c2
   languageName: node
   linkType: hard
 
@@ -17306,6 +17323,31 @@ __metadata:
   languageName: node
   linkType: hard
 
+"web-component-wrapper@npm:^0.0.561":
+  version: 0.0.561
+  resolution: "web-component-wrapper@npm:0.0.561"
+  peerDependencies:
+    "@babel/runtime": "*"
+    "@types/react": "*"
+    "@types/react-dom": "*"
+    clientnode: "*"
+    react: "*"
+    react-dom: "*"
+  peerDependenciesMeta:
+    "@babel/runtime":
+      optional: true
+    "@types/react":
+      optional: true
+    "@types/react-dom":
+      optional: true
+    react:
+      optional: true
+    react-dom:
+      optional: true
+  checksum: 10c0/4632a88cb5001fb5b559752ebcc67b8f72f05637b5eb21913f71f81c5553ff9596cfb4dcd907d0669967fae1aab7068617d0fc4c453f5e6820583afb53ade9d9
+  languageName: node
+  linkType: hard
+
 "web-internationalization@npm:^2.0.7":
   version: 2.0.7
   resolution: "web-internationalization@npm:2.0.7"
@@ -17649,17 +17691,17 @@ __metadata:
   resolution: "website@workspace:."
   dependencies:
     "@babel/eslint-parser": "npm:^7.28.6"
-    "@babel/plugin-transform-proto-to-assign": "npm:^7.27.1"
     "@babel/runtime": "npm:^7.29.2"
+    "@eslint/js": "npm:^10.0.1"
     "@stylistic/eslint-plugin": "npm:^5.10.0"
     "@types/ejs": "npm:^3.1.5"
     "@types/html-minifier": "npm:^4.0.6"
     "@types/jsdom": "npm:^28.0.1"
     "@types/node": "npm:^25.6.0"
+    "@types/webpack-env": "npm:^1.18.8"
     "@typescript-eslint/eslint-plugin": "npm:^8.59.0"
     "@typescript-eslint/parser": "npm:^8.59.0"
-    Swipe: "https://github.com/thebird/Swipe.git#commit=da6cc72f6ee72d53d9d0bd457025d42a87c227ee"
-    bootstrap: "npm:^5.3.8"
+    "@webcomponents/webcomponentsjs": "npm:^2.8.0"
     clientnode: "npm:^4.0.1387"
     css-loader: "npm:^7.1.4"
     cssnano: "npm:^7.1.7"
@@ -17673,6 +17715,7 @@ __metadata:
     jsdoc: "npm:^4.0.5"
     legal-notes: "npm:^1.0.28"
     mini-css-extract-plugin: "npm:^2.10.2"
+    postcss: "npm:^8.5.10"
     postcss-fontpath: "npm:^1.0.0"
     postcss-import: "npm:^16.1.1"
     postcss-loader: "npm:^8.2.1"
@@ -17680,12 +17723,14 @@ __metadata:
     postcss-preset-env: "npm:^11.2.1"
     postcss-sprites: "npm:^4.2.1"
     postcss-url: "npm:^10.1.3"
-    spin.js: "npm:^4.1.2"
+    prop-types: "npm:^15.8.1"
     style-loader: "npm:^4.0.0"
     stylelint: "npm:^17.8.0"
     stylelint-config-standard: "npm:^40.0.0"
+    swiper: "npm:^12.1.3"
     typescript-eslint: "npm:^8.59.0"
     ua-parser-js: "npm:^2.0.9"
+    web-component-wrapper: "npm:^0.0.561"
     web-internationalization: "npm:^2.0.7"
     weboptimizer: "npm:^3.0.21"
     webpack-dev-server: "npm:^5.2.3"
