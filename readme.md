@@ -38,7 +38,7 @@ Project status
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/agile-form/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/agile-form/actions/workflows/deploy-web-documentation.yaml)
 [![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/agile-form.svg?label=documentation-website&style=for-the-badge)](https://torben.website/agile-form)
 
-[![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=for-the-badge&logo=codesandbox)](https://githubbox.com/thaibault/web-node)
+[![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=for-the-badge&logo=codesandbox)](https://githubbox.com/thaibault/agile-form)
 
 ### application-server-web-node-plugin
 
@@ -57,7 +57,7 @@ Project status
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/application-server-web-node-plugin/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/application-server-web-node-plugin/actions/workflows/deploy-web-documentation.yaml)
 [![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/application-server-web-node-plugin.svg?label=documentation-website&style=for-the-badge)](https://torben.website/application-server-web-node-plugin)
 
-[![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=for-the-badge&logo=codesandbox)](https://githubbox.com/thaibault/web-node)
+[![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=for-the-badge&logo=codesandbox)](https://githubbox.com/thaibault/application-server-web-node-plugin)
 
 ### archinstall
 
@@ -109,7 +109,7 @@ Project status
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/clientnode/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/clientnode/actions/workflows/deploy-web-documentation.yaml)
 [![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/clientnode.svg?label=documentation-website&style=for-the-badge)](https://torben.website/clientnode)
 
-[![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=for-the-badge&logo=codesandbox)](https://githubbox.com/thaibault/web-node)
+[![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=for-the-badge&logo=codesandbox)](https://githubbox.com/thaibault/clientnode)
 
 ### containerbase
 
@@ -417,7 +417,7 @@ Project status
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/weboptimizer/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/weboptimizer/actions/workflows/deploy-web-documentation.yaml)
 [![documentation website](https://img.shields.io/website-up-down-green-red/https/torben.website/weboptimizer.svg?label=documentation-website&style=for-the-badge)](https://torben.website/weboptimizer)
 
-[![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=for-the-badge&logo=codesandbox)](https://githubbox.com/thaibault/web-node)
+[![Open in CodeSandbox](https://img.shields.io/badge/Open%20in-CodeSandbox-blue?style=for-the-badge&logo=codesandbox)](https://githubbox.com/thaibault/weboptimizer)
 
 ### website-utilities
 
