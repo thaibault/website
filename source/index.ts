@@ -33,6 +33,8 @@ import {
     wrap
 } from 'clientnode'
 import {func, object} from 'clientnode/property-types'
+import Swiper from 'swiper'
+import {Navigation, Pagination, Scrollbar} from 'swiper/modules'
 import {property} from 'web-component-wrapper/decorator'
 import {WebComponentAPI} from 'web-component-wrapper/type'
 import {Web} from 'web-component-wrapper/Web'
@@ -235,6 +237,25 @@ export class HomePage<
      */
     async render(reason?: string): Promise<void> {
         await super.render(reason)
+
+        const swiper = new Swiper(
+            '.swiper',
+            {
+                modules: [Navigation, Pagination, Scrollbar],
+
+                navigation: {
+                    nextEl: '.swiper__button-next',
+                    prevEl: '.swiper__button-prev'
+                },
+                pagination: {
+                    el: '.swiper__pagination',
+                    type: 'progressbar'
+                },
+                scrollbar: {
+                    el: '.swiper__scrollbar'
+                }
+            }
+        )
 
         // TODO
         return

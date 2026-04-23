@@ -9,6 +9,10 @@ License
 This library written by Torben Sickert stand under a creative commons naming
 3.0 unported license. See https://creativecommons.org/licenses/by/3.0/deed.de
 endregion */
+@import 'swiper/swiper.css';
+@import 'swiper/modules/navigation.css';
+@import 'swiper/modules/pagination.css';
+@import 'swiper/modules/scrollbar.css';
 @import 'website-utilities/fonts.compiled.css';
 @import 'website-utilities/index.compiled.css';
 
@@ -32,13 +36,14 @@ endregion */
     /* endregion */
 }
 /* region style sheets */
-html,
-body { font-size: 16px; }
+html, body {
+    margin: 0;
+
+    font-size: 16px;
+}
 
 home-page {
     /* region global */
-    @apply --website;
-
     color: var(--font-color);
     background-color: var(--default-color);
     overflow-y: scroll;
@@ -86,35 +91,18 @@ home-page {
     & span.dimension-indicator { font-size: 0.7em; }
 
     & strong { font-weight: bold; }
-    /** region bootstrap resets */
-    & .navbar-inverse .navbar-collapse {
-        border: 0;
-        box-shadow: none;
-    }
-
-    & p.lead { font-weight: initial; }
-
-    & div.navbar-collapse.collapse ul li {
-        & > a { text-shadow: 0 0 0 rgba(0, 0, 0, 0); }
-
-        &.active > a {
-            background: 0;
-            box-shadow: none;
-        }
-    }
-    /** endregion */
     /* endregion */
     /* region navigation bar */
     /* Normal Wrapper for the main navigation bar. Scrolls with viewport. */
-    & header.navbar-wrapper {
+    & header {
         opacity: 0.95;
         position: fixed;
-        z-index: 1;
+        z-index: 2;
 
-        & div.navbar.navbar-inverse {
+        & .navbar.navbar-inverse {
             border: 0;
 
-            & div.navbar-header > a.navbar-brand {
+            & .navbar-header > a.navbar-brand {
                 color: var(--menu-color);
                 font-size: 1.2em;
 
@@ -124,18 +112,18 @@ home-page {
         }
     }
     /* endregion */
-    /* region carousel */
-    /* Main section slider wrapper. */
-    & section.carousel.slide {
+    /* region swiper */
+    & .swiper {
         background-color: var(--background-color);
+
         overflow: hidden;
         position: relative;
         min-height: var(--minimum-content-height-in-pixel);
         /* Wraps the visible area from whole wide slider wrapper. */
-        & div.carousel-inner {
+        & .swiper-wrapper {
             overflow-y: visible;
             /* Contains each section content. */
-            & div.item {
+            & .swiper-slide {
                 display: inline;
                 overflow-y: visible;
                 float: left;
@@ -155,7 +143,7 @@ home-page {
                     min-width: 100%;
                     min-height: var(--minimum-content-height-in-pixel);
                     /* Contains each section text content. */
-                    & > div.container {
+                    & > .container {
                         z-index: 0;
                         text-shadow: none;
                         text-align: center;
@@ -177,7 +165,7 @@ home-page {
     /* region section */
     /** region contact */
     /* Show big dark social media icons. */
-    & section.carousel.slide div.carousel-inner div.item.contact div[class^="carousel-image-"] > div.container {
+    & .swiper .swiper-wrapper .swiper-slide.contact div[class^="carousel-image-"] > .container {
         /* NOTE: Should be synchronized with the social icon font styles. */
         & a.glyphicon {
             &.glyphicon-globe {
@@ -229,11 +217,10 @@ home-page {
     /** endregion */
     /* endregion */
     /* region footer */
-    /* Centered footer */
-    & div.footer {
+    & footer {
         width: 100%;
 
-        & footer {
+        & .footer-content {
             text-align: center;
 
             & p {
@@ -250,18 +237,18 @@ home-page {
     & a[href="#top"] { visibility: hidden; }
     /*** region navigation bar */
     /* Normal Wrapper for the main navigation bar. Scrolls with viewport. */
-    & header.navbar-wrapper {
+    & header {
         top: 0;
         width: 100%;
 
-        & > div.container {
+        & > .container {
             padding: 0;
 
-            & div.navbar.navbar-inverse {
+            & .navbar.navbar-inverse {
                 margin-bottom: 0;
 
-                & > div.container {
-                    & div.navbar-header {
+                & > .container {
+                    & .navbar-header {
                         margin-left: -15px;
 
                         & a.navbar-brand {
@@ -278,8 +265,8 @@ home-page {
                         }
                     }
 
-                    & div.navbar-collapse {
-                        & > div.navbar-highlighter { visibility: hidden; }
+                    & .navbar-collapse {
+                        & > .navbar-highlighter { visibility: hidden; }
 
                         & ul.nav.navbar-nav {
                             margin-top: 10px;
@@ -297,13 +284,13 @@ home-page {
         }
     }
     /*** endregion */
-    /*** region carousel */
+    /*** region swiper */
     /* Define main content size. */
-    & section.carousel.slide div.carousel-inner > div.item {
+    & .swiper .swiper-wrapper .swiper-slide {
         /* Don't show any background image in smartphone mode. */
-        & div.backstretch { display: none; }
+        & .backstretch { display: none; }
 
-        & div[class^="carousel-image-"] > div.container {
+        & div[class^="carousel-image-"] > .container {
             padding-bottom: 15px;
             max-width: 540px;
 
@@ -318,7 +305,7 @@ home-page {
     /*** endregion */
     /*** region section */
     /**** region about */
-    & section.carousel.slide div.carousel-inner > div.item div.carousel-image-about > div.container {
+    & section.swiper .swiper-wrapper .swiper-slide .carousel-image-about > .container {
         padding-top: 90px;
 
         & h1#about { margin-top: -var(--top-margin); }
@@ -330,9 +317,9 @@ home-page {
     & section.about-this-website {
         padding-bottom: 15px;
         /* Wraps the text content, positions space around them. */
-        & > div.container { margin-left: 10%; }
+        & > .container { margin-left: 10%; }
 
-        & div[class^="carousel-image-"] > div.container h1 {
+        & div[class^="carousel-image-"] > .container h1 {
             font-size: 2.5em;
         }
     }
@@ -343,19 +330,19 @@ home-page {
     @media (--extra-extra-small) {
         /** region navigation bar */
         /* Show current dimension mode in indicator dom node. */
-        & header.navbar-wrapper > div.container div.navbar.navbar-inverse > div.container div.navbar-header a.navbar-brand {
+        & header > .container .navbar.navbar-inverse > .container .navbar-header a.navbar-brand {
             max-width: 238px;
 
             & span.dimension-indicator { visibility: visible; }
         }
         /** endregion */
-        /** region carousel */
-        & section.carousel.slide div.carousel-inner > div.item {
-            &.about div[class^=carousel-image-] > div.container > p {
+        /** region swiper */
+        & section.swiper .swiper-wrapper .swiper-slide {
+            &.about div[class^=carousel-image-] > .container > p {
                 font-size: 1.6rem;
             }
 
-            & div[class^="carousel-image-"] > div.container {
+            & div[class^="carousel-image-"] > .container {
                 padding-bottom: 25px;
             }
         }
@@ -363,7 +350,7 @@ home-page {
         /** region section */
         & section.about-this-website { padding-bottom: 25px; }
         /*** region about */
-        & section.carousel.slide div.carousel-inner > div.item div.carousel-image-about > div.container p.lead > a:first-child {
+        & section.swiper .swiper-wrapper > .swiper-slide .carousel-image-about > .container p.lead > a:first-child {
             margin-top: 50px;
         }
         /*** endregion */
@@ -377,14 +364,14 @@ home-page {
                 Normal Wrapper for the main navigation bar. Scrolls with
                 viewport.
             */
-            & header.navbar-wrapper > div.container {
+            & header > .container {
                 max-width: 550px;
 
-                & div.navbar.navbar-inverse {
+                & .navbar.navbar-inverse {
                     background: var(--background-color);
 
-                    & > div.container {
-                        & div.navbar-header {
+                    & > .container {
+                        & .navbar-header {
                             & button.navbar-toggle {
                                 display: none !important;
                             }
@@ -402,10 +389,10 @@ home-page {
                             }
                         }
 
-                        & div.navbar-collapse {
+                        & .navbar-collapse {
                             display: inline;
 
-                            & div.navbar-highlighter {
+                            & .navbar-highlighter {
                                 position: absolute;
                                 left: 177px;
                                 visibility: visible;
@@ -446,18 +433,18 @@ home-page {
                 }
             }
             /* endregion */
-            /* region carousel */
-            & section.carousel.slide div.carousel-inner > div.item {
+            /* region swiper */
+            & section.swiper .swiper-wrapper .swiper-slide {
                 & > div {
                     /* Show any background image on higher resolutions. */
                     &.backstretch { display: block; }
-                    /* Bump up size of carousel content. */
+                    /* Bump up size of swiper content. */
                     &[class^="carousel-image-"] {
                         background-repeat: no-repeat;
                         background-size: auto 100%;
                         background-position: center;
 
-                        & > div.container {
+                        & > .container {
                             padding-top: 0;
                             padding-bottom: 50px;
                             max-width: 600px;
@@ -483,15 +470,15 @@ home-page {
                 &.about-this-website {
                     padding-bottom: 50px;
 
-                    & div[class^="carousel-image-"] > div.container {
+                    & div[class^="carousel-image-"] > .container {
                         width: 608px;
 
                         & h1 { font-size: 4.5em; }
                     }
                 }
 
-                &.carousel.slide div.carousel-inner > div.item > div {
-                    &.carousel-image-about > div.container {
+                &.swiper .swiper-wrapper .swiper-slide > div {
+                    &.carousel-image-about > .container {
                         position: relative;
                         margin-top: var(--top-margin);
 
@@ -508,7 +495,7 @@ home-page {
                         }
                     }
 
-                    &.carousel-image-work > div.container > p {
+                    &.carousel-image-work > .container > p {
                         margin-top: 25px;
                     }
                 }
@@ -521,11 +508,11 @@ home-page {
                     Normal Wrapper for the main navigation bar. Scrolls with
                     viewport.
                 */
-                & header.navbar-wrapper > div.container { max-width: 600px; }
+                & header > .container { max-width: 600px; }
                 /* endregion */
-                /* region carousel */
-                & section.carousel.slide div.carousel-inner > div.item > div {
-                    &[class^="carousel-image-"] > div.container {
+                /* region swiper */
+                & section.swiper .swiper-wrapper .swiper-slide > div {
+                    &[class^="carousel-image-"] > .container {
                         max-width: 810px;
 
                         & > dl.dl-horizontal {
@@ -538,7 +525,7 @@ home-page {
                         }
                     }
 
-                    &.carousel-image-about > div.container > p.lead {
+                    &.carousel-image-about > .container > p.lead {
                         right: 0;
                     }
                 }

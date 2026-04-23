@@ -381,7 +381,7 @@ _%>
 
             <!--region menu-->
             <header
-                class="navbar-wrapper website-start-up-animation-number-<%- START_UP_ANIMATION_NUMBER %>"
+                class="website-start-up-animation-number-<%- START_UP_ANIMATION_NUMBER %>"
             >
                 <div class="container">
                     <div class="navbar navbar-inverse navbar-static-top">
@@ -437,10 +437,11 @@ _%>
                 </div>
             </header>
             <!--endregion-->
-            <!--region carousel-->
-            <section class="carousel slide"><div class="carousel-inner">
+            <!--region swiper-->
+            <section class="swiper">
+                <div class="swiper-wrapper">
                 <%_ for (const section of SECTIONS) { _%>
-                    <div class="item <%- section.title %>">
+                    <div class="swiper-slide <%- section.title %>">
                         <div class="carousel-image-<%- section.title %>">
                             <div class="container">
                                 <%_ if (section.content[1][DEFAULT_LANGUAGE]) { _%>
@@ -617,7 +618,15 @@ _%>
                         </div>
                     </div>
                 <%_ } _%>
-            </div></section>
+                </div>
+
+                <div class="swiper__pagination"></div>
+
+                <div class="swiper__button-prev"></div>
+                <div class="swiper__button-next"></div>
+
+                <div class="swiper__scrollbar"></div>
+            </section>
             <!--endregion-->
             <!--region about this website-->
             <section class="about-this-website">
@@ -682,16 +691,18 @@ _%>
                 content.
             -->
             <%_ START_UP_ANIMATION_NUMBER += 1 _%>
-            <div
-                class="footer website-start-up-animation-number-<%- START_UP_ANIMATION_NUMBER %>"
+            <footer
+                class="website-start-up-animation-number-<%- START_UP_ANIMATION_NUMBER %>"
             >
-                <footer><p>
-                    &copy; 2013 Torben Sickert &middot;
-                    <a href="#about-this-website">
-                        about this website
-                        <!--<%- ALTERNATE_LANGUAGE %>:Impressum-->
-                </p></footer>
-            </div>
+                <div class="footer-content">
+                    <p>
+                        &copy; 2013 Torben Sickert &middot;
+                        <a href="#about-this-website">
+                            about this website
+                            <!--<%- ALTERNATE_LANGUAGE %>:Impressum-->
+                    </p>
+                </div>
+            </footer>
             <!--endregion-->
             <a class="wu-scroll-to-top" href="#top">
                 top<!--deDE:nach oben--></a>
