@@ -17,7 +17,7 @@
     endregion
 */
 // region imports
-//import {
+import {
     camelCaseToDelimited,
     createDomNodes,
     extend,
@@ -129,9 +129,6 @@ export class HomePage<
 
             section: 'section.carousel.slide div.carousel-inner div.item',
 
-            logoLink:
-                'header.navbar-wrapper div.navbar.navbar-inverse ' +
-                'div.navbar-header a.navbar-brand',
             navigationButton:
                 'header.navbar-wrapper div.navbar.navbar-inverse ' +
                 'div.navbar-collapse ul.nav.navbar-nav li a',
@@ -169,31 +166,30 @@ export class HomePage<
         options = {} as Options
     // endregion
     // region domNodes
-    carousel: 'section.carousel.slide',
-    section: 'section.carousel.slide div.carousel-inner div.item',
-    logoLink:
-        'header.navbar-wrapper div.navbar.navbar-inverse ' +
-        'div.navbar-header a.navbar-brand',
+    /* TODO
+    carousel: 'section.carousel.slide'
+    section: 'section.carousel.slide div.carousel-inner div.item'
     navigationButton:
         'header.navbar-wrapper div.navbar.navbar-inverse ' +
-        'div.navbar-collapse ul.nav.navbar-nav li a',
+        'div.navbar-collapse ul.nav.navbar-nav li a'
     aboutThisWebsiteButton:
         'div.footer footer a[href="#about-this-website"]',
-    aboutThisWebsiteSection: 'section.about-this-website',
+    aboutThisWebsiteSection: 'section.about-this-website'
     dimensionIndicator:
         'header.navbar-wrapper div.navbar.navbar-inverse ' +
         'div.navbar-header a.navbar-brand ' +
-        'span.dimension-indicator',
-    footer: 'div.footer',
+        'span.dimension-indicator'
+    footer: 'div.footer'
     menuHighlighter:
         'header.navbar-wrapper div.navbar.navbar-inverse ' +
-        'div.navbar-collapse div.navbar-highlighter',
+        'div.navbar-collapse div.navbar-highlighter'
     mobileCollapseButton:
         'header.navbar-wrapper div.navbar.navbar-inverse ' +
-        'div.navbar-header button.navbar-toggle',
+        'div.navbar-header button.navbar-toggle'
     navigationWrapper:
         'header.navbar-wrapper div.navbar.navbar-inverse ' +
         'div.navbar-collapse'
+    */
     // endregion
     _initialContentHeightAdaptionDone = false
     _initialMenuHightlightDone = false
@@ -240,6 +236,8 @@ export class HomePage<
     async render(reason?: string): Promise<void> {
         await super.render(reason)
 
+        // TODO
+        return
         this.constructor.extend(true, options, {language: {
             onSwitched: function(...parameter: Array<any>): boolean {
                 const result: any = !initialOnSwitchedCallback || (
@@ -329,7 +327,6 @@ export class HomePage<
                 return result
             }
         }})
-        super.initialize(options)
         // Disable tab functionality to prevent inconsistent carousel states.
         this.on(this.$domNodes.parent, 'keydown', (event: Object) => {
             if (event.code === KEYBOARD_CODES.TAB)
@@ -372,23 +369,36 @@ export class HomePage<
     _adaptCurriculumVitaeLink(
         oldLanguage: string, newLanguage: string
     ): HomePage {
-        const $curriculumVitaeLink: $DomNode = $(
-            'a[href*="curriculumVitae"].hidden-xs')
+        const $curriculumVitaeLink: $DomNode =
+            $('a[href*="curriculumVitae"].hidden-xs')
+
         if (!$curriculumVitaeLink.data(oldLanguage))
-            $curriculumVitaeLink.data(oldLanguage, $curriculumVitaeLink.attr(
-                'href'))
+            $curriculumVitaeLink
+                .data(
+                    oldLanguage, $curriculumVitaeLink.attr('href')
+                )
         if (!$curriculumVitaeLink.data(newLanguage))
-            $curriculumVitaeLink.data(
-                newLanguage, $curriculumVitaeLink.data(oldLanguage).substr(
-                    0, $curriculumVitaeLink.data(oldLanguage).lastIndexOf(
-                        '.'
-                    ) - oldLanguage.length
-                ) + newLanguage.substr(0, 2).toUpperCase(
-                ) + newLanguage.substr(2).toLowerCase(
-                ) + $curriculumVitaeLink.data(oldLanguage).substr(
-                    $curriculumVitaeLink.data(oldLanguage).lastIndexOf('.')))
-        $curriculumVitaeLink.attr('href', $curriculumVitaeLink.data(
-            newLanguage))
+            $curriculumVitaeLink
+                .data(
+                    newLanguage,
+                    $curriculumVitaeLink
+                        .data(oldLanguage)
+                        .substr(
+                            0,
+                            $curriculumVitaeLink
+                                .data(oldLanguage)
+                                .lastIndexOf('.') -
+                            oldLanguage.length
+                        ) +
+                        newLanguage.substr(0, 2).toUpperCase() +
+                        newLanguage.substr(2).toLowerCase() +
+                        $curriculumVitaeLink.data(oldLanguage).substr(
+                            $curriculumVitaeLink.data(oldLanguage).lastIndexOf('.')
+                        )
+                )
+
+        $curriculumVitaeLink.attr('href', $curriculumVitaeLink.data(newLanguage))
+
         return this
     }
     /**
@@ -401,9 +411,11 @@ export class HomePage<
     _onChangeMediaQueryMode(oldMode: string, newMode: string): HomePage {
         // Determine top margin for background image dependent sections.
         this.$domNodes.section.children().css('margin-top', '')
+
         if ('getComputedStyle' in $.global)
             this._sectionTopMarginInPixel = parseInt(
                 $.global.getComputedStyle($('h1')[1], ':before').height, 10)
+
         // Show responsive dimension indicator switching.
         this._options.dimensionIndicator.effectOptions.showAnimation[
             1
@@ -413,15 +425,19 @@ export class HomePage<
                 indicator.
             */
             this._highlightMenuEntry(false)
+
         this._options.dimensionIndicator.effectOptions.hideAnimation[
             1
         ].always = (): $DomNode => this.$domNodes.dimensionIndicator.html(
             this.constructor.stringFormat(
                 this._options.dimensionIndicator.template, newMode)
         ).animate(
-            ...this._options.dimensionIndicator.effectOptions.showAnimation)
+            ...this._options.dimensionIndicator.effectOptions.showAnimation
+        )
         this.$domNodes.dimensionIndicator.stop().animate(
-            ...this._options.dimensionIndicator.effectOptions.hideAnimation)
+            ...this._options.dimensionIndicator.effectOptions.hideAnimation
+        )
+
         return super._onChangeMediaQueryMode(oldMode, newMode)
     }
     /**
@@ -490,6 +506,7 @@ export class HomePage<
         }
         if (!this._initialContentHeightAdaptionDone)
             this._adaptContentHeight()
+
         return super._onSwitchSection(sectionName)
     }
     /// endregion
@@ -513,6 +530,7 @@ export class HomePage<
             this._adaptContentHeight()
             return this._highlightMenuEntry()
         }
+
         return this.scrollToTop(() => {
             this.$domNodes.carousel.data('Swipe').slide(index)
             this._adaptContentHeight()
@@ -579,7 +597,7 @@ export class HomePage<
         ) {
             const $sectionButton: $DomNode =
                 this.$domNodes.navigationButton.parent('li').filter('.active')
-            const sectionButtonPosition?: {
+            const sectionButtonPosition: {
                 left: number;
                 top: number;
             } = $sectionButton.position()
@@ -940,7 +958,7 @@ export const api: WebComponentAPI<
         websiteUtilitiesAPI.register()
         webInternationalizationAPI.register()
 
-        customElements.define(tagName, WebDocumentation)
+        customElements.define(tagName, HomePage)
     }
 }
 export default HomePage

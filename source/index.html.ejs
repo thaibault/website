@@ -180,7 +180,7 @@ const SECTIONS = [
         }, {enUS: 'Projects', deDE: 'Projekte'}
     ]}
 ]
-PROJECTS = [
+const PROJECTS = [
     {
         title: 'boostNode', url: 'https://torben.website/boostnode',
         content: {
@@ -671,7 +671,7 @@ _%>
                                 -->
                             </a>
                         </div>
-                        <%- include('legal-notes') %>
+                        <%- _.include('legal-notes') %>
                     </div>
                 </div>
             </section>
@@ -697,7 +697,7 @@ _%>
                 top<!--deDE:nach oben--></a>
             </a>
         </home-page>
-        <%_ if (configuration.offline) { _%>
+        <%_ if (_.configuration.offline) { _%>
             <noscript>
                 <iframe src="manifest.html" style="display: none"></iframe>
             </noscript>
