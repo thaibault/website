@@ -243,19 +243,22 @@ export class HomePage<
             {
                 modules: [Navigation, Pagination, Scrollbar],
 
+                a11y: true,
+
                 navigation: {
-                    nextEl: '.swiper__button-next',
-                    prevEl: '.swiper__button-prev'
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev'
                 },
                 pagination: {
-                    el: '.swiper__pagination',
+                    el: '.swiper-pagination',
                     type: 'progressbar'
                 },
                 scrollbar: {
-                    el: '.swiper__scrollbar'
+                    el: '.swiper-scrollbar'
                 }
             }
         )
+        console.log('A', swiper)
 
         // TODO
         return

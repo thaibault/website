@@ -10,9 +10,11 @@ This library written by Torben Sickert stand under a creative commons naming
 3.0 unported license. See https://creativecommons.org/licenses/by/3.0/deed.de
 endregion */
 @import 'swiper/swiper.css';
+@import 'swiper/modules/a11y.css';
 @import 'swiper/modules/navigation.css';
 @import 'swiper/modules/pagination.css';
 @import 'swiper/modules/scrollbar.css';
+
 @import 'website-utilities/fonts.compiled.css';
 @import 'website-utilities/index.compiled.css';
 
@@ -87,8 +89,6 @@ home-page {
         display: block;
         height: var(--top-margin);
     }
-    /* Shows the current dimension mode. */
-    & span.dimension-indicator { font-size: 0.7em; }
 
     & strong { font-weight: bold; }
     /* endregion */
@@ -121,13 +121,8 @@ home-page {
         min-height: var(--minimum-content-height-in-pixel);
         /* Wraps the visible area from whole wide slider wrapper. */
         & .swiper-wrapper {
-            overflow-y: visible;
             /* Contains each section content. */
             & .swiper-slide {
-                display: inline;
-                overflow-y: visible;
-                float: left;
-                width: 100%;
                 /*
                     Set a default content height. Could by vary depending on
                     currently activated section.
@@ -142,6 +137,7 @@ home-page {
                     left: 0;
                     min-width: 100%;
                     min-height: var(--minimum-content-height-in-pixel);
+
                     /* Contains each section text content. */
                     & > .container {
                         z-index: 0;
@@ -207,7 +203,7 @@ home-page {
     /** endregion */
     /** region about this web site */
     /* Wraps the legal notice content. */
-    & section.about-this-website {
+    & [data-website-utilities-section="about-this-website"] {
         min-height: var(--minimum-content-height-in-pixel);
         background-color: var(--background-color);
         top: 0;
