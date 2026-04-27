@@ -14275,7 +14275,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.5.10, postcss@npm:^8.5.9":
+"postcss@npm:^8.5.12":
+  version: 8.5.12
+  resolution: "postcss@npm:8.5.12"
+  dependencies:
+    nanoid: "npm:^3.3.11"
+    picocolors: "npm:^1.1.1"
+    source-map-js: "npm:^1.2.1"
+  checksum: 10c0/5baebaf574c567bc1b3d61197f38af4ce5920b8f611c887fb6bc3dcc14af00253c169dbf19897bc889cce0b0d9818ab5eb4ea0caedf02b0bab10da8a43ce8c12
+  languageName: node
+  linkType: hard
+
+"postcss@npm:^8.5.9":
   version: 8.5.10
   resolution: "postcss@npm:8.5.10"
   dependencies:
@@ -16179,9 +16190,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stylelint@npm:^17.9.0":
-  version: 17.9.0
-  resolution: "stylelint@npm:17.9.0"
+"stylelint@npm:^17.9.1":
+  version: 17.9.1
+  resolution: "stylelint@npm:17.9.1"
   dependencies:
     "@csstools/css-calc": "npm:^3.2.0"
     "@csstools/css-parser-algorithms": "npm:^4.0.0"
@@ -16221,7 +16232,7 @@ __metadata:
     write-file-atomic: "npm:^7.0.1"
   bin:
     stylelint: bin/stylelint.mjs
-  checksum: 10c0/e4d0867778f31e08a2458d871f70dbb701a5d844a2a775c13aff86b8a681e435da5dc6dc738eedc3d1744a2065fdef1a6bfd51b29a685b8087622d6ea88538c1
+  checksum: 10c0/889e31c66ceedac576ba222e0b1d867eae9a7f3a596d4806f3e5ee982aa77e216a247fba487d009a7e8bf1298ddddf707c21fd267d441395d76daf2deff979f9
   languageName: node
   linkType: hard
 
@@ -17648,9 +17659,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"website-utilities@npm:^1.0.389":
-  version: 1.0.389
-  resolution: "website-utilities@npm:1.0.389"
+"website-utilities@npm:^1.0.390":
+  version: 1.0.390
+  resolution: "website-utilities@npm:1.0.390"
   peerDependencies:
     "@babel/runtime": "*"
     clientnode: "*"
@@ -17660,7 +17671,7 @@ __metadata:
       optional: true
   bin:
     website-utilities: deploy.js
-  checksum: 10c0/27c7a1d09e52dbfdfa932e008411d30c25baf561481e536b0154a0c5630e1e4001f5e4be24d16629289f1589094ed51f251d1a20549a103af4d000f7debfd6d4
+  checksum: 10c0/074dd5eb0ad6d28fa6b6adf2862ab67222eb0a070ac7cff97b8e6cf8a00e4024b331e322f6a8f32b47818022be47a700b11734a9f282d05099d5e211394c9ce1
   languageName: node
   linkType: hard
 
@@ -17693,7 +17704,7 @@ __metadata:
     jsdoc: "npm:^4.0.5"
     legal-notes: "npm:^1.0.29"
     mini-css-extract-plugin: "npm:^2.10.2"
-    postcss: "npm:^8.5.10"
+    postcss: "npm:^8.5.12"
     postcss-fontpath: "npm:^1.0.0"
     postcss-import: "npm:^16.1.1"
     postcss-loader: "npm:^8.2.1"
@@ -17704,7 +17715,7 @@ __metadata:
     postcss-url: "npm:^10.1.3"
     prop-types: "npm:^15.8.1"
     style-loader: "npm:^4.0.0"
-    stylelint: "npm:^17.9.0"
+    stylelint: "npm:^17.9.1"
     stylelint-config-standard: "npm:^40.0.0"
     swiper: "npm:^12.1.3"
     typescript-eslint: "npm:^8.59.0"
@@ -17713,7 +17724,7 @@ __metadata:
     web-internationalization: "npm:^2.0.11"
     weboptimizer: "npm:^3.0.22"
     webpack-dev-server: "npm:^5.2.3"
-    website-utilities: "npm:^1.0.389"
+    website-utilities: "npm:^1.0.390"
   languageName: unknown
   linkType: soft
 
