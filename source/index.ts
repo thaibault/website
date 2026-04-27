@@ -224,12 +224,7 @@ export class HomePage<
         super.onUpdateAttribute(name, newValue)
 
         if (name === 'options')
-            this.options = extend<Options>(
-                true,
-                {},
-                this.self._defaultOptions,
-                this.options
-            )
+            this._extendOptions()
     }
     /**
      * Updates controlled dom elements.
@@ -237,6 +232,9 @@ export class HomePage<
      */
     async render(reason?: string): Promise<void> {
         await super.render(reason)
+
+        if (Object.keys(this.options).length === 0)
+            this._extendOptions()
 
         const swiper = new Swiper(
             '.swiper',
@@ -535,6 +533,19 @@ export class HomePage<
     }
     /// endregion
     /// region helper
+    /**
+     * Extends given options by default options.
+     */
+    _extendOptions() {
+        /*
+            NOTE: Using the internal setter avoids to trigger an additinal
+            rendering.
+        */
+        this.setPropertyValue(
+            'options',
+            extend<Options>(true, {}, this.self._defaultOptions, this.options)
+        )
+    }
     /**
      * Switches to given section.
      * @param sectionName - Section name to switch to.
