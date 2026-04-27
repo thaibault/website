@@ -379,7 +379,7 @@ _%>
         </div>
 
         <home-page>
-            <!--region menu-->
+            <!--region header-->
             <header
                 class="website-start-up-animation-number-<%- START_UP_ANIMATION_NUMBER %>"
             >
@@ -436,10 +436,10 @@ _%>
                     </div>
                 </div>
             </header>
-            <!--endregion-->
-            <div class="wu-section">
+            <!-- endregion-->
+            <main class="wu-router-outlet">
                 <!--region swiper-->
-                <section class="swiper">
+                <section class="swiper" data-website-utilities-section="home">
                     <div class="swiper-wrapper">
                     <%_ for (const section of SECTIONS) { _%>
                         <div class="swiper-slide <%- section.title %>">
@@ -454,8 +454,8 @@ _%>
                                         </h1>
                                     <%_ } else { _%>
                                         <!--
-                                            Serves as anchor point if javaScript isn't
-                                            supported.
+                                            Serves as anchor point if
+                                            javaScript isn't supported.
                                         -->
                                         <h1 id="<%- section.title %>"></h1>
                                     <%_ }
@@ -686,7 +686,7 @@ _%>
                     </div>
                 </section>
                 <!-- endregion -->
-            </div>
+            </main>
             <!--
                 region footer
                 Wrap the footer of the page in another container to center the
