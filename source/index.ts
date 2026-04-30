@@ -33,8 +33,10 @@ import {
     wrap
 } from 'clientnode'
 import {func, object} from 'clientnode/property-types'
+import Headroom from 'headroom.js'
+import PriorityNavigation from 'priority-nav'
 import Swiper from 'swiper'
-import {Navigation, Pagination, Scrollbar} from 'swiper/modules'
+import {HashNavigation, Navigation, Pagination, Parallax, Scrollbar} from 'swiper/modules'
 import {property} from 'web-component-wrapper/decorator'
 import {WebComponentAPI} from 'web-component-wrapper/type'
 import {Web} from 'web-component-wrapper/Web'
@@ -248,12 +250,50 @@ export class HomePage<
 
         await this.waitForNestedComponentRendering()
 
+        const headroom = new Headroom(
+            this.hostDomNode.querySelector('header'),
+            {
+                offset: 205,
+                tolerance: 5,
+                classes: {
+                    // when element is initialised
+                    initial : "headroom",
+                    // when scrolling up
+                    pinned : "headroom--pinned",
+                    // when scrolling down
+                    unpinned : "headroom--unpinned",
+                    // when above offset
+                    top : "headroom--top",
+                    // when below offset
+                    notTop : "headroom--not-top",
+                    // when at bottom of scroll area
+                    bottom : "headroom--bottom",
+                    // when not at bottom of scroll area
+                    notBottom : "headroom--not-bottom",
+                    // when frozen method has been called
+                    frozen: "headroom--frozen",
+                    // multiple classes are also supported with a space-separated list
+                    pinned: "headroom--pinned foo bar"
+                }
+            }
+        )
+        headroom.init()
+        // headroom.destroy()
+
+        PriorityNavigation.init({breakPoint: 100})
+
         const swiper = new Swiper(
             '.swiper',
             {
-                modules: [Navigation, Pagination, Scrollbar],
+                modules: [HashNavigation, Navigation, Pagination, Parallax, Scrollbar],
+
+                autoHeight: true,
 
                 a11y: true,
+
+                hashNavigation: {
+                    watchState: true
+                },
 
                 navigation: {
                     nextEl: '.swiper-button-next',
@@ -261,14 +301,14 @@ export class HomePage<
                 },
                 pagination: {
                     el: '.swiper-pagination',
-                    type: 'progressbar'
+                    clickable: true,
+                    type: 'bullets'
                 },
                 scrollbar: {
                     el: '.swiper-scrollbar'
                 }
             }
         )
-        console.log('A', swiper)
 
         // TODO
         return

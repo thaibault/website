@@ -67,118 +67,164 @@ const SOCIAL_MEDIA = [
     {'title': 'website', 'url': 'https://torben.website'}
 ]
 const SECTIONS = [
-    {title: 'about', content: [
-        {enUS: 'About me', deDE: 'Über mich'}, {enUS: '', deDE: ''},
-        {enUS: 'I love the challenge', deDE: 'Ich liebe die Herausforderung'}
-    ]},
-    {title: 'contact', content: [
-        {enUS: 'Contact', deDE: 'Kontakt'},
-        {enUS: 'Get in touch', deDE: 'Lernen wir uns kennen'},
-        {
-            enUS: "I'm a freelancer, ready to help you. Let's talk about" +
-                  ' your project and what I can do.',
-            deDE: 'Ich arbeite selbständig und bin bereit für Ihr ' +
-                  'Projekt. Kontaktieren Sie mich und wir sprechen über ' +
-                  'Ihr Vorhaben.'
-        }
-    ]},
-    {title: 'work', content: [
-        {enUS: 'Work', deDE: 'Arbeiten'},
-        {enUS: "I love what I'm doing", deDE: 'Ich liebe was ich mache'},
-        {enUS: 'I offer', deDE: 'ich biete'},
-        {
-            enUS: [
-                ['abstract', [
-                    'contacts', 'conception',
-                    'Implementation and optimization of applications for the' +
-                        ' web; desktop and server',
-                    'quality Assurance', 'High Reliability Applications',
-                    'Test-driven Design', '(Web)programming', 'Usability',
-                    'Web and search engine optimization',
-                    'administering servers on Linux, Mac or Windows',
-                    'Intranet Solutions', 'Community Portal solution',
-                    'Accessibility', 'Rich Internet Applications',
-                    'Content Management Systems', 'Web 2.0'
-                ]],
-                ['security', [
-                    'Design by Contract',
-                    'Integration, application, and unit tests',
-                    'Proofs of program properties'
-                ]],
-                ['knowledge', [
-                    'economic theoretical knowledge',
-                    'matic computerized knowledge',
-                    'mathematical knowledge'
-                ]],
-                ['programing Techniques', [
-                    'Functionally oriented programming',
-                    'Imperative Oriented Programming',
-                    'Object-Oriented Programming',
-                    'Aspect-Oriented Programming'
-                ]],
-                ['database', [
-                    'Object-Relational Modeling (ORM) with SQLAlchemy or ' +
-                        'Django ORM',
-                    'SQL'
-                ]],
-                ['versioning', ['GIT', 'SVN', 'CVS', 'Mercurial']],
-                ['programing Language', [
-                    'Python', 'CoffeeScript', 'JavaScript', 'C++', 'C',
-                    'C# (mit XNA)', 'Java', 'Scheme', 'PHP'
-                ]],
-                ['declarative Language', ['XHTML', 'CSS', 'less']],
-                ['server', ['apache', 'nginx']],
-                ['framework', [
-                    'AngularJS', 'django', 'jQuery', 'Mootools', 'Bootstrap'
-                ]]
-            ],
-            deDE: [
-                ['Abstrakt', [
-                    'Kontakte', 'Konzeption',
-                    'Umsetzung und Optimierung von Anwendungen fürs Web, ' +
-                        'Desktop und Server',
-                    'Qualitätssicherung',
-                    'Hochzuverlässigkeits-Anwendungen',
-                    'Test-driven Design', '(Web)Programmierung',
-                    'Usabillity', 'Web- und Suchengine-Optimierung',
-                    'Administrierung für Server auf Linux Mac oder Windows',
-                    'Intranet Lösungen', 'Community Portallösung',
-                    'Barrierefreiheit', 'Rich Internet Applications',
-                    'Content Management Systeme', 'Web 2.0', 'ERP', 'CRM'
-                ]],
-                ['Sicherheit', [
-                    'Design by Contract',
-                    'Integrationstests, Ende-zu-Ende-Tests und Unit-Tests',
-                    'Beweisen von Programmeigenschaften'
-                ]],
-                ['Wissen', [
-                    'wirtschaftstheoretisches Wissen',
-                    'informatisches Wissen', 'mathematisches Wissen'
-                ]],
-                ['Programmiertechniken', [
-                    'Funktionalorientierte Programmierung',
-                    'Imperativorientierte Programmierung',
-                    'Objektorientierte Programmierung',
-                    'Aspektorientierte Programmierung'
-                ]],
-                ['Datenbanken', [
-                    'Relationale-Objekt-Modelierung (ORM) mit sqlAlchemy ' +
-                        'oder Django ORM',
-                    'SQL'
-                ]],
-                ['Versionierung', ['GIT', 'SVN', 'CVS', 'Mercurial']],
-                ['Programmiersprachen', [
-                    'Python', 'CoffeeScript', 'JavaScript', 'C++', 'C',
-                    'C# (mit XNA)', 'Java', 'Scheme', 'PHP'
-                ]],
-                ['Deklarative Sprachen', ['XHTML', 'CSS', 'less']],
-                ['Server', ['apache', 'nginx']],
-                ['Framework', [
-                    'AngularJS', 'django', 'jQuery', 'Mootools', 'Bootstrap'
-                ]]
-            ]
-        }, {enUS: 'Projects', deDE: 'Projekte'}
-    ]}
+    {
+        title: 'about',
+        content: [
+            {enUS: 'About me', deDE: 'Über mich'}, {enUS: '', deDE: ''},
+            {enUS: 'I love the challenge', deDE: 'Ich liebe die Herausforderung'}
+        ]
+    },
+    {
+        title: 'contact',
+        content: [
+            {enUS: 'Contact', deDE: 'Kontakt'},
+            {enUS: 'Get in touch', deDE: 'Lernen wir uns kennen'},
+            {
+                enUS: "I'm a freelancer, ready to help you. Let's talk about" +
+                      ' your project and what I can do.',
+                deDE: 'Ich arbeite selbständig und bin bereit für Ihr ' +
+                      'Projekt. Kontaktieren Sie mich und wir sprechen über ' +
+                      'Ihr Vorhaben.'
+            }
+        ]
+    },
+    {
+        title: 'work',
+        content: [
+            {enUS: 'Work', deDE: 'Arbeiten'},
+            {enUS: "I love what I'm doing", deDE: 'Ich liebe was ich mache'},
+            {enUS: 'I offer', deDE: 'ich biete'},
+            {
+                enUS: [
+                    [
+                        'abstract',
+                        [
+                            'contacts', 'conception',
+                            'Implementation and optimization of applications for the' +
+                                ' web; desktop and server',
+                            'quality Assurance', 'High Reliability Applications',
+                            'Test-driven Design', '(Web)programming', 'Usability',
+                            'Web and search engine optimization',
+                            'administering servers on Linux, Mac or Windows',
+                            'Intranet Solutions', 'Community Portal solution',
+                            'Accessibility', 'Rich Internet Applications',
+                            'Content Management Systems', 'Web 2.0'
+                        ]
+                    ],
+                    [
+                        'security',
+                        [
+                            'Design by Contract',
+                            'Integration, application, and unit tests',
+                            'Proofs of program properties'
+                        ]
+                    ],
+                    [
+                        'knowledge',
+                        [
+                            'economic theoretical knowledge',
+                            'matic computerized knowledge',
+                            'mathematical knowledge'
+                        ]
+                    ],
+                    [
+                        'programing Techniques',
+                        [
+                            'Functionally oriented programming',
+                            'Imperative Oriented Programming',
+                            'Object-Oriented Programming',
+                            'Aspect-Oriented Programming'
+                        ]
+                    ],
+                    [
+                        'database',
+                        [
+                            'Object-Relational Modeling (ORM) with SQLAlchemy or ' +
+                                'Django ORM',
+                            'SQL'
+                        ]
+                    ],
+                    ['versioning', ['GIT', 'SVN', 'CVS', 'Mercurial']],
+                    [
+                        'programing Language',
+                        [
+                            'Python', 'CoffeeScript', 'JavaScript', 'C++', 'C',
+                            'C# (mit XNA)', 'Java', 'Scheme', 'PHP'
+                        ]
+                    ],
+                    ['declarative Language', ['XHTML', 'CSS', 'less']],
+                    ['server', ['apache', 'nginx']],
+                    [
+                        'framework',
+                        [
+                        'AngularJS', 'django', 'jQuery', 'Mootools', 'Bootstrap'
+                        ]
+                    ]
+                ],
+                deDE: [
+                    [
+                        'Abstrakt',
+                        [
+                            'Kontakte', 'Konzeption',
+                            'Umsetzung und Optimierung von Anwendungen fürs Web, ' +
+                                'Desktop und Server',
+                            'Qualitätssicherung',
+                            'Hochzuverlässigkeits-Anwendungen',
+                            'Test-driven Design', '(Web)Programmierung',
+                            'Usabillity', 'Web- und Suchengine-Optimierung',
+                            'Administrierung für Server auf Linux Mac oder Windows',
+                            'Intranet Lösungen', 'Community Portallösung',
+                            'Barrierefreiheit', 'Rich Internet Applications',
+                            'Content Management Systeme', 'Web 2.0', 'ERP', 'CRM'
+                        ]
+                    ],
+                    [
+                        'Sicherheit',
+                        [
+                            'Design by Contract',
+                            'Integrationstests, Ende-zu-Ende-Tests und Unit-Tests',
+                            'Beweisen von Programmeigenschaften'
+                        ]
+                    ],
+                    [
+                        'Wissen',
+                        [
+                            'wirtschaftstheoretisches Wissen',
+                            'informatisches Wissen', 'mathematisches Wissen'
+                        ]
+                    ],
+                    [
+                        'Programmiertechniken',
+                        [
+                            'Funktionalorientierte Programmierung',
+                            'Imperativorientierte Programmierung',
+                            'Objektorientierte Programmierung',
+                            'Aspektorientierte Programmierung'
+                        ]
+                    ],
+                    [
+                        'Datenbanken',
+                        [
+                            'Relationale-Objekt-Modelierung (ORM) mit sqlAlchemy ' +
+                                'oder Django ORM',
+                            'SQL'
+                        ]
+                    ],
+                    ['Versionierung', ['GIT', 'SVN', 'CVS', 'Mercurial']],
+                    ['Programmiersprachen', [
+                        'Python', 'CoffeeScript', 'JavaScript', 'C++', 'C',
+                        'C# (mit XNA)', 'Java', 'Scheme', 'PHP'
+                    ]],
+                    ['Deklarative Sprachen', ['XHTML', 'CSS', 'less']],
+                    ['Server', ['apache', 'nginx']],
+                    ['Framework', [
+                        'AngularJS', 'django', 'jQuery', 'Mootools', 'Bootstrap'
+                    ]]
+                ]
+            },
+            {enUS: 'Projects', deDE: 'Projekte'}
+        ]
+    }
 ]
 const PROJECTS = [
     {
@@ -186,8 +232,8 @@ const PROJECTS = [
         content: {
             enUS: [
                 'A universal python framework for platform independent ' +
-                    'application developement with web technoligies. The ' +
-                    'framework provides High reliability features:',
+                'application developement with web technoligies. The ' +
+                'framework provides High reliability features:',
                 [
                     '100% branch coverage tested',
                     'Type checking in development mode',
@@ -202,9 +248,9 @@ const PROJECTS = [
             ],
             deDE: [
                 'Ein universelles Python-Framework zur Anwendung von ' +
-                    'plattformunabhängigen Desktopanwendungen mit ' +
-                    'Web-Technologien. Das Framework bietet ' +
-                    'Hochzuverlässigkeitsmerkmale:',
+                'plattformunabhängigen Desktopanwendungen mit ' +
+                'Web-Technologien. Das Framework bietet ' +
+                'Hochzuverlässigkeitsmerkmale:',
                 [
                     '100% branch coverage getestet',
                     'Type checking im Entwicklungsmodus',
@@ -223,28 +269,28 @@ const PROJECTS = [
         content: {
             enUS: [
                 'Install a configured ArchLinux with pacman as a package ' +
-                    'management in any places such as hard drives, USB ' +
-                    'flash drive, partition, or in an existing system as a ' +
-                    'sandbox environment. Automatic configuration of ' +
-                    'existing posix compliant unix-like systems. Both online' +
-                    ' and Offline installations are possible. Even without ' +
-                    'root privileges, the system is able to be installed ' +
-                    'into its own environment below the home folder. All ' +
-                    'required dependencies could be served via a typical ' +
-                    'posix environment given by Busybox or ArchLinux itself.'
+                'management in any places such as hard drives, USB ' +
+                'flash drive, partition, or in an existing system as a ' +
+                'sandbox environment. Automatic configuration of ' +
+                'existing posix compliant unix-like systems. Both online' +
+                ' and Offline installations are possible. Even without ' +
+                'root privileges, the system is able to be installed ' +
+                'into its own environment below the home folder. All ' +
+                'required dependencies could be served via a typical ' +
+                'posix environment given by Busybox or ArchLinux itself.'
             ],
             deDE: [
                 'Installiere ein konfiguriertes ArchLinux mit Pacman als ' +
-                    'Paketverwaltung an beliebige Orte wie Festplatten,' +
-                    ' USB-Stick, alternative Partition oder in das ' +
-                    'bestehende System als Sandboxumgebung. Automatische ' +
-                    'Konfiguration bestehender posix konformer unix-artiger ' +
-                    'Systeme. Sowohl Online- als auch Offline-Installationen' +
-                    ' sind möglich. Selbst ohne root Rechte kann das System ' +
-                    'in eine eigene Umgebung unterhalb des Home-Ordner ' +
-                    'installiert werden. Alle benötigten Abhängigkeiten zum ' +
-                    'Aufsetzen sind durch eine einfache posix-Umgebung ' +
-                    'gegeben wie Busybox oder ArchLinux selbst.'
+                'Paketverwaltung an beliebige Orte wie Festplatten,' +
+                ' USB-Stick, alternative Partition oder in das ' +
+                'bestehende System als Sandboxumgebung. Automatische ' +
+                'Konfiguration bestehender posix konformer unix-artiger ' +
+                'Systeme. Sowohl Online- als auch Offline-Installationen' +
+                ' sind möglich. Selbst ohne root Rechte kann das System ' +
+                'in eine eigene Umgebung unterhalb des Home-Ordner ' +
+                'installiert werden. Alle benötigten Abhängigkeiten zum ' +
+                'Aufsetzen sind durch eine einfache posix-Umgebung ' +
+                'gegeben wie Busybox oder ArchLinux selbst.'
             ]
         }
     }, {
@@ -253,20 +299,20 @@ const PROJECTS = [
         content: {
             enUS: [
                 'This bash module provides a generic service handlers to ' +
-                    'control any services which support standard process ' +
-                    'signals. The project is inspired by the systemd service' +
-                    ' handling and can live in any unix-like environment. It' +
-                    ' is particularly suitable for being integrated into ' +
-                    "the operating system's boot and shutdown process."
+                'control any services which support standard process ' +
+                'signals. The project is inspired by the systemd service' +
+                ' handling and can live in any unix-like environment. It' +
+                ' is particularly suitable for being integrated into ' +
+                "the operating system's boot and shutdown process."
             ],
             deDE: [
                 'Dieses bash-Modul bietet einen generischen Service-Handler ' +
-                    'zur Steuerung jeglicher Dienste, welche standard ' +
-                    'Prozesssignale unterstützen. Das Projekt ist vom ' +
-                    'Systemd-Service-Handling inspiriert und kann in jeder ' +
-                    'unix-artigen Umgebung eingesetzt werden. Es eignet sich' +
-                    ' besonders um Dienste in den Hoch- und ' +
-                    'Herunterfahr-Prozess des Betriebssystems einzubetten.'
+                'zur Steuerung jeglicher Dienste, welche standard ' +
+                'Prozesssignale unterstützen. Das Projekt ist vom ' +
+                'Systemd-Service-Handling inspiriert und kann in jeder ' +
+                'unix-artigen Umgebung eingesetzt werden. Es eignet sich' +
+                ' besonders um Dienste in den Hoch- und ' +
+                'Herunterfahr-Prozess des Betriebssystems einzubetten.'
             ]
         }
     }, {
@@ -274,12 +320,12 @@ const PROJECTS = [
         content: {
             enUS: [
                 'clientNode brings an object oriented Plugin concept. In ' +
-                    'Addition many reusable helper and a cool controller ' +
-                    'logic is included. Furthermore some handler for dealing' +
-                    ' with mutual exclusion, scope-based event handling and ' +
-                    'some low-level extensions for native data types are ' +
-                    'available. Example implementations can be found in the ' +
-                    'projects:',
+                'Addition many reusable helper and a cool controller ' +
+                'logic is included. Furthermore some handler for dealing' +
+                ' with mutual exclusion, scope-based event handling and ' +
+                'some low-level extensions for native data types are ' +
+                'available. Example implementations can be found in the ' +
+                'projects:',
                 [
                     ['storeLocator', 'https://torben.website/storeLocator'],
                     ['language', 'https://torben.website/language'],
@@ -290,15 +336,15 @@ const PROJECTS = [
             ],
             deDE: [
                 'clientNode führt ein object orientiertes Plugin-Konzept um ' +
-                    'optional auf DOM-orientierten Bibliotheken wie "jQuery"' +
-                    ' als Plugin  aufzusetzen. Verschiedene generische ' +
-                    'Software-Pattern werden durch eine wiederverwendbare ' +
-                    'Controller-Logik möglich. Zudem werden einige nützliche' +
-                    ' Werkzeuge zum Bauen von grafischen Oberflächen ' +
-                    'angeboten wie Wechselseitiger Ausschluss, ' +
-                    'Scope-basiertes Event-Handling und einige Low-Level ' +
-                    'Erweiterungen für native Datentypen. ' +
-                    'Beispiel-Implementierungen findet sich in den Projekten:',
+                'optional auf DOM-orientierten Bibliotheken wie "jQuery"' +
+                ' als Plugin  aufzusetzen. Verschiedene generische ' +
+                'Software-Pattern werden durch eine wiederverwendbare ' +
+                'Controller-Logik möglich. Zudem werden einige nützliche' +
+                ' Werkzeuge zum Bauen von grafischen Oberflächen ' +
+                'angeboten wie Wechselseitiger Ausschluss, ' +
+                'Scope-basiertes Event-Handling und einige Low-Level ' +
+                'Erweiterungen für native Datentypen. ' +
+                'Beispiel-Implementierungen findet sich in den Projekten:',
                 [
                     ['storeLocator', 'https://torben.website/storeLocator'],
                     ['language', 'https://torben.website/language'],
@@ -381,60 +427,38 @@ _%>
         <home-page>
             <!--region header-->
             <header
-                class="website-start-up-animation-number-<%- START_UP_ANIMATION_NUMBER %>"
+                class="headroom website-start-up-animation-number-<%- START_UP_ANIMATION_NUMBER %>"
             >
-                <div class="container">
-                    <div class="navbar navbar-inverse navbar-static-top">
-                        <div class="container">
-                            <div class="navbar-header">
-                                <a class="navbar-brand" href="#">
-                                    thaibault
-                                    <span class="dimension-indicator"></span>
-                                </a>
-                                <%_ START_UP_ANIMATION_NUMBER += 1 _%>
-                                <a
-                                    class="tools-visible-on-javascript-enabled website-start-up-animation-number-<%- START_UP_ANIMATION_NUMBER %>"
-                                    href="#language-<%- ALTERNATE_LANGUAGE %>"
-                                >
-                                    <%- ALTERNATE_LANGUAGE.substring(0, ALTERNATE_LANGUAGE.length - 2) %>
-                                </a>
-                                <button
-                                    class="navbar-toggle tools-visible-on-javascript-enabled"
-                                    data-target=".navbar-collapse"
-                                    data-toggle="collapse"
-                                    type="button"
-                                >
-                                    <%_ for (const section of [1, 2, 3]) { _%>
-                                        <span class="icon-bar"></span>
-                                    <%_ } _%>
-                                </button>
-                            </div>
-                            <div class="navbar-collapse collapse">
-                                <div
-                                    class="navbar-highlighter tools-visible-on-javascript-enabled"
-                                ></div>
-                                <ul class="nav navbar-nav">
-                                    <%_ for (const section of SECTIONS) {
-                                        if (section.content[0]) {
-                                            START_UP_ANIMATION_NUMBER += 1
-                                    _%>
-                                            <li
-                                                class="website-start-up-animation-number-<%- START_UP_ANIMATION_NUMBER %><%- section.title === SECTIONS[0].title ? ' active' : '' %>"
-                                            >
-                                                <a href="#<%- section.title %>">
-                                                    <%- section.content[0][DEFAULT_LANGUAGE] %>
-                                                    <!--<%- ALTERNATE_LANGUAGE %>:
-                                                        <%- section.content[0][ALTERNATE_LANGUAGE] %>
-                                                    -->
-                                                </a>
-                                            </li>
-                                        <%_ } _%>
-                                    <%_ } _%>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                <div>
+                    <a href="#">thaibault</a>
+                    <%_ START_UP_ANIMATION_NUMBER += 1 _%>
+                    <a
+                        class="website-start-up-animation-number-<%- START_UP_ANIMATION_NUMBER %>"
+                        href="#language-<%- ALTERNATE_LANGUAGE %>"
+                    >
+                        <%- ALTERNATE_LANGUAGE.substring(0, ALTERNATE_LANGUAGE.length - 2) %>
+                    </a>
                 </div>
+                <nav>
+                    <ul>
+                        <%_ for (const section of SECTIONS) {
+                            if (section.content[0]) {
+                                START_UP_ANIMATION_NUMBER += 1
+                        _%>
+                                <li
+                                    class="website-start-up-animation-number-<%- START_UP_ANIMATION_NUMBER %><%- section.title === SECTIONS[0].title ? ' active' : '' %>"
+                                >
+                                    <a href="#<%- section.title %>">
+                                        <%- section.content[0][DEFAULT_LANGUAGE] %>
+                                        <!--<%- ALTERNATE_LANGUAGE %>:
+                                            <%- section.content[0][ALTERNATE_LANGUAGE] %>
+                                        -->
+                                    </a>
+                                </li>
+                            <%_ } _%>
+                        <%_ } _%>
+                    </ul>
+                </nav>
             </header>
             <!-- endregion-->
             <main class="wu-router-outlet">
@@ -442,7 +466,10 @@ _%>
                 <section class="swiper" data-website-utilities-section="home">
                     <div class="swiper-wrapper">
                     <%_ for (const section of SECTIONS) { _%>
-                        <div class="swiper-slide <%- section.title %>">
+                        <div
+                            data-hash="<%- section.title %>"
+                            class="swiper-slide <%- section.title %>"
+                        >
                             <div class="carousel-image-<%- section.title %>">
                                 <div class="container">
                                     <%_ if (section.content[1][DEFAULT_LANGUAGE]) { _%>
@@ -625,8 +652,6 @@ _%>
 
                     <div class="swiper-button-prev"></div>
                     <div class="swiper-button-next"></div>
-
-                    <div class="swiper-scrollbar"></div>
                 </section>
                 <!--endregion-->
                 <!--region about this website-->
