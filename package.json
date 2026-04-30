@@ -81,14 +81,14 @@
     "style-loader": "^4.0.0",
     "stylelint": "^17.9.1",
     "stylelint-config-standard": "^40.0.0",
-    "swiper": "^12.1.3",
+    "swiper": "^12.1.4",
     "typescript-eslint": "^8.59.1",
     "ua-parser-js": "^2.0.9",
-    "web-component-wrapper": "^0.0.578",
-    "web-internationalization": "^2.0.16",
+    "web-component-wrapper": "^0.0.579",
+    "web-internationalization": "^2.0.17",
     "weboptimizer": "^3.0.22",
     "webpack-dev-server": "^5.2.3",
-    "website-utilities": "^1.0.398"
+    "website-utilities": "^1.0.399"
   },
   "engines": {
     "node": ">=24",
