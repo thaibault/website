@@ -63,42 +63,44 @@ declare var OFFLINE: boolean
  * switch animations.
  * @property _sectionTopMarginInPixel - Distance to window top from the section
  * body.
- * @property _options - Options extended by the options given to the
+ * @property _defaultOptions - Options extended by the options given to the
  * initializer method.
- * @property _options.trackingCode {string} - Tracking code for collection
- * users metadata.
- * @property _options.maximumFooterHeightInPercent {number} - Indicates when
- * the footer should stick to the bottom.
- * @property _options.scrollInLinearTime {boolean} - Indicates whether
+ * @property _defaultOptions.trackingCode {string} - Tracking code for
+ * collection users metadata.
+ * @property _defaultOptions.maximumFooterHeightInPercent {number} - Indicates
+ * when the footer should stick to the bottom.
+ * @property _defaultOptions.scrollInLinearTime {boolean} - Indicates whether
  * animated scrolling should be accelerate and brake or not.
- * @property _options.backgroundDependentHeightSections {Array.<string>} - A
- * list: of section names which dimensions depend on their background image.
- * @property _options.maximumBackgroundDependentHeight {number} - Upper range
- * bound until a dynamic background image adjust is needed.
- * @property _options.menuHighlightAnimation {Object} - Options for menu
+ * @property _defaultOptions.backgroundDependentHeightSections
+ * {Array.<string>} - A list: of section names which dimensions depend on their
+ * background image.
+ * @property _defaultOptions.maximumBackgroundDependentHeight {number} - Upper
+ * range bound until a dynamic background image adjust is needed.
+ * @property _defaultOptions.menuHighlightAnimation {Object} - Options for menu
  * highlight animation.
- * @property _options.hideMobileMenuAfterSelection {boolean} - Indicates
+ * @property _defaultOptions.hideMobileMenuAfterSelection {boolean} - Indicates
  * whether the mobile menu should be hide after a menu item was selected.
- * @property _options.domNode {Object} - Mapping if needed dom node
+ * @property _defaultOptions.domNode {Object} - Mapping if needed dom node
  * descriptions to their corresponding selectors.
- * @property _options.carousel {Object} - Options for the integrated section
- * carousel.
- * @property _options.dimensionIndicator {Object} - Options for the injectable
- * dimension indicator.
- * @property _options.dimensionIndicator.template {string} - Markup for
+ * @property _defaultOptions.carousel {Object} - Options for the integrated
+ * section carousel.
+ * @property _defaultOptions.dimensionIndicator {Object} - Options for the
+ * injectable dimension indicator.
+ * @property _defaultOptions.dimensionIndicator.template {string} - Markup for
  * injectable dimension indicator to show current media query mode.
- * @property _options.dimensionIndicator.effectOptions {Object} - Options for
- * showing and hiding the dimension indicator between a dimension change.
- * @property _options.dimensionIndicator.effectOptions.showAnimation {Object} -
- * Options for the show animation.
- * @property _options.dimensionIndicator.effectOptions.hideAnimation {Object} -
- * Options for the hide animation.
- * @property _options.aboutThisWebsiteSection {Object} - Animation options for
- * showing and hiding the about this website section.
- * @property _options.aboutThisWebsiteSection.showAnimation {Object} - Show
- * options.
- * @property _options.aboutThisWebsiteSection.hideAnimation {Object} - Hide
- * options.
+ * @property _defaultOptions.dimensionIndicator.effectOptions {Object} -
+ * Options for showing and hiding the dimension indicator between a dimension
+ * change.
+ * @property _defaultOptions.dimensionIndicator.effectOptions.showAnimation
+ * {Object} - Options for the show animation.
+ * @property _defaultOptions.dimensionIndicator.effectOptions.hideAnimation
+ * {Object} - Options for the hide animation.
+ * @property _defaultOptions.aboutThisWebsiteSection {Object} - Animation
+ * options for showing and hiding the about this website section.
+ * @property _defaultOptions.aboutThisWebsiteSection.showAnimation {Object} -
+ * Show options.
+ * @property _defaultOptions.aboutThisWebsiteSection.hideAnimation {Object} -
+ * Hide options.
  */
 export class HomePage<
     TElement = HTMLElement,
@@ -161,6 +163,8 @@ export class HomePage<
             stopPropagation: false
         }
     }
+
+    static doRender = true
 
     readonly self = HomePage
     // region api properties
@@ -229,12 +233,20 @@ export class HomePage<
     /**
      * Updates controlled dom elements.
      * @param reason - Why an update has been triggered.
+     * @param resolveRendering - Indicates whether rendering should be resolved
+     * finally. Should be set to "false" via super calls in inherited render
+     * methods which do further dom manipulations afterwards and resolve the
+     * rendering process by their own.
+     * @returns A promise resolving when rendering has finished. A promise may
+     * be needed for classes inheriting from this class.
      */
-    async render(reason?: string): Promise<void> {
-        await super.render(reason)
+    async render(reason = 'unknown', resolveRendering = true): Promise<void> {
+        await super.render(reason, false)
 
         if (Object.keys(this.options).length === 0)
             this._extendOptions()
+
+        await this.waitForNestedComponentRendering()
 
         const swiper = new Swiper(
             '.swiper',
