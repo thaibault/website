@@ -24,6 +24,7 @@ endregion */
     /* region custom-properties */
     /** region color */
     --background-color: #222;
+    --header-background-color: #22222214;
     --font-color: #5a5a5a;
     --surface-color: #f2f2f2;
     --accent-color: #f88;
@@ -42,6 +43,7 @@ endregion */
     --footer-margin-in-pixel: 30px;
     --minimum-content-height-in-pixel: 300px;
     --top-margin: 65px;
+    --maximum-content-width-in-pixel: 800px;
     /** endregion */
     /** region custom media queries */
     /*** region extra small dimension */
@@ -163,10 +165,10 @@ home-page {
     /* endregion */
     /* region header */
     /* Normal Wrapper for the main navigation bar. Scrolls with viewport. */
-    header {
-        background-color: var(--background-color);
+    .hp-header {
+        display: grid;
+        justify-content: center;
 
-        display: block;
         position: fixed;
         z-index: 10;
         right: 0;
@@ -176,7 +178,7 @@ home-page {
         z-index: 2;
 
         white-space: nowrap;
-
+        /* region headroom */
         &.headroom {
             /*
                 Slide effect
@@ -224,83 +226,125 @@ home-page {
                 transform: perspective(400px) rotateX(-90deg)
             }
         }
+        /* endregion */
+        .hp-header__center {
+            background-color: var(--header-background-color);
 
-        nav {
-            ul {
-                display: inline-block;
-                list-style-type: none;
-                padding: 0;
-                margin: 0;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-between;
 
-                margin-block-start: 1em;
-                margin-block-end: 1em;
-                padding-inline-start: 40px;
+            box-shadow:
+                /* Outer Elevation Shadow */
+                0 10px 30px rgba(0, 0, 0, 0.1),
+                /* Top-Left Specular Highlight */
+                inset 1px 1px 2px rgba(255, 255, 255, 0.5),
+                /* Bottom-Right Inner Depth */
+                inset -1px -1px 2px rgba(0, 0, 0, 0.1);
 
-                li {
-                    display: inline-block;
+            @media (--w-extra-extra-small) {
+                @media (--w-extra-small) {
+                    @media (--w-small) {
+                        width: var(--maximum-content-width-in-pixel);
+                    }
+                }
+            }
+
+            a,
+            a:visited,
+            a:focus {
+                color: var(--menu-color);
+                font-size: 1.2em;
+                padding: 1rem;
+
+                &:hover {
+                    color: var(--menu-hover-color);
+                }
+
+                /* Position language link. */
+
+                &[href^="#lang-"] {
+                    padding: 2rem;
                 }
             }
 
             .priority-nav {
                 white-space: nowrap;
+                width: 100%;
+
                 /*
                   * Makes sure the menu's are inline-block so they don't take up
                   * the entire width of its parent. This will break the plugin.
                   */
-            }
 
-            .priority-nav ul {
-                display: inline-block;
-            }
-
-            .priority-nav li {
-                display: inline-block;
-
-                a {
+                ul {
                     display: inline-block;
-                    padding: 2rem 1rem;
+                    list-style-type: none;
+                    padding: 0;
+                    margin: 0;
+
+                    margin-block-start: 1em;
+                    margin-block-end: 1em;
+                    padding-inline-start: 40px;
+
+                    li {
+                        display: inline-block;
+                    }
                 }
-            }
 
-            .priority-nav-has-dropdown .priority-nav__dropdown-toggle {
-                position: relative;
-            }
+                ul {
+                    display: inline-block;
+                }
 
-            .priority-nav__wrapper {
-                position: relative;
-            }
+                li {
+                    display: inline-block;
 
-            .priority-nav__dropdown {
-                position: absolute;
-                visibility: hidden;
-            }
+                    a {
+                        display: inline-block;
+                    }
+                }
 
-            .priority-nav__dropdown.show {
-                visibility: visible;
-            }
+                &.priority-nav-has-dropdown .priority-nav__dropdown-toggle {
+                    position: relative;
+                }
 
-            .priority-nav__dropdown-toggle {
-                visibility: hidden;
-                position: absolute;
-            }
+                .priority-nav__wrapper {
+                    position: relative;
+                }
 
-            .priority-nav-is-visible {
-                visibility: visible;
-            }
+                .priority-nav__dropdown {
+                    position: absolute;
+                    visibility: hidden;
+                }
 
-            .priority-nav-is-hidden {
-                visibility: hidden;
-            }
+                .priority-nav__dropdown.show {
+                    visibility: visible;
+                }
 
-            @media (--w-extra-extra-small) {
-                @media (--w-extra-small) {
-                    @media (--w-small) {
-                        @media (--w-medium) {
-                            /*
-                                Normal Wrapper for the main navigation bar. Scrolls with
-                                viewport.
-                            */
-                            max-width: 600px;
+                .priority-nav__dropdown-toggle {
+                    visibility: hidden;
+                    position: absolute;
+                }
+
+                &.priority-nav-is-visible {
+                    visibility: visible;
+                }
+
+                &.priority-nav-is-hidden {
+                    visibility: hidden;
+                }
+
+                @media (--w-extra-extra-small) {
+                    @media (--w-extra-small) {
+                        @media (--w-small) {
+                            @media (--w-medium) {
+                                /*
+                                    Normal Wrapper for the main navigation bar. Scrolls with
+                                    viewport.
+                                */
+                                max-width: 600px;
+                            }
                         }
                     }
                 }
@@ -317,6 +361,9 @@ home-page {
         min-height: var(--minimum-content-height-in-pixel);
         /* Wraps the visible area from whole wide slider wrapper. */
         .swiper-slide {
+            display: flex;
+            justify-content: center;
+
             /*
                 Set a default content height. Could by vary depending on
                 currently activated section.
@@ -339,9 +386,14 @@ home-page {
                 }
             }
 
-            .swiper-slide__container {
-                padding-bottom: 15px;
-                max-width: 540px;
+            .swiper-slide__center {
+                @media (--w-extra-extra-small) {
+                    @media (--w-extra-small) {
+                        @media (--w-small) {
+                            width: var(--maximum-content-width-in-pixel);
+                        }
+                    }
+                }
 
                 h1 {
                     font-size: 2.5em;
@@ -403,7 +455,7 @@ home-page {
             }
 
             &.about-me {
-                .swiper-slide__container {
+                .swiper-slide__center {
                     padding-top: 90px;
 
                     h1#about-me { margin-top: -var(--top-margin); }
@@ -465,7 +517,7 @@ home-page {
             }
 
             &.work {
-                .swiper-slide__container {
+                .swiper-slide__center {
                     @media (--w-extra-extra-small) {
                         @media (--w-extra-small) {
                             @media (--w-small) {
@@ -482,7 +534,7 @@ home-page {
     /* endregion */
     /** region about this web site */
     /* Wraps the legal notice content. */
-    [data-website-utilities-section="about-this-website"] {
+    .about-this-website {
         min-height: var(--minimum-content-height-in-pixel);
         background-color: var(--surface-color);
         top: 0;
@@ -491,7 +543,7 @@ home-page {
 
         padding-bottom: 15px;
         /* Wraps the text content, positions space around them. */
-        .container {
+        .center {
             margin-left: 10%;
 
             h1 {

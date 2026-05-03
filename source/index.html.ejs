@@ -49,7 +49,11 @@ const LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE_PATH =
     `${DATA_PATH}curriculumVitae${swapCase(ALTERNATE_LANGUAGE)}.pdf`
 // endregion
 // region runtime
-let START_UP_ANIMATION_NUMBER = 1
+let START_UP_ANIMATION_NUMBER = 0
+const getStartUpAnimationNumber = () => {
+    START_UP_ANIMATION_NUMBER += 1
+    return START_UP_ANIMATION_NUMBER
+}
 // endregion
 // region content
 const SOCIAL_MEDIA = [
@@ -427,38 +431,36 @@ _%>
         <home-page>
             <!--region header-->
             <header
-                class="headroom website-start-up-animation-number-<%- START_UP_ANIMATION_NUMBER %>"
+                class="hp-header headroom website-start-up-animation-number-<%- getStartUpAnimationNumber() %>"
             >
-                <div>
-                    <a href="#">thaibault</a>
-                    <%_ START_UP_ANIMATION_NUMBER += 1 _%>
+                <div class="hp-header__center">
+                    <nav>
+                        <ul>
+                            <%_ for (const section of SECTIONS) {
+                                if (section.content[0]) {
+                            _%>
+                                    <li
+                                        class="website-start-up-animation-number-<%- getStartUpAnimationNumber() %><%- section.title === SECTIONS[0].title ? ' active' : '' %>"
+                                    >
+                                        <a href="#<%- section.title %>">
+                                            <%- section.content[0][DEFAULT_LANGUAGE] %>
+                                            <!--<%- ALTERNATE_LANGUAGE %>:
+                                                <%- section.content[0][ALTERNATE_LANGUAGE] %>
+                                            -->
+                                        </a>
+                                    </li>
+                                <%_ } _%>
+                            <%_ } _%>
+                        </ul>
+                    </nav>
+
                     <a
-                        class="website-start-up-animation-number-<%- START_UP_ANIMATION_NUMBER %>"
-                        href="#language-<%- ALTERNATE_LANGUAGE %>"
+                        class="website-start-up-animation-number-<%- getStartUpAnimationNumber() %>"
+                        href="#lang-<%- ALTERNATE_LANGUAGE %>"
                     >
                         <%- ALTERNATE_LANGUAGE.substring(0, ALTERNATE_LANGUAGE.length - 2) %>
                     </a>
                 </div>
-                <nav>
-                    <ul>
-                        <%_ for (const section of SECTIONS) {
-                            if (section.content[0]) {
-                                START_UP_ANIMATION_NUMBER += 1
-                        _%>
-                                <li
-                                    class="website-start-up-animation-number-<%- START_UP_ANIMATION_NUMBER %><%- section.title === SECTIONS[0].title ? ' active' : '' %>"
-                                >
-                                    <a href="#<%- section.title %>">
-                                        <%- section.content[0][DEFAULT_LANGUAGE] %>
-                                        <!--<%- ALTERNATE_LANGUAGE %>:
-                                            <%- section.content[0][ALTERNATE_LANGUAGE] %>
-                                        -->
-                                    </a>
-                                </li>
-                            <%_ } _%>
-                        <%_ } _%>
-                    </ul>
-                </nav>
             </header>
             <!-- endregion-->
             <main class="wu-router-outlet">
@@ -471,7 +473,7 @@ _%>
                             class="swiper-slide <%- section.title %>"
                         >
                             <div class="swiper-slide__image-<%- section.title %>">
-                                <div class="swiper-slide__container">
+                                <div class="swiper-slide__center">
                                     <%_ if (section.content[1][DEFAULT_LANGUAGE]) { _%>
                                         <h1 id="<%- section.title %>">
                                             <%- section.content[1][DEFAULT_LANGUAGE] %>
@@ -655,8 +657,8 @@ _%>
                 </section>
                 <!--endregion-->
                 <!--region about this website-->
-                <section data-website-utilities-section="about-this-website">
-                    <div class="container">
+                <section class="about-this-website" data-website-utilities-section="about-this-website">
+                    <div class="about-this-website__center">
                         <h1 id="about-this-website">
                             About this website
                             <!--<%- ALTERNATE_LANGUAGE %>:Impressum-->
@@ -715,9 +717,8 @@ _%>
                 Wrap the footer of the page in another container to center the
                 content.
             -->
-            <%_ START_UP_ANIMATION_NUMBER += 1 _%>
             <footer
-                class="website-start-up-animation-number-<%- START_UP_ANIMATION_NUMBER %>"
+                class="website-start-up-animation-number-<%- getStartUpAnimationNumber() %>"
             >
                 <div class="footer-content">
                     <p>
