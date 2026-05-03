@@ -58,17 +58,14 @@ home-page {
     /* region global */
     overflow-y: scroll;
     /** region headline */
-    & h1,
-    & h2,
-    & h3,
-    & h4,
-    & h5,
-    & h6 { font-family: var(--w-typography-font-family-headline); }
+    h1, h2, h3, h4, h5, h6 {
+        font-family: var(--w-typography-font-family-headline);
+    }
     /** endregion */
     /** region link */
-    & a,
-    & a:visited,
-    & a:focus {
+    a,
+    a:visited,
+    a:focus {
         color: var(--link-color);
         font-size: 1.2rem;
         text-decoration: none !important;
@@ -77,7 +74,7 @@ home-page {
     }
     /** region extra extra extra small */
     /* Smaller devices have usually a touch interface for scrolling. */
-    & .wu-scroll-to-top {
+    .wu-scroll-to-top {
         visibility: hidden;
         bottom: var(--footer-margin-in-pixel);
         right: 60px;
@@ -90,24 +87,23 @@ home-page {
     /*** endregion */
     /** endregion */
     /** region list */
-    & ul,
-    & ol { margin-top: 15px; }
+    ul, ol { margin-top: 15px; }
     /** endregion */
     /*
         Makes space before each anchor to have enough space for a fixed
         positioned header menu.
     */
-    & h1::before {
+    h1::before {
         content: "";
         display: block;
         height: var(--top-margin);
     }
 
-    & strong { font-weight: bold; }
+    strong { font-weight: bold; }
     /* endregion */
     /* region social media icons */
     /* NOTE: Should be synchronized with the social icon font styles. */
-    & a.glyphicon {
+    a.glyphicon {
         &.glyphicon-globe {
             color: var(--font-color);
             letter-spacing: 10px;
@@ -146,7 +142,7 @@ home-page {
     /* endregion */
     /* region header */
     /* Normal Wrapper for the main navigation bar. Scrolls with viewport. */
-    & header {
+    header {
         background-color: var(--background-color);
 
         display: block;
@@ -276,113 +272,103 @@ home-page {
     }
     /* endregion */
     /* region swiper */
-    /* Define main content size. */
-    & .swiper .swiper-wrapper .swiper-slide {
-        /* Don't show any background image in smartphone mode. */
-        & .backstretch { display: none; }
-
-        & div[class^="carousel-image-"] > .container {
-            padding-bottom: 15px;
-            max-width: 540px;
-
-            & h1 { font-size: 2.5em; }
-
-            & > p {
-                font-size: 1.2rem;
-                line-height: 1.4;
-            }
-        }
-    }
-    & .swiper {
+    .swiper {
         background-color: var(--surface-color);
 
         overflow: hidden;
         position: relative;
         min-height: var(--minimum-content-height-in-pixel);
         /* Wraps the visible area from whole wide slider wrapper. */
-        & .swiper-wrapper {
+        .swiper-wrapper {
             /* Contains each section content. */
-            & .swiper-slide {
+            .swiper-slide {
                 /*
                     Set a default content height. Could by vary depending on
                     currently activated section.
                 */
                 min-height: var(--minimum-content-height-in-pixel);
-            }
-        }
+                /* Don't show any background image in smartphone mode. */
+                .backstretch { display: none; }
 
-        /** region extra extra small */
-        @media (--extra-extra-small) {
-            & section.swiper .swiper-wrapper .swiper-slide {
-                &.about div[class^=carousel-image-] > .container > p {
-                    font-size: 1.6rem;
+                .swiper-slide__container {
+                    padding-bottom: 15px;
+                    max-width: 540px;
+
+                    h1 { font-size: 2.5em; }
+
+                    p {
+                        font-size: 1.2rem;
+                        line-height: 1.4;
+                    }
                 }
 
-                & div[class^="carousel-image-"] > .container {
-                    padding-bottom: 25px;
-                }
+                @media (--extra-extra-small) {
+                    &.about-me p {
+                        font-size: 1.6rem;
+                    }
 
-                /* region small */
-                @media (--small) {
-                    & > div {
+                    .swiper-slide__container {
+                        padding-bottom: 25px;
+
+                        p.lead > a:first-child {
+                            margin-top: 50px;
+                        }
+                    }
+
+                    /* region small */
+                    @media (--small) {
                         /* Show any background image on higher resolutions. */
-                        &.backstretch { display: block; }
+                        .backstretch { display: block; }
                         /* Bump up size of swiper content. */
-                        &[class^="carousel-image-"] {
+                        [class^="swiper-slide__image-"] {
                             background-repeat: no-repeat;
                             background-size: auto 100%;
                             background-position: center;
-
-                            & > .container {
-                                padding-top: 0;
-                                padding-bottom: 50px;
-                                max-width: 600px;
-
-                                & h1 { font-size: 4.5em; }
-
-                                & > p.lead {
-                                    font-size: 1.5em;
-                                    line-height: 1.4;
-                                    margin-top: 10px;
-                                }
-                            }
                         }
                         /* Show background images on bigger devices. */
-                        &.carousel-image-about {
+                        .swiper-slide__image-about {
                             background-image: url('image/carousel/about-440x686-pixels.png');
                         }
+                        .swiper-slide__container {
+                            padding-top: 0;
+                            padding-bottom: 50px;
+                            max-width: 600px;
+
+                            h1 { font-size: 4.5em; }
+
+                            p.lead {
+                                font-size: 1.5em;
+                                line-height: 1.4;
+                                margin-top: 10px;
+                            }
+                        }
                     }
+                    /* endregion */
                 }
-                /* endregion */
             }
-            /** region section */
-            & section.about-this-website { padding-bottom: 25px; }
-            /*** region about */
-            & section.swiper .swiper-wrapper > .swiper-slide .carousel-image-about > .container p.lead > a:first-child {
-                margin-top: 50px;
-            }
-            /*** endregion */
+        }
+        @media (--extra-extra-small) {
             /** endregion */
             /** region small */
             @media (--small) {
-                & section.swiper .swiper-wrapper .swiper-slide {
+                section.swiper .swiper-wrapper .swiper-slide {
                     & > div {
                         /* Show any background image on higher resolutions. */
                         &.backstretch { display: block; }
                         /* Bump up size of swiper content. */
-                        &[class^="carousel-image-"] {
+                        &[class^="swiper-slide__image-"] {
                             background-repeat: no-repeat;
                             background-size: auto 100%;
                             background-position: center;
 
-                            & > .container {
+                            .swiper-slide__container {
                                 padding-top: 0;
                                 padding-bottom: 50px;
                                 max-width: 600px;
 
-                                & h1 { font-size: 4.5em; }
+                                h1 { font-size: 4.5em; }
 
-                                & > p.lead {
+                                p.lead {
                                     font-size: 1.5em;
                                     line-height: 1.4;
                                     margin-top: 10px;
@@ -390,7 +376,7 @@ home-page {
                             }
                         }
                         /* Show background images on bigger devices. */
-                        &.carousel-image-about {
+                        &.swiper-slide__image-about {
                             background-image: url('image/carousel/about-440x686-pixels.png');
                         }
                     }
@@ -400,7 +386,7 @@ home-page {
                     &.about-this-website {
                         padding-bottom: 50px;
 
-                        & div[class^="carousel-image-"] > .container {
+                        & .swiper-slide__container {
                             width: 608px;
 
                             & h1 { font-size: 4.5em; }
@@ -408,24 +394,24 @@ home-page {
                     }
 
                     &.swiper .swiper-wrapper .swiper-slide > div {
-                        &.carousel-image-about > .container {
+                        &.swiper-slide__image-about .swiper-slide__container {
                             position: relative;
                             margin-top: var(--top-margin);
 
-                            & > p.lead {
+                            p.lead {
                                 position: absolute;
                                 right: -38px;
                                 width: 300px;
                                 text-align: right;
 
-                                & a {
+                                a {
                                     display: block;
                                     margin-top: 30px;
                                 }
                             }
                         }
 
-                        &.carousel-image-work > .container > p {
+                        &.swiper-slide__image-work .swiper-slide__container p {
                             margin-top: 25px;
                         }
                     }
@@ -438,24 +424,24 @@ home-page {
                         Normal Wrapper for the main navigation bar. Scrolls with
                         viewport.
                     */
-                    & header > .container { max-width: 600px; }
+                    header > .container { max-width: 600px; }
                     /* endregion */
                     /* region swiper */
-                    & section.swiper .swiper-wrapper .swiper-slide > div {
-                        &[class^="carousel-image-"] > .container {
+                    section.swiper .swiper-wrapper .swiper-slide > div {
+                        &[class^="swiper-slide__image-"] .swiper-slide__container {
                             max-width: 810px;
 
-                            & > dl.dl-horizontal {
-                                & > dt { width: 286px; }
+                            dl.dl-horizontal {
+                                dt { width: 286px; }
 
-                                & > dd {
+                                dd {
                                     margin-top: 15px;
                                     margin-left: 335px;
                                 }
                             }
                         }
 
-                        &.carousel-image-about > .container > p.lead {
+                        &.swiper-slide__image-about .swiper-slide__container > p.lead {
                             right: 0;
                         }
                     }
@@ -465,29 +451,30 @@ home-page {
             }
             /** endregion */
         }
-        /** endregion */
     }
     /* endregion */
-    /* region section */
     /** region about this web site */
     /* Wraps the legal notice content. */
-    & [data-website-utilities-section="about-this-website"] {
+    [data-website-utilities-section="about-this-website"] {
         min-height: var(--minimum-content-height-in-pixel);
         background-color: var(--surface-color);
         top: 0;
         left: 0;
         width: 100%;
+
+        @media (--extra-extra-small) {
+            padding-bottom: 25px;
+        }
     }
     /** endregion */
-    /* endregion */
     /* region footer */
-    & footer {
+    footer {
         width: 100%;
 
-        & .footer-content {
+        .footer-content {
             text-align: center;
 
-            & p {
+            p {
                 padding-top: var(--footer-margin-in-pixel);
                 padding-bottom: var(--footer-margin-in-pixel);
                 margin: 0;
@@ -497,21 +484,21 @@ home-page {
     /* endregion */
     /* region section */
     /** region about */
-    & section.swiper .swiper-wrapper .swiper-slide .carousel-image-about > .container {
+    section.swiper .swiper-wrapper .swiper-slide .swiper-slide__image-about .swiper-slide__container {
         padding-top: 90px;
 
-        & h1#about { margin-top: -var(--top-margin); }
+        h1#about { margin-top: -var(--top-margin); }
 
-        & p.lead > a:first-child { margin-top: 35px; }
+        p.lead > a:first-child { margin-top: 35px; }
     }
     /** endregion */
     /** region about this web site */
-    & section.about-this-website {
+    section.about-this-website {
         padding-bottom: 15px;
         /* Wraps the text content, positions space around them. */
-        & > .container { margin-left: 10%; }
+        .swiper-slide__container { margin-left: 10%; }
 
-        & div[class^="carousel-image-"] > .container h1 {
+        [class^="swiper-slide__image-"] .swiper-slide__container h1 {
             font-size: 2.5em;
         }
     }

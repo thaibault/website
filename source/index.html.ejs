@@ -68,7 +68,7 @@ const SOCIAL_MEDIA = [
 ]
 const SECTIONS = [
     {
-        title: 'about',
+        title: 'about-me',
         content: [
             {enUS: 'About me', deDE: 'Über mich'}, {enUS: '', deDE: ''},
             {enUS: 'I love the challenge', deDE: 'Ich liebe die Herausforderung'}
@@ -470,8 +470,8 @@ _%>
                             data-hash="<%- section.title %>"
                             class="swiper-slide <%- section.title %>"
                         >
-                            <div class="carousel-image-<%- section.title %>">
-                                <div class="container">
+                            <div class="swiper-slide__image-<%- section.title %>">
+                                <div class="swiper-slide__container">
                                     <%_ if (section.content[1][DEFAULT_LANGUAGE]) { _%>
                                         <h1 id="<%- section.title %>">
                                             <%- section.content[1][DEFAULT_LANGUAGE] %>
@@ -656,64 +656,62 @@ _%>
                 <!--endregion-->
                 <!--region about this website-->
                 <section data-website-utilities-section="about-this-website">
-                    <div class="carousel-image-about-this-website">
-                        <div class="container">
-                            <h1 id="about-this-website">
-                                About this website
-                                <!--<%- ALTERNATE_LANGUAGE %>:Impressum-->
-                            </h1>
-                            <h2>
-                                Contact
-                                <!--<%- ALTERNATE_LANGUAGE %>:Kontakt-->
-                            </h2>
-                            <div>
-                                Provider of<!--<%- ALTERNATE_LANGUAGE %>:Anbieter von-->:
-                                <a
-                                    class="<%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].title %>"
-                                    href="<%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url %>"
-                                ><%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url %></a>
-                                <br />
-                                Torben Sickert
-                                <br />
-                                Waldstraße 29
-                                <br />
-                                79194 Gundelfingen i.Br.
-                                <br />
-                                Phone<!--<%- ALTERNATE_LANGUAGE %>:Tel.-->:
-                                <a href="tel:004917610248185">
-                                    +49 (0) 176<span>/</span>10 248 185
-                                </a>
-                                <br />
-                                Email:<!--<%- ALTERNATE_LANGUAGE %>:E-Mail-->
-                                <a href="mailto:<%- SOCIAL_MEDIA[0].url %>">
-                                    <%- SOCIAL_MEDIA[0].url %>
-                                </a>
-                                <br />
-                                Website<!--<%- ALTERNATE_LANGUAGE %>:Webseite-->:
-                                <a
-                                    class="<%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].title %>"
-                                    href="<%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url %>"
-                                ><%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url %></a>
-                                <br />
-                                <br />
-                                <a
-                                    href="<%- LINK_PUBLIC_SSH_KEY_PATH %>"
-                                    target="_blank"
-                                >
-                                    public ssh key
-                                    <!--<%- ALTERNATE_LANGUAGE %>:
-                                        öffentlicher SSH-Schlüssel
-                                    -->
-                                </a>
-                            </div>
-                            <%- _.include('legal-notes') %>
+                    <div class="container">
+                        <h1 id="about-this-website">
+                            About this website
+                            <!--<%- ALTERNATE_LANGUAGE %>:Impressum-->
+                        </h1>
+                        <h2>
+                            Contact
+                            <!--<%- ALTERNATE_LANGUAGE %>:Kontakt-->
+                        </h2>
+                        <div>
+                            Provider of<!--<%- ALTERNATE_LANGUAGE %>:Anbieter von-->:
+                            <a
+                                class="<%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].title %>"
+                                href="<%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url %>"
+                            ><%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url %></a>
+                            <br />
+                            Torben Sickert
+                            <br />
+                            Waldstraße 29
+                            <br />
+                            79194 Gundelfingen i.Br.
+                            <br />
+                            Phone<!--<%- ALTERNATE_LANGUAGE %>:Tel.-->:
+                            <a href="tel:004917610248185">
+                                +49 (0) 176<span>/</span>10 248 185
+                            </a>
+                            <br />
+                            Email:<!--<%- ALTERNATE_LANGUAGE %>:E-Mail-->
+                            <a href="mailto:<%- SOCIAL_MEDIA[0].url %>">
+                                <%- SOCIAL_MEDIA[0].url %>
+                            </a>
+                            <br />
+                            Website<!--<%- ALTERNATE_LANGUAGE %>:Webseite-->:
+                            <a
+                                class="<%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].title %>"
+                                href="<%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url %>"
+                            ><%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url %></a>
+                            <br />
+                            <br />
+                            <a
+                                href="<%- LINK_PUBLIC_SSH_KEY_PATH %>"
+                                target="_blank"
+                            >
+                                public ssh key
+                                <!--<%- ALTERNATE_LANGUAGE %>:
+                                    öffentlicher SSH-Schlüssel
+                                -->
+                            </a>
                         </div>
+                        <%- _.include('legal-notes') %>
                     </div>
                 </section>
                 <!-- endregion -->
             </main>
+            <!--region footer-->
             <!--
-                region footer
                 Wrap the footer of the page in another container to center the
                 content.
             -->
