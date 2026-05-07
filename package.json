@@ -55,7 +55,7 @@
     "@typescript-eslint/eslint-plugin": "^8.59.2",
     "@typescript-eslint/parser": "^8.59.2",
     "@webcomponents/webcomponentsjs": "^2.8.0",
-    "clientnode": "^4.0.1394",
+    "clientnode": "^4.0.1395",
     "css-loader": "^7.1.4",
     "cssnano": "^8.0.0",
     "errorreporter": "^1.0.339",
@@ -86,11 +86,11 @@
     "swiper": "^12.1.4",
     "typescript-eslint": "^8.59.2",
     "ua-parser-js": "^2.0.9",
-    "web-component-wrapper": "^0.0.586",
+    "web-component-wrapper": "^0.0.587",
     "web-internationalization": "^2.0.19",
     "weboptimizer": "^3.0.22",
     "webpack-dev-server": "^5.2.3",
-    "website-utilities": "^1.0.403"
+    "website-utilities": "^1.0.406"
   },
   "engines": {
     "node": ">=24",

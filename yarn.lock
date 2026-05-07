@@ -7052,9 +7052,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"clientnode@npm:^4.0.1394":
-  version: 4.0.1394
-  resolution: "clientnode@npm:4.0.1394"
+"clientnode@npm:^4.0.1395":
+  version: 4.0.1395
+  resolution: "clientnode@npm:4.0.1395"
   peerDependencies:
     "@babel/runtime": "*"
     "@types/prop-types": "*"
@@ -7069,7 +7069,7 @@ __metadata:
       optional: true
     prop-types:
       optional: true
-  checksum: 10c0/de1aa8348cd9d7e9b24828542614c847e657660457fcc31766e1bd777a672ac21db2038bbd3a8787a1e5a9cc55135b81a508320275417ede427811df81383b41
+  checksum: 10c0/7025ae6678d9ac7468c1050e051e75c292145924a31a47961cd7ef7b344a69e705ef3834249da905d521fb9c4859410df98cb1196459421af1773467866b3798
   languageName: node
   linkType: hard
 
@@ -17323,9 +17323,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"web-component-wrapper@npm:^0.0.586":
-  version: 0.0.586
-  resolution: "web-component-wrapper@npm:0.0.586"
+"web-component-wrapper@npm:^0.0.587":
+  version: 0.0.587
+  resolution: "web-component-wrapper@npm:0.0.587"
   peerDependencies:
     "@babel/runtime": "*"
     "@types/react": "*"
@@ -17344,7 +17344,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10c0/9bb629401abca6759661b3bee4f4c1094e446905f6a1fa52df0e48d56c24acba47054b605477b2204e60757cfe3c0c431cf80d5f0a791f58d96d5750510b87de
+  checksum: 10c0/7c4e146a1042451de3db028b119e0133fba53a65336405d2fafe0c003b0a0a983e9d8f9d8491273c310f810c59e608a91870c02feb52a78768eba4dc769d8793
   languageName: node
   linkType: hard
 
@@ -17670,9 +17670,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"website-utilities@npm:^1.0.403":
-  version: 1.0.403
-  resolution: "website-utilities@npm:1.0.403"
+"website-utilities@npm:^1.0.406":
+  version: 1.0.406
+  resolution: "website-utilities@npm:1.0.406"
   peerDependencies:
     "@babel/runtime": "*"
     clientnode: "*"
@@ -17682,7 +17682,7 @@ __metadata:
       optional: true
   bin:
     website-utilities: deploy.js
-  checksum: 10c0/4fca60fe7dd122b1afeebe658b55356d6631390e1768a5d3e97e72d761b8ada2690b08f887bb86e70d0061811ee613f290fe1aa3d858c8d050c9990215805cbf
+  checksum: 10c0/cfa52524d937a81b9dcd779becf9ec86afb8e824e48b4bd5263419cb4f01f9c20d4104349ff6ff14bea9f4bb3492bc6880e19a068775b69cb2eaec0745d9bd55
   languageName: node
   linkType: hard
 
@@ -17702,7 +17702,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:^8.59.2"
     "@typescript-eslint/parser": "npm:^8.59.2"
     "@webcomponents/webcomponentsjs": "npm:^2.8.0"
-    clientnode: "npm:^4.0.1394"
+    clientnode: "npm:^4.0.1395"
     css-loader: "npm:^7.1.4"
     cssnano: "npm:^8.0.0"
     errorreporter: "npm:^1.0.339"
@@ -17733,11 +17733,11 @@ __metadata:
     swiper: "npm:^12.1.4"
     typescript-eslint: "npm:^8.59.2"
     ua-parser-js: "npm:^2.0.9"
-    web-component-wrapper: "npm:^0.0.586"
+    web-component-wrapper: "npm:^0.0.587"
     web-internationalization: "npm:^2.0.19"
     weboptimizer: "npm:^3.0.22"
     webpack-dev-server: "npm:^5.2.3"
-    website-utilities: "npm:^1.0.403"
+    website-utilities: "npm:^1.0.406"
   languageName: unknown
   linkType: soft
 

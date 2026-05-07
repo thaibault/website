@@ -118,7 +118,10 @@ export class HomePage<
                 }
             }"
         >
-            <web-internationalization>
+            <web-internationalization
+                on-switched="/*this.rootInstance._adaptContentHeight()*/"
+                on-ensured="console.log('TODO initialize lang to', data)/*this.rootInstance._adaptContentHeight()*/"
+            >
                 <slot>Please provide a template to transclude.</slot>
             </web-internationalization>
         </website-utilities>
@@ -253,6 +256,8 @@ export class HomePage<
 
         await this.waitForNestedComponentRendering()
 
+        console.log('Do render')
+
         const headroom = new Headroom(
             this.hostDomNode.querySelector('header'),
             {
@@ -317,44 +322,21 @@ export class HomePage<
         return
         this.constructor.extend(true, options, {language: {
             onSwitched: function(...parameter: Array<any>): boolean {
-                const result: any = !initialOnSwitchedCallback || (
-                    initialOnSwitchedCallback &&
-                    initialOnSwitchedCallback.call(this, ...parameter))
-                /*
-                    Only adapt menu highlighter if a section is currently
-                    selected.
-                */
-                self._highlightMenuEntry(false)
-                let showAnimationOptions: Array<Object> = [{opacity: 1}]
-                if (self.languageHandler)
-                    showAnimationOptions = self.languageHandler._options
-                        .textNodeParent.showAnimation
-                if (self.$domNodes.navigationButton.parent('li').filter(
-                    '.active'
-                ).length)
-                    self.$domNodes.menuHighlighter.animate(
-                        ...showAnimationOptions)
                 self._adaptContentHeight()
                 return result
             },
             onEnsured: function(...parameter: Array<any>): boolean {
-                const result: any = !initialOnEnsuredCallback || (
-                    // IgnoreTypeCheck
-                    initialOnEnsuredCallback.call(...parameter))
-                /*
-                    Only adapt menu highlighter if a section is currently
-                    selected.
-                */
-                self._highlightMenuEntry(false)
                 self._adaptContentHeight()
                 return result
             },
             onSwitch: function(
                 oldLanguage: string, newLanguage: string
             ): boolean {
-                const result: any = !initialOnSwitchCallback || (
-                    initialOnSwitchCallback.call(
-                        this, oldLanguage, newLanguage))
+                const result: any =
+                    !initialOnSwitchCallback ||
+                    (initialOnSwitchCallback.call(
+                        this, oldLanguage, newLanguage
+                    ))
                 // Add language toggle button functionality.
                 let hideAnimationOptions: Array<Object> = [{opacity: 0}, {}]
                 let showAnimationOptions: Array<Object> = [{opacity: 1}, {}]
