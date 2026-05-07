@@ -17348,9 +17348,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"web-internationalization@npm:^2.0.18":
-  version: 2.0.18
-  resolution: "web-internationalization@npm:2.0.18"
+"web-internationalization@npm:^2.0.19":
+  version: 2.0.19
+  resolution: "web-internationalization@npm:2.0.19"
   peerDependencies:
     "@babel/runtime": "*"
     clientnode: "*"
@@ -17359,7 +17359,7 @@ __metadata:
   peerDependenciesMeta:
     "@babel/runtime":
       optional: true
-  checksum: 10c0/e90916828c701f96b75f4c094ff0d1e69a275ee6a0e1cdf0ddcf6900959a302d423c44b652d2ad4df83a884707615aab676947d1bc2dcc8dfa03ab52c1683fad
+  checksum: 10c0/636a913fd3aacb0c132c97006a0bc1652b0d6ecc621d69880fd3a778b28efe92202b5e596e048b8dd58dbfd5c59bf045a3ab57d9ca2b52863c4933320fcff703
   languageName: node
   linkType: hard
 
@@ -17670,9 +17670,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"website-utilities@npm:^1.0.400":
-  version: 1.0.400
-  resolution: "website-utilities@npm:1.0.400"
+"website-utilities@npm:^1.0.403":
+  version: 1.0.403
+  resolution: "website-utilities@npm:1.0.403"
   peerDependencies:
     "@babel/runtime": "*"
     clientnode: "*"
@@ -17682,7 +17682,7 @@ __metadata:
       optional: true
   bin:
     website-utilities: deploy.js
-  checksum: 10c0/e033d288795b0a50cfe392b8fd3658589346fe107242601454705f294df20e9efb49fd8bf7693c8cd0e2128bb27ecedeb77dbb4d234576e07d221ab43e5e3ce4
+  checksum: 10c0/4fca60fe7dd122b1afeebe658b55356d6631390e1768a5d3e97e72d761b8ada2690b08f887bb86e70d0061811ee613f290fe1aa3d858c8d050c9990215805cbf
   languageName: node
   linkType: hard
 
@@ -17734,10 +17734,10 @@ __metadata:
     typescript-eslint: "npm:^8.59.2"
     ua-parser-js: "npm:^2.0.9"
     web-component-wrapper: "npm:^0.0.586"
-    web-internationalization: "npm:^2.0.18"
+    web-internationalization: "npm:^2.0.19"
     weboptimizer: "npm:^3.0.22"
     webpack-dev-server: "npm:^5.2.3"
-    website-utilities: "npm:^1.0.400"
+    website-utilities: "npm:^1.0.403"
   languageName: unknown
   linkType: soft
 

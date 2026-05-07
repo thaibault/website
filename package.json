@@ -87,10 +87,10 @@
     "typescript-eslint": "^8.59.2",
     "ua-parser-js": "^2.0.9",
     "web-component-wrapper": "^0.0.586",
-    "web-internationalization": "^2.0.18",
+    "web-internationalization": "^2.0.19",
     "weboptimizer": "^3.0.22",
     "webpack-dev-server": "^5.2.3",
-    "website-utilities": "^1.0.400"
+    "website-utilities": "^1.0.403"
   },
   "engines": {
     "node": ">=24",

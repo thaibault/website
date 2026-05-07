@@ -11,7 +11,7 @@
     License
     -------
 
-    This library written by Torben Sickert stand under a creative commons
+    This library written by Torben Sickert stands under a creative commons
     naming 3.0 unported license.
     See https://creativecommons.org/licenses/by/3.0/deed.de
     endregion
@@ -51,7 +51,7 @@ declare var OFFLINE: boolean
 // endregion
 // region plugins/classes
 /**
- * This plugin holds all needed methods to extend a whole homepage.
+ * This plugin holds all necessary methods to extend a whole homepage.
  * @property static:_name - Defines this class name to allow retrieving them
  * after name mangling.
  *
@@ -72,12 +72,12 @@ declare var OFFLINE: boolean
  * @property _defaultOptions.maximumFooterHeightInPercent {number} - Indicates
  * when the footer should stick to the bottom.
  * @property _defaultOptions.scrollInLinearTime {boolean} - Indicates whether
- * animated scrolling should be accelerate and brake or not.
+ * animated scrolling should be speeded up and brake or not.
  * @property _defaultOptions.backgroundDependentHeightSections
  * {Array.<string>} - A list: of section names which dimensions depend on their
  * background image.
  * @property _defaultOptions.maximumBackgroundDependentHeight {number} - Upper
- * range bound until a dynamic background image adjust is needed.
+ * range bound until a dynamic background image adjusted is needed.
  * @property _defaultOptions.menuHighlightAnimation {Object} - Options for menu
  * highlight animation.
  * @property _defaultOptions.hideMobileMenuAfterSelection {boolean} - Indicates
@@ -111,9 +111,12 @@ export class HomePage<
 > extends Web<TElement, ExternalProperties, InternalProperties> {
     static content = `
         <website-utilities
-            options="{sectionNames: [
-                'home', 'contact', 'work', 'about-this-website'
-            ]}"
+            options="{
+                sectionNames: {
+                    managed: ['about-this-website'],
+                    unmanaged: ['about-me', 'contact', 'work']
+                }
+            }"
         >
             <web-internationalization>
                 <slot>Please provide a template to transclude.</slot>
@@ -200,22 +203,22 @@ export class HomePage<
     */
     // endregion
     _initialContentHeightAdaptionDone = false
-    _initialMenuHightlightDone = false
+    _initialMenuHighlightDone = false
 
     _oldSectionHeightInPixel = 200
     _sectionTopMarginInPixel = 0
     // region public methods
     /// region live-cycle
     /**
-     * Defines dynamic getter and setter interface and resolves configuration
+     * Defines dynamic getter and setter interface and resolves a configuration
      * object. Initializes the map implementation.
      */
     constructor() {
         super()
         /*
-            Babels property declaration transformation overwrites defined
+            Babel property declaration transformation overwrites defined
             properties at the end of an implicit constructor. So we have to
-            redefined them as long as we want to declare expected component
+            redefine them as long as we want to declare expected component
             interface properties to enable static type checks.
         */
         this.defineGetterAndSetterInterface()
@@ -237,7 +240,7 @@ export class HomePage<
      * @param reason - Why an update has been triggered.
      * @param resolveRendering - Indicates whether rendering should be resolved
      * finally. Should be set to "false" via super calls in inherited render
-     * methods which do further dom manipulations afterwards and resolve the
+     * methods which do further dom manipulations afterward and resolve the
      * rendering process by their own.
      * @returns A promise resolving when rendering has finished. A promise may
      * be needed for classes inheriting from this class.
@@ -256,7 +259,7 @@ export class HomePage<
                 offset: 205,
                 tolerance: 5,
                 classes: {
-                    // when element is initialised
+                    // when element is initialized
                     initial : "headroom",
                     // when scrolling up
                     pinned : "headroom--pinned",
@@ -435,7 +438,7 @@ export class HomePage<
     // region protected methods
     /// region event
     /**
-     * Switches the language dependent curriculum vitae links.
+     * Switches the language-dependent curriculum vitae links.
      * @param oldLanguage - Old language.
      * @param newLanguage - New language.
      * @returns - Returns the current instance.
@@ -483,7 +486,7 @@ export class HomePage<
      * @returns Returns the current instance.
      */
     _onChangeMediaQueryMode(oldMode: string, newMode: string): HomePage {
-        // Determine top margin for background image dependent sections.
+        // Determine top margin for backgrounding image-dependent sections.
         this.$domNodes.section.children().css('margin-top', '')
 
         if ('getComputedStyle' in $.global)
@@ -520,12 +523,12 @@ export class HomePage<
      * @returns Returns the current instance.
      */
     _onChangeToExtraSmallMode(): HomePage {
-        // Resets the image dependent section heights.
+        // Resets the image-dependent section heights.
         this.$domNodes.section.children().css('height', 'auto')
         return this
     }
     /**
-     * Switches to given section.
+     * Switches to the given section.
      * @param sectionName - Location to switch to.
      * @returns Returns the current instance.
      */
@@ -568,7 +571,7 @@ export class HomePage<
                 } else
                     $sectionButton.removeClass('active')
             })
-            // If no section could be determined initialize the first one.
+            // If no section could be determined, initialize the first one.
             if (!sectionFound) {
                 const forceSection: string =
                     this.$domNodes.navigationButton.first().attr(
@@ -590,7 +593,7 @@ export class HomePage<
      */
     _extendOptions() {
         /*
-            NOTE: Using the internal setter avoids to trigger an additinal
+            NOTE: Using the internal setter avoids triggering an additional
             rendering.
         */
         this.setPropertyValue(
@@ -599,9 +602,9 @@ export class HomePage<
         )
     }
     /**
-     * Switches to given section.
+     * Switches to the given section.
      * @param sectionName - Section name to switch to.
-     * @param index - Index of section to switch to.
+     * @param index - Index of a section to switch to.
      * @param $sectionButton - The current section button.
      * @returns Returns the current instance.
      */
@@ -647,9 +650,9 @@ export class HomePage<
         return this
     }
     /**
-     * This method is complete if last startup animation was initialized.
-     * @param parameter - Forwards all given arguments to registered start
-     * up animation complete handler callback.
+     * This method is complete if the last startup animation was initialized.
+     * @param parameter - Forwards all given arguments to registered startup
+     * animation complete handler callback.
      * @returns Returns the current instance.
      */
     _onStartUpAnimationComplete(...parameter: Array<any>): HomePage {
@@ -657,7 +660,7 @@ export class HomePage<
         return this._highlightMenuEntry()._adaptContentHeight()
     }
     /**
-     * This method triggers after window is loaded. It overwrites the super
+     * This method triggers after a window is loaded. It overwrites the super
      * method to wait for removing the loading cover until section height is
      * adapted.
      * @param parameter - Forwards all given arguments to registered callbacks.
@@ -715,7 +718,7 @@ export class HomePage<
         return this
     }
     /**
-     * Adapt the carousel height to current main section height.
+     * Adapt the carousel height to the current main section height.
      * @returns Returns the new generated swipe instance.
      */
     _adaptContentHeight(): HomePage {
@@ -736,7 +739,7 @@ export class HomePage<
                         this._adaptBackgroundDependentHeight(
                             newSectionHeightInPixel, $currentSection)
                     */
-                    // First stop currently running animations.
+                    // First, stop currently running animations.
                     if (this.startUpAnimationIsComplete) {
                         this.$domNodes.footer.stop(true)
                         this.$domNodes.carousel.stop(true)
@@ -796,16 +799,16 @@ export class HomePage<
             if (this.$domNodes.carousel.height(
             ) > this.$domNodes.window.height())
                 /*
-                    If section height is larger than current viewport pre set
+                    If section height is larger than current viewport pre-set
                     height to current viewport.
                 */
                 this.$domNodes.carousel.css(
                     'height', this.$domNodes.window.height())
             if (newSectionHeightInPixel > this.$domNodes.window.height())
                 /*
-                    If new section height height is larger than current
-                    viewport make the transition till current viewport and
-                    reset after animation completes.
+                    If new section height is larger than current viewport make
+                    the transition till current viewport and reset after
+                    animation completes.
                 */
                 newPseudoCarouselHeightInPixel = this.$domNodes.window.height()
         }
@@ -823,7 +826,7 @@ export class HomePage<
         return this
     }
     /**
-     * Adapts the background dependent sections height.
+     * Adapts the background-dependent sections' height.
      * @param newSectionHeightInPixel - Section height to adapt to.
      * @param $currentSection - The current section dom node.
      * @returns Returns the new calculated section height in pixel.
@@ -870,8 +873,8 @@ export class HomePage<
         )
     }
     /**
-     * Determines the new section height in pixel after webview size or section
-     * has changed.
+     * Determines the new section height in the pixel after webview size or
+     * section has changed.
      * @param $currentSection - The current section dom node.
      * @returns Returns the new computed section height.
      */
@@ -905,8 +908,8 @@ export class HomePage<
         return this.$domNodes.document.height()
     }
     /**
-     * Attaches needed event handler to the swipe plugin and initializes the
-     * slider.
+     * Attaches the necessary event handler to the swipe plugin and initializes
+     * the slider.
      * @returns Returns the new generated swipe instance.
      */
     _initializeSwipe(): Object {
@@ -934,7 +937,7 @@ export class HomePage<
         return this.$domNodes.carousel.Swipe(this._options.carousel)
     }
     /**
-     * This method adds triggers to switch section.
+     * This method adds triggers to a switch section.
      * @param parameter - Forwards all given arguments to registered callbacks.
      * @returns Returns the current instance.
      */
@@ -993,7 +996,7 @@ export class HomePage<
         return super._addNavigationEvents(...parameter)
     }
     /**
-     * Determines current section to the right or the left.
+     * Determines the current section to the right or the left.
      * @param sectionName - Relative section ("next" or "prev").
      * @returns Returns the absolute section name.
      */
@@ -1004,7 +1007,7 @@ export class HomePage<
             ): boolean|undefined => {
                 if ($(button).attr('href') === $.global.location.hash) {
                     /*
-                        NOTE: We subtract 1 from navigation buttons length
+                        NOTE: We subtract 1 from the navigation buttons length
                         because we want to ignore the about this website
                         section. And the index starts counting by zero.
                     */

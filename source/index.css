@@ -1,14 +1,16 @@
 /* !/usr/bin/env css
 -*- coding: utf-8 -*- */
-/* region header
+/*
+region header
 Copyright Torben Sickert (info["~at~"]torben.website) 16.12.2012
 
 License
 -------
 
-This library written by Torben Sickert stand under a creative commons naming
+This library written by Torben Sickert stands under a creative commons naming
 3.0 unported license. See https://creativecommons.org/licenses/by/3.0/deed.de
-endregion */
+endregion
+*/
 @import 'swiper/swiper.css';
 @import 'swiper/modules/a11y.css';
 @import 'swiper/modules/hash-navigation.css';
@@ -24,7 +26,7 @@ endregion */
     /* region custom-properties */
     /** region color */
     --background-color: #222;
-    --header-background-color: #22222214;
+    --header-background-color: rgba(34, 34, 34, 0.1);
     --font-color: #5a5a5a;
     --surface-color: #f2f2f2;
     --accent-color: #f88;
@@ -535,6 +537,9 @@ home-page {
     /** region about this web site */
     /* Wraps the legal notice content. */
     .about-this-website {
+        display: grid;
+        justify-content: center;
+
         min-height: var(--minimum-content-height-in-pixel);
         background-color: var(--surface-color);
         top: 0;
@@ -542,10 +547,12 @@ home-page {
         width: 100%;
 
         padding-bottom: 15px;
-        /* Wraps the text content, positions space around them. */
-        .center {
-            margin-left: 10%;
 
+        &.wu-section-inactive {
+            display: none;
+        }
+        /* Wraps the text content, positions space around them. */
+        .about-this-website__center {
             h1 {
                 font-size: 2.5em;
 
