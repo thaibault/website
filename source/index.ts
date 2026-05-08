@@ -119,8 +119,9 @@ export class HomePage<
             }"
         >
             <web-internationalization
+                on-switch="this.rootInstance.prepareToSwitchLanguage(parameters[0], parameters[1])"
                 on-switched="/*this.rootInstance._adaptContentHeight()*/"
-                on-ensured="console.log('TODO initialize lang to', data)/*this.rootInstance._adaptContentHeight()*/"
+                on-ensured="this.rootInstance.prepareToSwitchLanguage(this.currentLanguage, data)/*this.rootInstance._adaptContentHeight()*/"
             >
                 <slot>Please provide a template to transclude.</slot>
             </web-internationalization>
@@ -321,59 +322,6 @@ export class HomePage<
         // TODO
         return
         this.constructor.extend(true, options, {language: {
-            onSwitched: function(...parameter: Array<any>): boolean {
-                self._adaptContentHeight()
-                return result
-            },
-            onEnsured: function(...parameter: Array<any>): boolean {
-                self._adaptContentHeight()
-                return result
-            },
-            onSwitch: function(
-                oldLanguage: string, newLanguage: string
-            ): boolean {
-                const result: any =
-                    !initialOnSwitchCallback ||
-                    (initialOnSwitchCallback.call(
-                        this, oldLanguage, newLanguage
-                    ))
-                // Add language toggle button functionality.
-                let hideAnimationOptions: Array<Object> = [{opacity: 0}, {}]
-                let showAnimationOptions: Array<Object> = [{opacity: 1}, {}]
-                if (self.languageHandler) {
-                    hideAnimationOptions = self.languageHandler._options
-                        .textNodeParent.hideAnimation
-                    showAnimationOptions = self.languageHandler._options
-                        .textNodeParent.showAnimation
-                }
-                self.$domNodes.menuHighlighter.animate(...hideAnimationOptions)
-                hideAnimationOptions = hideAnimationOptions.slice()
-                hideAnimationOptions[1] = this.constructor.extend(
-                    true,
-                    {},
-                    hideAnimationOptions[1],
-                    {
-                        always: function(): any {
-                            let result: any
-                            if (initialLanguageHideAnimationAlwaysCallback)
-                                result = initialLanguageHideAnimationAlwaysCallback
-                                    .call(this, oldLanguage, newLanguage)
-                            const $oldLanguageLinkDomNode: $DomNode = $(this)
-                            $oldLanguageLinkDomNode.attr(
-                                'href', `#language-${oldLanguage}`
-                            ).text(oldLanguage.substr(0, 2)).animate(
-                                ...showAnimationOptions)
-                            return result
-                        }
-                    }
-                )
-                const $newLanguageLinkDomNode: $DomNode = $(
-                    `a[href="#language-${newLanguage}"]`)
-                $newLanguageLinkDomNode.animate(...hideAnimationOptions)
-                // Adapt curriculum vitae link.
-                self._adaptCurriculumVitaeLink(oldLanguage, newLanguage)
-                return result
-            },
             onEnsure: (oldLanguage: string, newLanguage: string): any => {
                 const result: any = !initialOnEnsureCallback || (
                     initialOnEnsureCallback.call(
@@ -416,6 +364,38 @@ export class HomePage<
         return this
     }
     /// endregion
+    prepareToSwitchLanguage(oldLanguage: string, newLanguage: string) {
+        // TODO
+        console.log('switch lang', oldLanguage, newLanguage)
+        return
+
+        self.$domNodes.menuHighlighter.animate(...hideAnimationOptions)
+        hideAnimationOptions = hideAnimationOptions.slice()
+        hideAnimationOptions[1] = this.constructor.extend(
+            true,
+            {},
+            hideAnimationOptions[1],
+            {
+                always: function(): any {
+                    let result: any
+                    if (initialLanguageHideAnimationAlwaysCallback)
+                        result = initialLanguageHideAnimationAlwaysCallback
+                            .call(this, oldLanguage, newLanguage)
+                    const $oldLanguageLinkDomNode: $DomNode = $(this)
+                    $oldLanguageLinkDomNode.attr(
+                        'href', `#lang-${oldLanguage}`
+                    ).text(oldLanguage.substr(0, 2)).animate(
+                        ...showAnimationOptions)
+                    return result
+                }
+            }
+        )
+        const $newLanguageLinkDomNode: $DomNode = $(
+            `a[href="#language-${newLanguage}"]`)
+        $newLanguageLinkDomNode.animate(...hideAnimationOptions)
+        // Adapt curriculum vitae link.
+        self._adaptCurriculumVitaeLink(oldLanguage, newLanguage)
+    }
     // endregion
     // region protected methods
     /// region event
