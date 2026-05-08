@@ -138,6 +138,11 @@ export class HomePage<
         hideMobileMenuAfterSelection: true,
 
         selectors: {
+            headerDomNode: 'header',
+            switchLanguageButton: '.hp-switch-language',
+            swiperDomNode: '.swiper',
+
+            // TODO
             carousel: 'section.carousel.slide',
 
             section: 'section.carousel.slide div.carousel-inner div.item',
@@ -181,6 +186,10 @@ export class HomePage<
         options = {} as Options
     // endregion
     // region domNodes
+    headerDomNode: HTMLElement | null = null
+    swiperDomNode: HTMLElement | null = null
+    switchLanguageButtonDomNode: HTMLElement | null = null
+
     /* TODO
     carousel: 'section.carousel.slide'
     section: 'section.carousel.slide div.carousel-inner div.item'
@@ -257,10 +266,12 @@ export class HomePage<
 
         await this.waitForNestedComponentRendering()
 
+        this.grabDomNodes()
+
         console.log('Do render')
 
         const headroom = new Headroom(
-            this.hostDomNode.querySelector('header'),
+            this.headerDomNode,
             {
                 offset: 205,
                 tolerance: 5,
@@ -292,7 +303,7 @@ export class HomePage<
         PriorityNavigation.init({breakPoint: 100})
 
         const swiper = new Swiper(
-            '.swiper',
+            this.swiperDomNode,
             {
                 modules: [HashNavigation, Navigation, Pagination, Parallax, Scrollbar],
 
@@ -364,6 +375,15 @@ export class HomePage<
         return this
     }
     /// endregion
+    grabDomNodes() {
+        this.headerDomNode =
+            this.hostDomNode.querySelector(this.options.selectors.header)
+        this.swiperDomNode =
+            this.hostDomNode.querySelector(this.options.selectors.swiper)
+        this.switchLanguageButtonDomNode = this.hostDomNode.querySelector(
+            this.options.selectors.switchLanguageButton
+        )
+    }
     prepareToSwitchLanguage(oldLanguage: string, newLanguage: string) {
         // TODO
         console.log('switch lang', oldLanguage, newLanguage)
