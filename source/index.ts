@@ -26,9 +26,9 @@ import {
     getParents,
     getText,
     globalContext,
+    KEYBOARD_CODES,
     Logger,
     Mapping,
-    KEYBOARD_CODES,
     NOOP,
     wrap
 } from 'clientnode'
@@ -36,12 +36,16 @@ import {func, object} from 'clientnode/property-types'
 import Headroom from 'headroom.js'
 import PriorityNavigation from 'priority-nav'
 import Swiper from 'swiper'
-import {HashNavigation, Navigation, Pagination, Parallax, Scrollbar} from 'swiper/modules'
+import {
+    HashNavigation, Navigation, Pagination, Parallax, Scrollbar
+} from 'swiper/modules'
 import {property} from 'web-component-wrapper/decorator'
 import {WebComponentAPI} from 'web-component-wrapper/type'
 import {Web} from 'web-component-wrapper/Web'
 import {api as websiteUtilitiesAPI} from 'website-utilities'
-import {api as webInternationalizationAPI} from 'web-internationalization'
+import WebInternationalization, {
+    api as webInternationalizationAPI
+} from 'web-internationalization'
 
 import {DefaultOptions, Options} from './type'
 // endregion
@@ -119,9 +123,10 @@ export class HomePage<
             }"
         >
             <web-internationalization
-                on-switch="this.rootInstance.prepareToSwitchLanguage(parameters[0], parameters[1])"
+                options="{selection: this.rootInstance.options.languages}"
+                on-switch="this.rootInstance.prepareToSwitchLanguage(parameters[0], parameters[1], this)"
                 on-switched="/*this.rootInstance._adaptContentHeight()*/"
-                on-ensured="this.rootInstance.prepareToSwitchLanguage(this.currentLanguage, data)/*this.rootInstance._adaptContentHeight()*/"
+                on-ensured="this.rootInstance.prepareToSwitchLanguage(this.currentLanguage, data, this)/*this.rootInstance._adaptContentHeight()*/"
             >
                 <slot>Please provide a template to transclude.</slot>
             </web-internationalization>
@@ -137,10 +142,38 @@ export class HomePage<
         maximumBackgroundDependentHeight: 750,
         hideMobileMenuAfterSelection: true,
 
+        headroom: {
+            offset: 205,
+            tolerance: 5,
+            classes: {
+                // when element is initialized
+                initial : "headroom",
+                // when scrolling up
+                pinned : "headroom--pinned",
+                // when scrolling down
+                unpinned : "headroom--unpinned",
+                // when above offset
+                top : "headroom--top",
+                // when below offset
+                notTop : "headroom--not-top",
+                // when at bottom of scroll area
+                bottom : "headroom--bottom",
+                // when not at bottom of scroll area
+                notBottom : "headroom--not-bottom",
+                // when frozen method has been called
+                frozen: "headroom--frozen",
+                // multiple classes are also supported with a space-separated list
+                pinned: "headroom--pinned foo bar"
+            }
+        },
+
+        languages: ['enUS', 'deDE'],
+
+        priorityNavigation: {breakPoint: 100},
+
         selectors: {
-            headerDomNode: 'header',
-            switchLanguageButton: '.hp-switch-language',
-            swiperDomNode: '.swiper',
+            header: 'header',
+            swiper: '.swiper',
 
             // TODO
             carousel: 'section.carousel.slide',
@@ -168,13 +201,31 @@ export class HomePage<
             footer: 'div.footer'
         },
 
-        carousel: {
-            startSlide: 0,
-            speed: 400,
-            auto: 0,
-            continuous: false,
-            disableScroll: false,
-            stopPropagation: false
+        swiper: {
+            modules: [
+                HashNavigation, Navigation, Pagination, Parallax, Scrollbar
+            ],
+
+            autoHeight: true,
+
+            a11y: true,
+
+            hashNavigation: {
+                watchState: true
+            },
+
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev'
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                type: 'bullets'
+            },
+            scrollbar: {
+                el: '.swiper-scrollbar'
+            }
         }
     }
 
@@ -188,7 +239,6 @@ export class HomePage<
     // region domNodes
     headerDomNode: HTMLElement | null = null
     swiperDomNode: HTMLElement | null = null
-    switchLanguageButtonDomNode: HTMLElement | null = null
 
     /* TODO
     carousel: 'section.carousel.slide'
@@ -228,6 +278,7 @@ export class HomePage<
      */
     constructor() {
         super()
+
         /*
             Babel property declaration transformation overwrites defined
             properties at the end of an implicit constructor. So we have to
@@ -241,9 +292,10 @@ export class HomePage<
      * configured dom content.
      * @param name - Attribute name which was updates.
      * @param newValue - New updated value.
+     * @returns Returns promise resolving when attribute has been updated.
      */
-    onUpdateAttribute(name: string, newValue: string) {
-        super.onUpdateAttribute(name, newValue)
+    async onUpdateAttribute(name: string, newValue: string): Promise<void> {
+        await super.onUpdateAttribute(name, newValue)
 
         if (name === 'options')
             this._extendOptions()
@@ -259,76 +311,23 @@ export class HomePage<
      * be needed for classes inheriting from this class.
      */
     async render(reason = 'unknown', resolveRendering = true): Promise<void> {
-        await super.render(reason, false)
-
         if (Object.keys(this.options).length === 0)
             this._extendOptions()
+
+        await super.render(reason, false)
 
         await this.waitForNestedComponentRendering()
 
         this.grabDomNodes()
 
-        console.log('Do render')
-
-        const headroom = new Headroom(
-            this.headerDomNode,
-            {
-                offset: 205,
-                tolerance: 5,
-                classes: {
-                    // when element is initialized
-                    initial : "headroom",
-                    // when scrolling up
-                    pinned : "headroom--pinned",
-                    // when scrolling down
-                    unpinned : "headroom--unpinned",
-                    // when above offset
-                    top : "headroom--top",
-                    // when below offset
-                    notTop : "headroom--not-top",
-                    // when at bottom of scroll area
-                    bottom : "headroom--bottom",
-                    // when not at bottom of scroll area
-                    notBottom : "headroom--not-bottom",
-                    // when frozen method has been called
-                    frozen: "headroom--frozen",
-                    // multiple classes are also supported with a space-separated list
-                    pinned: "headroom--pinned foo bar"
-                }
-            }
-        )
+        const headroom =
+            new Headroom(this.headerDomNode, this.options.headroom)
         headroom.init()
         // headroom.destroy()
 
-        PriorityNavigation.init({breakPoint: 100})
+        PriorityNavigation.init(this.options.priorityNavigation)
 
-        const swiper = new Swiper(
-            this.swiperDomNode,
-            {
-                modules: [HashNavigation, Navigation, Pagination, Parallax, Scrollbar],
-
-                autoHeight: true,
-
-                a11y: true,
-
-                hashNavigation: {
-                    watchState: true
-                },
-
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev'
-                },
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                    type: 'bullets'
-                },
-                scrollbar: {
-                    el: '.swiper-scrollbar'
-                }
-            }
-        )
+        const swiper = new Swiper(this.swiperDomNode, this.options.swiper)
 
         // TODO
         return
@@ -380,13 +379,26 @@ export class HomePage<
             this.hostDomNode.querySelector(this.options.selectors.header)
         this.swiperDomNode =
             this.hostDomNode.querySelector(this.options.selectors.swiper)
-        this.switchLanguageButtonDomNode = this.hostDomNode.querySelector(
-            this.options.selectors.switchLanguageButton
-        )
     }
-    prepareToSwitchLanguage(oldLanguage: string, newLanguage: string) {
-        // TODO
-        console.log('switch lang', oldLanguage, newLanguage)
+    async prepareToSwitchLanguage(
+        oldLanguage: string,
+        newLanguage: string,
+        languageComponentInstance: WebInternationalization
+    ) {
+        for (
+            const domNode of
+            languageComponentInstance.switchLanguageButtonDomNodes
+        )
+            for (const language of languageComponentInstance.options.selection)
+                if (language !== newLanguage) {
+                    domNode.setAttribute(
+                        'href',
+                        domNode.getAttribute('href')
+                            .replace(/^(#lang-).+$/, `$1${language}`)
+                    )
+                    domNode.innerText = language.substr(0, 2)
+                }
+
         return
 
         self.$domNodes.menuHighlighter.animate(...hideAnimationOptions)
@@ -880,7 +892,7 @@ export class HomePage<
                 ) - this.$domNodes.footer.height()
             )
                 /*
-                    If we have a high resolution available we will let the
+                    If we have a high resolution available, we will let the
                     footer stay on the bottom.
                 */
                 return this.$domNodes.document.height(
