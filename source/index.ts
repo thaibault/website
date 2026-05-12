@@ -34,7 +34,6 @@ import {
 } from 'clientnode'
 import {func, object} from 'clientnode/property-types'
 import Headroom from 'headroom.js'
-import PriorityNavigation from 'priority-nav'
 import Swiper from 'swiper'
 import {
     HashNavigation, Navigation, Pagination, Parallax, Scrollbar
@@ -168,8 +167,6 @@ export class HomePage<
         },
 
         languages: ['enUS', 'deDE'],
-
-        priorityNavigation: {breakPoint: 100},
 
         selectors: {
             header: 'header',
@@ -324,8 +321,6 @@ export class HomePage<
             new Headroom(this.headerDomNode, this.options.headroom)
         headroom.init()
         // headroom.destroy()
-
-        PriorityNavigation.init(this.options.priorityNavigation)
 
         const swiper = new Swiper(this.swiperDomNode, this.options.swiper)
 

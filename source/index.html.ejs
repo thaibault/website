@@ -434,7 +434,7 @@ _%>
                 class="hp-header headroom website-start-up-animation-number-<%- getStartUpAnimationNumber() %>"
             >
                 <div class="hp-header__center">
-                    <nav>
+                    <nav role="navigation" class="wu-priority-navigation">
                         <ul>
                             <%_ for (const section of SECTIONS) {
                                 if (section.content[0]) {
@@ -448,6 +448,13 @@ _%>
                                                 <%- section.content[0][ALTERNATE_LANGUAGE] %>
                                             -->
                                         </a>
+                                    </li>
+                                    <li class="wu-priority-navigation__overflow">
+                                        <span
+                                            class="wu-priority-navigation__overflow__title"
+                                        >▼</span>
+                                        <ul class="wu-priority-navigation__overflow__list">
+                                        </ul>
                                     </li>
                                 <%_ } _%>
                             <%_ } _%>

@@ -4269,15 +4269,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jsdom@npm:^28.0.1":
-  version: 28.0.1
-  resolution: "@types/jsdom@npm:28.0.1"
+"@types/jsdom@npm:^28.0.3":
+  version: 28.0.3
+  resolution: "@types/jsdom@npm:28.0.3"
   dependencies:
     "@types/node": "npm:*"
     "@types/tough-cookie": "npm:*"
-    parse5: "npm:^7.0.0"
+    parse5: "npm:^8.0.0"
     undici-types: "npm:^7.21.0"
-  checksum: 10c0/4d0e412b4de5389279544ff227c6bacf6a8cb3e2fcabf8b543026568444c60e770848ba752cd134ef90f6ce3e7bafd3158b2a3dc1947c2961a5824b12d15bfac
+  checksum: 10c0/08b1cd61ee3e9610676be3c68a782a94667b86a5f73b8a262095d05f84c9e864fc11b25ae53450cd519a0abd46c202906a735bd61aa176257a981964bc5b1166
   languageName: node
   linkType: hard
 
@@ -7059,9 +7059,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"clientnode@npm:^4.0.1395":
-  version: 4.0.1395
-  resolution: "clientnode@npm:4.0.1395"
+"clientnode@npm:^4.0.1396":
+  version: 4.0.1396
+  resolution: "clientnode@npm:4.0.1396"
   peerDependencies:
     "@babel/runtime": "*"
     "@types/prop-types": "*"
@@ -7076,7 +7076,7 @@ __metadata:
       optional: true
     prop-types:
       optional: true
-  checksum: 10c0/7025ae6678d9ac7468c1050e051e75c292145924a31a47961cd7ef7b344a69e705ef3834249da905d521fb9c4859410df98cb1196459421af1773467866b3798
+  checksum: 10c0/b538387691b9359583a004d85c4bc6bf475b042af45cc1e58c8960e942b5fa1adabaec4959ba2387840dfda3eaf64540bae08b6fdaddff1b300e57d343aadf2d
   languageName: node
   linkType: hard
 
@@ -8386,6 +8386,13 @@ __metadata:
   version: 6.0.1
   resolution: "entities@npm:6.0.1"
   checksum: 10c0/ed836ddac5acb34341094eb495185d527bd70e8632b6c0d59548cbfa23defdbae70b96f9a405c82904efa421230b5b3fd2283752447d737beffd3f3e6ee74414
+  languageName: node
+  linkType: hard
+
+"entities@npm:^8.0.0":
+  version: 8.0.0
+  resolution: "entities@npm:8.0.0"
+  checksum: 10c0/938e631664c19451823344a351aeeafd74fae2d5fa51e4d5b6ff635afaefd4bacf0f609989888c04c42733f46ffdac15211608267ebb02488005891a4793e94d
   languageName: node
   linkType: hard
 
@@ -13110,6 +13117,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"parse5@npm:^8.0.0":
+  version: 8.0.1
+  resolution: "parse5@npm:8.0.1"
+  dependencies:
+    entities: "npm:^8.0.0"
+  checksum: 10c0/c3c1c5aab55f6e4be5245599790e56e64be7764a4a0edd7f98db4fe3bb380f63add752fa047dff0496446c25f4104f0c7c1967723de640bde92306a7bb67ed2f
+  languageName: node
+  linkType: hard
+
 "parseurl@npm:~1.3.2, parseurl@npm:~1.3.3":
   version: 1.3.3
   resolution: "parseurl@npm:1.3.3"
@@ -14340,13 +14356,6 @@ __metadata:
   version: 2.0.0
   resolution: "prettysize@npm:2.0.0"
   checksum: 10c0/b5ff8d54844a133d09b582540b731d721af4b86c3d8a9322f204e9e4cb08f891d076ad29acf1ad4091a0515920dd8bf26c96435dcf6ce248131ca4a3f8a1ec89
-  languageName: node
-  linkType: hard
-
-"priority-nav@npm:^1.0.14":
-  version: 1.0.14
-  resolution: "priority-nav@npm:1.0.14"
-  checksum: 10c0/dbae6408adf7a22e3764321c95d7d8f7b15c4760bf942bb7e6f159eebde6603f41cd61dcf33ec57e71a7960f2f7c8eb50c4ba7849a17acf740a407e5ac6541cd
   languageName: node
   linkType: hard
 
@@ -17677,9 +17686,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"website-utilities@npm:^1.0.409":
-  version: 1.0.409
-  resolution: "website-utilities@npm:1.0.409"
+"website-utilities@npm:^1.0.413":
+  version: 1.0.413
+  resolution: "website-utilities@npm:1.0.413"
   peerDependencies:
     "@babel/runtime": "*"
     clientnode: "*"
@@ -17689,7 +17698,7 @@ __metadata:
       optional: true
   bin:
     website-utilities: deploy.js
-  checksum: 10c0/8930276a8ee24a6bb67c0012bdec4aec8ba6f29e4c3edd3709b053c851c6f1a4b104f5e7e0786623ebc2ed79c4acbbf3ab91f70e4626d5743adc0e747e420d0a
+  checksum: 10c0/73fd5c2b5e2abfbd15a7d19c4b56258dba26806a42646815ab4827cbee4b8948e68e861f309c73ac99698e9016b8d248f20d52329949e1929cc7a6c711dde4a1
   languageName: node
   linkType: hard
 
@@ -17704,13 +17713,13 @@ __metadata:
     "@types/ejs": "npm:^3.1.5"
     "@types/headroom": "npm:^0.12.5"
     "@types/html-minifier": "npm:^4.0.6"
-    "@types/jsdom": "npm:^28.0.1"
+    "@types/jsdom": "npm:^28.0.3"
     "@types/node": "npm:^25.7.0"
     "@types/webpack-env": "npm:^1.18.8"
     "@typescript-eslint/eslint-plugin": "npm:^8.59.3"
     "@typescript-eslint/parser": "npm:^8.59.3"
     "@webcomponents/webcomponentsjs": "npm:^2.8.0"
-    clientnode: "npm:^4.0.1395"
+    clientnode: "npm:^4.0.1396"
     css-loader: "npm:^7.1.4"
     cssnano: "npm:^8.0.1"
     errorreporter: "npm:^1.0.339"
@@ -17733,7 +17742,6 @@ __metadata:
     postcss-preset-env: "npm:^11.2.1"
     postcss-sprites: "npm:^4.2.1"
     postcss-url: "npm:^10.1.3"
-    priority-nav: "npm:^1.0.14"
     prop-types: "npm:^15.8.1"
     style-loader: "npm:^4.0.0"
     stylelint: "npm:^17.11.0"
@@ -17745,7 +17753,7 @@ __metadata:
     web-internationalization: "npm:^2.0.22"
     weboptimizer: "npm:^3.0.22"
     webpack-dev-server: "npm:^5.2.4"
-    website-utilities: "npm:^1.0.409"
+    website-utilities: "npm:^1.0.413"
   languageName: unknown
   linkType: soft
 
