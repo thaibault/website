@@ -50,6 +50,7 @@ export interface DefaultOptions {
     selectors: {
         header: string
         swiper: string
+        curriculumVitaeLink: string
     }
 
     swiper: SwiperOptions

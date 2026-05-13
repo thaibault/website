@@ -588,36 +588,21 @@ _%>
                                                 <%- section.content[2][ALTERNATE_LANGUAGE] %>
                                             -->
                                             <%_ if (section.title === 'about') { _%>
-                                                <a
-                                                    class="visible-xs"
-                                                    href="<%- LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE_PATH %>"
-                                                    target="_blank"
-                                                >
-                                                    Curriculum Vitae (German)
-                                                    <!--<%- ALTERNATE_LANGUAGE %>:
-                                                        Lebenslauf (Deutsch)
-                                                    -->
-                                                </a>
-                                                <a
-                                                    class="visible-xs"
-                                                    href="<%- LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE_PATH %>"
-                                                    target="_blank"
-                                                >
-                                                    Curriculum Vitae (English)
-                                                    <!--<%- ALTERNATE_LANGUAGE %>:
-                                                        Lebenslauf (Englisch)
-                                                    -->
-                                                </a>
-                                                <a
-                                                    class="hidden-xs"
-                                                    href="<%- LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE_PATH %>"
-                                                    target="_blank"
-                                                >
-                                                    Curriculum Vitae
-                                                    <!--<%- ALTERNATE_LANGUAGE %>:
-                                                        Lebenslauf
-                                                    -->
-                                                </a>
+                                                <lang-replace>
+                                                    <a
+                                                        class="hidden-xs"
+                                                        href="<%- LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE_PATH %>"
+                                                        target="_blank"
+                                                    >Curriculum Vitae</a>
+                                                </lang-replace>
+                                                <lang-replacement><%- ALTERNATE_LANGUAGE %>:
+                                                    <a
+                                                        class="visible-xs"
+                                                        href="<%- LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE_PATH %>"
+                                                        target="_blank"
+                                                    >Lebenslauf</a>
+                                                </lang-replacement>
+
                                                 <a
                                                     href="<%- LINK_V_CARD_PATH %>"
                                                     target="_blank"

@@ -120,11 +120,12 @@ export class HomePage<
                     unmanaged: ['about-me', 'contact', 'work']
                 }
             }"
+            onChangeMediaQueryMode="this._onChangeMediaQueryMode(...parameters)"
         >
             <web-internationalization
                 options="{selection: this.rootInstance.options.languages}"
                 on-switch="this.rootInstance.prepareToSwitchLanguage(parameters[0], parameters[1], this)"
-                on-switched="/*this.rootInstance._adaptContentHeight()*/"
+                on-switched="/* TODO this.rootInstance._adaptContentHeight()*/"
                 on-ensured="this.rootInstance.prepareToSwitchLanguage(this.currentLanguage, data, this)/*this.rootInstance._adaptContentHeight()*/"
             >
                 <slot>Please provide a template to transclude.</slot>
@@ -171,6 +172,7 @@ export class HomePage<
         selectors: {
             header: 'header',
             swiper: '.swiper',
+            curriculumVitaeLink: 'a[href*="curriculumVitae"]',
 
             // TODO
             carousel: 'section.carousel.slide',
@@ -236,6 +238,7 @@ export class HomePage<
     // region domNodes
     headerDomNode: HTMLElement | null = null
     swiperDomNode: HTMLElement | null = null
+    curriculumVitaeLinkDomNodes: NodeListOf<HTMLLinkElement> | null = null
 
     /* TODO
     carousel: 'section.carousel.slide'
@@ -393,80 +396,10 @@ export class HomePage<
                     )
                     domNode.innerText = language.substr(0, 2)
                 }
-
-        return
-
-        self.$domNodes.menuHighlighter.animate(...hideAnimationOptions)
-        hideAnimationOptions = hideAnimationOptions.slice()
-        hideAnimationOptions[1] = this.constructor.extend(
-            true,
-            {},
-            hideAnimationOptions[1],
-            {
-                always: function(): any {
-                    let result: any
-                    if (initialLanguageHideAnimationAlwaysCallback)
-                        result = initialLanguageHideAnimationAlwaysCallback
-                            .call(this, oldLanguage, newLanguage)
-                    const $oldLanguageLinkDomNode: $DomNode = $(this)
-                    $oldLanguageLinkDomNode.attr(
-                        'href', `#lang-${oldLanguage}`
-                    ).text(oldLanguage.substr(0, 2)).animate(
-                        ...showAnimationOptions)
-                    return result
-                }
-            }
-        )
-        const $newLanguageLinkDomNode: $DomNode = $(
-            `a[href="#language-${newLanguage}"]`)
-        $newLanguageLinkDomNode.animate(...hideAnimationOptions)
-        // Adapt curriculum vitae link.
-        self._adaptCurriculumVitaeLink(oldLanguage, newLanguage)
     }
     // endregion
     // region protected methods
     /// region event
-    /**
-     * Switches the language-dependent curriculum vitae links.
-     * @param oldLanguage - Old language.
-     * @param newLanguage - New language.
-     * @returns - Returns the current instance.
-     */
-    _adaptCurriculumVitaeLink(
-        oldLanguage: string, newLanguage: string
-    ): HomePage {
-        const $curriculumVitaeLink: $DomNode =
-            $('a[href*="curriculumVitae"].hidden-xs')
-
-        if (!$curriculumVitaeLink.data(oldLanguage))
-            $curriculumVitaeLink
-                .data(
-                    oldLanguage, $curriculumVitaeLink.attr('href')
-                )
-        if (!$curriculumVitaeLink.data(newLanguage))
-            $curriculumVitaeLink
-                .data(
-                    newLanguage,
-                    $curriculumVitaeLink
-                        .data(oldLanguage)
-                        .substr(
-                            0,
-                            $curriculumVitaeLink
-                                .data(oldLanguage)
-                                .lastIndexOf('.') -
-                            oldLanguage.length
-                        ) +
-                        newLanguage.substr(0, 2).toUpperCase() +
-                        newLanguage.substr(2).toLowerCase() +
-                        $curriculumVitaeLink.data(oldLanguage).substr(
-                            $curriculumVitaeLink.data(oldLanguage).lastIndexOf('.')
-                        )
-                )
-
-        $curriculumVitaeLink.attr('href', $curriculumVitaeLink.data(newLanguage))
-
-        return this
-    }
     /**
      * This method triggers if the responsive design switches to another
      * resolution mode.
@@ -475,36 +408,14 @@ export class HomePage<
      * @returns Returns the current instance.
      */
     _onChangeMediaQueryMode(oldMode: string, newMode: string): HomePage {
+        console.log('TODO', oldMode, newMode)
+
         // Determine top margin for backgrounding image-dependent sections.
         this.$domNodes.section.children().css('margin-top', '')
 
         if ('getComputedStyle' in $.global)
             this._sectionTopMarginInPixel = parseInt(
                 $.global.getComputedStyle($('h1')[1], ':before').height, 10)
-
-        // Show responsive dimension indicator switching.
-        this._options.dimensionIndicator.effectOptions.showAnimation[
-            1
-        ].always = (): HomePage =>
-            /*
-                Adapt menu highlighter after changing layout and dimension
-                indicator.
-            */
-            this._highlightMenuEntry(false)
-
-        this._options.dimensionIndicator.effectOptions.hideAnimation[
-            1
-        ].always = (): $DomNode => this.$domNodes.dimensionIndicator.html(
-            this.constructor.stringFormat(
-                this._options.dimensionIndicator.template, newMode)
-        ).animate(
-            ...this._options.dimensionIndicator.effectOptions.showAnimation
-        )
-        this.$domNodes.dimensionIndicator.stop().animate(
-            ...this._options.dimensionIndicator.effectOptions.hideAnimation
-        )
-
-        return super._onChangeMediaQueryMode(oldMode, newMode)
     }
     /**
      * This method triggers if the responsive design switches to extra small
