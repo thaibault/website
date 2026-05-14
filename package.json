@@ -76,7 +76,7 @@
     "postcss-loader": "^8.2.1",
     "postcss-mixins": "^12.1.2",
     "postcss-nested": "^7.0.2",
-    "postcss-preset-env": "^11.2.1",
+    "postcss-preset-env": "^11.3.0",
     "postcss-sprites": "^4.2.1",
     "postcss-url": "^10.1.3",
     "prop-types": "^15.8.1",
@@ -90,7 +90,7 @@
     "web-internationalization": "^2.0.22",
     "weboptimizer": "^3.0.22",
     "webpack-dev-server": "^5.2.4",
-    "website-utilities": "^1.0.413"
+    "website-utilities": "^1.0.414"
   },
   "engines": {
     "node": ">=24",

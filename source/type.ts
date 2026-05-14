@@ -51,6 +51,9 @@ export interface DefaultOptions {
         header: string
         swiper: string
         curriculumVitaeLink: string
+        section: string
+        sectionSwiperWrapper: string
+        navigationButtons: string
     }
 
     swiper: SwiperOptions

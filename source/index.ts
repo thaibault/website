@@ -36,7 +36,7 @@ import {func, object} from 'clientnode/property-types'
 import Headroom from 'headroom.js'
 import Swiper from 'swiper'
 import {
-    HashNavigation, Navigation, Pagination, Parallax, Scrollbar
+    EffectCube, HashNavigation, Navigation, Pagination, Scrollbar
 } from 'swiper/modules'
 import {property} from 'web-component-wrapper/decorator'
 import {WebComponentAPI} from 'web-component-wrapper/type'
@@ -120,7 +120,7 @@ export class HomePage<
                     unmanaged: ['about-me', 'contact', 'work']
                 }
             }"
-            onChangeMediaQueryMode="this._onChangeMediaQueryMode(...parameters)"
+            on-section-switch="this.rootInstance._onSwitchSection(data)"
         >
             <web-internationalization
                 options="{selection: this.rootInstance.options.languages}"
@@ -138,32 +138,35 @@ export class HomePage<
     static _defaultOptions: DefaultOptions = {
         trackingCode: 'UA-40192634-1',
         maximumFooterHeightInPercent: 50,
-        backgroundDependentHeightSections: ['about'],
+        backgroundDependentHeightSections: ['about-me'],
         maximumBackgroundDependentHeight: 750,
         hideMobileMenuAfterSelection: true,
 
         headroom: {
-            offset: 205,
-            tolerance: 5,
+            offset: {
+                down: 100,
+                up: 0
+            },
+            tolerance: 0,
             classes: {
                 // when element is initialized
-                initial : "headroom",
+                initial : 'headroom',
                 // when scrolling up
-                pinned : "headroom--pinned",
+                pinned : 'headroom--pinned',
                 // when scrolling down
-                unpinned : "headroom--unpinned",
+                unpinned : 'headroom--unpinned',
                 // when above offset
-                top : "headroom--top",
+                top : 'headroom--top',
                 // when below offset
-                notTop : "headroom--not-top",
+                notTop : 'headroom--not-top',
                 // when at bottom of scroll area
-                bottom : "headroom--bottom",
+                bottom : 'headroom--bottom',
                 // when not at bottom of scroll area
-                notBottom : "headroom--not-bottom",
+                notBottom : 'headroom--not-bottom',
                 // when frozen method has been called
-                frozen: "headroom--frozen",
+                frozen: 'headroom--frozen',
                 // multiple classes are also supported with a space-separated list
-                pinned: "headroom--pinned foo bar"
+                pinned: 'headroom--pinned foo bar'
             }
         },
 
@@ -173,20 +176,11 @@ export class HomePage<
             header: 'header',
             swiper: '.swiper',
             curriculumVitaeLink: 'a[href*="curriculumVitae"]',
+            section: '.hp-section',
+            sectionSwiperWrapper: '.hp-section__swiper-wrapper',
+            navigationButtons: '.wu-priority-navigation a',
 
             // TODO
-            carousel: 'section.carousel.slide',
-
-            section: 'section.carousel.slide div.carousel-inner div.item',
-
-            navigationButton:
-                'header.navbar-wrapper div.navbar.navbar-inverse ' +
-                'div.navbar-collapse ul.nav.navbar-nav li a',
-
-            aboutThisWebsiteButton:
-                'div.footer footer a[href="#about-this-website"]',
-            aboutThisWebsiteSection: 'section.about-this-website',
-
             menuHighlighter:
                 'header.navbar-wrapper div.navbar.navbar-inverse ' +
                 'div.navbar-collapse div.navbar-highlighter',
@@ -201,9 +195,11 @@ export class HomePage<
         },
 
         swiper: {
-            modules: [
-                HashNavigation, Navigation, Pagination, Parallax, Scrollbar
-            ],
+            grabCursor: true,
+            keyboard: true,
+            centeredSlidesBounds: true,
+
+            modules: [EffectCube, HashNavigation, Navigation, Pagination],
 
             autoHeight: true,
 
@@ -221,9 +217,6 @@ export class HomePage<
                 el: '.swiper-pagination',
                 clickable: true,
                 type: 'bullets'
-            },
-            scrollbar: {
-                el: '.swiper-scrollbar'
             }
         }
     }
@@ -239,6 +232,9 @@ export class HomePage<
     headerDomNode: HTMLElement | null = null
     swiperDomNode: HTMLElement | null = null
     curriculumVitaeLinkDomNodes: NodeListOf<HTMLLinkElement> | null = null
+    sectionDomNode: HTMLElement | null = null
+    sectionSwiperWrapperDomNodes: HTMLElement | null = null
+    navigationButtonDomNodes: NodeListOf<HTMLElement> | null = null
 
     /* TODO
     carousel: 'section.carousel.slide'
@@ -325,7 +321,74 @@ export class HomePage<
         headroom.init()
         // headroom.destroy()
 
-        const swiper = new Swiper(this.swiperDomNode, this.options.swiper)
+        const swiper = new Swiper(
+            this.swiperDomNode,
+            {
+                ...this.options.swiper,
+                on: {
+                    slideChangeTransitionStart: () => {
+                        this.sectionDomNode.scrollTo({top: 0})
+                        window.scrollTo({top: 0})
+                    }
+                },
+                on: {
+                    slideChangeTransitionEnd: (s: Swiper) => {
+                        this.sectionDomNode.scrollTo({top: 0})
+                        window.scrollTo({top: 0})
+                        s.updateAutoHeight()
+                    }
+                }
+            }
+        )
+
+        // navigation
+        for (const domNode of this.navigationButtonDomNodes)
+            this.addSecureEventListener(domNode, 'click', (event) => {
+                // NOTE: Prevent jumping to headline with corresponding name.
+                event.preventDefault()
+
+                const newHash = domNode.getAttribute('href')
+
+                // window.location.hash = newHash
+                // history.pushState(null, null, newHash)
+
+                const oldURL = window.location.href
+
+                // Update browser URL and history stack without triggering native event
+                window.history.pushState(null, '', newHash)
+
+                // Manually construct and fire the synthetic HashChangeEvent
+                const hashEvent = new HashChangeEvent('hashchange', {
+                    oldURL: oldURL,
+                    newURL: window.location.href
+                })
+
+                window.dispatchEvent(hashEvent)
+            })
+
+        // menu highlighter
+        const navbar = document.querySelector('nav')
+
+        // change the item that has the .active class applied
+        const setActiveElement = (elem) => {
+            document.querySelector('nav a.active').classList.remove('active')
+
+            elem.classList.add('active')
+        }
+
+        // Start view transition and pass in callback on click
+        navbar.addEventListener('click', async  function (event) {
+            if (!event.target.matches('nav a:not(.active)'))
+                return
+
+            // Fallback for browsers that don't support View Transitions:
+            if (!document.startViewTransition) {
+                setActiveElement(event.target)
+                return
+            }
+
+            document.startViewTransition(() => setActiveElement(event.target))
+        })
 
         // TODO
         return
@@ -377,6 +440,14 @@ export class HomePage<
             this.hostDomNode.querySelector(this.options.selectors.header)
         this.swiperDomNode =
             this.hostDomNode.querySelector(this.options.selectors.swiper)
+        this.sectionDomNode =
+            this.hostDomNode.querySelector(this.options.selectors.section)
+        this.sectionSwiperWrapperDomNodes = this.hostDomNode.querySelectorAll(
+            this.options.selectors.sectionSwiperWrapper
+        )
+        this.navigationButtonDomNodes = this.hostDomNode.querySelectorAll(
+            this.options.selectors.navigationButtons
+        )
     }
     async prepareToSwitchLanguage(
         oldLanguage: string,
@@ -410,12 +481,16 @@ export class HomePage<
     _onChangeMediaQueryMode(oldMode: string, newMode: string): HomePage {
         console.log('TODO', oldMode, newMode)
 
-        // Determine top margin for backgrounding image-dependent sections.
+        // TODO
+        return
+
+        // Determine top margin for image-dependent sections.
         this.$domNodes.section.children().css('margin-top', '')
 
         if ('getComputedStyle' in $.global)
             this._sectionTopMarginInPixel = parseInt(
-                $.global.getComputedStyle($('h1')[1], ':before').height, 10)
+                $.global.getComputedStyle($('h1')[1], ':before').height, 10
+            )
     }
     /**
      * This method triggers if the responsive design switches to extra small
@@ -432,7 +507,13 @@ export class HomePage<
      * @param sectionName - Location to switch to.
      * @returns Returns the current instance.
      */
-    _onSwitchSection(sectionName: string): HomePage {
+    async _onSwitchSection(sectionName: string) {
+        const currentSectionDomNode = this.hostDomNode.querySelector(
+            `.hp-section__swiper-wrapper__slide__image-${sectionName}`
+        )
+
+        return
+
         if (['next', 'prev'].includes(sectionName))
             sectionName = this._determineRelativeSections(sectionName)
         const hash: string = `#${sectionName}`
@@ -806,133 +887,6 @@ export class HomePage<
             return newSectionHeightInPixel
         }
         return this.$domNodes.document.height()
-    }
-    /**
-     * Attaches the necessary event handler to the swipe plugin and initializes
-     * the slider.
-     * @returns Returns the new generated swipe instance.
-     */
-    _initializeSwipe(): Object {
-        // Remove anchor ids to avoid conflicts with native section switching.
-        $('h1').removeAttr('id').filter(function(): boolean {
-            return !$(this).html().trim()
-        }).remove()
-        this._options.carousel.transitionEnd = (index: number): boolean => {
-            this.$domNodes.navigationButton.each((
-                subIndex: number, button: DomNode
-            ): boolean|undefined => {
-                if (index === subIndex) {
-                    this.fireEvent(
-                        'switchSection', false, this, $(button).attr(
-                            'href'
-                        ).substring('#'.length))
-                    return false
-                }
-            })
-            return true
-        }
-        // NOTE: A cyclic slide effect is more intuitive on touch devices.
-        this._options.carousel.continuous =
-            this._currentMediaQueryMode === 'extraSmall'
-        return this.$domNodes.carousel.Swipe(this._options.carousel)
-    }
-    /**
-     * This method adds triggers to a switch section.
-     * @param parameter - Forwards all given arguments to registered callbacks.
-     * @returns Returns the current instance.
-     */
-    _addNavigationEvents(...parameter: Array<any>): HomePage {
-        const toggleMobileMenu = () => {
-            // This handler rebuilds bootstrap mobile menu collapse feature.
-            const slideOut: boolean = this.$domNodes.navigationWrapper.is('.in')
-            this.$domNodes.navigationWrapper.one(
-                this.transitionEndEventNames, () => {
-                    if (slideOut) {
-                        this.$domNodes.navigationWrapper.removeClass(
-                            'collapsing in')
-                        this.$domNodes.navigationWrapper.addClass('collapse')
-                    } else {
-                        this.$domNodes.navigationWrapper.removeClass(
-                            'collapsing')
-                        this.$domNodes.navigationWrapper.addClass(
-                            'collapse in')
-                    }
-                }
-            )
-            this.$domNodes.navigationWrapper.removeClass('collapse')
-            this.$domNodes.navigationWrapper.addClass('collapsing')
-            if (slideOut) {
-                this.$domNodes.navigationWrapper.height(0)
-                this.$domNodes.navigationWrapper.removeClass('in')
-            } else
-                this.$domNodes.navigationWrapper.height(
-                    this.$domNodes.navigationWrapper.find(
-                        'ul'
-                    ).outerHeight(true))
-        }
-        this.on(this.$domNodes.mobileCollapseButton, 'click', toggleMobileMenu)
-        if (this._options.hideMobileMenuAfterSelection)
-            this.on(
-                this.$domNodes.navigationButton,
-                'click',
-                () => {
-                    if (this._currentMediaQueryMode === 'extraSmall')
-                        toggleMobileMenu(...parameter)
-                }
-            )
-        this.on(
-            this.$domNodes.navigationButton.add(
-                this.$domNodes.aboutThisWebsiteButton
-            ),
-            'click',
-            (event:Object): boolean =>
-            this.fireEvent(
-                'switchSection',
-                false,
-                this,
-                $(event.target).attr('href').substring('#'.length)
-            )
-        )
-        return super._addNavigationEvents(...parameter)
-    }
-    /**
-     * Determines the current section to the right or the left.
-     * @param sectionName - Relative section ("next" or "prev").
-     * @returns Returns the absolute section name.
-     */
-    _determineRelativeSections(sectionName: string): string {
-        if ('location' in $.global)
-            this.$domNodes.navigationButton.each((
-                index: number, button: DomNode
-            ): boolean|undefined => {
-                if ($(button).attr('href') === $.global.location.hash) {
-                    /*
-                        NOTE: We subtract 1 from the navigation buttons length
-                        because we want to ignore the about this website
-                        section. And the index starts counting by zero.
-                    */
-                    const numberOfButtons: number =
-                        this.$domNodes.navigationButton.length - 1
-                    let newIndex: number
-                    if (sectionName === 'next')
-                        newIndex = (index + 1) % numberOfButtons
-                    else if (sectionName === 'prev')
-                        /*
-                            NOTE: Subtracting 1 in the residue class ring means
-                            adding the number of numbers minus 1. This prevents
-                            us from getting negative button indexes.
-                        */
-                        newIndex = (index + numberOfButtons - 1) %
-                            numberOfButtons
-                    else
-                        return false
-                    sectionName = $(
-                        this.$domNodes.navigationButton[newIndex]
-                    ).attr('href').substring('#'.length)
-                    return false
-                }
-            })
-        return sectionName
     }
     /// endregion
     // endregion

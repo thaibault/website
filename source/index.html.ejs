@@ -436,13 +436,18 @@ _%>
                 <div class="hp-header__center">
                     <nav role="navigation" class="wu-priority-navigation">
                         <ul>
-                            <%_ for (const section of SECTIONS) {
+                            <%_
+                            let first = true
+                            for (const section of SECTIONS) {
                                 if (section.content[0]) {
                             _%>
                                     <li
                                         class="website-start-up-animation-number-<%- getStartUpAnimationNumber() %><%- section.title === SECTIONS[0].title ? ' active' : '' %>"
                                     >
-                                        <a href="#<%- section.title %>">
+                                        <a
+                                            class="wu-priority-navigation__link<%- first ? ' active' : '' %>"
+                                            href="#<%- section.title %>"
+                                        >
                                             <%- section.content[0][DEFAULT_LANGUAGE] %>
                                             <!--<%- ALTERNATE_LANGUAGE %>:
                                                 <%- section.content[0][ALTERNATE_LANGUAGE] %>
@@ -457,6 +462,7 @@ _%>
                                         </ul>
                                     </li>
                                 <%_ } _%>
+                                <%_ first = false _%>
                             <%_ } _%>
                         </ul>
                     </nav>
@@ -472,15 +478,15 @@ _%>
             <!-- endregion-->
             <main class="wu-router-outlet">
                 <!--region swiper-->
-                <section class="swiper" data-website-utilities-section>
-                    <div class="swiper-wrapper">
+                <section class="hp-section swiper" data-website-utilities-section>
+                    <div class="hp-section__swiper-wrapper swiper-wrapper">
                     <%_ for (const section of SECTIONS) { _%>
                         <div
                             data-hash="<%- section.title %>"
-                            class="swiper-slide <%- section.title %>"
+                            class="hp-section__swiper-wrapper__slide swiper-slide <%- section.title %>"
                         >
-                            <div class="swiper-slide__image-<%- section.title %>">
-                                <div class="swiper-slide__center">
+                            <div class="hp-section__swiper-wrapper__slide__image-<%- section.title %>">
+                                <div class="hp-section__swiper-wrapper__slide__center">
                                     <%_ if (section.content[1][DEFAULT_LANGUAGE]) { _%>
                                         <h1 id="<%- section.title %>">
                                             <%- section.content[1][DEFAULT_LANGUAGE] %>
@@ -715,14 +721,13 @@ _%>
             <footer
                 class="website-start-up-animation-number-<%- getStartUpAnimationNumber() %>"
             >
-                <div class="footer-content">
-                    <p>
-                        &copy; 2013 Torben Sickert &middot;
-                        <a href="#about-this-website">
-                            about this website
-                            <!--<%- ALTERNATE_LANGUAGE %>:Impressum-->
-                    </p>
-                </div>
+                <p>
+                    &copy; 2013 Torben Sickert &middot;
+                    <a href="#about-this-website">
+                        about this website
+                        <!--<%- ALTERNATE_LANGUAGE %>:Impressum-->
+                    </a>
+                </p>
             </footer>
             <!--endregion-->
             <a class="wu-scroll-to-top" href="#top">
