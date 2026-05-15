@@ -253,9 +253,53 @@ const SECTIONS = [
         ]
     }
 ]
+
+// end2end apps
+bpvwebapp
+website
+
+// client libs
+website-utilities
+web-documentation
+clientnode
+erroreporter
+web-internationalization
+web-component-wrapper
+
+react-input-material
+react-generic-animate
+web-input-material
+agile-form
+
+// backend libs
+web-node
+pre-render-web-node-plugin
+nginx-web-node-plugin
+ejs-web-node-plugin
+couchdeb-web-node-plugin
+application-server-web-node-plugin
+
+// utilities
+weboptimizer
+
+// server
+reverse-proxy-middleware
+proxy
+polyfill-bundler
+
+// infrastructure
+containerbase
+
+// linux tooling
+bashlink
+backup-rotation
+reachable-watcher
+archinstall
+
 const PROJECTS = [
     {
-        title: 'boostNode', url: 'https://torben.website/boostnode',
+        title: 'boostNode',
+        url: 'https://torben.website/boostnode',
         content: {
             enUS: [
                 'A universal python framework for platform independent ' +
@@ -523,9 +567,8 @@ _%>
                                             JavaScript isn't supported.
                                         -->
                                         <h1 id="<%- section.title %>"></h1>
-                                    <%_ }
-                                    if (section.title === 'work') {
-                                    _%>
+                                    <%_ } _%>
+                                    <%_ if (section.title === 'work') { _%>
                                         <h2>
                                             <%- section.content[2][DEFAULT_LANGUAGE] %>
                                             <!--<%- ALTERNATE_LANGUAGE %>:
@@ -638,31 +681,28 @@ _%>
                                                 >vCard</a>
                                             <%_ } _%>
                                         </p>
-                                    <%_ }
-                                    if (section.title === 'contact') {
-                                    _%>
+                                    <%_ } _%>
+                                    <%_ if (section.title === 'contact') { _%>
                                         <a href="tel:004917610248185">
                                             Phone<!--<%- ALTERNATE_LANGUAGE %>:Tel.-->
                                             +49 (0) 176 <span>/</span> 10 248 185
                                         </a>
-                                        <%_
-                                            for (const link of SOCIAL_MEDIA) {
-                                                if (link.url.indexOf('@') !== -1)
-                                                    link.url = `mailto:${link.url}`
-                                        _%>
-
-                                            <a
-                                                href="<%- link.url %>"
-                                                target="_blank"
-                                            >
-                                                <img
-                                                    src="bootstrap-icons/icons/<%- link.icon -%>.svg"
-                                                    alt="<%- link.title -%>"
-                                                    width="32"
-                                                    height="32"
-                                                />
-                                            </a>
+                                        <p
+                                            class="hp-section__swiper-wrapper__slide__center__social-links"
+                                        >
+                                            <%_
+                                                for (const link of SOCIAL_MEDIA) {
+                                                    if (link.url.indexOf('@') !== -1)
+                                                        link.url = `mailto:${link.url}`
+                                            _%>
+                                                <a
+                                                    href="<%- link.url %>"
+                                                    target="_blank"
+                                                >
+                                                    <i class="bi bi-<%- link.icon -%>"></i>
+                                                </a>
                                             <%_ } _%>
+                                        </p>
                                     <%_ } _%>
                                 </div>
                             </div>
