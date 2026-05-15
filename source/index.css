@@ -13,7 +13,6 @@ endregion
 */
 @import 'swiper/swiper.css';
 @import 'swiper/modules/a11y.css';
-@import 'swiper/modules/effect-cube.css';
 @import 'swiper/modules/hash-navigation.css';
 @import 'swiper/modules/navigation.css';
 @import 'swiper/modules/pagination.css';
@@ -45,7 +44,7 @@ endregion
     --footer-height: 80px;
 
     --minimum-content-height: 300px;
-    --top-margin: 65px;
+    --maximum-content-height: 1000px;
     --maximum-content-width: 800px;
     /** endregion */
     /** region custom media queries */
@@ -117,45 +116,6 @@ home-page {
     }
     /** endregion */
     strong { font-weight: bold; }
-    /* endregion */
-    /* region social media icons */
-    /* NOTE: Should be synchronized with the social icon font styles. */
-    .glyphicon {
-        &.glyphicon-globe {
-            color: var(--font-color);
-            letter-spacing: 10px;
-            height: 26px;
-            display: inline-block;
-            padding-left: 30px;
-            position: relative;
-            text-decoration: none;
-            vertical-align: middle;
-            zoom: 1;
-
-            &::before {
-                display: inline-block;
-                font-size: 24px/1em;
-                font-style: normal;
-                font-weight: normal;
-                left: 0;
-                /* NOTE: "-1px" was initially "0". */
-                margin: -1px 5px 0 0;
-                position: absolute;
-                text-transform: none;
-                top: 0;
-            }
-
-            &:hover { color: var(--link-hover-color) !important; }
-        }
-
-        &-social {
-            color: var(--font-color);
-            letter-spacing: 10px;
-            height: 26px;
-
-            &:hover { color: var(--link-hover-color) !important; }
-        }
-    }
     /* endregion */
     /* region header */
     /* Normal Wrapper for the main navigation bar. Scrolls with viewport. */
@@ -269,23 +229,14 @@ home-page {
                 margin: 0;
                 padding: 0;
 
-                /* region menu highlighter */
-                a::after {
-                    content: " ";
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                    width: 100%;
-                    height: 100%;
-                    border: none;
-                    box-sizing: border-box;
-                }
+                a.wu-priority-navigation__link--active,
+                a.wu-priority-navigation__link--active:hover {
+                    color: var(--menu-font-hover-color);
 
-                a.active::after {
-                    border-bottom: 2px solid var(--accent-color);
-                    view-transition-name: highlight;
+                    &::after {
+                        border-bottom: 2px solid var(--accent-color);
+                    }
                 }
-                /* endregion */
             }
         }
         .wu-priority-navigation {
@@ -299,7 +250,6 @@ home-page {
 
         overflow: hidden;
         position: relative;
-        min-height: var(--minimum-content-height);
 
         .swiper-button-prev,
         .swiper-button-next {
@@ -343,6 +293,7 @@ home-page {
                             @media (--w-small) {
                                 padding-top: var(--header-height);
                                 padding-bottom: var(--header-height);
+
                                 width: var(--maximum-content-width);
                             }
                         }
@@ -404,9 +355,11 @@ home-page {
                 }
 
                 &.about-me {
+                    max-height: var(--maximum-content-height);
+
                     .hp-section__swiper-wrapper__slide__center {
                         h1#about-me {
-                            margin-top: -var(--top-margin);
+                            margin-top: var(--top-margin);
                         }
 
                         .lead > a:first-child {
@@ -490,7 +443,6 @@ home-page {
         display: grid;
         justify-content: center;
 
-        min-height: var(--minimum-content-height);
         background-color: var(--surface-color);
         top: 0;
         left: 0;
@@ -548,12 +500,4 @@ home-page {
         }
     }
     /* endregion */
-}
-
-::view-transition-old(highlight) {
-    height: 100%;
-}
-
-::view-transition-new(highlight) {
-    height: 100%;
 }

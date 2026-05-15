@@ -116,6 +116,7 @@ export class HomePage<
         <website-utilities
             options="{
                 sectionNames: {
+                    default: 'about-me',
                     managed: ['about-this-website'],
                     unmanaged: ['about-me', 'contact', 'work']
                 }
@@ -178,20 +179,7 @@ export class HomePage<
             curriculumVitaeLink: 'a[href*="curriculumVitae"]',
             section: '.hp-section',
             sectionSwiperWrapper: '.hp-section__swiper-wrapper',
-            navigationButtons: '.wu-priority-navigation a',
-
-            // TODO
-            menuHighlighter:
-                'header.navbar-wrapper div.navbar.navbar-inverse ' +
-                'div.navbar-collapse div.navbar-highlighter',
-            mobileCollapseButton:
-                'header.navbar-wrapper div.navbar.navbar-inverse ' +
-                'div.navbar-header button.navbar-toggle',
-            navigationWrapper:
-                'header.navbar-wrapper div.navbar.navbar-inverse ' +
-                'div.navbar-collapse',
-
-            footer: 'div.footer'
+            navigationButtons: '.wu-priority-navigation a'
         },
 
         swiper: {
@@ -228,6 +216,7 @@ export class HomePage<
     @property({type: object})
         options = {} as Options
     // endregion
+    swiper: Swiper | null = null
     // region domNodes
     headerDomNode: HTMLElement | null = null
     swiperDomNode: HTMLElement | null = null
@@ -235,31 +224,6 @@ export class HomePage<
     sectionDomNode: HTMLElement | null = null
     sectionSwiperWrapperDomNodes: HTMLElement | null = null
     navigationButtonDomNodes: NodeListOf<HTMLElement> | null = null
-
-    /* TODO
-    carousel: 'section.carousel.slide'
-    section: 'section.carousel.slide div.carousel-inner div.item'
-    navigationButton:
-        'header.navbar-wrapper div.navbar.navbar-inverse ' +
-        'div.navbar-collapse ul.nav.navbar-nav li a'
-    aboutThisWebsiteButton:
-        'div.footer footer a[href="#about-this-website"]',
-    aboutThisWebsiteSection: 'section.about-this-website'
-    dimensionIndicator:
-        'header.navbar-wrapper div.navbar.navbar-inverse ' +
-        'div.navbar-header a.navbar-brand ' +
-        'span.dimension-indicator'
-    footer: 'div.footer'
-    menuHighlighter:
-        'header.navbar-wrapper div.navbar.navbar-inverse ' +
-        'div.navbar-collapse div.navbar-highlighter'
-    mobileCollapseButton:
-        'header.navbar-wrapper div.navbar.navbar-inverse ' +
-        'div.navbar-header button.navbar-toggle'
-    navigationWrapper:
-        'header.navbar-wrapper div.navbar.navbar-inverse ' +
-        'div.navbar-collapse'
-    */
     // endregion
     _initialContentHeightAdaptionDone = false
     _initialMenuHighlightDone = false
@@ -321,43 +285,50 @@ export class HomePage<
         headroom.init()
         // headroom.destroy()
 
-        const swiper = new Swiper(
+        this.swiper = new Swiper(
             this.swiperDomNode,
             {
                 ...this.options.swiper,
                 on: {
                     slideChangeTransitionStart: () => {
                         this.sectionDomNode.scrollTo({top: 0})
-                        window.scrollTo({top: 0})
-                    }
-                },
-                on: {
-                    slideChangeTransitionEnd: (s: Swiper) => {
+                        globalContext.window?.scrollTo({top: 0})
+                    },
+                    slideChangeTransitionEnd: (swiper: Swiper) => {
                         this.sectionDomNode.scrollTo({top: 0})
-                        window.scrollTo({top: 0})
-                        s.updateAutoHeight()
+                        globalContext.window?.scrollTo({top: 0})
+                        swiper.updateAutoHeight()
                     }
                 }
             }
         )
+        if (globalContext.window)
+            this.addSecureEventListener(
+                globalContext.window,
+                'resize', () => {
+                    this.swiper.updateAutoHeight()
+                }
+            )
 
         // navigation
         for (const domNode of this.navigationButtonDomNodes)
             this.addSecureEventListener(domNode, 'click', (event) => {
-                // NOTE: Prevent jumping to headline with corresponding name.
+                /*
+                    NOTE: Prevent jumping to headline's page position with
+                    matching id.
+                */
                 event.preventDefault()
 
                 const newHash = domNode.getAttribute('href')
-
-                // window.location.hash = newHash
-                // history.pushState(null, null, newHash)
-
                 const oldURL = window.location.href
 
-                // Update browser URL and history stack without triggering native event
+                /*
+                    Update browser URL and history stack without triggering
+                    native event.
+                */
                 window.history.pushState(null, '', newHash)
 
-                // Manually construct and fire the synthetic HashChangeEvent
+                // Manually construct and fire the synthetic "HashChangeEvent".
                 const hashEvent = new HashChangeEvent('hashchange', {
                     oldURL: oldURL,
                     newURL: window.location.href
@@ -365,30 +336,6 @@ export class HomePage<
 
                 window.dispatchEvent(hashEvent)
             })
-
-        // menu highlighter
-        const navbar = document.querySelector('nav')
-
-        // change the item that has the .active class applied
-        const setActiveElement = (elem) => {
-            document.querySelector('nav a.active').classList.remove('active')
-
-            elem.classList.add('active')
-        }
-
-        // Start view transition and pass in callback on click
-        navbar.addEventListener('click', async  function (event) {
-            if (!event.target.matches('nav a:not(.active)'))
-                return
-
-            // Fallback for browsers that don't support View Transitions:
-            if (!document.startViewTransition) {
-                setActiveElement(event.target)
-                return
-            }
-
-            document.startViewTransition(() => setActiveElement(event.target))
-        })
 
         // TODO
         return
@@ -432,6 +379,7 @@ export class HomePage<
         this.on(
             this.$domNodes.window, 'resize',
             this._adaptContentHeight.bind(this))
+
         return this
     }
     /// endregion

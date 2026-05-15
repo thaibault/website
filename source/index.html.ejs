@@ -57,18 +57,41 @@ const getStartUpAnimationNumber = () => {
 // endregion
 // region content
 const SOCIAL_MEDIA = [
-    {'title': 'e-mail', 'url': 'info@torben.website'},
-    {'title': 'github', 'url': 'https://github.com/thaibault'},
-    {'title': 'google_plus', 'url': 'https://plus.google.com/+TorbenSickert'},
-    {'title': 'xing', 'url': 'https://www.xing.com/profile/Torben_Sickert'},
     {
+        'icon': 'envelope-at-fill',
+        'title': 'e-mail',
+        'url': 'info@torben.website'
+    },
+    {
+        'icon': 'github',
+        'title': 'github',
+        'url': 'https://github.com/thaibault'
+    },
+    {
+        'icon': 'x-lg',
+        'title': 'xing',
+        'url': 'https://www.xing.com/profile/Torben_Sickert'
+    },
+    {
+        'icon': 'linkedin',
         'title': 'linked_in',
         'url': 'https://de.linkedin.com/pub/torben-sickert/28/aa9/919'
     },
-    // {'title': 'skype', 'url': 'skype:t.sickert?add'},
-    {'title': 'twitter', 'url': 'https://twitter.com/tsickert'},
-    {'title': 'facebook', 'url': 'https://de-de.facebook.com/tsickert'},
-    {'title': 'website', 'url': 'https://torben.website'}
+    {
+        'icon': 'twitter-x',
+        'title': 'twitter',
+        'url': 'https://twitter.com/tsickert'
+    },
+    {
+        'icon': 'facebook',
+        'title': 'facebook',
+        'url': 'https://de-de.facebook.com/tsickert'
+    },
+    {
+        'icon': 'globe',
+        'title': 'website',
+        'url': 'https://torben.website'
+    }
 ]
 const SECTIONS = [
     {
@@ -445,7 +468,7 @@ _%>
                                         class="website-start-up-animation-number-<%- getStartUpAnimationNumber() %><%- section.title === SECTIONS[0].title ? ' active' : '' %>"
                                     >
                                         <a
-                                            class="wu-priority-navigation__link<%- first ? ' active' : '' %>"
+                                            class="wu-priority-navigation__link"
                                             href="#<%- section.title %>"
                                         >
                                             <%- section.content[0][DEFAULT_LANGUAGE] %>
@@ -626,20 +649,19 @@ _%>
                                             for (const link of SOCIAL_MEDIA) {
                                                 if (link.url.indexOf('@') !== -1)
                                                     link.url = `mailto:${link.url}`
-                                                if ('website' === link.title) {
                                         _%>
+
                                             <a
-                                                class="glyphicon glyphicon-globe"
                                                 href="<%- link.url %>"
                                                 target="_blank"
-                                            ></a>
-                                                <%_ } else { _%>
-                                            <a
-                                                class="glyphicon-social glyphicon-social-<%- link.title %>"
-                                                href="<%- link.url %>"
-                                                target="_blank"
-                                            ></a>
-                                                <%_ } _%>
+                                            >
+                                                <img
+                                                    src="bootstrap-icons/icons/<%- link.icon -%>.svg"
+                                                    alt="<%- link.title -%>"
+                                                    width="32"
+                                                    height="32"
+                                                />
+                                            </a>
                                             <%_ } _%>
                                     <%_ } _%>
                                 </div>
