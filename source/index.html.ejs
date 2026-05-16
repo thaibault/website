@@ -253,178 +253,433 @@ const SECTIONS = [
         ]
     }
 ]
-
-// end2end apps
-bpvwebapp
-website
-
-// client libs
-website-utilities
-web-documentation
-clientnode
-erroreporter
-web-internationalization
-web-component-wrapper
-
-react-input-material
-react-generic-animate
-web-input-material
-agile-form
-
-// backend libs
-web-node
-pre-render-web-node-plugin
-nginx-web-node-plugin
-ejs-web-node-plugin
-couchdeb-web-node-plugin
-application-server-web-node-plugin
-
-// utilities
-weboptimizer
-
-// server
-reverse-proxy-middleware
-proxy
-polyfill-bundler
-
-// infrastructure
-containerbase
-
-// linux tooling
-bashlink
-backup-rotation
-reachable-watcher
-archinstall
-
 const PROJECTS = [
     {
-        title: 'boostNode',
-        url: 'https://torben.website/boostnode',
-        content: {
-            enUS: [
-                'A universal python framework for platform independent ' +
-                'application developement with web technoligies. The ' +
-                'framework provides High reliability features:',
-                [
-                    '100% branch coverage tested',
-                    'Type checking in development mode',
-                    'Cyclomatic complexity smaller than eight',
-                    'Full API documentation https://torben.website/boostNode/' +
-                        'api',
-                    'Always compatible with the latest versions of both ' +
-                        'Python through integrated macros',
-                    'Platform independent web-view and flexible ' +
-                        'multi-process and multi-threaded Web server'
-                ]
-            ],
-            deDE: [
-                'Ein universelles Python-Framework zur Anwendung von ' +
-                'plattformunabhängigen Desktopanwendungen mit ' +
-                'Web-Technologien. Das Framework bietet ' +
-                'Hochzuverlässigkeitsmerkmale:',
-                [
-                    '100% branch coverage getestet',
-                    'Type checking im Entwicklungsmodus',
-                    'zyklomatische Komplexität kleiner acht',
-                    'vollständige API-Dokumentation ' +
-                        'https://torben.website/boostnode/api',
-                    'stets kompatibel zu den neusten beiden ' +
-                        'Pythonversionen durch integrierte Macros',
-                    'plattformunabhängige Web-View und flexibler ' +
-                        'multiprozess- und multithread Web-Server'
-                ]
-            ]
-        }
-    }, {
-        title: 'archInstall', url: 'https://archinstall.github.com',
-        content: {
-            enUS: [
-                'Install a configured ArchLinux with pacman as a package ' +
-                'management in any places such as hard drives, USB ' +
-                'flash drive, partition, or in an existing system as a ' +
-                'sandbox environment. Automatic configuration of ' +
-                'existing posix compliant unix-like systems. Both online' +
-                ' and Offline installations are possible. Even without ' +
-                'root privileges, the system is able to be installed ' +
-                'into its own environment below the home folder. All ' +
-                'required dependencies could be served via a typical ' +
-                'posix environment given by Busybox or ArchLinux itself.'
-            ],
-            deDE: [
-                'Installiere ein konfiguriertes ArchLinux mit Pacman als ' +
-                'Paketverwaltung an beliebige Orte wie Festplatten,' +
-                ' USB-Stick, alternative Partition oder in das ' +
-                'bestehende System als Sandboxumgebung. Automatische ' +
-                'Konfiguration bestehender posix konformer unix-artiger ' +
-                'Systeme. Sowohl Online- als auch Offline-Installationen' +
-                ' sind möglich. Selbst ohne root Rechte kann das System ' +
-                'in eine eigene Umgebung unterhalb des Home-Ordner ' +
-                'installiert werden. Alle benötigten Abhängigkeiten zum ' +
-                'Aufsetzen sind durch eine einfache posix-Umgebung ' +
-                'gegeben wie Busybox oder ArchLinux selbst.'
-            ]
-        }
-    }, {
-        title: 'genericServiceHandler',
-        url: 'https://torben.website/genericServiceHandler',
-        content: {
-            enUS: [
-                'This bash module provides a generic service handlers to ' +
-                'control any services which support standard process ' +
-                'signals. The project is inspired by the systemd service' +
-                ' handling and can live in any unix-like environment. It' +
-                ' is particularly suitable for being integrated into ' +
-                "the operating system's boot and shutdown process."
-            ],
-            deDE: [
-                'Dieses bash-Modul bietet einen generischen Service-Handler ' +
-                'zur Steuerung jeglicher Dienste, welche standard ' +
-                'Prozesssignale unterstützen. Das Projekt ist vom ' +
-                'Systemd-Service-Handling inspiriert und kann in jeder ' +
-                'unix-artigen Umgebung eingesetzt werden. Es eignet sich' +
-                ' besonders um Dienste in den Hoch- und ' +
-                'Herunterfahr-Prozess des Betriebssystems einzubetten.'
-            ]
-        }
-    }, {
-        title: 'clientNode', url: 'https://torben.website/clientNode',
-        content: {
-            enUS: [
-                'clientNode brings an object oriented Plugin concept. In ' +
-                'Addition many reusable helper and a cool controller ' +
-                'logic is included. Furthermore some handler for dealing' +
-                ' with mutual exclusion, scope-based event handling and ' +
-                'some low-level extensions for native data types are ' +
-                'available. Example implementations can be found in the ' +
-                'projects:',
-                [
-                    ['storeLocator', 'https://torben.website/storeLocator'],
-                    ['language', 'https://torben.website/language'],
-                    ['websiteUtilities',
-                     'https://torben.website/websiteUtilities'],
-                    ['My personal website', 'https://torben.website']
-                ]
-            ],
-            deDE: [
-                'clientNode führt ein object orientiertes Plugin-Konzept um ' +
-                'optional auf DOM-orientierten Bibliotheken wie "jQuery"' +
-                ' als Plugin  aufzusetzen. Verschiedene generische ' +
-                'Software-Pattern werden durch eine wiederverwendbare ' +
-                'Controller-Logik möglich. Zudem werden einige nützliche' +
-                ' Werkzeuge zum Bauen von grafischen Oberflächen ' +
-                'angeboten wie Wechselseitiger Ausschluss, ' +
-                'Scope-basiertes Event-Handling und einige Low-Level ' +
-                'Erweiterungen für native Datentypen. ' +
-                'Beispiel-Implementierungen findet sich in den Projekten:',
-                [
-                    ['storeLocator', 'https://torben.website/storeLocator'],
-                    ['language', 'https://torben.website/language'],
-                    ['websiteUtilities',
-                    'https://torben.website/websiteUtilities'],
-                    ['Meine persönliche Website', 'https://torben.website']
-                ]
-            ]
-        }
+        title: {
+            enUS: 'End-to-End Applications',
+            deDE: 'Ende zu Ende Anwendungen'
+        },
+        content: [
+            {
+                title: 'BPV Web APP',
+                content: {
+                    enUS: [
+                        'Pharmacy emergency service management application.'
+                    ],
+                    deDE: [
+                        'Anwendung zur Verwaltung des Apotheken-Notdienstes.'
+                    ]
+                }
+            },
+            {
+                title: 'Home Page',
+                url: 'https://torben.website',
+                content: {
+                    enUS: ['This website.'],
+                    deDE: ['Diese Webseite.']
+                }
+            },
+            {
+                title: 'web-documentation',
+                content: {
+                    enUS: ['Reusable web documentation page generator.'],
+                    deDE: [
+                        'Generator für wiederverwendbare Web-Dokumentationsseiten.'
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        title: {
+            enUS: 'Libraries',
+            deDE: 'Bibliotheken'
+        },
+        content: [
+            {
+                title: 'clientNode',
+                url: 'https://torben.website/clientNode',
+                content: {
+                    enUS: [
+                        'Provides universal backend and frontend utilities.'
+                    ],
+                    deDE: [
+                        'Bietet universelle Backend- und Frontend-Hilfsfunktionen.'
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        title: {
+            enUS: 'Standalone web frontend libraries',
+            deDE: 'Eigenständige Web-Frontend-Bibliotheken'
+        },
+        content: [
+            {
+                title: 'erroreporter',
+                url: 'https://torben.website/erroreporter',
+                content: {
+                    enUS: [
+                        'A web client side error reporter.'
+                    ],
+                    deDE: [
+                        'Ein Tool zur Fehlermeldung auf der Web-Client-Seite.'
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        title: {
+            enUS: 'React components',
+            deDE: 'React Komponenten'
+        },
+        content: [
+            {
+                title: 'react-generic-tools',
+                url: 'https://torben.website/react-generic-tools',
+                content: {
+                    enUS: [
+                        'Generic utility types, methods, components and test helper for react.'
+                    ],
+                    deDE: [
+                        'Allgemeine Hilfstypen, Methoden, Komponenten und Test-Hilfsfunktionen für React.'
+                    ]
+                }
+            },
+            {
+                title: 'react-generic-animate',
+                url: 'https://torben.website/react-generic-animate',
+                content: {
+                    enUS: [
+                        'Animates markup within the react component context.'
+                    ],
+                    deDE: [
+                        'Animiert Markup innerhalb des React-Komponentenkontexts.'
+                    ]
+                }
+            },
+            {
+                title: 'react-input-material',
+                url: 'https://torben.website/react-input-material',
+                content: {
+                    enUS: [
+                        'Reusable material design based input fields as react components with support for (richt-)text, code, selections, numbers, dates and files.'
+                    ],
+                    deDE: [
+                        'Auf Material Design basierende, wiederverwendbare Eingabefelder als React-Komponenten mit Unterstützung für (Recht-)Text, Code, Auswahlen, Zahlen, Datumsangaben und Dateien.'
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        title: {
+            enUS: 'Web components',
+            deDE: 'Web Komponenten'
+        },
+        content: [
+            {
+                title: 'web-component-wrapper',
+                url: 'https://torben.website/web-component-wrapper',
+                content: {
+                    enUS: [
+                        'Generic web-component base class and wrapper to provide react components as web components.'
+                    ],
+                    deDE: [
+                        'Generische Basisklasse und Wrapper für Webkomponenten, um React-Komponenten als Webkomponenten bereitzustellen.'
+                    ]
+                }
+            },
+            {
+                title: 'web-internationalization',
+                url: 'https://torben.website/web-internationalization',
+                content: {
+                    enUS: [
+                        'A web component to replace alternate version of text for client side internationalization.'
+                    ],
+                    deDE: [
+                        'Eine Webkomponente zum Ersetzen alternativer Textversionen für die clientseitige Internationalisierung.'
+                    ]
+                }
+            },
+            {
+                title: 'website-utilities',
+                url: 'https://torben.website/website-utilities',
+                content: {
+                    enUS: [
+                        'A web component to provide reusable website features, like simple client side routing, position detection and navigation.'
+                    ],
+                    deDE: [
+                        'Eine Webkomponente zur Bereitstellung wiederverwendbarer Website-Funktionen wie einfache clientseitige Weiterleitung, Positionserkennung und Navigation.'
+                    ]
+                }
+            },
+            {
+                title: 'web-input-material',
+                url: 'https://torben.website/web-input-material',
+                content: {
+                    enUS: [
+                        'Reusable material design based input fields as web components with support for (richt-)text, code, selections, numbers, dates and files.'
+                    ],
+                    deDE: [
+                        'Wiederverwendbare, auf Material Design basierende Eingabefelder als Webkomponenten mit Unterstützung für (Recht-)Text, Code, Auswahlen, Zahlen, Datumsangaben und Dateien.'
+                    ]
+                }
+            },
+            {
+                title: 'agile-form',
+                url: 'https://torben.website/agile-form',
+                content: {
+                    enUS: [
+                        'Reusable highly configurable web component based form (useful for website/form builders).'
+                    ],
+                    deDE: [
+                        'Wiederverwendbares, hochgradig anpassbares Formular auf Basis von Webkomponenten (nützlich für Website- und Formular-Generatoren).'
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        title: {
+            enUS: 'Backend libraries',
+            deDE: 'Backend Bibliotheken'
+        },
+        content: [
+            {
+                title: 'web-node',
+                url: 'https://torben.website/web-node',
+                content: {
+                    enUS: [
+                        ''
+                    ],
+                    deDE: [
+                        ''
+                    ]
+                }
+            },
+            {
+                title: 'couchdeb-web-node-plugin',
+                url: 'https://torben.website/couchdeb-web-node-plugin',
+                content: {
+                    enUS: [
+                        ''
+                    ],
+                    deDE: [
+                        ''
+                    ]
+                }
+            },
+            {
+                title: 'ejs-web-node-plugin',
+                url: 'https://torben.website/ejs-web-node-plugin',
+                content: {
+                    enUS: [
+                        ''
+                    ],
+                    deDE: [
+                        ''
+                    ]
+                }
+            },
+            {
+                title: 'application-server-web-node-plugin',
+                url: 'https://torben.website/application-server-web-node-plugin',
+                content: {
+                    enUS: [
+                        ''
+                    ],
+                    deDE: [
+                        ''
+                    ]
+                }
+            },
+            {
+                title: 'pre-render-web-node-plugin',
+                url: 'https://torben.website/pre-render-web-node-plugin',
+                content: {
+                    enUS: [
+                        ''
+                    ],
+                    deDE: [
+                        ''
+                    ]
+                }
+            },
+            {
+                title: 'nginx-web-node-plugin',
+                url: 'https://torben.website/nginx-web-node-plugin',
+                content: {
+                    enUS: [
+                        ''
+                    ],
+                    deDE: [
+                        ''
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        title: {
+            enUS: 'Tooling',
+            deDE: 'Werkzeuge'
+        },
+        content: [
+            {
+                title: 'weboptimizer',
+                url: 'https://torben.website/weboptimizer',
+                content: {
+                    enUS: [
+                        ''
+                    ],
+                    deDE: [
+                        ''
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        title: {
+            enUS: 'Server',
+            deDE: 'Server'
+        },
+        content: [
+            {
+                title: 'reverse-proxy-middleware',
+                url: 'https://torben.website/reverse-proxy-middleware',
+                content: {
+                    enUS: [
+                        ''
+                    ],
+                    deDE: [
+                        ''
+                    ]
+                }
+            },
+            {
+                title: 'proxy',
+                url: 'https://torben.website/proxy',
+                content: {
+                    enUS: [
+                        ''
+                    ],
+                    deDE: [
+                        ''
+                    ]
+                }
+            },
+            {
+                title: 'polyfill-bundler',
+                url: 'https://torben.website/polyfill-bundler',
+                content: {
+                    enUS: [
+                        ''
+                    ],
+                    deDE: [
+                        ''
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        title: {
+            enUS: 'Infrastructure',
+            deDE: 'Infrastruktur'
+        },
+        content: [
+            {
+                title: 'containerbase',
+                url: 'https://torben.website/containerbase',
+                content: {
+                    enUS: [
+                        ''
+                    ],
+                    deDE: [
+                        ''
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        title: {
+            enUS: 'Linux',
+            deDE: 'Linux'
+        },
+        content: [
+            {
+                title: 'bashlink',
+                url: 'https://torben.website/bashlink',
+                content: {
+                    enUS: [
+                        ''
+                    ],
+                    deDE: [
+                        ''
+                    ]
+                }
+            },
+            {
+                title: 'archinstall',
+                url: 'https://torben.website/archinstall',
+                content: {
+                    enUS: [
+                        'Install a configured ArchLinux with pacman as a package ' +
+                        'management in any places such as hard drives, USB ' +
+                        'flash drive, partition, or in an existing system as a ' +
+                        'sandbox environment. Automatic configuration of ' +
+                        'existing posix compliant unix-like systems. Both online' +
+                        ' and Offline installations are possible. Even without ' +
+                        'root privileges, the system is able to be installed ' +
+                        'into its own environment below the home folder. All ' +
+                        'required dependencies could be served via a typical ' +
+                        'posix environment given by Busybox or ArchLinux itself.'
+                    ],
+                    deDE: [
+                        'Installiere ein konfiguriertes ArchLinux mit Pacman als ' +
+                        'Paketverwaltung an beliebige Orte wie Festplatten,' +
+                        ' USB-Stick, alternative Partition oder in das ' +
+                        'bestehende System als Sandboxumgebung. Automatische ' +
+                        'Konfiguration bestehender posix konformer unix-artiger ' +
+                        'Systeme. Sowohl Online- als auch Offline-Installationen' +
+                        ' sind möglich. Selbst ohne root Rechte kann das System ' +
+                        'in eine eigene Umgebung unterhalb des Home-Ordner ' +
+                        'installiert werden. Alle benötigten Abhängigkeiten zum ' +
+                        'Aufsetzen sind durch eine einfache posix-Umgebung ' +
+                        'gegeben wie Busybox oder ArchLinux selbst.'
+                    ]
+                }
+            },
+            {
+                title: 'backup-rotation',
+                url: 'https://torben.website/backup-rotation',
+                content: {
+                    enUS: [
+                        ''
+                    ],
+                    deDE: [
+                        ''
+                    ]
+                }
+            },
+            {
+                title: 'reachable-watcher',
+                url: 'https://torben.website/reachable-watcher',
+                content: {
+                    enUS: [
+                        ''
+                    ],
+                    deDE: [
+                        ''
+                    ]
+                }
+            }
+        ]
     }
 ]
 // endregion
