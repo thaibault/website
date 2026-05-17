@@ -246,6 +246,10 @@ home-page {
         }
         .wu-priority-navigation {
             width: 100%;
+
+            .wu-priority-navigation__overflow__title {
+                color: var(--menu-font-color);
+            }
         }
     }
     /* endregion */
@@ -261,6 +265,9 @@ home-page {
             position: fixed;
             top: 50%;
             transform: translateY(-50%);
+        }
+        .swiper-button-disabled {
+            display: none;
         }
 
         .hp-section__swiper-wrapper {
@@ -280,7 +287,7 @@ home-page {
                     display: none;
 
                     background-repeat: no-repeat;
-                    background-size: auto 100%;
+                    background-size: auto 70%;
                     background-position: center;
 
                     @media (--w-extra-extra-small) {
