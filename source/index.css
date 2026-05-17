@@ -118,6 +118,9 @@ home-page {
     }
     /** endregion */
     strong { font-weight: bold; }
+    lang-replacement, .wi-hide {
+        display: none;
+    }
     /* endregion */
     /* region header */
     /* Normal Wrapper for the main navigation bar. Scrolls with viewport. */
@@ -362,6 +365,8 @@ home-page {
                     max-height: var(--maximum-content-height);
 
                     .hp-section__swiper-wrapper__slide__center {
+                        padding-top: 0;
+
                         h1#about-me {
                             margin-top: var(--top-margin);
                         }

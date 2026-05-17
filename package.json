@@ -57,7 +57,7 @@
     "@typescript-eslint/parser": "^8.59.3",
     "@webcomponents/webcomponentsjs": "^2.8.0",
     "bootstrap-icons": "^1.13.1",
-    "clientnode": "^4.0.1396",
+    "clientnode": "^4.0.1397",
     "css-loader": "^7.1.4",
     "cssnano": "^8.0.1",
     "errorreporter": "^1.0.339",
@@ -88,7 +88,7 @@
     "typescript-eslint": "^8.59.3",
     "ua-parser-js": "^2.0.9",
     "web-component-wrapper": "^0.0.591",
-    "web-internationalization": "^2.0.22",
+    "web-internationalization": "^2.0.24",
     "weboptimizer": "^3.0.22",
     "webpack-dev-server": "^5.2.4",
     "website-utilities": "^1.0.417"
