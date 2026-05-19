@@ -174,11 +174,14 @@ export class HomePage<
 
         selectors: {
             header: 'header',
-            swiper: '.swiper',
-            curriculumVitaeLink: 'a[href*="curriculumVitae"]',
+            navigationButtons: '.wu-priority-navigation a',
+
             section: '.hp-section',
+
+            swiper: '.swiper',
             sectionSwiperWrapper: '.hp-section__swiper-wrapper',
-            navigationButtons: '.wu-priority-navigation a'
+
+            curriculumVitaeLink: 'a[href*="curriculumVitae"]'
         },
 
         swiper: {

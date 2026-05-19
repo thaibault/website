@@ -762,8 +762,8 @@ _%>
                             <%_
                             let first = true
                             for (const section of SECTIONS) {
-                                if (section.content[0]) {
                             _%>
+                                <%_ if (section.content[0]) { _%>
                                     <li
                                         class="website-start-up-animation-number-<%- getStartUpAnimationNumber() %><%- section.title === SECTIONS[0].title ? ' active' : '' %>"
                                     >
@@ -811,9 +811,9 @@ _%>
                     <%_ for (const section of SECTIONS) { _%>
                         <div
                             data-hash="<%- section.title %>"
-                            class="hp-section__swiper-wrapper__slide swiper-slide <%- section.title %>"
+                            class="hp-section__swiper-wrapper__slide hp-section__swiper-wrapper__slide--<%- section.title %> swiper-slide"
                         >
-                            <div class="hp-section__swiper-wrapper__slide__image-<%- section.title %>">
+                            <div class="hp-section__swiper-wrapper__slide__image">
                                 <div class="hp-section__swiper-wrapper__slide__center">
                                     <%_ if (section.content[1][DEFAULT_LANGUAGE]) { _%>
                                         <h1 id="<%- section.title %>">
