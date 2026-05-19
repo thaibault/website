@@ -247,7 +247,7 @@ home-page {
         .wu-priority-navigation {
             width: 100%;
 
-            .wu-priority-navigation__overflow__title {
+            .wu-priority-navigation__list__overflow-indicator__title {
                 color: var(--menu-font-color);
             }
         }

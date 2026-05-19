@@ -23,7 +23,6 @@ import {
     extend,
     format,
     getAll,
-    getParents,
     getText,
     globalContext,
     KEYBOARD_CODES,

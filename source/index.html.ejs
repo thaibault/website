@@ -758,7 +758,7 @@ _%>
             >
                 <div class="hp-header__center">
                     <nav role="navigation" class="wu-priority-navigation">
-                        <ul>
+                        <ul class="wu-priority-navigation__list">
                             <%_
                             let first = true
                             for (const section of SECTIONS) {
@@ -777,16 +777,21 @@ _%>
                                             -->
                                         </a>
                                     </li>
-                                    <li class="wu-priority-navigation__overflow">
-                                        <span
-                                            class="wu-priority-navigation__overflow__title"
-                                        >▼</span>
-                                        <ul class="wu-priority-navigation__overflow__list">
-                                        </ul>
+                                    <li class="wu-priority-navigation__list__overflow-indicator">
+                                        <div
+                                            class="wu-priority-navigation__list__overflow-indicator__title"
+                                        >
+                                            <div
+                                                class="wu-priority-navigation__list__overflow-indicator__title__icon"
+                                            ></div>
+                                        </div>
                                     </li>
                                 <%_ } _%>
                                 <%_ first = false _%>
                             <%_ } _%>
+                        </ul>
+
+                        <ul class="wu-priority-navigation__overflow__list">
                         </ul>
                     </nav>
 
