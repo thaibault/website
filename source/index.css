@@ -46,7 +46,7 @@ endregion
     --footer-height: 80px;
 
     --minimum-content-height: 300px;
-    --maximum-content-height: 1000px;
+    --maximum-content-height: 1400px;
     --maximum-content-width: 800px;
     /** endregion */
     /** region custom media queries */
@@ -207,9 +207,11 @@ home-page {
             @media (--w-extra-extra-small) {
                 @media (--w-extra-small) {
                     @media (--w-small) {
-                        border-radius: 0 0 5px 5px;
+                        @media (--w-medium) {
+                            border-radius: 0 0 5px 5px;
 
-                        width: var(--maximum-content-width);
+                            width: var(--maximum-content-width);
+                        }
                     }
                 }
             }
@@ -263,7 +265,7 @@ home-page {
         .swiper-button-prev,
         .swiper-button-next {
             position: fixed;
-            top: 50%;
+            top: 30%;
             transform: translateY(-50%);
         }
         .swiper-button-disabled {
@@ -284,16 +286,18 @@ home-page {
                 min-height: var(--minimum-content-height);
 
                 [class^="hp-section__swiper-wrapper__slide__image-"] {
-                    display: none;
-
                     background-repeat: no-repeat;
                     background-size: auto 70%;
-                    background-position: center;
+                    background-position: left center;
 
                     @media (--w-extra-extra-small) {
+                        display: block;
+
                         @media (--w-extra-small) {
                             @media (--w-small) {
-                                display: block;
+                                @media (--w-medium) {
+                                    background-position: center;
+                                }
                             }
                         }
                     }
@@ -302,15 +306,11 @@ home-page {
                 .hp-section__swiper-wrapper__slide__center {
                     text-align: center;
 
-                    @media (--w-extra-extra-small) {
-                        @media (--w-extra-small) {
-                            @media (--w-small) {
-                                padding-top: var(--header-height);
-                                padding-bottom: var(--header-height);
+                    padding-top: var(--header-height);
+                    padding-bottom: var(--header-height);
 
-                                width: var(--maximum-content-width);
-                            }
-                        }
+                    @media (--w-extra-extra-small) {
+                        width: var(--maximum-content-width);
                     }
 
                     h1 {
@@ -372,66 +372,50 @@ home-page {
                     max-height: var(--maximum-content-height);
 
                     .hp-section__swiper-wrapper__slide__center {
-                        padding-top: 0;
-
-                        h1#about-me {
-                            margin-top: var(--top-margin);
-                        }
+                        padding-top: var(--header-height);
 
                         .lead > a:first-child {
                             margin-top: 35px;
                         }
 
                         @media (--w-extra-extra-small) {
-                            @media (--w-extra-small) {
-                                @media (--w-small) {
-                                    position: relative;
+                            position: relative;
 
-                                    max-width: 600px;
+                            max-width: 600px;
 
-                                    h1 {
-                                        font-size: 4.5em;
-                                    }
+                            .lead {
+                                position: absolute;
+                                right: -38px;
+                                width: 300px;
 
-                                    .lead {
-                                        position: absolute;
-                                        right: -38px;
-                                        width: 300px;
+                                text-align: right;
+                                font-size: 1.5em;
+                                line-height: 1.4;
+                                margin-top: 10px;
 
-                                        text-align: right;
-                                        font-size: 1.5em;
-                                        line-height: 1.4;
-                                        margin-top: 10px;
+                                a {
+                                    display: block;
+                                    margin-top: 30px;
+                                }
 
-                                        a {
-                                            display: block;
-                                            margin-top: 30px;
-                                        }
-
-                                        @media (--w-medium) {
-                                            right: 0;
-                                        }
-                                    }
+                                @media (--w-medium) {
+                                    right: 0;
                                 }
                             }
                         }
                     }
 
                     @media (--w-extra-extra-small) {
+                        height: calc(100vh - var(--header-height));
+                        padding-top: var(--header-height);
+
                         p {
                             font-size: 1.6rem;
                         }
 
-                        @media (--w-extra-small) {
-                            @media (--w-small) {
-                                height: calc(100vh - var(--header-height));
-                                padding-top: var(--header-height);
-
-                                /* Show background images on bigger devices. */
-                                .hp-section__swiper-wrapper__slide__image-about-me {
-                                    background-image: url('image/carousel/about-me-440x686-pixels.png');
-                                }
-                            }
+                        /* Show background images on bigger devices. */
+                        .hp-section__swiper-wrapper__slide__image-about-me {
+                            background-image: url('image/carousel/about-me-440x686-pixels.png');
                         }
                     }
                 }
