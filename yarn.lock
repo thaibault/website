@@ -4392,12 +4392,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^25.9.0":
-  version: 25.9.0
-  resolution: "@types/node@npm:25.9.0"
+"@types/node@npm:^25.9.1":
+  version: 25.9.1
+  resolution: "@types/node@npm:25.9.1"
   dependencies:
     undici-types: "npm:>=7.24.0 <7.24.7"
-  checksum: 10c0/1845f0ce5471213a4f0c887845c50993968ea863c03bb355282b59bdcc877d009a2785f0f506cfc40b8ce7548a21e33ac826e998be62d42b000bfd9ccdc6c910
+  checksum: 10c0/9a04682842bebbcf21a1779dfeab9aa733d7bd7bbc0a0edb641ab3a9a3d43eac543225acf669c334f458f1956443ebc072bc3c72840c543b8b356cab5c82d456
   languageName: node
   linkType: hard
 
@@ -17776,9 +17776,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"website-utilities@npm:^1.0.420":
-  version: 1.0.420
-  resolution: "website-utilities@npm:1.0.420"
+"website-utilities@npm:^1.0.421":
+  version: 1.0.421
+  resolution: "website-utilities@npm:1.0.421"
   peerDependencies:
     "@babel/runtime": "*"
     bootstrap-icons: "*"
@@ -17791,7 +17791,7 @@ __metadata:
       optional: true
   bin:
     website-utilities: deploy.js
-  checksum: 10c0/3d593eb68c623aab40966f668956bbff8c8fb8b30e7ba6ff3d7bb0b8956cd84a2880ff8c5160625ca51b0570325fa9b21d076c4fefd717e4ea38d8a4b12c41f9
+  checksum: 10c0/8752fd7c08b3151247fb57149cfa531f6804d9751a41c2f63168c8ccf7262021a57fb53ce0119ab39a0b8bb203c76a99bd1d5f2d4df91a62915cb7ca1002d0bc
   languageName: node
   linkType: hard
 
@@ -17807,7 +17807,7 @@ __metadata:
     "@types/headroom": "npm:^0.12.5"
     "@types/html-minifier": "npm:^4.0.6"
     "@types/jsdom": "npm:^28.0.3"
-    "@types/node": "npm:^25.9.0"
+    "@types/node": "npm:^25.9.1"
     "@types/webpack-env": "npm:^1.18.8"
     "@typescript-eslint/eslint-plugin": "npm:^8.59.4"
     "@typescript-eslint/parser": "npm:^8.59.4"
@@ -17847,7 +17847,7 @@ __metadata:
     web-internationalization: "npm:^2.0.25"
     weboptimizer: "npm:^3.0.24"
     webpack-dev-server: "npm:^5.2.4"
-    website-utilities: "npm:^1.0.420"
+    website-utilities: "npm:^1.0.421"
   languageName: unknown
   linkType: soft
 

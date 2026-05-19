@@ -244,8 +244,31 @@ home-page {
                     }
                 }
             }
+        }
+        .wu-priority-navigation {
+            width: 100%;
 
-            nav ul {
+            .wu-priority-navigation__link {
+                text-decoration: none;
+                padding: 10px 15px;
+            }
+
+            .wu-priority-navigation__list
+            .wu-priority-navigation__link--active::after {
+                border-bottom: 2px solid var(--accent-color);
+            }
+
+            .wu-priority-navigation__overflow-list
+            .wu-priority-navigation__link--active::after {
+                border-left: 2px solid var(--accent-color);
+            }
+
+            .wu-priority-navigation__link--active,
+            .wu-priority-navigation__link--active:hover {
+                color: var(--menu-font-hover-color);
+            }
+
+            ul {
                 margin: 0;
                 padding: 0;
                 /*
@@ -253,19 +276,7 @@ home-page {
                     switcher in mobile mode.
                 */
                 padding-right: 3rem;
-
-                a.wu-priority-navigation__link--active,
-                a.wu-priority-navigation__link--active:hover {
-                    color: var(--menu-font-hover-color);
-
-                    &::after {
-                        border-bottom: 2px solid var(--accent-color);
-                    }
-                }
             }
-        }
-        .wu-priority-navigation {
-            width: 100%;
 
             &.wu-priority-navigation--overflow-open
             .wu-priority-navigation__list
@@ -305,11 +316,6 @@ home-page {
             .wu-priority-navigation__overflow-list {
                 height: calc(100% - var(--header-height));
                 width: 100%;
-                /*
-                    NOTE: Is an upper limit to calculate proper slide down
-                    animation.
-                */
-
 
                 margin-top: var(--header-height);
                 padding-bottom: calc(var(--w-default-space) / 2);
