@@ -11,6 +11,7 @@ This library written by Torben Sickert stands under a creative commons naming
 3.0 unported license. See https://creativecommons.org/licenses/by/3.0/deed.de
 endregion
 */
+/* region imports */
 @import 'bootstrap-icons/font/bootstrap-icons';
 
 @import 'swiper/swiper.css';
@@ -21,6 +22,7 @@ endregion
 
 @import 'website-utilities/fonts.compiled.css';
 @import 'website-utilities/index.compiled.css';
+/* endregion */
 
 :root {
     /* region custom-properties */
@@ -265,7 +267,7 @@ home-page {
         .swiper-button-prev,
         .swiper-button-next {
             position: fixed;
-            top: 30%;
+            top: 50%;
             transform: translateY(-50%);
         }
         .swiper-button-disabled {
@@ -304,7 +306,8 @@ home-page {
             }
 
             .hp-section__swiper-wrapper__slide__center {
-                padding: var(--header-height);
+                box-sizing: border-box;
+                padding: var(--header-height) calc(var(--header-height) / 2);
 
                 text-align: center;
 
