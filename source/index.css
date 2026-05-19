@@ -204,12 +204,12 @@ home-page {
             height: 100%;
             width: 100vw;
 
-            padding: 0 var(--w-default-space);
-
             @media (--w-extra-extra-small) {
                 @media (--w-extra-small) {
                     @media (--w-small) {
                         @media (--w-medium) {
+                            padding: 0 var(--w-default-space);
+
                             border-radius: 0 0 5px 5px;
 
                             width: var(--maximum-content-width);
@@ -230,13 +230,29 @@ home-page {
                 }
 
                 &[href^="#lang-"] {
-                    margin-left: 3rem;
+                    position: absolute;
+                    right: 0;
+
+                    @media (--w-extra-extra-small) {
+                        @media (--w-extra-small) {
+                            @media (--w-small) {
+                                @media (--w-medium) {
+                                    position: relative;
+                                }
+                            }
+                        }
+                    }
                 }
             }
 
             nav ul {
                 margin: 0;
                 padding: 0;
+                /*
+                    Reserve some space for absolute positioned language
+                    switcher in mobile mode.
+                */
+                padding-right: 3rem;
 
                 a.wu-priority-navigation__link--active,
                 a.wu-priority-navigation__link--active:hover {
@@ -267,6 +283,7 @@ home-page {
             .wu-priority-navigation__list
             .wu-priority-navigation__list__overflow-indicator {
                 top: 12px;
+                left: 1rem;
 
                 &:hover
                 .wu-priority-navigation__list__overflow-indicator__title
@@ -284,11 +301,19 @@ home-page {
                 }
             }
 
+            &.wu-priority-navigation--overflow-open
             .wu-priority-navigation__overflow-list {
-                position: absolute;
-                top: var(--header-height);
-                left: 0;
+                height: calc(100% - var(--header-height));
                 width: 100%;
+                /*
+                    NOTE: Is an upper limit to calculate proper slide down
+                    animation.
+                */
+
+
+                margin-top: var(--header-height);
+                padding-bottom: calc(var(--w-default-space) / 2);
+
                 background-color: var(--header-background-color);
             }
         }
