@@ -251,8 +251,45 @@ home-page {
         .wu-priority-navigation {
             width: 100%;
 
-            .wu-priority-navigation__list__overflow-indicator__title {
-                color: var(--menu-font-color);
+            &.wu-priority-navigation--overflow-open
+            .wu-priority-navigation__list
+            .wu-priority-navigation__list__overflow-indicator:hover
+            .wu-priority-navigation__list__overflow-indicator__title
+            .wu-priority-navigation__list__overflow-indicator__title__icon {
+                &:before {
+                    top: 0;
+                }
+                &:after {
+                    top: 0;
+                }
+            }
+
+            .wu-priority-navigation__list
+            .wu-priority-navigation__list__overflow-indicator {
+                top: 12px;
+
+                &:hover
+                .wu-priority-navigation__list__overflow-indicator__title
+                .wu-priority-navigation__list__overflow-indicator__title__icon {
+                    &:before {
+                        top: -12px;
+                    }
+                    &:after {
+                        top: 12px;
+                    }
+                }
+
+                .wu-priority-navigation__list__overflow-indicator__title {
+                    color: var(--menu-font-color);
+                }
+            }
+
+            .wu-priority-navigation__overflow-list {
+                position: absolute;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                background-color: var(--header-background-color);
             }
         }
     }

@@ -12573,6 +12573,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"nanoid@npm:^3.3.12":
+  version: 3.3.12
+  resolution: "nanoid@npm:3.3.12"
+  bin:
+    nanoid: bin/nanoid.cjs
+  checksum: 10c0/ba142b7b39e11e80c16dd74b0365d407880c87c1cf7e1480956981ae940ee36060fa5b6f092cd1e315184dd19244c657bd017d03327bd3c62247d691c5e8edfb
+  languageName: node
+  linkType: hard
+
 "napi-postinstall@npm:^0.2.4":
   version: 0.2.5
   resolution: "napi-postinstall@npm:0.2.5"
@@ -14377,6 +14386,17 @@ __metadata:
     picocolors: "npm:^1.1.1"
     source-map-js: "npm:^1.2.1"
   checksum: 10c0/48138207cf5ef5581be1bfe2cb65ccfe0ac75e43888ba045afc8ed6043d7b56aeb3b9a9fe5b353ff554be943cd0cc15d826ccb991525159175971e5ee8ab0237
+  languageName: node
+  linkType: hard
+
+"postcss@npm:^8.5.15":
+  version: 8.5.15
+  resolution: "postcss@npm:8.5.15"
+  dependencies:
+    nanoid: "npm:^3.3.12"
+    picocolors: "npm:^1.1.1"
+    source-map-js: "npm:^1.2.1"
+  checksum: 10c0/7f2e63ae22fbe43aace1bf652bd99da4e90737c64194d49e51ddc9cd0f9e51ff2861a7d734379b494deffa03a880a5c65eec70bc29ee9ebaa7136dde3eee8f31
   languageName: node
   linkType: hard
 
@@ -17756,9 +17776,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"website-utilities@npm:^1.0.419":
-  version: 1.0.419
-  resolution: "website-utilities@npm:1.0.419"
+"website-utilities@npm:^1.0.420":
+  version: 1.0.420
+  resolution: "website-utilities@npm:1.0.420"
   peerDependencies:
     "@babel/runtime": "*"
     bootstrap-icons: "*"
@@ -17771,7 +17791,7 @@ __metadata:
       optional: true
   bin:
     website-utilities: deploy.js
-  checksum: 10c0/f2680eb841e84c11df2701eb9fa82e81cb372f91c5cfa21a0064d0c3ca5ad58fe27efbf77b6d694738648480b52dfa3003a09cd2fd57b4eb90ab78901f28bd05
+  checksum: 10c0/3d593eb68c623aab40966f668956bbff8c8fb8b30e7ba6ff3d7bb0b8956cd84a2880ff8c5160625ca51b0570325fa9b21d076c4fefd717e4ea38d8a4b12c41f9
   languageName: node
   linkType: hard
 
@@ -17807,7 +17827,7 @@ __metadata:
     jsdoc: "npm:^4.0.5"
     legal-notes: "npm:^1.0.29"
     mini-css-extract-plugin: "npm:^2.10.2"
-    postcss: "npm:^8.5.14"
+    postcss: "npm:^8.5.15"
     postcss-fontpath: "npm:^1.0.0"
     postcss-import: "npm:^16.1.1"
     postcss-loader: "npm:^8.2.1"
@@ -17827,7 +17847,7 @@ __metadata:
     web-internationalization: "npm:^2.0.25"
     weboptimizer: "npm:^3.0.24"
     webpack-dev-server: "npm:^5.2.4"
-    website-utilities: "npm:^1.0.419"
+    website-utilities: "npm:^1.0.420"
   languageName: unknown
   linkType: soft
 
