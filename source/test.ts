@@ -15,11 +15,12 @@
 */
 // region imports
 import {beforeAll, describe, expect, test} from '@jest/globals'
+import '@webcomponents/webcomponentsjs/custom-elements-es5-adapter'
 
-import Website from './index'
+import HomePage from './index'
 // endregion
 describe('Documentation', (): void => {
-    let website: Website
+    let website: HomePage
     /*
         NOTE: Import plugins with side effects (augmenting "$" scope /
         registering plugin) when other imports are only used as type.
@@ -28,7 +29,7 @@ describe('Documentation', (): void => {
     require('website-utilities')
     require('./index')
     beforeAll(async (): Promise<void> => {
-        website = (await $.Website()) as Website
+        website = (await $.Website()) as HomePage
     })
     // region tests
     /// region public methods
