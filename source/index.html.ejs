@@ -730,23 +730,11 @@ _%>
                     <span>N</span>
                     <span>G</span>
                 </lang-replace>
-                <!--deDE:
+                <!--<%- ALTERNATE_LANGUAGE %>:
                     <span>L</span>
                     <span>A</span>
                     <span>D</span>
                     <span>E</span>
-                -->
-                <!--frFR:
-                    <span>C</span>
-                    <span>H</span>
-                    <span>A</span>
-                    <span>r</span>
-                    <span>g</span>
-                    <span>e</span>
-                    <span>m</span>
-                    <span>e</span>
-                    <span>n</span>
-                    <span>t</span>
                 -->
             </div>
         </div>
@@ -837,7 +825,7 @@ _%>
                                             -->
                                         </h2>
                                         <p>
-                                            <langReplace>
+                                            <lang-replace>
                                                 <%_ for (const keywords of section.content[3][DEFAULT_LANGUAGE]) {
                                                     if (keywords[0] !== section.content[3][DEFAULT_LANGUAGE][0][0]) {
                                                         _%>
@@ -845,7 +833,7 @@ _%>
                                                     <%_ } _%>
                                                     <%- keywords[1].join(', ') %>
                                                 <%_ } _%>
-                                            </langReplace>
+                                            </lang-replace>
                                             <!--<%- ALTERNATE_LANGUAGE %>:
                                                 <%_ for (const keywords of section.content[3][ALTERNATE_LANGUAGE]) {
                                                     if (keywords[0] !== section.content[3][ALTERNATE_LANGUAGE][0][0]) {
@@ -890,21 +878,22 @@ _%>
                                                                 _%>
                                                                     <li>
                                                                         <%_ if (Array.isArray(element)) { _%>
-                                                                            <langreplace>
+                                                                            <lang-replace>
                                                                                 <a
                                                                                     href="<%- element[1] %>"
                                                                                 >
                                                                                     <%- element[0] %>
                                                                                 </a>
-                                                                            </langrelace>
-                                                                            <langreplacement>
+                                                                            </lang-relace>
+                                                                            <!--<%- ALTERNATE_LANGUAGE %>:
+
                                                                                 <%- ALTERNATE_LANGUAGE %>:
                                                                                 <a
                                                                                     href="<%- project.content[ALTERNATE_LANGUAGE][1][index][1] %>"
                                                                                 >
                                                                                     <%- project.content[ALTERNATE_LANGUAGE][1][index][0] %>
                                                                                 </a>
-                                                                            </langreplacement>
+                                                                            -->
                                                                         <%_ } else { _%>
                                                                             <%- element %>
                                                                             <!--<%- ALTERNATE_LANGUAGE %>:
@@ -936,12 +925,12 @@ _%>
                                                             target="_blank"
                                                         >Curriculum Vitae</a>
                                                     </lang-replace>
-                                                    <lang-replacement><%- ALTERNATE_LANGUAGE %>:
+                                                    <!--<%- ALTERNATE_LANGUAGE %>:
                                                         <a
                                                             href="<%- LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE_PATH %>"
                                                             target="_blank"
                                                         >Lebenslauf</a>
-                                                    </lang-replacement>
+                                                    -->
 
                                                     <a
                                                         href="<%- LINK_V_CARD_PATH %>"
