@@ -224,6 +224,7 @@ home-page {
                 color: var(--menu-font-color);
                 font-size: 1.2em;
                 padding: 1rem;
+                text-decoration: none;
 
                 &:hover {
                     color: var(--menu-font-hover-color);
@@ -248,11 +249,6 @@ home-page {
         .wu-priority-navigation {
             width: 100%;
 
-            .wu-priority-navigation__link {
-                text-decoration: none;
-                padding: 10px 15px;
-            }
-
             .wu-priority-navigation__list
             .wu-priority-navigation__link--active::after {
                 border-bottom: 2px solid var(--accent-color);
@@ -268,7 +264,8 @@ home-page {
                 color: var(--menu-font-hover-color);
             }
 
-            ul {
+            .wu-priority-navigation__list,
+            .wu-priority-navigation__overflow-list{
                 margin: 0;
                 padding: 0;
                 /*
@@ -318,9 +315,12 @@ home-page {
                 width: 100%;
 
                 margin-top: var(--header-height);
-                padding-bottom: calc(var(--w-default-space) / 2);
 
                 background-color: var(--header-background-color);
+
+                li {
+                    padding: 0;
+                }
             }
         }
     }
