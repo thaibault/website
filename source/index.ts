@@ -18,24 +18,13 @@
 */
 // region imports
 import {
-    camelCaseToDelimited,
-    createDomNodes,
-    extend,
-    format,
-    getAll,
-    getText,
-    globalContext,
-    KEYBOARD_CODES,
-    Logger,
-    Mapping,
-    NOOP,
-    wrap
+    camelCaseToDelimited, extend, globalContext, Logger, Mapping
 } from 'clientnode'
-import {func, object} from 'clientnode/property-types'
+import {object} from 'clientnode/property-types'
 import Headroom from 'headroom.js'
 import Swiper from 'swiper'
 import {
-    EffectCube, HashNavigation, Navigation, Pagination, Scrollbar
+    EffectCube, HashNavigation, Navigation, Pagination
 } from 'swiper/modules'
 import {property} from 'web-component-wrapper/decorator'
 import {WebComponentAPI} from 'web-component-wrapper/type'
@@ -49,24 +38,11 @@ import {DefaultOptions, Options} from './type'
 // endregion
 export const log = new Logger({name: 'website'})
 // region declaration
-declare var OFFLINE: boolean
+declare const OFFLINE: boolean
 // endregion
 // region plugins/classes
 /**
  * This plugin holds all necessary methods to extend a whole homepage.
- * @property static:_name - Defines this class name to allow retrieving them
- * after name mangling.
- *
- * @property _initialContentHeightAdaptionDone - Indicates whether initial main
- * content height has been adapted.
- * @property _initialMenuHightlightDone - Indicates whether initial menu
- * highlighting has been done.
- * @property _loadingCoverRemoved - Indicates whether startup loading cover has
- * been removed.
- * @property _oldSectionHeightInPixel - Old section height needed for section
- * switch animations.
- * @property _sectionTopMarginInPixel - Distance to window top from the section
- * body.
  * @property _defaultOptions - Options extended by the options given to the
  * initializer method.
  * @property _defaultOptions.trackingCode {string} - Tracking code for
@@ -123,9 +99,18 @@ export class HomePage<
         >
             <web-internationalization
                 options="{selection: this.rootInstance.options.languages}"
-                on-switch="this.rootInstance.prepareToSwitchLanguage(parameters[0], parameters[1], this)"
+                on-switch="
+                    this.rootInstance.prepareToSwitchLanguage(
+                        parameters[0], parameters[1], this
+                    )
+                "
                 on-switched="this.rootInstance.swiper.updateAutoHeight()"
-                on-ensured="this.rootInstance.prepareToSwitchLanguage(this.currentLanguage, data, this)/*this.rootInstance._adaptContentHeight()*/"
+                on-ensured="
+                    this.rootInstance.prepareToSwitchLanguage(
+                        this.currentLanguage, data, this
+                    );
+                    this.rootInstance.swiper.updateAutoHeight()
+                "
             >
                 <slot>Please provide a template to transclude.</slot>
             </web-internationalization>
@@ -149,19 +134,19 @@ export class HomePage<
             tolerance: 0,
             classes: {
                 // when element is initialized
-                initial : 'headroom',
+                initial: 'headroom',
                 // when scrolling up
-                pinned : 'headroom--pinned',
+                pinned: 'headroom--pinned',
                 // when scrolling down
-                unpinned : 'headroom--unpinned',
+                unpinned: 'headroom--unpinned',
                 // when above offset
-                top : 'headroom--top',
+                top: 'headroom--top',
                 // when below offset
-                notTop : 'headroom--not-top',
+                notTop: 'headroom--not-top',
                 // when at bottom of scroll area
-                bottom : 'headroom--bottom',
+                bottom: 'headroom--bottom',
                 // when not at bottom of scroll area
-                notBottom : 'headroom--not-bottom',
+                notBottom: 'headroom--not-bottom',
                 // when frozen method has been called
                 frozen: 'headroom--frozen'
             }
@@ -224,11 +209,6 @@ export class HomePage<
     sectionSwiperWrapperDomNodes: NodeListOf<HTMLElement> | null = null
     navigationButtonDomNodes: NodeListOf<HTMLElement> | null = null
     // endregion
-    _initialContentHeightAdaptionDone = false
-    _initialMenuHighlightDone = false
-
-    _oldSectionHeightInPixel = 200
-    _sectionTopMarginInPixel = 0
     // region public methods
     /// region live-cycle
     /**
@@ -345,6 +325,8 @@ export class HomePage<
 
                 globalContext.window.dispatchEvent(hashEvent)
             })
+
+        await this.resolveRenderingPromiseIfSet(reason, resolveRendering)
     }
     /// endregion
     grabDomNodes() {
@@ -361,14 +343,14 @@ export class HomePage<
             this.options.selectors.navigationButtons
         )
     }
-    async prepareToSwitchLanguage(
+    prepareToSwitchLanguage(
         oldLanguage: string,
         newLanguage: string,
         languageComponentInstance: WebInternationalization
     ) {
         for (
             const domNode of
-                languageComponentInstance.switchLanguageButtonDomNodes ||
+            languageComponentInstance.switchLanguageButtonDomNodes ||
             []
         )
             for (const language of languageComponentInstance.options.selection)

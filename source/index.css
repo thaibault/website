@@ -32,21 +32,16 @@ endregion
     --font-color: #5a5a5a;
     --surface-color: #f2f2f2;
     --accent-color: #f88;
-
     --link-color: var(--accent-color);
     --link-hover-color: #f66;
-
     --menu-font-color: #e8dede;
-    --menu-font-hover-color: #ffffff;
-
-    --shadow-color: rgba(0, 0, 0, 0.4);
-
+    --menu-font-hover-color: #fff;
+    --shadow-color: rgb(0 0 0 / 40%);
     --swiper-theme-color: var(--accent-color);
     /** endregion */
     /** region space */
     --header-height: 60px;
     --footer-height: 80px;
-
     --minimum-content-height: 300px;
     --maximum-content-height: 1400px;
     --maximum-content-width: 800px;
@@ -64,6 +59,7 @@ endregion
     /** endregion */
     /* endregion */
 }
+
 html, body {
     background-color: var(--background-color);
     color: var(--font-color);
@@ -119,7 +115,10 @@ home-page {
         }
     }
     /** endregion */
-    strong { font-weight: bold; }
+    strong {
+        font-weight: bold;
+    }
+
     lang-replacement, .wi-hide {
         display: none;
     }
@@ -133,13 +132,11 @@ home-page {
         height: var(--header-height);
 
         position: fixed;
-        z-index: 10;
         right: 0;
         left: 0;
         top: 0;
 
         z-index: 2;
-
         /* region headroom */
         &.headroom {
             /*
@@ -159,17 +156,17 @@ home-page {
             /* Fold effect: */
             transform-origin: top;
             backface-visibility: visible !important;
-            animation-name: swingInX;
+            animation-name: swing-in-x;
         }
 
         &.headroom--unpinned {
             /* Slide effect: transform: translateY(-100%); */
             transform-origin: top;
             backface-visibility: visible !important;
-            animation-name: swingOutX;
+            animation-name: swing-out-x;
         }
 
-        @keyframes swingInX {
+        @keyframes swing-in-x {
             0% {
                 transform: perspective(400px) rotateX(-90deg)
             }
@@ -178,8 +175,7 @@ home-page {
                 transform: perspective(400px) rotateX(0deg)
             }
         }
-
-        @keyframes swingOutX {
+        @keyframes swing-out-x {
             0% {
                 transform: perspective(400px) rotateX(0deg)
             }
@@ -193,8 +189,7 @@ home-page {
             background-color: var(--header-background-color);
 
             display: flex;
-            flex-direction: row;
-            flex-wrap: nowrap;
+            flex-flow: row nowrap;
             justify-content: space-between;
 
             box-shadow: 0 10px 30px var(--shadow-color);
@@ -248,6 +243,7 @@ home-page {
                 }
             }
         }
+
         .wu-priority-navigation {
             width: 100%;
 
@@ -276,10 +272,11 @@ home-page {
                     &:hover
                     .wu-priority-navigation__list__overflow-indicator__title
                     .wu-priority-navigation__list__overflow-indicator__title__icon {
-                        &:before {
+                        &::before {
                             top: -12px;
                         }
-                        &:after {
+
+                        &::after {
                             top: 12px;
                         }
                     }
@@ -305,10 +302,11 @@ home-page {
             .wu-priority-navigation__list__overflow-indicator:hover
             .wu-priority-navigation__list__overflow-indicator__title
             .wu-priority-navigation__list__overflow-indicator__title__icon {
-                &:before {
+                &::before {
                     top: 0;
                 }
-                &:after {
+
+                &::after {
                     top: 0;
                 }
             }
@@ -342,6 +340,7 @@ home-page {
             top: 50%;
             transform: translateY(-50%);
         }
+
         .swiper-button-disabled {
             display: none;
         }
@@ -352,7 +351,6 @@ home-page {
 
             display: flex;
             justify-content: center;
-
             /*
                 Set a default content height. Could by vary depending on
                 currently activated section.
@@ -500,7 +498,6 @@ home-page {
                         p {
                             font-size: 1.6rem;
                         }
-
                         /* Show background images on bigger devices. */
                         .hp-section__swiper-wrapper__slide__image {
                             background-image: url('image/carousel/about-me-440x686-pixels.png');

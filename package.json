@@ -48,7 +48,7 @@
     "@eslint/js": "^10.0.1",
     "@stylistic/eslint-plugin": "^5.10.0",
     "@types/ejs": "^3.1.5",
-    "@types/headroom": "^0.12.5",
+    "@types/headroom.js": "^0.12.4",
     "@types/html-minifier": "^4.0.6",
     "@types/jsdom": "^28.0.3",
     "@types/node": "^25.9.1",
