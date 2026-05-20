@@ -87,6 +87,7 @@ export class HomePage<
     ExternalProperties extends Mapping<unknown> = Mapping<unknown>,
     InternalProperties extends Mapping<unknown> = Mapping<unknown>
 > extends Web<TElement, ExternalProperties, InternalProperties> {
+    // TODO
     static content = `
         <website-utilities
             options="{
@@ -100,17 +101,11 @@ export class HomePage<
             <web-internationalization
                 options="{selection: this.rootInstance.options.languages}"
                 on-switch="
-                    this.rootInstance.prepareToSwitchLanguage(
-                        parameters[0], parameters[1], this
-                    )
+                    this.rootInstance.switchLanguageButton(parameters[1], this)
                 "
-                on-switched="this.rootInstance.swiper.updateAutoHeight()"
-                on-ensured="
-                    this.rootInstance.prepareToSwitchLanguage(
-                        this.currentLanguage, data, this
-                    );
-                    this.rootInstance.swiper.updateAutoHeight()
-                "
+                on-ensure="this.rootInstance.switchLanguageButton(data, this)"
+                on-ensured="this.rootInstance.swiper?.updateAutoHeight()"
+                on-switched="this.rootInstance.swiper?.updateAutoHeight()"
             >
                 <slot>Please provide a template to transclude.</slot>
             </web-internationalization>
@@ -343,10 +338,8 @@ export class HomePage<
             this.options.selectors.navigationButtons
         )
     }
-    prepareToSwitchLanguage(
-        oldLanguage: string,
-        newLanguage: string,
-        languageComponentInstance: WebInternationalization
+    switchLanguageButton(
+        newLanguage: string, languageComponentInstance: WebInternationalization
     ) {
         for (
             const domNode of

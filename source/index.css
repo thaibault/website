@@ -91,7 +91,7 @@ home-page {
             --bottom: calc(var(--footer-height) / 2 - 1rem + 5px);
 
             font-size: 1rem;
-            visibility: hidden;
+            display: none;
             bottom: var(--bottom);
             right: 60px;
             z-index: 4;
@@ -108,7 +108,7 @@ home-page {
                 @media (--w-extra-small) {
                     @media (--w-small) {
                         /* Bigger devices get a scroll top button. */
-                        visibility: visible;
+                        display: block;
                     }
                 }
             }
