@@ -224,6 +224,7 @@ home-page {
                 color: var(--menu-font-color);
                 font-size: 1.2em;
                 padding: 1rem;
+                padding-right: 2rem;
                 text-decoration: none;
 
                 &:hover {
@@ -249,9 +250,43 @@ home-page {
         .wu-priority-navigation {
             width: 100%;
 
-            .wu-priority-navigation__list
-            .wu-priority-navigation__link--active::after {
-                border-bottom: 2px solid var(--accent-color);
+            .wu-priority-navigation__list,
+            .wu-priority-navigation__overflow-list {
+                margin: 0;
+                padding: 0;
+                /*
+                    Reserve some space for absolute positioned language
+                    switcher in mobile mode.
+                */
+                padding-right: 3rem;
+            }
+
+            .wu-priority-navigation__list {
+                padding-left: 1rem;
+
+                .wu-priority-navigation__link--active::after {
+                    border-bottom: 2px solid var(--accent-color);
+                }
+
+                .wu-priority-navigation__list__overflow-indicator {
+                    top: 12px;
+                    left: 1rem;
+
+                    &:hover
+                    .wu-priority-navigation__list__overflow-indicator__title
+                    .wu-priority-navigation__list__overflow-indicator__title__icon {
+                        &:before {
+                            top: -12px;
+                        }
+                        &:after {
+                            top: 12px;
+                        }
+                    }
+
+                    .wu-priority-navigation__list__overflow-indicator__title {
+                        color: var(--menu-font-color);
+                    }
+                }
             }
 
             .wu-priority-navigation__overflow-list
@@ -264,17 +299,6 @@ home-page {
                 color: var(--menu-font-hover-color);
             }
 
-            .wu-priority-navigation__list,
-            .wu-priority-navigation__overflow-list{
-                margin: 0;
-                padding: 0;
-                /*
-                    Reserve some space for absolute positioned language
-                    switcher in mobile mode.
-                */
-                padding-right: 3rem;
-            }
-
             &.wu-priority-navigation--overflow-open
             .wu-priority-navigation__list
             .wu-priority-navigation__list__overflow-indicator:hover
@@ -285,27 +309,6 @@ home-page {
                 }
                 &:after {
                     top: 0;
-                }
-            }
-
-            .wu-priority-navigation__list
-            .wu-priority-navigation__list__overflow-indicator {
-                top: 12px;
-                left: 1rem;
-
-                &:hover
-                .wu-priority-navigation__list__overflow-indicator__title
-                .wu-priority-navigation__list__overflow-indicator__title__icon {
-                    &:before {
-                        top: -12px;
-                    }
-                    &:after {
-                        top: 12px;
-                    }
-                }
-
-                .wu-priority-navigation__list__overflow-indicator__title {
-                    color: var(--menu-font-color);
                 }
             }
 
