@@ -15,8 +15,8 @@
     See https://creativecommons.org/licenses/by/3.0/deed.de
     endregion
 */
-import {HeadroomOptions} from 'headroom'
-import {SwiperOptions} from 'swiper'
+import {HeadroomOptions} from 'headroom.js'
+import {SwiperOptions} from 'swiper/types'
 import {KnownEventName} from 'web-component-wrapper/type'
 // region exports
 export interface DefaultOptions {
@@ -29,23 +29,6 @@ export interface DefaultOptions {
     headroom: HeadroomOptions
 
     languages: Array<string>
-
-    priorityNavigation: {
-        initClass: string
-        mainNavWrapper: string
-        mainNav: string
-        navDropdownClassName: string
-        navDropdownToggleClassName: string
-        navDropdownLabel: string
-        navDropdownBreakpointLabel: string
-        breakPoint: number
-        throttleDelay: number
-        offsetPixels: number
-        count: boolean
-
-        moved: () => void
-        movedBack: () => void
-    }
 
     selectors: {
         header: string

@@ -4249,10 +4249,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/headroom@npm:^0.12.5":
-  version: 0.12.5
-  resolution: "@types/headroom@npm:0.12.5"
-  checksum: 10c0/a80521ecd58468458b353d9632f06635c1ea72cd94867b502c50ff266dfe9bfc3bd8f0af9787e8cc7cdf312d91bb16e69b3355284e2140f35564562a9a5f2429
+"@types/headroom.js@npm:^0.12.4":
+  version: 0.12.4
+  resolution: "@types/headroom.js@npm:0.12.4"
+  checksum: 10c0/5340392a51c7ae1d81521ced1721cebca7d1f2a49955246dafae6cc4767e63b8b8bad4e5cfa03615ddda8d7eeeae92256a10b6dc1fe413d382052f89d043b822
   languageName: node
   linkType: hard
 
@@ -17804,7 +17804,7 @@ __metadata:
     "@eslint/js": "npm:^10.0.1"
     "@stylistic/eslint-plugin": "npm:^5.10.0"
     "@types/ejs": "npm:^3.1.5"
-    "@types/headroom": "npm:^0.12.5"
+    "@types/headroom.js": "npm:^0.12.4"
     "@types/html-minifier": "npm:^4.0.6"
     "@types/jsdom": "npm:^28.0.3"
     "@types/node": "npm:^25.9.1"

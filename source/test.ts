@@ -15,7 +15,6 @@
 */
 // region imports
 import {beforeAll, describe, expect, test} from '@jest/globals'
-import {$} from 'clientnode'
 
 import Website from './index'
 // endregion

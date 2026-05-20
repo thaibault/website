@@ -223,8 +223,9 @@ home-page {
             a:focus {
                 color: var(--menu-font-color);
                 font-size: 1.2em;
+
                 padding: 1rem;
-                padding-right: 2rem;
+
                 text-decoration: none;
 
                 &:hover {
