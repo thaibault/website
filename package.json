@@ -141,12 +141,8 @@
               "removeConsole": false
             }
           },
-          "module": {
-            "#": "Using this module would result in this error for task \"build\": \"ERROR in ./source/index.js Module build failed (from ./node_modules/babel-loader/lib/index.js): TypeError: website/source/index.js: Cannot read property 'end' of null\".",
-            "evaluate": false,
-            "#0": "Using this module would result in this error for task \"build\": \"ERROR in ./source/index.js Module build failed (from ./node_modules/babel-loader/lib/index.js): TypeError: website/source/index.js: Cannot read property 'end' of null\".",
-            "guards": false
-          }
+          "#1": "Avoids wrong this binding in some callbacks with class bound closure (e.g. in \"performStartUpEffects -> animate -> always\".",
+          "module": null
         },
         "htmlMinifier": {
           "ignoreCustomComments": [
