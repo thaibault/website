@@ -17,30 +17,21 @@
 import {beforeAll, describe, expect, test} from '@jest/globals'
 import '@webcomponents/webcomponentsjs/custom-elements-es5-adapter'
 
-import HomePage from './index'
+import HomePage, {api} from './index'
 // endregion
 describe('Documentation', (): void => {
-    let website: HomePage
-    /*
-        NOTE: Import plugins with side effects (augmenting "$" scope /
-        registering plugin) when other imports are only used as type.
-    */
-    require('internationalisation')
-    require('website-utilities')
-    require('./index')
-    beforeAll(async (): Promise<void> => {
-        website = (await $.Website()) as HomePage
+    let root: HomePage
+
+    beforeAll(async () => {
+        api.register()
+        root = document.createElement('home-page') as HomePage
+        document.body.appendChild(root)
+
+        await root.renderState.promise
     })
     // region tests
-    /// region public methods
-    //// region special
-    test(
-        'initialize',
-        () => {
-            expect(website).toBeDefined()
-        }
-    )
-    //// endregion
-    /// endregion
+    test('should be defined', () => {
+        expect(root).toBeDefined()
+    })
     // endregion
 })

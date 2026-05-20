@@ -4249,10 +4249,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/headroom.js@npm:^0.12.4":
-  version: 0.12.4
-  resolution: "@types/headroom.js@npm:0.12.4"
-  checksum: 10c0/5340392a51c7ae1d81521ced1721cebca7d1f2a49955246dafae6cc4767e63b8b8bad4e5cfa03615ddda8d7eeeae92256a10b6dc1fe413d382052f89d043b822
+"@types/headroom@npm:^0.12.5":
+  version: 0.12.5
+  resolution: "@types/headroom@npm:0.12.5"
+  checksum: 10c0/a80521ecd58468458b353d9632f06635c1ea72cd94867b502c50ff266dfe9bfc3bd8f0af9787e8cc7cdf312d91bb16e69b3355284e2140f35564562a9a5f2429
   languageName: node
   linkType: hard
 
@@ -14226,6 +14226,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"postcss-scss@npm:^4.0.9":
+  version: 4.0.9
+  resolution: "postcss-scss@npm:4.0.9"
+  peerDependencies:
+    postcss: ^8.4.29
+  checksum: 10c0/f917ecfd4b9113a6648e966a41f027ff7e14238393914978d44596e227a50f084667dc8818742348dc7d8b20130b30d4259aca1d4db86754a9c141202ae03714
+  languageName: node
+  linkType: hard
+
 "postcss-selector-not@npm:^9.0.0":
   version: 9.0.0
   resolution: "postcss-selector-not@npm:9.0.0"
@@ -17804,7 +17813,7 @@ __metadata:
     "@eslint/js": "npm:^10.0.1"
     "@stylistic/eslint-plugin": "npm:^5.10.0"
     "@types/ejs": "npm:^3.1.5"
-    "@types/headroom.js": "npm:^0.12.4"
+    "@types/headroom": "npm:^0.12.5"
     "@types/html-minifier": "npm:^4.0.6"
     "@types/jsdom": "npm:^28.0.3"
     "@types/node": "npm:^25.9.1"
@@ -17834,6 +17843,7 @@ __metadata:
     postcss-mixins: "npm:^12.1.2"
     postcss-nested: "npm:^7.0.2"
     postcss-preset-env: "npm:^11.3.0"
+    postcss-scss: "npm:^4.0.9"
     postcss-sprites: "npm:^4.2.1"
     postcss-url: "npm:^10.1.3"
     prop-types: "npm:^15.8.1"

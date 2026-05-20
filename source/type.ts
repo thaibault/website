@@ -15,7 +15,7 @@
     See https://creativecommons.org/licenses/by/3.0/deed.de
     endregion
 */
-import {HeadroomOptions} from 'headroom.js'
+import {HeadroomOptions} from 'headroom'
 import {SwiperOptions} from 'swiper/types'
 import {KnownEventName} from 'web-component-wrapper/type'
 // region exports
