@@ -66,6 +66,8 @@ html, body {
 
     margin: 0;
 
+    font-family: var(--w-typography-font-family);
+    font-size: 14px;
     font-size: 16px;
 }
 
