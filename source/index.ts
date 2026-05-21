@@ -18,7 +18,12 @@
 */
 // region imports
 import {
-    camelCaseToDelimited, extend, globalContext, Logger, Mapping
+    camelCaseToDelimited,
+    extend,
+    globalContext,
+    Logger,
+    Mapping,
+    trailingThrottle
 } from 'clientnode'
 import {object} from 'clientnode/property-types'
 import Headroom from 'headroom.js'
@@ -152,6 +157,7 @@ export class HomePage<
 
         selectors: {
             header: 'header',
+            navigation: '.wu-priority-navigation',
             navigationButtons: '.wu-priority-navigation a',
             switchLanguageButtons: '.hp-switch-language',
 
@@ -200,15 +206,15 @@ export class HomePage<
     swiper: Swiper | null = null
     // region domNodes
     headerDomNode: HTMLElement | null = null
-    navigationButtonDomNodes: NodeListOf<HTMLElement> | null = null
-    switchLanguageButtonDomNodes: NodeListOf<HTMLLinkElement> | null = null
+    navigationDomNodes: NodeListOf<HTMLElement> | null = null
+    switchLanguageButtonDomNodes: NodeListOf<HTMLElement> | null = null
 
     sectionDomNode: HTMLElement | null = null
 
     swiperDomNode: HTMLElement | null = null
     sectionSwiperWrapperDomNodes: NodeListOf<HTMLElement> | null = null
 
-    curriculumVitaeLinkDomNodes: NodeListOf<HTMLLinkElement> | null = null
+    curriculumVitaeLinkDomNodes: NodeListOf<HTMLElement> | null = null
     // endregion
     // region public methods
     /// region live-cycle
@@ -291,12 +297,31 @@ export class HomePage<
                 globalContext.window,
                 'resize',
                 () => {
-                    this.swiper?.updateAutoHeight()
+                    trailingThrottle(
+                        () => {
+                            this.swiper?.updateSize()
+                            this.swiper?.updateAutoHeight()
+                        },
+                        20
+                    )
                 }
             )
 
-        for (const domNode of this.navigationButtonDomNodes || [])
+        /*
+            NOTE: We have to use event delegation here since navigation links
+            might switch its dom node representation position between mobile
+            and normal menu. Doing it this way we avoid maintaining to assign
+            and remove event listeners during runtime.
+        */
+
+        for (const domNode of this.navigationDomNodes || [])
             this.addSecureEventListener(domNode, 'click', (event) => {
+                const domNode = (event.target as HTMLElement).closest(
+                    this.options.selectors.navigationButtons
+                )
+                if (!domNode)
+                    return
+
                 /*
                     NOTE: Prevent jumping to headline's page position with
                     matching id.
@@ -333,6 +358,9 @@ export class HomePage<
     grabDomNodes() {
         this.headerDomNode =
             this.hostDomNode.querySelector(this.options.selectors.header)
+        this.navigationDomNodes = this.hostDomNode.querySelectorAll(
+            this.options.selectors.navigation
+        )
         this.switchLanguageButtonDomNodes = this.hostDomNode.querySelectorAll(
             this.options.selectors.switchLanguageButtons
         )
@@ -343,10 +371,6 @@ export class HomePage<
             this.hostDomNode.querySelector(this.options.selectors.section)
         this.sectionSwiperWrapperDomNodes = this.hostDomNode.querySelectorAll(
             this.options.selectors.sectionSwiperWrapper
-        )
-
-        this.navigationButtonDomNodes = this.hostDomNode.querySelectorAll(
-            this.options.selectors.navigationButtons
         )
     }
     switchLanguageButton(

@@ -31,6 +31,7 @@ export interface DefaultOptions {
 
     selectors: {
         header: string
+        navigation: string
         navigationButtons: string
         switchLanguageButtons: string
 
