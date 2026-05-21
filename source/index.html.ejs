@@ -298,8 +298,8 @@ const PROJECTS = [
         },
         content: [
             {
-                title: 'clientNode',
-                url: 'https://torben.website/clientNode',
+                title: 'clientnode',
+                url: 'https://torben.website/clientnode',
                 content: {
                     enUS: [
                         'Provides universal backend and frontend utilities.'
@@ -318,8 +318,8 @@ const PROJECTS = [
         },
         content: [
             {
-                title: 'erroreporter',
-                url: 'https://torben.website/erroreporter',
+                title: 'errorreporter',
+                url: 'https://torben.website/errorreporter',
                 content: {
                     enUS: [
                         'A web client side error reporter.'
@@ -462,8 +462,8 @@ const PROJECTS = [
                 }
             },
             {
-                title: 'couchdeb-web-node-plugin',
-                url: 'https://torben.website/couchdeb-web-node-plugin',
+                title: 'couchdb-web-node-plugin',
+                url: 'https://torben.website/couchdb-web-node-plugin',
                 content: {
                     enUS: [
                         'Extension for couchdb based database server supporting schema based validation, right and role based authorization and document relations management provided as WebNode plugin.'
@@ -771,10 +771,10 @@ _%>
 
                             <li class="wu-priority-navigation__list__overflow-indicator">
                                 <div
-                                        class="wu-priority-navigation__list__overflow-indicator__title"
+                                    class="wu-priority-navigation__list__overflow-indicator__title"
                                 >
                                     <div
-                                            class="wu-priority-navigation__list__overflow-indicator__title__icon"
+                                        class="wu-priority-navigation__list__overflow-indicator__title__icon"
                                     ></div>
                                 </div>
                             </li>
@@ -860,10 +860,16 @@ _%>
                                                 </h3>
                                                 <%_ for (const project of group.content) { _%>
                                                     <dt>
-                                                        <a
-                                                            href="<%- project.url %>"
-                                                            target="_blank"
-                                                        ><%- project.title %></a>
+                                                        <%_ if (project.url) { %>
+                                                            <a
+                                                                href="<%- project.url %>"
+                                                                target="_blank"
+                                                            >
+                                                                <%- project.title %>
+                                                            </a>
+                                                        <%_ } else  { %>
+                                                            <%- project.title %>
+                                                        <%_ } %>
                                                     </dt>
                                                     <dd>
                                                         <%- project.content[DEFAULT_LANGUAGE][0] %>
