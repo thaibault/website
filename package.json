@@ -87,12 +87,12 @@
     "stylelint-config-standard": "^40.0.0",
     "swiper": "^12.1.4",
     "typescript-eslint": "^8.59.4",
-    "ua-parser-js": "^2.0.9",
+    "ua-parser-js": "^2.0.10",
     "web-component-wrapper": "^0.0.592",
     "web-internationalization": "^2.0.30",
     "weboptimizer": "^3.0.24",
     "webpack-dev-server": "^5.2.4",
-    "website-utilities": "^1.0.422"
+    "website-utilities": "^1.0.425"
   },
   "engines": {
     "node": ">=24",

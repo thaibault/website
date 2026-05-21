@@ -37,9 +37,6 @@ import WebInternationalization, {
 import {DefaultOptions, Options} from './type'
 // endregion
 export const log = new Logger({name: 'website'})
-// region declaration
-declare const OFFLINE: boolean
-// endregion
 // region plugins/classes
 /**
  * This plugin holds all necessary methods to extend a whole homepage.
@@ -87,7 +84,6 @@ export class HomePage<
     ExternalProperties extends Mapping<unknown> = Mapping<unknown>,
     InternalProperties extends Mapping<unknown> = Mapping<unknown>
 > extends Web<TElement, ExternalProperties, InternalProperties> {
-    // TODO
     static content = `
         <website-utilities
             options="{
@@ -97,6 +93,11 @@ export class HomePage<
                     unmanaged: ['about-me', 'contact', 'work']
                 }
             }"
+            on-unfocus-responsive-menu="return !(
+                parameters[1] ||
+                Array.from(this.rootInstance.switchLanguageButtonDomNodes)
+                    .includes(event.target)
+            )"
         >
             <web-internationalization
                 options="{selection: this.rootInstance.options.languages}"
@@ -152,6 +153,7 @@ export class HomePage<
         selectors: {
             header: 'header',
             navigationButtons: '.wu-priority-navigation a',
+            switchLanguageButtons: '.hp-switch-language',
 
             section: '.hp-section',
 
@@ -198,11 +200,15 @@ export class HomePage<
     swiper: Swiper | null = null
     // region domNodes
     headerDomNode: HTMLElement | null = null
-    swiperDomNode: HTMLElement | null = null
-    curriculumVitaeLinkDomNodes: NodeListOf<HTMLLinkElement> | null = null
-    sectionDomNode: HTMLElement | null = null
-    sectionSwiperWrapperDomNodes: NodeListOf<HTMLElement> | null = null
     navigationButtonDomNodes: NodeListOf<HTMLElement> | null = null
+    switchLanguageButtonDomNodes: NodeListOf<HTMLLinkElement> | null = null
+
+    sectionDomNode: HTMLElement | null = null
+
+    swiperDomNode: HTMLElement | null = null
+    sectionSwiperWrapperDomNodes: NodeListOf<HTMLElement> | null = null
+
+    curriculumVitaeLinkDomNodes: NodeListOf<HTMLLinkElement> | null = null
     // endregion
     // region public methods
     /// region live-cycle
@@ -327,6 +333,10 @@ export class HomePage<
     grabDomNodes() {
         this.headerDomNode =
             this.hostDomNode.querySelector(this.options.selectors.header)
+        this.switchLanguageButtonDomNodes = this.hostDomNode.querySelectorAll(
+            this.options.selectors.switchLanguageButtons
+        )
+
         this.swiperDomNode =
             this.hostDomNode.querySelector(this.options.selectors.swiper)
         this.sectionDomNode =
@@ -334,6 +344,7 @@ export class HomePage<
         this.sectionSwiperWrapperDomNodes = this.hostDomNode.querySelectorAll(
             this.options.selectors.sectionSwiperWrapper
         )
+
         this.navigationButtonDomNodes = this.hostDomNode.querySelectorAll(
             this.options.selectors.navigationButtons
         )
