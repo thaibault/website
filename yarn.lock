@@ -17785,9 +17785,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"website-utilities@npm:^1.0.425":
-  version: 1.0.425
-  resolution: "website-utilities@npm:1.0.425"
+"website-utilities@npm:^1.0.428":
+  version: 1.0.428
+  resolution: "website-utilities@npm:1.0.428"
   peerDependencies:
     "@babel/runtime": "*"
     bootstrap-icons: "*"
@@ -17800,7 +17800,7 @@ __metadata:
       optional: true
   bin:
     website-utilities: deploy.js
-  checksum: 10c0/1e47c13a55990217cb40192c2cb142c3a5c85c37c81b9808252828614f6b57e0a4c7314505dc70a41463aea1c69988cdd50db0bbbc1d663dfa374159807a04d9
+  checksum: 10c0/8d0838da5b08022642150466554d62b6ab3b5a79e90a2156217e6a55fea85c0502761f85ac965855c4377865701ad53a2e0417bf158e9cb87230acced8cf3452
   languageName: node
   linkType: hard
 
@@ -17857,7 +17857,7 @@ __metadata:
     web-internationalization: "npm:^2.0.30"
     weboptimizer: "npm:^3.0.24"
     webpack-dev-server: "npm:^5.2.4"
-    website-utilities: "npm:^1.0.425"
+    website-utilities: "npm:^1.0.428"
   languageName: unknown
   linkType: soft
 
