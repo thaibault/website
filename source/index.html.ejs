@@ -96,40 +96,47 @@ const SOCIAL_MEDIA = [
 const SECTIONS = [
     {
         title: 'about-me',
-        content: [
-            {enUS: 'About me', deDE: 'Über mich'}, {enUS: '', deDE: ''},
-            {
+        content: {
+            menuLabel: {enUS: 'About me', deDE: 'Über mich'},
+            headline: {enUS: '', deDE: ''},
+            sound: {enUS: 'data/enUS.mp3', deDE: 'data/deDE.mp3'},
+            lead: {
                 enUS: 'Eliminating technical debt and cognitive blind spots at the speed of modern AI.',
                 deDE: 'Technische Schulden und kognitive blinde Flecken mit der Geschwindigkeit moderner KI beseitigen.'
             }
-        ]
+        }
     },
     {
         title: 'contact',
-        content: [
-            {enUS: 'Contact', deDE: 'Kontakt'},
-            {enUS: 'Get in touch', deDE: 'Lernen wir uns kennen'},
-            {
+        content: {
+            menuLabel: {enUS: 'Contact', deDE: 'Kontakt'},
+            headline: {enUS: 'Get in touch', deDE: 'Lernen wir uns kennen'},
+            sound: {enUS: 'data/enUS.mp3', deDE: 'data/deDE.mp3'},
+            lead: {
                 enUS: "Let's talk about your project and what I can do.",
                 deDE: 'Kontaktieren Sie mich und wir sprechen über Ihr ' +
-                      'Vorhaben.'
+                        'Vorhaben.'
             }
-        ]
+        }
     },
     {
         title: 'work',
-        content: [
-            {enUS: 'Work', deDE: 'Arbeiten'},
-            {enUS: "I love what I'm doing", deDE: 'Ich liebe was ich mache'},
-            {enUS: 'I offer', deDE: 'ich biete'},
-            {
+        content: {
+            menuLabel: {enUS: 'Work', deDE: 'Arbeiten'},
+            headline: {
+                enUS: "I love what I'm doing",
+                deDE: 'Ich liebe was ich mache'
+            },
+            sound: {enUS: 'data/enUS.mp3', deDE: 'data/deDE.mp3'},
+            subHeadline: {enUS: 'I offer', deDE: 'ich biete'},
+            keywords: {
                 enUS: [
                     [
                         'abstract',
                         [
                             'contacts', 'conception',
                             'Implementation and optimization of applications for the' +
-                                ' web; desktop and server',
+                            ' web; desktop and server',
                             'quality Assurance', 'High Reliability Applications',
                             'Test-driven Design', '(Web)programming', 'Usability',
                             'Web and search engine optimization',
@@ -168,7 +175,7 @@ const SECTIONS = [
                         'database',
                         [
                             'Object-Relational Modeling (ORM) with SQLAlchemy or ' +
-                                'Django ORM',
+                            'Django ORM',
                             'SQL'
                         ]
                     ],
@@ -185,7 +192,7 @@ const SECTIONS = [
                     [
                         'framework',
                         [
-                        'AngularJS', 'django', 'jQuery', 'Mootools', 'Bootstrap'
+                            'AngularJS', 'django', 'jQuery', 'Mootools', 'Bootstrap'
                         ]
                     ]
                 ],
@@ -195,7 +202,7 @@ const SECTIONS = [
                         [
                             'Kontakte', 'Konzeption',
                             'Umsetzung und Optimierung von Anwendungen fürs Web, ' +
-                                'Desktop und Server',
+                            'Desktop und Server',
                             'Qualitätssicherung',
                             'Hochzuverlässigkeits-Anwendungen',
                             'Test-driven Design', '(Web)Programmierung',
@@ -234,7 +241,7 @@ const SECTIONS = [
                         'Datenbanken',
                         [
                             'Relationale-Objekt-Modelierung (ORM) mit sqlAlchemy ' +
-                                'oder Django ORM',
+                            'oder Django ORM',
                             'SQL'
                         ]
                     ],
@@ -250,8 +257,8 @@ const SECTIONS = [
                     ]]
                 ]
             },
-            {enUS: 'Projects', deDE: 'Projekte'}
-        ]
+            subHeadline2: {enUS: 'Projects', deDE: 'Projekte'}
+        }
     }
 ]
 const PROJECTS = [
@@ -751,7 +758,7 @@ _%>
                             let first = true
                             for (const section of SECTIONS) {
                             _%>
-                                <%_ if (section.content[0]) { _%>
+                                <%_ if (section.content.menuLabel) { _%>
                                     <li
                                         class="wu-start-up-animation-number-<%- getStartUpAnimationNumber() %>"
                                     >
@@ -759,9 +766,9 @@ _%>
                                             class="wu-priority-navigation__link"
                                             href="#<%- section.title %>"
                                         >
-                                            <%- section.content[0][DEFAULT_LANGUAGE] %>
+                                            <%- section.content.menuLabel[DEFAULT_LANGUAGE] %>
                                             <!--<%- ALTERNATE_LANGUAGE %>:
-                                                <%- section.content[0][ALTERNATE_LANGUAGE] %>
+                                                <%- section.content.menuLabel[ALTERNATE_LANGUAGE] %>
                                             -->
                                         </a>
                                     </li>
@@ -803,31 +810,39 @@ _%>
                         >
                             <div class="hp-section__swiper-wrapper__slide__image">
                                 <div class="hp-section__swiper-wrapper__slide__center">
-                                    <%_ if (section.content[1][DEFAULT_LANGUAGE]) { _%>
-                                        <h1 id="<%- section.title %>">
-                                            <%- section.content[1][DEFAULT_LANGUAGE] %>
+                                    <!--
+                                        Serves as anchor point if JavaScript
+                                        isn't supported.
+                                    -->
+                                    <h1 id="<%- section.title %>">
+                                        <%_ if (section.content.headline) { _%>
+                                            <%- section.content.headline[DEFAULT_LANGUAGE] %>
                                             <!--<%- ALTERNATE_LANGUAGE %>:
-                                                <%- section.content[1][ALTERNATE_LANGUAGE] %>
+                                                <%- section.content.headline[ALTERNATE_LANGUAGE] %>
                                             -->
-                                        </h1>
-                                    <%_ } else { _%>
-                                        <!--
-                                            Serves as anchor point if
-                                            JavaScript isn't supported.
-                                        -->
-                                        <h1 id="<%- section.title %>"></h1>
-                                    <%_ } _%>
+                                        <%_ } _%>
+                                    </h1>
+
+                                    <%_ if (section.content.sound) { _%>
+                                        <lang-replace class="hp-audio-player">
+                                            <%- section.content.sound[DEFAULT_LANGUAGE] %>
+                                        </lang-replace>
+                                        <lang-replacement class="hp-audio-player"><%- ALTERNATE_LANGUAGE %>:
+                                            <%- section.content.sound[ALTERNATE_LANGUAGE] %>
+                                        </lang-replacement>
+                                    <%_ } %>
+
                                     <%_ if (section.title === 'work') { _%>
                                         <h2>
-                                            <%- section.content[2][DEFAULT_LANGUAGE] %>
+                                            <%- section.content.subHeadline[DEFAULT_LANGUAGE] %>
                                             <!--<%- ALTERNATE_LANGUAGE %>:
-                                                <%- section.content[2][ALTERNATE_LANGUAGE] %>
+                                                <%- section.content.subHeadline[ALTERNATE_LANGUAGE] %>
                                             -->
                                         </h2>
                                         <p>
                                             <lang-replace>
-                                                <%_ for (const keywords of section.content[3][DEFAULT_LANGUAGE]) {
-                                                    if (keywords[0] !== section.content[3][DEFAULT_LANGUAGE][0][0]) {
+                                                <%_ for (const keywords of section.content.keywords[DEFAULT_LANGUAGE]) {
+                                                    if (keywords[0] !== section.content.keywords[DEFAULT_LANGUAGE][0][0]) {
                                                         _%>
                                                         <strong><%- keywords[0] %></strong>
                                                     <%_ } _%>
@@ -835,8 +850,8 @@ _%>
                                                 <%_ } _%>
                                             </lang-replace>
                                             <!--<%- ALTERNATE_LANGUAGE %>:
-                                                <%_ for (const keywords of section.content[3][ALTERNATE_LANGUAGE]) {
-                                                    if (keywords[0] !== section.content[3][ALTERNATE_LANGUAGE][0][0]) {
+                                                <%_ for (const keywords of section.content.keywords[ALTERNATE_LANGUAGE]) {
+                                                    if (keywords[0] !== section.content.keywords[ALTERNATE_LANGUAGE][0][0]) {
                                                         _%>
                                                         <strong><%- keywords[0] %></strong>
                                                     <%_ } _%>
@@ -845,9 +860,9 @@ _%>
                                             -->
                                         </p>
                                         <h2>
-                                            <%- section.content[4][DEFAULT_LANGUAGE] %>
+                                            <%- section.content.subHeadline2[DEFAULT_LANGUAGE] %>
                                             <!--<%- ALTERNATE_LANGUAGE %>:
-                                                <%- section.content[4][ALTERNATE_LANGUAGE] %>
+                                                <%- section.content.subHeadline2[ALTERNATE_LANGUAGE] %>
                                             -->
                                         </h2>
                                         <dl class="dl-horizontal">
@@ -919,9 +934,9 @@ _%>
                                         </dl>
                                     <%_ } else { _%>
                                         <p class="lead">
-                                            <%- section.content[2][DEFAULT_LANGUAGE] %>
+                                            <%- section.content.lead[DEFAULT_LANGUAGE] %>
                                             <!--<%- ALTERNATE_LANGUAGE %>:
-                                                <%- section.content[2][ALTERNATE_LANGUAGE] %>
+                                                <%- section.content.lead[ALTERNATE_LANGUAGE] %>
                                             -->
                                             <%_ if (section.title === 'about-me') { _%>
                                                 <span>

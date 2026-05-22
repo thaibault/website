@@ -31,6 +31,7 @@ import Swiper from 'swiper'
 import {
     EffectCube, HashNavigation, Navigation, Pagination
 } from 'swiper/modules'
+import WaveSurfer from 'wavesurfer.js'
 import {property} from 'web-component-wrapper/decorator'
 import {WebComponentAPI} from 'web-component-wrapper/type'
 import {Web} from 'web-component-wrapper/Web'
@@ -166,7 +167,7 @@ export class HomePage<
             swiper: '.swiper',
             sectionSwiperWrapper: '.hp-section__swiper-wrapper',
 
-            curriculumVitaeLink: 'a[href*="curriculumVitae"]'
+            waveSurfer: '.hp-audio-player'
         },
 
         swiper: {
@@ -214,7 +215,7 @@ export class HomePage<
     swiperDomNode: HTMLElement | null = null
     sectionSwiperWrapperDomNodes: NodeListOf<HTMLElement> | null = null
 
-    curriculumVitaeLinkDomNodes: NodeListOf<HTMLElement> | null = null
+    waveSurferDomNodes: NodeListOf<HTMLElement> | null = null
     // endregion
     // region public methods
     /// region live-cycle
@@ -352,6 +353,12 @@ export class HomePage<
                 globalContext.window.dispatchEvent(hashEvent)
             })
 
+        for (const domNode of this.waveSurferDomNodes || [])
+            WaveSurfer.create({
+                container: domNode,
+                url: domNode.innerText.replace(/^[a-z]{2}[A-Z]{2}:/, '').trim()
+            })
+
         await this.resolveRenderingPromiseIfSet(reason, resolveRendering)
     }
     /// endregion
@@ -371,6 +378,10 @@ export class HomePage<
             this.hostDomNode.querySelector(this.options.selectors.section)
         this.sectionSwiperWrapperDomNodes = this.hostDomNode.querySelectorAll(
             this.options.selectors.sectionSwiperWrapper
+        )
+
+        this.waveSurferDomNodes = this.hostDomNode.querySelectorAll(
+            this.options.selectors.waveSurfer
         )
     }
     switchLanguageButton(

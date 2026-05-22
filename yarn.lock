@@ -17422,6 +17422,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"wavesurfer.js@npm:^7.12.7":
+  version: 7.12.7
+  resolution: "wavesurfer.js@npm:7.12.7"
+  checksum: 10c0/066b34586abcc27e2b80e28b19645e3413f0c37ba983e48de2ebc9c8ca69cd5664cafacd090b91d3b7ac4695413149b7d7db2f20fe201198847da03672be5e2e
+  languageName: node
+  linkType: hard
+
 "wbuf@npm:^1.1.0, wbuf@npm:^1.7.3":
   version: 1.7.3
   resolution: "wbuf@npm:1.7.3"
@@ -17853,6 +17860,7 @@ __metadata:
     swiper: "npm:^12.1.4"
     typescript-eslint: "npm:^8.59.4"
     ua-parser-js: "npm:^2.0.10"
+    wavesurfer.js: "npm:^7.12.7"
     web-component-wrapper: "npm:^0.0.592"
     web-internationalization: "npm:^2.0.30"
     weboptimizer: "npm:^3.0.24"

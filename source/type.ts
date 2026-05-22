@@ -40,7 +40,7 @@ export interface DefaultOptions {
         swiper: string
         sectionSwiperWrapper: string
 
-        curriculumVitaeLink: string
+        waveSurfer: string
     }
 
     swiper: SwiperOptions
