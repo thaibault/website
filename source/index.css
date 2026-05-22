@@ -41,8 +41,8 @@ endregion
         45deg,
         var(--background-color),
         var(--background-color),
-        #86228a,
         var(--background-color),
+        #86228a,
         var(--background-color)
     );
 
@@ -61,6 +61,14 @@ endregion
         to right,
         var(--link-hover-color),
         #7303c0
+    );
+
+    --headline-color: var(--accent-color);
+    --headline-gradient: linear-gradient(
+        to right,
+        var(--background-color),
+        #86228a,
+        var(--background-color)
     );
 
     --menu-font-color: #e8dede;
@@ -155,6 +163,12 @@ home-page {
                 }
             }
         }
+    }
+    h1 {
+        color: var(--headline-color);
+        background: var(--headline-gradient);
+        color: transparent;
+        background-clip: text;
     }
     /** endregion */
     strong {
