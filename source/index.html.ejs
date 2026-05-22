@@ -825,10 +825,14 @@ _%>
 
                                     <%_ if (section.content.sound) { _%>
                                         <lang-replace class="hp-audio-player">
-                                            <%- section.content.sound[DEFAULT_LANGUAGE] %>
+                                            <pre hidden>
+                                                <%- section.content.sound[DEFAULT_LANGUAGE] %>
+                                            </pre>
                                         </lang-replace>
                                         <lang-replacement class="hp-audio-player"><%- ALTERNATE_LANGUAGE %>:
-                                            <%- section.content.sound[ALTERNATE_LANGUAGE] %>
+                                            <pre hidden>
+                                                <%- section.content.sound[ALTERNATE_LANGUAGE] %>
+                                            </pre>
                                         </lang-replacement>
                                     <%_ } %>
 

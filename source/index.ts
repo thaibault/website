@@ -353,11 +353,32 @@ export class HomePage<
                 globalContext.window.dispatchEvent(hashEvent)
             })
 
-        for (const domNode of this.waveSurferDomNodes || [])
-            WaveSurfer.create({
+        for (const domNode of this.waveSurferDomNodes || []) {
+            const url = domNode.firstElementChild.textContent.trim()
+            const waveSurfer = WaveSurfer.create({
                 container: domNode,
-                url: domNode.innerText.replace(/^[a-z]{2}[A-Z]{2}:/, '').trim()
+
+                dragToSeek: false,
+                interact: false,
+
+                waveColor: '#86228a',
+                progressColor: '#eb9be7',
+
+                barHeight: 10,
+                cursorWidth: 0,
+                barWidth: 3,
+                barGap: 9,
+
+                url
             })
+            this.addSecureEventListener(
+                domNode,
+                'click',
+                (event) => {
+                    waveSurfer.playPause()
+                }
+            )
+        }
 
         await this.resolveRenderingPromiseIfSet(reason, resolveRendering)
     }

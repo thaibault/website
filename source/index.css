@@ -482,7 +482,7 @@ home-page {
 
             .hp-section__swiper-wrapper__slide__image {
                 background-repeat: no-repeat;
-                background-size: auto 70%;
+                background-size: auto 60%;
                 background-position: left center;
 
                 @media (--w-extra-extra-small) {
@@ -545,6 +545,11 @@ home-page {
                 }
             }
 
+            .hp-audio-player {
+                display: block;
+                margin: var(--header-height);
+            }
+
             &.hp-section__swiper-wrapper__slide--about-me {
                 max-height: var(--maximum-content-height);
 
@@ -555,6 +560,10 @@ home-page {
                 a {
                     display: block;
                     margin-top: 30px;
+                }
+
+                .hp-audio-player {
+                    margin-top: 0;
                 }
 
                 .hp-section__swiper-wrapper__slide__center {

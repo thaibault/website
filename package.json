@@ -115,6 +115,20 @@
         ]
       }
     },
+    "development": {
+      "includeClient": true,
+      "server": {
+        "static": {
+          "#": "We serve static files from source folder.",
+          "__append__": {
+            "directory": {
+              "__evaluate__": "path.resolve(self.path.source.asset.base)"
+            },
+            "watch": false
+          }
+        }
+      }
+    },
     "injection": {
       "chunks": false,
       "entry": {
