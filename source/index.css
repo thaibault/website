@@ -28,12 +28,41 @@ endregion
     /* region custom-properties */
     /** region color */
     --background-color: #222;
+    --background-gradient: linear-gradient(
+        to right,
+        #fdeff9,
+        var(--surface-color),
+        var(--surface-color),
+        var(--surface-color)
+    );
+
     --header-background-color: var(--background-color);
+    --header-background-gradient: linear-gradient(
+        45deg,
+        var(--background-color),
+        var(--background-color),
+        #86228a,
+        var(--background-color),
+        var(--background-color)
+    );
+
     --font-color: #5a5a5a;
-    --surface-color: #f2f2f2;
-    --accent-color: #f88;
+    --surface-color: #fdeff9;
+    --accent-color: #b822be;
+
     --link-color: var(--accent-color);
-    --link-hover-color: #f66;
+    --link-gradient: linear-gradient(
+        to right,
+        var(--accent-color),
+        var(--link-hover-color)
+    );
+    --link-hover-color: #ec38bc;
+    --link-hover-gradient: linear-gradient(
+        to right,
+        var(--link-hover-color),
+        #7303c0
+    );
+
     --menu-font-color: #e8dede;
     --menu-font-hover-color: #fff;
     --shadow-color: rgb(0 0 0 / 40%);
@@ -62,6 +91,7 @@ endregion
 
 html, body {
     background-color: var(--background-color);
+    background: var(--background-gradient);
     color: var(--font-color);
 
     margin: 0;
@@ -83,9 +113,21 @@ home-page {
     a:visited,
     a:focus {
         color: var(--link-color);
-        text-decoration: none !important;
 
-        &:hover { color: var(--link-hover-color); }
+        background: var(--link-gradient);
+        color: transparent;
+        background-clip: text;
+
+        text-decoration: none;
+
+        &:hover {
+            color: var(--link-hover-color);
+            background: var(--link-hover-gradient);
+            color: transparent;
+            background-clip: text;
+
+            text-decoration: var(--link-hover-color) underline;
+        }
 
         &.wu-scroll-to-top {
             --bottom: calc(var(--footer-height) / 2 - 1rem + 5px);
@@ -187,6 +229,7 @@ home-page {
         /* endregion */
         .hp-header__center {
             background-color: var(--header-background-color);
+            background: var(--header-background-gradient);
 
             display: flex;
             flex-flow: row nowrap;
@@ -318,8 +361,6 @@ home-page {
 
                 margin-top: var(--header-height);
 
-                background-color: var(--header-background-color);
-
                 li {
                     padding: 0;
                 }
@@ -332,7 +373,6 @@ home-page {
         display: grid;
         justify-content: center;
 
-        background-color: var(--surface-color);
         top: 0;
         left: 0;
         width: 100%;
@@ -380,8 +420,6 @@ home-page {
     /* endregion */
     /* region section */
     .hp-section {
-        background-color: var(--surface-color);
-
         overflow: hidden;
         position: relative;
 
@@ -404,9 +442,14 @@ home-page {
 
         .swiper-button-prev,
         .swiper-button-next {
+
             position: fixed;
             top: 50%;
             transform: translateY(-50%);
+
+            &:hover {
+                color: var(--link-hover-color);
+            }
         }
 
         .swiper-button-disabled {
@@ -415,8 +458,6 @@ home-page {
 
         .hp-section__swiper-wrapper
         .hp-section__swiper-wrapper__slide {
-            background-color: var(--surface-color);
-
             display: flex;
             justify-content: center;
             /*
@@ -433,12 +474,6 @@ home-page {
                 @media (--w-extra-extra-small) {
                     @media (--w-extra-small) {
                         display: block;
-
-                        @media (--w-small) {
-                            @media (--w-medium) {
-                                background-position: center;
-                            }
-                        }
                     }
                 }
             }
@@ -598,6 +633,8 @@ home-page {
     footer {
         display: grid;
         place-items: center;
+
+        text-align: center;
 
         height: var(--footer-height);
         width: 100%;
