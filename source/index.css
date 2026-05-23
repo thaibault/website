@@ -35,7 +35,6 @@ endregion
         var(--surface-color),
         var(--surface-color)
     );
-
     --header-background-color: var(--background-color);
     --header-background-gradient: linear-gradient(
         45deg,
@@ -45,25 +44,21 @@ endregion
         #86228a,
         var(--background-color)
     );
-
     --font-color: #5a5a5a;
     --surface-color: #fdeff9;
     --accent-color: #b822be;
-
     --link-color: var(--accent-color);
     --link-gradient: linear-gradient(
         to right,
         var(--link-hover-color),
         #7303c0
     );
-
     --link-hover-color: #ec38bc;
     --link-hover-gradient: linear-gradient(
         to right,
         var(--accent-color),
         var(--link-hover-color)
     );
-
     --headline-color: var(--accent-color);
     --headline-gradient: linear-gradient(
         to right,
@@ -71,7 +66,6 @@ endregion
         #86228a,
         var(--background-color)
     );
-
     --menu-font-color: #e8dede;
     --menu-font-hover-color: #fff;
     --shadow-color: rgb(0 0 0 / 40%);
@@ -99,7 +93,7 @@ endregion
 }
 
 html, body {
-    background-color: var(--background-color);
+    /* background-color: var(--background-color); */
     background: var(--background-gradient);
     color: var(--font-color);
 
@@ -121,8 +115,7 @@ home-page {
     a,
     a:visited,
     a:focus {
-        color: var(--link-color);
-
+        /* color: var(--link-color); */
         background: var(--link-gradient);
         color: transparent;
         background-clip: text;
@@ -130,7 +123,7 @@ home-page {
         text-decoration: none;
 
         &:hover {
-            color: var(--link-hover-color);
+            /* color: var(--link-hover-color); */
             background: var(--link-hover-gradient);
             color: transparent;
             background-clip: text;
@@ -165,8 +158,9 @@ home-page {
             }
         }
     }
+
     h1 {
-        color: var(--headline-color);
+        /* color: var(--headline-color); */
         background: var(--headline-gradient);
         color: transparent;
         background-clip: text;
@@ -245,7 +239,7 @@ home-page {
         }
         /* endregion */
         .hp-header__center {
-            background-color: var(--header-background-color);
+            /* background-color: var(--header-background-color); */
             background: var(--header-background-gradient);
 
             display: flex;
@@ -499,8 +493,7 @@ home-page {
                         display: block;
                     }
                 }
-
-                @media (min-height: 670px) {
+                @media (height >= 670px) {
                     background-position: left center;
                 }
             }
@@ -578,7 +571,7 @@ home-page {
 
                     @media (--w-extra-extra-small) {
                         @media (--w-extra-small) {
-                            @media (min-height: 450px) {
+                            @media (height >= 450px) {
                                 margin-top: calc(var(--header-height) * -1);
 
                                 position: relative;
@@ -611,14 +604,13 @@ home-page {
 
                 @media (--w-extra-extra-small) {
                     @media (--w-extra-small) {
-                        @media (min-height: 450px) {
+                        @media (height >= 450px) {
                             height: calc(100vh - var(--header-height));
                             padding-top: var(--header-height);
 
                             p {
                                 font-size: 1.6rem;
                             }
-
                             /* Show background images on bigger devices. */
                             .hp-section__swiper-wrapper__slide__image {
                                 background-image: url('image/carousel/about-me-440x686-pixels.png');

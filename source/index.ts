@@ -356,7 +356,7 @@ export class HomePage<
             })
 
         for (const domNode of this.waveSurferDomNodes || []) {
-            const url = domNode.firstElementChild.textContent.trim()
+            const url = domNode.firstElementChild?.textContent.trim()
             const waveSurfer = WaveSurfer.create({
                 container: domNode,
 
@@ -376,8 +376,8 @@ export class HomePage<
             this.addSecureEventListener(
                 domNode,
                 'click',
-                (event) => {
-                    waveSurfer.playPause()
+                () => {
+                    void waveSurfer.playPause()
                 }
             )
         }
@@ -428,9 +428,12 @@ export class HomePage<
         ]
         const currentHours = new Date().getHours()
         const index = Math.floor(currentHours / 24 * greets.length)
-        this.hostDomNode.querySelector(
+        const greetingDomNode = this.hostDomNode.querySelector(
             '.hp-section__swiper-wrapper__slide--about-me h1'
-        ).innerHTML = `${greets[index].enUS}<!--deDE:${greets[index].deDE}-->`
+        )
+        if (greetingDomNode)
+            greetingDomNode.innerHTML =
+                `${greets[index].enUS}<!--deDE:${greets[index].deDE}-->`
     }
     switchLanguageButton(
         newLanguage: string, languageComponentInstance: WebInternationalization
