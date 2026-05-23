@@ -171,7 +171,7 @@ export class HomePage<
         },
 
         swiper: {
-            grabCursor: true,
+            grabCursor: false,
             keyboard: true,
             centeredSlidesBounds: true,
 
@@ -263,6 +263,8 @@ export class HomePage<
 
         await super.render(reason, false)
 
+        this.applyGreeting()
+
         await this.waitForNestedComponentRendering()
 
         this.grabDomNodes()
@@ -300,11 +302,12 @@ export class HomePage<
                 () => {
                     trailingThrottle(
                         () => {
+                            console.log('A')
                             this.swiper?.updateSize()
                             this.swiper?.updateAutoHeight()
                         },
                         20
-                    )
+                    )()
                 }
             )
 
@@ -404,6 +407,31 @@ export class HomePage<
         this.waveSurferDomNodes = this.hostDomNode.querySelectorAll(
             this.options.selectors.waveSurfer
         )
+    }
+    applyGreeting() {
+        const greets = [
+            {
+                enUS: 'What are you doing that early?',
+                deDE: 'Was machst du so früh?'
+            },
+            {
+                enUS: 'Good Morning',
+                deDE: 'Guten Morgen'
+            },
+            {
+                enUS: 'Good Afternoon',
+                deDE: 'Moin'
+            },
+            {
+                enUS: 'Good Evening',
+                deDE: 'Guten Abend'
+            }
+        ]
+        const currentHours = new Date().getHours()
+        const index = Math.floor(currentHours / 24 * greets.length)
+        this.hostDomNode.querySelector(
+            '.hp-section__swiper-wrapper__slide--about-me h1'
+        ).innerHTML = `${greets[index].enUS}<!--deDE:${greets[index].deDE}-->`
     }
     switchLanguageButton(
         newLanguage: string, languageComponentInstance: WebInternationalization

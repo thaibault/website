@@ -53,14 +53,15 @@ endregion
     --link-color: var(--accent-color);
     --link-gradient: linear-gradient(
         to right,
-        var(--accent-color),
-        var(--link-hover-color)
+        var(--link-hover-color),
+        #7303c0
     );
+
     --link-hover-color: #ec38bc;
     --link-hover-gradient: linear-gradient(
         to right,
-        var(--link-hover-color),
-        #7303c0
+        var(--accent-color),
+        var(--link-hover-color)
     );
 
     --headline-color: var(--accent-color);
@@ -175,8 +176,9 @@ home-page {
         font-weight: bold;
     }
 
-    lang-replacement, .wi-hide {
-        display: none;
+    lang-replacement,
+    .wi-hide {
+        display: none !important;
     }
     /* endregion */
     /* region header */
@@ -456,13 +458,19 @@ home-page {
 
         .swiper-button-prev,
         .swiper-button-next {
+            color: var(--link-color);
 
+            display: none;
             position: fixed;
             top: 50%;
             transform: translateY(-50%);
 
             &:hover {
                 color: var(--link-hover-color);
+            }
+
+            @media (--w-extra-extra-small) {
+                display: block;
             }
         }
 
@@ -482,13 +490,17 @@ home-page {
 
             .hp-section__swiper-wrapper__slide__image {
                 background-repeat: no-repeat;
-                background-size: auto 60%;
-                background-position: left center;
+                background-size: auto 50%;
+                background-position: left bottom;
 
                 @media (--w-extra-extra-small) {
                     @media (--w-extra-small) {
                         display: block;
                     }
+                }
+
+                @media (min-height: 670px) {
+                    background-position: left center;
                 }
             }
 
@@ -553,44 +565,42 @@ home-page {
             &.hp-section__swiper-wrapper__slide--about-me {
                 max-height: var(--maximum-content-height);
 
-                h1 {
-                    font-size: 0;
-                }
-
                 a {
                     display: block;
-                    margin-top: 30px;
-                }
 
-                .hp-audio-player {
-                    margin-top: 0;
+                    margin-top: var(--w-default-space);
                 }
 
                 .hp-section__swiper-wrapper__slide__center {
                     padding-top: var(--header-height);
+                    margin-top: 0;
 
                     @media (--w-extra-extra-small) {
                         @media (--w-extra-small) {
-                            position: relative;
+                            @media (min-height: 450px) {
+                                margin-top: calc(var(--header-height) * -1);
 
-                            max-width: 600px;
+                                position: relative;
 
-                            .lead {
-                                position: absolute;
-                                right: 10px;
+                                max-width: 600px;
 
-                                width: 300px;
+                                .lead {
+                                    position: absolute;
+                                    right: 10px;
 
-                                text-align: right;
-                                font-size: 1.5em;
-                                line-height: 1.4;
-                                margin-top: 10px;
+                                    width: 300px;
 
-                                @media (--w-small) {
-                                    right: -38px;
+                                    text-align: right;
+                                    font-size: 1.5em;
+                                    line-height: 1.4;
+                                    margin-top: 10px;
 
-                                    @media (--w-medium) {
-                                        right: 0;
+                                    @media (--w-small) {
+                                        right: -38px;
+
+                                        @media (--w-medium) {
+                                            right: 0;
+                                        }
                                     }
                                 }
                             }
@@ -600,15 +610,18 @@ home-page {
 
                 @media (--w-extra-extra-small) {
                     @media (--w-extra-small) {
-                        height: calc(100vh - var(--header-height));
-                        padding-top: var(--header-height);
+                        @media (min-height: 450px) {
+                            height: calc(100vh - var(--header-height));
+                            padding-top: var(--header-height);
 
-                        p {
-                            font-size: 1.6rem;
-                        }
-                        /* Show background images on bigger devices. */
-                        .hp-section__swiper-wrapper__slide__image {
-                            background-image: url('image/carousel/about-me-440x686-pixels.png');
+                            p {
+                                font-size: 1.6rem;
+                            }
+
+                            /* Show background images on bigger devices. */
+                            .hp-section__swiper-wrapper__slide__image {
+                                background-image: url('image/carousel/about-me-440x686-pixels.png');
+                            }
                         }
                     }
                 }
@@ -633,6 +646,7 @@ home-page {
 
                         &:hover {
                             color: var(--link-hover-color);
+                            text-decoration: none;
                         }
                     }
                 }
