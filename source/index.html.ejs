@@ -824,16 +824,21 @@ _%>
                                     </h1>
 
                                     <%_ if (section.content.sound) { _%>
-                                        <lang-replace class="hp-audio-player">
+                                        <lang-alternative
+                                            class="hp-audio-player"
+                                        >
                                             <pre hidden>
                                                 <%- section.content.sound[DEFAULT_LANGUAGE] %>
                                             </pre>
-                                        </lang-replace>
-                                        <lang-replacement class="hp-audio-player"><%- ALTERNATE_LANGUAGE %>:
+                                        </lang-alternative>
+                                        <lang-alternative
+                                            lang="<%- ALTERNATE_LANGUAGE %>"
+                                            class="hp-audio-player"
+                                        >
                                             <pre hidden>
                                                 <%- section.content.sound[ALTERNATE_LANGUAGE] %>
                                             </pre>
-                                        </lang-replacement>
+                                        </lang-alternative>
                                     <%_ } %>
 
                                     <%_ if (section.title === 'work') { _%>

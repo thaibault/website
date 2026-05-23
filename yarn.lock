@@ -17463,9 +17463,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"web-internationalization@npm:^2.0.31":
-  version: 2.0.31
-  resolution: "web-internationalization@npm:2.0.31"
+"web-internationalization@npm:^2.0.32":
+  version: 2.0.32
+  resolution: "web-internationalization@npm:2.0.32"
   peerDependencies:
     "@babel/runtime": "*"
     clientnode: "*"
@@ -17474,7 +17474,7 @@ __metadata:
   peerDependenciesMeta:
     "@babel/runtime":
       optional: true
-  checksum: 10c0/53bd79b6cdeaf0b9788fc16dacdb27a561a86956809b8b2868a6b52347df7d053f72916fddacabb27a4067f541a2019d8248df1aa62944ed291f03446cadd846
+  checksum: 10c0/9afeaaf9a37fd385e7f3b1f68adb36c21ead9d24a3729d3061e3c31bf75868e3127d81dc3fb128d0c4cf7ac659446d3e8ddea829407c2712904cd7fd8237707e
   languageName: node
   linkType: hard
 
@@ -17862,7 +17862,7 @@ __metadata:
     ua-parser-js: "npm:^2.0.10"
     wavesurfer.js: "npm:^7.12.7"
     web-component-wrapper: "npm:^0.0.592"
-    web-internationalization: "npm:^2.0.31"
+    web-internationalization: "npm:^2.0.32"
     weboptimizer: "npm:^3.0.24"
     webpack-dev-server: "npm:^5.2.4"
     website-utilities: "npm:^1.0.431"

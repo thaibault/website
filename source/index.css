@@ -177,6 +177,7 @@ home-page {
     }
 
     lang-replacement,
+    lang-alternative:not([active]),
     .wi-hide {
         display: none !important;
     }
