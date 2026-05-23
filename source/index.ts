@@ -302,7 +302,6 @@ export class HomePage<
                 () => {
                     trailingThrottle(
                         () => {
-                            console.log('A')
                             this.swiper?.updateSize()
                             this.swiper?.updateAutoHeight()
                         },
