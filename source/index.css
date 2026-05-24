@@ -229,16 +229,6 @@ home-page {
             inset: 3px;
         }
 
-        h4 {
-            z-index: 1;
-            font-size: 1rem;
-
-            /* color: var(--link-color); */
-            background: var(--link-gradient);
-            color: transparent;
-            background-clip: text;
-        }
-
         @keyframes rotate-background {
             from {
                 transform: rotate(0deg);
@@ -246,6 +236,24 @@ home-page {
 
             to {
                 transform: rotate(360deg);
+            }
+        }
+
+        .hp-card__body {
+            box-sizing: border-box;
+
+            height: 100%;
+            padding: var(--w-default-space);
+
+            z-index: 1;
+
+            h4 {
+                font-size: 1rem;
+
+                /* color: var(--link-color); */
+                background: var(--link-gradient);
+                color: transparent;
+                background-clip: text;
             }
         }
     }

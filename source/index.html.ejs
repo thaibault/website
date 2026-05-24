@@ -979,62 +979,64 @@ _%>
                                             <div class="hp-projects">
                                                 <%_ for (const project of group.content) { _%>
                                                     <div class="hp-card">
-                                                        <h4>
-                                                            <%_ if (project.url) { %>
-                                                                <a
-                                                                    href="<%- project.url %>"
-                                                                    target="_blank"
-                                                                >
+                                                        <div class="hp-card__body">
+                                                            <h4>
+                                                                <%_ if (project.url) { %>
+                                                                    <a
+                                                                        href="<%- project.url %>"
+                                                                        target="_blank"
+                                                                    >
+                                                                        <%- project.title %>
+                                                                    </a>
+                                                                <%_ } else  { %>
                                                                     <%- project.title %>
-                                                                </a>
-                                                            <%_ } else  { %>
-                                                                <%- project.title %>
-                                                            <%_ } %>
-                                                        </h4>
+                                                                <%_ } %>
+                                                            </h4>
 
-                                                        <p>
-                                                            <%- project.content[DEFAULT_LANGUAGE][0] %>
-                                                            <!--<%- ALTERNATE_LANGUAGE %>:
-                                                                <%- project.content[ALTERNATE_LANGUAGE][0] %>
-                                                            -->
-                                                            <%_ if (project.content[DEFAULT_LANGUAGE].length > 1) {_%>
-                                                                <ul>
-                                                                    <%_
-                                                                    let index = 0
-                                                                    for (const element of project.content[DEFAULT_LANGUAGE][1]) {
-                                                                    _%>
-                                                                        <li>
-                                                                            <%_ if (Array.isArray(element)) { _%>
-                                                                                <lang-replace>
-                                                                                    <a
-                                                                                        href="<%- element[1] %>"
-                                                                                    >
-                                                                                        <%- element[0] %>
-                                                                                    </a>
-                                                                                </lang-relace>
-                                                                                <!--<%- ALTERNATE_LANGUAGE %>:
-
-                                                                                    <%- ALTERNATE_LANGUAGE %>:
-                                                                                    <a
-                                                                                        href="<%- project.content[ALTERNATE_LANGUAGE][1][index][1] %>"
-                                                                                    >
-                                                                                        <%- project.content[ALTERNATE_LANGUAGE][1][index][0] %>
-                                                                                    </a>
-                                                                                -->
-                                                                            <%_ } else { _%>
-                                                                                <%- element %>
-                                                                                <!--<%- ALTERNATE_LANGUAGE %>:
-                                                                                    <%- project.content[ALTERNATE_LANGUAGE][1][index] %>
-                                                                                -->
-                                                                            <%_ } _%>
-                                                                        </li>
+                                                            <p>
+                                                                <%- project.content[DEFAULT_LANGUAGE][0] %>
+                                                                <!--<%- ALTERNATE_LANGUAGE %>:
+                                                                    <%- project.content[ALTERNATE_LANGUAGE][0] %>
+                                                                -->
+                                                                <%_ if (project.content[DEFAULT_LANGUAGE].length > 1) {_%>
+                                                                    <ul>
                                                                         <%_
-                                                                        index += 1
-                                                                    }
-                                                                    _%>
-                                                                </ul>
-                                                            <%_ } _%>
-                                                        </p>
+                                                                        let index = 0
+                                                                        for (const element of project.content[DEFAULT_LANGUAGE][1]) {
+                                                                        _%>
+                                                                            <li>
+                                                                                <%_ if (Array.isArray(element)) { _%>
+                                                                                    <lang-replace>
+                                                                                        <a
+                                                                                            href="<%- element[1] %>"
+                                                                                        >
+                                                                                            <%- element[0] %>
+                                                                                        </a>
+                                                                                    </lang-relace>
+                                                                                    <!--<%- ALTERNATE_LANGUAGE %>:
+
+                                                                                        <%- ALTERNATE_LANGUAGE %>:
+                                                                                        <a
+                                                                                            href="<%- project.content[ALTERNATE_LANGUAGE][1][index][1] %>"
+                                                                                        >
+                                                                                            <%- project.content[ALTERNATE_LANGUAGE][1][index][0] %>
+                                                                                        </a>
+                                                                                    -->
+                                                                                <%_ } else { _%>
+                                                                                    <%- element %>
+                                                                                    <!--<%- ALTERNATE_LANGUAGE %>:
+                                                                                        <%- project.content[ALTERNATE_LANGUAGE][1][index] %>
+                                                                                    -->
+                                                                                <%_ } _%>
+                                                                            </li>
+                                                                            <%_
+                                                                            index += 1
+                                                                        }
+                                                                        _%>
+                                                                    </ul>
+                                                                <%_ } _%>
+                                                            </p>
+                                                        </div>
                                                     </div>
                                                 <%_ } _%>
                                             </div>
