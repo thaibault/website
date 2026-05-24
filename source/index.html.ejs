@@ -2,14 +2,10 @@
 <%_
 /*
     sync with
-    skillKeywordsEnglish.txt
-    skillKeywordsGerman.txt
-    projectDescriptionEnglish.txt
-    projectDescriptionGerman.txt
-    https://www.xing.com/
-    https://www.linkedin.com/
-    https://www.facebook.com/
-    https://plus.google.com
+
+    https://www.xing.com
+    https://www.linkedin.com
+    https://www.facebook.com
 
     region header
     Copyright Torben Sickert (info["~at~"]torben.website) 16.12.2012
@@ -131,9 +127,9 @@ const SECTIONS = [
             subHeadline: {enUS: 'I offer', deDE: 'ich biete'},
             keywords: {
                 enUS: [
-                    [
-                        'abstract',
-                        [
+                    {
+                        title: '',
+                        content: [
                             'contacts', 'conception',
                             'Implementation and optimization of applications for the' +
                             ' web; desktop and server',
@@ -145,116 +141,150 @@ const SECTIONS = [
                             'Accessibility', 'Rich Internet Applications',
                             'Content Management Systems', 'Web 2.0'
                         ]
-                    ],
-                    [
-                        'security',
-                        [
+                    },
+                    {
+                        title: 'security',
+                        content: [
                             'Design by Contract',
                             'Integration, application, and unit tests',
                             'Proofs of program properties'
                         ]
-                    ],
-                    [
-                        'knowledge',
-                        [
+                    },
+                    {
+                        title: 'knowledge',
+                        content: [
                             'economic theoretical knowledge',
                             'matic computerized knowledge',
                             'mathematical knowledge'
                         ]
-                    ],
-                    [
-                        'programing Techniques',
-                        [
+                    },
+                    {
+                        title: 'programing Techniques',
+                        content: [
                             'Functionally oriented programming',
                             'Imperative Oriented Programming',
                             'Object-Oriented Programming',
                             'Aspect-Oriented Programming'
                         ]
-                    ],
-                    [
-                        'database',
-                        [
+                    },
+                    {
+                        title: 'database',
+                        content: [
                             'Object-Relational Modeling (ORM) with SQLAlchemy or ' +
                             'Django ORM',
                             'SQL'
                         ]
-                    ],
-                    ['versioning', ['GIT', 'SVN', 'CVS', 'Mercurial']],
-                    [
-                        'programing Language',
-                        [
+                    },
+                    {
+                        title: 'versioning',
+                        content: ['GIT', 'SVN', 'CVS', 'Mercurial']
+                    },
+                    {
+                        title: 'programing Language',
+                        content: [
                             'Python', 'CoffeeScript', 'JavaScript', 'C++', 'C',
                             'C# (mit XNA)', 'Java', 'Scheme', 'PHP'
                         ]
-                    ],
-                    ['declarative Language', ['XHTML', 'CSS', 'less']],
-                    ['server', ['apache', 'nginx']],
-                    [
-                        'framework',
-                        [
+                    },
+                    {
+                        title: 'declarative Language',
+                        content: ['XHTML', 'CSS', 'less']
+                    },
+                    {
+                        title: 'server',
+                        content: ['apache', 'nginx']
+                    },
+                    {
+                        title: 'framework',
+                        content: [
                             'AngularJS', 'django', 'jQuery', 'Mootools', 'Bootstrap'
                         ]
-                    ]
+                    }
                 ],
                 deDE: [
-                    [
-                        'Abstrakt',
-                        [
-                            'Kontakte', 'Konzeption',
-                            'Umsetzung und Optimierung von Anwendungen fürs Web, ' +
-                            'Desktop und Server',
+                    {
+                        title: '',
+                        content: [
+                            `
+                                Konzeption, Umsetzung und Optimierung von hoch
+                                skalierbaren Cloud-Native Anwendungen fürs
+                                Web, Desktop und Server.'
+                            `,
+                            'Definition technischer Visionen.',
+                            `
+                                Komplexe Microservice- und Cloud-Architekturen
+                                in strategischen Geschäftsnutzen umwandeln.
+                            `,
+                            `
+                                Technisches Wissen in großen Organisationen
+                                verbreiten.
+                            `,
+
                             'Qualitätssicherung',
-                            'Hochzuverlässigkeits-Anwendungen',
-                            'Test-driven Design', '(Web)Programmierung',
-                            'Usabillity', 'Web- und Suchengine-Optimierung',
+                            'Test-driven Design',
+                            '(Web)Programmierung',
+                            'Verbesserung von Nutzererfahrungen',
+                            'Web- und Suchengine-Optimierung',
                             'Administrierung für Server auf Linux Mac oder Windows',
-                            'Intranet Lösungen', 'Community Portallösung',
-                            'Barrierefreiheit', 'Rich Internet Applications',
-                            'Content Management Systeme', 'Web 2.0', 'ERP', 'CRM'
+                            'Intranet Lösungen',
+                            'Community Portallösung',
+                            'Barrierefreiheit',
+
+                            'Content Management Systeme (CMS)',
+                            'Manufactoring Execution Systeme (MES)',
+                            'Qualitätsmanagementsystem (QMS)',
+                            'Enterprise Resource Planning (ERP)',
+                            'Customer Relationship Management (CRM)'
                         ]
-                    ],
-                    [
-                        'Sicherheit',
-                        [
+                    },
+                    {
+                        title: 'Sicherheit',
+                        content: [
                             'Design by Contract',
                             'Integrationstests, Ende-zu-Ende-Tests und Unit-Tests',
                             'Beweisen von Programmeigenschaften'
                         ]
-                    ],
-                    [
-                        'Wissen',
-                        [
+                    },
+                    {
+                        title: 'Wissen',
+                        content: [
                             'wirtschaftstheoretisches Wissen',
-                            'informatisches Wissen', 'mathematisches Wissen'
+                            'informatisches Wissen',
+                            'mathematisches Wissen'
                         ]
-                    ],
-                    [
-                        'Programmiertechniken',
-                        [
-                            'Funktionalorientierte Programmierung',
-                            'Imperativorientierte Programmierung',
-                            'Objektorientierte Programmierung',
-                            'Aspektorientierte Programmierung'
+                    },
+                    {
+                        title: 'Messaging',
+                        content: ['NATS', 'Kafka']
+                    },
+                    {
+                        title: 'Datenbanken',
+                        content: [
+                            'Couch-/PouchDB', 'MongoDB',
+                            'Postgres', 'SQLite'
                         ]
-                    ],
-                    [
-                        'Datenbanken',
-                        [
-                            'Relationale-Objekt-Modelierung (ORM) mit sqlAlchemy ' +
-                            'oder Django ORM',
-                            'SQL'
+                    },
+                    {
+                        title: 'Versionierung',
+                        content: ['GIT', 'SVN', 'CVS', 'Mercurial']
+                    },
+                    {
+                        title: 'Programmiersprachen',
+                        content: [
+                            'Python', 'CoffeeScript', 'JavaScript', 'C++', 'C',
+                            'C# (mit XNA)', 'Java', 'Scheme', 'PHP'
                         ]
-                    ],
-                    ['Versionierung', ['GIT', 'SVN', 'CVS', 'Mercurial']],
-                    ['Programmiersprachen', [
-                        'Python', 'CoffeeScript', 'JavaScript', 'C++', 'C',
-                        'C# (mit XNA)', 'Java', 'Scheme', 'PHP'
-                    ]],
-                    ['Deklarative Sprachen', ['XHTML', 'CSS', 'less']],
-                    ['Server', ['apache', 'nginx']],
-                    ['Framework', [
-                        'AngularJS', 'django', 'jQuery', 'Mootools', 'Bootstrap'
-                    ]]
+                    },
+                    {
+                        title: 'Server',
+                        content: ['apache', 'nginx']
+                    },
+                    {
+                        title: 'Framework',
+                        content: [
+                            'AngularJS', 'django', 'jQuery', 'Mootools', 'Bootstrap'
+                        ]
+                    }
                 ]
             },
             subHeadline2: {enUS: 'Projects', deDE: 'Projekte'}
@@ -850,21 +880,20 @@ _%>
                                         </h2>
                                         <p>
                                             <lang-replace>
-                                                <%_ for (const keywords of section.content.keywords[DEFAULT_LANGUAGE]) {
-                                                    if (keywords[0] !== section.content.keywords[DEFAULT_LANGUAGE][0][0]) {
-                                                        _%>
-                                                        <strong><%- keywords[0] %></strong>
+                                                <%_ for (const keywords of section.content.keywords[DEFAULT_LANGUAGE]) { _%>
+                                                    <%_ if (keywords.title) { _%>
+                                                        <strong><%- keywords.title %></strong>
                                                     <%_ } _%>
-                                                    <%- keywords[1].join(', ') %>
+                                                    <%- keywords.content.join(', ') %>
                                                 <%_ } _%>
                                             </lang-replace>
                                             <!--<%- ALTERNATE_LANGUAGE %>:
-                                                <%_ for (const keywords of section.content.keywords[ALTERNATE_LANGUAGE]) {
-                                                    if (keywords[0] !== section.content.keywords[ALTERNATE_LANGUAGE][0][0]) {
+                                                <%_ for (const keywords of section.content.keywords[ALTERNATE_LANGUAGE]) { _%>
+                                                    <%_ if (keywords.title) { _%>
                                                         _%>
-                                                        <strong><%- keywords[0] %></strong>
+                                                        <strong><%- keywords.title %></strong>
                                                     <%_ } _%>
-                                                    <%- keywords[1].join(', ') %>
+                                                    <%- keywords.content.join(', ') %>
                                                 <%_ } _%>
                                             -->
                                         </p>
