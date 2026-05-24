@@ -130,74 +130,110 @@ const SECTIONS = [
                     {
                         title: '',
                         content: [
-                            'contacts', 'conception',
-                            'Implementation and optimization of applications for the' +
-                            ' web; desktop and server',
-                            'quality Assurance', 'High Reliability Applications',
-                            'Test-driven Design', '(Web)programming', 'Usability',
+                            `
+                                Conception, implementation and optimization of highly
+                                scalable cloud-native applications for
+                                web, desktop and server.
+                            `,
+                            'Definition of technical visions.',
+                            `
+                                Transform complex microservice and cloud architectures
+                                into strategic business value.
+                            `,
+                            `
+                                Spread technical knowledge across large
+                                organizations.
+                            `,
+
+                            'Quality assurance',
+                            'Test-driven Design',
+                            '(Web) programming',
+                            'Improvement of user experiences',
                             'Web and search engine optimization',
-                            'administering servers on Linux, Mac or Windows',
-                            'Intranet Solutions', 'Community Portal solution',
-                            'Accessibility', 'Rich Internet Applications',
-                            'Content Management Systems', 'Web 2.0'
+                            'Server administration on Linux, Mac or Windows',
+                            'Intranet solutions',
+                            'Community portal solution',
+                            'Accessibility',
+
+                            'Content Management Systems (CMS)',
+                            'Manufacturing Execution Systems (MES)',
+                            'Quality Management Systems (QMS)',
+                            'Enterprise Resource Planning (ERP)',
+                            'Customer Relationship Management (CRM)'
                         ]
                     },
                     {
-                        title: 'security',
+                        title: 'Artificial Intelligence',
+                        content: [
+                            'Prompt engineering',
+                            'AI code review & debugging',
+                            'Integration of AI assistants',
+                            'AI agent orchestration'
+                        ]
+                    },
+                    {
+                        title: 'Security',
                         content: [
                             'Design by Contract',
-                            'Integration, application, and unit tests',
+                            'Integration tests, end-to-end tests and unit tests',
                             'Proofs of program properties'
                         ]
                     },
                     {
-                        title: 'knowledge',
+                        title: 'Knowledge',
                         content: [
-                            'economic theoretical knowledge',
-                            'matic computerized knowledge',
-                            'mathematical knowledge'
+                            'Economic theoretical knowledge',
+                            'Computer science knowledge',
+                            'Mathematical knowledge'
                         ]
                     },
                     {
-                        title: 'programing Techniques',
+                        title: 'Messaging',
+                        content: ['NATS', 'Kafka']
+                    },
+                    {
+                        title: 'Databases',
                         content: [
-                            'Functionally oriented programming',
-                            'Imperative Oriented Programming',
-                            'Object-Oriented Programming',
-                            'Aspect-Oriented Programming'
+                            'Couch-/PouchDB', 'MongoDB',
+                            'Postgres', 'SQLite'
                         ]
                     },
                     {
-                        title: 'database',
+                        title: 'DevOps Development',
+                        content: ['GitHub', 'Azure DevOps']
+                    },
+                    {
+                        title: 'Programming Languages',
                         content: [
-                            'Object-Relational Modeling (ORM) with SQLAlchemy or ' +
-                            'Django ORM',
-                            'SQL'
+                            'TypeScript',
+                            'Python',
+                            'Java',
+                            'C#',
+                            'C',
+                            'C++',
+                            'Racket / Scheme',
+                            'PHP'
                         ]
                     },
                     {
-                        title: 'versioning',
-                        content: ['GIT', 'SVN', 'CVS', 'Mercurial']
-                    },
-                    {
-                        title: 'programing Language',
+                        title: 'App Server',
                         content: [
-                            'Python', 'CoffeeScript', 'JavaScript', 'C++', 'C',
-                            'C# (mit XNA)', 'Java', 'Scheme', 'PHP'
+                            'Node.js Server',
+                            'Express.js',
+                            'Apache HTTP Server',
+                            'Apache Tomcat'
                         ]
                     },
                     {
-                        title: 'declarative Language',
-                        content: ['XHTML', 'CSS', 'less']
+                        title: 'Proxy Server',
+                        content: ['nginx', 'Traffic']
                     },
                     {
-                        title: 'server',
-                        content: ['apache', 'nginx']
-                    },
-                    {
-                        title: 'framework',
+                        title: 'Framework',
                         content: [
-                            'AngularJS', 'django', 'jQuery', 'Mootools', 'Bootstrap'
+                            'React',
+                            'Angular',
+                            'Material Design'
                         ]
                     }
                 ],
@@ -238,6 +274,15 @@ const SECTIONS = [
                         ]
                     },
                     {
+                        title: 'Künstliche Intelligenz',
+                        content: [
+                            'Prompt-Engineering',
+                            'AI Code Review & Debugging',
+                            'Integration von KI-Assistenten',
+                            'AI Agent Orchestrierung'
+                        ]
+                    },
+                    {
                         title: 'Sicherheit',
                         content: [
                             'Design by Contract',
@@ -265,24 +310,41 @@ const SECTIONS = [
                         ]
                     },
                     {
-                        title: 'Versionierung',
-                        content: ['GIT', 'SVN', 'CVS', 'Mercurial']
+                        title: 'DevOp-Entwicklung',
+                        content: ['GitHub', 'Azure DevOps']
                     },
                     {
                         title: 'Programmiersprachen',
                         content: [
-                            'Python', 'CoffeeScript', 'JavaScript', 'C++', 'C',
-                            'C# (mit XNA)', 'Java', 'Scheme', 'PHP'
+                            'TypeScript',
+                            'Python',
+                            'Java',
+                            'C#',
+                            'C',
+                            'C++',
+                            'Racket / Scheme',
+                            'PHP'
                         ]
                     },
                     {
-                        title: 'Server',
-                        content: ['apache', 'nginx']
+                        title: 'App-Server',
+                        content: [
+                            'Node.js Server',
+                            'Express.js',
+                            'Apache HTTP Server',
+                            'Apache Tomcat'
+                        ]
+                    },
+                    {
+                        title: 'Proxy-Server',
+                        content: ['nginx', 'Traffic']
                     },
                     {
                         title: 'Framework',
                         content: [
-                            'AngularJS', 'django', 'jQuery', 'Mootools', 'Bootstrap'
+                            'React',
+                            'Angular',
+                            'Material Design'
                         ]
                     }
                 ]
@@ -878,6 +940,7 @@ _%>
                                                 <%- section.content.subHeadline[ALTERNATE_LANGUAGE] %>
                                             -->
                                         </h2>
+
                                         <p>
                                             <lang-replace>
                                                 <%_ for (const keywords of section.content.keywords[DEFAULT_LANGUAGE]) { _%>
@@ -897,79 +960,85 @@ _%>
                                                 <%_ } _%>
                                             -->
                                         </p>
+
                                         <h2>
                                             <%- section.content.subHeadline2[DEFAULT_LANGUAGE] %>
                                             <!--<%- ALTERNATE_LANGUAGE %>:
                                                 <%- section.content.subHeadline2[ALTERNATE_LANGUAGE] %>
                                             -->
                                         </h2>
-                                        <dl class="dl-horizontal">
-                                            <%_ for (const group of PROJECTS) { _%>
-                                                <h3>
-                                                    <%- group.title[DEFAULT_LANGUAGE] %>
-                                                    <!--<%- ALTERNATE_LANGUAGE %>:
+
+                                        <%_ for (const group of PROJECTS) { _%>
+                                            <h3>
+                                                <%- group.title[DEFAULT_LANGUAGE] %>
+                                                <!--<%- ALTERNATE_LANGUAGE %>:
                                                         <%- group.title[ALTERNATE_LANGUAGE] %>
                                                     -->
-                                                </h3>
-                                                <%_ for (const project of group.content) { _%>
-                                                    <dt>
-                                                        <%_ if (project.url) { %>
-                                                            <a
-                                                                href="<%- project.url %>"
-                                                                target="_blank"
-                                                            >
-                                                                <%- project.title %>
-                                                            </a>
-                                                        <%_ } else  { %>
-                                                            <%- project.title %>
-                                                        <%_ } %>
-                                                    </dt>
-                                                    <dd>
-                                                        <%- project.content[DEFAULT_LANGUAGE][0] %>
-                                                        <!--<%- ALTERNATE_LANGUAGE %>:
-                                                            <%- project.content[ALTERNATE_LANGUAGE][0] %>
-                                                        -->
-                                                        <%_ if (project.content[DEFAULT_LANGUAGE].length > 1) {_%>
-                                                            <ul>
-                                                                <%_
-                                                                let index = 0
-                                                                for (const element of project.content[DEFAULT_LANGUAGE][1]) {
-                                                                _%>
-                                                                    <li>
-                                                                        <%_ if (Array.isArray(element)) { _%>
-                                                                            <lang-replace>
-                                                                                <a
-                                                                                    href="<%- element[1] %>"
-                                                                                >
-                                                                                    <%- element[0] %>
-                                                                                </a>
-                                                                            </lang-relace>
-                                                                            <!--<%- ALTERNATE_LANGUAGE %>:
+                                            </h3>
 
-                                                                                <%- ALTERNATE_LANGUAGE %>:
-                                                                                <a
-                                                                                    href="<%- project.content[ALTERNATE_LANGUAGE][1][index][1] %>"
-                                                                                >
-                                                                                    <%- project.content[ALTERNATE_LANGUAGE][1][index][0] %>
-                                                                                </a>
-                                                                            -->
-                                                                        <%_ } else { _%>
-                                                                            <%- element %>
-                                                                            <!--<%- ALTERNATE_LANGUAGE %>:
-                                                                                <%- project.content[ALTERNATE_LANGUAGE][1][index] %>
-                                                                            -->
-                                                                        <%_ } _%>
-                                                                    </li>
+                                            <div class="hp-projects">
+                                                <%_ for (const project of group.content) { _%>
+                                                    <div class="hp-card">
+                                                        <h4>
+                                                            <%_ if (project.url) { %>
+                                                                <a
+                                                                    href="<%- project.url %>"
+                                                                    target="_blank"
+                                                                >
+                                                                    <%- project.title %>
+                                                                </a>
+                                                            <%_ } else  { %>
+                                                                <%- project.title %>
+                                                            <%_ } %>
+                                                        </h4>
+
+                                                        <p>
+                                                            <%- project.content[DEFAULT_LANGUAGE][0] %>
+                                                            <!--<%- ALTERNATE_LANGUAGE %>:
+                                                                <%- project.content[ALTERNATE_LANGUAGE][0] %>
+                                                            -->
+                                                            <%_ if (project.content[DEFAULT_LANGUAGE].length > 1) {_%>
+                                                                <ul>
                                                                     <%_
-                                                                    index += 1
-                                                                }
-                                                                _%>
-                                                            </ul>
-                                                        <%_ } _%>
-                                                    </dd>
+                                                                    let index = 0
+                                                                    for (const element of project.content[DEFAULT_LANGUAGE][1]) {
+                                                                    _%>
+                                                                        <li>
+                                                                            <%_ if (Array.isArray(element)) { _%>
+                                                                                <lang-replace>
+                                                                                    <a
+                                                                                        href="<%- element[1] %>"
+                                                                                    >
+                                                                                        <%- element[0] %>
+                                                                                    </a>
+                                                                                </lang-relace>
+                                                                                <!--<%- ALTERNATE_LANGUAGE %>:
+
+                                                                                    <%- ALTERNATE_LANGUAGE %>:
+                                                                                    <a
+                                                                                        href="<%- project.content[ALTERNATE_LANGUAGE][1][index][1] %>"
+                                                                                    >
+                                                                                        <%- project.content[ALTERNATE_LANGUAGE][1][index][0] %>
+                                                                                    </a>
+                                                                                -->
+                                                                            <%_ } else { _%>
+                                                                                <%- element %>
+                                                                                <!--<%- ALTERNATE_LANGUAGE %>:
+                                                                                    <%- project.content[ALTERNATE_LANGUAGE][1][index] %>
+                                                                                -->
+                                                                            <%_ } _%>
+                                                                        </li>
+                                                                        <%_
+                                                                        index += 1
+                                                                    }
+                                                                    _%>
+                                                                </ul>
+                                                            <%_ } _%>
+                                                        </p>
+                                                    </div>
                                                 <%_ } _%>
-                                            <%_ } _%>
-                                        </dl>
+                                            </div>
+                                        <%_ } _%>
                                     <%_ } else { _%>
                                         <p class="lead">
                                             <%- section.content.lead[DEFAULT_LANGUAGE] %>
