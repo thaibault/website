@@ -90,7 +90,7 @@
     "ua-parser-js": "^2.0.10",
     "wavesurfer.js": "^7.12.7",
     "web-component-wrapper": "^0.0.592",
-    "web-internationalization": "^2.0.33",
+    "web-internationalization": "^2.0.34",
     "weboptimizer": "^3.0.24",
     "webpack-dev-server": "^5.2.4",
     "website-utilities": "^1.0.431"
