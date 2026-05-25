@@ -95,7 +95,12 @@ const SECTIONS = [
         content: {
             menuLabel: {enUS: 'About me', deDE: 'Über mich'},
             headline: {enUS: 'Hey', deDE: 'Moin'},
-            // sound: {enUS: 'data/about-me-enUS.mp3', deDE: 'data/about-me-deDE.mp3'},
+            /*
+            sound: {
+                enUS: `${DATA_PATH}about-me-enUS.mp3`,
+                deDE: `${DATA_PATH}about-me-deDE.mp3`
+            },
+            */
             lead: {
                 enUS: 'Eliminating technical debt and cognitive blind spots at the speed of modern AI',
                 deDE: 'Technische Schulden und kognitive blinde Flecken mit der Geschwindigkeit moderner KI beseitigen'
@@ -107,7 +112,10 @@ const SECTIONS = [
         content: {
             menuLabel: {enUS: 'Contact', deDE: 'Kontakt'},
             headline: {enUS: 'Get in touch', deDE: 'Lernen wir uns kennen'},
-            sound: {enUS: 'data/contact-enUS.mp3', deDE: 'data/contact-deDE.mp3'},
+            sound: {
+                enUS: `${DATA_PATH}contact-enUS.mp3`,
+                deDE: `${DATA_PATH}contact-deDE.mp3`
+            },
             lead: {
                 enUS: "Let's talk about your project and what I can do",
                 deDE:
@@ -123,7 +131,10 @@ const SECTIONS = [
                 enUS: 'Future opportunities demand the courage to change',
                 deDE: 'Chancen entstehen durch Mut zur Veränderung'
             },
-            sound: {enUS: 'data/work-enUS.mp3', deDE: 'data/work-deDE.mp3'},
+            sound: {
+                enUS: `${DATA_PATH}work-enUS.mp3`,
+                deDE: `${DATA_PATH}work-deDE.mp3`
+            },
             subHeadline: {enUS: 'I offer', deDE: 'ich biete'},
             keywords: {
                 enUS: [
@@ -362,7 +373,10 @@ const PROJECTS = [
         content: [
             {
                 title: 'BPV Web APP',
-                images: [],
+                images: [
+                    `${IMAGE_PATH}projects/emergency-service-backend.png`,
+                    `${IMAGE_PATH}projects/emergency-service-frontend.png`
+                ],
                 content: {
                     enUS: [
                         'Pharmacy emergency service management application.'
