@@ -441,16 +441,13 @@ home-page {
                 color: var(--menu-font-hover-color);
             }
 
+            &.wu-priority-navigation--show-overflow-indicator
             .wu-priority-navigation__overflow-list {
                 padding-top: var(--header-height);
 
                 li {
-                    padding: 0;
+                    padding: calc(var(--w-default-space) / 2);
                 }
-            }
-            &.wu-priority-navigation--overflow-open
-            .wu-priority-navigation__overflow-list {
-                width: 100%;
             }
         }
     }
