@@ -54,8 +54,8 @@ export const log = new Logger({name: 'website'})
  * when the footer should stick to the bottom.
  * @property _defaultOptions.scrollInLinearTime {boolean} - Indicates whether
  * animated scrolling should be speeded up and brake or not.
- * @property _defaultOptions.backgroundDependentHeightSections
- * {Array.<string>} - A list: of section names which dimensions depend on their
+ * @property _defaultOptions.backgroundDependentHeightSections - A list: of
+ * section names which dimensions depend on their
  * background image.
  * @property _defaultOptions.maximumBackgroundDependentHeight {number} - Upper
  * range bound until a dynamic background image adjusted is needed.
