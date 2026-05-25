@@ -1008,6 +1008,17 @@ _%>
                                                                 <%_ } %>
                                                             </h4>
 
+                                                            /* TODO */
+                                                            <%_ if (project.images) { %>
+                                                                <%_ for (const url of project.images) { _%>
+                                                                    <img
+                                                                        class="hp-card__body__image"
+                                                                        src="<%- url %>"
+                                                                        alt="<%- project.title %>"
+                                                                    >
+                                                                <%_ } %>
+                                                            <%_ } %>
+
                                                             <p>
                                                                 <%- project.content[DEFAULT_LANGUAGE][0] %>
                                                                 <!--<%- ALTERNATE_LANGUAGE %>:
