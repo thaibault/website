@@ -8,39 +8,30 @@
     License
     -------
 
-    This library written by Torben Sickert stand under a creative commons
+    This library written by Torben Sickert stands under a creative commons
     naming 3.0 unported license.
     See https://creativecommons.org/licenses/by/3.0/deed.de
     endregion
 */
 // region imports
 import {beforeAll, describe, expect, test} from '@jest/globals'
-import {$} from 'clientnode'
+import '@webcomponents/webcomponentsjs/custom-elements-es5-adapter'
 
-import Website from './index'
+import HomePage, {api} from './index'
 // endregion
 describe('Documentation', (): void => {
-    let website: Website
-    /*
-        NOTE: Import plugins with side effects (augmenting "$" scope /
-        registering plugin) when other imports are only used as type.
-    */
-    require('internationalisation')
-    require('website-utilities')
-    require('./index')
-    beforeAll(async (): Promise<void> => {
-        website = (await $.Website()) as Website
+    let root: HomePage
+
+    beforeAll(async () => {
+        api.register()
+        root = document.createElement('home-page') as HomePage
+        document.body.appendChild(root)
+
+        await root.renderState.promise
     })
     // region tests
-    /// region public methods
-    //// region special
-    test(
-        'initialize',
-        () => {
-            expect(website).toBeDefined()
-        }
-    )
-    //// endregion
-    /// endregion
+    test('should be defined', () => {
+        expect(root).toBeDefined()
+    })
     // endregion
 })

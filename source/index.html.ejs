@@ -2,14 +2,10 @@
 <%_
 /*
     sync with
-    skillKeywordsEnglish.txt
-    skillKeywordsGerman.txt
-    projectDescriptionEnglish.txt
-    projectDescriptionGerman.txt
-    https://www.xing.com/
-    https://www.linkedin.com/
-    https://www.facebook.com/
-    https://plus.google.com
+
+    https://www.xing.com
+    https://www.linkedin.com
+    https://www.facebook.com
 
     region header
     Copyright Torben Sickert (info["~at~"]torben.website) 16.12.2012
@@ -17,7 +13,7 @@
     License
     =======
 
-    This library written by Torben Sickert stand under a creative commons
+    This library written by Torben Sickert stands under a creative commons
     naming 3.0 unported license.
     See https://creativecommons.org/licenses/by/3.0/deed.de
     endregion
@@ -30,6 +26,7 @@ const swapCase = (letters) => {
             newLetters += letters[index].toUpperCase()
         else
             newLetters += letters[index].toLowerCase()
+
     return newLetters
 }
 // endregion
@@ -48,270 +45,761 @@ const LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE_PATH =
     `${DATA_PATH}curriculumVitae${swapCase(ALTERNATE_LANGUAGE)}.pdf`
 // endregion
 // region runtime
-let START_UP_ANIMATION_NUMBER = 1
+let START_UP_ANIMATION_NUMBER = 0
+const getStartUpAnimationNumber = () => {
+    START_UP_ANIMATION_NUMBER += 1
+    return START_UP_ANIMATION_NUMBER
+}
 // endregion
 // region content
 const SOCIAL_MEDIA = [
-    {'title': 'e-mail', 'url': 'info@torben.website'},
-    {'title': 'github', 'url': 'https://github.com/thaibault'},
-    {'title': 'google_plus', 'url': 'https://plus.google.com/+TorbenSickert'},
-    {'title': 'xing', 'url': 'https://www.xing.com/profile/Torben_Sickert'},
     {
+        'icon': 'envelope-at-fill',
+        'title': 'e-mail',
+        'url': 'info@torben.website'
+    },
+    {
+        'icon': 'github',
+        'title': 'github',
+        'url': 'https://github.com/thaibault'
+    },
+    {
+        'icon': 'x-lg',
+        'title': 'xing',
+        'url': 'https://www.xing.com/profile/Torben_Sickert'
+    },
+    {
+        'icon': 'linkedin',
         'title': 'linked_in',
         'url': 'https://de.linkedin.com/pub/torben-sickert/28/aa9/919'
     },
-    // {'title': 'skype', 'url': 'skype:t.sickert?add'},
-    {'title': 'twitter', 'url': 'https://twitter.com/tsickert'},
-    {'title': 'facebook', 'url': 'https://de-de.facebook.com/tsickert'},
-    {'title': 'website', 'url': 'https://torben.website'}
+    {
+        'icon': 'twitter-x',
+        'title': 'twitter',
+        'url': 'https://twitter.com/tsickert'
+    },
+    {
+        'icon': 'facebook',
+        'title': 'facebook',
+        'url': 'https://de-de.facebook.com/tsickert'
+    },
+    {
+        'icon': 'globe',
+        'title': 'website',
+        'url': 'https://torben.website'
+    }
 ]
 const SECTIONS = [
-    {title: 'about', content: [
-        {enUS: 'About me', deDE: 'Über mich'}, {enUS: '', deDE: ''},
-        {enUS: 'I love the challenge', deDE: 'Ich liebe die Herausforderung'}
-    ]},
-    {title: 'contact', content: [
-        {enUS: 'Contact', deDE: 'Kontakt'},
-        {enUS: 'Get in touch', deDE: 'Lernen wir uns kennen'},
-        {
-            enUS: "I'm a freelancer, ready to help you. Let's talk about" +
-                  ' your project and what I can do.',
-            deDE: 'Ich arbeite selbständig und bin bereit für Ihr ' +
-                  'Projekt. Kontaktieren Sie mich und wir sprechen über ' +
-                  'Ihr Vorhaben.'
-        }
-    ]},
-    {title: 'work', content: [
-        {enUS: 'Work', deDE: 'Arbeiten'},
-        {enUS: "I love what I'm doing", deDE: 'Ich liebe was ich mache'},
-        {enUS: 'I offer', deDE: 'ich biete'},
-        {
-            enUS: [
-                ['abstract', [
-                    'contacts', 'conception',
-                    'Implementation and optimization of applications for the' +
-                        ' web; desktop and server',
-                    'quality Assurance', 'High Reliability Applications',
-                    'Test-driven Design', '(Web)programming', 'Usability',
-                    'Web and search engine optimization',
-                    'administering servers on Linux, Mac or Windows',
-                    'Intranet Solutions', 'Community Portal solution',
-                    'Accessibility', 'Rich Internet Applications',
-                    'Content Management Systems', 'Web 2.0'
-                ]],
-                ['security', [
-                    'Design by Contract',
-                    'Integration, application, and unit tests',
-                    'Proofs of program properties'
-                ]],
-                ['knowledge', [
-                    'economic theoretical knowledge',
-                    'matic computerized knowledge',
-                    'mathematical knowledge'
-                ]],
-                ['programing Techniques', [
-                    'Functionally oriented programming',
-                    'Imperative Oriented Programming',
-                    'Object-Oriented Programming',
-                    'Aspect-Oriented Programming'
-                ]],
-                ['database', [
-                    'Object-Relational Modeling (ORM) with SQLAlchemy or ' +
-                        'Django ORM',
-                    'SQL'
-                ]],
-                ['versioning', ['GIT', 'SVN', 'CVS', 'Mercurial']],
-                ['programing Language', [
-                    'Python', 'CoffeeScript', 'JavaScript', 'C++', 'C',
-                    'C# (mit XNA)', 'Java', 'Scheme', 'PHP'
-                ]],
-                ['declarative Language', ['XHTML', 'CSS', 'less']],
-                ['server', ['apache', 'nginx']],
-                ['framework', [
-                    'AngularJS', 'django', 'jQuery', 'Mootools', 'Bootstrap'
-                ]]
-            ],
-            deDE: [
-                ['Abstrakt', [
-                    'Kontakte', 'Konzeption',
-                    'Umsetzung und Optimierung von Anwendungen fürs Web, ' +
-                        'Desktop und Server',
-                    'Qualitätssicherung',
-                    'Hochzuverlässigkeits-Anwendungen',
-                    'Test-driven Design', '(Web)Programmierung',
-                    'Usabillity', 'Web- und Suchengine-Optimierung',
-                    'Administrierung für Server auf Linux Mac oder Windows',
-                    'Intranet Lösungen', 'Community Portallösung',
-                    'Barrierefreiheit', 'Rich Internet Applications',
-                    'Content Management Systeme', 'Web 2.0', 'ERP', 'CRM'
-                ]],
-                ['Sicherheit', [
-                    'Design by Contract',
-                    'Integrationstests, Ende-zu-Ende-Tests und Unit-Tests',
-                    'Beweisen von Programmeigenschaften'
-                ]],
-                ['Wissen', [
-                    'wirtschaftstheoretisches Wissen',
-                    'informatisches Wissen', 'mathematisches Wissen'
-                ]],
-                ['Programmiertechniken', [
-                    'Funktionalorientierte Programmierung',
-                    'Imperativorientierte Programmierung',
-                    'Objektorientierte Programmierung',
-                    'Aspektorientierte Programmierung'
-                ]],
-                ['Datenbanken', [
-                    'Relationale-Objekt-Modelierung (ORM) mit sqlAlchemy ' +
-                        'oder Django ORM',
-                    'SQL'
-                ]],
-                ['Versionierung', ['GIT', 'SVN', 'CVS', 'Mercurial']],
-                ['Programmiersprachen', [
-                    'Python', 'CoffeeScript', 'JavaScript', 'C++', 'C',
-                    'C# (mit XNA)', 'Java', 'Scheme', 'PHP'
-                ]],
-                ['Deklarative Sprachen', ['XHTML', 'CSS', 'less']],
-                ['Server', ['apache', 'nginx']],
-                ['Framework', [
-                    'AngularJS', 'django', 'jQuery', 'Mootools', 'Bootstrap'
-                ]]
-            ]
-        }, {enUS: 'Projects', deDE: 'Projekte'}
-    ]}
-]
-PROJECTS = [
     {
-        title: 'boostNode', url: 'https://torben.website/boostnode',
+        title: 'about-me',
         content: {
-            enUS: [
-                'A universal python framework for platform independent ' +
-                    'application developement with web technoligies. The ' +
-                    'framework provides High reliability features:',
-                [
-                    '100% branch coverage tested',
-                    'Type checking in development mode',
-                    'Cyclomatic complexity smaller than eight',
-                    'Full API documentation https://torben.website/boostNode/' +
-                        'api',
-                    'Always compatible with the latest versions of both ' +
-                        'Python through integrated macros',
-                    'Platform independent web-view and flexible ' +
-                        'multi-process and multi-threaded Web server'
-                ]
-            ],
-            deDE: [
-                'Ein universelles Python-Framework zur Anwendung von ' +
-                    'plattformunabhängigen Desktopanwendungen mit ' +
-                    'Web-Technologien. Das Framework bietet ' +
-                    'Hochzuverlässigkeitsmerkmale:',
-                [
-                    '100% branch coverage getestet',
-                    'Type checking im Entwicklungsmodus',
-                    'zyklomatische Komplexität kleiner acht',
-                    'vollständige API-Dokumentation ' +
-                        'https://torben.website/boostnode/api',
-                    'stets kompatibel zu den neusten beiden ' +
-                        'Pythonversionen durch integrierte Macros',
-                    'plattformunabhängige Web-View und flexibler ' +
-                        'multiprozess- und multithread Web-Server'
-                ]
-            ]
+            menuLabel: {enUS: 'About me', deDE: 'Über mich'},
+            headline: {enUS: 'Hey', deDE: 'Moin'},
+            /*
+            sound: {
+                enUS: `${DATA_PATH}about-me-enUS.mp3`,
+                deDE: `${DATA_PATH}about-me-deDE.mp3`
+            },
+            */
+            lead: {
+                enUS: 'Eliminating technical debt and cognitive blind spots at the speed of modern AI',
+                deDE: 'Technische Schulden und kognitive blinde Flecken mit der Geschwindigkeit moderner KI beseitigen'
+            }
         }
-    }, {
-        title: 'archInstall', url: 'https://archinstall.github.com',
+    },
+    {
+        title: 'contact',
         content: {
-            enUS: [
-                'Install a configured ArchLinux with pacman as a package ' +
-                    'management in any places such as hard drives, USB ' +
-                    'flash drive, partition, or in an existing system as a ' +
-                    'sandbox environment. Automatic configuration of ' +
-                    'existing posix compliant unix-like systems. Both online' +
-                    ' and Offline installations are possible. Even without ' +
-                    'root privileges, the system is able to be installed ' +
-                    'into its own environment below the home folder. All ' +
-                    'required dependencies could be served via a typical ' +
-                    'posix environment given by Busybox or ArchLinux itself.'
-            ],
-            deDE: [
-                'Installiere ein konfiguriertes ArchLinux mit Pacman als ' +
-                    'Paketverwaltung an beliebige Orte wie Festplatten,' +
-                    ' USB-Stick, alternative Partition oder in das ' +
-                    'bestehende System als Sandboxumgebung. Automatische ' +
-                    'Konfiguration bestehender posix konformer unix-artiger ' +
-                    'Systeme. Sowohl Online- als auch Offline-Installationen' +
-                    ' sind möglich. Selbst ohne root Rechte kann das System ' +
-                    'in eine eigene Umgebung unterhalb des Home-Ordner ' +
-                    'installiert werden. Alle benötigten Abhängigkeiten zum ' +
-                    'Aufsetzen sind durch eine einfache posix-Umgebung ' +
-                    'gegeben wie Busybox oder ArchLinux selbst.'
-            ]
+            menuLabel: {enUS: 'Contact', deDE: 'Kontakt'},
+            headline: {enUS: 'Get in touch', deDE: 'Lernen wir uns kennen'},
+            sound: {
+                enUS: `${DATA_PATH}contact-enUS.mp3`,
+                deDE: `${DATA_PATH}contact-deDE.mp3`
+            },
+            lead: {
+                enUS: "Let's talk about your project and what I can do",
+                deDE:
+                    'Kontaktieren Sie mich und wir sprechen über Ihr Vorhaben'
+            }
         }
-    }, {
-        title: 'genericServiceHandler',
-        url: 'https://torben.website/genericServiceHandler',
+    },
+    {
+        title: 'work',
         content: {
-            enUS: [
-                'This bash module provides a generic service handlers to ' +
-                    'control any services which support standard process ' +
-                    'signals. The project is inspired by the systemd service' +
-                    ' handling and can live in any unix-like environment. It' +
-                    ' is particularly suitable for being integrated into ' +
-                    "the operating system's boot and shutdown process."
-            ],
-            deDE: [
-                'Dieses bash-Modul bietet einen generischen Service-Handler ' +
-                    'zur Steuerung jeglicher Dienste, welche standard ' +
-                    'Prozesssignale unterstützen. Das Projekt ist vom ' +
-                    'Systemd-Service-Handling inspiriert und kann in jeder ' +
-                    'unix-artigen Umgebung eingesetzt werden. Es eignet sich' +
-                    ' besonders um Dienste in den Hoch- und ' +
-                    'Herunterfahr-Prozess des Betriebssystems einzubetten.'
-            ]
-        }
-    }, {
-        title: 'clientNode', url: 'https://torben.website/clientNode',
-        content: {
-            enUS: [
-                'clientNode brings an object oriented Plugin concept. In ' +
-                    'Addition many reusable helper and a cool controller ' +
-                    'logic is included. Furthermore some handler for dealing' +
-                    ' with mutual exclusion, scope-based event handling and ' +
-                    'some low-level extensions for native data types are ' +
-                    'available. Example implementations can be found in the ' +
-                    'projects:',
-                [
-                    ['storeLocator', 'https://torben.website/storeLocator'],
-                    ['language', 'https://torben.website/language'],
-                    ['websiteUtilities',
-                     'https://torben.website/websiteUtilities'],
-                    ['My personal website', 'https://torben.website']
+            menuLabel: {enUS: 'Work', deDE: 'Arbeiten'},
+            headline: {
+                enUS: 'Future opportunities demand the courage to change',
+                deDE: 'Chancen entstehen durch Mut zur Veränderung'
+            },
+            sound: {
+                enUS: `${DATA_PATH}work-enUS.mp3`,
+                deDE: `${DATA_PATH}work-deDE.mp3`
+            },
+            subHeadline: {enUS: 'I offer', deDE: 'ich biete'},
+            keywords: {
+                enUS: [
+                    {
+                        title: '',
+                        content: [
+                            `
+                                Conception, implementation and optimization of highly
+                                scalable cloud-native applications for
+                                web, desktop and server
+                            `,
+                            'Definition of technical visions.',
+                            `
+                                Transform complex microservice and cloud architectures
+                                into strategic business value
+                            `,
+                            `
+                                Spread technical knowledge across large
+                                organizations
+                            `,
+
+                            'Quality assurance',
+                            'Test-driven Design',
+                            '(Web) programming',
+                            'Improvement of user experiences',
+                            'Web and search engine optimization',
+                            'Server administration on Linux, Mac or Windows',
+                            'Intranet solutions',
+                            'Community portal solution',
+                            'Accessibility',
+
+                            'Content Management Systems (CMS)',
+                            'Manufacturing Execution Systems (MES)',
+                            'Quality Management Systems (QMS)',
+                            'Enterprise Resource Planning (ERP)',
+                            'Customer Relationship Management (CRM)'
+                        ]
+                    },
+                    {
+                        title: 'Artificial Intelligence',
+                        content: [
+                            'Prompt engineering',
+                            'AI code review & debugging',
+                            'Integration of AI assistants',
+                            'AI agent orchestration'
+                        ]
+                    },
+                    {
+                        title: 'Security',
+                        content: [
+                            'Design by Contract',
+                            'Integration tests, end-to-end tests and unit tests',
+                            'Proofs of program properties'
+                        ]
+                    },
+                    {
+                        title: 'Knowledge',
+                        content: [
+                            'Economic theoretical knowledge',
+                            'Computer science knowledge',
+                            'Mathematical knowledge'
+                        ]
+                    },
+                    {
+                        title: 'Messaging',
+                        content: ['NATS', 'Kafka']
+                    },
+                    {
+                        title: 'Databases',
+                        content: [
+                            'Couch-/PouchDB', 'MongoDB',
+                            'Postgres', 'SQLite'
+                        ]
+                    },
+                    {
+                        title: 'DevOps Development',
+                        content: ['GitHub', 'Azure DevOps']
+                    },
+                    {
+                        title: 'Programming Languages',
+                        content: [
+                            'TypeScript',
+                            'Python',
+                            'Java',
+                            'C#',
+                            'C',
+                            'C++',
+                            'Racket / Scheme',
+                            'PHP'
+                        ]
+                    },
+                    {
+                        title: 'App Server',
+                        content: [
+                            'Node.js Server',
+                            'Express.js',
+                            'Apache HTTP Server',
+                            'Apache Tomcat'
+                        ]
+                    },
+                    {
+                        title: 'Proxy Server',
+                        content: ['nginx', 'Traffic']
+                    },
+                    {
+                        title: 'Framework',
+                        content: [
+                            'React',
+                            'Angular',
+                            'Material Design'
+                        ]
+                    }
+                ],
+                deDE: [
+                    {
+                        title: '',
+                        content: [
+                            `
+                                Konzeption, Umsetzung und Optimierung von hoch
+                                skalierbaren Cloud-Native Anwendungen fürs
+                                Web, Desktop und Server'
+                            `,
+                            'Definition technischer Visionen.',
+                            `
+                                Komplexe Microservice- und Cloud-Architekturen
+                                in strategischen Geschäftsnutzen umwandeln
+                            `,
+                            `
+                                Technisches Wissen in großen Organisationen
+                                verbreiten
+                            `,
+
+                            'Qualitätssicherung',
+                            'Test-driven Design',
+                            '(Web)Programmierung',
+                            'Verbesserung von Nutzererfahrungen',
+                            'Web- und Suchengine-Optimierung',
+                            'Administrierung für Server auf Linux Mac oder Windows',
+                            'Intranet Lösungen',
+                            'Community Portallösung',
+                            'Barrierefreiheit',
+
+                            'Content Management Systeme (CMS)',
+                            'Manufactoring Execution Systeme (MES)',
+                            'Qualitätsmanagementsystem (QMS)',
+                            'Enterprise Resource Planning (ERP)',
+                            'Customer Relationship Management (CRM)'
+                        ]
+                    },
+                    {
+                        title: 'Künstliche Intelligenz',
+                        content: [
+                            'Prompt-Engineering',
+                            'AI Code Review & Debugging',
+                            'Integration von KI-Assistenten',
+                            'AI Agent Orchestrierung'
+                        ]
+                    },
+                    {
+                        title: 'Sicherheit',
+                        content: [
+                            'Design by Contract',
+                            'Integrationstests, Ende-zu-Ende-Tests und Unit-Tests',
+                            'Beweisen von Programmeigenschaften'
+                        ]
+                    },
+                    {
+                        title: 'Wissen',
+                        content: [
+                            'wirtschaftstheoretisches Wissen',
+                            'informatisches Wissen',
+                            'mathematisches Wissen'
+                        ]
+                    },
+                    {
+                        title: 'Messaging',
+                        content: ['NATS', 'Kafka']
+                    },
+                    {
+                        title: 'Datenbanken',
+                        content: [
+                            'Couch-/PouchDB', 'MongoDB',
+                            'Postgres', 'SQLite'
+                        ]
+                    },
+                    {
+                        title: 'DevOp-Entwicklung',
+                        content: ['GitHub', 'Azure DevOps']
+                    },
+                    {
+                        title: 'Programmiersprachen',
+                        content: [
+                            'TypeScript',
+                            'Python',
+                            'Java',
+                            'C#',
+                            'C',
+                            'C++',
+                            'Racket / Scheme',
+                            'PHP'
+                        ]
+                    },
+                    {
+                        title: 'App-Server',
+                        content: [
+                            'Node.js Server',
+                            'Express.js',
+                            'Apache HTTP Server',
+                            'Apache Tomcat'
+                        ]
+                    },
+                    {
+                        title: 'Proxy-Server',
+                        content: ['nginx', 'Traffic']
+                    },
+                    {
+                        title: 'Framework',
+                        content: [
+                            'React',
+                            'Angular',
+                            'Material Design'
+                        ]
+                    }
                 ]
-            ],
-            deDE: [
-                'clientNode führt ein object orientiertes Plugin-Konzept um ' +
-                    'optional auf DOM-orientierten Bibliotheken wie "jQuery"' +
-                    ' als Plugin  aufzusetzen. Verschiedene generische ' +
-                    'Software-Pattern werden durch eine wiederverwendbare ' +
-                    'Controller-Logik möglich. Zudem werden einige nützliche' +
-                    ' Werkzeuge zum Bauen von grafischen Oberflächen ' +
-                    'angeboten wie Wechselseitiger Ausschluss, ' +
-                    'Scope-basiertes Event-Handling und einige Low-Level ' +
-                    'Erweiterungen für native Datentypen. ' +
-                    'Beispiel-Implementierungen findet sich in den Projekten:',
-                [
-                    ['storeLocator', 'https://torben.website/storeLocator'],
-                    ['language', 'https://torben.website/language'],
-                    ['websiteUtilities',
-                    'https://torben.website/websiteUtilities'],
-                    ['Meine persönliche Website', 'https://torben.website']
-                ]
-            ]
+            },
+            subHeadline2: {enUS: 'Projects', deDE: 'Projekte'}
         }
+    }
+]
+const PROJECTS = [
+    {
+        title: {
+            enUS: 'End-to-End Applications',
+            deDE: 'Ende zu Ende Anwendungen'
+        },
+        content: [
+            {
+                title: 'BPV Web APP',
+                images: [
+                    `${IMAGE_PATH}projects/emergency-service-backend.png`,
+                    `${IMAGE_PATH}projects/emergency-service-frontend.png`
+                ],
+                content: {
+                    enUS: [
+                        'Pharmacy emergency service management application.'
+                    ],
+                    deDE: [
+                        'Anwendung zur Verwaltung des Apotheken-Notdienstes.'
+                    ]
+                }
+            },
+            {
+                title: 'Home Page',
+                url: 'https://torben.website',
+                content: {
+                    enUS: ['This website.'],
+                    deDE: ['Diese Webseite.']
+                }
+            },
+            {
+                title: 'web-documentation',
+                content: {
+                    enUS: ['Reusable web documentation page generator.'],
+                    deDE: [
+                        'Generator für wiederverwendbare Web-Dokumentationsseiten.'
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        title: {
+            enUS: 'Libraries',
+            deDE: 'Bibliotheken'
+        },
+        content: [
+            {
+                title: 'clientnode',
+                url: 'https://torben.website/clientnode',
+                content: {
+                    enUS: [
+                        'Provides universal backend and frontend utilities.'
+                    ],
+                    deDE: [
+                        'Bietet universelle Backend- und Frontend-Hilfsfunktionen.'
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        title: {
+            enUS: 'Standalone web frontend libraries',
+            deDE: 'Eigenständige Web-Frontend-Bibliotheken'
+        },
+        content: [
+            {
+                title: 'errorreporter',
+                url: 'https://torben.website/errorreporter',
+                content: {
+                    enUS: [
+                        'A web client side error reporter.'
+                    ],
+                    deDE: [
+                        'Ein Tool zur Fehlermeldung auf der Web-Client-Seite.'
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        title: {
+            enUS: 'React components',
+            deDE: 'React Komponenten'
+        },
+        content: [
+            {
+                title: 'react-generic-tools',
+                url: 'https://torben.website/react-generic-tools',
+                content: {
+                    enUS: [
+                        'Generic utility types, methods, components and test helper for react.'
+                    ],
+                    deDE: [
+                        'Allgemeine Hilfstypen, Methoden, Komponenten und Test-Hilfsfunktionen für React.'
+                    ]
+                }
+            },
+            {
+                title: 'react-generic-animate',
+                url: 'https://torben.website/react-generic-animate',
+                content: {
+                    enUS: [
+                        'Animates markup within the react component context.'
+                    ],
+                    deDE: [
+                        'Animiert Markup innerhalb des React-Komponentenkontexts.'
+                    ]
+                }
+            },
+            {
+                title: 'react-input-material',
+                url: 'https://torben.website/react-input-material',
+                content: {
+                    enUS: [
+                        'Reusable material design based input fields as react components with support for (richt-)text, code, selections, numbers, dates and files.'
+                    ],
+                    deDE: [
+                        'Auf Material Design basierende, wiederverwendbare Eingabefelder als React-Komponenten mit Unterstützung für (Recht-)Text, Code, Auswahlen, Zahlen, Datumsangaben und Dateien.'
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        title: {
+            enUS: 'Web components',
+            deDE: 'Web Komponenten'
+        },
+        content: [
+            {
+                title: 'web-component-wrapper',
+                url: 'https://torben.website/web-component-wrapper',
+                content: {
+                    enUS: [
+                        'Generic web-component base class and wrapper to provide react components as web components.'
+                    ],
+                    deDE: [
+                        'Generische Basisklasse und Wrapper für Webkomponenten, um React-Komponenten als Webkomponenten bereitzustellen.'
+                    ]
+                }
+            },
+            {
+                title: 'web-internationalization',
+                url: 'https://torben.website/web-internationalization',
+                content: {
+                    enUS: [
+                        'A web component to replace alternate version of text for client side internationalization.'
+                    ],
+                    deDE: [
+                        'Eine Webkomponente zum Ersetzen alternativer Textversionen für die clientseitige Internationalisierung.'
+                    ]
+                }
+            },
+            {
+                title: 'website-utilities',
+                url: 'https://torben.website/website-utilities',
+                content: {
+                    enUS: [
+                        'A web component to provide reusable website features, like simple client side routing, position detection and navigation.'
+                    ],
+                    deDE: [
+                        'Eine Webkomponente zur Bereitstellung wiederverwendbarer Website-Funktionen wie einfache clientseitige Weiterleitung, Positionserkennung und Navigation.'
+                    ]
+                }
+            },
+            {
+                title: 'web-input-material',
+                url: 'https://torben.website/web-input-material',
+                content: {
+                    enUS: [
+                        'Reusable material design based input fields as web components with support for (richt-)text, code, selections, numbers, dates and files.'
+                    ],
+                    deDE: [
+                        'Wiederverwendbare, auf Material Design basierende Eingabefelder als Webkomponenten mit Unterstützung für (Recht-)Text, Code, Auswahlen, Zahlen, Datumsangaben und Dateien.'
+                    ]
+                }
+            },
+            {
+                title: 'agile-form',
+                url: 'https://torben.website/agile-form',
+                content: {
+                    enUS: [
+                        'Reusable highly configurable web component based form (useful for website/form builders).'
+                    ],
+                    deDE: [
+                        'Wiederverwendbares, hochgradig anpassbares Formular auf Basis von Webkomponenten (nützlich für Website- und Formular-Generatoren).'
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        title: {
+            enUS: 'Backend libraries',
+            deDE: 'Backend Bibliotheken'
+        },
+        content: [
+            {
+                title: 'web-node',
+                url: 'https://torben.website/web-node',
+                content: {
+                    enUS: [
+                        'Plugin and configuration management library.'
+                    ],
+                    deDE: [
+                        'Bibliothek für die Verwaltung von Plugins und Konfigurationen.'
+                    ]
+                }
+            },
+            {
+                title: 'couchdb-web-node-plugin',
+                url: 'https://torben.website/couchdb-web-node-plugin',
+                content: {
+                    enUS: [
+                        'Extension for couchdb based database server supporting schema based validation, right and role based authorization and document relations management provided as WebNode plugin.'
+                    ],
+                    deDE: [
+                        'Erweiterung für einen auf CouchDB basierenden Datenbankserver, die schemabasierte Validierung, berechtigungs- und rollenbasierte Autorisierung sowie die Verwaltung von Dokumentbeziehungen unterstützt. Als WebNode-Plugin bereitgestellt.'
+                    ]
+                }
+            },
+            {
+                title: 'ejs-web-node-plugin',
+                url: 'https://torben.website/ejs-web-node-plugin',
+                content: {
+                    enUS: [
+                        'A static template processor for webNode.'
+                    ],
+                    deDE: [
+                        ''
+                    ]
+                }
+            },
+            {
+                title: 'application-server-web-node-plugin',
+                url: 'https://torben.website/application-server-web-node-plugin',
+                content: {
+                    enUS: [
+                        'A static template processor for WebNode.'
+                    ],
+                    deDE: [
+                        'Ein statischer Vorlagenprozessor für WebNode.'
+                    ]
+                }
+            },
+            {
+                title: 'pre-render-web-node-plugin',
+                url: 'https://torben.website/pre-render-web-node-plugin',
+                content: {
+                    enUS: [
+                        'Pre-rendering hook for WebNode based solutions.'
+                    ],
+                    deDE: [
+                        'Hook für das Vorab-Rendering bei WebNode-basierten Lösungen.'
+                    ]
+                }
+            },
+            {
+                title: 'nginx-web-node-plugin',
+                url: 'https://torben.website/nginx-web-node-plugin',
+                content: {
+                    enUS: [
+                        'A nginx proxy server configuration template for WebNode based solutions.'
+                    ],
+                    deDE: [
+                        'Eine Konfigurationsvorlage für einen Nginx-Proxy-Server für auf WebNode basierende Lösungen.'
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        title: {
+            enUS: 'Tooling',
+            deDE: 'Werkzeuge'
+        },
+        content: [
+            {
+                title: 'weboptimizer',
+                url: 'https://torben.website/weboptimizer',
+                content: {
+                    enUS: [
+                        'A generic web optimizer, (module) bundler and development environment based on webpack.'
+                    ],
+                    deDE: [
+                        'Ein universeller Web-Optimierer, (Modul-)Bündler und Entwicklungsumgebung auf Basis von Webpack.'
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        title: {
+            enUS: 'Server',
+            deDE: 'Server'
+        },
+        content: [
+            {
+                title: 'reverse-proxy-middleware',
+                url: 'https://torben.website/reverse-proxy-middleware',
+                content: {
+                    enUS: [
+                        'A generic configureable standalone middleware.'
+                    ],
+                    deDE: [
+                        'Eine generische, konfigurierbare, eigenständige Middleware.'
+                    ]
+                }
+            },
+            {
+                title: 'proxy',
+                url: 'https://torben.website/proxy',
+                content: {
+                    enUS: [
+                        'A generic dockerized proxy to host multiple docker based applications under configurable (sub-) domains.'
+                    ],
+                    deDE: [
+                        'Ein generischer Docker-basierter Proxy zum Hosten mehrerer Docker-basierter Anwendungen unter konfigurierbaren (Sub-)Domains.'
+                    ]
+                }
+            },
+            {
+                title: 'polyfill-bundler',
+                url: 'https://torben.website/polyfill-bundler',
+                content: {
+                    enUS: [
+                        'Provides minimal node application to serve an on-premise polyfill.io service.'
+                    ],
+                    deDE: [
+                        'Stellt eine minimalistische Node-Anwendung bereit, um einen lokalen polyfill.io-Dienst bereitzustellen.'
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        title: {
+            enUS: 'Infrastructure',
+            deDE: 'Infrastruktur'
+        },
+        content: [
+            {
+                title: 'containerbase',
+                url: 'https://torben.website/containerbase',
+                content: {
+                    enUS: [
+                        'An ArchLinux based docker environment with encrypted user right mapping aura based package management..'
+                    ],
+                    deDE: [
+                        'Eine auf ArchLinux basierende Docker-Umgebung mit verschlüsselter Zuordnung von Benutzerrechten und einem auf Aura basierenden Paketverwaltungssystem.'
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        title: {
+            enUS: 'Linux',
+            deDE: 'Linux'
+        },
+        content: [
+            {
+                title: 'bashlink',
+                url: 'https://torben.website/bashlink',
+                content: {
+                    enUS: [
+                        'A generic bash library providing module system, testing helper and much utilities for bash like environments.'
+                    ],
+                    deDE: [
+                        'Eine generische Bash-Bibliothek, die ein Modulsystem, Testhilfen und zahlreiche Dienstprogramme für Bash-ähnliche Umgebungen bereitstellt.'
+                    ]
+                }
+            },
+            {
+                title: 'archinstall',
+                url: 'https://torben.website/archinstall',
+                content: {
+                    enUS: [
+                        'Install a configured ArchLinux with pacman as a package ' +
+                        'management in any places such as hard drives, USB ' +
+                        'flash drive, partition, or in an existing system as a ' +
+                        'sandbox environment. Automatic configuration of ' +
+                        'existing posix compliant unix-like systems. Both online' +
+                        ' and Offline installations are possible. Even without ' +
+                        'root privileges, the system is able to be installed ' +
+                        'into its own environment below the home folder. All ' +
+                        'required dependencies could be served via a typical ' +
+                        'posix environment given by Busybox or ArchLinux itself.'
+                    ],
+                    deDE: [
+                        'Installiere ein konfiguriertes ArchLinux mit Pacman als ' +
+                        'Paketverwaltung an beliebige Orte wie Festplatten,' +
+                        ' USB-Stick, alternative Partition oder in das ' +
+                        'bestehende System als Sandboxumgebung. Automatische ' +
+                        'Konfiguration bestehender posix konformer unix-artiger ' +
+                        'Systeme. Sowohl Online- als auch Offline-Installationen' +
+                        ' sind möglich. Selbst ohne root Rechte kann das System ' +
+                        'in eine eigene Umgebung unterhalb des Home-Ordner ' +
+                        'installiert werden. Alle benötigten Abhängigkeiten zum ' +
+                        'Aufsetzen sind durch eine einfache posix-Umgebung ' +
+                        'gegeben wie Busybox oder ArchLinux selbst.'
+                    ]
+                }
+            },
+            {
+                title: 'backup-rotation',
+                url: 'https://torben.website/backup-rotation',
+                content: {
+                    enUS: [
+                        'This script allows you to create a local or remote backup rotation for your files.'
+                    ],
+                    deDE: [
+                        'Mit diesem Skript können Sie eine lokale oder remote Datensicherung mit Rotationsplan für Ihre Dateien einrichten.'
+                    ]
+                }
+            },
+            {
+                title: 'reachable-watcher',
+                url: 'https://torben.website/reachable-watcher',
+                content: {
+                    enUS: [
+                        'As simple configurable script to ensure reachability of various web servers. Status codes can be checked and emails send if something is unexpected.'
+                    ],
+                    deDE: [
+                        'Ein einfach zu konfigurierendes Skript, um die Erreichbarkeit verschiedener Webserver sicherzustellen. Es können Statuscodes überprüft und E-Mails versendet werden, falls etwas Unerwartetes auftritt.'
+                    ]
+                }
+            }
+        ]
     }
 ]
 // endregion
 _%>
-<html class="no-javascript" lang="en">
+<html class="wu-no-javascript" lang="en">
     <!--region head-->
     <head>
         <meta charset="utf-8">
@@ -327,339 +815,401 @@ _%>
         >
         <base href="/">
         <title>Torben Sickert development</title>
+        <%- _.include(
+            'web-component-wrapper/polyfill.html', {webComponents: false}
+        ) %>
         <script>
-            window.document.documentElement.className =
-                window.document.documentElement.className.replace(
-                    /(^|\s)no-javascript(\s|$)/, '$1javascript$2');
+            AUTO_DEFINE_HOME_PAGE = true
+
+            window.document.documentElement.classList.remove('wu-no-javascript')
+            window.document.documentElement.classList.add('wu-javascript')
         </script>
     </head>
     <!--endregion-->
     <!--region body-->
-    <body class="no-javascript home-page tools-hidden-on-javascript-enabled">
+    <body class="wu-no-javascript">
         <script>
-            window.document.body.className =
-                window.document.body.className.replace(
-                    /(^|\s)no-javascript(\s|$)/, '$1javascript$2');
+            window.document.body.classList.remove('wu-no-javascript')
+            window.document.body.classList.add('wu-javascript')
         </script>
-        <div
-            class="website-utilities-window-loading-cover tools-visible-on-javascript-enabled"
-        ><div></div></div>
-        <!--region menu-->
-        <header
-            class="navbar-wrapper website-start-up-animation-number-<%- START_UP_ANIMATION_NUMBER %>"
-        >
-            <div class="container">
-                <div class="navbar navbar-inverse navbar-static-top">
-                    <div class="container">
-                        <div class="navbar-header">
-                            <a class="navbar-brand" href="#">
-                                thaibault
-                                <span class="dimension-indicator"></span>
-                            </a>
-                            <%_ START_UP_ANIMATION_NUMBER += 1 _%>
-                            <a
-                                class="tools-visible-on-javascript-enabled website-start-up-animation-number-<%- START_UP_ANIMATION_NUMBER %>"
-                                href="#language-<%- ALTERNATE_LANGUAGE %>"
-                            >
-                                <%- ALTERNATE_LANGUAGE.substring(0, ALTERNATE_LANGUAGE.length - 2) %>
-                            </a>
-                            <button
-                                class="navbar-toggle tools-visible-on-javascript-enabled"
-                                data-target=".navbar-collapse"
-                                data-toggle="collapse"
-                                type="button"
-                            >
-                                <%_ for (const section of [1, 2, 3]) { _%>
-                                    <span class="icon-bar"></span>
-                                <%_ } _%>
-                            </button>
-                        </div>
-                        <div class="navbar-collapse collapse">
-                            <div
-                                class="navbar-highlighter tools-visible-on-javascript-enabled"
-                            ></div>
-                            <ul class="nav navbar-nav">
-                                <%_ for (const section of SECTIONS) {
-                                    if (section.content[0]) {
-                                        START_UP_ANIMATION_NUMBER += 1
-                                _%>
-                                        <li
-                                            class="website-start-up-animation-number-<%- START_UP_ANIMATION_NUMBER %><%- section.title === SECTIONS[0].title ? ' active' : '' %>"
-                                        >
-                                            <a href="#<%- section.title %>">
-                                                <%- section.content[0][DEFAULT_LANGUAGE] %>
-                                                <!--<%- ALTERNATE_LANGUAGE %>:
-                                                    <%- section.content[0][ALTERNATE_LANGUAGE] %>
-                                                -->
-                                            </a>
-                                        </li>
-                                    <%_ } _%>
-                                <%_ } _%>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+
+        <div class="wu-window-loading-cover">
+            <div class="loading-text">
+                <lang-replace>
+                    <span>L</span>
+                    <span>O</span>
+                    <span>A</span>
+                    <span>D</span>
+                    <span>I</span>
+                    <span>N</span>
+                    <span>G</span>
+                </lang-replace>
+                <!--<%- ALTERNATE_LANGUAGE %>:
+                    <span>L</span>
+                    <span>A</span>
+                    <span>D</span>
+                    <span>E</span>
+                -->
             </div>
-        </header>
-        <!--endregion-->
-        <!--region carousel-->
-        <section class="carousel slide"><div class="carousel-inner">
-            <%_ for (const section of SECTIONS) { _%>
-                <div class="item <%- section.title %>">
-                    <div class="carousel-image-<%- section.title %>">
-                        <div class="container">
-                            <%_ if (section.content[1][DEFAULT_LANGUAGE]) { _%>
-                                <h1 id="<%- section.title %>">
-                                    <%- section.content[1][DEFAULT_LANGUAGE] %>
-                                    <!--<%- ALTERNATE_LANGUAGE %>:
-                                        <%- section.content[1][ALTERNATE_LANGUAGE] %>
-                                    -->
-                                </h1>
-                            <%_ } else { _%>
-                                <!--
-                                    Serves as anchor point if javaScript isn't
-                                    supported.
-                                -->
-                                <h1 id="<%- section.title %>"></h1>
-                            <%_ }
-                            if (section.title === 'work') {
-                            _%>
-                                <h2>
-                                    <%- section.content[2][DEFAULT_LANGUAGE] %>
-                                    <!--<%- ALTERNATE_LANGUAGE %>:
-                                        <%- section.content[2][ALTERNATE_LANGUAGE] %>
-                                    -->
-                                </h2>
-                                <p>
-                                    <langReplace>
-                                        <%_ for (const keywords of section.content[3][DEFAULT_LANGUAGE]) {
-                                            if (keywords[0] !== section.content[3][DEFAULT_LANGUAGE][0][0]) {
-                                                _%>
-                                                <strong><%- keywords[0] %></strong>
-                                            <%_ } _%>
-                                            <%- keywords[1].join(', ') %>
-                                        <%_ } _%>
-                                    </langReplace>
-                                    <!--<%- ALTERNATE_LANGUAGE %>:
-                                        <%_ for (const keywords of section.content[3][ALTERNATE_LANGUAGE]) {
-                                            if (keywords[0] !== section.content[3][ALTERNATE_LANGUAGE][0][0]) {
-                                                _%>
-                                                <strong><%- keywords[0] %></strong>
-                                            <%_ } _%>
-                                            <%- keywords[1].join(', ') %>
-                                        <%_ } _%>
-                                    -->
-                                </p>
-                                <h2>
-                                    <%- section.content[4][DEFAULT_LANGUAGE] %>
-                                    <!--<%- ALTERNATE_LANGUAGE %>:
-                                        <%- section.content[4][ALTERNATE_LANGUAGE] %>
-                                    -->
-                                </h2>
-                                <dl class="dl-horizontal">
-                                    <%_ for (const project of PROJECTS) { _%>
-                                        <dt>
-                                            <a
-                                                href="<%- project.url %>"
-                                                target="_blank"
-                                            ><%- project.title %></a>
-                                        </dt>
-                                        <dd>
-                                            <%- project.content[DEFAULT_LANGUAGE][0] %>
-                                            <!--<%- ALTERNATE_LANGUAGE %>:
-                                                <%- project.content[ALTERNATE_LANGUAGE][0] %>
-                                            -->
-                                            <%_ if (project.content[DEFAULT_LANGUAGE].length > 1) {_%>
-                                                <ul>
-                                                    <%_
-                                                    let index = 0
-                                                    for (const element of project.content[DEFAULT_LANGUAGE][1]) {
-                                                    _%>
-                                                        <li>
-                                                            <%_ if (Array.isArray(element)) { _%>
-                                                                <langreplace>
-                                                                    <a
-                                                                        href="<%- element[1] %>"
-                                                                    >
-                                                                        <%- element[0] %>
-                                                                    </a>
-                                                                </langrelace>
-                                                                <langreplacement>
-                                                                    <%- ALTERNATE_LANGUAGE %>:
-                                                                    <a
-                                                                        href="<%- project.content[ALTERNATE_LANGUAGE][1][index][1] %>"
-                                                                    >
-                                                                        <%- project.content[ALTERNATE_LANGUAGE][1][index][0] %>
-                                                                    </a>
-                                                                </langreplacement>
-                                                            <%_ } else { _%>
-                                                                <%- element %>
-                                                                <!--<%- ALTERNATE_LANGUAGE %>:
-                                                                    <%- project.content[ALTERNATE_LANGUAGE][1][index] %>
-                                                                -->
-                                                            <%_ } _%>
-                                                        </li>
-                                                        <%_
-                                                        index += 1
-                                                    }
-                                                    _%>
-                                                </ul>
-                                            <%_ } _%>
-                                        </dd>
-                                    <%_ } _%>
-                                </dl>
-                            <%_ } else { _%>
-                                <p class="lead">
-                                    <%- section.content[2][DEFAULT_LANGUAGE] %>
-                                    <!--<%- ALTERNATE_LANGUAGE %>:
-                                        <%- section.content[2][ALTERNATE_LANGUAGE] %>
-                                    -->
-                                    <%_ if (section.title === 'about') { _%>
-                                        <a
-                                            class="visible-xs"
-                                            href="<%- LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE_PATH %>"
-                                            target="_blank"
-                                        >
-                                            Curriculum Vitae (German)
-                                            <!--<%- ALTERNATE_LANGUAGE %>:
-                                                Lebenslauf (Deutsch)
-                                            -->
-                                        </a>
-                                        <a
-                                            class="visible-xs"
-                                            href="<%- LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE_PATH %>"
-                                            target="_blank"
-                                        >
-                                            Curriculum Vitae (English)
-                                            <!--<%- ALTERNATE_LANGUAGE %>:
-                                                Lebenslauf (Englisch)
-                                            -->
-                                        </a>
-                                        <a
-                                            class="hidden-xs"
-                                            href="<%- LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE_PATH %>"
-                                            target="_blank"
-                                        >
-                                            Curriculum Vitae
-                                            <!--<%- ALTERNATE_LANGUAGE %>:
-                                                Lebenslauf
-                                            -->
-                                        </a>
-                                        <a
-                                            href="<%- LINK_V_CARD_PATH %>"
-                                            target="_blank"
-                                        >vCard</a>
-                                    <%_ } _%>
-                                </p>
-                            <%_ }
-                            if (section.title === 'contact') {
-                            _%>
-                                <a href="tel:004917610248185">
-                                    Phone<!--<%- ALTERNATE_LANGUAGE %>:Tel.-->
-                                    +49 (0) 176 <span>/</span> 10 248 185
-                                </a>
-                                <%_
-                                    for (const link of SOCIAL_MEDIA) {
-                                        if (link.url.indexOf('@') !== -1)
-                                            link.url = `mailto:${link.url}`
-                                        if ('website' === link.title) {
-                                _%>
-                                    <a
-                                        class="glyphicon glyphicon-globe"
-                                        href="<%- link.url %>"
-                                        target="_blank"
-                                    ></a>
-                                        <%_ } else { _%>
-                                    <a
-                                        class="glyphicon-social glyphicon-social-<%- link.title %>"
-                                        href="<%- link.url %>"
-                                        target="_blank"
-                                    ></a>
-                                        <%_ } _%>
-                                    <%_ } _%>
-                            <%_ } _%>
-                        </div>
-                    </div>
-                </div>
-            <%_ } _%>
-        </div></section>
-        <!--endregion-->
-        <!--region about this website-->
-        <section class="about-this-website">
-            <div class="carousel-image-about-this-website">
-                <div class="container">
-                    <h1 id="about-this-website">
-                        About this website
-                        <!--<%- ALTERNATE_LANGUAGE %>:Impressum-->
-                    </h1>
-                    <h2>
-                        Contact
-                        <!--<%- ALTERNATE_LANGUAGE %>:Kontakt-->
-                    </h2>
-                    <div>
-                        Provider of<!--<%- ALTERNATE_LANGUAGE %>:Anbieter von-->:
-                        <a
-                            class="<%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].title %>"
-                            href="<%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url %>"
-                        ><%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url %></a>
-                        <br />
-                        Torben Sickert
-                        <br />
-                        Waldstraße 29
-                        <br />
-                        79194 Gundelfingen i.Br.
-                        <br />
-                        Phone<!--<%- ALTERNATE_LANGUAGE %>:Tel.-->:
-                        <a href="tel:004917610248185">
-                            +49 (0) 176<span>/</span>10 248 185
-                        </a>
-                        <br />
-                        Email:<!--<%- ALTERNATE_LANGUAGE %>:E-Mail-->
-                        <a href="mailto:<%- SOCIAL_MEDIA[0].url %>">
-                            <%- SOCIAL_MEDIA[0].url %>
-                        </a>
-                        <br />
-                        Website<!--<%- ALTERNATE_LANGUAGE %>:Webseite-->:
-                        <a
-                            class="<%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].title %>"
-                            href="<%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url %>"
-                        ><%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url %></a>
-                        <br />
-                        <br />
-                        <a
-                            href="<%- LINK_PUBLIC_SSH_KEY_PATH %>"
-                            target="_blank"
-                        >
-                            public ssh key
-                            <!--<%- ALTERNATE_LANGUAGE %>:
-                                öffentlicher SSH-Schlüssel
-                            -->
-                        </a>
-                    </div>
-                    <%- include('legal-notes') %>
-                </div>
-            </div>
-        </section>
-        <!--
-            endregion
-            region footer
-            Wrap the footer of the page in another container to center the
-            content.
-        -->
-        <%_ START_UP_ANIMATION_NUMBER += 1 _%>
-        <div
-            class="footer website-start-up-animation-number-<%- START_UP_ANIMATION_NUMBER %>"
-        >
-            <footer><p>
-                &copy; 2013 Torben Sickert &middot;
-                <a href="#about-this-website">
-                    about this website
-                    <!--<%- ALTERNATE_LANGUAGE %>:Impressum-->
-            </p></footer>
         </div>
-        <!--endregion-->
-        <a href="#top">top<!--deDE:nach oben--></a>
-        <%_ if (configuration.offline) { _%>
+
+        <home-page>
+            <!--region header-->
+            <header
+                class="hp-header headroom wu-start-up-animation-number-<%- getStartUpAnimationNumber() %>"
+            >
+                <div class="hp-header__center">
+                    <nav role="navigation" class="wu-priority-navigation">
+                        <ul class="wu-priority-navigation__list">
+                            <%_
+                            let first = true
+                            for (const section of SECTIONS) {
+                            _%>
+                                <%_ if (section.content.menuLabel) { _%>
+                                    <li
+                                        class="wu-start-up-animation-number-<%- getStartUpAnimationNumber() %>"
+                                    >
+                                        <a
+                                            class="wu-priority-navigation__link"
+                                            href="#<%- section.title %>"
+                                        >
+                                            <%- section.content.menuLabel[DEFAULT_LANGUAGE] %>
+                                            <!--<%- ALTERNATE_LANGUAGE %>:
+                                                <%- section.content.menuLabel[ALTERNATE_LANGUAGE] %>
+                                            -->
+                                        </a>
+                                    </li>
+                                <%_ } _%>
+                                <%_ first = false _%>
+                            <%_ } _%>
+
+                            <li class="wu-priority-navigation__list__overflow-indicator">
+                                <div
+                                    class="wu-priority-navigation__list__overflow-indicator__title"
+                                >
+                                    <div
+                                        class="wu-priority-navigation__list__overflow-indicator__title__icon"
+                                    ></div>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <ul class="wu-priority-navigation__overflow-list"></ul>
+                    </nav>
+
+                    <a
+                        class="hp-switch-language wu-start-up-animation-number-<%- getStartUpAnimationNumber() %>"
+                        href="#lang-<%- ALTERNATE_LANGUAGE %>"
+                    >
+                        <%- ALTERNATE_LANGUAGE.substring(0, ALTERNATE_LANGUAGE.length - 2) %>
+                    </a>
+                </div>
+            </header>
+            <!-- endregion-->
+            <main class="wu-router-outlet">
+                <!--region swiper-->
+                <section class="hp-section swiper" data-website-utilities-section>
+                    <div class="hp-section__swiper-wrapper swiper-wrapper">
+                    <%_ for (const section of SECTIONS) { _%>
+                        <div
+                            data-hash="<%- section.title %>"
+                            class="hp-section__swiper-wrapper__slide hp-section__swiper-wrapper__slide--<%- section.title %> swiper-slide"
+                        >
+                            <div class="hp-section__swiper-wrapper__slide__image">
+                                <div class="hp-section__swiper-wrapper__slide__center">
+                                    <!--
+                                        Serves as anchor point if JavaScript
+                                        isn't supported.
+                                    -->
+                                    <h1 id="<%- section.title %>">
+                                        <%_ if (section.content.headline) { _%>
+                                            <%- section.content.headline[DEFAULT_LANGUAGE] %>
+                                            <!--<%- ALTERNATE_LANGUAGE %>:
+                                                <%- section.content.headline[ALTERNATE_LANGUAGE] %>
+                                            -->
+                                        <%_ } _%>
+                                    </h1>
+
+                                    <%_ if (section.content.sound) { _%>
+                                        <lang-alternative
+                                            class="hp-audio-player" active
+                                        >
+                                            <pre hidden>
+                                                <%- section.content.sound[DEFAULT_LANGUAGE] %>
+                                            </pre>
+                                        </lang-alternative>
+                                        <lang-alternative
+                                            lang="<%- ALTERNATE_LANGUAGE %>"
+                                            class="hp-audio-player"
+                                        >
+                                            <pre hidden>
+                                                <%- section.content.sound[ALTERNATE_LANGUAGE] %>
+                                            </pre>
+                                        </lang-alternative>
+                                    <%_ } %>
+
+                                    <%_ if (section.title === 'work') { _%>
+                                        <h2>
+                                            <%- section.content.subHeadline[DEFAULT_LANGUAGE] %>
+                                            <!--<%- ALTERNATE_LANGUAGE %>:
+                                                <%- section.content.subHeadline[ALTERNATE_LANGUAGE] %>
+                                            -->
+                                        </h2>
+
+                                        <p>
+                                            <lang-replace>
+                                                <%_ for (const keywords of section.content.keywords[DEFAULT_LANGUAGE]) { _%>
+                                                    <%_ if (keywords.title) { _%>
+                                                        <strong><%- keywords.title %></strong>
+                                                    <%_ } _%>
+                                                    <%- keywords.content.join(', ') %>
+                                                <%_ } _%>
+                                            </lang-replace>
+                                            <!--<%- ALTERNATE_LANGUAGE %>:
+                                                <%_ for (const keywords of section.content.keywords[ALTERNATE_LANGUAGE]) { _%>
+                                                    <%_ if (keywords.title) { _%>
+                                                        _%>
+                                                        <strong><%- keywords.title %></strong>
+                                                    <%_ } _%>
+                                                    <%- keywords.content.join(', ') %>
+                                                <%_ } _%>
+                                            -->
+                                        </p>
+
+                                        <h2>
+                                            <%- section.content.subHeadline2[DEFAULT_LANGUAGE] %>
+                                            <!--<%- ALTERNATE_LANGUAGE %>:
+                                                <%- section.content.subHeadline2[ALTERNATE_LANGUAGE] %>
+                                            -->
+                                        </h2>
+
+                                        <%_ for (const group of PROJECTS) { _%>
+                                            <h3>
+                                                <%- group.title[DEFAULT_LANGUAGE] %>
+                                                <!--<%- ALTERNATE_LANGUAGE %>:
+                                                        <%- group.title[ALTERNATE_LANGUAGE] %>
+                                                    -->
+                                            </h3>
+
+                                            <div class="hp-projects">
+                                                <%_ for (const project of group.content) { _%>
+                                                    <div class="hp-card">
+                                                        <div class="hp-card__body">
+                                                            <h4>
+                                                                <%_ if (project.url) { %>
+                                                                    <a
+                                                                        href="<%- project.url %>"
+                                                                        target="_blank"
+                                                                    >
+                                                                        <%- project.title %>
+                                                                    </a>
+                                                                <%_ } else  { %>
+                                                                    <%- project.title %>
+                                                                <%_ } %>
+                                                            </h4>
+
+                                                            <%_ if (project.images) { %>
+                                                                <%_ for (const url of project.images) { _%>
+                                                                    <img
+                                                                        class="hp-card__body__image"
+                                                                        src="<%- url %>"
+                                                                        alt="<%- project.title %>"
+                                                                    >
+                                                                <%_ } %>
+                                                            <%_ } %>
+
+                                                            <p>
+                                                                <%- project.content[DEFAULT_LANGUAGE][0] %>
+                                                                <!--<%- ALTERNATE_LANGUAGE %>:
+                                                                    <%- project.content[ALTERNATE_LANGUAGE][0] %>
+                                                                -->
+                                                                <%_ if (project.content[DEFAULT_LANGUAGE].length > 1) {_%>
+                                                                    <ul>
+                                                                        <%_
+                                                                        let index = 0
+                                                                        for (const element of project.content[DEFAULT_LANGUAGE][1]) {
+                                                                        _%>
+                                                                            <li>
+                                                                                <%_ if (Array.isArray(element)) { _%>
+                                                                                    <lang-replace>
+                                                                                        <a
+                                                                                            href="<%- element[1] %>"
+                                                                                        >
+                                                                                            <%- element[0] %>
+                                                                                        </a>
+                                                                                    </lang-relace>
+                                                                                    <!--<%- ALTERNATE_LANGUAGE %>:
+
+                                                                                        <%- ALTERNATE_LANGUAGE %>:
+                                                                                        <a
+                                                                                            href="<%- project.content[ALTERNATE_LANGUAGE][1][index][1] %>"
+                                                                                        >
+                                                                                            <%- project.content[ALTERNATE_LANGUAGE][1][index][0] %>
+                                                                                        </a>
+                                                                                    -->
+                                                                                <%_ } else { _%>
+                                                                                    <%- element %>
+                                                                                    <!--<%- ALTERNATE_LANGUAGE %>:
+                                                                                        <%- project.content[ALTERNATE_LANGUAGE][1][index] %>
+                                                                                    -->
+                                                                                <%_ } _%>
+                                                                            </li>
+                                                                            <%_
+                                                                            index += 1
+                                                                        }
+                                                                        _%>
+                                                                    </ul>
+                                                                <%_ } _%>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                <%_ } _%>
+                                            </div>
+                                        <%_ } _%>
+                                    <%_ } else { _%>
+                                        <p class="lead">
+                                            <%- section.content.lead[DEFAULT_LANGUAGE] %>
+                                            <!--<%- ALTERNATE_LANGUAGE %>:
+                                                <%- section.content.lead[ALTERNATE_LANGUAGE] %>
+                                            -->
+                                            <%_ if (section.title === 'about-me') { _%>
+                                                <span>
+                                                    <lang-replace>
+                                                        <a
+                                                            href="<%- LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE_PATH %>"
+                                                            target="_blank"
+                                                        >Curriculum Vitae</a>
+                                                    </lang-replace>
+                                                    <!--<%- ALTERNATE_LANGUAGE %>:
+                                                        <a
+                                                            href="<%- LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE_PATH %>"
+                                                            target="_blank"
+                                                        >Lebenslauf</a>
+                                                    -->
+
+                                                    <a
+                                                        href="<%- LINK_V_CARD_PATH %>"
+                                                        target="_blank"
+                                                    >vCard</a>
+                                                </span>
+                                            <%_ } _%>
+                                        </p>
+                                    <%_ } _%>
+                                    <%_ if (section.title === 'contact') { _%>
+                                        <a href="tel:004917610248185">
+                                            Phone<!--<%- ALTERNATE_LANGUAGE %>:Tel.-->
+                                            +49 (0) 176 <span>/</span> 10 248 185
+                                        </a>
+                                        <p
+                                            class="hp-section__swiper-wrapper__slide__center__social-links"
+                                        >
+                                            <%_
+                                                for (const link of SOCIAL_MEDIA) {
+                                                    if (link.url.indexOf('@') !== -1)
+                                                        link.url = `mailto:${link.url}`
+                                            _%>
+                                                <a
+                                                    href="<%- link.url %>"
+                                                    target="_blank"
+                                                >
+                                                    <i class="bi bi-<%- link.icon -%>"></i>
+                                                </a>
+                                            <%_ } _%>
+                                        </p>
+                                    <%_ } _%>
+                                </div>
+                            </div>
+                        </div>
+                    <%_ } _%>
+                    </div>
+
+                    <div class="swiper-pagination"></div>
+
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </section>
+                <!--endregion-->
+                <!--region about this website-->
+                <section
+                    class="about-this-website"
+                    data-website-utilities-section="about-this-website"
+                >
+                    <div class="about-this-website__center">
+                        <h1 id="about-this-website">
+                            About this website
+                            <!--<%- ALTERNATE_LANGUAGE %>:Impressum-->
+                        </h1>
+                        <h2>
+                            Contact
+                            <!--<%- ALTERNATE_LANGUAGE %>:Kontakt-->
+                        </h2>
+                        <div>
+                            Provider of<!--<%- ALTERNATE_LANGUAGE %>:Anbieter von-->:
+                            <a
+                                class="<%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].title %>"
+                                href="<%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url %>"
+                            ><%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url %></a>
+                            <br />
+                            Torben Sickert
+                            <br />
+                            Waldstraße 29
+                            <br />
+                            79194 Gundelfingen i.Br.
+                            <br />
+                            Phone<!--<%- ALTERNATE_LANGUAGE %>:Tel.-->:
+                            <a href="tel:004917610248185">
+                                +49 (0) 176<span>/</span>10 248 185
+                            </a>
+                            <br />
+                            Email:<!--<%- ALTERNATE_LANGUAGE %>:E-Mail-->
+                            <a href="mailto:<%- SOCIAL_MEDIA[0].url %>">
+                                <%- SOCIAL_MEDIA[0].url %>
+                            </a>
+                            <br />
+                            Website<!--<%- ALTERNATE_LANGUAGE %>:Webseite-->:
+                            <a
+                                class="<%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].title %>"
+                                href="<%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url %>"
+                            ><%- SOCIAL_MEDIA[SOCIAL_MEDIA.length - 1].url %></a>
+                            <br />
+                            <br />
+                            <a
+                                href="<%- LINK_PUBLIC_SSH_KEY_PATH %>"
+                                target="_blank"
+                            >
+                                public ssh key
+                                <!--<%- ALTERNATE_LANGUAGE %>:
+                                    öffentlicher SSH-Schlüssel
+                                -->
+                            </a>
+                        </div>
+                        <%- _.include('legal-notes') %>
+                    </div>
+                </section>
+                <!-- endregion -->
+            </main>
+            <!--region footer-->
+            <!--
+                Wrap the footer of the page in another container to center the
+                content.
+            -->
+            <footer
+                class="wu-start-up-animation-number-<%- getStartUpAnimationNumber() %>"
+            >
+                <p>
+                    &copy; 2013 Torben Sickert &middot;
+                    <a href="#about-this-website">
+                        about this website
+                        <!--<%- ALTERNATE_LANGUAGE %>:Impressum-->
+                    </a>
+                </p>
+            </footer>
+            <!--endregion-->
+            <a class="wu-scroll-to-top" href="#top">
+                top<!--deDE:nach oben--></a>
+            </a>
+        </home-page>
+        <%_ if (_.configuration.offline) { _%>
             <noscript>
                 <iframe src="manifest.html" style="display: none"></iframe>
             </noscript>
