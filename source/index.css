@@ -70,7 +70,9 @@ endregion
     --menu-font-hover-color: #fff; /* light white */
     --shadow-color: rgb(0 0 0 / 40%);
     --swiper-theme-color: var(--accent-color);
-    --box-shadow: 0 10px 30px var(--shadow-color);
+    --box-shadow-header: 0 10px 30px var(--shadow-color);
+    --box-shadow-card: 0 4px 10px var(--shadow-color);
+    --box-shadow-card-hover: var(--box-shadow-header);
     /** endregion */
     /** region space */
     --header-height: 60px;
@@ -110,6 +112,9 @@ home-page {
     /** region headline */
     h1, h2, h3, h4, h5, h6 {
         font-family: var(--wu-typography-font-family-headline);
+    }
+    h3 {
+        margin-top: calc(var(--wu-default-space) * 4);
     }
     /** endregion */
     /** region link */
@@ -181,11 +186,22 @@ home-page {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: center;
+
+        @media (--wu-extra-extra-small) {
+            @media (--wu-extra-small) {
+                @media (--wu-small) {
+                    @media (--wu-medium) {
+                        justify-content: space-between;
+                    }
+                }
+            }
+        }
     }
 
     .hp-card {
-        width: 216px;
+        width: 100%;
+        max-width: 350px;
         height: 300px;
 
         margin-top: calc(var(--wu-default-space) * 2);
@@ -196,7 +212,32 @@ home-page {
         overflow: hidden;
 
         border-radius: 20px;
-        box-shadow: var(--box-shadow);
+        box-shadow: var(--box-shadow-card);
+
+        transition: all 0.2s linear;
+
+        @media (--wu-extra-extra-small) {
+            width: 100%;
+            max-width: 450px;
+            height: 600px;
+
+            @media (--wu-extra-small) {
+                width: 100%;
+                max-width: 550px;
+                height: 650px;
+
+                @media (--wu-small) {
+                    @media (--wu-medium) {
+                        width: 340px;
+                        height: 508px;
+                    }
+                }
+            }
+        }
+
+        &:hover {
+            box-shadow: var(--box-shadow-card-hover);
+        }
 
         &::before {
             content: '';
@@ -335,7 +376,7 @@ home-page {
             flex-flow: row nowrap;
             justify-content: space-between;
 
-            box-shadow: var(--box-shadow);
+            box-shadow: var(--box-shadow-header);
 
             box-sizing: border-box;
 
