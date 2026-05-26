@@ -374,8 +374,8 @@ const PROJECTS = [
             {
                 title: 'BPV Web APP',
                 images: [
-                    `${IMAGE_PATH}projects/emergency-service-backend.png`,
-                    `${IMAGE_PATH}projects/emergency-service-frontend.png`
+                    `${IMAGE_PATH}projects/emergency-service/backend.png`,
+                    `${IMAGE_PATH}projects/emergency-service/frontend.png`
                 ],
                 content: {
                     enUS: [
@@ -389,6 +389,12 @@ const PROJECTS = [
             {
                 title: 'Home Page',
                 url: 'https://torben.website',
+                images: [
+                    `${IMAGE_PATH}projects/home-page/about-me.png`,
+                    `${IMAGE_PATH}projects/home-page/contact-slice.png`,
+                    `${IMAGE_PATH}projects/home-page/mobile-get-in-touch.png`,
+                    `${IMAGE_PATH}projects/home-page/mobile-menu.png`
+                ],
                 content: {
                     enUS: ['This website.'],
                     deDE: ['Diese Webseite.']
@@ -1009,13 +1015,21 @@ _%>
                                                             </h4>
 
                                                             <%_ if (project.images) { %>
-                                                                <%_ for (const url of project.images) { _%>
-                                                                    <img
-                                                                        class="hp-card__body__image"
-                                                                        src="<%- url %>"
-                                                                        alt="<%- project.title %>"
-                                                                    >
-                                                                <%_ } %>
+                                                                <div class="swiper">
+                                                                    <!-- Additional required wrapper -->
+                                                                    <div class="swiper-wrapper">
+                                                                        <%_ for (const url of project.images) { _%>
+                                                                            <div class="swiper-slide">
+                                                                                <img
+                                                                                        class="hp-card__body__image"
+                                                                                        src="<%- url %>"
+                                                                                        alt="<%- project.title %>"
+                                                                                >
+                                                                            </div>
+                                                                        <%_ } %>
+                                                                    </div>
+                                                                    <div class="swiper-pagination"></div>
+                                                                </div>
                                                             <%_ } %>
 
                                                             <p>

@@ -37,13 +37,16 @@ export interface DefaultOptions {
 
         section: string
 
-        swiper: string
+        mainSwiper: string
         sectionSwiperWrapper: string
+
+        projectSwiper: string
 
         waveSurfer: string
     }
 
     swiper: SwiperOptions
+    projectSwiper: SwiperOptions
 }
 export type Options = DefaultOptions
 
