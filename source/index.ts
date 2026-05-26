@@ -19,6 +19,7 @@
 // region imports
 import {
     camelCaseToDelimited,
+    copy,
     extend,
     globalContext,
     Logger,
@@ -28,9 +29,7 @@ import {
 import {object} from 'clientnode/property-types'
 import Headroom from 'headroom.js'
 import Swiper from 'swiper'
-import {
-    EffectCube, HashNavigation, Navigation, Pagination
-} from 'swiper/modules'
+import {Autoplay, HashNavigation, Navigation, Pagination} from 'swiper/modules'
 import WaveSurfer from 'wavesurfer.js'
 import {property} from 'web-component-wrapper/decorator'
 import {WebComponentAPI} from 'web-component-wrapper/type'
@@ -111,8 +110,8 @@ export class HomePage<
                     this.rootInstance.switchLanguageButton(parameters[1], this)
                 "
                 on-ensure="this.rootInstance.switchLanguageButton(data, this)"
-                on-ensured="this.rootInstance.swiper?.updateAutoHeight()"
-                on-switched="this.rootInstance.swiper?.updateAutoHeight()"
+                on-ensured="this.rootInstance.mainSwiper?.updateAutoHeight()"
+                on-switched="this.rootInstance.mainSwiper?.updateAutoHeight()"
             >
                 <slot>Please provide a template to transclude.</slot>
             </web-internationalization>
@@ -164,18 +163,20 @@ export class HomePage<
 
             section: '.hp-section',
 
-            swiper: '.swiper',
+            mainSwiper: 'section.swiper',
             sectionSwiperWrapper: '.hp-section__swiper-wrapper',
+
+            projectSwiper: '.hp-card .swiper',
 
             waveSurfer: '.hp-audio-player'
         },
 
-        swiper: {
+        mainSwiper: {
             grabCursor: false,
             keyboard: true,
             centeredSlidesBounds: true,
 
-            modules: [EffectCube, HashNavigation, Navigation, Pagination],
+            modules: [HashNavigation, Navigation, Pagination],
 
             autoHeight: true,
 
@@ -194,6 +195,28 @@ export class HomePage<
                 clickable: true,
                 type: 'bullets'
             }
+        },
+        projectSwiper: {
+            grabCursor: false,
+            keyboard: true,
+            centeredSlidesBounds: true,
+
+            modules: [Autoplay, Pagination],
+
+            simulateTouch: false,
+
+            autoplay: {
+                delay: 3000,
+                pauseOnMouseEnter: true
+            },
+
+            a11y: true,
+
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                type: 'bullets'
+            }
         }
     }
 
@@ -204,7 +227,7 @@ export class HomePage<
     @property({type: object})
         options = {} as Options
     // endregion
-    swiper: Swiper | null = null
+    mainSwiper: Swiper | null = null
     // region domNodes
     headerDomNode: HTMLElement | null = null
     navigationDomNodes: NodeListOf<HTMLElement> | null = null
@@ -212,8 +235,10 @@ export class HomePage<
 
     sectionDomNode: HTMLElement | null = null
 
-    swiperDomNode: HTMLElement | null = null
+    mainSwiperDomNode: HTMLElement | null = null
     sectionSwiperWrapperDomNodes: NodeListOf<HTMLElement> | null = null
+
+    projectSwiperDomNodes: NodeListOf<HTMLElement> | null = null
 
     waveSurferDomNodes: NodeListOf<HTMLElement> | null = null
     // endregion
@@ -276,11 +301,11 @@ export class HomePage<
             // headroom.destroy()
         }
 
-        if (this.swiperDomNode)
-            this.swiper = new Swiper(
-                this.swiperDomNode,
+        if (this.mainSwiperDomNode)
+            this.mainSwiper = new Swiper(
+                this.mainSwiperDomNode,
                 {
-                    ...this.options.swiper,
+                    ...this.options.mainSwiper,
                     on: {
                         slideChangeTransitionStart: () => {
                             this.sectionDomNode?.scrollTo({top: 0})
@@ -295,6 +320,10 @@ export class HomePage<
                 }
             )
 
+        if (this.projectSwiperDomNodes)
+            for (const domNode of this.projectSwiperDomNodes)
+                new Swiper(domNode, copy(this.options.projectSwiper))
+
         if (globalContext.window)
             this.addSecureEventListener(
                 globalContext.window,
@@ -302,8 +331,8 @@ export class HomePage<
                 () => {
                     trailingThrottle(
                         () => {
-                            this.swiper?.updateSize()
-                            this.swiper?.updateAutoHeight()
+                            this.mainSwiper?.updateSize()
+                            this.mainSwiper?.updateAutoHeight()
                         },
                         20
                     )()
@@ -395,12 +424,16 @@ export class HomePage<
             this.options.selectors.switchLanguageButtons
         )
 
-        this.swiperDomNode =
-            this.hostDomNode.querySelector(this.options.selectors.swiper)
+        this.mainSwiperDomNode =
+            this.hostDomNode.querySelector(this.options.selectors.mainSwiper)
         this.sectionDomNode =
             this.hostDomNode.querySelector(this.options.selectors.section)
         this.sectionSwiperWrapperDomNodes = this.hostDomNode.querySelectorAll(
             this.options.selectors.sectionSwiperWrapper
+        )
+
+        this.projectSwiperDomNodes = this.hostDomNode.querySelectorAll(
+            this.options.selectors.projectSwiper
         )
 
         this.waveSurferDomNodes = this.hostDomNode.querySelectorAll(
