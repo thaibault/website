@@ -45,7 +45,7 @@ export interface DefaultOptions {
         waveSurfer: string
     }
 
-    swiper: SwiperOptions
+    mainSwiper: SwiperOptions
     projectSwiper: SwiperOptions
 }
 export type Options = DefaultOptions

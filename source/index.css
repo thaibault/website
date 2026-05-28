@@ -113,6 +113,7 @@ home-page {
     h1, h2, h3, h4, h5, h6 {
         font-family: var(--wu-typography-font-family-headline);
     }
+
     h3 {
         margin-top: calc(var(--wu-default-space) * 4);
     }
@@ -184,8 +185,7 @@ home-page {
 
     .hp-projects {
         display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
+        flex-flow: row wrap;
         justify-content: center;
 
         @media (--wu-extra-extra-small) {
@@ -246,12 +246,12 @@ home-page {
             height: 130%;
             width: 50px;
 
-            background-image: linear-gradient(180deg, rgb(0, 183, 255), rgb(255, 48, 255));
+            background-image: linear-gradient(180deg, rgb(0 183 255), rgb(255 48 255));
             animation: rotate-background 18s linear infinite;
             transition: all 0.2s linear;
         }
 
-        &:hover:before {
+        &:hover::before {
             width: 100px;
 
             animation: rotate-background 6s linear infinite;
@@ -266,7 +266,7 @@ home-page {
             border-radius: 18px;
         }
 
-        &:hover:after {
+        &:hover::after {
             inset: 3px;
         }
 
@@ -292,7 +292,6 @@ home-page {
 
             h4 {
                 font-size: 1rem;
-
                 /* color: var(--link-color); */
                 background: var(--link-gradient);
                 color: transparent;
@@ -453,17 +452,6 @@ home-page {
                     top: 12px;
                     left: 1rem;
 
-                    &:hover
-                    .wu-priority-navigation__list__overflow-indicator__title
-                    .wu-priority-navigation__list__overflow-indicator__title__icon {
-                        background-color: var(--menu-font-hover-color);
-
-                        &::before,
-                        &::after {
-                            background-color: var(--menu-font-hover-color);
-                        }
-                    }
-
                     .wu-priority-navigation__list__overflow-indicator__title {
                         color: var(--menu-font-color);
 
@@ -474,6 +462,17 @@ home-page {
                             &::after {
                                 background-color: var(--menu-font-color);
                             }
+                        }
+                    }
+
+                    &:hover
+                    .wu-priority-navigation__list__overflow-indicator__title
+                    .wu-priority-navigation__list__overflow-indicator__title__icon {
+                        background-color: var(--menu-font-hover-color);
+
+                        &::before,
+                        &::after {
+                            background-color: var(--menu-font-hover-color);
                         }
                     }
                 }
