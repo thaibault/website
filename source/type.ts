@@ -40,6 +40,8 @@ export interface DefaultOptions {
         mainSwiper: string
         sectionSwiperWrapper: string
 
+        greetingHeadlines: string
+
         projectCards: string
         projectCardOpenClassName: string
         projectSwiper: string

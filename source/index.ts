@@ -26,8 +26,7 @@ import {
     Logger,
     Mapping,
     NOOP,
-    trailingThrottle,
-    timeout
+    trailingThrottle
 } from 'clientnode'
 import {object} from 'clientnode/property-types'
 import Headroom from 'headroom.js'
@@ -169,6 +168,9 @@ export class HomePage<
             mainSwiper: 'section.swiper',
             sectionSwiperWrapper: '.hp-section__swiper-wrapper',
 
+            greetingHeadlines:
+                '.hp-section__swiper-wrapper__slide--about-me h1',
+
             projectCards: '.hp-card',
             projectCardOpenClassName: 'hp-card--open',
             projectSwiper: '.hp-card .swiper',
@@ -243,6 +245,8 @@ export class HomePage<
     mainSwiperDomNode: HTMLElement | null = null
     sectionSwiperWrapperDomNodes: NodeListOf<HTMLElement> | null = null
 
+    greetingHeadlineDomNodes: NodeListOf<HTMLElement> | null = null
+
     projectCardDomNodes: NodeListOf<HTMLElement> | null = null
     projectSwiperDomNodes: NodeListOf<HTMLElement> | null = null
 
@@ -294,17 +298,17 @@ export class HomePage<
 
         await super.render(reason, false)
 
-        this.applyGreeting()
-
         await this.waitForNestedComponentRendering()
 
         this.grabDomNodes()
+
+        this.applyGreeting()
 
         if (this.headerDomNode) {
             const headroom =
                 new Headroom(this.headerDomNode, this.options.headroom)
             headroom.init()
-            // headroom.destroy()
+            // TODO headroom.destroy()
         }
 
         if (this.mainSwiperDomNode)
@@ -326,65 +330,7 @@ export class HomePage<
                 }
             )
 
-        if (this.projectSwiperDomNodes)
-            for (const domNode of this.projectSwiperDomNodes)
-                new Swiper(domNode, copy(this.options.projectSwiper))
-        let openProjectDomNode: HTMLElement | null = null
-        let openProjectPresenterDomNode: HTMLElement | null = null
-        let closeOpenPresenterDomNode: () => void = NOOP
-        for (const domNode of this.projectCardDomNodes) {
-            this.addSecureEventListener(
-                domNode,
-                'click',
-                () => {
-                    if (openProjectDomNode === domNode)
-                        return
-
-                    closeOpenPresenterDomNode()
-
-                    openProjectDomNode = domNode
-                    openProjectPresenterDomNode = domNode.cloneNode(true)
-                    domNode.after(openProjectPresenterDomNode)
-                    openProjectPresenterDomNode.classList.add(
-                        this.options.selectors.projectCardOpenClassName
-                    )
-
-                    // Listen for clicks anywhere on the webpage to close opened project.
-                    const deregister = this.addSecureEventListener(
-                        globalContext.document,
-                        'click',
-                        (event) => {
-                            const clickWasInOpenProjectCard = Boolean(
-                                event.target &&
-                                getParents(event.target)
-                                    .some((parentDomNode) =>
-                                        openProjectPresenterDomNode === parentDomNode ||
-                                        openProjectDomNode === parentDomNode
-                                    )
-                            )
-                            if (!clickWasInOpenProjectCard)
-                                closeOpenPresenterDomNode()
-                        }
-                    )
-                    closeOpenPresenterDomNode = () => {
-                        /*
-                        openProjectDomNode.addEventListener(
-                            'transitionend',
-                            () => {*/
-                        deregister()
-                        openProjectPresenterDomNode.remove()
-                        openProjectDomNode = null
-                        openProjectPresenterDomNode = null
-                        closeOpenPresenterDomNode = NOOP/*
-                            }
-                        )
-                        openProjectDomNode.classList.remove(
-                            this.options.selectors.projectCardOpenClassName
-                        )*/
-                    }
-                }
-            )
-        }
+        this.applyProjectCardInteractions()
 
         if (globalContext.window)
             this.addSecureEventListener(
@@ -494,6 +440,10 @@ export class HomePage<
             this.options.selectors.sectionSwiperWrapper
         )
 
+        this.greetingHeadlineDomNodes = this.hostDomNode.querySelectorAll(
+            this.options.selectors.greetingHeadlines
+        )
+
         this.projectCardDomNodes = this.hostDomNode.querySelectorAll(
             this.options.selectors.projectCards
         )
@@ -505,7 +455,84 @@ export class HomePage<
             this.options.selectors.waveSurfer
         )
     }
+    applyProjectCardInteractions() {
+        if (!(
+            this.projectCardDomNodes &&
+            this.projectSwiperDomNodes &&
+            globalContext.document
+        ))
+            return
+
+        for (const domNode of this.projectSwiperDomNodes)
+            new Swiper(domNode, copy(this.options.projectSwiper))
+
+        let openProjectDomNode: HTMLElement | null = null
+        let openProjectPresenterDomNode: HTMLElement | null = null
+        let closeOpenPresenterDomNode: () => void = NOOP
+        for (const domNode of this.projectCardDomNodes)
+            this.addSecureEventListener(
+                domNode,
+                'click',
+                () => {
+                    if (openProjectDomNode === domNode)
+                        return
+
+                    closeOpenPresenterDomNode()
+
+                    openProjectDomNode = domNode
+                    openProjectPresenterDomNode =
+                        domNode.cloneNode(true) as HTMLElement
+                    domNode.after(openProjectPresenterDomNode)
+                    openProjectPresenterDomNode.classList.add(
+                        this.options.selectors.projectCardOpenClassName
+                    )
+
+                    /*
+                        Listen for clicks anywhere on the webpage to close
+                        opened project.
+                    */
+                    const deregister = this.addSecureEventListener(
+                        globalContext.document as Node,
+                        'click',
+                        (event) => {
+                            const clickWasInOpenProjectCard = Boolean(
+                                event.target &&
+                                getParents(event.target as Node)
+                                    .some((parentDomNode) =>
+                                        openProjectPresenterDomNode ===
+                                            parentDomNode ||
+                                        openProjectDomNode === parentDomNode
+                                    )
+                            )
+                            if (!clickWasInOpenProjectCard)
+                                closeOpenPresenterDomNode()
+                        }
+                    )
+                    closeOpenPresenterDomNode = () => {
+                        /*
+                        TODO
+
+                        openProjectDomNode.addEventListener(
+                            'transitionend',
+                            () => {*/
+                        deregister()
+                        openProjectPresenterDomNode?.remove()
+                        openProjectDomNode = null
+                        openProjectPresenterDomNode = null
+                        closeOpenPresenterDomNode = NOOP/*
+                            }
+                        )
+                        openProjectDomNode.classList.remove(
+                            this.options.selectors.projectCardOpenClassName
+                        )*/
+                    }
+                }
+            )
+    }
     applyGreeting() {
+        if (!this.greetingHeadlineDomNodes?.length)
+            return
+
         const greets = [
             {
                 enUS: 'What are you doing that early?',
@@ -526,11 +553,8 @@ export class HomePage<
         ]
         const currentHours = new Date().getHours()
         const index = Math.floor(currentHours / 24 * greets.length)
-        const greetingDomNode = this.hostDomNode.querySelector(
-            '.hp-section__swiper-wrapper__slide--about-me h1'
-        )
-        if (greetingDomNode)
-            greetingDomNode.innerHTML =
+        for (const domNode of this.greetingHeadlineDomNodes)
+            domNode.innerHTML =
                 `${greets[index].enUS}<!--deDE:${greets[index].deDE}-->`
     }
     switchLanguageButton(
