@@ -21,10 +21,13 @@ import {
     camelCaseToDelimited,
     copy,
     extend,
+    getParents,
     globalContext,
     Logger,
     Mapping,
-    trailingThrottle
+    NOOP,
+    trailingThrottle,
+    timeout
 } from 'clientnode'
 import {object} from 'clientnode/property-types'
 import Headroom from 'headroom.js'
@@ -166,6 +169,8 @@ export class HomePage<
             mainSwiper: 'section.swiper',
             sectionSwiperWrapper: '.hp-section__swiper-wrapper',
 
+            projectCards: '.hp-card',
+            projectCardOpenClassName: 'hp-card--open',
             projectSwiper: '.hp-card .swiper',
 
             waveSurfer: '.hp-audio-player'
@@ -238,6 +243,7 @@ export class HomePage<
     mainSwiperDomNode: HTMLElement | null = null
     sectionSwiperWrapperDomNodes: NodeListOf<HTMLElement> | null = null
 
+    projectCardDomNodes: NodeListOf<HTMLElement> | null = null
     projectSwiperDomNodes: NodeListOf<HTMLElement> | null = null
 
     waveSurferDomNodes: NodeListOf<HTMLElement> | null = null
@@ -323,6 +329,62 @@ export class HomePage<
         if (this.projectSwiperDomNodes)
             for (const domNode of this.projectSwiperDomNodes)
                 new Swiper(domNode, copy(this.options.projectSwiper))
+        let openProjectDomNode: HTMLElement | null = null
+        let openProjectPresenterDomNode: HTMLElement | null = null
+        let closeOpenPresenterDomNode: () => void = NOOP
+        for (const domNode of this.projectCardDomNodes) {
+            this.addSecureEventListener(
+                domNode,
+                'click',
+                () => {
+                    if (openProjectDomNode === domNode)
+                        return
+
+                    closeOpenPresenterDomNode()
+
+                    openProjectDomNode = domNode
+                    openProjectPresenterDomNode = domNode.cloneNode(true)
+                    domNode.after(openProjectPresenterDomNode)
+                    openProjectPresenterDomNode.classList.add(
+                        this.options.selectors.projectCardOpenClassName
+                    )
+
+                    // Listen for clicks anywhere on the webpage to close opened project.
+                    const deregister = this.addSecureEventListener(
+                        globalContext.document,
+                        'click',
+                        (event) => {
+                            const clickWasInOpenProjectCard = Boolean(
+                                event.target &&
+                                getParents(event.target)
+                                    .some((parentDomNode) =>
+                                        openProjectPresenterDomNode === parentDomNode ||
+                                        openProjectDomNode === parentDomNode
+                                    )
+                            )
+                            if (!clickWasInOpenProjectCard)
+                                closeOpenPresenterDomNode()
+                        }
+                    )
+                    closeOpenPresenterDomNode = () => {
+                        /*
+                        openProjectDomNode.addEventListener(
+                            'transitionend',
+                            () => {*/
+                        deregister()
+                        openProjectPresenterDomNode.remove()
+                        openProjectDomNode = null
+                        openProjectPresenterDomNode = null
+                        closeOpenPresenterDomNode = NOOP/*
+                            }
+                        )
+                        openProjectDomNode.classList.remove(
+                            this.options.selectors.projectCardOpenClassName
+                        )*/
+                    }
+                }
+            )
+        }
 
         if (globalContext.window)
             this.addSecureEventListener(
@@ -432,6 +494,9 @@ export class HomePage<
             this.options.selectors.sectionSwiperWrapper
         )
 
+        this.projectCardDomNodes = this.hostDomNode.querySelectorAll(
+            this.options.selectors.projectCards
+        )
         this.projectSwiperDomNodes = this.hostDomNode.querySelectorAll(
             this.options.selectors.projectSwiper
         )

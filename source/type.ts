@@ -40,6 +40,8 @@ export interface DefaultOptions {
         mainSwiper: string
         sectionSwiperWrapper: string
 
+        projectCards: string
+        projectCardOpenClassName: string
         projectSwiper: string
 
         waveSurfer: string
