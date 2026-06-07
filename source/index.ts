@@ -466,6 +466,7 @@ export class HomePage<
         for (const domNode of this.projectSwiperDomNodes)
             new Swiper(domNode, copy(this.options.projectSwiper))
 
+        /*
         let openProjectDomNode: HTMLElement | null = null
         let openProjectPresenterDomNode: HTMLElement | null = null
         let closeOpenPresenterDomNode: () => void = NOOP
@@ -487,10 +488,6 @@ export class HomePage<
                         this.options.selectors.projectCardOpenClassName
                     )
 
-                    /*
-                        Listen for clicks anywhere on the webpage to close
-                        opened project.
-                    */
                     const deregister = this.addSecureEventListener(
                         globalContext.document as Node,
                         'click',
@@ -509,25 +506,23 @@ export class HomePage<
                         }
                     )
                     closeOpenPresenterDomNode = () => {
-                        /*
-                        TODO
-
                         openProjectDomNode.addEventListener(
                             'transitionend',
-                            () => {*/
-                        deregister()
-                        openProjectPresenterDomNode?.remove()
-                        openProjectDomNode = null
-                        openProjectPresenterDomNode = null
-                        closeOpenPresenterDomNode = NOOP/*
+                            () => {
+                                deregister()
+                                openProjectPresenterDomNode?.remove()
+                                openProjectDomNode = null
+                                openProjectPresenterDomNode = null
+                                closeOpenPresenterDomNode = NOOP
                             }
                         )
                         openProjectDomNode.classList.remove(
                             this.options.selectors.projectCardOpenClassName
-                        )*/
+                        )
                     }
                 }
             )
+        */
     }
     applyGreeting() {
         if (!this.greetingHeadlineDomNodes?.length)
