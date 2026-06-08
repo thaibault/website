@@ -53,14 +53,14 @@
     "@types/jsdom": "^28.0.3",
     "@types/node": "^25.9.2",
     "@types/webpack-env": "^1.18.8",
-    "@typescript-eslint/eslint-plugin": "^8.60.1",
-    "@typescript-eslint/parser": "^8.60.1",
+    "@typescript-eslint/eslint-plugin": "^8.61.0",
+    "@typescript-eslint/parser": "^8.61.0",
     "@webcomponents/webcomponentsjs": "^2.8.0",
     "bootstrap-icons": "^1.13.1",
-    "clientnode": "^4.0.1411",
+    "clientnode": "^4.0.1421",
     "css-loader": "^7.1.4",
     "cssnano": "^8.0.1",
-    "errorreporter": "^1.0.340",
+    "errorreporter": "^1.0.347",
     "eslint": "^10.4.1",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-jsdoc": "^63.0.2",
@@ -86,14 +86,14 @@
     "stylelint": "^17.13.0",
     "stylelint-config-standard": "^40.0.0",
     "swiper": "^12.2.0",
-    "typescript-eslint": "^8.60.1",
+    "typescript-eslint": "^8.61.0",
     "ua-parser-js": "^2.0.10",
     "wavesurfer.js": "^7.12.7",
     "web-component-wrapper": "^0.0.593",
     "web-internationalization": "^2.0.36",
     "weboptimizer": "^3.0.24",
     "webpack-dev-server": "^5.2.4",
-    "website-utilities": "^1.0.439"
+    "website-utilities": "^1.0.440"
   },
   "engines": {
     "node": ">=24",
@@ -185,6 +185,7 @@
         }
       }
     },
+    "offline": false,
     "path": {
       "source": {
         "asset": {

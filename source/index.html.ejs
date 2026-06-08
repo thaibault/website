@@ -819,7 +819,7 @@ const PROJECTS = [
 ]
 // endregion
 _%>
-<html class="wu-no-javascript" lang="en">
+<html class="hp-no-javascript" lang="en">
     <!--region head-->
     <head>
         <meta charset="utf-8">
@@ -841,16 +841,16 @@ _%>
         <script>
             AUTO_DEFINE_HOME_PAGE = true
 
-            window.document.documentElement.classList.remove('wu-no-javascript')
-            window.document.documentElement.classList.add('wu-javascript')
+            window.document.documentElement.classList.remove('hp-no-javascript')
+            window.document.documentElement.classList.add('hp-javascript')
         </script>
     </head>
     <!--endregion-->
     <!--region body-->
-    <body class="wu-no-javascript">
+    <body class="hp-no-javascript">
         <script>
-            window.document.body.classList.remove('wu-no-javascript')
-            window.document.body.classList.add('wu-javascript')
+            window.document.body.classList.remove('hp-no-javascript')
+            window.document.body.classList.add('hp-javascript')
         </script>
 
         <div class="wu-window-loading-cover">
@@ -873,7 +873,7 @@ _%>
             </div>
         </div>
 
-        <home-page>
+        <home-page class="hp wu">
             <!--region header-->
             <header
                 class="hp-header headroom wu-start-up-animation-number-<%- getStartUpAnimationNumber() %>"
