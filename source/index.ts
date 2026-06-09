@@ -21,11 +21,9 @@ import {
     camelCaseToDelimited,
     copy,
     extend,
-    getParents,
     globalContext,
     Logger,
     Mapping,
-    NOOP,
     trailingThrottle
 } from 'clientnode'
 import {object} from 'clientnode/property-types'
@@ -430,11 +428,15 @@ export class HomePage<
     }
     /**
      * Should free up memory listeners related to deprecated HTML.
+     * @param reason - Description why rendering is necessary.
+     * @param reRenderReason - Description why a re-rendering is necessary.
      */
-    unRender() {
-        this.headroomInstance.destroy()
+    unRender(reason = 'unknown', reRenderReason?: string) {
+        super.unRender(reason, reRenderReason)
 
-        this.mainSwiperInstance.destroy()
+        this.headroomInstance?.destroy()
+
+        this.mainSwiperInstance?.destroy()
 
         for (const instance of this.projectSwiperInstances)
             instance.destroy()

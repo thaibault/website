@@ -767,8 +767,7 @@ html, body {
                 .hp-section__swiper-wrapper__slide__center {
                     .hp-section__swiper-wrapper__slide__center__social-links {
                         display: flex;
-                        flex-direction: row;
-                        flex-wrap: wrap;
+                        flex-flow: row wrap;
                         justify-content: center;
 
                         a {
