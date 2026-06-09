@@ -112,8 +112,12 @@ export class HomePage<
                     this.rootInstance.switchLanguageButton(parameters[1], this)
                 "
                 on-ensure="this.rootInstance.switchLanguageButton(data, this)"
-                on-ensured="this.rootInstance.mainSwiper?.updateAutoHeight()"
-                on-switched="this.rootInstance.mainSwiper?.updateAutoHeight()"
+                on-ensured="
+                    this.rootInstance.mainSwiperInstance?.updateAutoHeight()
+                "
+                on-switched="
+                    this.rootInstance.mainSwiperInstance?.updateAutoHeight()
+                "
             >
                 <slot>Please provide a template to transclude.</slot>
             </web-internationalization>
@@ -234,7 +238,10 @@ export class HomePage<
     @property({type: object})
         options = {} as Options
     // endregion
-    mainSwiper: Swiper | null = null
+    headroomInstance: Headroom | null = null
+    mainSwiperInstance: Swiper | null = null
+    projectSwiperInstances: Array<Swiper> = []
+    waveSurferInstances: Array<WaveSurfer> = []
     // region domNodes
     headerDomNode: HTMLElement | null = null
     navigationDomNodes: NodeListOf<HTMLElement> | null = null
@@ -305,14 +312,13 @@ export class HomePage<
         this.applyGreeting()
 
         if (this.headerDomNode) {
-            const headroom =
+            this.headroomInstance =
                 new Headroom(this.headerDomNode, this.options.headroom)
-            headroom.init()
-            // TODO headroom.destroy()
+            this.headroomInstance.init()
         }
 
         if (this.mainSwiperDomNode)
-            this.mainSwiper = new Swiper(
+            this.mainSwiperInstance = new Swiper(
                 this.mainSwiperDomNode,
                 {
                     ...this.options.mainSwiper,
@@ -339,8 +345,8 @@ export class HomePage<
                 () => {
                     trailingThrottle(
                         () => {
-                            this.mainSwiper?.updateSize()
-                            this.mainSwiper?.updateAutoHeight()
+                            this.mainSwiperInstance?.updateSize()
+                            this.mainSwiperInstance?.updateAutoHeight()
                         },
                         20
                     )()
@@ -410,6 +416,7 @@ export class HomePage<
 
                 url
             })
+            this.waveSurferInstances.push(waveSurfer)
             this.addSecureEventListener(
                 domNode,
                 'click',
@@ -420,6 +427,22 @@ export class HomePage<
         }
 
         await this.resolveRenderingPromiseIfSet(reason, resolveRendering)
+    }
+    /**
+     * Should free up memory listeners related to deprecated HTML.
+     */
+    unRender() {
+        this.headroomInstance.destroy()
+
+        this.mainSwiperInstance.destroy()
+
+        for (const instance of this.projectSwiperInstances)
+            instance.destroy()
+        this.projectSwiperInstances = []
+
+        for (const instance of this.waveSurferInstances)
+            instance.destroy()
+        this.waveSurferInstances = []
     }
     /// endregion
     grabDomNodes() {
@@ -464,7 +487,9 @@ export class HomePage<
             return
 
         for (const domNode of this.projectSwiperDomNodes)
-            new Swiper(domNode, copy(this.options.projectSwiper))
+            this.projectSwiperInstances.push(
+                new Swiper(domNode, copy(this.options.projectSwiper))
+            )
 
         /*
         let openProjectDomNode: HTMLElement | null = null
