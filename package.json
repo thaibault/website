@@ -185,7 +185,7 @@
         }
       }
     },
-    "offline": false,
+    "offline": null,
     "path": {
       "source": {
         "asset": {
