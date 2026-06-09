@@ -120,6 +120,10 @@ html, body {
     /* region global */
     overflow-y: scroll;
     /** region headline */
+    h1 {
+        scroll-margin-top: calc(var(--header-height) * 2);
+    }
+
     h1, h2, h3, h4, h5, h6 {
         font-family: var(--wu-typography-font-family-headline);
     }
