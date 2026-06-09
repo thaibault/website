@@ -104,15 +104,15 @@ html, body {
 
     font-family: var(--wu-typography-font-family);
     font-size: 16px;
+}
 
-    .hp-no-javascript {
-        .wu-window-loading-cover, .hp-switch-language {
-            display: none;
-        }
+.hp-no-javascript {
+    .wu-window-loading-cover, .hp-switch-language {
+        display: none;
+    }
 
-        .swiper-wrapper {
-            display: block;
-        }
+    .swiper-wrapper {
+        display: block;
     }
 }
 
