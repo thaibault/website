@@ -55,37 +55,37 @@ const getStartUpAnimationNumber = () => {
 const SOCIAL_MEDIA = [
     {
         'icon': 'envelope-at-fill',
-        'title': 'e-mail',
+        'title': 'E-Mail',
         'url': 'info@torben.website'
     },
     {
         'icon': 'github',
-        'title': 'github',
+        'title': 'GitHub',
         'url': 'https://github.com/thaibault'
     },
     {
         'icon': 'x-lg',
-        'title': 'xing',
+        'title': 'XING',
         'url': 'https://www.xing.com/profile/Torben_Sickert'
     },
     {
         'icon': 'linkedin',
-        'title': 'linked_in',
+        'title': 'LinkedIn',
         'url': 'https://de.linkedin.com/pub/torben-sickert/28/aa9/919'
     },
     {
         'icon': 'twitter-x',
-        'title': 'twitter',
+        'title': 'X',
         'url': 'https://twitter.com/tsickert'
     },
     {
         'icon': 'facebook',
-        'title': 'facebook',
+        'title': 'Facebook',
         'url': 'https://de-de.facebook.com/tsickert'
     },
     {
         'icon': 'globe',
-        'title': 'website',
+        'title': 'Website',
         'url': 'https://torben.website'
     }
 ]
@@ -401,7 +401,8 @@ const PROJECTS = [
                 content: {
                     enUS: ['Reusable web documentation page generator.'],
                     deDE: [
-                        'Generator für wiederverwendbare Web-Dokumentationsseiten.'
+                        'Generator für wiederverwendbare ' +
+                        'Web-Dokumentationsseiten.'
                     ]
                 }
             },
@@ -438,7 +439,8 @@ const PROJECTS = [
                         'Provides universal backend and frontend utilities.'
                     ],
                     deDE: [
-                        'Bietet universelle Backend- und Frontend-Hilfsfunktionen.'
+                        'Bietet universelle Backend- und ' +
+                        'Frontend-Hilfsfunktionen.'
                     ]
                 }
             }
@@ -472,14 +474,33 @@ const PROJECTS = [
         },
         content: [
             {
+                title: 'react-input-material',
+                url: 'https://torben.website/react-input-material',
+                content: {
+                    enUS: [
+                        'Reusable material design based input fields as ' +
+                        'react components with support for (richt-)text, ' +
+                        'code, selections, numbers, dates and files.'
+                    ],
+                    deDE: [
+                        'Auf Material Design basierende, wiederverwendbare ' +
+                        'Eingabefelder als React-Komponenten mit ' +
+                        'Unterstützung für (Recht-)Text, Code, Auswahlen, ' +
+                        'Zahlen, Datumsangaben und Dateien.'
+                    ]
+                }
+            },
+            {
                 title: 'react-generic-tools',
                 url: 'https://torben.website/react-generic-tools',
                 content: {
                     enUS: [
-                        'Generic utility types, methods, components and test helper for react.'
+                        'Generic utility types, methods, components and ' +
+                        'test helper for react.'
                     ],
                     deDE: [
-                        'Allgemeine Hilfstypen, Methoden, Komponenten und Test-Hilfsfunktionen für React.'
+                        'Allgemeine Hilfstypen, Methoden, Komponenten und ' +
+                        'Test-Hilfsfunktionen für React.'
                     ]
                 }
             },
@@ -491,19 +512,8 @@ const PROJECTS = [
                         'Animates markup within the react component context.'
                     ],
                     deDE: [
-                        'Animiert Markup innerhalb des React-Komponentenkontexts.'
-                    ]
-                }
-            },
-            {
-                title: 'react-input-material',
-                url: 'https://torben.website/react-input-material',
-                content: {
-                    enUS: [
-                        'Reusable material design based input fields as react components with support for (richt-)text, code, selections, numbers, dates and files.'
-                    ],
-                    deDE: [
-                        'Auf Material Design basierende, wiederverwendbare Eingabefelder als React-Komponenten mit Unterstützung für (Recht-)Text, Code, Auswahlen, Zahlen, Datumsangaben und Dateien.'
+                        'Animiert Markup innerhalb des ' +
+                        'React-Komponentenkontexts.'
                     ]
                 }
             }
@@ -520,10 +530,13 @@ const PROJECTS = [
                 url: 'https://torben.website/web-component-wrapper',
                 content: {
                     enUS: [
-                        'Generic web-component base class and wrapper to provide react components as web components.'
+                        'Generic web-component base class and wrapper to ' +
+                        'provide react components as web components.'
                     ],
                     deDE: [
-                        'Generische Basisklasse und Wrapper für Webkomponenten, um React-Komponenten als Webkomponenten bereitzustellen.'
+                        'Generische Basisklasse und Wrapper für ' +
+                        'Webkomponenten, um React-Komponenten als ' +
+                        'Webkomponenten bereitzustellen.'
                     ]
                 }
             },
@@ -532,10 +545,13 @@ const PROJECTS = [
                 url: 'https://torben.website/web-internationalization',
                 content: {
                     enUS: [
-                        'A web component to replace alternate version of text for client side internationalization.'
+                        'A web component to replace alternate version of ' +
+                        'text for client side internationalization.'
                     ],
                     deDE: [
-                        'Eine Webkomponente zum Ersetzen alternativer Textversionen für die clientseitige Internationalisierung.'
+                        'Eine Webkomponente zum Ersetzen alternativer ' +
+                        'Textversionen für die clientseitige ' +
+                        'Internationalisierung.'
                     ]
                 }
             },
@@ -544,10 +560,15 @@ const PROJECTS = [
                 url: 'https://torben.website/website-utilities',
                 content: {
                     enUS: [
-                        'A web component to provide reusable website features, like simple client side routing, position detection and navigation.'
+                        'A web component to provide reusable website ' +
+                        'features, like simple client side routing, ' +
+                        'position detection and navigation.'
                     ],
                     deDE: [
-                        'Eine Webkomponente zur Bereitstellung wiederverwendbarer Website-Funktionen wie einfache clientseitige Weiterleitung, Positionserkennung und Navigation.'
+                        'Eine Webkomponente zur Bereitstellung ' +
+                        'wiederverwendbarer Website-Funktionen wie einfache ' +
+                        'clientseitige Weiterleitung, Positionserkennung ' +
+                        'und Navigation.'
                     ]
                 }
             },
@@ -556,10 +577,15 @@ const PROJECTS = [
                 url: 'https://torben.website/web-input-material',
                 content: {
                     enUS: [
-                        'Reusable material design based input fields as web components with support for (richt-)text, code, selections, numbers, dates and files.'
+                        'Reusable material design based input fields as web ' +
+                        'components with support for (richt-)text, code, ' +
+                        'selections, numbers, dates and files.'
                     ],
                     deDE: [
-                        'Wiederverwendbare, auf Material Design basierende Eingabefelder als Webkomponenten mit Unterstützung für (Recht-)Text, Code, Auswahlen, Zahlen, Datumsangaben und Dateien.'
+                        'Wiederverwendbare, auf Material Design basierende ' +
+                        'Eingabefelder als Webkomponenten mit Unterstützung ' +
+                        'für (Recht-)Text, Code, Auswahlen, Zahlen, ' +
+                        'Datumsangaben und Dateien.'
                     ]
                 }
             },
@@ -568,10 +594,13 @@ const PROJECTS = [
                 url: 'https://torben.website/agile-form',
                 content: {
                     enUS: [
-                        'Reusable highly configurable web component based form (useful for website/form builders).'
+                        'Reusable highly configurable web component based ' +
+                        'form (useful for website/form builders).'
                     ],
                     deDE: [
-                        'Wiederverwendbares, hochgradig anpassbares Formular auf Basis von Webkomponenten (nützlich für Website- und Formular-Generatoren).'
+                        'Wiederverwendbares, hochgradig anpassbares ' +
+                        'Formular auf Basis von Webkomponenten (nützlich ' +
+                        'für Website- und Formular-Generatoren).'
                     ]
                 }
             }
@@ -591,7 +620,8 @@ const PROJECTS = [
                         'Plugin and configuration management library.'
                     ],
                     deDE: [
-                        'Bibliothek für die Verwaltung von Plugins und Konfigurationen.'
+                        'Bibliothek für die Verwaltung von Plugins und ' +
+                        'Konfigurationen.'
                     ]
                 }
             },
@@ -600,10 +630,17 @@ const PROJECTS = [
                 url: 'https://torben.website/couchdb-web-node-plugin',
                 content: {
                     enUS: [
-                        'Extension for couchdb based database server supporting schema based validation, right and role based authorization and document relations management provided as WebNode plugin.'
+                        'Extension for couchdb based database server ' +
+                        'supporting schema based validation, right and role ' +
+                        'based authorization and document relations ' +
+                        'management provided as WebNode plugin.'
                     ],
                     deDE: [
-                        'Erweiterung für einen auf CouchDB basierenden Datenbankserver, die schemabasierte Validierung, berechtigungs- und rollenbasierte Autorisierung sowie die Verwaltung von Dokumentbeziehungen unterstützt. Als WebNode-Plugin bereitgestellt.'
+                        'Erweiterung für einen auf CouchDB basierenden ' +
+                        'Datenbankserver, die schemabasierte Validierung, ' +
+                        'berechtigungs- und rollenbasierte Autorisierung ' +
+                        'sowie die Verwaltung von Dokumentbeziehungen ' +
+                        'unterstützt. Als WebNode-Plugin bereitgestellt.'
                     ]
                 }
             },
@@ -639,7 +676,8 @@ const PROJECTS = [
                         'Pre-rendering hook for WebNode based solutions.'
                     ],
                     deDE: [
-                        'Hook für das Vorab-Rendering bei WebNode-basierten Lösungen.'
+                        'Hook für das Vorab-Rendering bei WebNode-basierten ' +
+                        'Lösungen.'
                     ]
                 }
             },
@@ -648,10 +686,13 @@ const PROJECTS = [
                 url: 'https://torben.website/nginx-web-node-plugin',
                 content: {
                     enUS: [
-                        'A nginx proxy server configuration template for WebNode based solutions.'
+                        'A nginx proxy server configuration template for ' +
+                        'WebNode based solutions.'
                     ],
                     deDE: [
-                        'Eine Konfigurationsvorlage für einen Nginx-Proxy-Server für auf WebNode basierende Lösungen.'
+                        'Eine Konfigurationsvorlage für einen ' +
+                        'Nginx-Proxy-Server für auf WebNode basierende ' +
+                        'Lösungen.'
                     ]
                 }
             }
@@ -668,10 +709,12 @@ const PROJECTS = [
                 url: 'https://torben.website/weboptimizer',
                 content: {
                     enUS: [
-                        'A generic web optimizer, (module) bundler and development environment based on webpack.'
+                        'A generic web optimizer, (module) bundler and ' +
+                        'development environment based on webpack.'
                     ],
                     deDE: [
-                        'Ein universeller Web-Optimierer, (Modul-)Bündler und Entwicklungsumgebung auf Basis von Webpack.'
+                        'Ein universeller Web-Optimierer, (Modul-)Bündler ' +
+                        'und Entwicklungsumgebung auf Basis von Webpack.'
                     ]
                 }
             }
@@ -691,7 +734,8 @@ const PROJECTS = [
                         'A generic configureable standalone middleware.'
                     ],
                     deDE: [
-                        'Eine generische, konfigurierbare, eigenständige Middleware.'
+                        'Eine generische, konfigurierbare, eigenständige ' +
+                        'Middleware.'
                     ]
                 }
             },
@@ -700,10 +744,13 @@ const PROJECTS = [
                 url: 'https://torben.website/proxy',
                 content: {
                     enUS: [
-                        'A generic dockerized proxy to host multiple docker based applications under configurable (sub-) domains.'
+                        'A generic dockerized proxy to host multiple docker ' +
+                        'based applications under configurable (sub-) domains.'
                     ],
                     deDE: [
-                        'Ein generischer Docker-basierter Proxy zum Hosten mehrerer Docker-basierter Anwendungen unter konfigurierbaren (Sub-)Domains.'
+                        'Ein generischer Docker-basierter Proxy zum Hosten ' +
+                        'mehrerer Docker-basierter Anwendungen unter ' +
+                        'konfigurierbaren (Sub-)Domains.'
                     ]
                 }
             },
@@ -712,10 +759,12 @@ const PROJECTS = [
                 url: 'https://torben.website/polyfill-bundler',
                 content: {
                     enUS: [
-                        'Provides minimal node application to serve an on-premise polyfill.io service.'
+                        'Provides minimal node application to serve an ' +
+                        'on-premise polyfill.io service.'
                     ],
                     deDE: [
-                        'Stellt eine minimalistische Node-Anwendung bereit, um einen lokalen polyfill.io-Dienst bereitzustellen.'
+                        'Stellt eine minimalistische Node-Anwendung bereit, ' +
+                        'um einen lokalen polyfill.io-Dienst bereitzustellen.'
                     ]
                 }
             }
@@ -732,10 +781,14 @@ const PROJECTS = [
                 url: 'https://torben.website/containerbase',
                 content: {
                     enUS: [
-                        'An ArchLinux based docker environment with encrypted user right mapping aura based package management..'
+                        'An ArchLinux based docker environment with ' +
+                        'encrypted user right mapping aura based package ' +
+                        'management.'
                     ],
                     deDE: [
-                        'Eine auf ArchLinux basierende Docker-Umgebung mit verschlüsselter Zuordnung von Benutzerrechten und einem auf Aura basierenden Paketverwaltungssystem.'
+                        'Eine auf ArchLinux basierende Docker-Umgebung mit ' +
+                        'verschlüsselter Zuordnung von Benutzerrechten und ' +
+                        'einem auf Aura basierenden Paketverwaltungssystem.'
                     ]
                 }
             }
@@ -752,10 +805,15 @@ const PROJECTS = [
                 url: 'https://torben.website/bashlink',
                 content: {
                     enUS: [
-                        'A generic bash library providing module system, testing helper and much utilities for bash like environments.'
+                        'A generic bash library providing module system, ' +
+                        'testing helper and much utilities for bash like ' +
+                        'environments.'
                     ],
                     deDE: [
-                        'Eine generische Bash-Bibliothek, die ein Modulsystem, Testhilfen und zahlreiche Dienstprogramme für Bash-ähnliche Umgebungen bereitstellt.'
+                        'Eine generische Bash-Bibliothek, die ein ' +
+                        'Modulsystem, Testhilfen und zahlreiche ' +
+                        'Dienstprogramme für Bash-ähnliche Umgebungen ' +
+                        'bereitstellt.'
                     ]
                 }
             },
@@ -764,27 +822,30 @@ const PROJECTS = [
                 url: 'https://torben.website/archinstall',
                 content: {
                     enUS: [
-                        'Install a configured ArchLinux with pacman as a package ' +
-                        'management in any places such as hard drives, USB ' +
-                        'flash drive, partition, or in an existing system as a ' +
-                        'sandbox environment. Automatic configuration of ' +
-                        'existing posix compliant unix-like systems. Both online' +
-                        ' and Offline installations are possible. Even without ' +
-                        'root privileges, the system is able to be installed ' +
-                        'into its own environment below the home folder. All ' +
-                        'required dependencies could be served via a typical ' +
-                        'posix environment given by Busybox or ArchLinux itself.'
+                        'Install a configured ArchLinux with pacman as a ' +
+                        'package management in any places such as hard ' +
+                        'drives, USB flash drive, partition, or in an ' +
+                        'existing system as a sandbox environment. ' +
+                        'Automatic configuration of existing posix ' +
+                        'compliant unix-like systems. Both online and ' +
+                        'Offline installations are possible. Even without ' +
+                        'root privileges, the system is able to be ' +
+                        'installed into its own environment below the home ' +
+                        'folder. All required dependencies could be served ' +
+                        'posix environment given by Busybox or ArchLinux ' +
+                        'itself.'
                     ],
                     deDE: [
-                        'Installiere ein konfiguriertes ArchLinux mit Pacman als ' +
-                        'Paketverwaltung an beliebige Orte wie Festplatten,' +
-                        ' USB-Stick, alternative Partition oder in das ' +
-                        'bestehende System als Sandboxumgebung. Automatische ' +
-                        'Konfiguration bestehender posix konformer unix-artiger ' +
-                        'Systeme. Sowohl Online- als auch Offline-Installationen' +
-                        ' sind möglich. Selbst ohne root Rechte kann das System ' +
-                        'in eine eigene Umgebung unterhalb des Home-Ordner ' +
-                        'installiert werden. Alle benötigten Abhängigkeiten zum ' +
+                        'Installiere ein konfiguriertes ArchLinux mit ' +
+                        'Pacman als Paketverwaltung an beliebige Orte wie ' +
+                        'Festplatten, USB-Stick, alternative Partition oder ' +
+                        'in das bestehende System als Sandboxumgebung. ' +
+                        'Automatische Konfiguration bestehender posix ' +
+                        'konformer unix-artiger Systeme. Sowohl Online- als ' +
+                        'auch Offline-Installationen sind möglich. Selbst ' +
+                        'ohne root Rechte kann das System in eine eigene ' +
+                        'Umgebung unterhalb des Home-Ordner installiert ' +
+                        'werden. Alle benötigten Abhängigkeiten zum ' +
                         'Aufsetzen sind durch eine einfache posix-Umgebung ' +
                         'gegeben wie Busybox oder ArchLinux selbst.'
                     ]
@@ -795,10 +856,13 @@ const PROJECTS = [
                 url: 'https://torben.website/backup-rotation',
                 content: {
                     enUS: [
-                        'This script allows you to create a local or remote backup rotation for your files.'
+                        'This script allows you to create a local or remote ' +
+                        'backup rotation for your files.'
                     ],
                     deDE: [
-                        'Mit diesem Skript können Sie eine lokale oder remote Datensicherung mit Rotationsplan für Ihre Dateien einrichten.'
+                        'Mit diesem Skript können Sie eine lokale oder ' +
+                        'remote Datensicherung mit Rotationsplan für Ihre ' +
+                        'Dateien einrichten.'
                     ]
                 }
             },
@@ -807,10 +871,17 @@ const PROJECTS = [
                 url: 'https://torben.website/reachable-watcher',
                 content: {
                     enUS: [
-                        'As simple configurable script to ensure reachability of various web servers. Status codes can be checked and emails send if something is unexpected.'
+                        'As simple configurable script to ensure ' +
+                        'reachability of various web servers. Status codes ' +
+                        'can be checked and emails send if something is ' +
+                        'unexpected.'
                     ],
                     deDE: [
-                        'Ein einfach zu konfigurierendes Skript, um die Erreichbarkeit verschiedener Webserver sicherzustellen. Es können Statuscodes überprüft und E-Mails versendet werden, falls etwas Unerwartetes auftritt.'
+                        'Ein einfach zu konfigurierendes Skript, um die ' +
+                        'Erreichbarkeit verschiedener Webserver ' +
+                        'sicherzustellen. Es können Statuscodes überprüft ' +
+                        'und E-Mails versendet werden, falls etwas ' +
+                        'Unerwartetes auftritt.'
                     ]
                 }
             }
@@ -1140,7 +1211,8 @@ _%>
                                                     href="<%- link.url %>"
                                                     target="_blank"
                                                 >
-                                                    <i class="bi bi-<%- link.icon -%>"></i>
+                                                    <i class="bi bi-<%- link.icon %>"></i>
+                                                    <span><%- link.title %></span>
                                                 </a>
                                             <%_ } _%>
                                         </p>

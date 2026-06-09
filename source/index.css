@@ -765,14 +765,28 @@ html, body {
                 }
 
                 .hp-section__swiper-wrapper__slide__center {
-                    .hp-section__swiper-wrapper__slide__center__social-links
-                    a {
-                        color: var(--font-color);
-                        margin: 0 8px;
+                    .hp-section__swiper-wrapper__slide__center__social-links {
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        justify-content: center;
 
-                        &:hover {
-                            color: var(--link-hover-color);
-                            text-decoration: none;
+                        a {
+                            display: flex;
+                            flex-direction: column;
+
+                            margin: 0 8px;
+
+                            color: var(--font-color);
+
+                            &:hover {
+                                color: var(--link-hover-color);
+                                text-decoration: none;
+                            }
+
+                            span {
+                                font-size: 0.5rem;
+                            }
                         }
                     }
                 }
