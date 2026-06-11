@@ -301,13 +301,19 @@ export class HomePage<
         if (Object.keys(this.options).length === 0)
             this._extendOptions()
 
+        /*
+            NOTE: We need to place the greeting before the nested
+            web-internationalization component registers nodes to be
+            translated.
+        */
+        this.grabDomNodes()
+        this.applyGreeting()
+
         await super.render(reason, false)
 
         await this.waitForNestedComponentRendering()
 
         this.grabDomNodes()
-
-        this.applyGreeting()
 
         if (this.headerDomNode) {
             this.headroomInstance =

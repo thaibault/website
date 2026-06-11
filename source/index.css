@@ -27,25 +27,23 @@ endregion
 :root {
     /* region custom-properties */
     /** region color */
-    --background-color: #222; /* dark grey */
+    --background-color: white; /* dark grey */
     --background-gradient: linear-gradient(
         to right,
-        #fdeff9, /* white with a bit violet */
-        var(--surface-color),
-        var(--surface-color),
-        var(--surface-color)
+        var(--background-color),
+        #fdeff9 /* white with a bit violet */
     );
-    --header-background-color: var(--background-color);
+    --header-background-color: #222; /* dark grey */
     --header-background-gradient: linear-gradient(
         45deg,
-        var(--background-color),
-        var(--background-color),
-        var(--background-color),
+        var(--header-background-color),
+        var(--header-background-color),
+        var(--header-background-color),
         #86228a, /* dark violet */
-        var(--background-color)
+        var(--header-background-color)
     );
     --font-color: #5a5a5a; /* grey */
-    --surface-color: #fdeff9; /* white with a bit violet */
+    --surface-color: var(--background-color);
     --accent-color: #b822be; /* light violet */
     --link-color: var(--accent-color);
     --link-gradient: linear-gradient(
@@ -62,9 +60,9 @@ endregion
     --headline-color: var(--accent-color);
     --headline-gradient: linear-gradient(
         to right,
-        var(--background-color),
+        var(--header-background-color),
         #86228a, /* dark violet */
-        var(--background-color)
+        var(--header-background-color)
     );
     --menu-font-color: #e8dede; /* white */
     --menu-font-hover-color: #fff; /* light white */
@@ -96,7 +94,7 @@ endregion
 }
 
 html, body {
-    /* background-color: var(--background-color); */
+    /* background-color: var(--header-background-color); */
     background: var(--background-gradient);
     color: var(--font-color);
 
