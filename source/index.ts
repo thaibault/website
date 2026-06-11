@@ -181,13 +181,13 @@ export class HomePage<
         },
 
         mainSwiper: {
-            grabCursor: false,
-            keyboard: true,
-            centeredSlidesBounds: true,
-
             modules: [HashNavigation, Navigation, Pagination],
 
+            grabCursor: false,
+            keyboard: true,
+
             autoHeight: true,
+            centeredSlidesBounds: true,
 
             a11y: true,
 
@@ -199,6 +199,7 @@ export class HomePage<
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev'
             },
+
             pagination: {
                 el: '.swiper-pagination',
                 clickable: true,
@@ -206,20 +207,20 @@ export class HomePage<
             }
         },
         projectSwiper: {
-            grabCursor: false,
-            keyboard: true,
-            centeredSlidesBounds: true,
-
             modules: [Autoplay, Pagination],
 
+            grabCursor: false,
+            keyboard: true,
             simulateTouch: false,
+
+            centeredSlidesBounds: true,
+
+            a11y: true,
 
             autoplay: {
                 delay: 3000,
                 pauseOnMouseEnter: true
             },
-
-            a11y: true,
 
             pagination: {
                 el: '.swiper-pagination',
