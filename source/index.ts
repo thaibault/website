@@ -228,6 +228,24 @@ export class HomePage<
                 clickable: true,
                 type: 'bullets'
             }
+        },
+
+        waveSurfer: {
+            dragToSeek: false,
+            interact: false,
+
+            /*
+            waveColor: 'var(--link-color)',
+            progressColor: 'var(--link-hover-color)',
+            */
+            waveColor: '#b822be',
+            progressColor: '#ec38bc',
+
+            barHeight: 6,
+            cursorWidth: 0,
+            barWidth: 3,
+            barGap: 9,
+            barRadius: 4
         }
     }
 
@@ -413,19 +431,8 @@ export class HomePage<
         for (const domNode of this.waveSurferDomNodes || []) {
             const url = domNode.firstElementChild?.textContent.trim()
             const waveSurfer = WaveSurfer.create({
+                ...this.options.waveSurfer,
                 container: domNode,
-
-                dragToSeek: false,
-                interact: false,
-
-                waveColor: '#86228a',
-                progressColor: '#eb9be7',
-
-                barHeight: 10,
-                cursorWidth: 0,
-                barWidth: 3,
-                barGap: 9,
-
                 url
             })
             this.waveSurferInstances.push(waveSurfer)
