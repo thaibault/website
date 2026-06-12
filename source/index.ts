@@ -24,7 +24,8 @@ import {
     globalContext,
     Logger,
     Mapping,
-    trailingThrottle
+    trailingThrottle,
+    timeout
 } from 'clientnode'
 import {object} from 'clientnode/property-types'
 import Headroom from 'headroom.js'
@@ -343,7 +344,7 @@ export class HomePage<
 
         this.applyProjectCardInteractions()
 
-        if (globalContext.window)
+        if (globalContext.window) {
             this.addSecureEventListener(
                 globalContext.window,
                 'resize',
@@ -357,6 +358,12 @@ export class HomePage<
                     )()
                 }
             )
+            timeout(() => {
+                this.mainSwiperInstance?.updateSize()
+                this.mainSwiperInstance?.updateAutoHeight()
+            })
+        }
+
 
         /*
             NOTE: We have to use event delegation here since navigation links

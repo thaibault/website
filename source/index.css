@@ -71,6 +71,7 @@ endregion
     --box-shadow-header: 0 10px 30px var(--shadow-color);
     --box-shadow-card: 0 4px 10px var(--shadow-color);
     --box-shadow-card-hover: var(--box-shadow-header);
+    --card-border-effect-gradient: var(--link-gradient);
     /** endregion */
     /** region space */
     --header-height: 60px;
@@ -226,7 +227,7 @@ html, body {
         border-radius: 20px;
         box-shadow: var(--box-shadow-card);
 
-        transition: all 0.2s linear;
+        transition: box-shadow 0.2s linear;
 
         &.hp-card--open {
             position: absolute;
@@ -268,7 +269,7 @@ html, body {
             height: 130%;
             width: 50px;
 
-            background-image: linear-gradient(180deg, rgb(0 183 255), rgb(255 48 255));
+            background-image: var(--card-border-effect-gradient);
             animation: rotate-background 18s linear infinite;
             transition: all 0.2s linear;
         }
