@@ -31,8 +31,8 @@ German
 Die beste Software entsteht durch kollektive Intelligenz.
 
 Schau gerne durch meine veröffentlichen Projekte.
-Die meisten verlinken auf ihre Projektseiten, auf denen
-du mehr über die Projekte erfahren kannst.
+Die meisten verlinken auf ihre Projektseiten, auf denen du mehr darüber
+erfahren kannst.
 Feedback ist immer sehr willkommen.
 
 English
@@ -41,5 +41,5 @@ English
 The best software is created through collective intelligence.
 
 Feel free to browse through my published projects.
-Most of them link to their project pages, where you can
-learn more about them. Feedback is always welcome.
+Most of them link to their project pages, where you can learn more about them.
+Feedback is always welcome.
