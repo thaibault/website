@@ -17,7 +17,7 @@
 */
 import {HeadroomOptions} from 'headroom.js'
 import {SwiperOptions} from 'swiper/types'
-import {WaveSurferOptions} from "wavesurfer.js";
+import {WaveSurferOptions} from 'wavesurfer.js'
 // region exports
 export interface DefaultOptions {
     trackingCode: string
@@ -53,7 +53,7 @@ export interface DefaultOptions {
     mainSwiper: SwiperOptions
     projectSwiper: SwiperOptions
 
-    waveSurfer: WaveSurferOptions
+    waveSurfer: Omit<WaveSurferOptions, 'container'>
 }
 export type Options = DefaultOptions
 

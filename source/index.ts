@@ -32,9 +32,9 @@ import Headroom from 'headroom.js'
 import Swiper from 'swiper'
 import {Autoplay, HashNavigation, Navigation, Pagination} from 'swiper/modules'
 import WaveSurfer from 'wavesurfer.js'
-import {property} from 'web-component-wrapper/decorator'
+import {property} from 'web-component-wrapper/compatible/decorator'
 import {WebComponentAPI} from 'web-component-wrapper/type'
-import {Web} from 'web-component-wrapper/Web'
+import {Web} from 'web-component-wrapper/compatible/Web'
 import {api as websiteUtilitiesAPI} from 'website-utilities'
 import WebInternationalization, {
     api as webInternationalizationAPI
@@ -376,7 +376,7 @@ export class HomePage<
                     )()
                 }
             )
-            timeout(() => {
+            void timeout(() => {
                 this.mainSwiperInstance?.updateSize()
                 this.mainSwiperInstance?.updateAutoHeight()
             })

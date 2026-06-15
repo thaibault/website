@@ -1,1 +1,3 @@
-Dimensions in px: 1.600 : 900
+Dimensions in px:
+    - 1.600 : 900
+    - 1.200 : 675
