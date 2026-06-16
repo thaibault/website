@@ -260,6 +260,7 @@ html, body {
 
         &:hover {
             box-shadow: var(--box-shadow-card-hover);
+            text-decoration: none !important;
         }
 
         &::before {
