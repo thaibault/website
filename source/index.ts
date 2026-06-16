@@ -440,6 +440,14 @@ export class HomePage<
                 domNode,
                 'click',
                 () => {
+                    /*
+                        We pause all other instances to avoid parallel audio
+                        playback.
+                    */
+                    for (const instance of this.waveSurferInstances)
+                        if (instance !== waveSurfer)
+                            instance.pause()
+
                     void waveSurfer.playPause()
                 }
             )
