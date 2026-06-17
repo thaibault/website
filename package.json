@@ -25,7 +25,7 @@
     "url": "git@github.io:thaibault/.git"
   },
   "scripts": {
-    "build": "weboptimizer build && cp -r ./source/data ./build/ && cp -r ./source/image/projects ./build/image",
+    "build": "weboptimizer build && cp -r ./source/data/*.m4a ./build/",
     "build:stats": "weboptimizer build --profile --json /tmp/stats.json | sed --regexp-extended 's/^Running \".+$//' | sed --regexp-extended 's/^Consolidate module request \".+$//' >/tmp/stats.json && echo 'Results successfully written to \"/tmp/stats.json\".'",
     "check": "yarn check:types; yarn lint",
     "check:types": "weboptimizer check:types",
@@ -147,9 +147,17 @@
       "html": {
         "options": {
           "sources": {
-            "urlFilter": {
-              "__evaluate__": "() => false"
-            }
+            "list": [
+              "...",
+              {
+                "tag": "a",
+                "attribute": "href",
+                "type": "src",
+                "filter": {
+                  "__evaluate__": "(tag, attribute, attributes, resourcePath) => attributes.filter(({name}) => name === attribute)[0].value.startsWith('data/')"
+                }
+              }
+            ]
           }
         }
       },
