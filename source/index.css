@@ -751,27 +751,6 @@ html, body {
                         }
                     }
                 }
-                /*
-                    TODO: We need to repeat so full selector to overwrite the
-                    image sprite generators directives.
-
-                    We should use
-
-                    https://github.com/2createStudio/postcss-sprites/blob/
-                    master/examples/filter-by.md
-
-                    instead.
-                */
-                @media (--wu-extra-extra-small) {
-                    @media (--wu-extra-small) {
-                        @media (height >= 450px) {
-                            .hp-section__swiper-wrapper__slide__image {
-                                background-position: 0 50%;
-                                background-size: auto 50%;
-                            }
-                        }
-                    }
-                }
             }
 
             &.hp-section__swiper-wrapper__slide--contact {
