@@ -37,7 +37,6 @@ const ALTERNATE_LANGUAGE = 'deDE'
 // region location
 const IMAGE_PATH = 'image/'
 const DATA_PATH = 'data/'
-const BUILD_TIMESTAMP_IN_MILLISECONDS = new Date().getTime()
 const LINK_PUBLIC_SSH_KEY_PATH = `${DATA_PATH}publicSSHKey.txt`
 const LINK_V_CARD_PATH = `${DATA_PATH}vCard.vcf`
 const LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE_PATH =
@@ -387,7 +386,7 @@ const PROJECTS = [
                     enUS: 'Pharmacy emergency service management application.',
                     deDE: 'Anwendung zur Verwaltung des Apotheken-Notdienstes.'
                 }
-            },
+            }/*,
             {
                 title: 'web-documentation',
                 images: [
@@ -833,7 +832,7 @@ const PROJECTS = [
                         'und E-Mails versendet werden, falls etwas ' +
                         'Unerwartetes auftritt.'
                 }
-            }
+            }*/
         ]
     }
 ]
@@ -974,17 +973,19 @@ _%>
                                         <lang-alternative
                                             class="hp-audio-player" active
                                         >
-                                            <pre hidden>
-                                                <%- section.content.sound[DEFAULT_LANGUAGE] %>?timestamp=<%- BUILD_TIMESTAMP_IN_MILLISECONDS %>
-                                            </pre>
+                                            <a
+                                                hidden
+                                                href="<%- section.content.sound[DEFAULT_LANGUAGE] %>"
+                                            >hidden</a>
                                         </lang-alternative>
                                         <lang-alternative
                                             lang="<%- ALTERNATE_LANGUAGE %>"
                                             class="hp-audio-player"
                                         >
-                                            <pre hidden>
-                                                <%- section.content.sound[ALTERNATE_LANGUAGE] %>?timestamp=<%- BUILD_TIMESTAMP_IN_MILLISECONDS %>
-                                            </pre>
+                                            <a
+                                                hidden
+                                                href="<%- section.content.sound[ALTERNATE_LANGUAGE] %>"
+                                            >hidden</a>
                                         </lang-alternative>
                                     <%_ } %>
 
@@ -1055,7 +1056,7 @@ _%>
                                                                             <div class="swiper-slide">
                                                                                 <img
                                                                                     class="hp-card__body__image"
-                                                                                    src="<%- url %>?timestamp=<%- BUILD_TIMESTAMP_IN_MILLISECONDS %>"
+                                                                                    src="<%- url %>"
                                                                                     alt="<%- project.title %>"
                                                                                 />
                                                                             </div>
@@ -1088,21 +1089,28 @@ _%>
                                             -->
                                             <%_ if (section.title === 'about-me') { _%>
                                                 <span>
+                                                    <!--
+                                                        NOTE: We do not use a
+                                                        comment as replacement
+                                                        to let webpack detect
+                                                        referenced resources in
+                                                        markup.
+                                                    -->
                                                     <lang-replace>
                                                         <a
-                                                            href="<%- LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE_PATH %>?timestamp=<%- BUILD_TIMESTAMP_IN_MILLISECONDS %>"
+                                                            href="<%- LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE_PATH %>"
                                                             target="_blank"
                                                         >Curriculum Vitae</a>
                                                     </lang-replace>
-                                                    <!--<%- ALTERNATE_LANGUAGE %>:
+                                                    <lang-replacement><%- ALTERNATE_LANGUAGE %>:
                                                         <a
-                                                            href="<%- LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE_PATH %>?timestamp=<%- BUILD_TIMESTAMP_IN_MILLISECONDS %>"
+                                                            href="<%- LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE_PATH %>"
                                                             target="_blank"
                                                         >Lebenslauf</a>
-                                                    -->
+                                                    </lang-replacement>
 
                                                     <a
-                                                        href="<%- LINK_V_CARD_PATH %>?timestamp=<%- BUILD_TIMESTAMP_IN_MILLISECONDS %>"
+                                                        href="<%- LINK_V_CARD_PATH %>"
                                                         target="_blank"
                                                     >vCard</a>
                                                 </span>

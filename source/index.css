@@ -213,9 +213,9 @@ html, body {
     }
 
     .hp-card {
-        height: 300px;
+        height: 500px;
         width: 100%;
-        max-width: 350px;
+        max-width: 250px;
 
         margin-top: calc(var(--wu-default-space) * 2);
         position: relative;
@@ -224,7 +224,6 @@ html, body {
         place-items: center;
         overflow: hidden;
 
-        border-radius: 20px;
         box-shadow: var(--box-shadow-card);
 
         transition: box-shadow 0.2s linear;
@@ -239,12 +238,21 @@ html, body {
             max-width: 1000px;
         }
 
+        @media (min-width: 250px) {
+            max-width: 250px;
+        }
+
+        @media (min-width: 300px) {
+            max-width: 300px;
+        }
+
         @media (--wu-extra-extra-small) {
             width: 100%;
-            max-width: 450px;
-            height: 600px;
+            max-width: 360px;
 
             @media (--wu-extra-small) {
+                border-radius: 20px;
+
                 width: 100%;
                 max-width: 550px;
                 height: 650px;
@@ -287,7 +295,12 @@ html, body {
             background: var(--surface-color);
 
             inset: 2px;
-            border-radius: 18px;
+
+            @media (--wu-extra-extra-small) {
+                @media (--wu-extra-small) {
+                    border-radius: 18px;
+                }
+            }
         }
 
         &:hover::after {
@@ -310,9 +323,15 @@ html, body {
             height: 100%;
             width: 100%;
 
-            padding: var(--wu-default-space);
+            padding: calc(var(--wu-default-space) / 4);
 
             z-index: 1;
+
+            @media (--wu-extra-extra-small) {
+                @media (--wu-extra-small) {
+                    padding: var(--wu-default-space);
+                }
+            }
 
             h4 {
                 font-size: 1rem;

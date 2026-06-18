@@ -8632,9 +8632,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-jsdoc@npm:^63.0.5":
-  version: 63.0.5
-  resolution: "eslint-plugin-jsdoc@npm:63.0.5"
+"eslint-plugin-jsdoc@npm:^63.0.6":
+  version: 63.0.6
+  resolution: "eslint-plugin-jsdoc@npm:63.0.6"
   dependencies:
     "@es-joy/jsdoccomment": "npm:~0.87.0"
     "@es-joy/resolve.exports": "npm:1.2.0"
@@ -8652,7 +8652,7 @@ __metadata:
     to-valid-identifier: "npm:^1.0.0"
   peerDependencies:
     eslint: ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0
-  checksum: 10c0/b11fcb7b871df6ccb5651e893ff7c43fd0762368517b44a06f73f3735503deabfa9e7ad3096fc815a3232ce3cf435aee469e362d87187527144621b50ee2a980
+  checksum: 10c0/0c8ae40ea75bc37c5fcccdba31dbdba269c029b5d7c8e16e87975662780c26e5e376219f2901c14fe03ffa04a3d3539d839e79e69321e9a6444b64efa4cf1f2a
   languageName: node
   linkType: hard
 
@@ -17423,9 +17423,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"weboptimizer@npm:^3.0.26":
-  version: 3.0.26
-  resolution: "weboptimizer@npm:3.0.26"
+"weboptimizer@npm:^3.0.28":
+  version: 3.0.28
+  resolution: "weboptimizer@npm:3.0.28"
   dependencies:
     "@babel/core": "npm:^7.29.7"
     "@babel/plugin-proposal-class-properties": "npm:^7.18.6"
@@ -17572,7 +17572,7 @@ __metadata:
       optional: true
   bin:
     weboptimizer: index.js
-  checksum: 10c0/22a7739b9c23ef9fe8e89fc7c47be291387d633f31bedbe9e5ad937b42694fdfe6673ae93c8186626cfc8e79f2e46cdfb316321129f40fad5961d9f77e848ba6
+  checksum: 10c0/cc6dd5f2504e0a02bbe11875fbe6688ac239b50ad62adbda4a13015b0ca245af84437327b60d691f7638b3f879af2b17ba7148715746edf43da246b105b2575f
   languageName: node
   linkType: hard
 
@@ -17764,7 +17764,7 @@ __metadata:
     errorreporter: "npm:^1.0.349"
     eslint: "npm:^10.5.0"
     eslint-config-google: "npm:^0.14.0"
-    eslint-plugin-jsdoc: "npm:^63.0.5"
+    eslint-plugin-jsdoc: "npm:^63.0.6"
     favicons: "npm:^7.3.0"
     favicons-webpack-plugin: "npm:^6.0.1"
     headroom.js: "npm:^0.12.0"
@@ -17792,7 +17792,7 @@ __metadata:
     wavesurfer.js: "npm:^7.12.8"
     web-component-wrapper: "npm:^0.0.602"
     web-internationalization: "npm:^2.0.42"
-    weboptimizer: "npm:^3.0.26"
+    weboptimizer: "npm:^3.0.28"
     webpack-dev-server: "npm:^5.2.5"
     website-utilities: "npm:^1.0.443"
   languageName: unknown

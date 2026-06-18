@@ -25,7 +25,7 @@
     "url": "git@github.io:thaibault/.git"
   },
   "scripts": {
-    "build": "weboptimizer build && cp -r ./source/data/*.m4a ./build/",
+    "build": "weboptimizer build",
     "build:stats": "weboptimizer build --profile --json /tmp/stats.json | sed --regexp-extended 's/^Running \".+$//' | sed --regexp-extended 's/^Consolidate module request \".+$//' >/tmp/stats.json && echo 'Results successfully written to \"/tmp/stats.json\".'",
     "check": "yarn check:types; yarn lint",
     "check:types": "weboptimizer check:types",
@@ -63,7 +63,7 @@
     "errorreporter": "^1.0.349",
     "eslint": "^10.5.0",
     "eslint-config-google": "^0.14.0",
-    "eslint-plugin-jsdoc": "^63.0.5",
+    "eslint-plugin-jsdoc": "^63.0.6",
     "favicons": "^7.3.0",
     "favicons-webpack-plugin": "^6.0.1",
     "headroom.js": "^0.12.0",
@@ -91,7 +91,7 @@
     "wavesurfer.js": "^7.12.8",
     "web-component-wrapper": "^0.0.602",
     "web-internationalization": "^2.0.42",
-    "weboptimizer": "^3.0.26",
+    "weboptimizer": "^3.0.28",
     "webpack-dev-server": "^5.2.5",
     "website-utilities": "^1.0.443"
   },
@@ -128,6 +128,9 @@
           }
         }
       }
+    },
+    "favicon": {
+      "prefix": "image/favicons-[chunkhash]/"
     },
     "imageSprite": {
       "filterBy": {
@@ -208,6 +211,9 @@
       },
       "target": {
         "asset": {
+          "image": {
+            "__evaluate__": "({filename}) => `image/${path.dirname(path.resolve(filename).substring(self.path.source.asset.image.length))}/[name][ext]?${self.hashAlgorithm}=[contenthash]`"
+          },
           "javaScript": "./",
           "cascadingStyleSheet": "./"
         }

@@ -341,54 +341,8 @@ export class HomePage<
             this.headroomInstance.init()
         }
 
-        if (this.mainSwiperDomNode)
-            this.mainSwiperInstance = new Swiper(
-                this.mainSwiperDomNode,
-                {
-                    ...this.options.mainSwiper,
-                    on: {
-                        slideChangeTransitionStart: () => {
-                            this.sectionDomNode?.scrollTo({top: 0})
-                            globalContext.window?.scrollTo({top: 0})
-                        },
-                        slideChangeTransitionEnd: (swiper) => {
-                            this.sectionDomNode?.scrollTo({top: 0})
-                            globalContext.window?.scrollTo({top: 0})
-                            swiper.updateAutoHeight()
-                        }
-                    }
-                }
-            )
-
+        this.initializeMainSwiper()
         this.applyProjectCardInteractions()
-
-        if (globalContext.window) {
-            this.addSecureEventListener(
-                globalContext.window,
-                'resize',
-                () => {
-                    trailingThrottle(
-                        () => {
-                            this.mainSwiperInstance?.updateSize()
-                            this.mainSwiperInstance?.updateAutoHeight()
-                        },
-                        20
-                    )()
-                }
-            )
-            void timeout(() => {
-                this.mainSwiperInstance?.updateSize()
-                this.mainSwiperInstance?.updateAutoHeight()
-            })
-        }
-
-
-        /*
-            NOTE: We have to use event delegation here since navigation links
-            might switch its dom node representation position between mobile
-            and normal menu. Doing it this way we avoid maintaining to assign
-            and remove event listeners during runtime.
-        */
 
         for (const domNode of this.navigationDomNodes || [])
             this.addSecureEventListener(domNode, 'click', (event) => {
@@ -429,7 +383,7 @@ export class HomePage<
             })
 
         for (const domNode of this.waveSurferDomNodes || []) {
-            const url = domNode.firstElementChild?.textContent.trim()
+            const url = domNode.firstElementChild?.getAttribute('href')
             const waveSurfer = WaveSurfer.create({
                 ...this.options.waveSurfer,
                 container: domNode,
@@ -509,6 +463,46 @@ export class HomePage<
             this.options.selectors.waveSurfer
         )
     }
+    initializeMainSwiper() {
+        if (this.mainSwiperDomNode)
+            this.mainSwiperInstance = new Swiper(
+                this.mainSwiperDomNode,
+                {
+                    ...this.options.mainSwiper,
+                    on: {
+                        slideChangeTransitionStart: () => {
+                            this.sectionDomNode?.scrollTo({top: 0})
+                            globalContext.window?.scrollTo({top: 0})
+                        },
+                        slideChangeTransitionEnd: (swiper) => {
+                            this.sectionDomNode?.scrollTo({top: 0})
+                            globalContext.window?.scrollTo({top: 0})
+                            swiper.updateAutoHeight()
+                        }
+                    }
+                }
+            )
+
+        if (globalContext.window) {
+            this.addSecureEventListener(
+                globalContext.window,
+                'resize',
+                () => {
+                    trailingThrottle(
+                        () => {
+                            this.mainSwiperInstance?.updateSize()
+                            this.mainSwiperInstance?.updateAutoHeight()
+                        },
+                        20
+                    )()
+                }
+            )
+            void timeout(() => {
+                this.mainSwiperInstance?.updateSize()
+                this.mainSwiperInstance?.updateAutoHeight()
+            })
+        }
+    }
     applyProjectCardInteractions() {
         if (!(
             this.projectCardDomNodes &&
@@ -522,6 +516,36 @@ export class HomePage<
                 new Swiper(domNode, copy(this.options.projectSwiper))
             )
 
+        if (globalContext.window) {
+            this.addSecureEventListener(
+                globalContext.window,
+                'resize',
+                () => {
+                    trailingThrottle(
+                        () => {
+                            for (const instance of this.projectSwiperInstances) {
+                                instance.updateSize()
+                                instance.updateAutoHeight()
+                            }
+                        },
+                        20
+                    )()
+                }
+            )
+            void timeout(() => {
+                for (const instance of this.projectSwiperInstances) {
+                    instance.updateSize()
+                    instance.updateAutoHeight()
+                }
+            })
+        }
+
+        /*
+            NOTE: We have to use event delegation here since navigation links
+            might switch its dom node representation position between mobile
+            and normal menu. Doing it this way we avoid maintaining to assign
+            and remove event listeners during runtime.
+        */
         /*
         let openProjectDomNode: HTMLElement | null = null
         let openProjectPresenterDomNode: HTMLElement | null = null
