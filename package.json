@@ -51,7 +51,7 @@
     "@types/headroom.js": "^0.12.4",
     "@types/html-minifier": "^4.0.6",
     "@types/jsdom": "^28.0.3",
-    "@types/node": "^25.9.3",
+    "@types/node": "^26.0.0",
     "@types/webpack-env": "^1.18.8",
     "@typescript-eslint/eslint-plugin": "^8.61.1",
     "@typescript-eslint/parser": "^8.61.1",
@@ -93,7 +93,7 @@
     "web-internationalization": "^2.0.42",
     "weboptimizer": "^3.0.28",
     "webpack-dev-server": "^5.2.5",
-    "website-utilities": "^1.0.443"
+    "website-utilities": "^1.0.444"
   },
   "engines": {
     "node": ">=24",

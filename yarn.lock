@@ -4351,12 +4351,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^25.9.3":
-  version: 25.9.3
-  resolution: "@types/node@npm:25.9.3"
+"@types/node@npm:^26.0.0":
+  version: 26.0.0
+  resolution: "@types/node@npm:26.0.0"
   dependencies:
-    undici-types: "npm:>=7.24.0 <7.24.7"
-  checksum: 10c0/72d3aece9d42c2c641bcd3f3cb2dc2828b4bd384dfcbd910c404b8859a68bd69d50c4769ce7defd4ff5e049768e23e615f09407ea2cbbb5f44b90d75a7c6b8ca
+    undici-types: "npm:~8.3.0"
+  checksum: 10c0/f36e21634fd8e8ded162ca486508bd8bb229d398a8d5541f6d8c1255968d4464e53327a77f403b216ef98e3b6f6956882eef83e4857d4bc2be9569dd55d37aae
   languageName: node
   linkType: hard
 
@@ -16971,13 +16971,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici-types@npm:>=7.24.0 <7.24.7":
-  version: 7.24.6
-  resolution: "undici-types@npm:7.24.6"
-  checksum: 10c0/d9cd8befb643ac904615c280a095ba4240531f6bb4a5e75a22a7483630ca8d3f1016d2ab6ace6ceda1f63b3a2db2fe037fafe121d6917a0187573aa548ff78ca
-  languageName: node
-  linkType: hard
-
 "undici-types@npm:^7.21.0":
   version: 7.22.0
   resolution: "undici-types@npm:7.22.0"
@@ -16989,6 +16982,13 @@ __metadata:
   version: 5.26.5
   resolution: "undici-types@npm:5.26.5"
   checksum: 10c0/bb673d7876c2d411b6eb6c560e0c571eef4a01c1c19925175d16e3a30c4c428181fb8d7ae802a261f283e4166a0ac435e2f505743aa9e45d893f9a3df017b501
+  languageName: node
+  linkType: hard
+
+"undici-types@npm:~8.3.0":
+  version: 8.3.0
+  resolution: "undici-types@npm:8.3.0"
+  checksum: 10c0/c8aa7e2fbebfce519654dafadc0ece59be888d2ccaf180fb4495da875e7b536d2456345c384069c7e6f3e9c9ab7435f074957da306f142343eee86ff8048855a
   languageName: node
   linkType: hard
 
@@ -17721,9 +17721,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"website-utilities@npm:^1.0.443":
-  version: 1.0.443
-  resolution: "website-utilities@npm:1.0.443"
+"website-utilities@npm:^1.0.444":
+  version: 1.0.444
+  resolution: "website-utilities@npm:1.0.444"
   peerDependencies:
     "@babel/runtime": "*"
     bootstrap-icons: "*"
@@ -17736,7 +17736,7 @@ __metadata:
       optional: true
   bin:
     website-utilities: deploy.js
-  checksum: 10c0/4e3144cdcfb49e805151230787124645567bfbb9fdb8bee9b3dbe4fbc6df14acf2a48b8955779bec3242093849a89082efd168ab571f74a9392ddc798283b697
+  checksum: 10c0/487d11a83c069a4f74bf4a4e9b1d8da74be51425278e37d19ae10900cfe4de76527acfb92ad37b28a014cc5ba7212f148a5dda7915b85ab14c0934e533181df5
   languageName: node
   linkType: hard
 
@@ -17752,7 +17752,7 @@ __metadata:
     "@types/headroom.js": "npm:^0.12.4"
     "@types/html-minifier": "npm:^4.0.6"
     "@types/jsdom": "npm:^28.0.3"
-    "@types/node": "npm:^25.9.3"
+    "@types/node": "npm:^26.0.0"
     "@types/webpack-env": "npm:^1.18.8"
     "@typescript-eslint/eslint-plugin": "npm:^8.61.1"
     "@typescript-eslint/parser": "npm:^8.61.1"
@@ -17794,7 +17794,7 @@ __metadata:
     web-internationalization: "npm:^2.0.42"
     weboptimizer: "npm:^3.0.28"
     webpack-dev-server: "npm:^5.2.5"
-    website-utilities: "npm:^1.0.443"
+    website-utilities: "npm:^1.0.444"
   languageName: unknown
   linkType: soft
 
