@@ -516,6 +516,11 @@ export class HomePage<
                 new Swiper(domNode, copy(this.options.projectSwiper))
             )
 
+        // TODO you need to
+        // instance.updateSize()
+        // instance.updateAutoHeight()
+        // when nested lazy loaded image load events occur.
+
         if (globalContext.window) {
             this.addSecureEventListener(
                 globalContext.window,
