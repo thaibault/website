@@ -511,15 +511,22 @@ export class HomePage<
         ))
             return
 
-        for (const domNode of this.projectSwiperDomNodes)
-            this.projectSwiperInstances.push(
+        for (const domNode of this.projectSwiperDomNodes) {
+            const instance =
                 new Swiper(domNode, copy(this.options.projectSwiper))
-            )
 
-        // TODO you need to
-        // instance.updateSize()
-        // instance.updateAutoHeight()
-        // when nested lazy loaded image load events occur.
+            this.projectSwiperInstances.push(instance)
+
+            for (const loadingDomNode of domNode.querySelectorAll('[loading]'))
+                this.addSecureEventListener(
+                    loadingDomNode,
+                    'load',
+                    () => {
+                        instance.updateSize()
+                        instance.updateAutoHeight()
+                    }
+                )
+        }
 
         if (globalContext.window) {
             this.addSecureEventListener(
