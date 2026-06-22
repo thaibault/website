@@ -380,7 +380,7 @@ const PROJECTS = [
                     `${IMAGE_PATH}projects/storefront-display/general.png`,
                     `${IMAGE_PATH}projects/storefront-display/media.png`,
                     `${IMAGE_PATH}projects/storefront-display/service.png`,
-                    // `${IMAGE_PATH}projects/storefront-display/frontend.png`
+                    `${IMAGE_PATH}projects/storefront-display/frontend.png`
                 ],
                 content: {
                     enUS: 'Highly Available, Offline-Capable Storefront Display.',
@@ -1056,6 +1056,7 @@ _%>
                                                                             <div class="swiper-slide">
                                                                                 <img
                                                                                     class="hp-card__body__image"
+                                                                                    loading="lazy"
                                                                                     src="<%- url %>"
                                                                                     alt="<%- project.title %>"
                                                                                 />
