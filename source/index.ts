@@ -32,9 +32,9 @@ import Headroom from 'headroom.js'
 import Swiper from 'swiper'
 import {Autoplay, HashNavigation, Navigation, Pagination} from 'swiper/modules'
 import WaveSurfer from 'wavesurfer.js'
-import {property} from 'web-component-wrapper/compatible/decorator'
+import {property} from 'web-component-wrapper/decorator'
 import {WebComponentAPI} from 'web-component-wrapper/type'
-import {Web} from 'web-component-wrapper/compatible/Web'
+import {Web} from 'web-component-wrapper/Web'
 import {api as websiteUtilitiesAPI} from 'website-utilities'
 import WebInternationalization, {
     api as webInternationalizationAPI
@@ -383,7 +383,11 @@ export class HomePage<
             })
 
         for (const domNode of this.waveSurferDomNodes || []) {
-            const url = domNode.firstElementChild?.getAttribute('href')
+            const url =
+                domNode.firstElementChild?.getAttribute('href')
+            if (!url)
+                continue
+
             const waveSurfer = WaveSurfer.create({
                 ...this.options.waveSurfer,
                 container: domNode,
@@ -535,7 +539,9 @@ export class HomePage<
                 () => {
                     trailingThrottle(
                         () => {
-                            for (const instance of this.projectSwiperInstances) {
+                            for (
+                                const instance of this.projectSwiperInstances
+                            ) {
                                 instance.updateSize()
                                 instance.updateAutoHeight()
                             }
