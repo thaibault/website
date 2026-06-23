@@ -82,13 +82,13 @@ endregion
     /** endregion */
     /** region custom media queries */
     /*** region extra small dimension */
-    @custom-media --wu-extra-extra-small (min-width: 360px);
-    @custom-media --wu-extra-small (min-width: 500px);
+    @custom-media --wu-extra-extra-small (width >= 360px);
+    @custom-media --wu-extra-small (width >= 500px);
     /*** endregion */
     /*** region default media query dimensions */
-    @custom-media --wu-small (min-width: 768px);
-    @custom-media --wu-medium (min-width: 992px);
-    @custom-media --wu-large (min-width: 1200px);
+    @custom-media --wu-small (width >= 768px);
+    @custom-media --wu-medium (width >= 992px);
+    @custom-media --wu-large (width >= 1200px);
     /*** endregion */
     /** endregion */
     /* endregion */
@@ -238,14 +238,12 @@ html, body {
             max-width: 1000px;
         }
 
-        @media (min-width: 250px) {
+        @media (width >= 250px) {
             max-width: 250px;
         }
-
-        @media (min-width: 300px) {
+        @media (width >= 300px) {
             max-width: 300px;
         }
-
         @media (--wu-extra-extra-small) {
             width: 100%;
             max-width: 360px;

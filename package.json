@@ -145,6 +145,9 @@
     },
     "library": false,
     "module": {
+      "aliases": {
+        "web-component-wrapper": "web-component-wrapper/compatible"
+      },
       "enforceDeduplication": true,
       "html": {
         "options": {
