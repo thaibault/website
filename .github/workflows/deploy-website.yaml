@@ -27,3 +27,5 @@ jobs:
       - uses: thaibault/website-utilities@main
         with:
           debug: ${{ inputs.debug || '' }}
+          token: ${{ secrets.github-pat }}
+          repository: {{ github.repository_owner }}/${{ github.repository_owner }}.github.io
