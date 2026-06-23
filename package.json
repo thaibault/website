@@ -30,7 +30,6 @@
     "check": "yarn check:types; yarn lint",
     "check:types": "weboptimizer check:types",
     "clear": "weboptimizer clear",
-    "document": "weboptimizer document",
     "lint": "weboptimizer lint",
     "prepare": "yarn build",
     "serve": "weboptimizer serve",
@@ -51,20 +50,20 @@
     "@types/headroom.js": "^0.12.4",
     "@types/html-minifier": "^4.0.6",
     "@types/jsdom": "^28.0.3",
-    "@types/node": "^25.9.1",
+    "@types/node": "^26.0.0",
     "@types/webpack-env": "^1.18.8",
-    "@typescript-eslint/eslint-plugin": "^8.59.4",
-    "@typescript-eslint/parser": "^8.59.4",
+    "@typescript-eslint/eslint-plugin": "^8.62.0",
+    "@typescript-eslint/parser": "^8.62.0",
     "@webcomponents/webcomponentsjs": "^2.8.0",
     "bootstrap-icons": "^1.13.1",
-    "clientnode": "^4.0.1411",
+    "clientnode": "^4.0.1427",
     "css-loader": "^7.1.4",
-    "cssnano": "^8.0.1",
-    "errorreporter": "^1.0.340",
-    "eslint": "^10.4.0",
+    "cssnano": "^8.0.2",
+    "errorreporter": "^1.0.349",
+    "eslint": "^10.5.0",
     "eslint-config-google": "^0.14.0",
-    "eslint-plugin-jsdoc": "^63.0.0",
-    "favicons": "^7.2.0",
+    "eslint-plugin-jsdoc": "^63.0.7",
+    "favicons": "^7.3.0",
     "favicons-webpack-plugin": "^6.0.1",
     "headroom.js": "^0.12.0",
     "jest": "^30.4.2",
@@ -77,23 +76,23 @@
     "postcss-loader": "^8.2.1",
     "postcss-mixins": "^12.1.2",
     "postcss-nested": "^7.0.2",
-    "postcss-preset-env": "^11.3.0",
+    "postcss-preset-env": "^11.3.1",
     "postcss-scss": "^4.0.9",
     "postcss-sprites": "^4.2.1",
     "postcss-url": "^10.1.4",
     "prop-types": "^15.8.1",
     "style-loader": "^4.0.0",
-    "stylelint": "^17.12.0",
+    "stylelint": "^17.13.0",
     "stylelint-config-standard": "^40.0.0",
-    "swiper": "^12.1.4",
-    "typescript-eslint": "^8.59.4",
+    "swiper": "^12.2.0",
+    "typescript-eslint": "^8.62.0",
     "ua-parser-js": "^2.0.10",
-    "wavesurfer.js": "^7.12.7",
-    "web-component-wrapper": "^0.0.592",
-    "web-internationalization": "^2.0.34",
-    "weboptimizer": "^3.0.24",
-    "webpack-dev-server": "^5.2.4",
-    "website-utilities": "^1.0.438"
+    "wavesurfer.js": "^7.12.8",
+    "web-component-wrapper": "^0.0.602",
+    "web-internationalization": "^2.0.42",
+    "weboptimizer": "^3.0.28",
+    "webpack-dev-server": "^5.2.5",
+    "website-utilities": "^1.0.445"
   },
   "engines": {
     "node": ">=24",
@@ -129,6 +128,14 @@
         }
       }
     },
+    "favicon": {
+      "prefix": "image/favicons-[chunkhash]/"
+    },
+    "imageSprite": {
+      "filterBy": {
+        "__evaluate__": "({url}) => url.startsWith('image/carousel/') ? Promise.reject(new Error()) : Promise.resolve()"
+      }
+    },
     "injection": {
       "chunks": false,
       "entry": {
@@ -142,9 +149,17 @@
       "html": {
         "options": {
           "sources": {
-            "urlFilter": {
-              "__evaluate__": "() => false"
-            }
+            "list": [
+              "...",
+              {
+                "tag": "a",
+                "attribute": "href",
+                "type": "src",
+                "filter": {
+                  "__evaluate__": "(tag, attribute, attributes, resourcePath) => attributes.filter(({name}) => name === attribute)[0].value.startsWith('data/')"
+                }
+              }
+            ]
           }
         }
       },
@@ -185,6 +200,7 @@
         }
       }
     },
+    "offline": null,
     "path": {
       "source": {
         "asset": {
@@ -194,6 +210,9 @@
       },
       "target": {
         "asset": {
+          "image": {
+            "__evaluate__": "({filename}) => `image/${path.dirname(path.resolve(filename).substring(self.path.source.asset.image.length))}/[name][ext]?${self.hashAlgorithm}=[contenthash]`"
+          },
           "javaScript": "./",
           "cascadingStyleSheet": "./"
         }

@@ -55,37 +55,37 @@ const getStartUpAnimationNumber = () => {
 const SOCIAL_MEDIA = [
     {
         'icon': 'envelope-at-fill',
-        'title': 'e-mail',
+        'title': 'E-Mail',
         'url': 'info@torben.website'
     },
     {
         'icon': 'github',
-        'title': 'github',
+        'title': 'GitHub',
         'url': 'https://github.com/thaibault'
     },
     {
         'icon': 'x-lg',
-        'title': 'xing',
+        'title': 'XING',
         'url': 'https://www.xing.com/profile/Torben_Sickert'
     },
     {
         'icon': 'linkedin',
-        'title': 'linked_in',
+        'title': 'LinkedIn',
         'url': 'https://de.linkedin.com/pub/torben-sickert/28/aa9/919'
     },
     {
         'icon': 'twitter-x',
-        'title': 'twitter',
+        'title': 'X',
         'url': 'https://twitter.com/tsickert'
     },
     {
         'icon': 'facebook',
-        'title': 'facebook',
+        'title': 'Facebook',
         'url': 'https://de-de.facebook.com/tsickert'
     },
     {
         'icon': 'globe',
-        'title': 'website',
+        'title': 'Website',
         'url': 'https://torben.website'
     }
 ]
@@ -97,8 +97,8 @@ const SECTIONS = [
             headline: {enUS: 'Hey', deDE: 'Moin'},
             /*
             sound: {
-                enUS: `${DATA_PATH}about-me-enUS.mp3`,
-                deDE: `${DATA_PATH}about-me-deDE.mp3`
+                enUS: `${DATA_PATH}about-me-enUS.m4a`,
+                deDE: `${DATA_PATH}about-me-deDE.m4a`
             },
             */
             lead: {
@@ -113,8 +113,8 @@ const SECTIONS = [
             menuLabel: {enUS: 'Contact', deDE: 'Kontakt'},
             headline: {enUS: 'Get in touch', deDE: 'Lernen wir uns kennen'},
             sound: {
-                enUS: `${DATA_PATH}contact-enUS.mp3`,
-                deDE: `${DATA_PATH}contact-deDE.mp3`
+                enUS: `${DATA_PATH}contact-enUS.m4a`,
+                deDE: `${DATA_PATH}contact-deDE.m4a`
             },
             lead: {
                 enUS: "Let's talk about your project and what I can do",
@@ -132,8 +132,8 @@ const SECTIONS = [
                 deDE: 'Chancen entstehen durch Mut zur Veränderung'
             },
             sound: {
-                enUS: `${DATA_PATH}work-enUS.mp3`,
-                deDE: `${DATA_PATH}work-deDE.mp3`
+                enUS: `${DATA_PATH}work-enUS.m4a`,
+                deDE: `${DATA_PATH}work-deDE.m4a`
             },
             subHeadline: {enUS: 'I offer', deDE: 'ich biete'},
             keywords: {
@@ -372,18 +372,33 @@ const PROJECTS = [
         },
         content: [
             {
-                title: 'BPV Web APP',
+                title: 'Highly Available, Offline-Capable Storefront Display',
                 images: [
-                    `${IMAGE_PATH}projects/emergency-service/backend.png`,
-                    `${IMAGE_PATH}projects/emergency-service/frontend.png`
+                    `${IMAGE_PATH}projects/storefront-display/account-media.png`,
+                    `${IMAGE_PATH}projects/storefront-display/content.png`,
+                    `${IMAGE_PATH}projects/storefront-display/dashboard.png`,
+                    `${IMAGE_PATH}projects/storefront-display/general.png`,
+                    `${IMAGE_PATH}projects/storefront-display/media.png`,
+                    `${IMAGE_PATH}projects/storefront-display/service.png`,
+                    `${IMAGE_PATH}projects/storefront-display/frontend.png`
                 ],
                 content: {
-                    enUS: [
-                        'Pharmacy emergency service management application.'
-                    ],
-                    deDE: [
-                        'Anwendung zur Verwaltung des Apotheken-Notdienstes.'
-                    ]
+                    enUS: 'Highly Available, Offline-Capable Storefront Display.',
+                    deDE: 'Hochverfügbare offlinefähige Schaufenster Anzeige.'
+                }
+            },
+            {
+                title: 'web-documentation',
+                images: [
+                    `${IMAGE_PATH}projects/web-documentation/main.png`,
+                    `${IMAGE_PATH}projects/web-documentation/example.png`,
+                    `${IMAGE_PATH}projects/web-documentation/about-this-website.png`
+                ],
+                content: {
+                    enUS: 'Reusable web documentation page generator.',
+                    deDE:
+                        'Generator für wiederverwendbare ' +
+                        'Web-Dokumentationsseiten.'
                 }
             },
             {
@@ -391,22 +406,12 @@ const PROJECTS = [
                 url: 'https://torben.website',
                 images: [
                     `${IMAGE_PATH}projects/home-page/about-me.png`,
-                    `${IMAGE_PATH}projects/home-page/contact-slice.png`,
-                    `${IMAGE_PATH}projects/home-page/mobile-get-in-touch.png`,
-                    `${IMAGE_PATH}projects/home-page/mobile-menu.png`
+                    `${IMAGE_PATH}projects/home-page/contact.png`,
+                    `${IMAGE_PATH}projects/home-page/work.png`
                 ],
                 content: {
-                    enUS: ['This website.'],
-                    deDE: ['Diese Webseite.']
-                }
-            },
-            {
-                title: 'web-documentation',
-                content: {
-                    enUS: ['Reusable web documentation page generator.'],
-                    deDE: [
-                        'Generator für wiederverwendbare Web-Dokumentationsseiten.'
-                    ]
+                    enUS: 'This website.',
+                    deDE: 'Diese Webseite.'
                 }
             }
         ]
@@ -420,13 +425,15 @@ const PROJECTS = [
             {
                 title: 'clientnode',
                 url: 'https://torben.website/clientnode',
+                images: [
+                    `${IMAGE_PATH}projects/clientnode/example-1.png`,
+                    `${IMAGE_PATH}projects/clientnode/example-2.png`
+                ],
                 content: {
-                    enUS: [
-                        'Provides universal backend and frontend utilities.'
-                    ],
-                    deDE: [
-                        'Bietet universelle Backend- und Frontend-Hilfsfunktionen.'
-                    ]
+                    enUS: 'Provides universal backend and frontend utilities.',
+                    deDE:
+                        'Bietet universelle Backend- und ' +
+                        'Frontend-Hilfsfunktionen.'
                 }
             }
         ]
@@ -440,13 +447,10 @@ const PROJECTS = [
             {
                 title: 'errorreporter',
                 url: 'https://torben.website/errorreporter',
+                images: [`${IMAGE_PATH}projects/errorreporter/main.png`],
                 content: {
-                    enUS: [
-                        'A web client side error reporter.'
-                    ],
-                    deDE: [
-                        'Ein Tool zur Fehlermeldung auf der Web-Client-Seite.'
-                    ]
+                    enUS: 'A web client side error reporter.',
+                    deDE: 'Ein Tool zur Fehlermeldung auf der Web-Client-Seite.'
                 }
             }
         ]
@@ -458,39 +462,50 @@ const PROJECTS = [
         },
         content: [
             {
+                title: 'react-input-material',
+                url: 'https://torben.website/react-input-material',
+                images: [
+                    `${IMAGE_PATH}projects/react-input-material/date-time-select.png`,
+                    `${IMAGE_PATH}projects/react-input-material/list-of-checkboxes.png`,
+                    `${IMAGE_PATH}projects/react-input-material/rich-text.png`
+                ],
+                content: {
+                    enUS:
+                        'Reusable material design based input fields as ' +
+                        'react components with support for (richt-)text, ' +
+                        'code, selections, numbers, dates and files.',
+                    deDE:
+                        'Auf Material Design basierende, wiederverwendbare ' +
+                        'Eingabefelder als React-Komponenten mit ' +
+                        'Unterstützung für (Recht-)Text, Code, Auswahlen, ' +
+                        'Zahlen, Datumsangaben und Dateien.'
+                }
+            },
+            {
                 title: 'react-generic-tools',
                 url: 'https://torben.website/react-generic-tools',
+                images: [`${IMAGE_PATH}projects/react-generic-tools/main.png`],
                 content: {
-                    enUS: [
-                        'Generic utility types, methods, components and test helper for react.'
-                    ],
-                    deDE: [
-                        'Allgemeine Hilfstypen, Methoden, Komponenten und Test-Hilfsfunktionen für React.'
-                    ]
+                    enUS:
+                        'Generic utility types, methods, components and ' +
+                        'test helper for react.',
+                    deDE:
+                        'Allgemeine Hilfstypen, Methoden, Komponenten und ' +
+                        'Test-Hilfsfunktionen für React.'
                 }
             },
             {
                 title: 'react-generic-animate',
                 url: 'https://torben.website/react-generic-animate',
+                images: [
+                    `${IMAGE_PATH}projects/react-generic-animate/main.png`
+                ],
                 content: {
-                    enUS: [
-                        'Animates markup within the react component context.'
-                    ],
-                    deDE: [
-                        'Animiert Markup innerhalb des React-Komponentenkontexts.'
-                    ]
-                }
-            },
-            {
-                title: 'react-input-material',
-                url: 'https://torben.website/react-input-material',
-                content: {
-                    enUS: [
-                        'Reusable material design based input fields as react components with support for (richt-)text, code, selections, numbers, dates and files.'
-                    ],
-                    deDE: [
-                        'Auf Material Design basierende, wiederverwendbare Eingabefelder als React-Komponenten mit Unterstützung für (Recht-)Text, Code, Auswahlen, Zahlen, Datumsangaben und Dateien.'
-                    ]
+                    enUS:
+                        'Animates markup within the react component context.',
+                    deDE:
+                        'Animiert Markup innerhalb des ' +
+                        'React-Komponentenkontexts.'
                 }
             }
         ]
@@ -504,61 +519,74 @@ const PROJECTS = [
             {
                 title: 'web-component-wrapper',
                 url: 'https://torben.website/web-component-wrapper',
+                images: [
+                    `${IMAGE_PATH}projects/web-component-wrapper/concept.png`,
+                    `${IMAGE_PATH}projects/web-component-wrapper/example.png`
+                ],
                 content: {
-                    enUS: [
-                        'Generic web-component base class and wrapper to provide react components as web components.'
-                    ],
-                    deDE: [
-                        'Generische Basisklasse und Wrapper für Webkomponenten, um React-Komponenten als Webkomponenten bereitzustellen.'
-                    ]
+                    enUS:
+                        'Generic web-component base class and wrapper to ' +
+                        'provide react components as web components.',
+                    deDE:
+                        'Generische Basisklasse und Wrapper für ' +
+                        'Webkomponenten, um React-Komponenten als ' +
+                        'Webkomponenten bereitzustellen.'
                 }
             },
             {
                 title: 'web-internationalization',
                 url: 'https://torben.website/web-internationalization',
                 content: {
-                    enUS: [
-                        'A web component to replace alternate version of text for client side internationalization.'
-                    ],
-                    deDE: [
-                        'Eine Webkomponente zum Ersetzen alternativer Textversionen für die clientseitige Internationalisierung.'
-                    ]
+                    enUS:
+                        'A web component to replace alternate version of ' +
+                        'text for client side internationalization.',
+                    deDE:
+                        'Eine Webkomponente zum Ersetzen alternativer ' +
+                        'Textversionen für die clientseitige ' +
+                        'Internationalisierung.'
                 }
             },
             {
                 title: 'website-utilities',
                 url: 'https://torben.website/website-utilities',
                 content: {
-                    enUS: [
-                        'A web component to provide reusable website features, like simple client side routing, position detection and navigation.'
-                    ],
-                    deDE: [
-                        'Eine Webkomponente zur Bereitstellung wiederverwendbarer Website-Funktionen wie einfache clientseitige Weiterleitung, Positionserkennung und Navigation.'
-                    ]
+                    enUS:
+                        'A web component to provide reusable website ' +
+                        'features, like simple client side routing, ' +
+                        'position detection and navigation.',
+                    deDE:
+                        'Eine Webkomponente zur Bereitstellung ' +
+                        'wiederverwendbarer Website-Funktionen wie einfache ' +
+                        'clientseitige Weiterleitung, Positionserkennung ' +
+                        'und Navigation.'
                 }
             },
             {
                 title: 'web-input-material',
                 url: 'https://torben.website/web-input-material',
                 content: {
-                    enUS: [
-                        'Reusable material design based input fields as web components with support for (richt-)text, code, selections, numbers, dates and files.'
-                    ],
-                    deDE: [
-                        'Wiederverwendbare, auf Material Design basierende Eingabefelder als Webkomponenten mit Unterstützung für (Recht-)Text, Code, Auswahlen, Zahlen, Datumsangaben und Dateien.'
-                    ]
+                    enUS:
+                        'Reusable material design based input fields as web ' +
+                        'components with support for (richt-)text, code, ' +
+                        'selections, numbers, dates and files.',
+                    deDE:
+                        'Wiederverwendbare, auf Material Design basierende ' +
+                        'Eingabefelder als Webkomponenten mit Unterstützung ' +
+                        'für (Recht-)Text, Code, Auswahlen, Zahlen, ' +
+                        'Datumsangaben und Dateien.'
                 }
             },
             {
                 title: 'agile-form',
                 url: 'https://torben.website/agile-form',
                 content: {
-                    enUS: [
-                        'Reusable highly configurable web component based form (useful for website/form builders).'
-                    ],
-                    deDE: [
-                        'Wiederverwendbares, hochgradig anpassbares Formular auf Basis von Webkomponenten (nützlich für Website- und Formular-Generatoren).'
-                    ]
+                    enUS:
+                        'Reusable highly configurable web component based ' +
+                        'form (useful for website/form builders).',
+                    deDE:
+                        'Wiederverwendbares, hochgradig anpassbares ' +
+                        'Formular auf Basis von Webkomponenten (nützlich ' +
+                        'für Website- und Formular-Generatoren).'
                 }
             }
         ]
@@ -573,72 +601,66 @@ const PROJECTS = [
                 title: 'web-node',
                 url: 'https://torben.website/web-node',
                 content: {
-                    enUS: [
-                        'Plugin and configuration management library.'
-                    ],
-                    deDE: [
-                        'Bibliothek für die Verwaltung von Plugins und Konfigurationen.'
-                    ]
+                    enUS: 'Plugin and configuration management library.',
+                    deDE:
+                        'Bibliothek für die Verwaltung von Plugins und ' +
+                        'Konfigurationen.'
                 }
             },
             {
                 title: 'couchdb-web-node-plugin',
                 url: 'https://torben.website/couchdb-web-node-plugin',
                 content: {
-                    enUS: [
-                        'Extension for couchdb based database server supporting schema based validation, right and role based authorization and document relations management provided as WebNode plugin.'
-                    ],
-                    deDE: [
-                        'Erweiterung für einen auf CouchDB basierenden Datenbankserver, die schemabasierte Validierung, berechtigungs- und rollenbasierte Autorisierung sowie die Verwaltung von Dokumentbeziehungen unterstützt. Als WebNode-Plugin bereitgestellt.'
-                    ]
+                    enUS:
+                        'Extension for couchdb based database server ' +
+                        'supporting schema based validation, right and role ' +
+                        'based authorization and document relations ' +
+                        'management provided as WebNode plugin.',
+                    deDE:
+                        'Erweiterung für einen auf CouchDB basierenden ' +
+                        'Datenbankserver, die schemabasierte Validierung, ' +
+                        'berechtigungs- und rollenbasierte Autorisierung ' +
+                        'sowie die Verwaltung von Dokumentbeziehungen ' +
+                        'unterstützt. Als WebNode-Plugin bereitgestellt.'
                 }
             },
             {
                 title: 'ejs-web-node-plugin',
                 url: 'https://torben.website/ejs-web-node-plugin',
                 content: {
-                    enUS: [
-                        'A static template processor for webNode.'
-                    ],
-                    deDE: [
-                        ''
-                    ]
+                    enUS: 'A static template processor for webNode.',
+                    deDE: 'Ein statischer template processor für webNode.'
                 }
             },
             {
                 title: 'application-server-web-node-plugin',
                 url: 'https://torben.website/application-server-web-node-plugin',
                 content: {
-                    enUS: [
-                        'A static template processor for WebNode.'
-                    ],
-                    deDE: [
-                        'Ein statischer Vorlagenprozessor für WebNode.'
-                    ]
+                    enUS: 'A static template processor for WebNode.',
+                    deDE: 'Ein statischer Vorlagenprozessor für WebNode.'
                 }
             },
             {
                 title: 'pre-render-web-node-plugin',
                 url: 'https://torben.website/pre-render-web-node-plugin',
                 content: {
-                    enUS: [
-                        'Pre-rendering hook for WebNode based solutions.'
-                    ],
-                    deDE: [
-                        'Hook für das Vorab-Rendering bei WebNode-basierten Lösungen.'
-                    ]
+                    enUS: 'Pre-rendering hook for WebNode based solutions.',
+                    deDE:
+                        'Hook für das Vorab-Rendering bei WebNode-basierten ' +
+                        'Lösungen.'
                 }
             },
             {
                 title: 'nginx-web-node-plugin',
                 url: 'https://torben.website/nginx-web-node-plugin',
                 content: {
-                    enUS: [
-                        'A nginx proxy server configuration template for WebNode based solutions.'
-                    ],
-                    deDE: [
-                        'Eine Konfigurationsvorlage für einen Nginx-Proxy-Server für auf WebNode basierende Lösungen.'
-                    ]
+                    enUS:
+                        'A nginx proxy server configuration template for ' +
+                        'WebNode based solutions.',
+                    deDE:
+                        'Eine Konfigurationsvorlage für einen ' +
+                        'Nginx-Proxy-Server für auf WebNode basierende ' +
+                        'Lösungen.'
                 }
             }
         ]
@@ -653,12 +675,12 @@ const PROJECTS = [
                 title: 'weboptimizer',
                 url: 'https://torben.website/weboptimizer',
                 content: {
-                    enUS: [
-                        'A generic web optimizer, (module) bundler and development environment based on webpack.'
-                    ],
-                    deDE: [
-                        'Ein universeller Web-Optimierer, (Modul-)Bündler und Entwicklungsumgebung auf Basis von Webpack.'
-                    ]
+                    enUS:
+                        'A generic web optimizer, (module) bundler and ' +
+                        'development environment based on webpack.',
+                    deDE:
+                        'Ein universeller Web-Optimierer, (Modul-)Bündler ' +
+                        'und Entwicklungsumgebung auf Basis von Webpack.'
                 }
             }
         ]
@@ -673,36 +695,35 @@ const PROJECTS = [
                 title: 'reverse-proxy-middleware',
                 url: 'https://torben.website/reverse-proxy-middleware',
                 content: {
-                    enUS: [
-                        'A generic configureable standalone middleware.'
-                    ],
-                    deDE: [
-                        'Eine generische, konfigurierbare, eigenständige Middleware.'
-                    ]
+                    enUS: 'A generic configureable standalone middleware.',
+                    deDE:
+                        'Eine generische, konfigurierbare, eigenständige ' +
+                        'Middleware.'
                 }
             },
             {
                 title: 'proxy',
                 url: 'https://torben.website/proxy',
                 content: {
-                    enUS: [
-                        'A generic dockerized proxy to host multiple docker based applications under configurable (sub-) domains.'
-                    ],
-                    deDE: [
-                        'Ein generischer Docker-basierter Proxy zum Hosten mehrerer Docker-basierter Anwendungen unter konfigurierbaren (Sub-)Domains.'
-                    ]
+                    enUS:
+                        'A generic dockerized proxy to host multiple docker ' +
+                        'based applications under configurable (sub-) domains.',
+                    deDE:
+                        'Ein generischer Docker-basierter Proxy zum Hosten ' +
+                        'mehrerer Docker-basierter Anwendungen unter ' +
+                        'konfigurierbaren (Sub-)Domains.'
                 }
             },
             {
                 title: 'polyfill-bundler',
                 url: 'https://torben.website/polyfill-bundler',
                 content: {
-                    enUS: [
-                        'Provides minimal node application to serve an on-premise polyfill.io service.'
-                    ],
-                    deDE: [
-                        'Stellt eine minimalistische Node-Anwendung bereit, um einen lokalen polyfill.io-Dienst bereitzustellen.'
-                    ]
+                    enUS:
+                        'Provides minimal node application to serve an ' +
+                        'on-premise polyfill.io service.',
+                    deDE:
+                        'Stellt eine minimalistische Node-Anwendung bereit, ' +
+                        'um einen lokalen polyfill.io-Dienst bereitzustellen.'
                 }
             }
         ]
@@ -717,12 +738,14 @@ const PROJECTS = [
                 title: 'containerbase',
                 url: 'https://torben.website/containerbase',
                 content: {
-                    enUS: [
-                        'An ArchLinux based docker environment with encrypted user right mapping aura based package management..'
-                    ],
-                    deDE: [
-                        'Eine auf ArchLinux basierende Docker-Umgebung mit verschlüsselter Zuordnung von Benutzerrechten und einem auf Aura basierenden Paketverwaltungssystem.'
-                    ]
+                    enUS:
+                        'An ArchLinux based docker environment with ' +
+                        'encrypted user right mapping aura based package ' +
+                        'management.',
+                    deDE:
+                        'Eine auf ArchLinux basierende Docker-Umgebung mit ' +
+                        'verschlüsselter Zuordnung von Benutzerrechten und ' +
+                        'einem auf Aura basierenden Paketverwaltungssystem.'
                 }
             }
         ]
@@ -737,67 +760,77 @@ const PROJECTS = [
                 title: 'bashlink',
                 url: 'https://torben.website/bashlink',
                 content: {
-                    enUS: [
-                        'A generic bash library providing module system, testing helper and much utilities for bash like environments.'
-                    ],
-                    deDE: [
-                        'Eine generische Bash-Bibliothek, die ein Modulsystem, Testhilfen und zahlreiche Dienstprogramme für Bash-ähnliche Umgebungen bereitstellt.'
-                    ]
+                    enUS:
+                        'A generic bash library providing module system, ' +
+                        'testing helper and much utilities for bash like ' +
+                        'environments.',
+                    deDE:
+                        'Eine generische Bash-Bibliothek, die ein ' +
+                        'Modulsystem, Testhilfen und zahlreiche ' +
+                        'Dienstprogramme für Bash-ähnliche Umgebungen ' +
+                        'bereitstellt.'
                 }
             },
             {
                 title: 'archinstall',
                 url: 'https://torben.website/archinstall',
                 content: {
-                    enUS: [
-                        'Install a configured ArchLinux with pacman as a package ' +
-                        'management in any places such as hard drives, USB ' +
-                        'flash drive, partition, or in an existing system as a ' +
-                        'sandbox environment. Automatic configuration of ' +
-                        'existing posix compliant unix-like systems. Both online' +
-                        ' and Offline installations are possible. Even without ' +
-                        'root privileges, the system is able to be installed ' +
-                        'into its own environment below the home folder. All ' +
-                        'required dependencies could be served via a typical ' +
-                        'posix environment given by Busybox or ArchLinux itself.'
-                    ],
-                    deDE: [
-                        'Installiere ein konfiguriertes ArchLinux mit Pacman als ' +
-                        'Paketverwaltung an beliebige Orte wie Festplatten,' +
-                        ' USB-Stick, alternative Partition oder in das ' +
-                        'bestehende System als Sandboxumgebung. Automatische ' +
-                        'Konfiguration bestehender posix konformer unix-artiger ' +
-                        'Systeme. Sowohl Online- als auch Offline-Installationen' +
-                        ' sind möglich. Selbst ohne root Rechte kann das System ' +
-                        'in eine eigene Umgebung unterhalb des Home-Ordner ' +
-                        'installiert werden. Alle benötigten Abhängigkeiten zum ' +
+                    enUS:
+                        'Install a configured ArchLinux with pacman as a ' +
+                        'package management in any places such as hard ' +
+                        'drives, USB flash drive, partition, or in an ' +
+                        'existing system as a sandbox environment. ' +
+                        'Automatic configuration of existing posix ' +
+                        'compliant unix-like systems. Both online and ' +
+                        'Offline installations are possible. Even without ' +
+                        'root privileges, the system is able to be ' +
+                        'installed into its own environment below the home ' +
+                        'folder. All required dependencies could be served ' +
+                        'posix environment given by Busybox or ArchLinux ' +
+                        'itself.',
+                    deDE:
+                        'Installiere ein konfiguriertes ArchLinux mit ' +
+                        'Pacman als Paketverwaltung an beliebige Orte wie ' +
+                        'Festplatten, USB-Stick, alternative Partition oder ' +
+                        'in das bestehende System als Sandboxumgebung. ' +
+                        'Automatische Konfiguration bestehender posix ' +
+                        'konformer unix-artiger Systeme. Sowohl Online- als ' +
+                        'auch Offline-Installationen sind möglich. Selbst ' +
+                        'ohne root Rechte kann das System in eine eigene ' +
+                        'Umgebung unterhalb des Home-Ordner installiert ' +
+                        'werden. Alle benötigten Abhängigkeiten zum ' +
                         'Aufsetzen sind durch eine einfache posix-Umgebung ' +
                         'gegeben wie Busybox oder ArchLinux selbst.'
-                    ]
                 }
             },
             {
                 title: 'backup-rotation',
                 url: 'https://torben.website/backup-rotation',
                 content: {
-                    enUS: [
-                        'This script allows you to create a local or remote backup rotation for your files.'
-                    ],
-                    deDE: [
-                        'Mit diesem Skript können Sie eine lokale oder remote Datensicherung mit Rotationsplan für Ihre Dateien einrichten.'
-                    ]
+                    enUS:
+                        'This script allows you to create a local or remote ' +
+                        'backup rotation for your files.',
+                    deDE:
+                        'Mit diesem Skript können Sie eine lokale oder ' +
+                        'remote Datensicherung mit Rotationsplan für Ihre ' +
+                        'Dateien einrichten.'
                 }
             },
             {
                 title: 'reachable-watcher',
                 url: 'https://torben.website/reachable-watcher',
                 content: {
-                    enUS: [
-                        'As simple configurable script to ensure reachability of various web servers. Status codes can be checked and emails send if something is unexpected.'
-                    ],
-                    deDE: [
-                        'Ein einfach zu konfigurierendes Skript, um die Erreichbarkeit verschiedener Webserver sicherzustellen. Es können Statuscodes überprüft und E-Mails versendet werden, falls etwas Unerwartetes auftritt.'
-                    ]
+                    enUS:
+                        'As simple configurable script to ensure ' +
+                        'reachability of various web servers. Status codes ' +
+                        'can be checked and emails send if something is ' +
+                        'unexpected.',
+                    deDE:
+                        'Ein einfach zu konfigurierendes Skript, um die ' +
+                        'Erreichbarkeit verschiedener Webserver ' +
+                        'sicherzustellen. Es können Statuscodes überprüft ' +
+                        'und E-Mails versendet werden, falls etwas ' +
+                        'Unerwartetes auftritt.'
                 }
             }
         ]
@@ -805,7 +838,7 @@ const PROJECTS = [
 ]
 // endregion
 _%>
-<html class="wu-no-javascript" lang="en">
+<html class="hp-no-javascript" lang="en">
     <!--region head-->
     <head>
         <meta charset="utf-8">
@@ -827,16 +860,16 @@ _%>
         <script>
             AUTO_DEFINE_HOME_PAGE = true
 
-            window.document.documentElement.classList.remove('wu-no-javascript')
-            window.document.documentElement.classList.add('wu-javascript')
+            window.document.documentElement.classList.remove('hp-no-javascript')
+            window.document.documentElement.classList.add('hp-javascript')
         </script>
     </head>
     <!--endregion-->
     <!--region body-->
-    <body class="wu-no-javascript">
+    <body class="hp-no-javascript">
         <script>
-            window.document.body.classList.remove('wu-no-javascript')
-            window.document.body.classList.add('wu-javascript')
+            window.document.body.classList.remove('hp-no-javascript')
+            window.document.body.classList.add('hp-javascript')
         </script>
 
         <div class="wu-window-loading-cover">
@@ -859,7 +892,7 @@ _%>
             </div>
         </div>
 
-        <home-page>
+        <home-page class="hp wu">
             <!--region header-->
             <header
                 class="hp-header headroom wu-start-up-animation-number-<%- getStartUpAnimationNumber() %>"
@@ -940,17 +973,19 @@ _%>
                                         <lang-alternative
                                             class="hp-audio-player" active
                                         >
-                                            <pre hidden>
-                                                <%- section.content.sound[DEFAULT_LANGUAGE] %>
-                                            </pre>
+                                            <a
+                                                hidden
+                                                href="<%- section.content.sound[DEFAULT_LANGUAGE] %>"
+                                            >hidden</a>
                                         </lang-alternative>
                                         <lang-alternative
                                             lang="<%- ALTERNATE_LANGUAGE %>"
                                             class="hp-audio-player"
                                         >
-                                            <pre hidden>
-                                                <%- section.content.sound[ALTERNATE_LANGUAGE] %>
-                                            </pre>
+                                            <a
+                                                hidden
+                                                href="<%- section.content.sound[ALTERNATE_LANGUAGE] %>"
+                                            >hidden</a>
                                         </lang-alternative>
                                     <%_ } %>
 
@@ -993,25 +1028,24 @@ _%>
                                             <h3>
                                                 <%- group.title[DEFAULT_LANGUAGE] %>
                                                 <!--<%- ALTERNATE_LANGUAGE %>:
-                                                        <%- group.title[ALTERNATE_LANGUAGE] %>
-                                                    -->
+                                                    <%- group.title[ALTERNATE_LANGUAGE] %>
+                                                -->
                                             </h3>
 
                                             <div class="hp-projects">
                                                 <%_ for (const project of group.content) { _%>
-                                                    <div class="hp-card">
+                                                    <%_ if (project.url) { _%>
+                                                        <a
+                                                            class="hp-card"
+                                                            href="<%- project.url %>"
+                                                            target="_blank"
+                                                        >
+                                                    <%_ } else { _%>
+                                                        <div class="hp-card">
+                                                    <%_ } _%>
                                                         <div class="hp-card__body">
                                                             <h4>
-                                                                <%_ if (project.url) { %>
-                                                                    <a
-                                                                        href="<%- project.url %>"
-                                                                        target="_blank"
-                                                                    >
-                                                                        <%- project.title %>
-                                                                    </a>
-                                                                <%_ } else  { %>
-                                                                    <%- project.title %>
-                                                                <%_ } %>
+                                                                <%- project.title %>
                                                             </h4>
 
                                                             <%_ if (project.images) { %>
@@ -1021,10 +1055,11 @@ _%>
                                                                         <%_ for (const url of project.images) { _%>
                                                                             <div class="swiper-slide">
                                                                                 <img
-                                                                                        class="hp-card__body__image"
-                                                                                        src="<%- url %>"
-                                                                                        alt="<%- project.title %>"
-                                                                                >
+                                                                                    class="hp-card__body__image"
+                                                                                    loading="lazy"
+                                                                                    src="<%- url %>"
+                                                                                    alt="<%- project.title %>"
+                                                                                />
                                                                             </div>
                                                                         <%_ } %>
                                                                     </div>
@@ -1033,50 +1068,17 @@ _%>
                                                             <%_ } %>
 
                                                             <p>
-                                                                <%- project.content[DEFAULT_LANGUAGE][0] %>
+                                                                <%- project.content[DEFAULT_LANGUAGE] %>
                                                                 <!--<%- ALTERNATE_LANGUAGE %>:
-                                                                    <%- project.content[ALTERNATE_LANGUAGE][0] %>
+                                                                    <%- project.content[ALTERNATE_LANGUAGE] %>
                                                                 -->
-                                                                <%_ if (project.content[DEFAULT_LANGUAGE].length > 1) {_%>
-                                                                    <ul>
-                                                                        <%_
-                                                                        let index = 0
-                                                                        for (const element of project.content[DEFAULT_LANGUAGE][1]) {
-                                                                        _%>
-                                                                            <li>
-                                                                                <%_ if (Array.isArray(element)) { _%>
-                                                                                    <lang-replace>
-                                                                                        <a
-                                                                                            href="<%- element[1] %>"
-                                                                                        >
-                                                                                            <%- element[0] %>
-                                                                                        </a>
-                                                                                    </lang-relace>
-                                                                                    <!--<%- ALTERNATE_LANGUAGE %>:
-
-                                                                                        <%- ALTERNATE_LANGUAGE %>:
-                                                                                        <a
-                                                                                            href="<%- project.content[ALTERNATE_LANGUAGE][1][index][1] %>"
-                                                                                        >
-                                                                                            <%- project.content[ALTERNATE_LANGUAGE][1][index][0] %>
-                                                                                        </a>
-                                                                                    -->
-                                                                                <%_ } else { _%>
-                                                                                    <%- element %>
-                                                                                    <!--<%- ALTERNATE_LANGUAGE %>:
-                                                                                        <%- project.content[ALTERNATE_LANGUAGE][1][index] %>
-                                                                                    -->
-                                                                                <%_ } _%>
-                                                                            </li>
-                                                                            <%_
-                                                                            index += 1
-                                                                        }
-                                                                        _%>
-                                                                    </ul>
-                                                                <%_ } _%>
                                                             </p>
                                                         </div>
-                                                    </div>
+                                                    <%_ if (project.url) { _%>
+                                                        </a>
+                                                    <%_ } else { _%>
+                                                        </div>
+                                                    <%_ } _%>
                                                 <%_ } _%>
                                             </div>
                                         <%_ } _%>
@@ -1088,18 +1090,25 @@ _%>
                                             -->
                                             <%_ if (section.title === 'about-me') { _%>
                                                 <span>
+                                                    <!--
+                                                        NOTE: We do not use a
+                                                        comment as replacement
+                                                        to let webpack detect
+                                                        referenced resources in
+                                                        markup.
+                                                    -->
                                                     <lang-replace>
                                                         <a
                                                             href="<%- LINK_CURRICULUM_VITAE_DEFAULT_LANGUAGE_PATH %>"
                                                             target="_blank"
                                                         >Curriculum Vitae</a>
                                                     </lang-replace>
-                                                    <!--<%- ALTERNATE_LANGUAGE %>:
+                                                    <lang-replacement><%- ALTERNATE_LANGUAGE %>:
                                                         <a
                                                             href="<%- LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE_PATH %>"
                                                             target="_blank"
                                                         >Lebenslauf</a>
-                                                    -->
+                                                    </lang-replacement>
 
                                                     <a
                                                         href="<%- LINK_V_CARD_PATH %>"
@@ -1126,7 +1135,8 @@ _%>
                                                     href="<%- link.url %>"
                                                     target="_blank"
                                                 >
-                                                    <i class="bi bi-<%- link.icon -%>"></i>
+                                                    <i class="bi bi-<%- link.icon %>"></i>
+                                                    <span><%- link.title %></span>
                                                 </a>
                                             <%_ } _%>
                                         </p>

@@ -24,16 +24,17 @@ import {
     globalContext,
     Logger,
     Mapping,
-    trailingThrottle
+    trailingThrottle,
+    timeout
 } from 'clientnode'
 import {object} from 'clientnode/property-types'
 import Headroom from 'headroom.js'
 import Swiper from 'swiper'
 import {Autoplay, HashNavigation, Navigation, Pagination} from 'swiper/modules'
 import WaveSurfer from 'wavesurfer.js'
-import {property} from 'web-component-wrapper/decorator'
+import {property} from 'web-component-wrapper/compatible/decorator'
 import {WebComponentAPI} from 'web-component-wrapper/type'
-import {Web} from 'web-component-wrapper/Web'
+import {Web} from 'web-component-wrapper/compatible/Web'
 import {api as websiteUtilitiesAPI} from 'website-utilities'
 import WebInternationalization, {
     api as webInternationalizationAPI
@@ -110,8 +111,12 @@ export class HomePage<
                     this.rootInstance.switchLanguageButton(parameters[1], this)
                 "
                 on-ensure="this.rootInstance.switchLanguageButton(data, this)"
-                on-ensured="this.rootInstance.mainSwiper?.updateAutoHeight()"
-                on-switched="this.rootInstance.mainSwiper?.updateAutoHeight()"
+                on-ensured="
+                    this.rootInstance.mainSwiperInstance?.updateAutoHeight()
+                "
+                on-switched="
+                    this.rootInstance.mainSwiperInstance?.updateAutoHeight()
+                "
             >
                 <slot>Please provide a template to transclude.</slot>
             </web-internationalization>
@@ -166,19 +171,24 @@ export class HomePage<
             mainSwiper: 'section.swiper',
             sectionSwiperWrapper: '.hp-section__swiper-wrapper',
 
+            greetingHeadlines:
+                '.hp-section__swiper-wrapper__slide--about-me h1',
+
+            projectCards: '.hp-card',
+            projectCardOpenClassName: 'hp-card--open',
             projectSwiper: '.hp-card .swiper',
 
             waveSurfer: '.hp-audio-player'
         },
 
         mainSwiper: {
-            grabCursor: false,
-            keyboard: true,
-            centeredSlidesBounds: true,
-
             modules: [HashNavigation, Navigation, Pagination],
 
+            grabCursor: false,
+            keyboard: true,
+
             autoHeight: true,
+            centeredSlidesBounds: true,
 
             a11y: true,
 
@@ -190,6 +200,7 @@ export class HomePage<
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev'
             },
+
             pagination: {
                 el: '.swiper-pagination',
                 clickable: true,
@@ -197,26 +208,44 @@ export class HomePage<
             }
         },
         projectSwiper: {
-            grabCursor: false,
-            keyboard: true,
-            centeredSlidesBounds: true,
-
             modules: [Autoplay, Pagination],
 
+            grabCursor: false,
+            keyboard: true,
             simulateTouch: false,
+
+            centeredSlidesBounds: true,
+
+            a11y: true,
 
             autoplay: {
                 delay: 3000,
                 pauseOnMouseEnter: true
             },
 
-            a11y: true,
-
             pagination: {
                 el: '.swiper-pagination',
                 clickable: true,
                 type: 'bullets'
             }
+        },
+
+        waveSurfer: {
+            dragToSeek: false,
+            interact: false,
+
+            /*
+            waveColor: 'var(--link-color)',
+            progressColor: 'var(--link-hover-color)',
+            */
+            waveColor: '#b822be',
+            progressColor: '#ec38bc',
+
+            barHeight: 6,
+            cursorWidth: 0,
+            barWidth: 3,
+            barGap: 9,
+            barRadius: 4
         }
     }
 
@@ -227,7 +256,10 @@ export class HomePage<
     @property({type: object})
         options = {} as Options
     // endregion
-    mainSwiper: Swiper | null = null
+    headroomInstance: Headroom | null = null
+    mainSwiperInstance: Swiper | null = null
+    projectSwiperInstances: Array<Swiper> = []
+    waveSurferInstances: Array<WaveSurfer> = []
     // region domNodes
     headerDomNode: HTMLElement | null = null
     navigationDomNodes: NodeListOf<HTMLElement> | null = null
@@ -238,6 +270,9 @@ export class HomePage<
     mainSwiperDomNode: HTMLElement | null = null
     sectionSwiperWrapperDomNodes: NodeListOf<HTMLElement> | null = null
 
+    greetingHeadlineDomNodes: NodeListOf<HTMLElement> | null = null
+
+    projectCardDomNodes: NodeListOf<HTMLElement> | null = null
     projectSwiperDomNodes: NodeListOf<HTMLElement> | null = null
 
     waveSurferDomNodes: NodeListOf<HTMLElement> | null = null
@@ -286,65 +321,28 @@ export class HomePage<
         if (Object.keys(this.options).length === 0)
             this._extendOptions()
 
-        await super.render(reason, false)
-
+        /*
+            NOTE: We need to place the greeting before the nested
+            web-internationalization component registers nodes to be
+            translated.
+        */
+        this.grabDomNodes()
         this.applyGreeting()
+
+        await super.render(reason, false)
 
         await this.waitForNestedComponentRendering()
 
         this.grabDomNodes()
 
         if (this.headerDomNode) {
-            const headroom =
+            this.headroomInstance =
                 new Headroom(this.headerDomNode, this.options.headroom)
-            headroom.init()
-            // headroom.destroy()
+            this.headroomInstance.init()
         }
 
-        if (this.mainSwiperDomNode)
-            this.mainSwiper = new Swiper(
-                this.mainSwiperDomNode,
-                {
-                    ...this.options.mainSwiper,
-                    on: {
-                        slideChangeTransitionStart: () => {
-                            this.sectionDomNode?.scrollTo({top: 0})
-                            globalContext.window?.scrollTo({top: 0})
-                        },
-                        slideChangeTransitionEnd: (swiper) => {
-                            this.sectionDomNode?.scrollTo({top: 0})
-                            globalContext.window?.scrollTo({top: 0})
-                            swiper.updateAutoHeight()
-                        }
-                    }
-                }
-            )
-
-        if (this.projectSwiperDomNodes)
-            for (const domNode of this.projectSwiperDomNodes)
-                new Swiper(domNode, copy(this.options.projectSwiper))
-
-        if (globalContext.window)
-            this.addSecureEventListener(
-                globalContext.window,
-                'resize',
-                () => {
-                    trailingThrottle(
-                        () => {
-                            this.mainSwiper?.updateSize()
-                            this.mainSwiper?.updateAutoHeight()
-                        },
-                        20
-                    )()
-                }
-            )
-
-        /*
-            NOTE: We have to use event delegation here since navigation links
-            might switch its dom node representation position between mobile
-            and normal menu. Doing it this way we avoid maintaining to assign
-            and remove event listeners during runtime.
-        */
+        this.initializeMainSwiper()
+        this.applyProjectCardInteractions()
 
         for (const domNode of this.navigationDomNodes || [])
             this.addSecureEventListener(domNode, 'click', (event) => {
@@ -385,33 +383,51 @@ export class HomePage<
             })
 
         for (const domNode of this.waveSurferDomNodes || []) {
-            const url = domNode.firstElementChild?.textContent.trim()
+            const url = domNode.firstElementChild?.getAttribute('href')
             const waveSurfer = WaveSurfer.create({
+                ...this.options.waveSurfer,
                 container: domNode,
-
-                dragToSeek: false,
-                interact: false,
-
-                waveColor: '#86228a',
-                progressColor: '#eb9be7',
-
-                barHeight: 10,
-                cursorWidth: 0,
-                barWidth: 3,
-                barGap: 9,
-
                 url
             })
+            this.waveSurferInstances.push(waveSurfer)
             this.addSecureEventListener(
                 domNode,
                 'click',
                 () => {
+                    /*
+                        We pause all other instances to avoid parallel audio
+                        playback.
+                    */
+                    for (const instance of this.waveSurferInstances)
+                        if (instance !== waveSurfer)
+                            instance.pause()
+
                     void waveSurfer.playPause()
                 }
             )
         }
 
         await this.resolveRenderingPromiseIfSet(reason, resolveRendering)
+    }
+    /**
+     * Should free up memory listeners related to deprecated HTML.
+     * @param reason - Description why rendering is necessary.
+     * @param reRenderReason - Description why a re-rendering is necessary.
+     */
+    unRender(reason = 'unknown', reRenderReason?: string) {
+        super.unRender(reason, reRenderReason)
+
+        this.headroomInstance?.destroy()
+
+        this.mainSwiperInstance?.destroy()
+
+        for (const instance of this.projectSwiperInstances)
+            instance.destroy()
+        this.projectSwiperInstances = []
+
+        for (const instance of this.waveSurferInstances)
+            instance.destroy()
+        this.waveSurferInstances = []
     }
     /// endregion
     grabDomNodes() {
@@ -432,6 +448,13 @@ export class HomePage<
             this.options.selectors.sectionSwiperWrapper
         )
 
+        this.greetingHeadlineDomNodes = this.hostDomNode.querySelectorAll(
+            this.options.selectors.greetingHeadlines
+        )
+
+        this.projectCardDomNodes = this.hostDomNode.querySelectorAll(
+            this.options.selectors.projectCards
+        )
         this.projectSwiperDomNodes = this.hostDomNode.querySelectorAll(
             this.options.selectors.projectSwiper
         )
@@ -440,7 +463,163 @@ export class HomePage<
             this.options.selectors.waveSurfer
         )
     }
+    initializeMainSwiper() {
+        if (this.mainSwiperDomNode)
+            this.mainSwiperInstance = new Swiper(
+                this.mainSwiperDomNode,
+                {
+                    ...this.options.mainSwiper,
+                    on: {
+                        slideChangeTransitionStart: () => {
+                            this.sectionDomNode?.scrollTo({top: 0})
+                            globalContext.window?.scrollTo({top: 0})
+                        },
+                        slideChangeTransitionEnd: (swiper) => {
+                            this.sectionDomNode?.scrollTo({top: 0})
+                            globalContext.window?.scrollTo({top: 0})
+                            swiper.updateAutoHeight()
+                        }
+                    }
+                }
+            )
+
+        if (globalContext.window) {
+            this.addSecureEventListener(
+                globalContext.window,
+                'resize',
+                () => {
+                    trailingThrottle(
+                        () => {
+                            this.mainSwiperInstance?.updateSize()
+                            this.mainSwiperInstance?.updateAutoHeight()
+                        },
+                        20
+                    )()
+                }
+            )
+            void timeout(() => {
+                this.mainSwiperInstance?.updateSize()
+                this.mainSwiperInstance?.updateAutoHeight()
+            })
+        }
+    }
+    applyProjectCardInteractions() {
+        if (!(
+            this.projectCardDomNodes &&
+            this.projectSwiperDomNodes &&
+            globalContext.document
+        ))
+            return
+
+        for (const domNode of this.projectSwiperDomNodes) {
+            const instance =
+                new Swiper(domNode, copy(this.options.projectSwiper))
+
+            this.projectSwiperInstances.push(instance)
+
+            for (const loadingDomNode of domNode.querySelectorAll('[loading]'))
+                this.addSecureEventListener(
+                    loadingDomNode,
+                    'load',
+                    () => {
+                        instance.updateSize()
+                        instance.updateAutoHeight()
+                    }
+                )
+        }
+
+        if (globalContext.window) {
+            this.addSecureEventListener(
+                globalContext.window,
+                'resize',
+                () => {
+                    trailingThrottle(
+                        () => {
+                            for (const instance of this.projectSwiperInstances) {
+                                instance.updateSize()
+                                instance.updateAutoHeight()
+                            }
+                        },
+                        20
+                    )()
+                }
+            )
+            void timeout(() => {
+                for (const instance of this.projectSwiperInstances) {
+                    instance.updateSize()
+                    instance.updateAutoHeight()
+                }
+            })
+        }
+
+        /*
+            NOTE: We have to use event delegation here since navigation links
+            might switch its dom node representation position between mobile
+            and normal menu. Doing it this way we avoid maintaining to assign
+            and remove event listeners during runtime.
+        */
+        /*
+        let openProjectDomNode: HTMLElement | null = null
+        let openProjectPresenterDomNode: HTMLElement | null = null
+        let closeOpenPresenterDomNode: () => void = NOOP
+        for (const domNode of this.projectCardDomNodes)
+            this.addSecureEventListener(
+                domNode,
+                'click',
+                () => {
+                    if (openProjectDomNode === domNode)
+                        return
+
+                    closeOpenPresenterDomNode()
+
+                    openProjectDomNode = domNode
+                    openProjectPresenterDomNode =
+                        domNode.cloneNode(true) as HTMLElement
+                    domNode.after(openProjectPresenterDomNode)
+                    openProjectPresenterDomNode.classList.add(
+                        this.options.selectors.projectCardOpenClassName
+                    )
+
+                    const deregister = this.addSecureEventListener(
+                        globalContext.document as Node,
+                        'click',
+                        (event) => {
+                            const clickWasInOpenProjectCard = Boolean(
+                                event.target &&
+                                getParents(event.target as Node)
+                                    .some((parentDomNode) =>
+                                        openProjectPresenterDomNode ===
+                                            parentDomNode ||
+                                        openProjectDomNode === parentDomNode
+                                    )
+                            )
+                            if (!clickWasInOpenProjectCard)
+                                closeOpenPresenterDomNode()
+                        }
+                    )
+                    closeOpenPresenterDomNode = () => {
+                        openProjectDomNode.addEventListener(
+                            'transitionend',
+                            () => {
+                                deregister()
+                                openProjectPresenterDomNode?.remove()
+                                openProjectDomNode = null
+                                openProjectPresenterDomNode = null
+                                closeOpenPresenterDomNode = NOOP
+                            }
+                        )
+                        openProjectDomNode.classList.remove(
+                            this.options.selectors.projectCardOpenClassName
+                        )
+                    }
+                }
+            )
+        */
+    }
     applyGreeting() {
+        if (!this.greetingHeadlineDomNodes?.length)
+            return
+
         const greets = [
             {
                 enUS: 'What are you doing that early?',
@@ -461,11 +640,8 @@ export class HomePage<
         ]
         const currentHours = new Date().getHours()
         const index = Math.floor(currentHours / 24 * greets.length)
-        const greetingDomNode = this.hostDomNode.querySelector(
-            '.hp-section__swiper-wrapper__slide--about-me h1'
-        )
-        if (greetingDomNode)
-            greetingDomNode.innerHTML =
+        for (const domNode of this.greetingHeadlineDomNodes)
+            domNode.innerHTML =
                 `${greets[index].enUS}<!--deDE:${greets[index].deDE}-->`
     }
     switchLanguageButton(
