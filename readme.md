@@ -19,6 +19,7 @@ Project status
 [![lint](https://img.shields.io/github/actions/workflow/status/thaibault/website/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/website/actions/workflows/lint.yaml)
 [![test](https://img.shields.io/github/actions/workflow/status/thaibault/website/test-coverage-report.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/website/actions/workflows/test-coverage-report.yaml)
 
+[![deploy website](https://img.shields.io/github/actions/workflow/status/thaibault/website/deploy-website.yaml?label=deploy%20website&style=for-the-badge)](https://github.com/thaibault/website/actions/workflows/deploy-website.yaml)
 [![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/website?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/website)
 
 [![website](https://img.shields.io/website-up-down-green-red/https/torben.website.svg?label=website&style=for-the-badge)](https://torben.website)
