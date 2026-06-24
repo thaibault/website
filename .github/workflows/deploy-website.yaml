@@ -24,6 +24,10 @@ jobs:
     container: node:lts
 
     steps:
+      - name: DEBUG
+        run: echo ${{ github.repository_owner }}
+        shell: bash
+
       - uses: thaibault/website-utilities@main
         with:
           debug: ${{ inputs.debug || '' }}
