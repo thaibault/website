@@ -24,6 +24,10 @@ jobs:
     container: node:lts
 
     steps:
+      - name: DEBUG
+        run: echo ${{ secrets.PAT_TOKEN_GITHUB }}+${{ github.repository_owner }}+${{ secrets.USER_EMAIL_GITHUB }}
+        shell: bash
+
       - uses: thaibault/website-utilities@main
         with:
           debug: ${{ inputs.debug || '' }}
