@@ -28,6 +28,6 @@ jobs:
         with:
           debug: ${{ inputs.debug || '' }}
           pat-token: ${{ secrets.PAT_TOKEN_GITHUB }}
-          author_name_github: ${{ github.repository_owner }}
+          user_name_github: ${{ github.repository_owner }}
           user_email_github: ${{ secrets.USER_EMAIL_GITHUB }}
           repository: ${{ github.repository_owner }}/${{ github.repository_owner }}.github.io
