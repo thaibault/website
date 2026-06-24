@@ -28,4 +28,4 @@ jobs:
         with:
           debug: ${{ inputs.debug || '' }}
           pat-token: ${{ secrets.PAT_TOKEN_GITHUB }}
-          repository: {{ github.repository_owner }}/${{ github.repository_owner }}.github.io
+          repository: ${{ github.repository_owner }}/${{ github.repository_owner }}.github.io
