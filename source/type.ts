@@ -15,9 +15,9 @@
     See https://creativecommons.org/licenses/by/3.0/deed.de
     endregion
 */
-import {HeadroomOptions} from 'headroom.js'
-import {SwiperOptions} from 'swiper/types'
-import {WaveSurferOptions} from 'wavesurfer.js'
+import type {HeadroomOptions} from 'headroom.js'
+import type {SwiperOptions} from 'swiper/types'
+import type {WaveSurferOptions} from 'wavesurfer.js'
 // region exports
 export interface DefaultOptions {
     trackingCode: string

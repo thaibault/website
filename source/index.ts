@@ -17,13 +17,17 @@
     endregion
 */
 // region imports
+import type {Mapping} from 'clientnode'
+import type {WebComponentAPI} from 'web-component-wrapper/type'
+
+import type {DefaultOptions, Options} from './type'
+
 import {
     camelCaseToDelimited,
     copy,
     extend,
     globalContext,
     Logger,
-    Mapping,
     trailingThrottle,
     timeout
 } from 'clientnode'
@@ -33,14 +37,11 @@ import Swiper from 'swiper'
 import {Autoplay, HashNavigation, Navigation, Pagination} from 'swiper/modules'
 import WaveSurfer from 'wavesurfer.js'
 import {property} from 'web-component-wrapper/decorator'
-import {WebComponentAPI} from 'web-component-wrapper/type'
 import {Web} from 'web-component-wrapper/Web'
 import {api as websiteUtilitiesAPI} from 'website-utilities'
 import WebInternationalization, {
     api as webInternationalizationAPI
 } from 'web-internationalization'
-
-import {DefaultOptions, Options} from './type'
 // endregion
 export const log = new Logger({name: 'website'})
 // region plugins/classes
