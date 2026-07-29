@@ -141,6 +141,16 @@
       "entry": {
         "#": "errorreporter\": [\"ua-parser-js\", \"errorreporter\"]",
         "__evaluate__": "2 < self.givenCommandLineArguments.length && self.givenCommandLineArguments[2].startsWith('test') ? {testBundle: './test.ts'} : {index: ['./index.css', '@webcomponents/webcomponentsjs/webcomponents-bundle.js', '@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js', './index']}"
+      },
+      "external": {
+        "#": "Libs are pre-built webpack bundles; re-bundling them into the test bundle collides their nested webpack runtimes (duplicate __webpack_module_cache__ / infinitely self-referencing re-export getters). Externalize them for the test command so jest resolves the published bundles at runtime.",
+        "implicit": {
+          "pattern": {
+            "include": {
+              "__evaluate__": "['@jest/globals'].concat(2 < self.givenCommandLineArguments.length && self.givenCommandLineArguments[2].startsWith('test') ? [/^(?:clientnode|web-component-wrapper|website-utilities|web-internationalization|errorreporter)(?:$|\\/)/] : [])"
+            }
+          }
+        }
       }
     },
     "library": false,
