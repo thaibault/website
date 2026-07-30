@@ -90,7 +90,7 @@
     "wavesurfer.js": "^7.12.11",
     "web-component-wrapper": "^0.0.610",
     "web-internationalization": "^2.0.50",
-    "weboptimizer": "^4.0.47",
+    "weboptimizer": "^4.0.48",
     "webpack-dev-server": "^6.0.0",
     "website-utilities": "^1.0.464"
   },
