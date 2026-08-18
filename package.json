@@ -12,18 +12,19 @@
   },
   "license": "CC-BY-3.0",
   "author": {
-    "name": "Torben Sickert",
     "email": "info@torben.website",
+    "name": "Torben Sickert",
     "url": "https://torben.website"
   },
-  "files": [
-    "build"
-  ],
-  "main": "build/index.html",
   "repository": {
     "type": "git",
     "url": "git@github.io:thaibault/.git"
   },
+  "main": "build/index.html",
+  "files": [
+    "build"
+  ],
+  "sideEffects": true,
   "scripts": {
     "build": "weboptimizer build",
     "build:stats": "weboptimizer build --profile --json /tmp/stats.json | sed --regexp-extended 's/^Running \".+$//' | sed --regexp-extended 's/^Consolidate module request \".+$//' >/tmp/stats.json && echo 'Results successfully written to \"/tmp/stats.json\".'",
@@ -94,18 +95,17 @@
     "webpack-dev-server": "^6.0.0",
     "website-utilities": "^1.0.464"
   },
+  "resolutions": {
+    "colors": "1.4.0",
+    "globals@npm:^11.1.0": "patch:globals@npm%3A11.12.0#~/.yarn/patches/globals-npm-11.12.0-1fa7f41a6c.patch",
+    "globals@npm:^14.0.0": "patch:globals@npm%3A11.12.0#~/.yarn/patches/globals-npm-11.12.0-1fa7f41a6c.patch",
+    "globals@npm:^9.18.0": "patch:globals@npm%3A11.12.0#~/.yarn/patches/globals-npm-11.12.0-1fa7f41a6c.patch"
+  },
   "engines": {
     "node": ">=24",
     "npm": ">=11",
     "yarn": ">=4"
   },
-  "resolutions": {
-    "colors": "1.4.0",
-    "globals@npm:^14.0.0": "patch:globals@npm%3A11.12.0#~/.yarn/patches/globals-npm-11.12.0-1fa7f41a6c.patch",
-    "globals@npm:^11.1.0": "patch:globals@npm%3A11.12.0#~/.yarn/patches/globals-npm-11.12.0-1fa7f41a6c.patch",
-    "globals@npm:^9.18.0": "patch:globals@npm%3A11.12.0#~/.yarn/patches/globals-npm-11.12.0-1fa7f41a6c.patch"
-  },
-  "sideEffects": true,
   "webOptimizer": {
     "commandLine": {
       "test": {
@@ -166,12 +166,12 @@
             "list": [
               "...",
               {
-                "tag": "a",
                 "attribute": "href",
-                "type": "src",
                 "filter": {
                   "__evaluate__": "(tag, attribute, attributes, resourcePath) => attributes.filter(({name}) => name === attribute)[0].value.startsWith('data/')"
-                }
+                },
+                "tag": "a",
+                "type": "src"
               }
             ]
           }
@@ -214,11 +214,11 @@
       },
       "target": {
         "asset": {
+          "cascadingStyleSheet": "./",
           "image": {
             "__evaluate__": "({filename}) => `image/${path.dirname(path.resolve(filename).substring(self.path.source.asset.image.length))}/[name][ext]?${self.hashAlgorithm}=[contenthash]`"
           },
-          "javaScript": "./",
-          "cascadingStyleSheet": "./"
+          "javaScript": "./"
         }
       }
     },
