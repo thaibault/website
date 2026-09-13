@@ -7324,25 +7324,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"clientnode@npm:4.0.1515":
-  version: 4.0.1515
-  resolution: "clientnode@npm:4.0.1515"
-  peerDependencies:
-    "@types/prop-types": "*"
-    node-fetch: "*"
-    prop-types: "*"
-  peerDependenciesMeta:
-    "@types/prop-types":
-      optional: true
-    node-fetch:
-      optional: true
-    prop-types:
-      optional: true
-  checksum: 10c0/7fcd8a37bd876442e5506f7bcb1734601994b8cae720e680e7f59bde9ab549ff7aea52a99b6b933bf07c1605e8123d1379cdcc81e0901c4065649b4533293010
-  languageName: node
-  linkType: hard
-
-"clientnode@npm:^4.0.1516":
+"clientnode@npm:4.0.1516, clientnode@npm:^4.0.1516":
   version: 4.0.1516
   resolution: "clientnode@npm:4.0.1516"
   peerDependencies:
@@ -17059,9 +17041,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"weboptimizer@npm:^4.0.81":
-  version: 4.0.81
-  resolution: "weboptimizer@npm:4.0.81"
+"weboptimizer@npm:^4.0.83":
+  version: 4.0.83
+  resolution: "weboptimizer@npm:4.0.83"
   dependencies:
     "@babel/core": "npm:^8.0.5"
     "@babel/plugin-proposal-decorators": "npm:^8.0.2"
@@ -17073,7 +17055,7 @@ __metadata:
     babel-loader: "npm:^10.1.1"
     babel-plugin-polyfill-corejs3: "npm:^1.0.0"
     babel-plugin-transform-rewrite-imports: "npm:^1.5.4"
-    clientnode: "npm:4.0.1515"
+    clientnode: "npm:4.0.1516"
     core-js: "npm:^3.50.0"
     ejs: "npm:^6.0.1"
     exports-loader: "npm:^5.0.0"
@@ -17207,7 +17189,7 @@ __metadata:
       optional: true
   bin:
     weboptimizer: index.js
-  checksum: 10c0/cbaeff1ee55a25f2e7e5b98a083487a88a87b7cb41361a5ec787c16a385cb0665e28ef89f2cc300596897301b69b1b167452b16a3d6d36b3b60a8ed499e45d41
+  checksum: 10c0/83025ccbc04906375d9c269e052f48c5ddce60a95e4dc4e984990af021783b7995223c4b6e864398eaa182d712bec92c75e3dcef47f6bc8f94039aaf8af79e8a
   languageName: node
   linkType: hard
 
@@ -17430,7 +17412,7 @@ __metadata:
     wavesurfer.js: "npm:^7.12.12"
     web-component-wrapper: "npm:^0.0.612"
     web-internationalization: "npm:^2.0.51"
-    weboptimizer: "npm:^4.0.81"
+    weboptimizer: "npm:^4.0.83"
     webpack-dev-server: "npm:^6.0.0"
     website-utilities: "npm:^1.0.465"
   languageName: unknown
