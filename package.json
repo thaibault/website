@@ -63,7 +63,7 @@
     "errorreporter": "^1.0.358",
     "eslint": "^10.10.0",
     "eslint-config-google": "^0.14.0",
-    "eslint-plugin-jsdoc": "^64.3.9",
+    "eslint-plugin-jsdoc": "^64.3.10",
     "favicons": "^7.3.1",
     "favicons-webpack-plugin": "^6.0.1",
     "headroom.js": "^0.12.0",
@@ -93,7 +93,7 @@
     "web-internationalization": "^2.0.51",
     "weboptimizer": "^4.0.83",
     "webpack-dev-server": "^6.0.0",
-    "website-utilities": "^1.0.465"
+    "website-utilities": "^1.0.466"
   },
   "resolutions": {
     "colors": "1.4.0",

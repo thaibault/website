@@ -8836,9 +8836,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-jsdoc@npm:^64.3.9":
-  version: 64.3.9
-  resolution: "eslint-plugin-jsdoc@npm:64.3.9"
+"eslint-plugin-jsdoc@npm:^64.3.10":
+  version: 64.3.10
+  resolution: "eslint-plugin-jsdoc@npm:64.3.10"
   dependencies:
     "@es-joy/jsdoccomment": "npm:~0.97.0"
     "@es-joy/resolve.exports": "npm:1.2.0"
@@ -8857,7 +8857,7 @@ __metadata:
     to-valid-identifier: "npm:^1.0.0"
   peerDependencies:
     eslint: ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0
-  checksum: 10c0/2ab4454fdfe8cdfdbb8eabe524564b90e9a264baa5d539fd81d878a39550e0685d2b60a51e9a4fe09f3b69822e13bdb023b84e1772dd5b6b62ec9c24bb2b7b82
+  checksum: 10c0/fe72c96f434b386ce18c1e71c07c356730dd013baac7d10be4cd4544b8a9e2777a9749aa161e21a8afbe861f8932185a71f78bdc5f16a96c10bd5c280a31b934
   languageName: node
   linkType: hard
 
@@ -17338,9 +17338,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"website-utilities@npm:^1.0.465":
-  version: 1.0.465
-  resolution: "website-utilities@npm:1.0.465"
+"website-utilities@npm:^1.0.466":
+  version: 1.0.466
+  resolution: "website-utilities@npm:1.0.466"
   peerDependencies:
     "@babel/runtime": "*"
     bootstrap-icons: "*"
@@ -17356,7 +17356,7 @@ __metadata:
       optional: true
   bin:
     website-utilities: deploy.js
-  checksum: 10c0/075ede5c2b703ae58cf62f48ea90f06f98523a1d926c97a934fd5672e3189f8d011f35a89e3fff3ec6a8c16943eb7b410004cb0e4d9e091190948481a593047d
+  checksum: 10c0/a538b00fa8cd169053d048e58d7194e3b629a0b2563fee10c2fdec587644e5d4c7b321f3a2b33343c2b1f23f2341201258d9393b0168209562c86c9ed5a72545
   languageName: node
   linkType: hard
 
@@ -17384,7 +17384,7 @@ __metadata:
     errorreporter: "npm:^1.0.358"
     eslint: "npm:^10.10.0"
     eslint-config-google: "npm:^0.14.0"
-    eslint-plugin-jsdoc: "npm:^64.3.9"
+    eslint-plugin-jsdoc: "npm:^64.3.10"
     favicons: "npm:^7.3.1"
     favicons-webpack-plugin: "npm:^6.0.1"
     headroom.js: "npm:^0.12.0"
@@ -17414,7 +17414,7 @@ __metadata:
     web-internationalization: "npm:^2.0.51"
     weboptimizer: "npm:^4.0.83"
     webpack-dev-server: "npm:^6.0.0"
-    website-utilities: "npm:^1.0.465"
+    website-utilities: "npm:^1.0.466"
   languageName: unknown
   linkType: soft
 
