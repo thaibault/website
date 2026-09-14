@@ -424,10 +424,6 @@ const PROJECTS = [
             {
                 title: 'clientnode',
                 url: 'https://torben.website/clientnode',
-                images: [
-                    `${IMAGE_PATH}projects/clientnode/example-1.png`,
-                    `${IMAGE_PATH}projects/clientnode/example-2.png`
-                ],
                 content: {
                     enUS: 'Provides universal backend and frontend utilities.',
                     deDE:
@@ -446,7 +442,6 @@ const PROJECTS = [
             {
                 title: 'errorreporter',
                 url: 'https://torben.website/errorreporter',
-                images: [`${IMAGE_PATH}projects/errorreporter/main.png`],
                 content: {
                     enUS: 'A web client side error reporter.',
                     deDE:
@@ -464,11 +459,6 @@ const PROJECTS = [
             {
                 title: 'react-input-material',
                 url: 'https://torben.website/react-input-material',
-                images: [
-                    `${IMAGE_PATH}projects/react-input-material/date-time-select.png`,
-                    `${IMAGE_PATH}projects/react-input-material/list-of-checkboxes.png`,
-                    `${IMAGE_PATH}projects/react-input-material/rich-text.png`
-                ],
                 content: {
                     enUS:
                         'Reusable material design based input fields as ' +
@@ -484,7 +474,6 @@ const PROJECTS = [
             {
                 title: 'react-generic-tools',
                 url: 'https://torben.website/react-generic-tools',
-                images: [`${IMAGE_PATH}projects/react-generic-tools/main.png`],
                 content: {
                     enUS:
                         'Generic utility types, methods, components and ' +
@@ -497,9 +486,6 @@ const PROJECTS = [
             {
                 title: 'react-generic-animate',
                 url: 'https://torben.website/react-generic-animate',
-                images: [
-                    `${IMAGE_PATH}projects/react-generic-animate/main.png`
-                ],
                 content: {
                     enUS:
                         'Animates markup within the react component context.',
@@ -519,10 +505,6 @@ const PROJECTS = [
             {
                 title: 'web-component-wrapper',
                 url: 'https://torben.website/web-component-wrapper',
-                images: [
-                    `${IMAGE_PATH}projects/web-component-wrapper/concept.png`,
-                    `${IMAGE_PATH}projects/web-component-wrapper/example.png`
-                ],
                 content: {
                     enUS:
                         'Generic web-component base class and wrapper to ' +
@@ -1036,12 +1018,12 @@ _%>
                                                 <%_ for (const project of group.content) { _%>
                                                     <%_ if (project.url) { _%>
                                                         <a
-                                                            class="hp-card"
+                                                            class="hp-card<%- project.images ? ' hp-card--with-images' : '' %>"
                                                             href="<%- project.url %>"
                                                             target="_blank"
                                                         >
                                                     <%_ } else { _%>
-                                                        <div class="hp-card">
+                                                        <div class="hp-card<%- project.images ? ' hp-card--with-images' : '' %>">
                                                     <%_ } _%>
                                                         <div class="hp-card__body">
                                                             <h4>

@@ -213,7 +213,7 @@ html, body {
     }
 
     .hp-card {
-        height: 500px;
+        height: 250px;
         width: 100%;
         max-width: 250px;
 
@@ -228,6 +228,11 @@ html, body {
 
         transition: box-shadow 0.2s linear;
 
+        &:is(a) {
+            background: none;
+            color: var(--font-color);
+        }
+
         &.hp-card--open {
             position: absolute;
             left: 0;
@@ -236,6 +241,22 @@ html, body {
             height: 100vh;
             width: 100%;
             max-width: 1000px;
+        }
+
+        &.hp-card--with-images {
+            height: 500px;
+
+            @media (--wu-extra-extra-small) {
+                @media (--wu-extra-small) {
+                    height: 650px;
+
+                    @media (--wu-small) {
+                        @media (--wu-medium) {
+                            height: 508px;
+                        }
+                    }
+                }
+            }
         }
 
         @media (width >= 250px) {
@@ -253,12 +274,10 @@ html, body {
 
                 width: 100%;
                 max-width: 550px;
-                height: 650px;
 
                 @media (--wu-small) {
                     @media (--wu-medium) {
                         width: 340px;
-                        height: 508px;
                     }
                 }
             }
