@@ -245,6 +245,13 @@ html, body {
             height: 100vh;
             width: 100%;
             max-width: 1000px;
+            /*
+                Opened cards can become much wider (up to 1000px) than the
+                rotating border effect bar derived from their height.
+            */
+            &::before {
+                height: max(150%, 1500px);
+            }
         }
 
         &.hp-card--with-images {
@@ -296,7 +303,14 @@ html, body {
             content: '';
 
             position: absolute;
-            height: 130%;
+            /*
+                The rotating bar has to exceed the cards diagonal in every
+                rotation angle to keep the effect visible on all four edges.
+                Since small cards are wider (up to 550px) than tall (250px) a
+                height derived from the cards height alone would only reach
+                the top and bottom edge.
+            */
+            height: max(150%, 850px);
             width: 50px;
 
             background-image: var(--card-border-effect-gradient);
