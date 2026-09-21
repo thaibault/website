@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a personal portfolio website (https://torben.website) built with TypeScript, WebComponents, and weboptimizer. The project demonstrates modern frontend development with strong emphasis on build optimization, type safety, internationalization (English/German), and responsive design.
+This is a personal portfolio website (https://tsickert.com) built with TypeScript, WebComponents, and weboptimizer. The project demonstrates modern frontend development with strong emphasis on build optimization, type safety, internationalization (English/German), and responsive design.
 
 ## Build System: weboptimizer
 

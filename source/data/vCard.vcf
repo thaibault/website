@@ -4,11 +4,11 @@ PRODID:-//Apple Inc.//macOS 26.5.1//EN
 N:Sickert;Torben;;Beratung und Entwicklung;
 FN:Beratung und Entwicklung Torben Sickert
 TITLE:Entwickler\, Consultant
-EMAIL;type=INTERNET;type=pref:info@torben.website
+EMAIL;type=INTERNET;type=pref:info@tsickert.com
 TEL;type=CELL;type=VOICE;type=pref:+49 (0) 176 / 10 248 185
 ADR;type=WORK;type=pref:;;Waldstr. 29;Gundelfingen i.Br.;Baden-W¸rttemberg;79194;Deutschland
 ADR;type=HOME:;;Waldstr. 29;Gundelfingen i.Br.;Baden-W¸rttemberg;79194;Deutschland
-URL;type=WORK;type=pref:https://torben.website
-item1.URL:https://torben.website
+URL;type=WORK;type=pref:https://tsickert.com
+item1.URL:https://tsickert.com
 item1.X-ABLabel:_$!<HomePage>!$_
 END:VCARD
