@@ -1111,11 +1111,9 @@ _%>
                                         >
                                             <%_
                                                 for (const link of SOCIAL_MEDIA) {
-                                                    if (link.url.indexOf('@') !== -1)
-                                                        link.url = `mailto:${link.url}`
                                             _%>
                                                 <a
-                                                    href="<%- link.url %>"
+                                                    href="<%- `${link.url.includes('@') ? 'mailto:' : ''}${link.url}` %>"
                                                     target="_blank"
                                                 >
                                                     <i class="bi bi-<%- link.icon %>"></i>
