@@ -7628,25 +7628,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"clientnode@npm:4.0.1522":
-  version: 4.0.1522
-  resolution: "clientnode@npm:4.0.1522"
-  peerDependencies:
-    "@types/prop-types": "*"
-    node-fetch: "*"
-    prop-types: "*"
-  peerDependenciesMeta:
-    "@types/prop-types":
-      optional: true
-    node-fetch:
-      optional: true
-    prop-types:
-      optional: true
-  checksum: 10c0/fcb644abc88a6a8090658d74b23af677c5e77c73d8450e522752496ab80193a9193df0a853b87384e241606dbb593da4ba54eb303feea118d1ebf66345ed7363
-  languageName: node
-  linkType: hard
-
-"clientnode@npm:^4.0.1523":
+"clientnode@npm:4.0.1523, clientnode@npm:^4.0.1523":
   version: 4.0.1523
   resolution: "clientnode@npm:4.0.1523"
   peerDependencies:
@@ -8665,12 +8647,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ejs@npm:^7.0.1":
-  version: 7.0.1
-  resolution: "ejs@npm:7.0.1"
+"ejs@npm:^7.0.2":
+  version: 7.0.2
+  resolution: "ejs@npm:7.0.2"
   bin:
     ejs: bin/cli.js
-  checksum: 10c0/683485e8f4d1db361fe4c6b3906733555460eb7f858ad4ca7f7c0e0e7925d83e6b6e55edda9baf0701213c2e9a7e08e83c2ec116ba71a98affdf5638e8ba8067
+  checksum: 10c0/f5f8b44411766186e38aec59a4974612cc259121e58a6af40c04a5613218503a92386cedc9fe7faf474bf928596c4ede9b7ce98babcf08d6d2e55c7189617259
   languageName: node
   linkType: hard
 
@@ -9027,9 +9009,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-jsdoc@npm:^65.3.8":
-  version: 65.3.8
-  resolution: "eslint-plugin-jsdoc@npm:65.3.8"
+"eslint-plugin-jsdoc@npm:^65.3.12":
+  version: 65.3.12
+  resolution: "eslint-plugin-jsdoc@npm:65.3.12"
   dependencies:
     "@es-joy/jsdoccomment": "npm:~0.98.0"
     "@es-joy/resolve.exports": "npm:1.2.0"
@@ -9052,7 +9034,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/0d1a71c265faee5b897467d26bca81f6d667de0d67e94a0437c76cac74aa1e9e1421795c9c110f2c5afe8afe51b61aa7ff3297ca4a9d4573775dc7d5d7084c73
+  checksum: 10c0/69aeb8039c6d107b4c4e596818abcc1e43f6270896246b80042419fb87d371d71338287ca402d5a5e9886eebdc59e2e90191d4a4b9f4d7e6e50b4521901fcc8e
   languageName: node
   linkType: hard
 
@@ -9938,7 +9920,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^13.0.3, glob@npm:^13.0.6":
+"glob@npm:^13.0.6":
   version: 13.0.6
   resolution: "glob@npm:13.0.6"
   dependencies:
@@ -13133,7 +13115,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"package-json-from-dist@npm:^1.0.0, package-json-from-dist@npm:^1.0.1":
+"package-json-from-dist@npm:^1.0.0":
   version: 1.0.1
   resolution: "package-json-from-dist@npm:1.0.1"
   checksum: 10c0/62ba2785eb655fec084a257af34dbe24292ab74516d6aecef97ef72d4897310bc6898f6c85b5cd22770eaa1ce60d55a0230e150fb6a966e3ecd6c511e23d164b
@@ -14783,18 +14765,6 @@ __metadata:
   bin:
     rimraf: ./bin.js
   checksum: 10c0/4eef73d406c6940927479a3a9dee551e14a54faf54b31ef861250ac815172bade86cc6f7d64a4dc5e98b65e4b18a2e1c9ff3b68d296be0c748413f092bb0dd40
-  languageName: node
-  linkType: hard
-
-"rimraf@npm:^6.1.3":
-  version: 6.1.3
-  resolution: "rimraf@npm:6.1.3"
-  dependencies:
-    glob: "npm:^13.0.3"
-    package-json-from-dist: "npm:^1.0.1"
-  bin:
-    rimraf: dist/esm/bin.mjs
-  checksum: 10c0/4a56537850102e20ba5d5eb49f366b4b7b2435389734b4b8480cf0e0eb0f6f5d0c44120a171aeb0d8f9ab40312a10d2262f3f50acbad803e32caef61b6cf86fc
   languageName: node
   linkType: hard
 
@@ -16938,9 +16908,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"weboptimizer@npm:^4.0.89":
-  version: 4.0.89
-  resolution: "weboptimizer@npm:4.0.89"
+"weboptimizer@npm:^4.0.90":
+  version: 4.0.90
+  resolution: "weboptimizer@npm:4.0.90"
   dependencies:
     "@babel/core": "npm:^8.0.7"
     "@babel/plugin-proposal-decorators": "npm:^8.0.2"
@@ -16952,9 +16922,9 @@ __metadata:
     babel-loader: "npm:^10.1.1"
     babel-plugin-polyfill-corejs3: "npm:^1.0.0"
     babel-plugin-transform-rewrite-imports: "npm:^1.5.4"
-    clientnode: "npm:4.0.1522"
+    clientnode: "npm:4.0.1523"
     core-js: "npm:^3.50.0"
-    ejs: "npm:^7.0.1"
+    ejs: "npm:^7.0.2"
     exports-loader: "npm:^5.0.0"
     extract-loader: "npm:^5.1.0"
     glob-all: "npm:^3.3.1"
@@ -16963,7 +16933,6 @@ __metadata:
     html-webpack-plugin: "npm:^5.6.8"
     imports-loader: "npm:^5.0.0"
     jest-environment-jsdom: "npm:^30.5.2"
-    rimraf: "npm:^6.1.3"
     script-loader: "npm:^0.7.2"
     typescript: "npm:@typescript/typescript6@^6.0.2"
     webpack: "npm:5.112.0"
@@ -17086,7 +17055,7 @@ __metadata:
       optional: true
   bin:
     weboptimizer: index.js
-  checksum: 10c0/9cc16abf13d17f7eec0ae577c0fd24a8ec933f2a110e8f005fe701c7ef2ac688d9b4cf39ad10c4ca993c019b0e8dae43aa585b1da38b27dc3612ab868c009c4e
+  checksum: 10c0/0c9fc81370d45fe792c55ec8f7b8690f5d1cffade86db199aafd75d7ffe24168efe11b1db68e17034027c2719386ddf41874476b7bad7bca83f7b8bc5f90686b
   languageName: node
   linkType: hard
 
@@ -17233,25 +17202,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"website-utilities@npm:^1.0.471":
-  version: 1.0.471
-  resolution: "website-utilities@npm:1.0.471"
+"website-utilities@npm:^1.0.472":
+  version: 1.0.472
+  resolution: "website-utilities@npm:1.0.472"
   peerDependencies:
     "@babel/runtime": "*"
     bootstrap-icons: "*"
     clientnode: "*"
-    rimraf: "*"
     web-component-wrapper: "*"
   peerDependenciesMeta:
     "@babel/runtime":
       optional: true
     bootstrap-icons:
       optional: true
-    rimraf:
-      optional: true
   bin:
     website-utilities: deploy.js
-  checksum: 10c0/6e5eb4719332cc7c4334c261ff6bb271f68e1c1ddcaecb7ec3706ae2c2f299c5177dbb57c3d757b2ca393b186e8a146f567fee05a867b509ad096243ec923765
+  checksum: 10c0/3abc610f2411b87e656091862822cc9e6855c73a811816f810836533da4672f13f5b22242208035e8a0cc67152c2525ec57baddb3d9c90c63e156490ea34cbb2
   languageName: node
   linkType: hard
 
@@ -17279,7 +17245,7 @@ __metadata:
     errorreporter: "npm:^1.0.361"
     eslint: "npm:^10.13.0"
     eslint-config-google: "npm:^0.14.0"
-    eslint-plugin-jsdoc: "npm:^65.3.8"
+    eslint-plugin-jsdoc: "npm:^65.3.12"
     favicons: "npm:^7.3.1"
     favicons-webpack-plugin: "npm:^6.0.1"
     headroom.js: "npm:^0.12.0"
@@ -17298,7 +17264,6 @@ __metadata:
     postcss-sprites: "npm:^4.2.1"
     postcss-url: "npm:^10.1.4"
     prop-types: "npm:^15.8.1"
-    rimraf: "npm:^6.1.3"
     style-loader: "npm:^4.0.0"
     stylelint: "npm:^17.16.0"
     stylelint-config-standard: "npm:^40.0.0"
@@ -17308,9 +17273,9 @@ __metadata:
     wavesurfer.js: "npm:^8.0.2"
     web-component-wrapper: "npm:^0.0.617"
     web-internationalization: "npm:^2.0.56"
-    weboptimizer: "npm:^4.0.89"
+    weboptimizer: "npm:^4.0.90"
     webpack-dev-server: "npm:^6.0.0"
-    website-utilities: "npm:^1.0.471"
+    website-utilities: "npm:^1.0.472"
   languageName: unknown
   linkType: soft
 
