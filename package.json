@@ -69,7 +69,7 @@
     "headroom.js": "^0.12.0",
     "jest": "^30.5.2",
     "jsdoc": "^4.0.5",
-    "legal-notes": "^1.0.30",
+    "legal-notes": "^1.0.31",
     "mini-css-extract-plugin": "^2.10.2",
     "postcss": "^8.5.31",
     "postcss-fontpath": "^1.0.0",

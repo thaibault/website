@@ -11870,10 +11870,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"legal-notes@npm:^1.0.30":
-  version: 1.0.30
-  resolution: "legal-notes@npm:1.0.30"
-  checksum: 10c0/d2b2b73f174f922311193d37806a0b4c1d34c61158153f4a6a5056856da79df586c0e8b0d68a6ab77f609535cddbf298b5a4856dacf8ecf30a9693491feb8ef6
+"legal-notes@npm:^1.0.31":
+  version: 1.0.31
+  resolution: "legal-notes@npm:1.0.31"
+  checksum: 10c0/7ac900993c29d273c9524f6c1a767ef98dcdac2837d8145f6ddd31438ad7e0645499fecfc4ffd1d5d1543947978684052be1a37d143b65e3f6344e3139938d8f
   languageName: node
   linkType: hard
 
@@ -17236,7 +17236,7 @@ __metadata:
     headroom.js: "npm:^0.12.0"
     jest: "npm:^30.5.2"
     jsdoc: "npm:^4.0.5"
-    legal-notes: "npm:^1.0.30"
+    legal-notes: "npm:^1.0.31"
     mini-css-extract-plugin: "npm:^2.10.2"
     postcss: "npm:^8.5.31"
     postcss-fontpath: "npm:^1.0.0"
