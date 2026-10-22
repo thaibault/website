@@ -29,10 +29,17 @@ const swapCase = (letters) => {
 
     return newLetters
 }
+/*
+    Converts an internally used language description like "enUS" into the two
+    letter representation ("en") third party libraries like the consent
+    manager expect.
+*/
+const toShortLanguage = (language) => language.substring(0, 2).toLowerCase()
 // endregion
 // region language
 const DEFAULT_LANGUAGE = 'enUS'
 const ALTERNATE_LANGUAGE = 'deDE'
+const LANGUAGES = [DEFAULT_LANGUAGE, ALTERNATE_LANGUAGE]
 // endregion
 // region location
 const IMAGE_PATH = 'image/'
@@ -840,9 +847,135 @@ const PROJECTS = [
         ]
     }
 ]
+const GTM_ID = 'GTM-WM3X6BV7'
+/*
+    Texts for the consent manager. Klaro ships translations for its own user
+    interface ("Accept all", "I decline", ...) but not for site specific
+    content like service or purpose descriptions. Those are maintained here in
+    the same "{enUS: ..., deDE: ...}" shape used for the remaining page
+    content.
+*/
+const CONSENT_SERVICES = [
+    {
+        name: 'google-tag-manager',
+        title: {enUS: 'Google Tag Manager', deDE: 'Google Tag Manager'},
+        description: {
+            enUS:
+                'Loads and controls the additional services listed here as ' +
+                'soon as you have given your consent.',
+            deDE:
+                'Lädt und steuert die hier aufgeführten zusätzlichen ' +
+                'Dienste, sobald Sie Ihre Zustimmung erteilt haben.'
+        }
+    },
+    {
+        name: 'google-analytics',
+        title: {enUS: 'Google Analytics', deDE: 'Google Analytics'},
+        description: {
+            enUS:
+                'Collects anonymized statistics about how this website is ' +
+                'used so it can be improved.',
+            deDE:
+                'Erfasst anonymisierte Statistiken darüber, wie diese ' +
+                'Website genutzt wird, um sie verbessern zu können.'
+        }
+    },
+    {
+        name: 'google-ads',
+        title: {enUS: 'Google Ads', deDE: 'Google Ads'},
+        description: {
+            enUS:
+                'Measures how well advertisements referring to this website ' +
+                'perform.',
+            deDE:
+                'Misst, wie gut Werbeanzeigen funktionieren, die auf diese ' +
+                'Website verweisen.'
+        }
+    }
+]
+const CONSENT_TRANSLATIONS = {
+    enUS: {
+        consentModal: {
+            description:
+                'Here you can review and adjust the services this website ' +
+                'would like to use. You are in charge: enable or disable ' +
+                'them as you see fit.',
+            title: 'Services this website would like to use'
+        },
+        consentNotice: {
+            description:
+                'Hi! May this website enable some additional services for ' +
+                '{purposes}? You can always change or withdraw your consent ' +
+                'later.',
+            learnMore: 'Let me choose'
+        },
+        privacyPolicy: {
+            name: 'about this website',
+            text: 'To learn more, please read the {privacyPolicy} section.'
+        },
+        purposes: {
+            marketing: {
+                description:
+                    'These services help to understand how this website is ' +
+                    'used and how well it is found.',
+                title: 'Marketing'
+            }
+        }
+    },
+    deDE: {
+        consentModal: {
+            description:
+                'Hier können Sie die Dienste prüfen und anpassen, die diese ' +
+                'Website nutzen möchte. Sie entscheiden: Aktivieren oder ' +
+                'deaktivieren Sie sie ganz nach Belieben.',
+            title: 'Dienste, die diese Website nutzen möchte'
+        },
+        consentNotice: {
+            description:
+                'Hallo! Darf diese Website einige zusätzliche Dienste für ' +
+                '{purposes} aktivieren? Sie können Ihre Zustimmung später ' +
+                'jederzeit ändern oder zurückziehen.',
+            learnMore: 'Auswahl treffen'
+        },
+        privacyPolicy: {
+            name: 'Impressum',
+            text: 'Mehr dazu erfahren Sie im {privacyPolicy}.'
+        },
+        purposes: {
+            marketing: {
+                description:
+                    'Diese Dienste helfen zu verstehen, wie diese Website ' +
+                    'genutzt wird und wie gut sie gefunden wird.',
+                title: 'Marketing'
+            }
+        }
+    }
+}
+/*
+    Merges the service specific texts into the consent manager translations
+    and maps our language descriptions onto the two letter codes klaro
+    expects.
+*/
+const getConsentTranslations = () => {
+    const result = {}
+
+    for (const language of LANGUAGES) {
+        const translation = {...CONSENT_TRANSLATIONS[language]}
+
+        for (const service of CONSENT_SERVICES)
+            translation[service.name] = {
+                description: service.description[language],
+                title: service.title[language]
+            }
+
+        result[toShortLanguage(language)] = translation
+    }
+
+    return result
+}
 // endregion
 _%>
-<html class="hp-no-javascript" lang="en">
+<html class="hp-no-javascript" lang="<%- toShortLanguage(DEFAULT_LANGUAGE) %>">
     <!--region head-->
     <head>
         <meta charset="utf-8">
@@ -861,28 +994,142 @@ _%>
         <%- await _.include(
             'web-component-wrapper/polyfill.html', {webComponents: false}
         ) %>
+
         <script>
-            /* Google Tag Manager * /
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','GTM-WM3X6BV7');
-            /* End Google Tag Manager */
+            KLARO_CONFIGURATION = {
+                acceptAll: true,
+                /*
+                    Initially rendered language. Gets synchronized with the
+                    website wide language selection by the "home-page"
+                    component.
+                */
+                lang: '<%- toShortLanguage(DEFAULT_LANGUAGE) %>',
+                privacyPolicy: '#about-this-website',
+                translations: <%-
+                    JSON.stringify(getConsentTranslations(), null, 4)
+                        .replace(/\n/g, '\n                ')
+                %>,
+                services: [
+                    {
+                        name: 'google-tag-manager',
+                        purposes: ['marketing'],
+                        onAccept: `
+                            /*
+                                We notify the tag manager about all services
+                                that were accepted. You can define a custom
+                                event in GTM to load the service if consent was
+                                given.
+                            */
+                            for(let k of Object.keys(opts.consents))
+                                if (opts.consents[k]) {
+                                    let eventName = 'klaro-'+k+'-accepted'
+                                    dataLayer.push({'event': eventName})
+                                }
+                        `,
+                        onInit: `
+                            /*
+                                Initialization code here (will be executed only
+                                once per page-load)
+                            */
+                            window.dataLayer = window.dataLayer || [];
+                            window.gtag = function(){dataLayer.push(arguments)}
+                            gtag('consent', 'default', {'ad_storage': 'denied', 'analytics_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied'})
+                            gtag('set', 'ads_data_redaction', true)
+                        `,
+                    },
+                    {
+                        /*
+                            In GTM, you should define a custom event trigger
+                            named `klaro-google-analytics-accepted` which
+                            should trigger the Google Analytics integration.
+                        */
+                        name: 'google-analytics',
+                        cookies: [
+                            /*
+                                We delete the Google Analytics cookies if the
+                                user declines its use
+                            */
+                            /^_ga(_.*)?/
+                        ],
+                        purposes: ['marketing'],
+                        onAccept: `
+                            // We grant analytics storage
+                            gtag('consent', 'update', {
+                                'analytics_storage': 'granted',
+                            })
+                        `,
+                        onDecline: `
+                            // We deny analytics storage
+                            gtag('consent', 'update', {
+                                'analytics_storage': 'denied',
+                            })
+                        `,
+                    },
+                    {
+                        name: 'google-ads',
+                        cookies: [],
+                        onAccept: `
+                            // We grant ad storage and personalization
+                            gtag('consent', 'update', {
+                                'ad_storage': 'granted',
+                                'ad_user_data': 'granted',
+                                'ad_personalization': 'granted'
+                            })
+                        `,
+                        onDecline: `
+                            // We decline ad storage and personalization
+                            gtag('consent', 'update', {
+                                'ad_storage': 'denied',
+                                'ad_user_data': 'denied',
+                                'ad_personalization': 'denied'
+                            })
+                        `,
+                        purposes: ['marketing'],
+                    }
+                ]
+            }
 
             AUTO_DEFINE_HOME_PAGE = true
 
             window.document.documentElement.classList.remove('hp-no-javascript')
             window.document.documentElement.classList.add('hp-javascript')
         </script>
+
+        <script
+            defer
+            data-klaro-config="KLARO_CONFIGURATION"
+            type="application/javascript"
+            src="https://cdn.kiprotect.com/klaro/v0.7/klaro.js">
+        </script>
+
+        <!-- region google tag manager -->
+        <script
+            data-type="application/javascript"
+            type="text/plain"
+            data-name="google-tag-manager"
+        >
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','<%- GTM_ID %>');
+        </script>
+        <!-- endregion -->
     </head>
     <!--endregion-->
     <!--region body-->
     <body class="hp-no-javascript">
-        <!-- Google Tag Manager (noscript) -- >
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WM3X6BV7"
-        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-        <!-- End Google Tag Manager (noscript) -->
+        <!-- region google tag manager (noscript) -->
+        <noscript>
+            <iframe
+                data-name="google-tag-manager"
+                data-src="https://www.googletagmanager.com/ns.html?id=<%- GTM_ID %>"
+                height="0"
+                width="0"
+                style="display:none;visibility:hidden"
+            ></iframe>
+        </noscript>
+        <!-- endregion -->
 
         <script>
             window.document.body.classList.remove('hp-no-javascript')

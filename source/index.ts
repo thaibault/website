@@ -110,8 +110,14 @@ export class HomePage<
                 options="{selection: this.rootInstance.options.languages}"
                 on-switch="
                     this.rootInstance.switchLanguageButton(parameters[1], this)
+                    this.rootInstance.switchConsentManagerLanguage(
+                        parameters[1]
+                    )
                 "
-                on-ensure="this.rootInstance.switchLanguageButton(data, this)"
+                on-ensure="
+                    this.rootInstance.switchLanguageButton(data, this)
+                    this.rootInstance.switchConsentManagerLanguage(data)
+                "
                 on-ensured="
                     this.rootInstance.mainSwiperInstance?.updateAutoHeight()
                 "
@@ -658,6 +664,45 @@ export class HomePage<
                         domNode.innerText = language.substr(0, 2)
                     }
                 }
+    }
+    /**
+     * Synchronizes the consent manager with the website wide selected
+     * language.
+     *
+     * The consent manager renders its own dom tree dynamically and is
+     * therefore not covered by the dom node based translation mechanism. It
+     * maintains an own translation catalog instead which can be applied by
+     * adjusting its configuration and re-rendering it.
+     * @param newLanguage - Language to switch to.
+     */
+    switchConsentManagerLanguage(newLanguage: string) {
+        const context = globalContext as unknown as {
+            KLARO_CONFIGURATION?: {lang?: string}
+            klaro?: {render: (configuration: object, options: object) => void}
+        }
+
+        const configuration = context.KLARO_CONFIGURATION
+        if (!configuration)
+            return
+
+        const language = newLanguage.substring(0, 2).toLowerCase()
+        if (configuration.lang === language)
+            return
+
+        configuration.lang = language
+
+        if (globalContext.document as unknown as Document | null)
+            (globalContext.document as unknown as Document)
+                .documentElement.lang = language
+
+        /*
+            NOTE: The consent manager is loaded deferred and may not be
+            available yet. Adjusting its configuration is sufficient in that
+            case since it is evaluated during its initialization.
+
+            Re-rendering does not revoke or re-request already given consents.
+        */
+        context.klaro?.render(configuration, {})
     }
     // endregion
     // region protected methods

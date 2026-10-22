@@ -871,3 +871,90 @@ html, body {
     }
     /* endregion */
 }
+/* region consent manager */
+/*
+    The consent manager (klaro) renders itself into a "#klaro" container which
+    is appended to the document body and therefore lives outside of the ".hp"
+    scope.
+
+    Most of the theming happens through the custom properties klaro exposes as
+    its official styling interface. The remaining rules need the id selector
+    since klaro injects its style sheet at runtime (hence after this one) and
+    would otherwise win the cascade with its equally specific default rules.
+*/
+#klaro {
+    /** region typography */
+    --font-family: var(--wu-typography-font-family);
+    --title-font-family: var(--wu-typography-font-family-headline);
+    --font-size: 0.9rem;
+    /** endregion */
+    /** region shape */
+    --border-radius: 20px;
+    /** endregion */
+    /** region dark surfaces mirroring the page header */
+    --dark1: var(--header-background-color);
+    --dark2: #3f3f3f;
+    --dark3: #a89f9f;
+    /** endregion */
+    /** region foreground colors mirroring the page menu */
+    --light1: var(--menu-font-color);
+    --light2: #4a4a4a;
+    --light3: #a89f9f;
+    --button-text-color: var(--menu-font-hover-color);
+    /** endregion */
+    /** region accent colors mirroring the page links */
+    --green1: var(--link-hover-color);
+    --green2: var(--accent-color);
+    --green3: var(--link-hover-color);
+    --blue1: #7303c0;
+    --blue2: #86228a;
+    --box-shadow-color: var(--link-hover-color);
+    /** endregion */
+
+    .cookie-notice:not(.cookie-modal-notice),
+    .cookie-modal .cm-modal.cm-klaro {
+        background: var(--header-background-gradient);
+        box-shadow: var(--box-shadow-header);
+        color: var(--light1);
+    }
+
+    .cookie-modal .cm-modal.cm-klaro {
+        border-radius: var(--border-radius);
+    }
+
+    h1, h2 {
+        color: var(--menu-font-hover-color);
+    }
+
+    a {
+        text-decoration: none;
+        transition: color 0.2s linear;
+
+        &:hover {
+            color: var(--menu-font-hover-color);
+            text-decoration: var(--link-hover-color) underline;
+        }
+    }
+
+    .cm-btn {
+        background: var(--dark2);
+        transition: all 0.2s linear;
+
+        &.cm-btn-success {
+            background: var(--link-hover-gradient);
+        }
+
+        &.cm-btn-info {
+            background: var(--link-gradient);
+        }
+
+        &:hover {
+            filter: brightness(1.15);
+        }
+    }
+
+    .cm-powered-by a {
+        color: var(--light3);
+    }
+}
+/* endregion */
