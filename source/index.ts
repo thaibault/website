@@ -627,29 +627,17 @@ export class HomePage<
         if (!this.greetingHeadlineDomNodes?.length)
             return
 
-        const greets = [
-            {
-                enUS: 'What are you doing that early?',
-                deDE: 'Was machst du so früh?'
-            },
-            {
-                enUS: 'Good Morning',
-                deDE: 'Guten Morgen'
-            },
-            {
-                enUS: 'Good Afternoon',
-                deDE: 'Moin'
-            },
-            {
-                enUS: 'Good Evening',
-                deDE: 'Guten Abend'
-            }
-        ]
         const currentHours = new Date().getHours()
-        const index = Math.floor(currentHours / 24 * greets.length)
-        for (const domNode of this.greetingHeadlineDomNodes)
-            domNode.innerHTML =
-                `${greets[index].enUS}<!--deDE:${greets[index].deDE}-->`
+        for (const domNode of this.greetingHeadlineDomNodes) {
+            let greets = JSON.parse(domNode.getAttribute(
+                'data-timebased'
+            ) || '[]')
+            if (greets.length > 0) {
+                const index = Math.floor(currentHours / 24 * greets.length)
+                domNode.innerHTML =
+                    `${greets[index].enUS}<!--deDE:${greets[index].deDE}-->`
+            }
+        }
     }
     switchLanguageButton(
         newLanguage: string, languageComponentInstance: WebInternationalization

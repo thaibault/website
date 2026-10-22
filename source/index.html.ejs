@@ -94,7 +94,28 @@ const SECTIONS = [
         title: 'about-me',
         content: {
             menuLabel: {enUS: 'About me', deDE: 'Über mich'},
-            headline: {enUS: 'Hey', deDE: 'Moin'},
+            headline: {
+                enUS: 'Hey',
+                deDE: 'Moin',
+                timebase: [
+                    {
+                        enUS: 'What are you doing that early?',
+                        deDE: 'Was machst du so früh?'
+                    },
+                    {
+                        enUS: 'Good morning',
+                        deDE: 'Guten Morgen'
+                    },
+                    {
+                        enUS: 'Good afternoon',
+                        deDE: 'Moin'
+                    },
+                    {
+                        enUS: 'Good evening',
+                        deDE: 'Guten Abend'
+                    }
+                ]
+            },
             /*
             sound: {
                 enUS: `${DATA_PATH}about-me-enUS.m4a`,
@@ -956,7 +977,16 @@ _%>
                                         Serves as anchor point if JavaScript
                                         isn't supported.
                                     -->
-                                    <h1 id="<%- section.title %>">
+                                    <h1
+                                        id="<%- section.title %>"
+                                        data-timebased="<%=
+                                            section.content.headline.timebase ?
+                                                `${JSON.stringify(
+                                                    section.content.headline.timebase
+                                                )}` :
+                                                '[]'
+                                        %>"
+                                    >
                                         <%_ if (section.content.headline) { _%>
                                             <%- section.content.headline[DEFAULT_LANGUAGE] %>
                                             <!--<%- ALTERNATE_LANGUAGE %>:
