@@ -71,6 +71,7 @@ endregion
     --box-shadow-header: 0 10px 30px var(--shadow-color);
     --box-shadow-card: 0 4px 10px var(--shadow-color);
     --box-shadow-card-hover: var(--box-shadow-header);
+    --border-radius: 5px;
     --card-border-effect-gradient: var(--link-gradient);
     --card-border-effect-duration: 18s;
     --card-border-effect-hover-duration: 6s;
@@ -482,7 +483,7 @@ html, body {
                         @media (--wu-medium) {
                             padding: 0 var(--wu-default-space);
 
-                            border-radius: 0 0 5px 5px;
+                            border-radius: 0 0 var(--border-radius) var(--border-radius);
 
                             width: var(--maximum-content-width);
                         }
@@ -889,16 +890,16 @@ html, body {
 }
 /* region consent manager */
 /*
-    The consent manager (klaro) renders itself into a "#klaro" container which
+    The consent manager (klaro) renders itself into a ".klaro" container which
     is appended to the document body and therefore lives outside of the ".hp"
     scope.
 
     Most of the theming happens through the custom properties klaro exposes as
-    its official styling interface. The remaining rules need the id selector
+    its official styling interface. The remaining rules need the class selector
     since klaro injects its style sheet at runtime (hence after this one) and
     would otherwise win the cascade with its equally specific default rules.
 */
-#klaro {
+.klaro {
     /** region typography */
     --font-family: var(--wu-typography-font-family);
     --title-font-family: var(--wu-typography-font-family-headline);
@@ -969,8 +970,12 @@ html, body {
         }
     }
 
+    .cm-modal .cm-header asd {
+        border-radius: var(--border-radius);
+    }
+
     .cm-powered-by {
-        display: none;
+        display: none !important;
     }
 }
 /* endregion */
