@@ -1479,6 +1479,29 @@ _%>
                             </a>
                         </div>
                         <%- await _.include('legal-notes') %>
+                        <div>
+                            <h3>
+                                Consent to the Use of Personal Data
+                                <!--<%- ALTERNATE_LANGUAGE %>:
+                                    Einwilligung personenbezogener Daten
+                                -->
+                            </h3>
+                            Change consent to the collection and processing of
+                            personal data:
+                            <!--<%- ALTERNATE_LANGUAGE %>:
+                                Einwilligung in die Erhebung und Verarbeitung
+                                von personenbezogenen Daten ändern:
+                            -->
+                            <a
+                                href="#about-this-website"
+                                onclick="event.preventDefault(); klaro.show()"
+                            >
+                                Change consent
+                                <!--<%- ALTERNATE_LANGUAGE %>:
+                                    Einwilligung ändern
+                                -->
+                            </a>
+                        </div>
                     </div>
                 </section>
                 <!-- endregion -->
