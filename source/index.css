@@ -27,7 +27,7 @@ endregion
 :root {
     /* region custom-properties */
     /** region color */
-    --background-color: white; /* dark grey */
+    --background-color: white;
     --background-gradient: linear-gradient(
         to right,
         var(--background-color),
@@ -72,6 +72,8 @@ endregion
     --box-shadow-card: 0 4px 10px var(--shadow-color);
     --box-shadow-card-hover: var(--box-shadow-header);
     --card-border-effect-gradient: var(--link-gradient);
+    --card-border-effect-duration: 18s;
+    --card-border-effect-hover-duration: 6s;
     /** endregion */
     /** region space */
     --header-height: 60px;
@@ -141,6 +143,8 @@ html, body {
         background-clip: text;
 
         text-decoration: none;
+
+        transition: all 0.2s linear;
 
         &:hover {
             /* color: var(--link-hover-color); */
@@ -314,14 +318,26 @@ html, body {
             width: 50px;
 
             background-image: var(--card-border-effect-gradient);
-            animation: rotate-background 18s linear infinite;
+            animation:
+                rotate-background
+                var(--card-border-effect-duration)
+                linear
+                infinite;
             transition: all 0.2s linear;
         }
-
+        /*
+            NOTE: Decreasing the animations duration re-maps already elapsed
+            animation time onto the shorter duration and therefore lets the
+            rotating bar jump to another angle. Therefore "index.ts"
+            neutralizes this duration change (by setting the hover duration to
+            the default one) and speeds the effect up via the animations
+            playback rate which preserves the current angle. Without
+            javascript we fall back to this (jumping) pure css variant.
+        */
         &:hover::before {
             width: 100px;
 
-            animation: rotate-background 6s linear infinite;
+            animation-duration: var(--card-border-effect-hover-duration);
         }
 
         &::after {
@@ -886,28 +902,18 @@ html, body {
     /** region typography */
     --font-family: var(--wu-typography-font-family);
     --title-font-family: var(--wu-typography-font-family-headline);
-    --font-size: 0.9rem;
+    --font-size: 1rem;
     /** endregion */
-    /** region shape */
-    --border-radius: 20px;
-    /** endregion */
-    /** region dark surfaces mirroring the page header */
+    /** region color */
     --dark1: var(--header-background-color);
-    --dark2: #3f3f3f;
-    --dark3: #a89f9f;
-    /** endregion */
-    /** region foreground colors mirroring the page menu */
+    --dark2: var(--header-background-color);
+    --dark3: var(--menu-font-color);
+    --white3: var(--font-color);
     --light1: var(--menu-font-color);
-    --light2: #4a4a4a;
-    --light3: #a89f9f;
-    --button-text-color: var(--menu-font-hover-color);
-    /** endregion */
-    /** region accent colors mirroring the page links */
+    --button-text-color: var(--menu-font-color);
     --green1: var(--link-hover-color);
     --green2: var(--accent-color);
     --green3: var(--link-hover-color);
-    --blue1: #7303c0;
-    --blue2: #86228a;
     --box-shadow-color: var(--link-hover-color);
     /** endregion */
 
@@ -926,12 +932,22 @@ html, body {
         color: var(--menu-font-hover-color);
     }
 
-    a {
+    a,
+    a:visited,
+    a:focus {
+        background: var(--link-gradient);
+        color: transparent;
+        background-clip: text;
+
         text-decoration: none;
-        transition: color 0.2s linear;
+
+        transition: all 0.2s linear;
 
         &:hover {
-            color: var(--menu-font-hover-color);
+            background: var(--link-hover-gradient);
+            color: transparent;
+            background-clip: text;
+
             text-decoration: var(--link-hover-color) underline;
         }
     }
@@ -953,8 +969,8 @@ html, body {
         }
     }
 
-    .cm-powered-by a {
-        color: var(--light3);
+    .cm-powered-by {
+        display: none;
     }
 }
 /* endregion */

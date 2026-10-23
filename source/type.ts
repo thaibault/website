@@ -50,6 +50,13 @@ export interface DefaultOptions {
         waveSurfer: string
     }
 
+    projectCardBorderEffect: {
+        animationName: string
+        durationPropertyName: string
+        hoverDurationPropertyName: string
+        hoverPlaybackRate: number
+    }
+
     mainSwiper: SwiperOptions
     projectSwiper: SwiperOptions
 

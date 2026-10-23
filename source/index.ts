@@ -188,6 +188,13 @@ export class HomePage<
             waveSurfer: '.hp-audio-player'
         },
 
+        projectCardBorderEffect: {
+            animationName: 'rotate-background',
+            durationPropertyName: '--card-border-effect-duration',
+            hoverDurationPropertyName: '--card-border-effect-hover-duration',
+            hoverPlaybackRate: 3
+        },
+
         mainSwiper: {
             modules: [HashNavigation, Navigation, Pagination],
 
@@ -514,7 +521,91 @@ export class HomePage<
             })
         }
     }
+    /**
+     * Speeds up the rotating card border effect while hovering a project card
+     * without loosing the current rotation angle.
+     *
+     * NOTE: Simply decreasing the animations duration via css would re-map
+     * already elapsed animation time onto the shorter duration and therefore
+     * let the rotating bar jump to a different angle. Changing the animations
+     * playback rate instead preserves the current angle.
+     */
+    applyProjectCardBorderEffectSpeedUp() {
+        const {
+            animationName,
+            durationPropertyName,
+            hoverDurationPropertyName,
+            hoverPlaybackRate
+        } = this.options.projectCardBorderEffect
+
+        const documentDomNode = globalContext.document?.documentElement
+        if (!(
+            this.projectCardDomNodes?.length &&
+            documentDomNode &&
+            typeof documentDomNode.getAnimations === 'function'
+        ))
+            return
+
+        const determineAnimation = (
+            domNode: HTMLElement
+        ): Animation | undefined =>
+            domNode
+                .getAnimations({subtree: true})
+                .find((animation) =>
+                    (animation as CSSAnimation).animationName ===
+                        animationName &&
+                    (animation.effect as KeyframeEffect | null)
+                        ?.pseudoElement?.endsWith('before') === true
+                )
+
+        /*
+            Pseudo element animations are not reported in every browser. In
+            that case we keep the pure css fallback active.
+        */
+        if (!Array.from(this.projectCardDomNodes).some(determineAnimation))
+            return
+
+        const updatePlaybackRate = (
+            domNode: HTMLElement, playbackRate: number
+        ) => {
+            const animation = determineAnimation(domNode)
+            if (!animation)
+                return
+
+            if (typeof animation.updatePlaybackRate === 'function')
+                animation.updatePlaybackRate(playbackRate)
+            else
+                animation.playbackRate = playbackRate
+        }
+
+        for (const domNode of this.projectCardDomNodes) {
+            /*
+                Neutralize the pure css fallback which would speed the effect
+                up by shortening the animations duration.
+            */
+            domNode.style.setProperty(
+                hoverDurationPropertyName, `var(${durationPropertyName})`
+            )
+
+            this.addSecureEventListener(
+                domNode,
+                'pointerenter',
+                () => {
+                    updatePlaybackRate(domNode, hoverPlaybackRate)
+                }
+            )
+            this.addSecureEventListener(
+                domNode,
+                'pointerleave',
+                () => {
+                    updatePlaybackRate(domNode, 1)
+                }
+            )
+        }
+    }
     applyProjectCardInteractions() {
+        this.applyProjectCardBorderEffectSpeedUp()
+
         if (!(
             this.projectCardDomNodes &&
             this.projectSwiperDomNodes &&
@@ -635,13 +726,14 @@ export class HomePage<
 
         const currentHours = new Date().getHours()
         for (const domNode of this.greetingHeadlineDomNodes) {
-            let greets = JSON.parse(domNode.getAttribute(
-                'data-timebased'
-            ) || '[]')
+            const greets = JSON.parse(
+                domNode.getAttribute('data-timebased') || '[]'
+            )
             if (greets.length > 0) {
                 const index = Math.floor(currentHours / 24 * greets.length)
                 domNode.innerHTML =
-                    `${greets[index].enUS}<!--deDE:${greets[index].deDE}-->`
+                    `${greets[index].enUS as string}<!--deDE:` +
+                    `${greets[index].deDE as string}-->`
             }
         }
     }
