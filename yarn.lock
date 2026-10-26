@@ -1916,13 +1916,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^8.0.7":
-  version: 8.0.7
-  resolution: "@babel/runtime@npm:8.0.7"
-  checksum: 10c0/7ff1ca2d452a3359dc63bd36b25ff219ef04dfefbf7186900f1c296e55ade2ccc7f88dd2eb9d58ed253e3bde58fae97b9e40d80220ebfe510c99f7cf54837603
-  languageName: node
-  linkType: hard
-
 "@babel/template@npm:^7.22.15":
   version: 7.22.15
   resolution: "@babel/template@npm:7.22.15"
@@ -17211,7 +17204,6 @@ __metadata:
   resolution: "website@workspace:."
   dependencies:
     "@babel/eslint-parser": "npm:^8.0.7"
-    "@babel/runtime": "npm:^8.0.7"
     "@eslint/js": "npm:^10.0.1"
     "@stylistic/eslint-plugin": "npm:^5.10.0"
     "@types/ejs": "npm:^3.1.5"
