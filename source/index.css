@@ -117,7 +117,97 @@ html, body {
         display: block;
     }
 }
+/* region consent manager */
+/*
+    The consent manager (klaro) renders itself into a ".klaro" container which
+    is appended to the document body and therefore lives outside of the ".hp"
+    scope.
 
+    Most of the theming happens through the custom properties klaro exposes as
+    its official styling interface. The remaining rules need the class selector
+    since klaro injects its style sheet at runtime (hence after this one) and
+    would otherwise win the cascade with its equally specific default rules.
+*/
+.klaro {
+    /** region typography */
+    --font-family: var(--wu-typography-font-family);
+    --title-font-family: var(--wu-typography-font-family-headline);
+    --font-size: 1rem;
+    /** endregion */
+    /** region color */
+    --dark1: var(--header-background-color);
+    --dark2: var(--header-background-color);
+    --dark3: var(--menu-font-color);
+    --white3: var(--font-color);
+    --light1: var(--menu-font-color);
+    --button-text-color: var(--menu-font-color);
+    --green1: var(--link-hover-color);
+    --green2: var(--accent-color);
+    --green3: var(--link-hover-color);
+    --box-shadow-color: var(--link-hover-color);
+    /** endregion */
+
+    .cookie-notice:not(.cookie-modal-notice),
+    .cookie-modal .cm-modal.cm-klaro {
+        background: var(--header-background-gradient);
+        box-shadow: var(--box-shadow-header);
+        color: var(--light1);
+    }
+
+    .cookie-modal .cm-modal.cm-klaro {
+        border-radius: var(--border-radius);
+    }
+
+    h1, h2 {
+        color: var(--menu-font-hover-color);
+    }
+
+    a,
+    a:visited,
+    a:focus {
+        background: var(--link-gradient);
+        color: transparent;
+        background-clip: text;
+
+        text-decoration: none;
+
+        transition: all 0.2s linear;
+
+        &:hover {
+            background: var(--link-hover-gradient);
+            color: transparent;
+            background-clip: text;
+
+            text-decoration: var(--link-hover-color) underline;
+        }
+    }
+
+    .cm-btn {
+        background: var(--dark2);
+        transition: all 0.2s linear;
+
+        &.cm-btn-success {
+            background: var(--link-hover-gradient);
+        }
+
+        &.cm-btn-info {
+            background: var(--link-gradient);
+        }
+
+        &:hover {
+            filter: brightness(1.15);
+        }
+    }
+
+    .cm-modal .cm-header {
+        border-radius: var(--border-radius);
+    }
+
+    .cm-powered-by {
+        display: none !important;
+    }
+}
+/* endregion */
 .hp {
     /* region global */
     overflow-y: scroll;
@@ -135,6 +225,7 @@ html, body {
     }
     /** endregion */
     /** region link */
+    /* stylelint-disable no-descending-specificity */
     a,
     a:visited,
     a:focus {
@@ -183,7 +274,7 @@ html, body {
             }
         }
     }
-
+    /* stylelint-enable no-descending-specificity */
     h1, h2 {
         /* color: var(--headline-color); */
         background: var(--headline-gradient);
@@ -888,94 +979,3 @@ html, body {
     }
     /* endregion */
 }
-/* region consent manager */
-/*
-    The consent manager (klaro) renders itself into a ".klaro" container which
-    is appended to the document body and therefore lives outside of the ".hp"
-    scope.
-
-    Most of the theming happens through the custom properties klaro exposes as
-    its official styling interface. The remaining rules need the class selector
-    since klaro injects its style sheet at runtime (hence after this one) and
-    would otherwise win the cascade with its equally specific default rules.
-*/
-.klaro {
-    /** region typography */
-    --font-family: var(--wu-typography-font-family);
-    --title-font-family: var(--wu-typography-font-family-headline);
-    --font-size: 1rem;
-    /** endregion */
-    /** region color */
-    --dark1: var(--header-background-color);
-    --dark2: var(--header-background-color);
-    --dark3: var(--menu-font-color);
-    --white3: var(--font-color);
-    --light1: var(--menu-font-color);
-    --button-text-color: var(--menu-font-color);
-    --green1: var(--link-hover-color);
-    --green2: var(--accent-color);
-    --green3: var(--link-hover-color);
-    --box-shadow-color: var(--link-hover-color);
-    /** endregion */
-
-    .cookie-notice:not(.cookie-modal-notice),
-    .cookie-modal .cm-modal.cm-klaro {
-        background: var(--header-background-gradient);
-        box-shadow: var(--box-shadow-header);
-        color: var(--light1);
-    }
-
-    .cookie-modal .cm-modal.cm-klaro {
-        border-radius: var(--border-radius);
-    }
-
-    h1, h2 {
-        color: var(--menu-font-hover-color);
-    }
-
-    a,
-    a:visited,
-    a:focus {
-        background: var(--link-gradient);
-        color: transparent;
-        background-clip: text;
-
-        text-decoration: none;
-
-        transition: all 0.2s linear;
-
-        &:hover {
-            background: var(--link-hover-gradient);
-            color: transparent;
-            background-clip: text;
-
-            text-decoration: var(--link-hover-color) underline;
-        }
-    }
-
-    .cm-btn {
-        background: var(--dark2);
-        transition: all 0.2s linear;
-
-        &.cm-btn-success {
-            background: var(--link-hover-gradient);
-        }
-
-        &.cm-btn-info {
-            background: var(--link-gradient);
-        }
-
-        &:hover {
-            filter: brightness(1.15);
-        }
-    }
-
-    .cm-modal .cm-header asd {
-        border-radius: var(--border-radius);
-    }
-
-    .cm-powered-by {
-        display: none !important;
-    }
-}
-/* endregion */
