@@ -4,9 +4,9 @@
 'use strict'
 /* !
     region header
-    [Project page](https://torben.website)
+    [Project page](https://tsickert.com)
 
-    Copyright Torben Sickert (info["~at~"]torben.website) 16.12.2012
+    Copyright Torben Sickert (info["~at~"]tsickert.com) 16.12.2012
 
     License
     -------
@@ -17,13 +17,17 @@
     endregion
 */
 // region imports
+import type {Mapping} from 'clientnode'
+import type {WebComponentAPI} from 'web-component-wrapper/type'
+
+import type {DefaultOptions, Options} from './type'
+
 import {
     camelCaseToDelimited,
     copy,
     extend,
     globalContext,
     Logger,
-    Mapping,
     trailingThrottle,
     timeout
 } from 'clientnode'
@@ -33,14 +37,11 @@ import Swiper from 'swiper'
 import {Autoplay, HashNavigation, Navigation, Pagination} from 'swiper/modules'
 import WaveSurfer from 'wavesurfer.js'
 import {property} from 'web-component-wrapper/decorator'
-import {WebComponentAPI} from 'web-component-wrapper/type'
 import {Web} from 'web-component-wrapper/Web'
 import {api as websiteUtilitiesAPI} from 'website-utilities'
 import WebInternationalization, {
     api as webInternationalizationAPI
 } from 'web-internationalization'
-
-import {DefaultOptions, Options} from './type'
 // endregion
 export const log = new Logger({name: 'website'})
 // region plugins/classes
@@ -109,8 +110,14 @@ export class HomePage<
                 options="{selection: this.rootInstance.options.languages}"
                 on-switch="
                     this.rootInstance.switchLanguageButton(parameters[1], this)
+                    this.rootInstance.switchConsentManagerLanguage(
+                        parameters[1]
+                    )
                 "
-                on-ensure="this.rootInstance.switchLanguageButton(data, this)"
+                on-ensure="
+                    this.rootInstance.switchLanguageButton(data, this)
+                    this.rootInstance.switchConsentManagerLanguage(data)
+                "
                 on-ensured="
                     this.rootInstance.mainSwiperInstance?.updateAutoHeight()
                 "
@@ -179,6 +186,13 @@ export class HomePage<
             projectSwiper: '.hp-card .swiper',
 
             waveSurfer: '.hp-audio-player'
+        },
+
+        projectCardBorderEffect: {
+            animationName: 'rotate-background',
+            durationPropertyName: '--card-border-effect-duration',
+            hoverDurationPropertyName: '--card-border-effect-hover-duration',
+            hoverPlaybackRate: 3
         },
 
         mainSwiper: {
@@ -507,7 +521,91 @@ export class HomePage<
             })
         }
     }
+    /**
+     * Speeds up the rotating card border effect while hovering a project card
+     * without loosing the current rotation angle.
+     *
+     * NOTE: Simply decreasing the animations duration via css would re-map
+     * already elapsed animation time onto the shorter duration and therefore
+     * let the rotating bar jump to a different angle. Changing the animations
+     * playback rate instead preserves the current angle.
+     */
+    applyProjectCardBorderEffectSpeedUp() {
+        const {
+            animationName,
+            durationPropertyName,
+            hoverDurationPropertyName,
+            hoverPlaybackRate
+        } = this.options.projectCardBorderEffect
+
+        const documentDomNode = globalContext.document?.documentElement
+        if (!(
+            this.projectCardDomNodes?.length &&
+            documentDomNode &&
+            typeof documentDomNode.getAnimations === 'function'
+        ))
+            return
+
+        const determineAnimation = (
+            domNode: HTMLElement
+        ): Animation | undefined =>
+            domNode
+                .getAnimations({subtree: true})
+                .find((animation) =>
+                    (animation as CSSAnimation).animationName ===
+                        animationName &&
+                    (animation.effect as KeyframeEffect | null)
+                        ?.pseudoElement?.endsWith('before') === true
+                )
+
+        /*
+            Pseudo element animations are not reported in every browser. In
+            that case we keep the pure css fallback active.
+        */
+        if (!Array.from(this.projectCardDomNodes).some(determineAnimation))
+            return
+
+        const updatePlaybackRate = (
+            domNode: HTMLElement, playbackRate: number
+        ) => {
+            const animation = determineAnimation(domNode)
+            if (!animation)
+                return
+
+            if (typeof animation.updatePlaybackRate === 'function')
+                animation.updatePlaybackRate(playbackRate)
+            else
+                animation.playbackRate = playbackRate
+        }
+
+        for (const domNode of this.projectCardDomNodes) {
+            /*
+                Neutralize the pure css fallback which would speed the effect
+                up by shortening the animations duration.
+            */
+            domNode.style.setProperty(
+                hoverDurationPropertyName, `var(${durationPropertyName})`
+            )
+
+            this.addSecureEventListener(
+                domNode,
+                'pointerenter',
+                () => {
+                    updatePlaybackRate(domNode, hoverPlaybackRate)
+                }
+            )
+            this.addSecureEventListener(
+                domNode,
+                'pointerleave',
+                () => {
+                    updatePlaybackRate(domNode, 1)
+                }
+            )
+        }
+    }
     applyProjectCardInteractions() {
+        this.applyProjectCardBorderEffectSpeedUp()
+
         if (!(
             this.projectCardDomNodes &&
             this.projectSwiperDomNodes &&
@@ -626,29 +724,18 @@ export class HomePage<
         if (!this.greetingHeadlineDomNodes?.length)
             return
 
-        const greets = [
-            {
-                enUS: 'What are you doing that early?',
-                deDE: 'Was machst du so früh?'
-            },
-            {
-                enUS: 'Good Morning',
-                deDE: 'Guten Morgen'
-            },
-            {
-                enUS: 'Good Afternoon',
-                deDE: 'Moin'
-            },
-            {
-                enUS: 'Good Evening',
-                deDE: 'Guten Abend'
-            }
-        ]
         const currentHours = new Date().getHours()
-        const index = Math.floor(currentHours / 24 * greets.length)
-        for (const domNode of this.greetingHeadlineDomNodes)
-            domNode.innerHTML =
-                `${greets[index].enUS}<!--deDE:${greets[index].deDE}-->`
+        for (const domNode of this.greetingHeadlineDomNodes) {
+            const greets = JSON.parse(
+                domNode.getAttribute('data-timebased') || '[]'
+            )
+            if (greets.length > 0) {
+                const index = Math.floor(currentHours / 24 * greets.length)
+                domNode.innerHTML =
+                    `${greets[index].enUS as string}<!--deDE:` +
+                    `${greets[index].deDE as string}-->`
+            }
+        }
     }
     switchLanguageButton(
         newLanguage: string, languageComponentInstance: WebInternationalization
@@ -669,6 +756,45 @@ export class HomePage<
                         domNode.innerText = language.substr(0, 2)
                     }
                 }
+    }
+    /**
+     * Synchronizes the consent manager with the website wide selected
+     * language.
+     *
+     * The consent manager renders its own dom tree dynamically and is
+     * therefore not covered by the dom node based translation mechanism. It
+     * maintains an own translation catalog instead which can be applied by
+     * adjusting its configuration and re-rendering it.
+     * @param newLanguage - Language to switch to.
+     */
+    switchConsentManagerLanguage(newLanguage: string) {
+        const context = globalContext as unknown as {
+            KLARO_CONFIGURATION?: {lang?: string}
+            klaro?: {render: (configuration: object, options: object) => void}
+        }
+
+        const configuration = context.KLARO_CONFIGURATION
+        if (!configuration)
+            return
+
+        const language = newLanguage.substring(0, 2).toLowerCase()
+        if (configuration.lang === language)
+            return
+
+        configuration.lang = language
+
+        if (globalContext.document as unknown as Document | null)
+            (globalContext.document as unknown as Document)
+                .documentElement.lang = language
+
+        /*
+            NOTE: The consent manager is loaded deferred and may not be
+            available yet. Adjusting its configuration is sufficient in that
+            case since it is evaluated during its initialization.
+
+            Re-rendering does not revoke or re-request already given consents.
+        */
+        context.klaro?.render(configuration, {})
     }
     // endregion
     // region protected methods

@@ -3,9 +3,9 @@
 'use strict'
 /* !
     region header
-    [Project page](https://torben.website)
+    [Project page](https://tsickert.com)
 
-    Copyright Torben Sickert (info["~at~"]torben.website) 16.12.2012
+    Copyright Torben Sickert (info["~at~"]tsickert.com) 16.12.2012
 
     License
     -------
@@ -15,9 +15,9 @@
     See https://creativecommons.org/licenses/by/3.0/deed.de
     endregion
 */
-import {HeadroomOptions} from 'headroom.js'
-import {SwiperOptions} from 'swiper/types'
-import {WaveSurferOptions} from 'wavesurfer.js'
+import type {HeadroomOptions} from 'headroom.js'
+import type {SwiperOptions} from 'swiper/types'
+import type {WaveSurferOptions} from 'wavesurfer.js'
 // region exports
 export interface DefaultOptions {
     trackingCode: string
@@ -48,6 +48,13 @@ export interface DefaultOptions {
         projectSwiper: string
 
         waveSurfer: string
+    }
+
+    projectCardBorderEffect: {
+        animationName: string
+        durationPropertyName: string
+        hoverDurationPropertyName: string
+        hoverPlaybackRate: number
     }
 
     mainSwiper: SwiperOptions

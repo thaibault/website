@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a personal portfolio website (https://torben.website) built with TypeScript, WebComponents, and weboptimizer. The project demonstrates modern frontend development with strong emphasis on build optimization, type safety, internationalization (English/German), and responsive design.
+This is a personal portfolio website (https://tsickert.com) built with TypeScript, WebComponents, and weboptimizer. The project demonstrates modern frontend development with strong emphasis on build optimization, type safety, internationalization (English/German), and responsive design.
 
 ## Build System: weboptimizer
 
@@ -20,7 +20,7 @@ Key features of weboptimizer in this project:
 ## Commands
 
 ### Building
-- `yarn build` - Build the project for production (output to `build/` directory)
+- `yarn build` - Build the project for production (output to `dist/` directory)
 - `yarn build:stats` - Build with webpack profiling and output stats to `/tmp/stats.json`
 - `yarn watch` - Build in watch mode for development
 
@@ -46,7 +46,7 @@ Key features of weboptimizer in this project:
 
 ### Structure
 ```
-source/
+src/
 ├── index.ts          # Main TypeScript application (WebComponent-based)
 ├── index.html.ejs    # EJS template for HTML generation
 ├── index.css         # PostCSS stylesheets
@@ -80,7 +80,7 @@ source/
 
 **Testing:**
 - Jest (v30.3.0) with jsdom environment for DOM testing
-- Located in `source/test.ts`
+- Located in `src/test.ts`
 
 **Code Quality:**
 - ESLint with TypeScript support and Google config
@@ -102,10 +102,10 @@ source/
 
 ### Entry Points
 
-- **HTML**: Generated from `source/index.html.ejs` which includes EJS preprocessing with language switching logic
-- **JavaScript**: `source/index.ts` exports a Website WebComponent class that initializes on page load
-- **Styling**: `source/index.css` processed through PostCSS with custom plugins
-- **Build Output**: `build/index.html` (main entry point specified in package.json)
+- **HTML**: Generated from `src/index.html.ejs` which includes EJS preprocessing with language switching logic
+- **JavaScript**: `src/index.ts` exports a Website WebComponent class that initializes on page load
+- **Styling**: `src/index.css` processed through PostCSS with custom plugins
+- **Build Output**: `dist/index.html` (main entry point specified in package.json)
 
 ### Internationalization
 

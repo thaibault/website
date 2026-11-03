@@ -5,29 +5,30 @@
   "keywords": [
     "website"
   ],
-  "homepage": "https://torben.website",
+  "homepage": "https://tsickert.com",
   "bugs": {
-    "email": "info@torben.website",
+    "email": "info@tsickert.com",
     "url": "https://github.com/thaibault/website/issues"
   },
   "license": "CC-BY-3.0",
   "author": {
+    "email": "info@tsickert.com",
     "name": "Torben Sickert",
-    "email": "info@torben.website",
-    "url": "https://torben.website"
+    "url": "https://tsickert.com"
   },
-  "files": [
-    "build"
-  ],
-  "main": "build/index.html",
   "repository": {
     "type": "git",
     "url": "git@github.io:thaibault/.git"
   },
+  "main": "dist/index.html",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": true,
   "scripts": {
     "build": "weboptimizer build",
     "build:stats": "weboptimizer build --profile --json /tmp/stats.json | sed --regexp-extended 's/^Running \".+$//' | sed --regexp-extended 's/^Consolidate module request \".+$//' >/tmp/stats.json && echo 'Results successfully written to \"/tmp/stats.json\".'",
-    "check": "yarn check:types; yarn lint",
+    "check": "yarn check:types && yarn lint",
     "check:types": "weboptimizer check:types",
     "clear": "weboptimizer clear",
     "lint": "weboptimizer lint",
@@ -42,70 +43,68 @@
     "watch": "weboptimizer build --watch"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.29.7",
-    "@babel/runtime": "^7.29.7",
+    "@babel/eslint-parser": "^8.0.7",
     "@eslint/js": "^10.0.1",
     "@stylistic/eslint-plugin": "^5.10.0",
     "@types/ejs": "^3.1.5",
     "@types/headroom.js": "^0.12.4",
     "@types/html-minifier": "^4.0.6",
-    "@types/jsdom": "^28.0.3",
-    "@types/node": "^26.0.0",
+    "@types/jsdom": "^30.0.0",
+    "@types/node": "^26.6.6",
     "@types/webpack-env": "^1.18.8",
-    "@typescript-eslint/eslint-plugin": "^8.62.0",
-    "@typescript-eslint/parser": "^8.62.0",
+    "@typescript-eslint/eslint-plugin": "^8.72.1",
+    "@typescript-eslint/parser": "^8.72.1",
     "@webcomponents/webcomponentsjs": "^2.8.0",
-    "bootstrap-icons": "^1.13.1",
-    "clientnode": "^4.0.1427",
-    "css-loader": "^7.1.4",
-    "cssnano": "^8.0.2",
-    "errorreporter": "^1.0.349",
-    "eslint": "^10.5.0",
+    "bootstrap-icons": "^1.13.2",
+    "clientnode": "^4.0.1530",
+    "css-loader": "^7.1.5",
+    "cssnano": "^9.9.0",
+    "errorreporter": "^1.0.363",
+    "eslint": "^10.14.0",
     "eslint-config-google": "^0.14.0",
-    "eslint-plugin-jsdoc": "^63.0.7",
-    "favicons": "^7.3.0",
+    "eslint-plugin-jsdoc": "^65.4.2",
+    "favicons": "^7.3.1",
     "favicons-webpack-plugin": "^6.0.1",
     "headroom.js": "^0.12.0",
-    "jest": "^30.4.2",
+    "jest": "^30.5.2",
     "jsdoc": "^4.0.5",
-    "legal-notes": "^1.0.29",
+    "legal-notes": "^1.0.31",
     "mini-css-extract-plugin": "^2.10.2",
-    "postcss": "^8.5.15",
+    "postcss": "^8.5.32",
     "postcss-fontpath": "^1.0.0",
-    "postcss-import": "^16.1.1",
+    "postcss-import": "^17.0.1",
     "postcss-loader": "^8.2.1",
     "postcss-mixins": "^12.1.2",
-    "postcss-nested": "^7.0.2",
-    "postcss-preset-env": "^11.3.1",
+    "postcss-nested": "^9.0.1",
+    "postcss-preset-env": "^11.6.2",
     "postcss-scss": "^4.0.9",
     "postcss-sprites": "^4.2.1",
     "postcss-url": "^10.1.4",
     "prop-types": "^15.8.1",
     "style-loader": "^4.0.0",
-    "stylelint": "^17.13.0",
+    "stylelint": "^17.16.0",
     "stylelint-config-standard": "^40.0.0",
-    "swiper": "^12.2.0",
-    "typescript-eslint": "^8.62.0",
+    "swiper": "^14.4.0",
+    "typescript-eslint": "^8.72.1",
     "ua-parser-js": "^2.0.10",
-    "wavesurfer.js": "^7.12.8",
-    "web-component-wrapper": "^0.0.602",
-    "web-internationalization": "^2.0.42",
-    "weboptimizer": "^3.0.28",
-    "webpack-dev-server": "^5.2.5",
-    "website-utilities": "^1.0.445"
-  },
-  "engines": {
-    "node": ">=24",
-    "npm": ">=11",
-    "yarn": ">=4"
+    "wavesurfer.js": "^8.0.5",
+    "web-component-wrapper": "^0.0.620",
+    "web-internationalization": "^2.0.59",
+    "weboptimizer": "^4.0.102",
+    "webpack-dev-server": "^6.1.0",
+    "website-utilities": "^1.0.482"
   },
   "resolutions": {
     "colors": "1.4.0",
-    "globals@npm:^14.0.0": "patch:globals@npm%3A11.12.0#~/.yarn/patches/globals-npm-11.12.0-1fa7f41a6c.patch",
     "globals@npm:^11.1.0": "patch:globals@npm%3A11.12.0#~/.yarn/patches/globals-npm-11.12.0-1fa7f41a6c.patch",
+    "globals@npm:^14.0.0": "patch:globals@npm%3A11.12.0#~/.yarn/patches/globals-npm-11.12.0-1fa7f41a6c.patch",
     "globals@npm:^9.18.0": "patch:globals@npm%3A11.12.0#~/.yarn/patches/globals-npm-11.12.0-1fa7f41a6c.patch"
   },
-  "sideEffects": true,
+  "engines": {
+    "node": ">=26",
+    "npm": ">=12",
+    "yarn": ">=4"
+  },
   "webOptimizer": {
     "commandLine": {
       "test": {
@@ -141,6 +140,16 @@
       "entry": {
         "#": "errorreporter\": [\"ua-parser-js\", \"errorreporter\"]",
         "__evaluate__": "2 < self.givenCommandLineArguments.length && self.givenCommandLineArguments[2].startsWith('test') ? {testBundle: './test.ts'} : {index: ['./index.css', '@webcomponents/webcomponentsjs/webcomponents-bundle.js', '@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js', './index']}"
+      },
+      "external": {
+        "#": "Libs are pre-built webpack bundles; re-bundling them into the test bundle collides their nested webpack runtimes (duplicate __webpack_module_cache__ / infinitely self-referencing re-export getters). Externalize them for the test command so jest resolves the published bundles at runtime.",
+        "implicit": {
+          "pattern": {
+            "include": {
+              "__evaluate__": "['@jest/globals'].concat(2 < self.givenCommandLineArguments.length && self.givenCommandLineArguments[2].startsWith('test') ? [/^(?:clientnode|web-component-wrapper|website-utilities|web-internationalization|errorreporter)(?:$|\\/)/] : [])"
+            }
+          }
+        }
       }
     },
     "library": false,
@@ -156,28 +165,18 @@
             "list": [
               "...",
               {
-                "tag": "a",
                 "attribute": "href",
-                "type": "src",
                 "filter": {
                   "__evaluate__": "(tag, attribute, attributes, resourcePath) => attributes.filter(({name}) => name === attribute)[0].value.startsWith('data/')"
-                }
+                },
+                "tag": "a",
+                "type": "src"
               }
             ]
           }
         }
       },
       "optimizer": {
-        "babelMinify": {
-          "#": "To provide a logging output we need to exclude this feature.",
-          "bundle": {
-            "transform": {
-              "removeConsole": false
-            }
-          },
-          "#1": "Avoids wrong this binding in some callbacks with class bound closure (e.g. in \"performStartUpEffects -> animate -> always\".",
-          "module": null
-        },
         "htmlMinifier": {
           "ignoreCustomComments": [
             {
@@ -195,8 +194,8 @@
             "plugins": {
               "pre": {
                 "__append__": [
-                  "require('postcss-mixins')",
-                  "require('postcss-nested')"
+                  "module.optionalImport('postcss-mixins').then((module) => module?.default)",
+                  "module.optionalImport('postcss-nested').then((module) => module?.default)"
                 ]
               }
             }
@@ -214,11 +213,11 @@
       },
       "target": {
         "asset": {
+          "cascadingStyleSheet": "./",
           "image": {
             "__evaluate__": "({filename}) => `image/${path.dirname(path.resolve(filename).substring(self.path.source.asset.image.length))}/[name][ext]?${self.hashAlgorithm}=[contenthash]`"
           },
-          "javaScript": "./",
-          "cascadingStyleSheet": "./"
+          "javaScript": "./"
         }
       }
     },
@@ -246,5 +245,5 @@
       }
     }
   },
-  "packageManager": "yarn@4.14.1+sha512.64df448055b2d37ba269d7db535a469b8da93f8ef1140c25fd7a83c00a8fbaacb214ca0e02553b92a2c54cef78bb67d0b4817fab02001df0e24fac0faccc3b42"
+  "packageManager": "yarn@4.18.1+sha512.b2e1e7524f654f2749d32b4ebcb4622473cb5bcbc485df2007e12a154e50162a4d795526768bc5f5b8f81717bfd79deb2472813d86fb5ae2eb551fa9c872b08f"
 }

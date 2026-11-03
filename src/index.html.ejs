@@ -8,7 +8,7 @@
     https://www.facebook.com
 
     region header
-    Copyright Torben Sickert (info["~at~"]torben.website) 16.12.2012
+    Copyright Torben Sickert (info["~at~"]tsickert.com) 16.12.2012
 
     License
     =======
@@ -29,10 +29,17 @@ const swapCase = (letters) => {
 
     return newLetters
 }
+/*
+    Converts an internally used language description like "enUS" into the two
+    letter representation ("en") third party libraries like the consent
+    manager expect.
+*/
+const toShortLanguage = (language) => language.substring(0, 2).toLowerCase()
 // endregion
 // region language
 const DEFAULT_LANGUAGE = 'enUS'
 const ALTERNATE_LANGUAGE = 'deDE'
+const LANGUAGES = [DEFAULT_LANGUAGE, ALTERNATE_LANGUAGE]
 // endregion
 // region location
 const IMAGE_PATH = 'image/'
@@ -46,17 +53,27 @@ const LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE_PATH =
 // endregion
 // region runtime
 let START_UP_ANIMATION_NUMBER = 0
-const getStartUpAnimationNumber = () => {
-    START_UP_ANIMATION_NUMBER += 1
-    return START_UP_ANIMATION_NUMBER
+const getStartUpAnimationNumberFactory = (
+    offset = START_UP_ANIMATION_NUMBER
+) => {
+    let localOffset = offset
+
+    return () => {
+        localOffset += 1
+        if (localOffset > START_UP_ANIMATION_NUMBER)
+            START_UP_ANIMATION_NUMBER = localOffset
+
+        return localOffset
+    }
 }
+const getStartUpAnimationNumber = getStartUpAnimationNumberFactory()
 // endregion
 // region content
 const SOCIAL_MEDIA = [
     {
         'icon': 'envelope-at-fill',
         'title': 'E-Mail',
-        'url': 'info@torben.website'
+        'url': 'info@tsickert.com'
     },
     {
         'icon': 'github',
@@ -86,7 +103,7 @@ const SOCIAL_MEDIA = [
     {
         'icon': 'globe',
         'title': 'Website',
-        'url': 'https://torben.website'
+        'url': 'https://tsickert.com'
     }
 ]
 const SECTIONS = [
@@ -94,7 +111,28 @@ const SECTIONS = [
         title: 'about-me',
         content: {
             menuLabel: {enUS: 'About me', deDE: 'Über mich'},
-            headline: {enUS: 'Hey', deDE: 'Moin'},
+            headline: {
+                enUS: 'Hey',
+                deDE: 'Moin',
+                timebase: [
+                    {
+                        enUS: 'What are you doing that early?',
+                        deDE: 'Was machst du so früh?'
+                    },
+                    {
+                        enUS: 'Good morning',
+                        deDE: 'Guten Morgen'
+                    },
+                    {
+                        enUS: 'Good afternoon',
+                        deDE: 'Moin'
+                    },
+                    {
+                        enUS: 'Good evening',
+                        deDE: 'Guten Abend'
+                    }
+                ]
+            },
             /*
             sound: {
                 enUS: `${DATA_PATH}about-me-enUS.m4a`,
@@ -389,21 +427,21 @@ const PROJECTS = [
             },
             {
                 title: 'web-documentation',
+                url: 'https://github.com/thaibault/web-documentation',
                 images: [
                     `${IMAGE_PATH}projects/web-documentation/main.png`,
                     `${IMAGE_PATH}projects/web-documentation/example.png`,
                     `${IMAGE_PATH}projects/web-documentation/about-this-website.png`
                 ],
                 content: {
-                    enUS: 'Reusable web documentation page generator.',
-                    deDE:
-                        'Generator für wiederverwendbare ' +
-                        'Web-Dokumentationsseiten.'
+                    enUS:
+                        'Static webpage generatorReusable for documentations.',
+                    deDE: 'Statischer Webseiten-Generator für Dokumentationen.'
                 }
             },
             {
                 title: 'Home Page',
-                url: 'https://torben.website',
+                url: 'https://github.com/thaibault/website',
                 images: [
                     `${IMAGE_PATH}projects/home-page/about-me.png`,
                     `${IMAGE_PATH}projects/home-page/contact.png`,
@@ -424,11 +462,7 @@ const PROJECTS = [
         content: [
             {
                 title: 'clientnode',
-                url: 'https://torben.website/clientnode',
-                images: [
-                    `${IMAGE_PATH}projects/clientnode/example-1.png`,
-                    `${IMAGE_PATH}projects/clientnode/example-2.png`
-                ],
+                url: 'https://tsickert.com/clientnode',
                 content: {
                     enUS: 'Provides universal backend and frontend utilities.',
                     deDE:
@@ -446,11 +480,11 @@ const PROJECTS = [
         content: [
             {
                 title: 'errorreporter',
-                url: 'https://torben.website/errorreporter',
-                images: [`${IMAGE_PATH}projects/errorreporter/main.png`],
+                url: 'https://tsickert.com/errorreporter',
                 content: {
                     enUS: 'A web client side error reporter.',
-                    deDE: 'Ein Tool zur Fehlermeldung auf der Web-Client-Seite.'
+                    deDE:
+                        'Ein Tool zur Fehlermeldung auf der Web-Client-Seite.'
                 }
             }
         ]
@@ -463,12 +497,7 @@ const PROJECTS = [
         content: [
             {
                 title: 'react-input-material',
-                url: 'https://torben.website/react-input-material',
-                images: [
-                    `${IMAGE_PATH}projects/react-input-material/date-time-select.png`,
-                    `${IMAGE_PATH}projects/react-input-material/list-of-checkboxes.png`,
-                    `${IMAGE_PATH}projects/react-input-material/rich-text.png`
-                ],
+                url: 'https://tsickert.com/react-input-material',
                 content: {
                     enUS:
                         'Reusable material design based input fields as ' +
@@ -483,8 +512,7 @@ const PROJECTS = [
             },
             {
                 title: 'react-generic-tools',
-                url: 'https://torben.website/react-generic-tools',
-                images: [`${IMAGE_PATH}projects/react-generic-tools/main.png`],
+                url: 'https://tsickert.com/react-generic-tools',
                 content: {
                     enUS:
                         'Generic utility types, methods, components and ' +
@@ -496,10 +524,7 @@ const PROJECTS = [
             },
             {
                 title: 'react-generic-animate',
-                url: 'https://torben.website/react-generic-animate',
-                images: [
-                    `${IMAGE_PATH}projects/react-generic-animate/main.png`
-                ],
+                url: 'https://tsickert.com/react-generic-animate',
                 content: {
                     enUS:
                         'Animates markup within the react component context.',
@@ -518,11 +543,7 @@ const PROJECTS = [
         content: [
             {
                 title: 'web-component-wrapper',
-                url: 'https://torben.website/web-component-wrapper',
-                images: [
-                    `${IMAGE_PATH}projects/web-component-wrapper/concept.png`,
-                    `${IMAGE_PATH}projects/web-component-wrapper/example.png`
-                ],
+                url: 'https://tsickert.com/web-component-wrapper',
                 content: {
                     enUS:
                         'Generic web-component base class and wrapper to ' +
@@ -535,7 +556,7 @@ const PROJECTS = [
             },
             {
                 title: 'web-internationalization',
-                url: 'https://torben.website/web-internationalization',
+                url: 'https://tsickert.com/web-internationalization',
                 content: {
                     enUS:
                         'A web component to replace alternate version of ' +
@@ -548,7 +569,7 @@ const PROJECTS = [
             },
             {
                 title: 'website-utilities',
-                url: 'https://torben.website/website-utilities',
+                url: 'https://tsickert.com/website-utilities',
                 content: {
                     enUS:
                         'A web component to provide reusable website ' +
@@ -563,7 +584,7 @@ const PROJECTS = [
             },
             {
                 title: 'web-input-material',
-                url: 'https://torben.website/web-input-material',
+                url: 'https://tsickert.com/web-input-material',
                 content: {
                     enUS:
                         'Reusable material design based input fields as web ' +
@@ -578,7 +599,7 @@ const PROJECTS = [
             },
             {
                 title: 'agile-form',
-                url: 'https://torben.website/agile-form',
+                url: 'https://tsickert.com/agile-form',
                 content: {
                     enUS:
                         'Reusable highly configurable web component based ' +
@@ -599,7 +620,7 @@ const PROJECTS = [
         content: [
             {
                 title: 'web-node',
-                url: 'https://torben.website/web-node',
+                url: 'https://tsickert.com/web-node',
                 content: {
                     enUS: 'Plugin and configuration management library.',
                     deDE:
@@ -609,7 +630,7 @@ const PROJECTS = [
             },
             {
                 title: 'couchdb-web-node-plugin',
-                url: 'https://torben.website/couchdb-web-node-plugin',
+                url: 'https://tsickert.com/couchdb-web-node-plugin',
                 content: {
                     enUS:
                         'Extension for couchdb based database server ' +
@@ -626,7 +647,7 @@ const PROJECTS = [
             },
             {
                 title: 'ejs-web-node-plugin',
-                url: 'https://torben.website/ejs-web-node-plugin',
+                url: 'https://tsickert.com/ejs-web-node-plugin',
                 content: {
                     enUS: 'A static template processor for webNode.',
                     deDE: 'Ein statischer template processor für webNode.'
@@ -634,7 +655,7 @@ const PROJECTS = [
             },
             {
                 title: 'application-server-web-node-plugin',
-                url: 'https://torben.website/application-server-web-node-plugin',
+                url: 'https://tsickert.com/application-server-web-node-plugin',
                 content: {
                     enUS: 'A static template processor for WebNode.',
                     deDE: 'Ein statischer Vorlagenprozessor für WebNode.'
@@ -642,7 +663,7 @@ const PROJECTS = [
             },
             {
                 title: 'pre-render-web-node-plugin',
-                url: 'https://torben.website/pre-render-web-node-plugin',
+                url: 'https://tsickert.com/pre-render-web-node-plugin',
                 content: {
                     enUS: 'Pre-rendering hook for WebNode based solutions.',
                     deDE:
@@ -652,7 +673,7 @@ const PROJECTS = [
             },
             {
                 title: 'nginx-web-node-plugin',
-                url: 'https://torben.website/nginx-web-node-plugin',
+                url: 'https://tsickert.com/nginx-web-node-plugin',
                 content: {
                     enUS:
                         'A nginx proxy server configuration template for ' +
@@ -673,7 +694,7 @@ const PROJECTS = [
         content: [
             {
                 title: 'weboptimizer',
-                url: 'https://torben.website/weboptimizer',
+                url: 'https://tsickert.com/weboptimizer',
                 content: {
                     enUS:
                         'A generic web optimizer, (module) bundler and ' +
@@ -693,7 +714,7 @@ const PROJECTS = [
         content: [
             {
                 title: 'reverse-proxy-middleware',
-                url: 'https://torben.website/reverse-proxy-middleware',
+                url: 'https://tsickert.com/reverse-proxy-middleware',
                 content: {
                     enUS: 'A generic configureable standalone middleware.',
                     deDE:
@@ -703,7 +724,7 @@ const PROJECTS = [
             },
             {
                 title: 'proxy',
-                url: 'https://torben.website/proxy',
+                url: 'https://tsickert.com/proxy',
                 content: {
                     enUS:
                         'A generic dockerized proxy to host multiple docker ' +
@@ -716,7 +737,7 @@ const PROJECTS = [
             },
             {
                 title: 'polyfill-bundler',
-                url: 'https://torben.website/polyfill-bundler',
+                url: 'https://tsickert.com/polyfill-bundler',
                 content: {
                     enUS:
                         'Provides minimal node application to serve an ' +
@@ -736,7 +757,7 @@ const PROJECTS = [
         content: [
             {
                 title: 'containerbase',
-                url: 'https://torben.website/containerbase',
+                url: 'https://tsickert.com/containerbase',
                 content: {
                     enUS:
                         'An ArchLinux based docker environment with ' +
@@ -758,7 +779,7 @@ const PROJECTS = [
         content: [
             {
                 title: 'bashlink',
-                url: 'https://torben.website/bashlink',
+                url: 'https://tsickert.com/bashlink',
                 content: {
                     enUS:
                         'A generic bash library providing module system, ' +
@@ -773,7 +794,7 @@ const PROJECTS = [
             },
             {
                 title: 'archinstall',
-                url: 'https://torben.website/archinstall',
+                url: 'https://tsickert.com/archinstall',
                 content: {
                     enUS:
                         'Install a configured ArchLinux with pacman as a ' +
@@ -805,7 +826,7 @@ const PROJECTS = [
             },
             {
                 title: 'backup-rotation',
-                url: 'https://torben.website/backup-rotation',
+                url: 'https://tsickert.com/backup-rotation',
                 content: {
                     enUS:
                         'This script allows you to create a local or remote ' +
@@ -818,7 +839,7 @@ const PROJECTS = [
             },
             {
                 title: 'reachable-watcher',
-                url: 'https://torben.website/reachable-watcher',
+                url: 'https://tsickert.com/reachable-watcher',
                 content: {
                     enUS:
                         'As simple configurable script to ensure ' +
@@ -836,15 +857,141 @@ const PROJECTS = [
         ]
     }
 ]
+const GTM_ID = 'GTM-WM3X6BV7'
+/*
+    Texts for the consent manager. Klaro ships translations for its own user
+    interface ("Accept all", "I decline", ...) but not for site specific
+    content like service or purpose descriptions. Those are maintained here in
+    the same "{enUS: ..., deDE: ...}" shape used for the remaining page
+    content.
+*/
+const CONSENT_SERVICES = [
+    {
+        name: 'google-tag-manager',
+        title: {enUS: 'Google Tag Manager', deDE: 'Google Tag Manager'},
+        description: {
+            enUS:
+                'Loads and controls the additional services listed here as ' +
+                'soon as you have given your consent.',
+            deDE:
+                'Lädt und steuert die hier aufgeführten zusätzlichen ' +
+                'Dienste, sobald Sie Ihre Zustimmung erteilt haben.'
+        }
+    },
+    {
+        name: 'google-analytics',
+        title: {enUS: 'Google Analytics', deDE: 'Google Analytics'},
+        description: {
+            enUS:
+                'Collects anonymized statistics about how this website is ' +
+                'used so it can be improved.',
+            deDE:
+                'Erfasst anonymisierte Statistiken darüber, wie diese ' +
+                'Website genutzt wird, um sie verbessern zu können.'
+        }
+    },
+    {
+        name: 'google-ads',
+        title: {enUS: 'Google Ads', deDE: 'Google Ads'},
+        description: {
+            enUS:
+                'Measures how well advertisements referring to this website ' +
+                'perform.',
+            deDE:
+                'Misst, wie gut Werbeanzeigen funktionieren, die auf diese ' +
+                'Website verweisen.'
+        }
+    }
+]
+const CONSENT_TRANSLATIONS = {
+    enUS: {
+        consentModal: {
+            description:
+                'Here you can review and adjust the services this website ' +
+                'would like to use. You are in charge: enable or disable ' +
+                'them as you see fit.',
+            title: 'Services this website would like to use'
+        },
+        consentNotice: {
+            description:
+                'Hi! May this website enable some additional services for ' +
+                '{purposes}? You can always change or withdraw your consent ' +
+                'later.',
+            learnMore: 'Let me choose'
+        },
+        privacyPolicy: {
+            name: 'about this website',
+            text: 'To learn more, please read the {privacyPolicy} section.'
+        },
+        purposes: {
+            marketing: {
+                description:
+                    'These services help to understand how this website is ' +
+                    'used and how well it is found.',
+                title: 'Marketing'
+            }
+        }
+    },
+    deDE: {
+        consentModal: {
+            description:
+                'Hier können Sie die Dienste prüfen und anpassen, die diese ' +
+                'Website nutzen möchte. Sie entscheiden: Aktivieren oder ' +
+                'deaktivieren Sie sie ganz nach Belieben.',
+            title: 'Dienste, die diese Website nutzen möchte'
+        },
+        consentNotice: {
+            description:
+                'Hallo! Darf diese Website einige zusätzliche Dienste für ' +
+                '{purposes} aktivieren? Sie können Ihre Zustimmung später ' +
+                'jederzeit ändern oder zurückziehen.',
+            learnMore: 'Auswahl treffen'
+        },
+        privacyPolicy: {
+            name: 'Impressum',
+            text: 'Mehr dazu erfahren Sie im {privacyPolicy}.'
+        },
+        purposes: {
+            marketing: {
+                description:
+                    'Diese Dienste helfen zu verstehen, wie diese Website ' +
+                    'genutzt wird und wie gut sie gefunden wird.',
+                title: 'Marketing'
+            }
+        }
+    }
+}
+/*
+    Merges the service specific texts into the consent manager translations
+    and maps our language descriptions onto the two letter codes klaro
+    expects.
+*/
+const getConsentTranslations = () => {
+    const result = {}
+
+    for (const language of LANGUAGES) {
+        const translation = {...CONSENT_TRANSLATIONS[language]}
+
+        for (const service of CONSENT_SERVICES)
+            translation[service.name] = {
+                description: service.description[language],
+                title: service.title[language]
+            }
+
+        result[toShortLanguage(language)] = translation
+    }
+
+    return result
+}
 // endregion
 _%>
-<html class="hp-no-javascript" lang="en">
+<html class="hp-no-javascript" lang="<%- toShortLanguage(DEFAULT_LANGUAGE) %>">
     <!--region head-->
     <head>
         <meta charset="utf-8">
         <meta
             name="description"
-            content="bash design development responsive javascript"
+            content="This page reference skills and projects from Torben Sickert"
         >
         <meta name="author" content="Torben Sickert">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -854,19 +1001,146 @@ _%>
         >
         <base href="/">
         <title>Torben Sickert development</title>
-        <%- _.include(
+        <%- await _.include(
             'web-component-wrapper/polyfill.html', {webComponents: false}
         ) %>
+
         <script>
+            KLARO_CONFIGURATION = {
+                acceptAll: true,
+                /*
+                    Initially rendered language. Gets synchronized with the
+                    website wide language selection by the "home-page"
+                    component.
+                */
+                lang: '<%- toShortLanguage(DEFAULT_LANGUAGE) %>',
+                privacyPolicy: '#about-this-website',
+                translations: <%-
+                    JSON.stringify(getConsentTranslations(), null, 4)
+                        .replace(/\n/g, '\n                ')
+                %>,
+                services: [
+                    {
+                        name: 'google-tag-manager',
+                        purposes: ['marketing'],
+                        onAccept: `
+                            /*
+                                We notify the tag manager about all services
+                                that were accepted. You can define a custom
+                                event in GTM to load the service if consent was
+                                given.
+                            */
+                            for(let k of Object.keys(opts.consents))
+                                if (opts.consents[k]) {
+                                    let eventName = 'klaro-'+k+'-accepted'
+                                    dataLayer.push({'event': eventName})
+                                }
+                        `,
+                        onInit: `
+                            /*
+                                Initialization code here (will be executed only
+                                once per page-load)
+                            */
+                            window.dataLayer = window.dataLayer || [];
+                            window.gtag = function(){dataLayer.push(arguments)}
+                            gtag('consent', 'default', {'ad_storage': 'denied', 'analytics_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied'})
+                            gtag('set', 'ads_data_redaction', true)
+                        `,
+                    },
+                    {
+                        /*
+                            In GTM, you should define a custom event trigger
+                            named `klaro-google-analytics-accepted` which
+                            should trigger the Google Analytics integration.
+                        */
+                        name: 'google-analytics',
+                        cookies: [
+                            /*
+                                We delete the Google Analytics cookies if the
+                                user declines its use
+                            */
+                            /^_ga(_.*)?/
+                        ],
+                        purposes: ['marketing'],
+                        onAccept: `
+                            // We grant analytics storage
+                            gtag('consent', 'update', {
+                                'analytics_storage': 'granted',
+                            })
+                        `,
+                        onDecline: `
+                            // We deny analytics storage
+                            gtag('consent', 'update', {
+                                'analytics_storage': 'denied',
+                            })
+                        `,
+                    },
+                    {
+                        name: 'google-ads',
+                        cookies: [],
+                        onAccept: `
+                            // We grant ad storage and personalization
+                            gtag('consent', 'update', {
+                                'ad_storage': 'granted',
+                                'ad_user_data': 'granted',
+                                'ad_personalization': 'granted'
+                            })
+                        `,
+                        onDecline: `
+                            // We decline ad storage and personalization
+                            gtag('consent', 'update', {
+                                'ad_storage': 'denied',
+                                'ad_user_data': 'denied',
+                                'ad_personalization': 'denied'
+                            })
+                        `,
+                        purposes: ['marketing'],
+                    }
+                ]
+            }
+
             AUTO_DEFINE_HOME_PAGE = true
 
             window.document.documentElement.classList.remove('hp-no-javascript')
             window.document.documentElement.classList.add('hp-javascript')
         </script>
+
+        <script
+            defer
+            data-klaro-config="KLARO_CONFIGURATION"
+            type="application/javascript"
+            src="https://cdn.kiprotect.com/klaro/v0.7/klaro.js">
+        </script>
+
+        <!-- region google tag manager -->
+        <script
+            data-type="application/javascript"
+            type="text/plain"
+            data-name="google-tag-manager"
+        >
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','<%- GTM_ID %>');
+        </script>
+        <!-- endregion -->
     </head>
     <!--endregion-->
     <!--region body-->
     <body class="hp-no-javascript">
+        <!-- region google tag manager (noscript) -->
+        <noscript>
+            <iframe
+                data-name="google-tag-manager"
+                data-src="https://www.googletagmanager.com/ns.html?id=<%- GTM_ID %>"
+                height="0"
+                width="0"
+                style="display:none;visibility:hidden"
+            ></iframe>
+        </noscript>
+        <!-- endregion -->
+
         <script>
             window.document.body.classList.remove('hp-no-javascript')
             window.document.body.classList.add('hp-javascript')
@@ -949,7 +1223,15 @@ _%>
                 <!--region swiper-->
                 <section class="hp-section swiper" data-website-utilities-section>
                     <div class="hp-section__swiper-wrapper swiper-wrapper">
-                    <%_ for (const section of SECTIONS) { _%>
+                    <%_
+                    const sectionsStartUpAnimationNumberOffset =
+                        START_UP_ANIMATION_NUMBER
+                    for (const section of SECTIONS) {
+                        const getSectionStartUpAnimationNumber =
+                            getStartUpAnimationNumberFactory(
+                                sectionsStartUpAnimationNumberOffset
+                            )
+                    _%>
                         <div
                             data-hash="<%- section.title %>"
                             class="hp-section__swiper-wrapper__slide hp-section__swiper-wrapper__slide--<%- section.title %> swiper-slide"
@@ -960,7 +1242,17 @@ _%>
                                         Serves as anchor point if JavaScript
                                         isn't supported.
                                     -->
-                                    <h1 id="<%- section.title %>">
+                                    <h1
+                                        id="<%- section.title %>"
+                                        class="wu-start-up-animation-number-<%- getSectionStartUpAnimationNumber(sectionsStartUpAnimationNumberOffset) %>"
+                                        data-timebased="<%=
+                                            section.content.headline.timebase ?
+                                                `${JSON.stringify(
+                                                    section.content.headline.timebase
+                                                )}` :
+                                                '[]'
+                                        %>"
+                                    >
                                         <%_ if (section.content.headline) { _%>
                                             <%- section.content.headline[DEFAULT_LANGUAGE] %>
                                             <!--<%- ALTERNATE_LANGUAGE %>:
@@ -970,34 +1262,42 @@ _%>
                                     </h1>
 
                                     <%_ if (section.content.sound) { _%>
-                                        <lang-alternative
-                                            class="hp-audio-player" active
+                                        <div
+                                            class="wu-start-up-animation-number-<%- getSectionStartUpAnimationNumber(sectionsStartUpAnimationNumberOffset) %>"
                                         >
-                                            <a
-                                                hidden
-                                                href="<%- section.content.sound[DEFAULT_LANGUAGE] %>"
-                                            >hidden</a>
-                                        </lang-alternative>
-                                        <lang-alternative
-                                            lang="<%- ALTERNATE_LANGUAGE %>"
-                                            class="hp-audio-player"
-                                        >
-                                            <a
-                                                hidden
-                                                href="<%- section.content.sound[ALTERNATE_LANGUAGE] %>"
-                                            >hidden</a>
-                                        </lang-alternative>
+                                            <lang-alternative
+                                                class="hp-audio-player" active
+                                            >
+                                                <a
+                                                    hidden
+                                                    href="<%- section.content.sound[DEFAULT_LANGUAGE] %>"
+                                                >hidden</a>
+                                            </lang-alternative>
+                                            <lang-alternative
+                                                lang="<%- ALTERNATE_LANGUAGE %>"
+                                                class="hp-audio-player"
+                                            >
+                                                <a
+                                                    hidden
+                                                    href="<%- section.content.sound[ALTERNATE_LANGUAGE] %>"
+                                                >hidden</a>
+                                            </lang-alternative>
+                                        </div>
                                     <%_ } %>
 
                                     <%_ if (section.title === 'work') { _%>
-                                        <h2>
+                                        <h2
+                                            class="wu-start-up-animation-number-<%- getSectionStartUpAnimationNumber(sectionsStartUpAnimationNumberOffset) %>"
+                                        >
                                             <%- section.content.subHeadline[DEFAULT_LANGUAGE] %>
                                             <!--<%- ALTERNATE_LANGUAGE %>:
                                                 <%- section.content.subHeadline[ALTERNATE_LANGUAGE] %>
                                             -->
                                         </h2>
 
-                                        <p>
+                                        <p
+                                            class="wu-start-up-animation-number-<%- getSectionStartUpAnimationNumber(sectionsStartUpAnimationNumberOffset) %>"
+                                        >
                                             <lang-replace>
                                                 <%_ for (const keywords of section.content.keywords[DEFAULT_LANGUAGE]) { _%>
                                                     <%_ if (keywords.title) { _%>
@@ -1017,7 +1317,9 @@ _%>
                                             -->
                                         </p>
 
-                                        <h2>
+                                        <h2
+                                            class="wu-start-up-animation-number-<%- getSectionStartUpAnimationNumber(sectionsStartUpAnimationNumberOffset) %>"
+                                        >
                                             <%- section.content.subHeadline2[DEFAULT_LANGUAGE] %>
                                             <!--<%- ALTERNATE_LANGUAGE %>:
                                                 <%- section.content.subHeadline2[ALTERNATE_LANGUAGE] %>
@@ -1025,7 +1327,9 @@ _%>
                                         </h2>
 
                                         <%_ for (const group of PROJECTS) { _%>
-                                            <h3>
+                                            <h3
+                                                class="wu-start-up-animation-number-<%- getSectionStartUpAnimationNumber(sectionsStartUpAnimationNumberOffset) %>"
+                                            >
                                                 <%- group.title[DEFAULT_LANGUAGE] %>
                                                 <!--<%- ALTERNATE_LANGUAGE %>:
                                                     <%- group.title[ALTERNATE_LANGUAGE] %>
@@ -1036,12 +1340,14 @@ _%>
                                                 <%_ for (const project of group.content) { _%>
                                                     <%_ if (project.url) { _%>
                                                         <a
-                                                            class="hp-card"
+                                                            class="hp-card<%- project.images ? ' hp-card--with-images' : '' %> wu-start-up-animation-number-<%- getSectionStartUpAnimationNumber(sectionsStartUpAnimationNumberOffset) %>"
                                                             href="<%- project.url %>"
                                                             target="_blank"
                                                         >
                                                     <%_ } else { _%>
-                                                        <div class="hp-card">
+                                                        <div
+                                                            class="hp-card<%- project.images ? ' hp-card--with-images' : '' %> wu-start-up-animation-number-<%- getSectionStartUpAnimationNumber(sectionsStartUpAnimationNumberOffset) %>"
+                                                        >
                                                     <%_ } _%>
                                                         <div class="hp-card__body">
                                                             <h4>
@@ -1083,7 +1389,9 @@ _%>
                                             </div>
                                         <%_ } _%>
                                     <%_ } else { _%>
-                                        <p class="lead">
+                                        <p
+                                            class="lead wu-start-up-animation-number-<%- getSectionStartUpAnimationNumber(sectionsStartUpAnimationNumberOffset) %>"
+                                        >
                                             <%- section.content.lead[DEFAULT_LANGUAGE] %>
                                             <!--<%- ALTERNATE_LANGUAGE %>:
                                                 <%- section.content.lead[ALTERNATE_LANGUAGE] %>
@@ -1119,20 +1427,21 @@ _%>
                                         </p>
                                     <%_ } _%>
                                     <%_ if (section.title === 'contact') { _%>
-                                        <a href="tel:004917610248185">
+                                        <a
+                                            class="wu wu-start-up-animation-number-<%- getSectionStartUpAnimationNumber(sectionsStartUpAnimationNumberOffset) %>"
+                                            href="tel:004917610248185"
+                                        >
                                             Phone<!--<%- ALTERNATE_LANGUAGE %>:Tel.-->
                                             +49 (0) 176 <span>/</span> 10 248 185
                                         </a>
                                         <p
-                                            class="hp-section__swiper-wrapper__slide__center__social-links"
+                                            class="hp-section__swiper-wrapper__slide__center__social-links wu-start-up-animation-number-<%- getSectionStartUpAnimationNumber(sectionsStartUpAnimationNumberOffset) %>"
                                         >
                                             <%_
                                                 for (const link of SOCIAL_MEDIA) {
-                                                    if (link.url.indexOf('@') !== -1)
-                                                        link.url = `mailto:${link.url}`
                                             _%>
                                                 <a
-                                                    href="<%- link.url %>"
+                                                    href="<%- `${link.url.includes('@') ? 'mailto:' : ''}${link.url}` %>"
                                                     target="_blank"
                                                 >
                                                     <i class="bi bi-<%- link.icon %>"></i>
@@ -1207,7 +1516,30 @@ _%>
                                 -->
                             </a>
                         </div>
-                        <%- _.include('legal-notes') %>
+                        <%- await _.include('legal-notes') %>
+                        <div>
+                            <h3>
+                                Consent to the Use of Personal Data
+                                <!--<%- ALTERNATE_LANGUAGE %>:
+                                    Einwilligung personenbezogener Daten
+                                -->
+                            </h3>
+                            Change consent to the collection and processing of
+                            personal data:
+                            <!--<%- ALTERNATE_LANGUAGE %>:
+                                Einwilligung in die Erhebung und Verarbeitung
+                                von personenbezogenen Daten ändern:
+                            -->
+                            <a
+                                href="#about-this-website"
+                                onclick="event.preventDefault(); klaro.show()"
+                            >
+                                Change consent
+                                <!--<%- ALTERNATE_LANGUAGE %>:
+                                    Einwilligung ändern
+                                -->
+                            </a>
+                        </div>
                     </div>
                 </section>
                 <!-- endregion -->

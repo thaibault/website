@@ -2,7 +2,7 @@
 -*- coding: utf-8 -*- */
 /*
 region header
-Copyright Torben Sickert (info["~at~"]torben.website) 16.12.2012
+Copyright Torben Sickert (info["~at~"]tsickert.com) 16.12.2012
 
 License
 -------
@@ -20,14 +20,14 @@ endregion
 @import 'swiper/modules/navigation.css';
 @import 'swiper/modules/pagination.css';
 
-@import 'website-utilities/fonts.compiled.css';
-@import 'website-utilities/index.compiled.css';
+@import 'website-utilities/dist/fonts.css';
+@import 'website-utilities/dist/index.css';
 /* endregion */
 
 :root {
     /* region custom-properties */
     /** region color */
-    --background-color: white; /* dark grey */
+    --background-color: white;
     --background-gradient: linear-gradient(
         to right,
         var(--background-color),
@@ -71,7 +71,10 @@ endregion
     --box-shadow-header: 0 10px 30px var(--shadow-color);
     --box-shadow-card: 0 4px 10px var(--shadow-color);
     --box-shadow-card-hover: var(--box-shadow-header);
+    --border-radius: 5px;
     --card-border-effect-gradient: var(--link-gradient);
+    --card-border-effect-duration: 18s;
+    --card-border-effect-hover-duration: 6s;
     /** endregion */
     /** region space */
     --header-height: 60px;
@@ -114,7 +117,97 @@ html, body {
         display: block;
     }
 }
+/* region consent manager */
+/*
+    The consent manager (klaro) renders itself into a ".klaro" container which
+    is appended to the document body and therefore lives outside of the ".hp"
+    scope.
 
+    Most of the theming happens through the custom properties klaro exposes as
+    its official styling interface. The remaining rules need the class selector
+    since klaro injects its style sheet at runtime (hence after this one) and
+    would otherwise win the cascade with its equally specific default rules.
+*/
+.klaro {
+    /** region typography */
+    --font-family: var(--wu-typography-font-family);
+    --title-font-family: var(--wu-typography-font-family-headline);
+    --font-size: 1rem;
+    /** endregion */
+    /** region color */
+    --dark1: var(--header-background-color);
+    --dark2: var(--header-background-color);
+    --dark3: var(--menu-font-color);
+    --white3: var(--font-color);
+    --light1: var(--menu-font-color);
+    --button-text-color: var(--menu-font-color);
+    --green1: var(--link-hover-color);
+    --green2: var(--accent-color);
+    --green3: var(--link-hover-color);
+    --box-shadow-color: var(--link-hover-color);
+    /** endregion */
+
+    .cookie-notice:not(.cookie-modal-notice),
+    .cookie-modal .cm-modal.cm-klaro {
+        background: var(--header-background-gradient);
+        box-shadow: var(--box-shadow-header);
+        color: var(--light1);
+    }
+
+    .cookie-modal .cm-modal.cm-klaro {
+        border-radius: var(--border-radius);
+    }
+
+    h1, h2 {
+        color: var(--menu-font-hover-color);
+    }
+
+    a,
+    a:visited,
+    a:focus {
+        background: var(--link-gradient);
+        color: transparent;
+        background-clip: text;
+
+        text-decoration: none;
+
+        transition: all 0.2s linear;
+
+        &:hover {
+            background: var(--link-hover-gradient);
+            color: transparent;
+            background-clip: text;
+
+            text-decoration: var(--link-hover-color) underline;
+        }
+    }
+
+    .cm-btn {
+        background: var(--dark2);
+        transition: all 0.2s linear;
+
+        &.cm-btn-success {
+            background: var(--link-hover-gradient);
+        }
+
+        &.cm-btn-info {
+            background: var(--link-gradient);
+        }
+
+        &:hover {
+            filter: brightness(1.15);
+        }
+    }
+
+    .cm-modal .cm-header {
+        border-radius: var(--border-radius);
+    }
+
+    .cm-powered-by {
+        display: none !important;
+    }
+}
+/* endregion */
 .hp {
     /* region global */
     overflow-y: scroll;
@@ -132,6 +225,7 @@ html, body {
     }
     /** endregion */
     /** region link */
+    /* stylelint-disable no-descending-specificity */
     a,
     a:visited,
     a:focus {
@@ -141,6 +235,8 @@ html, body {
         background-clip: text;
 
         text-decoration: none;
+
+        transition: all 0.2s linear;
 
         &:hover {
             /* color: var(--link-hover-color); */
@@ -178,7 +274,7 @@ html, body {
             }
         }
     }
-
+    /* stylelint-enable no-descending-specificity */
     h1, h2 {
         /* color: var(--headline-color); */
         background: var(--headline-gradient);
@@ -213,7 +309,7 @@ html, body {
     }
 
     .hp-card {
-        height: 500px;
+        height: 250px;
         width: 100%;
         max-width: 250px;
 
@@ -228,6 +324,15 @@ html, body {
 
         transition: box-shadow 0.2s linear;
 
+        &:is(a) {
+            background: none;
+            color: var(--font-color);
+
+            &:hover {
+                color: var(--link-hover-color);
+            }
+        }
+
         &.hp-card--open {
             position: absolute;
             left: 0;
@@ -236,6 +341,29 @@ html, body {
             height: 100vh;
             width: 100%;
             max-width: 1000px;
+            /*
+                Opened cards can become much wider (up to 1000px) than the
+                rotating border effect bar derived from their height.
+            */
+            &::before {
+                height: max(150%, 1500px);
+            }
+        }
+
+        &.hp-card--with-images {
+            height: 500px;
+
+            @media (--wu-extra-extra-small) {
+                @media (--wu-extra-small) {
+                    height: 650px;
+
+                    @media (--wu-small) {
+                        @media (--wu-medium) {
+                            height: 508px;
+                        }
+                    }
+                }
+            }
         }
 
         @media (width >= 250px) {
@@ -253,12 +381,10 @@ html, body {
 
                 width: 100%;
                 max-width: 550px;
-                height: 650px;
 
                 @media (--wu-small) {
                     @media (--wu-medium) {
                         width: 340px;
-                        height: 508px;
                     }
                 }
             }
@@ -273,18 +399,37 @@ html, body {
             content: '';
 
             position: absolute;
-            height: 130%;
+            /*
+                The rotating bar has to exceed the cards diagonal in every
+                rotation angle to keep the effect visible on all four edges.
+                Since small cards are wider (up to 550px) than tall (250px) a
+                height derived from the cards height alone would only reach
+                the top and bottom edge.
+            */
+            height: max(150%, 850px);
             width: 50px;
 
             background-image: var(--card-border-effect-gradient);
-            animation: rotate-background 18s linear infinite;
+            animation:
+                rotate-background
+                var(--card-border-effect-duration)
+                linear
+                infinite;
             transition: all 0.2s linear;
         }
-
+        /*
+            NOTE: Decreasing the animations duration re-maps already elapsed
+            animation time onto the shorter duration and therefore lets the
+            rotating bar jump to another angle. Therefore "index.ts"
+            neutralizes this duration change (by setting the hover duration to
+            the default one) and speeds the effect up via the animations
+            playback rate which preserves the current angle. Without
+            javascript we fall back to this (jumping) pure css variant.
+        */
         &:hover::before {
             width: 100px;
 
-            animation: rotate-background 6s linear infinite;
+            animation-duration: var(--card-border-effect-hover-duration);
         }
 
         &::after {
@@ -429,7 +574,7 @@ html, body {
                         @media (--wu-medium) {
                             padding: 0 var(--wu-default-space);
 
-                            border-radius: 0 0 5px 5px;
+                            border-radius: 0 0 var(--border-radius) var(--border-radius);
 
                             width: var(--maximum-content-width);
                         }
