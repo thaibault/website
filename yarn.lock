@@ -17023,9 +17023,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"weboptimizer@npm:^4.0.100":
-  version: 4.0.100
-  resolution: "weboptimizer@npm:4.0.100"
+"weboptimizer@npm:^4.0.101":
+  version: 4.0.101
+  resolution: "weboptimizer@npm:4.0.101"
   dependencies:
     "@babel/core": "npm:^8.0.10"
     "@babel/plugin-proposal-decorators": "npm:^8.0.2"
@@ -17170,7 +17170,7 @@ __metadata:
       optional: true
   bin:
     weboptimizer: dist/index.js
-  checksum: 10c0/ca14987946194ba30f7c502ecd922d643d5bc24c0dea200751d98541305cf0845001a1b96b6fe643b48c34429bb641ccec3897f9b4d4e6772a7b7c2c61d1bf9e
+  checksum: 10c0/028291de15edb70d5b2d2e07fd71336ec6e18597c58d48d278c699dc6c21e5d70219b1a866fe57db75b74628d2259ea4454167737fc887978ea96948cde10191
   languageName: node
   linkType: hard
 
@@ -17395,7 +17395,7 @@ __metadata:
     wavesurfer.js: "npm:^8.0.5"
     web-component-wrapper: "npm:^0.0.620"
     web-internationalization: "npm:^2.0.59"
-    weboptimizer: "npm:^4.0.100"
+    weboptimizer: "npm:^4.0.101"
     webpack-dev-server: "npm:^6.1.0"
     website-utilities: "npm:^1.0.480"
   languageName: unknown

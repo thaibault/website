@@ -53,10 +53,20 @@ const LINK_CURRICULUM_VITAE_ALTERNATE_LANGUAGE_PATH =
 // endregion
 // region runtime
 let START_UP_ANIMATION_NUMBER = 0
-const getStartUpAnimationNumber = () => {
-    START_UP_ANIMATION_NUMBER += 1
-    return START_UP_ANIMATION_NUMBER
+const getStartUpAnimationNumberFactory = (
+    offset = START_UP_ANIMATION_NUMBER
+) => {
+    let localOffset = offset
+
+    return () => {
+        localOffset += 1
+        if (localOffset > START_UP_ANIMATION_NUMBER)
+            START_UP_ANIMATION_NUMBER = localOffset
+
+        return localOffset
+    }
 }
+const getStartUpAnimationNumber = getStartUpAnimationNumberFactory()
 // endregion
 // region content
 const SOCIAL_MEDIA = [
@@ -1213,7 +1223,15 @@ _%>
                 <!--region swiper-->
                 <section class="hp-section swiper" data-website-utilities-section>
                     <div class="hp-section__swiper-wrapper swiper-wrapper">
-                    <%_ for (const section of SECTIONS) { _%>
+                    <%_
+                    const sectionsStartUpAnimationNumberOffset =
+                        START_UP_ANIMATION_NUMBER
+                    for (const section of SECTIONS) {
+                        const getSectionStartUpAnimationNumber =
+                            getStartUpAnimationNumberFactory(
+                                sectionsStartUpAnimationNumberOffset
+                            )
+                    _%>
                         <div
                             data-hash="<%- section.title %>"
                             class="hp-section__swiper-wrapper__slide hp-section__swiper-wrapper__slide--<%- section.title %> swiper-slide"
@@ -1226,6 +1244,7 @@ _%>
                                     -->
                                     <h1
                                         id="<%- section.title %>"
+                                        class="wu-start-up-animation-number-<%- getSectionStartUpAnimationNumber(sectionsStartUpAnimationNumberOffset) %>"
                                         data-timebased="<%=
                                             section.content.headline.timebase ?
                                                 `${JSON.stringify(
@@ -1243,34 +1262,42 @@ _%>
                                     </h1>
 
                                     <%_ if (section.content.sound) { _%>
-                                        <lang-alternative
-                                            class="hp-audio-player" active
+                                        <div
+                                            class="wu-start-up-animation-number-<%- getSectionStartUpAnimationNumber(sectionsStartUpAnimationNumberOffset) %>"
                                         >
-                                            <a
-                                                hidden
-                                                href="<%- section.content.sound[DEFAULT_LANGUAGE] %>"
-                                            >hidden</a>
-                                        </lang-alternative>
-                                        <lang-alternative
-                                            lang="<%- ALTERNATE_LANGUAGE %>"
-                                            class="hp-audio-player"
-                                        >
-                                            <a
-                                                hidden
-                                                href="<%- section.content.sound[ALTERNATE_LANGUAGE] %>"
-                                            >hidden</a>
-                                        </lang-alternative>
+                                            <lang-alternative
+                                                class="hp-audio-player" active
+                                            >
+                                                <a
+                                                    hidden
+                                                    href="<%- section.content.sound[DEFAULT_LANGUAGE] %>"
+                                                >hidden</a>
+                                            </lang-alternative>
+                                            <lang-alternative
+                                                lang="<%- ALTERNATE_LANGUAGE %>"
+                                                class="hp-audio-player"
+                                            >
+                                                <a
+                                                    hidden
+                                                    href="<%- section.content.sound[ALTERNATE_LANGUAGE] %>"
+                                                >hidden</a>
+                                            </lang-alternative>
+                                        </div>
                                     <%_ } %>
 
                                     <%_ if (section.title === 'work') { _%>
-                                        <h2>
+                                        <h2
+                                            class="wu-start-up-animation-number-<%- getSectionStartUpAnimationNumber(sectionsStartUpAnimationNumberOffset) %>"
+                                        >
                                             <%- section.content.subHeadline[DEFAULT_LANGUAGE] %>
                                             <!--<%- ALTERNATE_LANGUAGE %>:
                                                 <%- section.content.subHeadline[ALTERNATE_LANGUAGE] %>
                                             -->
                                         </h2>
 
-                                        <p>
+                                        <p
+                                            class="wu-start-up-animation-number-<%- getSectionStartUpAnimationNumber(sectionsStartUpAnimationNumberOffset) %>"
+                                        >
                                             <lang-replace>
                                                 <%_ for (const keywords of section.content.keywords[DEFAULT_LANGUAGE]) { _%>
                                                     <%_ if (keywords.title) { _%>
@@ -1290,7 +1317,9 @@ _%>
                                             -->
                                         </p>
 
-                                        <h2>
+                                        <h2
+                                            class="wu-start-up-animation-number-<%- getSectionStartUpAnimationNumber(sectionsStartUpAnimationNumberOffset) %>"
+                                        >
                                             <%- section.content.subHeadline2[DEFAULT_LANGUAGE] %>
                                             <!--<%- ALTERNATE_LANGUAGE %>:
                                                 <%- section.content.subHeadline2[ALTERNATE_LANGUAGE] %>
@@ -1298,7 +1327,9 @@ _%>
                                         </h2>
 
                                         <%_ for (const group of PROJECTS) { _%>
-                                            <h3>
+                                            <h3
+                                                class="wu-start-up-animation-number-<%- getSectionStartUpAnimationNumber(sectionsStartUpAnimationNumberOffset) %>"
+                                            >
                                                 <%- group.title[DEFAULT_LANGUAGE] %>
                                                 <!--<%- ALTERNATE_LANGUAGE %>:
                                                     <%- group.title[ALTERNATE_LANGUAGE] %>
@@ -1309,12 +1340,14 @@ _%>
                                                 <%_ for (const project of group.content) { _%>
                                                     <%_ if (project.url) { _%>
                                                         <a
-                                                            class="hp-card<%- project.images ? ' hp-card--with-images' : '' %>"
+                                                            class="hp-card<%- project.images ? ' hp-card--with-images' : '' %> wu-start-up-animation-number-<%- getSectionStartUpAnimationNumber(sectionsStartUpAnimationNumberOffset) %>"
                                                             href="<%- project.url %>"
                                                             target="_blank"
                                                         >
                                                     <%_ } else { _%>
-                                                        <div class="hp-card<%- project.images ? ' hp-card--with-images' : '' %>">
+                                                        <div
+                                                            class="hp-card<%- project.images ? ' hp-card--with-images' : '' %> wu-start-up-animation-number-<%- getSectionStartUpAnimationNumber(sectionsStartUpAnimationNumberOffset) %>"
+                                                        >
                                                     <%_ } _%>
                                                         <div class="hp-card__body">
                                                             <h4>
@@ -1356,7 +1389,9 @@ _%>
                                             </div>
                                         <%_ } _%>
                                     <%_ } else { _%>
-                                        <p class="lead">
+                                        <p
+                                            class="lead wu-start-up-animation-number-<%- getSectionStartUpAnimationNumber(sectionsStartUpAnimationNumberOffset) %>"
+                                        >
                                             <%- section.content.lead[DEFAULT_LANGUAGE] %>
                                             <!--<%- ALTERNATE_LANGUAGE %>:
                                                 <%- section.content.lead[ALTERNATE_LANGUAGE] %>
@@ -1392,12 +1427,15 @@ _%>
                                         </p>
                                     <%_ } _%>
                                     <%_ if (section.title === 'contact') { _%>
-                                        <a href="tel:004917610248185">
+                                        <a
+                                            class="wu wu-start-up-animation-number-<%- getSectionStartUpAnimationNumber(sectionsStartUpAnimationNumberOffset) %>"
+                                            href="tel:004917610248185"
+                                        >
                                             Phone<!--<%- ALTERNATE_LANGUAGE %>:Tel.-->
                                             +49 (0) 176 <span>/</span> 10 248 185
                                         </a>
                                         <p
-                                            class="hp-section__swiper-wrapper__slide__center__social-links"
+                                            class="hp-section__swiper-wrapper__slide__center__social-links wu-start-up-animation-number-<%- getSectionStartUpAnimationNumber(sectionsStartUpAnimationNumberOffset) %>"
                                         >
                                             <%_
                                                 for (const link of SOCIAL_MEDIA) {
