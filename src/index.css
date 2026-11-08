@@ -33,7 +33,7 @@ endregion
         var(--background-color),
         #fdeff9 /* white with a bit violet */
     );
-    --header-background-color: #222; /* dark grey */
+    --header-background-color: #222; /* dark gray */
     --header-background-gradient: linear-gradient(
         45deg,
         var(--header-background-color),
@@ -42,7 +42,7 @@ endregion
         #86228a, /* dark violet */
         var(--header-background-color)
     );
-    --font-color: #5a5a5a; /* grey */
+    --font-color: #5a5a5a; /* gray */
     --surface-color: var(--background-color);
     --accent-color: #b822be; /* light violet */
     --link-color: var(--accent-color);
