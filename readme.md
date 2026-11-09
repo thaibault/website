@@ -152,20 +152,6 @@ Project status
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/couchdb-web-node-plugin/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/couchdb-web-node-plugin/actions/workflows/deploy-web-documentation.yaml)
 [![web documentation](https://img.shields.io/website-up-down-green-red/https/tsickert.com/couchdb-web-node-plugin.svg?label=web-documentation&style=for-the-badge)](https://tsickert.com/couchdb-web-node-plugin)
 
-### web-documentation
-
-[![npm](https://img.shields.io/npm/v/web-documentation?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/web-documentation)
-[![npm downloads](https://img.shields.io/npm/dy/web-documentation.svg?style=for-the-badge)](https://www.npmjs.com/package/web-documentation)
-
-[![build](https://img.shields.io/github/actions/workflow/status/thaibault/web-documentation/build.yaml?style=for-the-badge)](https://github.com/thaibault/web-documentation/actions/workflows/build.yaml)
-[![build push package](https://img.shields.io/github/actions/workflow/status/thaibault/web-documentation/build-package-and-push.yaml?label=build%20push%20package&style=for-the-badge)](https://github.com/thaibault/web-documentation/actions/workflows/build-package-and-push.yaml)
-
-[![check types](https://img.shields.io/github/actions/workflow/status/thaibault/web-documentation/check-types.yaml?label=check%20types&style=for-the-badge)](https://github.com/thaibault/web-documentation/actions/workflows/check-types.yaml)
-[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/web-documentation/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/web-documentation/actions/workflows/lint.yaml)
-[![test](https://img.shields.io/github/actions/workflow/status/thaibault/web-documentation/test-coverage-report.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/web-documentation/actions/workflows/test-coverage-report.yaml)
-
-[![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/web-documentation?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/web-documentation)
-
 ### ejs-web-node-plugin
 
 [![npm](https://img.shields.io/npm/v/ejs-web-node-plugin?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/ejs-web-node-plugin)
@@ -200,22 +186,24 @@ Project status
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/errorreporter/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/errorreporter/actions/workflows/deploy-web-documentation.yaml)
 [![web documentation](https://img.shields.io/website-up-down-green-red/https/tsickert.com/errorreporter.svg?label=web-documentation&style=for-the-badge)](https://tsickert.com/errorreporter)
 
-### web-internationalization
+### gocryptfs-standalone
 
-[![npm](https://img.shields.io/npm/v/web-internationalization?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/web-internationalization)
-[![npm downloads](https://img.shields.io/npm/dy/web-internationalization.svg?style=for-the-badge)](https://www.npmjs.com/package/web-internationalization)
+[![npm](https://img.shields.io/npm/v/gocryptfs-standalone?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/gocryptfs-standalone)
+[![npm downloads](https://img.shields.io/npm/dy/gocryptfs-standalone.svg?style=for-the-badge)](https://www.npmjs.com/package/gocryptfs-standalone)
 
-[![build](https://img.shields.io/github/actions/workflow/status/thaibault/web-internationalization/build.yaml?style=for-the-badge)](https://github.com/thaibault/web-internationalization/actions/workflows/build.yaml)
-[![build push package](https://img.shields.io/github/actions/workflow/status/thaibault/web-internationalization/build-package-and-push.yaml?label=build%20push%20package&style=for-the-badge)](https://github.com/thaibault/web-internationalization/actions/workflows/build-package-and-push.yaml)
+[![build](https://img.shields.io/github/actions/workflow/status/thaibault/gocryptfs-standalone/build.yaml?style=for-the-badge)](https://github.com/thaibault/gocryptfs-standalone/actions/workflows/build.yaml)
+[![build push package](https://img.shields.io/github/actions/workflow/status/thaibault/gocryptfs-standalone/build-package-and-push.yaml?label=build%20push%20package&style=for-the-badge)](https://github.com/thaibault/gocryptfs-standalone/actions/workflows/build-package-and-push.yaml)
 
-[![check types](https://img.shields.io/github/actions/workflow/status/thaibault/web-internationalization/check-types.yaml?label=check%20types&style=for-the-badge)](https://github.com/thaibault/web-internationalization/actions/workflows/check-types.yaml)
-[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/web-internationalization/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/web-internationalization/actions/workflows/lint.yaml)
-[![test](https://img.shields.io/github/actions/workflow/status/thaibault/web-internationalization/test-coverage-report.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/web-internationalization/actions/workflows/test-coverage-report.yaml)
+[![check types](https://img.shields.io/github/actions/workflow/status/thaibault/gocryptfs-standalone/check-types.yaml?label=check%20types&style=for-the-badge)](https://github.com/thaibault/gocryptfs-standalone/actions/workflows/check-types.yaml)
+[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/gocryptfs-standalone/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/gocryptfs-standalone/actions/workflows/lint.yaml)
+[![test](https://img.shields.io/github/actions/workflow/status/thaibault/gocryptfs-standalone/test-coverage-report.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/gocryptfs-standalone/actions/workflows/test-coverage-report.yaml)
+[![gocryptfs compatibility](https://img.shields.io/github/actions/workflow/status/thaibault/gocryptfs-standalone/gocryptfs-compatibility.yaml?label=gocryptfs%20compatibility&style=for-the-badge)](https://github.com/thaibault/gocryptfs-standalone/actions/workflows/gocryptfs-compatibility.yaml)
+[![standalone executables](https://img.shields.io/github/actions/workflow/status/thaibault/gocryptfs-standalone/standalone-executables.yaml?label=standalone%20executables&style=for-the-badge)](https://github.com/thaibault/gocryptfs-standalone/actions/workflows/standalone-executables.yaml)
 
-[![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/web-internationalization?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/web-internationalization)
+[![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/gocryptfs-standalone?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/gocryptfs-standalone)
 
-[![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/web-internationalization/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/web-internationalization/actions/workflows/deploy-web-documentation.yaml)
-[![web documentation](https://img.shields.io/website-up-down-green-red/https/tsickert.com/web-internationalization.svg?label=web-documentation&style=for-the-badge)](https://tsickert.com/web-internationalization)
+[![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/gocryptfs-standalone/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/gocryptfs-standalone/actions/workflows/deploy-web-documentation.yaml)
+[![web documentation](https://img.shields.io/website-up-down-green-red/https/tsickert.com/gocryptfs-standalone.svg?label=web-documentation&style=for-the-badge)](https://tsickert.com/gocryptfs-standalone)
 
 ### legal-notes
 
@@ -373,6 +361,37 @@ Project status
 
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/reverse-proxy-middleware/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/reverse-proxy-middleware/actions/workflows/deploy-web-documentation.yaml)
 [![web documentation](https://img.shields.io/website-up-down-green-red/https/tsickert.com/reverse-proxy-middleware.svg?label=web-documentation&style=for-the-badge)](https://tsickert.com/reverse-proxy-middleware)
+
+### web-documentation
+
+[![npm](https://img.shields.io/npm/v/web-documentation?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/web-documentation)
+[![npm downloads](https://img.shields.io/npm/dy/web-documentation.svg?style=for-the-badge)](https://www.npmjs.com/package/web-documentation)
+
+[![build](https://img.shields.io/github/actions/workflow/status/thaibault/web-documentation/build.yaml?style=for-the-badge)](https://github.com/thaibault/web-documentation/actions/workflows/build.yaml)
+[![build push package](https://img.shields.io/github/actions/workflow/status/thaibault/web-documentation/build-package-and-push.yaml?label=build%20push%20package&style=for-the-badge)](https://github.com/thaibault/web-documentation/actions/workflows/build-package-and-push.yaml)
+
+[![check types](https://img.shields.io/github/actions/workflow/status/thaibault/web-documentation/check-types.yaml?label=check%20types&style=for-the-badge)](https://github.com/thaibault/web-documentation/actions/workflows/check-types.yaml)
+[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/web-documentation/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/web-documentation/actions/workflows/lint.yaml)
+[![test](https://img.shields.io/github/actions/workflow/status/thaibault/web-documentation/test-coverage-report.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/web-documentation/actions/workflows/test-coverage-report.yaml)
+
+[![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/web-documentation?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/web-documentation)
+
+### web-internationalization
+
+[![npm](https://img.shields.io/npm/v/web-internationalization?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/web-internationalization)
+[![npm downloads](https://img.shields.io/npm/dy/web-internationalization.svg?style=for-the-badge)](https://www.npmjs.com/package/web-internationalization)
+
+[![build](https://img.shields.io/github/actions/workflow/status/thaibault/web-internationalization/build.yaml?style=for-the-badge)](https://github.com/thaibault/web-internationalization/actions/workflows/build.yaml)
+[![build push package](https://img.shields.io/github/actions/workflow/status/thaibault/web-internationalization/build-package-and-push.yaml?label=build%20push%20package&style=for-the-badge)](https://github.com/thaibault/web-internationalization/actions/workflows/build-package-and-push.yaml)
+
+[![check types](https://img.shields.io/github/actions/workflow/status/thaibault/web-internationalization/check-types.yaml?label=check%20types&style=for-the-badge)](https://github.com/thaibault/web-internationalization/actions/workflows/check-types.yaml)
+[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/web-internationalization/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/web-internationalization/actions/workflows/lint.yaml)
+[![test](https://img.shields.io/github/actions/workflow/status/thaibault/web-internationalization/test-coverage-report.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/web-internationalization/actions/workflows/test-coverage-report.yaml)
+
+[![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/web-internationalization?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/web-internationalization)
+
+[![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/web-internationalization/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/web-internationalization/actions/workflows/deploy-web-documentation.yaml)
+[![web documentation](https://img.shields.io/website-up-down-green-red/https/tsickert.com/web-internationalization.svg?label=web-documentation&style=for-the-badge)](https://tsickert.com/web-internationalization)
 
 ### web-component-wrapper
 
