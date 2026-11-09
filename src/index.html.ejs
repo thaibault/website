@@ -426,6 +426,19 @@ const PROJECTS = [
                 }
             },
             {
+                title: 'Home Page',
+                url: 'https://github.com/thaibault/website',
+                images: [
+                    `${IMAGE_PATH}projects/home-page/about-me.png`,
+                    `${IMAGE_PATH}projects/home-page/contact.png`,
+                    `${IMAGE_PATH}projects/home-page/work.png`
+                ],
+                content: {
+                    enUS: 'This website.',
+                    deDE: 'Diese Webseite.'
+                }
+            },
+            {
                 title: 'Standalone, unprevileged gocryptfs tool.',
                 url: 'https://tsickert.com/gocryptfs-standalone',
                 images: [
@@ -448,19 +461,6 @@ const PROJECTS = [
                     enUS:
                         'Static webpage generatorReusable for documentations.',
                     deDE: 'Statischer Webseiten-Generator für Dokumentationen.'
-                }
-            },
-            {
-                title: 'Home Page',
-                url: 'https://github.com/thaibault/website',
-                images: [
-                    `${IMAGE_PATH}projects/home-page/about-me.png`,
-                    `${IMAGE_PATH}projects/home-page/contact.png`,
-                    `${IMAGE_PATH}projects/home-page/work.png`
-                ],
-                content: {
-                    enUS: 'This website.',
-                    deDE: 'Diese Webseite.'
                 }
             }
         ]
@@ -507,18 +507,14 @@ const PROJECTS = [
         },
         content: [
             {
-                title: 'react-input-material',
-                url: 'https://tsickert.com/react-input-material',
+                title: 'react-generic-animate',
+                url: 'https://tsickert.com/react-generic-animate',
                 content: {
                     enUS:
-                        'Reusable material design based input fields as ' +
-                        'react components with support for (richt-)text, ' +
-                        'code, selections, numbers, dates and files.',
+                        'Animates markup within the react component context.',
                     deDE:
-                        'Auf Material Design basierende, wiederverwendbare ' +
-                        'Eingabefelder als React-Komponenten mit ' +
-                        'Unterstützung für (Recht-)Text, Code, Auswahlen, ' +
-                        'Zahlen, Datumsangaben und Dateien.'
+                        'Animiert Markup innerhalb des ' +
+                        'React-Komponentenkontexts.'
                 }
             },
             {
@@ -534,14 +530,18 @@ const PROJECTS = [
                 }
             },
             {
-                title: 'react-generic-animate',
-                url: 'https://tsickert.com/react-generic-animate',
+                title: 'react-input-material',
+                url: 'https://tsickert.com/react-input-material',
                 content: {
                     enUS:
-                        'Animates markup within the react component context.',
+                        'Reusable material design based input fields as ' +
+                        'react components with support for (richt-)text, ' +
+                        'code, selections, numbers, dates and files.',
                     deDE:
-                        'Animiert Markup innerhalb des ' +
-                        'React-Komponentenkontexts.'
+                        'Auf Material Design basierende, wiederverwendbare ' +
+                        'Eingabefelder als React-Komponenten mit ' +
+                        'Unterstützung für (Recht-)Text, Code, Auswahlen, ' +
+                        'Zahlen, Datumsangaben und Dateien.'
                 }
             }
         ]
@@ -553,6 +553,19 @@ const PROJECTS = [
         },
         content: [
             {
+                title: 'agile-form',
+                url: 'https://tsickert.com/agile-form',
+                content: {
+                    enUS:
+                        'Reusable highly configurable web component based ' +
+                        'form (useful for website/form builders).',
+                    deDE:
+                        'Wiederverwendbares, hochgradig anpassbares ' +
+                        'Formular auf Basis von Webkomponenten (nützlich ' +
+                        'für Website- und Formular-Generatoren).'
+                }
+            },
+            {
                 title: 'web-component-wrapper',
                 url: 'https://tsickert.com/web-component-wrapper',
                 content: {
@@ -563,6 +576,21 @@ const PROJECTS = [
                         'Generische Basisklasse und Wrapper für ' +
                         'Webkomponenten, um React-Komponenten als ' +
                         'Webkomponenten bereitzustellen.'
+                }
+            },
+            {
+                title: 'web-input-material',
+                url: 'https://tsickert.com/web-input-material',
+                content: {
+                    enUS:
+                        'Reusable material design based input fields as web ' +
+                        'components with support for (richt-)text, code, ' +
+                        'selections, numbers, dates and files.',
+                    deDE:
+                        'Wiederverwendbare, auf Material Design basierende ' +
+                        'Eingabefelder als Webkomponenten mit Unterstützung ' +
+                        'für (Recht-)Text, Code, Auswahlen, Zahlen, ' +
+                        'Datumsangaben und Dateien.'
                 }
             },
             {
@@ -592,34 +620,6 @@ const PROJECTS = [
                         'clientseitige Weiterleitung, Positionserkennung ' +
                         'und Navigation.'
                 }
-            },
-            {
-                title: 'web-input-material',
-                url: 'https://tsickert.com/web-input-material',
-                content: {
-                    enUS:
-                        'Reusable material design based input fields as web ' +
-                        'components with support for (richt-)text, code, ' +
-                        'selections, numbers, dates and files.',
-                    deDE:
-                        'Wiederverwendbare, auf Material Design basierende ' +
-                        'Eingabefelder als Webkomponenten mit Unterstützung ' +
-                        'für (Recht-)Text, Code, Auswahlen, Zahlen, ' +
-                        'Datumsangaben und Dateien.'
-                }
-            },
-            {
-                title: 'agile-form',
-                url: 'https://tsickert.com/agile-form',
-                content: {
-                    enUS:
-                        'Reusable highly configurable web component based ' +
-                        'form (useful for website/form builders).',
-                    deDE:
-                        'Wiederverwendbares, hochgradig anpassbares ' +
-                        'Formular auf Basis von Webkomponenten (nützlich ' +
-                        'für Website- und Formular-Generatoren).'
-                }
             }
         ]
     },
@@ -630,13 +630,11 @@ const PROJECTS = [
         },
         content: [
             {
-                title: 'web-node',
-                url: 'https://tsickert.com/web-node',
+                title: 'application-server-web-node-plugin',
+                url: 'https://tsickert.com/application-server-web-node-plugin',
                 content: {
-                    enUS: 'Plugin and configuration management library.',
-                    deDE:
-                        'Bibliothek für die Verwaltung von Plugins und ' +
-                        'Konfigurationen.'
+                    enUS: 'A static template processor for WebNode.',
+                    deDE: 'Ein statischer Vorlagenprozessor für WebNode.'
                 }
             },
             {
@@ -665,11 +663,16 @@ const PROJECTS = [
                 }
             },
             {
-                title: 'application-server-web-node-plugin',
-                url: 'https://tsickert.com/application-server-web-node-plugin',
+                title: 'nginx-web-node-plugin',
+                url: 'https://tsickert.com/nginx-web-node-plugin',
                 content: {
-                    enUS: 'A static template processor for WebNode.',
-                    deDE: 'Ein statischer Vorlagenprozessor für WebNode.'
+                    enUS:
+                        'A nginx proxy server configuration template for ' +
+                        'WebNode based solutions.',
+                    deDE:
+                        'Eine Konfigurationsvorlage für einen ' +
+                        'Nginx-Proxy-Server für auf WebNode basierende ' +
+                        'Lösungen.'
                 }
             },
             {
@@ -683,16 +686,13 @@ const PROJECTS = [
                 }
             },
             {
-                title: 'nginx-web-node-plugin',
-                url: 'https://tsickert.com/nginx-web-node-plugin',
+                title: 'web-node',
+                url: 'https://tsickert.com/web-node',
                 content: {
-                    enUS:
-                        'A nginx proxy server configuration template for ' +
-                        'WebNode based solutions.',
+                    enUS: 'Plugin and configuration management library.',
                     deDE:
-                        'Eine Konfigurationsvorlage für einen ' +
-                        'Nginx-Proxy-Server für auf WebNode basierende ' +
-                        'Lösungen.'
+                        'Bibliothek für die Verwaltung von Plugins und ' +
+                        'Konfigurationen.'
                 }
             }
         ]
@@ -724,13 +724,15 @@ const PROJECTS = [
         },
         content: [
             {
-                title: 'reverse-proxy-middleware',
-                url: 'https://tsickert.com/reverse-proxy-middleware',
+                title: 'polyfill-bundler',
+                url: 'https://tsickert.com/polyfill-bundler',
                 content: {
-                    enUS: 'A generic configureable standalone middleware.',
+                    enUS:
+                        'Provides minimal node application to serve an ' +
+                        'on-premise polyfill.io service.',
                     deDE:
-                        'Eine generische, konfigurierbare, eigenständige ' +
-                        'Middleware.'
+                        'Stellt eine minimalistische Node-Anwendung bereit, ' +
+                        'um einen lokalen polyfill.io-Dienst bereitzustellen.'
                 }
             },
             {
@@ -747,15 +749,13 @@ const PROJECTS = [
                 }
             },
             {
-                title: 'polyfill-bundler',
-                url: 'https://tsickert.com/polyfill-bundler',
+                title: 'reverse-proxy-middleware',
+                url: 'https://tsickert.com/reverse-proxy-middleware',
                 content: {
-                    enUS:
-                        'Provides minimal node application to serve an ' +
-                        'on-premise polyfill.io service.',
+                    enUS: 'A generic configureable standalone middleware.',
                     deDE:
-                        'Stellt eine minimalistische Node-Anwendung bereit, ' +
-                        'um einen lokalen polyfill.io-Dienst bereitzustellen.'
+                        'Eine generische, konfigurierbare, eigenständige ' +
+                        'Middleware.'
                 }
             }
         ]
@@ -788,21 +788,6 @@ const PROJECTS = [
             deDE: 'Linux'
         },
         content: [
-            {
-                title: 'bashlink',
-                url: 'https://tsickert.com/bashlink',
-                content: {
-                    enUS:
-                        'A generic bash library providing module system, ' +
-                        'testing helper and much utilities for bash like ' +
-                        'environments.',
-                    deDE:
-                        'Eine generische Bash-Bibliothek, die ein ' +
-                        'Modulsystem, Testhilfen und zahlreiche ' +
-                        'Dienstprogramme für Bash-ähnliche Umgebungen ' +
-                        'bereitstellt.'
-                }
-            },
             {
                 title: 'archinstall',
                 url: 'https://tsickert.com/archinstall',
@@ -846,6 +831,21 @@ const PROJECTS = [
                         'Mit diesem Skript können Sie eine lokale oder ' +
                         'remote Datensicherung mit Rotationsplan für Ihre ' +
                         'Dateien einrichten.'
+                }
+            },
+            {
+                title: 'bashlink',
+                url: 'https://tsickert.com/bashlink',
+                content: {
+                    enUS:
+                        'A generic bash library providing module system, ' +
+                        'testing helper and much utilities for bash like ' +
+                        'environments.',
+                    deDE:
+                        'Eine generische Bash-Bibliothek, die ein ' +
+                        'Modulsystem, Testhilfen und zahlreiche ' +
+                        'Dienstprogramme für Bash-ähnliche Umgebungen ' +
+                        'bereitstellt.'
                 }
             },
             {

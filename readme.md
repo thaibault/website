@@ -186,6 +186,25 @@ Project status
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/errorreporter/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/errorreporter/actions/workflows/deploy-web-documentation.yaml)
 [![web documentation](https://img.shields.io/website-up-down-green-red/https/tsickert.com/errorreporter.svg?label=web-documentation&style=for-the-badge)](https://tsickert.com/errorreporter)
 
+### gocryptfs-standalone
+
+[![npm](https://img.shields.io/npm/v/gocryptfs-standalone?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/gocryptfs-standalone)
+[![npm downloads](https://img.shields.io/npm/dy/gocryptfs-standalone.svg?style=for-the-badge)](https://www.npmjs.com/package/gocryptfs-standalone)
+
+[![build](https://img.shields.io/github/actions/workflow/status/thaibault/gocryptfs-standalone/build.yaml?style=for-the-badge)](https://github.com/thaibault/gocryptfs-standalone/actions/workflows/build.yaml)
+[![build push package](https://img.shields.io/github/actions/workflow/status/thaibault/gocryptfs-standalone/build-package-and-push.yaml?label=build%20push%20package&style=for-the-badge)](https://github.com/thaibault/gocryptfs-standalone/actions/workflows/build-package-and-push.yaml)
+
+[![check types](https://img.shields.io/github/actions/workflow/status/thaibault/gocryptfs-standalone/check-types.yaml?label=check%20types&style=for-the-badge)](https://github.com/thaibault/gocryptfs-standalone/actions/workflows/check-types.yaml)
+[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/gocryptfs-standalone/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/gocryptfs-standalone/actions/workflows/lint.yaml)
+[![test](https://img.shields.io/github/actions/workflow/status/thaibault/gocryptfs-standalone/test-coverage-report.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/gocryptfs-standalone/actions/workflows/test-coverage-report.yaml)
+[![gocryptfs compatibility](https://img.shields.io/github/actions/workflow/status/thaibault/gocryptfs-standalone/gocryptfs-compatibility.yaml?label=gocryptfs%20compatibility&style=for-the-badge)](https://github.com/thaibault/gocryptfs-standalone/actions/workflows/gocryptfs-compatibility.yaml)
+[![standalone executables](https://img.shields.io/github/actions/workflow/status/thaibault/gocryptfs-standalone/standalone-executables.yaml?label=standalone%20executables&style=for-the-badge)](https://github.com/thaibault/gocryptfs-standalone/actions/workflows/standalone-executables.yaml)
+
+[![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/gocryptfs-standalone?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/gocryptfs-standalone)
+
+[![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/gocryptfs-standalone/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/gocryptfs-standalone/actions/workflows/deploy-web-documentation.yaml)
+[![web documentation](https://img.shields.io/website-up-down-green-red/https/tsickert.com/gocryptfs-standalone.svg?label=web-documentation&style=for-the-badge)](https://tsickert.com/gocryptfs-standalone)
+
 ### legal-notes
 
 [![npm](https://img.shields.io/npm/v/legal-notes?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/legal-notes)
