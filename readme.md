@@ -294,6 +294,9 @@ Project status
 
 [![check types](https://img.shields.io/github/actions/workflow/status/thaibault/react-generic-animate/check-types.yaml?label=check%20types&style=for-the-badge)](https://github.com/thaibault/react-generic-animate/actions/workflows/check-types.yaml)
 [![lint](https://img.shields.io/github/actions/workflow/status/thaibault/react-generic-animate/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/react-generic-animate/actions/workflows/lint.yaml)
+[![test](https://img.shields.io/github/actions/workflow/status/thaibault/react-generic-animate/test-coverage-report.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/react-generic-animate/actions/workflows/test-coverage-report.yaml)
+
+[![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/react-generic-animate?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/react-generic-animate)
 
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/react-generic-animate/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/react-generic-animate/actions/workflows/deploy-web-documentation.yaml)
 [![web documentation](https://img.shields.io/website-up-down-green-red/https/tsickert.com/react-generic-animate.svg?label=web-documentation&style=for-the-badge)](https://tsickert.com/react-generic-animate)
@@ -325,6 +328,23 @@ Project status
 
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/react-generic-tools/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/react-generic-tools/actions/workflows/deploy-web-documentation.yaml)
 [![web documentation](https://img.shields.io/website-up-down-green-red/https/tsickert.com/react-generic-tools.svg?label=web-documentation&style=for-the-badge)](https://tsickert.com/react-generic-tools)
+
+### react-generic-user
+
+[![npm](https://img.shields.io/npm/v/react-generic-user?color=%23d55e5d&label=npm%20package%20version&logoColor=%23d55e5d&style=for-the-badge)](https://www.npmjs.com/package/react-generic-user)
+[![npm downloads](https://img.shields.io/npm/dy/react-generic-user.svg?style=for-the-badge)](https://www.npmjs.com/package/react-generic-user)
+
+[![build](https://img.shields.io/github/actions/workflow/status/thaibault/react-generic-user/build.yaml?style=for-the-badge)](https://github.com/thaibault/react-generic-user/actions/workflows/build.yaml)
+[![build push package](https://img.shields.io/github/actions/workflow/status/thaibault/react-generic-user/build-package-and-push.yaml?label=build%20push%20package&style=for-the-badge)](https://github.com/thaibault/react-generic-user/actions/workflows/build-package-and-push.yaml)
+
+[![check types](https://img.shields.io/github/actions/workflow/status/thaibault/react-generic-user/check-types.yaml?label=check%20types&style=for-the-badge)](https://github.com/thaibault/react-generic-user/actions/workflows/check-types.yaml)
+[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/react-generic-user/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/react-generic-user/actions/workflows/lint.yaml)
+[![test](https://img.shields.io/github/actions/workflow/status/thaibault/react-generic-user/test-coverage-report.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/react-generic-user/actions/workflows/test-coverage-report.yaml)
+
+[![code coverage](https://img.shields.io/coverallsCoverage/github/thaibault/react-generic-user?label=code%20coverage&style=for-the-badge)](https://coveralls.io/github/thaibault/react-generic-user)
+
+[![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/react-generic-user/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/react-generic-user/actions/workflows/deploy-web-documentation.yaml)
+[![web documentation](https://img.shields.io/website-up-down-green-red/https/tsickert.com/react-generic-user.svg?label=web-documentation&style=for-the-badge)](https://tsickert.com/react-generic-user)
 
 ### react-input-material
 
