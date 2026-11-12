@@ -57,6 +57,7 @@
     "@webcomponents/webcomponentsjs": "^2.8.0",
     "bootstrap-icons": "^1.13.2",
     "clientnode": "^4.0.1531",
+    "core-js": "^3.51.0",
     "css-loader": "^7.1.5",
     "cssnano": "^9.9.0",
     "errorreporter": "^1.0.363",
