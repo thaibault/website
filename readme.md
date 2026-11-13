@@ -336,6 +336,7 @@ The state of this website and of all my published projects:
 [![build push package](https://img.shields.io/github/actions/workflow/status/thaibault/polyfill-bundler/build-package-and-push.yaml?label=build%20push%20package&style=for-the-badge)](https://github.com/thaibault/polyfill-bundler/actions/workflows/build-package-and-push.yaml)
 
 [![check types](https://img.shields.io/github/actions/workflow/status/thaibault/polyfill-bundler/check-types.yaml?label=check%20types&style=for-the-badge)](https://github.com/thaibault/polyfill-bundler/actions/workflows/check-types.yaml)
+[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/polyfill-bundler/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/polyfill-bundler/actions/workflows/lint.yaml)
 
 [![build push image](https://img.shields.io/github/actions/workflow/status/thaibault/polyfill-bundler/build-image-and-push-periodically-2.yaml?label=build%20push%20image&style=for-the-badge)](https://github.com/thaibault/polyfill-bundler/actions/workflows/build-image-and-push-periodically-2.yaml)
 
