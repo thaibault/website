@@ -11,8 +11,105 @@ This library written by Torben Sickert stands under a creative commons naming
 See https://creativecommons.org/licenses/by/4.0/deed.de
 endregion -->
 
+<!--|deDE:Einsatzmöglichkeiten-->
+<!--|frFR:Cas d'utilisation-->
+Use case
+--------
+
+The source of my personal website [tsickert.com](https://tsickert.com) and
+an overview of the state of all my open source projects (see below). The
+page is built with [weboptimizer](https://tsickert.com/weboptimizer) and
+assembled from my own web components:
+[website-utilities](https://tsickert.com/website-utilities) for loading,
+sections and navigation and
+[web-internationalization](https://tsickert.com/web-internationalization)
+for English and German.
+<!--deDE:
+    Der Quellcode meiner persönlichen Webseite
+    [tsickert.com](https://tsickert.com) und eine Übersicht über den Zustand
+    all meiner Open-Source-Projekte (siehe unten). Die Seite wird mit
+    [weboptimizer](https://tsickert.com/weboptimizer) gebaut und aus meinen
+    eigenen Web Components zusammengesetzt:
+    [website-utilities](https://tsickert.com/website-utilities) für Laden,
+    Sektionen und Navigation und
+    [web-internationalization](https://tsickert.com/web-internationalization)
+    für Englisch und Deutsch.
+-->
+<!--frFR:
+    Le code source de mon site personnel [tsickert.com](https://tsickert.com)
+    et un aperçu de l'état de tous mes projets open source (voir ci-dessous).
+    La page est construite avec
+    [weboptimizer](https://tsickert.com/weboptimizer) et assemblée à partir
+    de mes propres web components:
+    [website-utilities](https://tsickert.com/website-utilities) pour le
+    chargement, les sections et la navigation et
+    [web-internationalization](https://tsickert.com/web-internationalization)
+    pour l'anglais et l'allemand.
+-->
+
+<!--|deDE:Aufbau-->
+<!--|frFR:Structure-->
+Structure
+---------
+
+- "src/index.html.ejs": The page content with all sections and their
+  translations.<!--deDE:"src/index.html.ejs": Der Seiteninhalt mit allen Sektionen und ihren Übersetzungen.--><!--frFR:"src/index.html.ejs": Le contenu de la page avec toutes les sections et leurs traductions.-->
+- "src/index.ts": The "home-page" web component adding the carousel
+  (Swiper), the hiding header (Headroom), audio players (WaveSurfer) and the
+  language switch.<!--deDE:"src/index.ts": Die Web Component "home-page", die das Karussell (Swiper), den sich ausblendenden Header (Headroom), Audio-Player (WaveSurfer) und den Sprachwechsel ergänzt.--><!--frFR:"src/index.ts": Le web component "home-page" qui ajoute le carrousel (Swiper), l'en-tête qui se masque (Headroom), les lecteurs audio (WaveSurfer) et le changement de langue.-->
+- "src/index.css": Styles based on website-utilities.<!--deDE:"src/index.css": Styles auf Basis von website-utilities.--><!--frFR:"src/index.css": Styles basés sur website-utilities.-->
+- "src/data" and "src/image": Downloads like CV and vCard, audio, images.<!--deDE:"src/data" und "src/image": Downloads wie Lebenslauf und vCard, Audio, Bilder.--><!--frFR:"src/data" et "src/image": Téléchargements comme CV et vCard, audio, images.-->
+
+<!--|deDE:Entwicklung-->
+<!--|frFR:Développement-->
+Development
+-----------
+
+```bash
+yarn install
+yarn start
+yarn test
+```
+
+"yarn start" serves the page with live reload.
+<!--deDE:"yarn start" stellt die Seite mit Live-Reload bereit.-->
+<!--frFR:"yarn start" sert la page avec rechargement automatique.-->
+
+<!--|deDE:Veröffentlichen-->
+<!--|frFR:Publication-->
+Deployment
+----------
+
+The workflow "Deploy website" builds the page with the GitHub action of
+website-utilities and pushes it to the GitHub Pages repository
+"thaibault.github.io", which serves tsickert.com. Locally the same is done
+by "yarn update:website", see
+[website-utilities](https://tsickert.com/website-utilities).
+<!--deDE:
+    Der Workflow "Deploy website" baut die Seite mit der GitHub Action von
+    website-utilities und pusht sie in das GitHub-Pages-Repository
+    "thaibault.github.io", das tsickert.com ausliefert. Lokal erledigt das
+    "yarn update:website", siehe
+    [website-utilities](https://tsickert.com/website-utilities).
+-->
+<!--frFR:
+    Le workflow "Deploy website" construit la page avec l'action GitHub de
+    website-utilities et la pousse dans le dépôt GitHub Pages
+    "thaibault.github.io", qui sert tsickert.com. En local,
+    "yarn update:website" fait de même, voir
+    [website-utilities](https://tsickert.com/website-utilities).
+-->
+
+<!--|deDE:Projektstatus-->
+<!--|frFR:Statut du projet-->
 Project status
 --------------
+
+The state of this website and of all my published projects:
+<!--deDE:
+    Der Zustand dieser Webseite und all meiner veröffentlichten Projekte:
+-->
+<!--frFR:L'état de ce site et de tous mes projets publiés:-->
 
 [![build](https://img.shields.io/github/actions/workflow/status/thaibault/website/build.yaml?style=for-the-badge)](https://github.com/thaibault/website/actions/workflows/build.yaml)
 
@@ -502,8 +599,3 @@ Project status
 
 [![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/website-utilities/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/website-utilities/actions/workflows/deploy-web-documentation.yaml)
 [![web documentation](https://img.shields.io/website-up-down-green-red/https/tsickert.com/website-utilities.svg?label=web-documentation&style=for-the-badge)](https://tsickert.com/website-utilities)
-
-Use case
---------
-
-Here's my website development hosted (no security by obscurity :-)).
