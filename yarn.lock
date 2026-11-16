@@ -7540,25 +7540,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"clientnode@npm:4.0.1531":
-  version: 4.0.1531
-  resolution: "clientnode@npm:4.0.1531"
-  peerDependencies:
-    "@types/prop-types": "*"
-    node-fetch: "*"
-    prop-types: "*"
-  peerDependenciesMeta:
-    "@types/prop-types":
-      optional: true
-    node-fetch:
-      optional: true
-    prop-types:
-      optional: true
-  checksum: 10c0/693139f69b4524e070ef58f26aa460290858ce2fbfd4addeb59e7c0d63d199098cf8b6f93b170609295339ed69dac3a171591b357f0179e0d35afd4d98e9fc7a
-  languageName: node
-  linkType: hard
-
-"clientnode@npm:^4.0.1532":
+"clientnode@npm:4.0.1532, clientnode@npm:^4.0.1532":
   version: 4.0.1532
   resolution: "clientnode@npm:4.0.1532"
   peerDependencies:
@@ -8820,15 +8802,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"errorreporter@npm:^1.0.363":
-  version: 1.0.363
-  resolution: "errorreporter@npm:1.0.363"
+"errorreporter@npm:^1.0.367":
+  version: 1.0.367
+  resolution: "errorreporter@npm:1.0.367"
   peerDependencies:
+    core-js: "*"
     ua-parser-js: "*"
   peerDependenciesMeta:
     ua-parser-js:
       optional: true
-  checksum: 10c0/b6803b7e25e40e49d544b46430d067cd8a31b5be625207c5cdefaef79e10425d98910487146822ef46ac2c4c9ce3fe66ac5fcb3d767c933a8eec31625c5b83da
+  checksum: 10c0/2dd0f4de12bf9d97b0686805bce255bac5e3e8c1e80f4328434070193e96d133004ec85fd05af249e22b6dd59c26304d03ee95dff1ed60857a4dcb6480aaa1fd
   languageName: node
   linkType: hard
 
@@ -10169,9 +10152,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"html-minifier@npm:^5.1.0":
-  version: 5.1.0
-  resolution: "html-minifier@npm:5.1.0"
+"html-minifier@npm:^5.2.0":
+  version: 5.2.0
+  resolution: "html-minifier@npm:5.2.0"
   dependencies:
     commander: "npm:^15.1.0"
     entities: "npm:^9.0.0"
@@ -10186,7 +10169,7 @@ __metadata:
   bin:
     hm: cli.js
     html-minifier: cli.js
-  checksum: 10c0/ad5e037459b2b3a20a6e0b0e6a857724be341ea78a1d9a6f1be1f9b24243be65904046a0104616070367756001041114bc04ed33ab99542a49fc28b1eb135253
+  checksum: 10c0/db24402765bedc89894dffd9359c3341059e846766d5fdcf4e0dded453de8078248a0154507a310cd05955170f4ac7aa317527166aa1ce11875d82931cdab1f2
   languageName: node
   linkType: hard
 
@@ -11807,10 +11790,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"legal-notes@npm:^1.0.33":
-  version: 1.0.33
-  resolution: "legal-notes@npm:1.0.33"
-  checksum: 10c0/666ea82d5a85a3e359c16057b236ba9e582bdd62c5aee8a9d2add9096877d3ac11370540a32e556ecd57dea852ee08a987d7ddea9de00e7cba9e5c122e8b8a97
+"legal-notes@npm:^1.0.34":
+  version: 1.0.34
+  resolution: "legal-notes@npm:1.0.34"
+  checksum: 10c0/bd71240d363298abc6369646fd30d346644de8ed45ace4e0d5158e1cd25224b40c94db43b547dbba84e2513e09ef3e4aff5fe00721229beee0b0b0c569361de7
   languageName: node
   linkType: hard
 
@@ -16781,9 +16764,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"weboptimizer@npm:^4.0.119":
-  version: 4.0.119
-  resolution: "weboptimizer@npm:4.0.119"
+"weboptimizer@npm:^4.0.121":
+  version: 4.0.121
+  resolution: "weboptimizer@npm:4.0.121"
   dependencies:
     "@babel/plugin-proposal-decorators": "npm:^8.0.2"
     "@babel/plugin-transform-class-properties": "npm:^8.0.1"
@@ -16795,13 +16778,13 @@ __metadata:
     babel-plugin-istanbul: "npm:8.0.2"
     babel-plugin-polyfill-corejs3: "npm:^1.0.0"
     babel-plugin-transform-rewrite-imports: "npm:^1.5.4"
-    clientnode: "npm:4.0.1531"
+    clientnode: "npm:4.0.1532"
     ejs: "npm:^7.0.2"
     exports-loader: "npm:^5.0.0"
     extract-loader: "npm:^5.1.0"
     glob-all: "npm:^3.3.1"
     html-loader: "npm:^5.1.0"
-    html-minifier: "npm:^5.1.0"
+    html-minifier: "npm:^5.2.0"
     html-webpack-plugin: "npm:^5.6.8"
     imports-loader: "npm:^5.0.0"
     jest-environment-jsdom: "npm:^30.5.2"
@@ -16925,7 +16908,7 @@ __metadata:
       optional: true
   bin:
     weboptimizer: dist/index.js
-  checksum: 10c0/28634dd066a2fb66ab458914354f9b206f7b7c483d1770b32fcaee20bf91928fbb2a89c4aa028b9641910cfa272ac0d59dc5504c690d7da91d6431b6ce5ae448
+  checksum: 10c0/522a58c44dd3516c72ea5310b4fe649a1bdbfe61cafe0d8e9753fff7a2b148574c08d16fde656f4ab66ad4bb20a5acb855af5f0d1656f7be83f02b5cff968f52
   languageName: node
   linkType: hard
 
@@ -17083,16 +17066,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"website-utilities@npm:^1.0.487":
-  version: 1.0.487
-  resolution: "website-utilities@npm:1.0.487"
+"website-utilities@npm:^1.0.488":
+  version: 1.0.488
+  resolution: "website-utilities@npm:1.0.488"
   peerDependencies:
     clientnode: "*"
     core-js: "*"
     web-component-wrapper: "*"
   bin:
     website-utilities: dist/deploy.js
-  checksum: 10c0/773f869114d1c6ed88d226d7bf9850ec33c9bce8539f0ca454accdb1186839c2740c03e293ea5d4c514de411ba9ad0ffddddf64d53bcbb95177ae47d4cb6f89e
+  checksum: 10c0/8acbb3afdf11194a3019b9d66b14307d7f77531fcb950ba012bbf616281453a17fe00f93fe748fbe6bb1eda30da63fa67c9c35aad177a90c5e7e666c183cad11
   languageName: node
   linkType: hard
 
@@ -17118,7 +17101,7 @@ __metadata:
     core-js: "npm:^3.51.0"
     css-loader: "npm:^7.1.5"
     cssnano: "npm:^9.9.0"
-    errorreporter: "npm:^1.0.363"
+    errorreporter: "npm:^1.0.367"
     eslint: "npm:^10.15.0"
     eslint-config-google: "npm:^0.14.0"
     eslint-plugin-jsdoc: "npm:^65.4.7"
@@ -17127,7 +17110,7 @@ __metadata:
     headroom.js: "npm:^0.12.0"
     jest: "npm:^30.5.2"
     jsdoc: "npm:^4.0.5"
-    legal-notes: "npm:^1.0.33"
+    legal-notes: "npm:^1.0.34"
     mini-css-extract-plugin: "npm:^2.10.2"
     postcss: "npm:^8.5.33"
     postcss-fontpath: "npm:^1.0.0"
@@ -17149,9 +17132,9 @@ __metadata:
     wavesurfer.js: "npm:^8.1.0"
     web-component-wrapper: "npm:^0.0.624"
     web-internationalization: "npm:^2.0.60"
-    weboptimizer: "npm:^4.0.119"
+    weboptimizer: "npm:^4.0.121"
     webpack-dev-server: "npm:^6.1.0"
-    website-utilities: "npm:^1.0.487"
+    website-utilities: "npm:^1.0.488"
   languageName: unknown
   linkType: soft
 
