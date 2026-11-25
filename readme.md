@@ -362,13 +362,13 @@ The state of this website and of all my published projects:
 
 ### proxy
 
-[![build push image](https://img.shields.io/github/actions/workflow/status/thaibault/proxy/build-image-and-push-periodically-2.yaml?label=build%20push%20image&style=for-the-badge)](https://github.com/thaibault/proxy/actions/workflows/build-image-and-push-periodically-2.yaml)
+[![build push image](https://img.shields.io/github/actions/workflow/status/thaibault/certbot-proxy/build-image-and-push-periodically-2.yaml?label=build%20push%20image&style=for-the-badge)](https://github.com/thaibault/certbot-proxy/actions/workflows/build-image-and-push-periodically-2.yaml)
 
-[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/proxy/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/proxy/actions/workflows/lint.yaml)
-[![test](https://img.shields.io/github/actions/workflow/status/thaibault/proxy/test.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/proxy/actions/workflows/test.yaml)
+[![lint](https://img.shields.io/github/actions/workflow/status/thaibault/certbot-proxy/lint.yaml?label=lint&style=for-the-badge)](https://github.com/thaibault/certbot-proxy/actions/workflows/lint.yaml)
+[![test](https://img.shields.io/github/actions/workflow/status/thaibault/certbot-proxy/test.yaml?label=test&style=for-the-badge)](https://github.com/thaibault/certbot-proxy/actions/workflows/test.yaml)
 
-[![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/proxy/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/proxy/actions/workflows/deploy-web-documentation.yaml)
-[![web documentation](https://img.shields.io/website-up-down-green-red/https/tsickert.com/proxy.svg?label=web-documentation&style=for-the-badge)](https://tsickert.com/proxy)
+[![deploy web documentation](https://img.shields.io/github/actions/workflow/status/thaibault/certbot-proxy/deploy-web-documentation.yaml?label=deploy%20web%20documentation&style=for-the-badge)](https://github.com/thaibault/certbot-proxy/actions/workflows/deploy-web-documentation.yaml)
+[![web documentation](https://img.shields.io/website-up-down-green-red/https/tsickert.com/certbot-proxy.svg?label=web-documentation&style=for-the-badge)](https://tsickert.com/certbot-proxy)
 
 ### reachable-watcher
 
