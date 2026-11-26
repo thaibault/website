@@ -138,5 +138,5 @@ The project uses Yarn 4 with node-modules linker enabled. Dependencies are locke
 
 - Build configuration is entirely within `package.json` under `webOptimizer` key
 - Special webpack snapshot exclusions exist for clientnode, web-component-wrapper, web-internationalization, and website-utilities (see package.json)
-- Yarn patches are applied to the `globals` package (see `.yarn/patches/`)
+- `globals` is a direct devDependency because weboptimizer's ESLint configuration imports it as an optional peer dependency
 - The project has no separate ESLint or TypeScript configuration files; all config comes from weboptimizer defaults and package.json

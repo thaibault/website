@@ -25,7 +25,10 @@ describe('HomePage', (): void => {
 
     beforeAll(async () => {
         api.register()
-        root = document.createElement('home-page') as HomePage
+        const element = document.createElement('home-page')
+        if (!(element instanceof HomePage))
+            throw new Error('"home-page" is not registered as "HomePage".')
+        root = element
         document.body.appendChild(root)
 
         await root.renderState.promise
